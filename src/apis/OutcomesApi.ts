@@ -60,6 +60,14 @@ export class OutcomesApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/outcomes`,
             method: 'POST',
@@ -93,6 +101,14 @@ export class OutcomesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/outcomes/{outcome_id}`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
             method: 'GET',
@@ -125,6 +141,14 @@ export class OutcomesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/outcomes/{outcome_id}/report.html`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
             method: 'GET',
@@ -153,6 +177,14 @@ export class OutcomesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/outcomes`,
             method: 'GET',
@@ -191,6 +223,14 @@ export class OutcomesApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json+merge-patch';
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/outcomes/{outcome_id}`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
             method: 'PATCH',

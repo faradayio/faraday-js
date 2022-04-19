@@ -45,6 +45,14 @@ export class UploadsApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/octet-stream';
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/uploads/{directory}/{filename}`.replace(`{${"directory"}}`, encodeURIComponent(String(requestParameters.directory))).replace(`{${"filename"}}`, encodeURIComponent(String(requestParameters.filename))),
             method: 'POST',

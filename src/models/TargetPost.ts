@@ -46,6 +46,12 @@ export interface TargetPost {
      */
     limit?: number;
     /**
+     * A user-friendly name of the target.
+     * @type {string}
+     * @memberof TargetPost
+     */
+    name: string;
+    /**
      * The connection-specific options. These vary by connection type. The following are currently supported:
      * <table>
      * <thead>
@@ -98,6 +104,7 @@ export function TargetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'connectionId': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'name': json['name'],
         'options': !exists(json, 'options') ? undefined : json['options'],
         'publicationType': !exists(json, 'publication_type') ? undefined : json['publication_type'],
         'scopeId': json['scope_id'],
@@ -116,6 +123,7 @@ export function TargetPostToJSON(value?: TargetPost | null): any {
         'connection_id': value.connectionId,
         'hashed': value.hashed,
         'limit': value.limit,
+        'name': value.name,
         'options': value.options,
         'publication_type': value.publicationType,
         'scope_id': value.scopeId,

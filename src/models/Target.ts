@@ -76,6 +76,12 @@ export interface Target {
      */
     limit?: number;
     /**
+     * A user-friendly name of the target.
+     * @type {string}
+     * @memberof Target
+     */
+    name: string;
+    /**
      * The connection-specific options. These vary by connection type. The following are currently supported:
      * <table>
      * <thead>
@@ -160,6 +166,7 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
         'id': json['id'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'name': json['name'],
         'options': !exists(json, 'options') ? undefined : json['options'],
         'publicationType': !exists(json, 'publication_type') ? undefined : json['publication_type'],
         'resourceType': json['resource_type'],
@@ -185,6 +192,7 @@ export function TargetToJSON(value?: Target | null): any {
         'hashed': value.hashed,
         'id': value.id,
         'limit': value.limit,
+        'name': value.name,
         'options': value.options,
         'publication_type': value.publicationType,
         'resource_type': value.resourceType,

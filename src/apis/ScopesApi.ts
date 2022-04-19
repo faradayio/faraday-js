@@ -60,6 +60,14 @@ export class ScopesApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/scopes`,
             method: 'POST',
@@ -92,6 +100,14 @@ export class ScopesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/scopes/{scope_id}`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
             method: 'DELETE',
@@ -122,6 +138,14 @@ export class ScopesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/scopes/{scope_id}`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
             method: 'GET',
@@ -150,6 +174,14 @@ export class ScopesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/scopes`,
             method: 'GET',
@@ -188,6 +220,14 @@ export class ScopesApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json+merge-patch';
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/scopes/{scope_id}`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
             method: 'PATCH',
