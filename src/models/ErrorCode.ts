@@ -35,6 +35,7 @@
  * **Application Errors**
  * 
  * - VALIDATION_FAILED: A parameter or request could not be validated.
+ * - CONFLICT: The request was formatted correctly, but conflicted with an existing resource
  * @export
  * @enum {string}
  */
@@ -46,7 +47,8 @@ export enum ErrorCode {
     NotFound = 'NOT_FOUND',
     MalformedApiKey = 'MALFORMED_API_KEY',
     MissingApiKey = 'MISSING_API_KEY',
-    ValidationFailed = 'VALIDATION_FAILED'
+    ValidationFailed = 'VALIDATION_FAILED',
+    Conflict = 'CONFLICT'
 }
 
 export function ErrorCodeFromJSON(json: any): ErrorCode {

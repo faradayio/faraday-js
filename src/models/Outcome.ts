@@ -75,11 +75,11 @@ export interface Outcome {
      */
     id: string;
     /**
-     * Human-readable label for this outcome
+     * Human-readable label for this outcome. Each of your outcomes must have a unique name.
      * @type {string}
      * @memberof Outcome
      */
-    name?: string;
+    name: string;
     /**
      * The type of this resource.
      * @type {string}
@@ -136,7 +136,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'eligibleCohortId': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'eligibleCohortName': !exists(json, 'eligible_cohort_name') ? undefined : json['eligible_cohort_name'],
         'id': json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'],
         'resourceType': json['resource_type'],
         'rocAuc': !exists(json, 'roc_auc') ? undefined : json['roc_auc'],
         'status': ResourceStatusFromJSON(json['status']),

@@ -13,12 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ScopePopulationPut,
+    ScopePopulationPutFromJSON,
+    ScopePopulationPutFromJSONTyped,
+    ScopePopulationPutToJSON,
+} from './ScopePopulationPut';
+
 /**
  * 
  * @export
  * @interface ScopePut
  */
 export interface ScopePut {
+    /**
+     * 
+     * @type {ScopePopulationPut}
+     * @memberof ScopePut
+     */
+    population: ScopePopulationPut;
     /**
      * A preview scope provides only a limited number of output records, but
      * it is not billed.
@@ -38,6 +51,7 @@ export function ScopePutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
+        'population': ScopePopulationPutFromJSON(json['population']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
     };
 }
@@ -51,6 +65,7 @@ export function ScopePutToJSON(value?: ScopePut | null): any {
     }
     return {
         
+        'population': ScopePopulationPutToJSON(value.population),
         'preview': value.preview,
     };
 }

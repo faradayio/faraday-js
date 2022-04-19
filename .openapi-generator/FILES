@@ -53,10 +53,12 @@ src/models/ResourceStatus.ts
 src/models/ResourceType.ts
 src/models/Scope.ts
 src/models/ScopeInclude.ts
+src/models/ScopeIncludeOneOf.ts
 src/models/ScopePayload.ts
 src/models/ScopePayloadPost.ts
 src/models/ScopePopulation.ts
 src/models/ScopePopulationPost.ts
+src/models/ScopePopulationPut.ts
 src/models/ScopePost.ts
 src/models/ScopePut.ts
 src/models/Stream.ts

@@ -12,20 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import {
+    ScopeIncludeOneOf,
+    ScopeIncludeOneOfFromJSON,
+    ScopeIncludeOneOfFromJSONTyped,
+    ScopeIncludeOneOfToJSON,
+} from './ScopeIncludeOneOf';
+
 /**
- * A group of people, specified in one of a variety of ways.
+ * @type ScopeInclude
+ * 
  * @export
- * @interface ScopeInclude
  */
-export interface ScopeInclude {
-    /**
-     * 
-     * @type {string}
-     * @memberof ScopeInclude
-     */
-    cohortId: string;
-}
+export type ScopeInclude = ScopeIncludeOneOf;
 
 export function ScopeIncludeFromJSON(json: any): ScopeInclude {
     return ScopeIncludeFromJSONTyped(json, false);
@@ -35,10 +34,7 @@ export function ScopeIncludeFromJSONTyped(json: any, ignoreDiscriminator: boolea
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
-        'cohortId': json['cohort_id'],
-    };
+    return { ...ScopeIncludeOneOfFromJSONTyped(json, true) };
 }
 
 export function ScopeIncludeToJSON(value?: ScopeInclude | null): any {
@@ -48,9 +44,6 @@ export function ScopeIncludeToJSON(value?: ScopeInclude | null): any {
     if (value === null) {
         return null;
     }
-    return {
-        
-        'cohort_id': value.cohortId,
-    };
+    return { ...ScopeIncludeOneOfToJSON(value) };
 }
 

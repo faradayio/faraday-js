@@ -70,6 +70,12 @@ export interface Target {
      */
     id: string;
     /**
+     * Maximum scores to export via this target.
+     * @type {number}
+     * @memberof Target
+     */
+    limit?: number;
+    /**
      * The connection-specific options. These vary by connection type. The following are currently supported:
      * <table>
      * <thead>
@@ -153,6 +159,7 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         'createdAt': (new Date(json['created_at'])),
         'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
         'id': json['id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'options': !exists(json, 'options') ? undefined : json['options'],
         'publicationType': !exists(json, 'publication_type') ? undefined : json['publication_type'],
         'resourceType': json['resource_type'],
@@ -177,6 +184,7 @@ export function TargetToJSON(value?: Target | null): any {
         'created_at': (value.createdAt.toISOString()),
         'hashed': value.hashed,
         'id': value.id,
+        'limit': value.limit,
         'options': value.options,
         'publication_type': value.publicationType,
         'resource_type': value.resourceType,

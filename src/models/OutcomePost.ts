@@ -38,11 +38,11 @@ export interface OutcomePost {
      */
     eligibleCohortId?: string;
     /**
-     * Human-readable label for this outcome
+     * Human-readable label for this outcome. Each of your outcomes must have a unique name.
      * @type {string}
      * @memberof OutcomePost
      */
-    name?: string;
+    name: string;
 }
 
 export function OutcomePostFromJSON(json: any): OutcomePost {
@@ -58,7 +58,7 @@ export function OutcomePostFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'attainmentCohortId': json['attainment_cohort_id'],
         'attritionCohortId': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
         'eligibleCohortId': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'],
     };
 }
 

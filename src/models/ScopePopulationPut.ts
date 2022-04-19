@@ -14,30 +14,30 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The people to include in a scope. Leave `cohort_ids` empty to include the entire US population.
+ * 
  * @export
- * @interface ScopePopulation
+ * @interface ScopePopulationPut
  */
-export interface ScopePopulation {
+export interface ScopePopulationPut {
     /**
      * 
      * @type {Array<string>}
-     * @memberof ScopePopulation
+     * @memberof ScopePopulationPut
      */
     cohortIds: Array<string>;
     /**
      * 
      * @type {Array<string>}
-     * @memberof ScopePopulation
+     * @memberof ScopePopulationPut
      */
     exclusionCohortIds?: Array<string>;
 }
 
-export function ScopePopulationFromJSON(json: any): ScopePopulation {
-    return ScopePopulationFromJSONTyped(json, false);
+export function ScopePopulationPutFromJSON(json: any): ScopePopulationPut {
+    return ScopePopulationPutFromJSONTyped(json, false);
 }
 
-export function ScopePopulationFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScopePopulation {
+export function ScopePopulationPutFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScopePopulationPut {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -48,7 +48,7 @@ export function ScopePopulationFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function ScopePopulationToJSON(value?: ScopePopulation | null): any {
+export function ScopePopulationPutToJSON(value?: ScopePopulationPut | null): any {
     if (value === undefined) {
         return undefined;
     }

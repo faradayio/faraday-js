@@ -27,6 +27,10 @@ export interface CreateTargetRequest {
     targetFields: TargetPost;
 }
 
+export interface DownloadTargetRequest {
+    targetId: string;
+}
+
 export interface GetTargetRequest {
     targetId: string;
 }
@@ -68,6 +72,36 @@ export class TargetsApi extends runtime.BaseAPI {
      */
     async createTarget(targetFields: TargetPost, ): Promise<Target> {
         const response = await this.createTargetRaw({ targetFields: targetFields }, );
+        return await response.value();
+    }
+
+    /**
+     * Download the default output of a target
+     */
+    private async downloadTargetRaw(requestParameters: DownloadTargetRequest, ): Promise<runtime.ApiResponse<string>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling downloadTarget.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/targets/{target_id}/download.csv`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.TextApiResponse(response) as any;
+    }
+
+    /**
+     * Download the default output of a target
+     */
+    async downloadTarget(targetId: string, ): Promise<string> {
+        const response = await this.downloadTargetRaw({ targetId: targetId }, );
         return await response.value();
     }
 
