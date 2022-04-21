@@ -27,6 +27,10 @@ export interface CreateTargetRequest {
     targetFields: TargetPost;
 }
 
+export interface CreateTargetPreviewRequest {
+    targetId: string;
+}
+
 export interface DownloadTargetRequest {
     targetId: string;
 }
@@ -81,6 +85,45 @@ export class TargetsApi extends runtime.BaseAPI {
     async createTarget(targetFields: TargetPost, ): Promise<Target> {
         const response = await this.createTargetRaw({ targetFields: targetFields }, );
         return await response.value();
+    }
+
+    /**
+     * Trigger a preview delivery (first 100 results) of a target
+     * Start a preview delivery
+     */
+    private async createTargetPreviewRaw(requestParameters: CreateTargetPreviewRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling createTargetPreview.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}/preview`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a preview delivery (first 100 results) of a target
+     * Start a preview delivery
+     */
+    async createTargetPreview(targetId: string, ): Promise<void> {
+        await this.createTargetPreviewRaw({ targetId: targetId }, );
     }
 
     /**
