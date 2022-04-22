@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ModelingField,
+    ModelingFieldFromJSON,
+    ModelingFieldFromJSONTyped,
+    ModelingFieldToJSON,
+} from './ModelingField';
+import {
     Persona,
     PersonaFromJSON,
     PersonaFromJSONTyped,
@@ -50,6 +56,12 @@ export interface PersonaSet {
      * @memberof PersonaSet
      */
     id: string;
+    /**
+     * Specify customer attributes to use in modeling
+     * @type {Array<ModelingField>}
+     * @memberof PersonaSet
+     */
+    modelingFields?: Array<ModelingField>;
     /**
      * The personas that belong to this persona set
      * @type {Array<Persona>}
@@ -101,6 +113,7 @@ export function PersonaSetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'cohortId': json['cohort_id'],
         'createdAt': (new Date(json['created_at'])),
         'id': json['id'],
+        'modelingFields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
         'personas': !exists(json, 'personas') ? undefined : ((json['personas'] as Array<any>).map(PersonaFromJSON)),
         'resourceType': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
@@ -122,6 +135,7 @@ export function PersonaSetToJSON(value?: PersonaSet | null): any {
         'cohort_id': value.cohortId,
         'created_at': (value.createdAt.toISOString()),
         'id': value.id,
+        'modeling_fields': value.modelingFields === undefined ? undefined : ((value.modelingFields as Array<any>).map(ModelingFieldToJSON)),
         'personas': value.personas === undefined ? undefined : ((value.personas as Array<any>).map(PersonaToJSON)),
         'resource_type': value.resourceType,
         'status': ResourceStatusToJSON(value.status),

@@ -18,14 +18,13 @@ import {
     PersonaSet,
     PersonaSetFromJSON,
     PersonaSetToJSON,
+    PersonaSetPost,
+    PersonaSetPostFromJSON,
+    PersonaSetPostToJSON,
 } from '../models';
 
-export interface CreateCohortPersonaSetRequest {
-    cohortId: string;
-}
-
-export interface GetCohortPersonaSetsRequest {
-    cohortId: string;
+export interface CreatePersonaSetRequest {
+    personaSetPost: PersonaSetPost;
 }
 
 export interface GetPersonaSetRequest {
@@ -41,14 +40,16 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Invoke the build of a new persona set for a given cohort
      * Create persona set
      */
-    private async createCohortPersonaSetRaw(requestParameters: CreateCohortPersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
-        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
-            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling createCohortPersonaSet.');
+    private async createPersonaSetRaw(requestParameters: CreatePersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
+        if (requestParameters.personaSetPost === null || requestParameters.personaSetPost === undefined) {
+            throw new runtime.RequiredError('personaSetPost','Required parameter requestParameters.personaSetPost was null or undefined when calling createPersonaSet.');
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -59,10 +60,11 @@ export class PersonaSetsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/cohorts/{cohort_id}/persona_sets`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+            path: `/persona_sets`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: PersonaSetPostToJSON(requestParameters.personaSetPost),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PersonaSetFromJSON(jsonValue));
@@ -72,48 +74,8 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Invoke the build of a new persona set for a given cohort
      * Create persona set
      */
-    async createCohortPersonaSet(cohortId: string, ): Promise<PersonaSet> {
-        const response = await this.createCohortPersonaSetRaw({ cohortId: cohortId }, );
-        return await response.value();
-    }
-
-    /**
-     * A list of persona sets available for a given cohort
-     * List persona sets by cohort
-     */
-    private async getCohortPersonaSetsRaw(requestParameters: GetCohortPersonaSetsRequest, ): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
-        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
-            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling getCohortPersonaSets.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/cohorts/{cohort_id}/persona_sets`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        });
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PersonaSetFromJSON));
-    }
-
-    /**
-     * A list of persona sets available for a given cohort
-     * List persona sets by cohort
-     */
-    async getCohortPersonaSets(cohortId: string, ): Promise<Array<PersonaSet>> {
-        const response = await this.getCohortPersonaSetsRaw({ cohortId: cohortId }, );
+    async createPersonaSet(personaSetPost: PersonaSetPost, ): Promise<PersonaSet> {
+        const response = await this.createPersonaSetRaw({ personaSetPost: personaSetPost }, );
         return await response.value();
     }
 
@@ -154,6 +116,42 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      */
     async getPersonaSet(personaSetId: string, ): Promise<PersonaSet> {
         const response = await this.getPersonaSetRaw({ personaSetId: personaSetId }, );
+        return await response.value();
+    }
+
+    /**
+     * A list of available persona sets
+     * List persona sets
+     */
+    private async getPersonaSetsRaw(): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/persona_sets`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PersonaSetFromJSON));
+    }
+
+    /**
+     * A list of available persona sets
+     * List persona sets
+     */
+    async getPersonaSets(): Promise<Array<PersonaSet>> {
+        const response = await this.getPersonaSetsRaw();
         return await response.value();
     }
 

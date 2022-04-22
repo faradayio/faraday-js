@@ -39,6 +39,7 @@ src/models/IdentitySets.ts
 src/models/IdentitySetsPost.ts
 src/models/IdentitySetsPut.ts
 src/models/ModelError.ts
+src/models/ModelingField.ts
 src/models/Outcome.ts
 src/models/OutcomePost.ts
 src/models/OutcomePut.ts
@@ -48,6 +49,7 @@ src/models/OutputToStreamsPut.ts
 src/models/Persona.ts
 src/models/PersonaDetails.ts
 src/models/PersonaSet.ts
+src/models/PersonaSetPost.ts
 src/models/Resource.ts
 src/models/ResourceStatus.ts
 src/models/ResourceType.ts
