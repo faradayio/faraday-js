@@ -31,7 +31,7 @@ export interface DataMapColumnPut {
      * @type {string}
      * @memberof DataMapColumnPut
      */
-    columnName: string;
+    column_name: string;
     /**
      * 
      * @type {DataMapColumnFormat}
@@ -50,7 +50,7 @@ export function DataMapColumnPutFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'columnName': json['column_name'],
+        'column_name': json['column_name'],
         'format': !exists(json, 'format') ? undefined : DataMapColumnFormatFromJSON(json['format']),
     };
 }
@@ -64,7 +64,7 @@ export function DataMapColumnPutToJSON(value?: DataMapColumnPut | null): any {
     }
     return {
         
-        'column_name': value.columnName,
+        'column_name': value.column_name,
         'format': DataMapColumnFormatToJSON(value.format),
     };
 }

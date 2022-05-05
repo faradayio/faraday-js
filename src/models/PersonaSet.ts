@@ -43,13 +43,13 @@ export interface PersonaSet {
      * @type {string}
      * @memberof PersonaSet
      */
-    cohortId: string;
+    cohort_id: string;
     /**
      * When this resource was created.
      * @type {Date}
      * @memberof PersonaSet
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      * A unique ID for this resource.
      * @type {string}
@@ -61,7 +61,7 @@ export interface PersonaSet {
      * @type {Array<ModelingField>}
      * @memberof PersonaSet
      */
-    modelingFields?: Array<ModelingField>;
+    modeling_fields?: Array<ModelingField>;
     /**
      * The personas that belong to this persona set
      * @type {Array<Persona>}
@@ -73,7 +73,7 @@ export interface PersonaSet {
      * @type {string}
      * @memberof PersonaSet
      */
-    resourceType: string;
+    resource_type: string;
     /**
      * 
      * @type {ResourceStatus}
@@ -85,19 +85,19 @@ export interface PersonaSet {
      * @type {Date}
      * @memberof PersonaSet
      */
-    statusChangedAt?: Date;
+    status_changed_at?: Date;
     /**
      * If this resource has `status == "error"`, this will contain an error message.
      * @type {string}
      * @memberof PersonaSet
      */
-    statusError?: string;
+    status_error?: string;
     /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof PersonaSet
      */
-    updatedAt: Date;
+    updated_at: Date;
 }
 
 export function PersonaSetFromJSON(json: any): PersonaSet {
@@ -110,16 +110,16 @@ export function PersonaSetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'cohortId': json['cohort_id'],
-        'createdAt': (new Date(json['created_at'])),
+        'cohort_id': json['cohort_id'],
+        'created_at': (new Date(json['created_at'])),
         'id': json['id'],
-        'modelingFields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
+        'modeling_fields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
         'personas': !exists(json, 'personas') ? undefined : ((json['personas'] as Array<any>).map(PersonaFromJSON)),
-        'resourceType': json['resource_type'],
+        'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
-        'statusChangedAt': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
-        'statusError': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'updatedAt': (new Date(json['updated_at'])),
+        'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
+        'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'updated_at': (new Date(json['updated_at'])),
     };
 }
 
@@ -132,16 +132,16 @@ export function PersonaSetToJSON(value?: PersonaSet | null): any {
     }
     return {
         
-        'cohort_id': value.cohortId,
-        'created_at': (value.createdAt.toISOString()),
+        'cohort_id': value.cohort_id,
+        'created_at': (value.created_at.toISOString()),
         'id': value.id,
-        'modeling_fields': value.modelingFields === undefined ? undefined : ((value.modelingFields as Array<any>).map(ModelingFieldToJSON)),
+        'modeling_fields': value.modeling_fields === undefined ? undefined : ((value.modeling_fields as Array<any>).map(ModelingFieldToJSON)),
         'personas': value.personas === undefined ? undefined : ((value.personas as Array<any>).map(PersonaToJSON)),
-        'resource_type': value.resourceType,
+        'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
-        'status_changed_at': value.statusChangedAt === undefined ? undefined : (value.statusChangedAt.toISOString()),
-        'status_error': value.statusError,
-        'updated_at': (value.updatedAt.toISOString()),
+        'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
+        'status_error': value.status_error,
+        'updated_at': (value.updated_at.toISOString()),
     };
 }
 

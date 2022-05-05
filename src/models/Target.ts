@@ -44,13 +44,13 @@ export interface Target {
      * @type {string}
      * @memberof Target
      */
-    connectionId?: string;
+    connection_id?: string;
     /**
      * When this resource was created.
      * @type {Date}
      * @memberof Target
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      * There are two options to receive back identifying information about exported individuals, each supporting different use cases:
      *   * **Identified**: All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see /datasets for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned. This facilitates most conversion, engagement, and retention use cases, along with direct mail acquisition.
@@ -112,19 +112,19 @@ export interface Target {
      * @type {string}
      * @memberof Target
      */
-    publicationType?: string;
+    publication_type?: string;
     /**
      * The type of this resource.
      * @type {string}
      * @memberof Target
      */
-    resourceType: string;
+    resource_type: string;
     /**
      * The UUID of a scope - see /scopes for more detail.
      * @type {string}
      * @memberof Target
      */
-    scopeId: string;
+    scope_id: string;
     /**
      * 
      * @type {ResourceStatus}
@@ -136,19 +136,19 @@ export interface Target {
      * @type {Date}
      * @memberof Target
      */
-    statusChangedAt?: Date;
+    status_changed_at?: Date;
     /**
      * If this resource has `status == "error"`, this will contain an error message.
      * @type {string}
      * @memberof Target
      */
-    statusError?: string;
+    status_error?: string;
     /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Target
      */
-    updatedAt: Date;
+    updated_at: Date;
 }
 
 export function TargetFromJSON(json: any): Target {
@@ -161,20 +161,20 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
     }
     return {
         
-        'connectionId': !exists(json, 'connection_id') ? undefined : json['connection_id'],
-        'createdAt': (new Date(json['created_at'])),
+        'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
+        'created_at': (new Date(json['created_at'])),
         'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
         'id': json['id'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'name': json['name'],
         'options': !exists(json, 'options') ? undefined : json['options'],
-        'publicationType': !exists(json, 'publication_type') ? undefined : json['publication_type'],
-        'resourceType': json['resource_type'],
-        'scopeId': json['scope_id'],
+        'publication_type': !exists(json, 'publication_type') ? undefined : json['publication_type'],
+        'resource_type': json['resource_type'],
+        'scope_id': json['scope_id'],
         'status': ResourceStatusFromJSON(json['status']),
-        'statusChangedAt': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
-        'statusError': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'updatedAt': (new Date(json['updated_at'])),
+        'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
+        'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'updated_at': (new Date(json['updated_at'])),
     };
 }
 
@@ -187,20 +187,20 @@ export function TargetToJSON(value?: Target | null): any {
     }
     return {
         
-        'connection_id': value.connectionId,
-        'created_at': (value.createdAt.toISOString()),
+        'connection_id': value.connection_id,
+        'created_at': (value.created_at.toISOString()),
         'hashed': value.hashed,
         'id': value.id,
         'limit': value.limit,
         'name': value.name,
         'options': value.options,
-        'publication_type': value.publicationType,
-        'resource_type': value.resourceType,
-        'scope_id': value.scopeId,
+        'publication_type': value.publication_type,
+        'resource_type': value.resource_type,
+        'scope_id': value.scope_id,
         'status': ResourceStatusToJSON(value.status),
-        'status_changed_at': value.statusChangedAt === undefined ? undefined : (value.statusChangedAt.toISOString()),
-        'status_error': value.statusError,
-        'updated_at': (value.updatedAt.toISOString()),
+        'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
+        'status_error': value.status_error,
+        'updated_at': (value.updated_at.toISOString()),
     };
 }
 

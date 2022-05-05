@@ -37,7 +37,7 @@ export interface DatasetPost {
      * @type {IdentitySetsPost}
      * @memberof DatasetPost
      */
-    identitySets: IdentitySetsPost;
+    identity_sets: IdentitySetsPost;
     /**
      * A column specifying a date associated with a record. After each
      * ingestion, the most recent value from `incremental_column` on any
@@ -49,19 +49,19 @@ export interface DatasetPost {
      * @type {string}
      * @memberof DatasetPost
      */
-    incrementalColumn?: string;
+    incremental_column?: string;
     /**
      * 
      * @type {OutputToStreamsPost}
      * @memberof DatasetPost
      */
-    outputToStreams: OutputToStreamsPost;
+    output_to_streams: OutputToStreamsPost;
     /**
      * 
      * @type {string}
      * @memberof DatasetPost
      */
-    uploadDirectory: string;
+    upload_directory: string;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
@@ -74,7 +74,7 @@ export interface DatasetPost {
      * @type {Array<string>}
      * @memberof DatasetPost
      */
-    upsertColumns?: Array<string>;
+    upsert_columns?: Array<string>;
 }
 
 export function DatasetPostFromJSON(json: any): DatasetPost {
@@ -87,11 +87,11 @@ export function DatasetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'identitySets': IdentitySetsPostFromJSON(json['identity_sets']),
-        'incrementalColumn': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
-        'outputToStreams': OutputToStreamsPostFromJSON(json['output_to_streams']),
-        'uploadDirectory': json['upload_directory'],
-        'upsertColumns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
+        'identity_sets': IdentitySetsPostFromJSON(json['identity_sets']),
+        'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'output_to_streams': OutputToStreamsPostFromJSON(json['output_to_streams']),
+        'upload_directory': json['upload_directory'],
+        'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
 
@@ -104,11 +104,11 @@ export function DatasetPostToJSON(value?: DatasetPost | null): any {
     }
     return {
         
-        'identity_sets': IdentitySetsPostToJSON(value.identitySets),
-        'incremental_column': value.incrementalColumn,
-        'output_to_streams': OutputToStreamsPostToJSON(value.outputToStreams),
-        'upload_directory': value.uploadDirectory,
-        'upsert_columns': value.upsertColumns,
+        'identity_sets': IdentitySetsPostToJSON(value.identity_sets),
+        'incremental_column': value.incremental_column,
+        'output_to_streams': OutputToStreamsPostToJSON(value.output_to_streams),
+        'upload_directory': value.upload_directory,
+        'upsert_columns': value.upsert_columns,
     };
 }
 

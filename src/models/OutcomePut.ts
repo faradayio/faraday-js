@@ -24,19 +24,19 @@ export interface OutcomePut {
      * @type {string}
      * @memberof OutcomePut
      */
-    attainmentCohortId: string;
+    attainment_cohort_id: string;
     /**
      * A cohort of counterexamples - people who have clearly failed to attain the outcome, as opposed to simply being indeterminate. This cohort is optional.
      * @type {string}
      * @memberof OutcomePut
      */
-    attritionCohortId?: string;
+    attrition_cohort_id?: string;
     /**
      * A cohort of people who could attain or attrite the desired outcome (for example, if predicting transition from prospect to customer, the eligible cohort should be prospects). If no eligible cohort is specified, the model will use the US population as the eligible cohort.
      * @type {string}
      * @memberof OutcomePut
      */
-    eligibleCohortId?: string;
+    eligible_cohort_id?: string;
     /**
      * Human-readable label for this outcome. Each of your outcomes must have a unique name.
      * @type {string}
@@ -55,9 +55,9 @@ export function OutcomePutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'attainmentCohortId': json['attainment_cohort_id'],
-        'attritionCohortId': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
-        'eligibleCohortId': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
+        'attainment_cohort_id': json['attainment_cohort_id'],
+        'attrition_cohort_id': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
+        'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'name': json['name'],
     };
 }
@@ -71,9 +71,9 @@ export function OutcomePutToJSON(value?: OutcomePut | null): any {
     }
     return {
         
-        'attainment_cohort_id': value.attainmentCohortId,
-        'attrition_cohort_id': value.attritionCohortId,
-        'eligible_cohort_id': value.eligibleCohortId,
+        'attainment_cohort_id': value.attainment_cohort_id,
+        'attrition_cohort_id': value.attrition_cohort_id,
+        'eligible_cohort_id': value.eligible_cohort_id,
         'name': value.name,
     };
 }

@@ -30,13 +30,13 @@ export interface ScopePayload {
      * @type {Array<string>}
      * @memberof ScopePayload
      */
-    outcomeIds?: Array<string>;
+    outcome_ids?: Array<string>;
     /**
      * Include the persona assignment(s) from the specified persona set(s).
      * @type {Array<string>}
      * @memberof ScopePayload
      */
-    personaSetIds?: Array<string>;
+    persona_set_ids?: Array<string>;
 }
 
 export function ScopePayloadFromJSON(json: any): ScopePayload {
@@ -50,8 +50,8 @@ export function ScopePayloadFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'attributes': !exists(json, 'attributes') ? undefined : json['attributes'],
-        'outcomeIds': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
-        'personaSetIds': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
+        'outcome_ids': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
+        'persona_set_ids': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
     };
 }
 
@@ -65,8 +65,8 @@ export function ScopePayloadToJSON(value?: ScopePayload | null): any {
     return {
         
         'attributes': value.attributes,
-        'outcome_ids': value.outcomeIds,
-        'persona_set_ids': value.personaSetIds,
+        'outcome_ids': value.outcome_ids,
+        'persona_set_ids': value.persona_set_ids,
     };
 }
 

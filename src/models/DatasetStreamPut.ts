@@ -31,7 +31,7 @@ export interface DatasetStreamPut {
      * @type {DataMapPut}
      * @memberof DatasetStreamPut
      */
-    dataMap: DataMapPut;
+    data_map: DataMapPut;
 }
 
 export function DatasetStreamPutFromJSON(json: any): DatasetStreamPut {
@@ -44,7 +44,7 @@ export function DatasetStreamPutFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'dataMap': DataMapPutFromJSON(json['data_map']),
+        'data_map': DataMapPutFromJSON(json['data_map']),
     };
 }
 
@@ -57,7 +57,7 @@ export function DatasetStreamPutToJSON(value?: DatasetStreamPut | null): any {
     }
     return {
         
-        'data_map': DataMapPutToJSON(value.dataMap),
+        'data_map': DataMapPutToJSON(value.data_map),
     };
 }
 

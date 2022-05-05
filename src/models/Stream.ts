@@ -31,7 +31,7 @@ export interface Stream {
      * @type {Date}
      * @memberof Stream
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      * A unique ID for this resource.
      * @type {string}
@@ -49,7 +49,7 @@ export interface Stream {
      * @type {string}
      * @memberof Stream
      */
-    resourceType: string;
+    resource_type: string;
     /**
      * 
      * @type {ResourceStatus}
@@ -61,19 +61,19 @@ export interface Stream {
      * @type {Date}
      * @memberof Stream
      */
-    statusChangedAt?: Date;
+    status_changed_at?: Date;
     /**
      * If this resource has `status == "error"`, this will contain an error message.
      * @type {string}
      * @memberof Stream
      */
-    statusError?: string;
+    status_error?: string;
     /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Stream
      */
-    updatedAt: Date;
+    updated_at: Date;
 }
 
 export function StreamFromJSON(json: any): Stream {
@@ -86,14 +86,14 @@ export function StreamFromJSONTyped(json: any, ignoreDiscriminator: boolean): St
     }
     return {
         
-        'createdAt': (new Date(json['created_at'])),
+        'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'name': json['name'],
-        'resourceType': json['resource_type'],
+        'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
-        'statusChangedAt': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
-        'statusError': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'updatedAt': (new Date(json['updated_at'])),
+        'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
+        'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'updated_at': (new Date(json['updated_at'])),
     };
 }
 
@@ -106,14 +106,14 @@ export function StreamToJSON(value?: Stream | null): any {
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
+        'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'name': value.name,
-        'resource_type': value.resourceType,
+        'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
-        'status_changed_at': value.statusChangedAt === undefined ? undefined : (value.statusChangedAt.toISOString()),
-        'status_error': value.statusError,
-        'updated_at': (value.updatedAt.toISOString()),
+        'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
+        'status_error': value.status_error,
+        'updated_at': (value.updated_at.toISOString()),
     };
 }
 

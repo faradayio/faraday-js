@@ -26,7 +26,7 @@ export interface TargetPost {
      * @type {string}
      * @memberof TargetPost
      */
-    connectionId?: string;
+    connection_id?: string;
     /**
      * There are two options to receive back identifying information about exported individuals, each supporting different use cases:
      *   * **Identified**: All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see /datasets for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned. This facilitates most conversion, engagement, and retention use cases, along with direct mail acquisition.
@@ -82,13 +82,13 @@ export interface TargetPost {
      * @type {string}
      * @memberof TargetPost
      */
-    publicationType?: string;
+    publication_type?: string;
     /**
      * The UUID of a scope - see /scopes for more detail.
      * @type {string}
      * @memberof TargetPost
      */
-    scopeId: string;
+    scope_id: string;
 }
 
 export function TargetPostFromJSON(json: any): TargetPost {
@@ -101,13 +101,13 @@ export function TargetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'connectionId': !exists(json, 'connection_id') ? undefined : json['connection_id'],
+        'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'name': json['name'],
         'options': !exists(json, 'options') ? undefined : json['options'],
-        'publicationType': !exists(json, 'publication_type') ? undefined : json['publication_type'],
-        'scopeId': json['scope_id'],
+        'publication_type': !exists(json, 'publication_type') ? undefined : json['publication_type'],
+        'scope_id': json['scope_id'],
     };
 }
 
@@ -120,13 +120,13 @@ export function TargetPostToJSON(value?: TargetPost | null): any {
     }
     return {
         
-        'connection_id': value.connectionId,
+        'connection_id': value.connection_id,
         'hashed': value.hashed,
         'limit': value.limit,
         'name': value.name,
         'options': value.options,
-        'publication_type': value.publicationType,
-        'scope_id': value.scopeId,
+        'publication_type': value.publication_type,
+        'scope_id': value.scope_id,
     };
 }
 

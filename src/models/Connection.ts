@@ -33,7 +33,7 @@ export interface Connection {
      * @type {Date}
      * @memberof Connection
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      * A unique ID for this resource.
      * @type {string}
@@ -73,7 +73,7 @@ export interface Connection {
      * @type {string}
      * @memberof Connection
      */
-    resourceType: string;
+    resource_type: string;
     /**
      * 
      * @type {ResourceStatus}
@@ -85,13 +85,13 @@ export interface Connection {
      * @type {Date}
      * @memberof Connection
      */
-    statusChangedAt?: Date;
+    status_changed_at?: Date;
     /**
      * If this resource has `status == "error"`, this will contain an error message.
      * @type {string}
      * @memberof Connection
      */
-    statusError?: string;
+    status_error?: string;
     /**
      * The connection type. The following are currently supported:
      * <table>
@@ -115,7 +115,7 @@ export interface Connection {
      * @type {Date}
      * @memberof Connection
      */
-    updatedAt: Date;
+    updated_at: Date;
 }
 
 export function ConnectionFromJSON(json: any): Connection {
@@ -128,16 +128,16 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'createdAt': (new Date(json['created_at'])),
+        'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'name': json['name'],
         'options': !exists(json, 'options') ? undefined : json['options'],
-        'resourceType': json['resource_type'],
+        'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
-        'statusChangedAt': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
-        'statusError': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
+        'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
         'type': json['type'],
-        'updatedAt': (new Date(json['updated_at'])),
+        'updated_at': (new Date(json['updated_at'])),
     };
 }
 
@@ -150,16 +150,16 @@ export function ConnectionToJSON(value?: Connection | null): any {
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
+        'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'name': value.name,
         'options': value.options,
-        'resource_type': value.resourceType,
+        'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
-        'status_changed_at': value.statusChangedAt === undefined ? undefined : (value.statusChangedAt.toISOString()),
-        'status_error': value.statusError,
+        'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
+        'status_error': value.status_error,
         'type': value.type,
-        'updated_at': (value.updatedAt.toISOString()),
+        'updated_at': (value.updated_at.toISOString()),
     };
 }
 

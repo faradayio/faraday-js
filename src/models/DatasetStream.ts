@@ -31,13 +31,13 @@ export interface DatasetStream {
      * @type {DataMap}
      * @memberof DatasetStream
      */
-    dataMap: DataMap;
+    data_map: DataMap;
     /**
      * 
      * @type {string}
      * @memberof DatasetStream
      */
-    streamId: string;
+    stream_id: string;
 }
 
 export function DatasetStreamFromJSON(json: any): DatasetStream {
@@ -50,8 +50,8 @@ export function DatasetStreamFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'dataMap': DataMapFromJSON(json['data_map']),
-        'streamId': json['stream_id'],
+        'data_map': DataMapFromJSON(json['data_map']),
+        'stream_id': json['stream_id'],
     };
 }
 
@@ -64,8 +64,8 @@ export function DatasetStreamToJSON(value?: DatasetStream | null): any {
     }
     return {
         
-        'data_map': DataMapToJSON(value.dataMap),
-        'stream_id': value.streamId,
+        'data_map': DataMapToJSON(value.data_map),
+        'stream_id': value.stream_id,
     };
 }
 

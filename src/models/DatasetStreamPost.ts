@@ -31,7 +31,7 @@ export interface DatasetStreamPost {
      * @type {DataMapPost}
      * @memberof DatasetStreamPost
      */
-    dataMap: DataMapPost;
+    data_map: DataMapPost;
 }
 
 export function DatasetStreamPostFromJSON(json: any): DatasetStreamPost {
@@ -44,7 +44,7 @@ export function DatasetStreamPostFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'dataMap': DataMapPostFromJSON(json['data_map']),
+        'data_map': DataMapPostFromJSON(json['data_map']),
     };
 }
 
@@ -57,7 +57,7 @@ export function DatasetStreamPostToJSON(value?: DatasetStreamPost | null): any {
     }
     return {
         
-        'data_map': DataMapPostToJSON(value.dataMap),
+        'data_map': DataMapPostToJSON(value.data_map),
     };
 }
 

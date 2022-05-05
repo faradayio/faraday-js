@@ -38,7 +38,7 @@ export interface DataMap {
      * @type {DataMapColumn}
      * @memberof DataMap
      */
-    datetime: DataMapColumn;
+    datetime?: DataMapColumn;
     /**
      * 
      * @type {DataMapColumn}
@@ -65,7 +65,7 @@ export function DataMapFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         
             ...json,
         'channel': !exists(json, 'channel') ? undefined : DataMapColumnFromJSON(json['channel']),
-        'datetime': DataMapColumnFromJSON(json['datetime']),
+        'datetime': !exists(json, 'datetime') ? undefined : DataMapColumnFromJSON(json['datetime']),
         'product': !exists(json, 'product') ? undefined : DataMapColumnFromJSON(json['product']),
         'value': !exists(json, 'value') ? undefined : DataMapColumnFromJSON(json['value']),
     };

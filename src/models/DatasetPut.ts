@@ -37,13 +37,13 @@ export interface DatasetPut {
      * @type {IdentitySetsPut}
      * @memberof DatasetPut
      */
-    identitySets: IdentitySetsPut;
+    identity_sets: IdentitySetsPut;
     /**
      * 
      * @type {OutputToStreamsPut}
      * @memberof DatasetPut
      */
-    outputToStreams: OutputToStreamsPut;
+    output_to_streams: OutputToStreamsPut;
 }
 
 export function DatasetPutFromJSON(json: any): DatasetPut {
@@ -56,8 +56,8 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'identitySets': IdentitySetsPutFromJSON(json['identity_sets']),
-        'outputToStreams': OutputToStreamsPutFromJSON(json['output_to_streams']),
+        'identity_sets': IdentitySetsPutFromJSON(json['identity_sets']),
+        'output_to_streams': OutputToStreamsPutFromJSON(json['output_to_streams']),
     };
 }
 
@@ -70,8 +70,8 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
     }
     return {
         
-        'identity_sets': IdentitySetsPutToJSON(value.identitySets),
-        'output_to_streams': OutputToStreamsPutToJSON(value.outputToStreams),
+        'identity_sets': IdentitySetsPutToJSON(value.identity_sets),
+        'output_to_streams': OutputToStreamsPutToJSON(value.output_to_streams),
     };
 }
 

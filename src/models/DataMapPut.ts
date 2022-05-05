@@ -38,7 +38,7 @@ export interface DataMapPut {
      * @type {DataMapColumnPut}
      * @memberof DataMapPut
      */
-    datetime: DataMapColumnPut;
+    datetime?: DataMapColumnPut;
     /**
      * 
      * @type {DataMapColumnPut}
@@ -65,7 +65,7 @@ export function DataMapPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
             ...json,
         'channel': !exists(json, 'channel') ? undefined : DataMapColumnPutFromJSON(json['channel']),
-        'datetime': DataMapColumnPutFromJSON(json['datetime']),
+        'datetime': !exists(json, 'datetime') ? undefined : DataMapColumnPutFromJSON(json['datetime']),
         'product': !exists(json, 'product') ? undefined : DataMapColumnPutFromJSON(json['product']),
         'value': !exists(json, 'value') ? undefined : DataMapColumnPutFromJSON(json['value']),
     };

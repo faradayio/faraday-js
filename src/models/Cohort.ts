@@ -31,7 +31,7 @@ export interface Cohort {
      * @type {Date}
      * @memberof Cohort
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      * A unique ID for this resource.
      * @type {string}
@@ -43,25 +43,25 @@ export interface Cohort {
      * @type {number}
      * @memberof Cohort
      */
-    maxCount?: number;
+    max_count?: number;
     /**
      * Max value for this cohort's config
      * @type {number}
      * @memberof Cohort
      */
-    maxValue?: number;
+    max_value?: number;
     /**
      * Min count for this cohort's config
      * @type {number}
      * @memberof Cohort
      */
-    minCount?: number;
+    min_count?: number;
     /**
      * Min value for this cohort's config
      * @type {number}
      * @memberof Cohort
      */
-    minValue?: number;
+    min_value?: number;
     /**
      * Human-readable label for this cohort.
      * @type {string}
@@ -73,7 +73,7 @@ export interface Cohort {
      * @type {string}
      * @memberof Cohort
      */
-    resourceType: string;
+    resource_type: string;
     /**
      * 
      * @type {ResourceStatus}
@@ -85,25 +85,25 @@ export interface Cohort {
      * @type {Date}
      * @memberof Cohort
      */
-    statusChangedAt?: Date;
+    status_changed_at?: Date;
     /**
      * If this resource has `status == "error"`, this will contain an error message.
      * @type {string}
      * @memberof Cohort
      */
-    statusError?: string;
+    status_error?: string;
     /**
      * The `name` field of the stream from which to build this cohort.
      * @type {string}
      * @memberof Cohort
      */
-    streamName: string;
+    stream_name: string;
     /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Cohort
      */
-    updatedAt: Date;
+    updated_at: Date;
 }
 
 export function CohortFromJSON(json: any): Cohort {
@@ -116,19 +116,19 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
     }
     return {
         
-        'createdAt': (new Date(json['created_at'])),
+        'created_at': (new Date(json['created_at'])),
         'id': json['id'],
-        'maxCount': !exists(json, 'max_count') ? undefined : json['max_count'],
-        'maxValue': !exists(json, 'max_value') ? undefined : json['max_value'],
-        'minCount': !exists(json, 'min_count') ? undefined : json['min_count'],
-        'minValue': !exists(json, 'min_value') ? undefined : json['min_value'],
+        'max_count': !exists(json, 'max_count') ? undefined : json['max_count'],
+        'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
+        'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
+        'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'resourceType': json['resource_type'],
+        'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
-        'statusChangedAt': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
-        'statusError': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'streamName': json['stream_name'],
-        'updatedAt': (new Date(json['updated_at'])),
+        'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
+        'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'stream_name': json['stream_name'],
+        'updated_at': (new Date(json['updated_at'])),
     };
 }
 
@@ -141,19 +141,19 @@ export function CohortToJSON(value?: Cohort | null): any {
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
+        'created_at': (value.created_at.toISOString()),
         'id': value.id,
-        'max_count': value.maxCount,
-        'max_value': value.maxValue,
-        'min_count': value.minCount,
-        'min_value': value.minValue,
+        'max_count': value.max_count,
+        'max_value': value.max_value,
+        'min_count': value.min_count,
+        'min_value': value.min_value,
         'name': value.name,
-        'resource_type': value.resourceType,
+        'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
-        'status_changed_at': value.statusChangedAt === undefined ? undefined : (value.statusChangedAt.toISOString()),
-        'status_error': value.statusError,
-        'stream_name': value.streamName,
-        'updated_at': (value.updatedAt.toISOString()),
+        'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
+        'status_error': value.status_error,
+        'stream_name': value.stream_name,
+        'updated_at': (value.updated_at.toISOString()),
     };
 }
 

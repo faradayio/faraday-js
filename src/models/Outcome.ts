@@ -31,43 +31,43 @@ export interface Outcome {
      * @type {string}
      * @memberof Outcome
      */
-    attainmentCohortId: string;
+    attainment_cohort_id: string;
     /**
      * Human-readable label of the attainment cohort. See /cohorts/{attainment_cohort_id} to edit the attainment cohort or view additional details.
      * @type {string}
      * @memberof Outcome
      */
-    attainmentCohortName?: string;
+    attainment_cohort_name?: string;
     /**
      * A cohort of counterexamples - people who have clearly failed to attain the outcome, as opposed to simply being indeterminate. This cohort is optional.
      * @type {string}
      * @memberof Outcome
      */
-    attritionCohortId?: string;
+    attrition_cohort_id?: string;
     /**
      * Human-readable label of the attrition cohort. See /cohorts/{attrition_cohort_id} to edit the attrition cohort or view additional details.
      * @type {string}
      * @memberof Outcome
      */
-    attritionCohortName?: string;
+    attrition_cohort_name?: string;
     /**
      * When this resource was created.
      * @type {Date}
      * @memberof Outcome
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      * A cohort of people who could attain or attrite the desired outcome (for example, if predicting transition from prospect to customer, the eligible cohort should be prospects). If no eligible cohort is specified, the model will use the US population as the eligible cohort.
      * @type {string}
      * @memberof Outcome
      */
-    eligibleCohortId?: string;
+    eligible_cohort_id?: string;
     /**
      * Human-readable label of the eligibility cohort. See /cohorts/{eligible_cohort_id} to edit the eligible cohort or view additional details.
      * @type {string}
      * @memberof Outcome
      */
-    eligibleCohortName?: string;
+    eligible_cohort_name?: string;
     /**
      * A unique ID for this resource.
      * @type {string}
@@ -85,13 +85,13 @@ export interface Outcome {
      * @type {string}
      * @memberof Outcome
      */
-    resourceType: string;
+    resource_type: string;
     /**
      * The area under the receiver operating characteristic curve. Typically, the higher the ROC AUC, the better the model.
      * @type {number}
      * @memberof Outcome
      */
-    rocAuc?: number;
+    roc_auc?: number;
     /**
      * 
      * @type {ResourceStatus}
@@ -103,19 +103,19 @@ export interface Outcome {
      * @type {Date}
      * @memberof Outcome
      */
-    statusChangedAt?: Date;
+    status_changed_at?: Date;
     /**
      * If this resource has `status == "error"`, this will contain an error message.
      * @type {string}
      * @memberof Outcome
      */
-    statusError?: string;
+    status_error?: string;
     /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Outcome
      */
-    updatedAt: Date;
+    updated_at: Date;
 }
 
 export function OutcomeFromJSON(json: any): Outcome {
@@ -128,21 +128,21 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
     }
     return {
         
-        'attainmentCohortId': json['attainment_cohort_id'],
-        'attainmentCohortName': !exists(json, 'attainment_cohort_name') ? undefined : json['attainment_cohort_name'],
-        'attritionCohortId': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
-        'attritionCohortName': !exists(json, 'attrition_cohort_name') ? undefined : json['attrition_cohort_name'],
-        'createdAt': (new Date(json['created_at'])),
-        'eligibleCohortId': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
-        'eligibleCohortName': !exists(json, 'eligible_cohort_name') ? undefined : json['eligible_cohort_name'],
+        'attainment_cohort_id': json['attainment_cohort_id'],
+        'attainment_cohort_name': !exists(json, 'attainment_cohort_name') ? undefined : json['attainment_cohort_name'],
+        'attrition_cohort_id': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
+        'attrition_cohort_name': !exists(json, 'attrition_cohort_name') ? undefined : json['attrition_cohort_name'],
+        'created_at': (new Date(json['created_at'])),
+        'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
+        'eligible_cohort_name': !exists(json, 'eligible_cohort_name') ? undefined : json['eligible_cohort_name'],
         'id': json['id'],
         'name': json['name'],
-        'resourceType': json['resource_type'],
-        'rocAuc': !exists(json, 'roc_auc') ? undefined : json['roc_auc'],
+        'resource_type': json['resource_type'],
+        'roc_auc': !exists(json, 'roc_auc') ? undefined : json['roc_auc'],
         'status': ResourceStatusFromJSON(json['status']),
-        'statusChangedAt': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
-        'statusError': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'updatedAt': (new Date(json['updated_at'])),
+        'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
+        'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'updated_at': (new Date(json['updated_at'])),
     };
 }
 
@@ -155,21 +155,21 @@ export function OutcomeToJSON(value?: Outcome | null): any {
     }
     return {
         
-        'attainment_cohort_id': value.attainmentCohortId,
-        'attainment_cohort_name': value.attainmentCohortName,
-        'attrition_cohort_id': value.attritionCohortId,
-        'attrition_cohort_name': value.attritionCohortName,
-        'created_at': (value.createdAt.toISOString()),
-        'eligible_cohort_id': value.eligibleCohortId,
-        'eligible_cohort_name': value.eligibleCohortName,
+        'attainment_cohort_id': value.attainment_cohort_id,
+        'attainment_cohort_name': value.attainment_cohort_name,
+        'attrition_cohort_id': value.attrition_cohort_id,
+        'attrition_cohort_name': value.attrition_cohort_name,
+        'created_at': (value.created_at.toISOString()),
+        'eligible_cohort_id': value.eligible_cohort_id,
+        'eligible_cohort_name': value.eligible_cohort_name,
         'id': value.id,
         'name': value.name,
-        'resource_type': value.resourceType,
-        'roc_auc': value.rocAuc,
+        'resource_type': value.resource_type,
+        'roc_auc': value.roc_auc,
         'status': ResourceStatusToJSON(value.status),
-        'status_changed_at': value.statusChangedAt === undefined ? undefined : (value.statusChangedAt.toISOString()),
-        'status_error': value.statusError,
-        'updated_at': (value.updatedAt.toISOString()),
+        'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
+        'status_error': value.status_error,
+        'updated_at': (value.updated_at.toISOString()),
     };
 }
 

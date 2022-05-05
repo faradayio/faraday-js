@@ -39,19 +39,19 @@ export interface IdentitySet {
      * @type {Array<string>}
      * @memberof IdentitySet
      */
-    houseNumberAndStreet?: Array<string>;
+    house_number_and_street?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof IdentitySet
      */
-    personFirstName?: string;
+    person_first_name?: string;
     /**
      * 
      * @type {string}
      * @memberof IdentitySet
      */
-    personLastName?: string;
+    person_last_name?: string;
     /**
      * 
      * @type {string}
@@ -84,9 +84,9 @@ export function IdentitySetFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'city': !exists(json, 'city') ? undefined : json['city'],
         'email': !exists(json, 'email') ? undefined : json['email'],
-        'houseNumberAndStreet': !exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'],
-        'personFirstName': !exists(json, 'person_first_name') ? undefined : json['person_first_name'],
-        'personLastName': !exists(json, 'person_last_name') ? undefined : json['person_last_name'],
+        'house_number_and_street': !exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'],
+        'person_first_name': !exists(json, 'person_first_name') ? undefined : json['person_first_name'],
+        'person_last_name': !exists(json, 'person_last_name') ? undefined : json['person_last_name'],
         'phone': !exists(json, 'phone') ? undefined : json['phone'],
         'postcode': !exists(json, 'postcode') ? undefined : json['postcode'],
         'state': !exists(json, 'state') ? undefined : json['state'],
@@ -104,9 +104,9 @@ export function IdentitySetToJSON(value?: IdentitySet | null): any {
         
         'city': value.city,
         'email': value.email,
-        'house_number_and_street': value.houseNumberAndStreet,
-        'person_first_name': value.personFirstName,
-        'person_last_name': value.personLastName,
+        'house_number_and_street': value.house_number_and_street,
+        'person_first_name': value.person_first_name,
+        'person_last_name': value.person_last_name,
         'phone': value.phone,
         'postcode': value.postcode,
         'state': value.state,

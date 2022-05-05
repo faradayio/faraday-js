@@ -43,7 +43,7 @@ export interface Dataset {
      * @type {Date}
      * @memberof Dataset
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      * A unique ID for this resource.
      * @type {string}
@@ -55,7 +55,7 @@ export interface Dataset {
      * @type {IdentitySets}
      * @memberof Dataset
      */
-    identitySets: IdentitySets;
+    identity_sets: IdentitySets;
     /**
      * A column specifying a date associated with a record. After each
      * ingestion, the most recent value from `incremental_column` on any
@@ -67,19 +67,19 @@ export interface Dataset {
      * @type {string}
      * @memberof Dataset
      */
-    incrementalColumn?: string;
+    incremental_column?: string;
     /**
      * 
      * @type {OutputToStreams}
      * @memberof Dataset
      */
-    outputToStreams: OutputToStreams;
+    output_to_streams: OutputToStreams;
     /**
      * The type of this resource.
      * @type {string}
      * @memberof Dataset
      */
-    resourceType: string;
+    resource_type: string;
     /**
      * 
      * @type {ResourceStatus}
@@ -91,25 +91,25 @@ export interface Dataset {
      * @type {Date}
      * @memberof Dataset
      */
-    statusChangedAt?: Date;
+    status_changed_at?: Date;
     /**
      * If this resource has `status == "error"`, this will contain an error message.
      * @type {string}
      * @memberof Dataset
      */
-    statusError?: string;
+    status_error?: string;
     /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Dataset
      */
-    updatedAt: Date;
+    updated_at: Date;
     /**
      * 
      * @type {string}
      * @memberof Dataset
      */
-    uploadDirectory: string;
+    upload_directory: string;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
@@ -122,7 +122,7 @@ export interface Dataset {
      * @type {Array<string>}
      * @memberof Dataset
      */
-    upsertColumns?: Array<string>;
+    upsert_columns?: Array<string>;
 }
 
 export function DatasetFromJSON(json: any): Dataset {
@@ -135,18 +135,18 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
     }
     return {
         
-        'createdAt': (new Date(json['created_at'])),
+        'created_at': (new Date(json['created_at'])),
         'id': json['id'],
-        'identitySets': IdentitySetsFromJSON(json['identity_sets']),
-        'incrementalColumn': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
-        'outputToStreams': OutputToStreamsFromJSON(json['output_to_streams']),
-        'resourceType': json['resource_type'],
+        'identity_sets': IdentitySetsFromJSON(json['identity_sets']),
+        'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'output_to_streams': OutputToStreamsFromJSON(json['output_to_streams']),
+        'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
-        'statusChangedAt': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
-        'statusError': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'updatedAt': (new Date(json['updated_at'])),
-        'uploadDirectory': json['upload_directory'],
-        'upsertColumns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
+        'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
+        'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'updated_at': (new Date(json['updated_at'])),
+        'upload_directory': json['upload_directory'],
+        'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
 
@@ -159,18 +159,18 @@ export function DatasetToJSON(value?: Dataset | null): any {
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
+        'created_at': (value.created_at.toISOString()),
         'id': value.id,
-        'identity_sets': IdentitySetsToJSON(value.identitySets),
-        'incremental_column': value.incrementalColumn,
-        'output_to_streams': OutputToStreamsToJSON(value.outputToStreams),
-        'resource_type': value.resourceType,
+        'identity_sets': IdentitySetsToJSON(value.identity_sets),
+        'incremental_column': value.incremental_column,
+        'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
+        'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
-        'status_changed_at': value.statusChangedAt === undefined ? undefined : (value.statusChangedAt.toISOString()),
-        'status_error': value.statusError,
-        'updated_at': (value.updatedAt.toISOString()),
-        'upload_directory': value.uploadDirectory,
-        'upsert_columns': value.upsertColumns,
+        'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
+        'status_error': value.status_error,
+        'updated_at': (value.updated_at.toISOString()),
+        'upload_directory': value.upload_directory,
+        'upsert_columns': value.upsert_columns,
     };
 }
 

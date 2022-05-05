@@ -24,7 +24,7 @@ export interface ScopeIncludeOneOf {
      * @type {string}
      * @memberof ScopeIncludeOneOf
      */
-    cohortId: string;
+    cohort_id: string;
 }
 
 export function ScopeIncludeOneOfFromJSON(json: any): ScopeIncludeOneOf {
@@ -37,7 +37,7 @@ export function ScopeIncludeOneOfFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'cohortId': json['cohort_id'],
+        'cohort_id': json['cohort_id'],
     };
 }
 
@@ -50,7 +50,7 @@ export function ScopeIncludeOneOfToJSON(value?: ScopeIncludeOneOf | null): any {
     }
     return {
         
-        'cohort_id': value.cohortId,
+        'cohort_id': value.cohort_id,
     };
 }
 

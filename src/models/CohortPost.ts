@@ -24,25 +24,25 @@ export interface CohortPost {
      * @type {number}
      * @memberof CohortPost
      */
-    maxCount?: number;
+    max_count?: number;
     /**
      * Max value for this cohort's config
      * @type {number}
      * @memberof CohortPost
      */
-    maxValue?: number;
+    max_value?: number;
     /**
      * Min count for this cohort's config
      * @type {number}
      * @memberof CohortPost
      */
-    minCount?: number;
+    min_count?: number;
     /**
      * Min value for this cohort's config
      * @type {number}
      * @memberof CohortPost
      */
-    minValue?: number;
+    min_value?: number;
     /**
      * Human-readable label for this cohort.
      * @type {string}
@@ -54,7 +54,7 @@ export interface CohortPost {
      * @type {string}
      * @memberof CohortPost
      */
-    streamName: string;
+    stream_name: string;
 }
 
 export function CohortPostFromJSON(json: any): CohortPost {
@@ -67,12 +67,12 @@ export function CohortPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'maxCount': !exists(json, 'max_count') ? undefined : json['max_count'],
-        'maxValue': !exists(json, 'max_value') ? undefined : json['max_value'],
-        'minCount': !exists(json, 'min_count') ? undefined : json['min_count'],
-        'minValue': !exists(json, 'min_value') ? undefined : json['min_value'],
+        'max_count': !exists(json, 'max_count') ? undefined : json['max_count'],
+        'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
+        'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
+        'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'streamName': json['stream_name'],
+        'stream_name': json['stream_name'],
     };
 }
 
@@ -85,12 +85,12 @@ export function CohortPostToJSON(value?: CohortPost | null): any {
     }
     return {
         
-        'max_count': value.maxCount,
-        'max_value': value.maxValue,
-        'min_count': value.minCount,
-        'min_value': value.minValue,
+        'max_count': value.max_count,
+        'max_value': value.max_value,
+        'min_count': value.min_count,
+        'min_value': value.min_value,
         'name': value.name,
-        'stream_name': value.streamName,
+        'stream_name': value.stream_name,
     };
 }
 

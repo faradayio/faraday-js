@@ -24,13 +24,13 @@ export interface ScopePopulationPost {
      * @type {Array<string>}
      * @memberof ScopePopulationPost
      */
-    cohortIds: Array<string>;
+    cohort_ids: Array<string>;
     /**
      * 
      * @type {Array<string>}
      * @memberof ScopePopulationPost
      */
-    exclusionCohortIds?: Array<string>;
+    exclusion_cohort_ids?: Array<string>;
 }
 
 export function ScopePopulationPostFromJSON(json: any): ScopePopulationPost {
@@ -43,8 +43,8 @@ export function ScopePopulationPostFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'cohortIds': json['cohort_ids'],
-        'exclusionCohortIds': !exists(json, 'exclusion_cohort_ids') ? undefined : json['exclusion_cohort_ids'],
+        'cohort_ids': json['cohort_ids'],
+        'exclusion_cohort_ids': !exists(json, 'exclusion_cohort_ids') ? undefined : json['exclusion_cohort_ids'],
     };
 }
 
@@ -57,8 +57,8 @@ export function ScopePopulationPostToJSON(value?: ScopePopulationPost | null): a
     }
     return {
         
-        'cohort_ids': value.cohortIds,
-        'exclusion_cohort_ids': value.exclusionCohortIds,
+        'cohort_ids': value.cohort_ids,
+        'exclusion_cohort_ids': value.exclusion_cohort_ids,
     };
 }
 

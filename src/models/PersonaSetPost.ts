@@ -31,13 +31,13 @@ export interface PersonaSetPost {
      * @type {string}
      * @memberof PersonaSetPost
      */
-    cohortId: string;
+    cohort_id: string;
     /**
      * Specify customer attributes to use in modeling
      * @type {Array<ModelingField>}
      * @memberof PersonaSetPost
      */
-    modelingFields?: Array<ModelingField>;
+    modeling_fields?: Array<ModelingField>;
 }
 
 export function PersonaSetPostFromJSON(json: any): PersonaSetPost {
@@ -50,8 +50,8 @@ export function PersonaSetPostFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'cohortId': json['cohort_id'],
-        'modelingFields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
+        'cohort_id': json['cohort_id'],
+        'modeling_fields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
     };
 }
 
@@ -64,8 +64,8 @@ export function PersonaSetPostToJSON(value?: PersonaSetPost | null): any {
     }
     return {
         
-        'cohort_id': value.cohortId,
-        'modeling_fields': value.modelingFields === undefined ? undefined : ((value.modelingFields as Array<any>).map(ModelingFieldToJSON)),
+        'cohort_id': value.cohort_id,
+        'modeling_fields': value.modeling_fields === undefined ? undefined : ((value.modeling_fields as Array<any>).map(ModelingFieldToJSON)),
     };
 }
 
