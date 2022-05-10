@@ -14,6 +14,11 @@
 
 
 import * as runtime from '../runtime';
+import {
+    Upload,
+    UploadFromJSON,
+    UploadToJSON,
+} from '../models';
 
 export interface CreateUploadRequest {
     directory: string;
@@ -70,6 +75,42 @@ export class UploadsApi extends runtime.BaseAPI {
      */
     async createUpload(directory: string, filename: string, body?: Blob, ): Promise<void> {
         await this.createUploadRaw({ directory: directory, filename: filename, body: body }, );
+    }
+
+    /**
+     * A list of files uploaded via /uploads/{directory}/{filename}, and their metadata
+     * Retrieve the list of previously uploaded files
+     */
+    private async getUploadsRaw(): Promise<runtime.ApiResponse<Array<Upload>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/uploads`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(UploadFromJSON));
+    }
+
+    /**
+     * A list of files uploaded via /uploads/{directory}/{filename}, and their metadata
+     * Retrieve the list of previously uploaded files
+     */
+    async getUploads(): Promise<Array<Upload>> {
+        const response = await this.getUploadsRaw();
+        return await response.value();
     }
 
 }

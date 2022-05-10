@@ -66,6 +66,7 @@ src/models/ScopePut.ts
 src/models/Stream.ts
 src/models/Target.ts
 src/models/TargetPost.ts
+src/models/Upload.ts
 src/models/ValidationError.ts
 src/models/ValidationErrorContext.ts
 src/models/index.ts

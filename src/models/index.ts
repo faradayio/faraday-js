@@ -52,5 +52,6 @@ export * from './ScopePut';
 export * from './Stream';
 export * from './Target';
 export * from './TargetPost';
+export * from './Upload';
 export * from './ValidationError';
 export * from './ValidationErrorContext';
