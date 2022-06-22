@@ -26,6 +26,9 @@ import {
     TargetsApi
 } from './TargetsApi';
 import {
+    TraitsApi
+} from './TraitsApi';
+import {
     UploadsApi
 } from './UploadsApi';
 import {
@@ -42,6 +45,7 @@ export class FaradayClient {
     scopes: ScopesApi;
     streams: StreamsApi;
     targets: TargetsApi;
+    traits: TraitsApi;
     uploads: UploadsApi;
     usage: UsageApi;
 
@@ -55,6 +59,7 @@ export class FaradayClient {
         this.scopes = new ScopesApi(configuration);
         this.streams = new StreamsApi(configuration);
         this.targets = new TargetsApi(configuration);
+        this.traits = new TraitsApi(configuration);
         this.uploads = new UploadsApi(configuration);
         this.usage = new UsageApi(configuration);
     }

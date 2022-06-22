@@ -11,6 +11,7 @@ src/apis/PersonaSetsApi.ts
 src/apis/ScopesApi.ts
 src/apis/StreamsApi.ts
 src/apis/TargetsApi.ts
+src/apis/TraitsApi.ts
 src/apis/UploadsApi.ts
 src/apis/UsageApi.ts
 src/apis/index.ts
@@ -155,6 +156,10 @@ src/models/TargetOptionsSnowflakePost.ts
 src/models/TargetOptionsSnowflakePut.ts
 src/models/TargetPost.ts
 src/models/TargetPut.ts
+src/models/Trait.ts
+src/models/TraitMergePatch.ts
+src/models/TraitPost.ts
+src/models/TraitPut.ts
 src/models/Upload.ts
 src/models/Usage.ts
 src/models/ValidationError.ts
