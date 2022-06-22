@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DatasetOptionsPut,
+    DatasetOptionsPutFromJSON,
+    DatasetOptionsPutFromJSONTyped,
+    DatasetOptionsPutToJSON,
+} from './DatasetOptionsPut';
+import {
     IdentitySetsPut,
     IdentitySetsPutFromJSON,
     IdentitySetsPutFromJSONTyped,
@@ -25,9 +31,17 @@ import {
     OutputToStreamsPutFromJSONTyped,
     OutputToStreamsPutToJSON,
 } from './OutputToStreamsPut';
+import {
+    OutputToTraitsPut,
+    OutputToTraitsPutFromJSON,
+    OutputToTraitsPutFromJSONTyped,
+    OutputToTraitsPutToJSON,
+} from './OutputToTraitsPut';
 
 /**
+ * (Parameters used to PUT a value of the `Dataset` type.)
  * 
+ * Tabular data describing orders, customers, leads, etc.
  * @export
  * @interface DatasetPut
  */
@@ -40,10 +54,22 @@ export interface DatasetPut {
     identity_sets: IdentitySetsPut;
     /**
      * 
+     * @type {DatasetOptionsPut}
+     * @memberof DatasetPut
+     */
+    options: DatasetOptionsPut;
+    /**
+     * 
      * @type {OutputToStreamsPut}
      * @memberof DatasetPut
      */
     output_to_streams: OutputToStreamsPut;
+    /**
+     * 
+     * @type {OutputToTraitsPut}
+     * @memberof DatasetPut
+     */
+    output_to_traits?: OutputToTraitsPut;
 }
 
 export function DatasetPutFromJSON(json: any): DatasetPut {
@@ -57,7 +83,9 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'identity_sets': IdentitySetsPutFromJSON(json['identity_sets']),
+        'options': DatasetOptionsPutFromJSON(json['options']),
         'output_to_streams': OutputToStreamsPutFromJSON(json['output_to_streams']),
+        'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
     };
 }
 
@@ -71,7 +99,9 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
     return {
         
         'identity_sets': IdentitySetsPutToJSON(value.identity_sets),
+        'options': DatasetOptionsPutToJSON(value.options),
         'output_to_streams': OutputToStreamsPutToJSON(value.output_to_streams),
+        'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
     };
 }
 

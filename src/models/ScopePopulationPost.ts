@@ -14,19 +14,21 @@
 
 import { exists, mapValues } from '../runtime';
 /**
+ * (Parameters used to POST a new value of the `ScopePopulation` type.)
  * 
+ * The people to include in a scope. Leave `cohort_ids` empty to include the entire US population.
  * @export
  * @interface ScopePopulationPost
  */
 export interface ScopePopulationPost {
     /**
-     * 
+     * Include people from the specified cohorts in this scope.
      * @type {Array<string>}
      * @memberof ScopePopulationPost
      */
     cohort_ids: Array<string>;
     /**
-     * 
+     * Exclude people from the specified cohorts in this scope.
      * @type {Array<string>}
      * @memberof ScopePopulationPost
      */

@@ -26,6 +26,11 @@ export interface CreateUploadRequest {
     body?: Blob;
 }
 
+export interface DeleteUploadRequest {
+    directory: string;
+    filename: string;
+}
+
 /**
  * 
  */
@@ -75,6 +80,49 @@ export class UploadsApi extends runtime.BaseAPI {
      */
     async createUpload(directory: string, filename: string, body?: Blob, ): Promise<void> {
         await this.createUploadRaw({ directory: directory, filename: filename, body: body }, );
+    }
+
+    /**
+     * Delete a CSV file previously uploaded.
+     * Delete a file
+     */
+    private async deleteUploadRaw(requestParameters: DeleteUploadRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.directory === null || requestParameters.directory === undefined) {
+            throw new runtime.RequiredError('directory','Required parameter requestParameters.directory was null or undefined when calling deleteUpload.');
+        }
+
+        if (requestParameters.filename === null || requestParameters.filename === undefined) {
+            throw new runtime.RequiredError('filename','Required parameter requestParameters.filename was null or undefined when calling deleteUpload.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/uploads/{directory}/{filename}`.replace(`{${"directory"}}`, encodeURIComponent(String(requestParameters.directory))).replace(`{${"filename"}}`, encodeURIComponent(String(requestParameters.filename))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a CSV file previously uploaded.
+     * Delete a file
+     */
+    async deleteUpload(directory: string, filename: string, ): Promise<void> {
+        await this.deleteUploadRaw({ directory: directory, filename: filename }, );
     }
 
     /**

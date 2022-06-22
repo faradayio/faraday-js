@@ -13,34 +13,52 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TargetOptionsPost,
+    TargetOptionsPostFromJSON,
+    TargetOptionsPostFromJSONTyped,
+    TargetOptionsPostToJSON,
+} from './TargetOptionsPost';
+
 /**
+ * (Parameters used to POST a new value of the `Target` type.)
  * 
+ * Instructions on how to export output data defined by a scope.
+ * 
+ * There are two flavors of targets, each requiring different treatment in the API:
+ * <table>
+ * <thead>
+ * <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><strong>Publication targets</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr>
+ * <tr><td><strong>Replication targets</strong></td><td>Faraday copies your predictions to systems <em>you</em> control.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> in <code>options</code>.</td></tr>
+ * </tbody>
+ * </table>
  * @export
  * @interface TargetPost
  */
 export interface TargetPost {
     /**
-     * If this is a replication (externally-hosted) target, the UUID of a connection - see `/connections` for more detail. 
+     * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="../reference/createconnection">/connections</a> for more detail. 
      * 
-     * Mutually exclusive with `publication_type`.
+     * If this is not a replication target, omit this parameter.
      * @type {string}
      * @memberof TargetPost
      */
     connection_id?: string;
     /**
      * There are two options to receive back identifying information about exported individuals, each supporting different use cases:
-     *   * **Identified**: All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see /datasets for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned. This facilitates most conversion, engagement, and retention use cases, along with direct mail acquisition.
+     *   * **Identified**: All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see <a href="../reference/createdataset">/datasets</a> for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned. This facilitates most conversion, engagement, and retention use cases, along with direct mail acquisition.
      *   * **Hashed**: Faraday's name, physical address, and email is emitted in hashed form. Data is randomly ordered to prevent re-identification. All payload columns are emitted except raw propensity scores and attributes. This facilitates digital acquisition use cases.
      * 
-     * Specify `"hashed": true` to receive **hashed** representations of individuals, and `"hashed": false` to receive **identified** representation.
-     * 
-     * Note: `"publication_type": "hosted_api"` only supports `true`.
+     * Specify `"hashed": true` to receive **hashed** representations of individuals, and `"hashed": false` to receive **identified** representation. Not specifying a value is equivalent to `false`.
      * @type {boolean}
      * @memberof TargetPost
      */
     hashed?: boolean;
     /**
-     * Maximum scores to export via this target.
+     * Maximum individuals to export via this target.
      * @type {number}
      * @memberof TargetPost
      */
@@ -52,39 +70,24 @@ export interface TargetPost {
      */
     name: string;
     /**
-     * The connection-specific options. These vary by connection type. The following are currently supported:
-     * <table>
-     * <thead>
-     * <tr><th>Key</th><th>Description</th><th>Data type</th><th>Applies to connection type(s) (* = required)</th></tr>
-     * </thead>
-     * <tbody>
-     * <tr><td><code>dataset_name</code></td><td>Dataset name</td><td>text</td><td>bigquery*</td></tr>
-     * <tr><td><code>day_partitioned</code></td><td>Day partitioned</td><td>bool</td><td>bigquery</td></tr>
-     * <tr><td><code>delimeter</code></td><td>CSV delimeter</td><td>text</td><td>hosted_csv, s3_csv</td></tr>
-     * <tr><td><code>gzip</code></td><td>gzip</td><td>bool</td><td>hosted_csv, s3_csv</td></tr>
-     * <tr><td><code>object_key</code></td><td>S3 object key</td><td>text</td><td>s3_csv</td></tr>
-     * <tr><td><code>paranoid_quoting</code></td><td>Paranoid quoting</td><td>bool</td><td>hosted_csv, s3_csv</td></tr>
-     * <tr><td><code>table_name</code></td><td>Table name</td><td>text</td><td>bigquery*, redshift*</em></td></tr>
-     * </tbody>
-     * </table>
      * 
-     * If the desired target has no required parameters, omit this from the request.
-     * @type {object}
+     * @type {TargetOptionsPost}
      * @memberof TargetPost
      */
-    options?: object;
+    options: TargetOptionsPost;
     /**
-     * If this is a publication (Faraday-hosted) target, the type. The following options are supported:
-     *   * `hosted_csv` - Faraday hosts a CSV for you to retrieve by your choice of protocol: HTTPS, S3, GCS, or SFTP.
-     *   * `hosted_api` - Faraday hosts your predictions for you to retrieve individually in real time using an HTTP API.
-     *  
-     * Mutually exclusive with `connection_id`.
-     * @type {string}
+     * This specifies which columns should be sent to the target, and which columns should be renamed.
+     * Each key is the name the column originally had, and each value is the desired name.
+     * If a payload_map is provided, then the target download will only columns in the payload_map.
+     * If a payload_map isn't provided, then the download will include all columns in the scope preview, with no name changes.
+     * So, for the example above, the target will only include the "first_name", "last_name", and "city" columns.
+     * To see what columns are available, check the scope preview.
+     * @type {{ [key: string]: string; }}
      * @memberof TargetPost
      */
-    publication_type?: string;
+    payload_map?: { [key: string]: string; };
     /**
-     * The UUID of a scope - see /scopes for more detail.
+     * The UUID of a scope - see <a href="../reference/createscope">/scopes</a> for more detail.
      * @type {string}
      * @memberof TargetPost
      */
@@ -105,8 +108,8 @@ export function TargetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'name': json['name'],
-        'options': !exists(json, 'options') ? undefined : json['options'],
-        'publication_type': !exists(json, 'publication_type') ? undefined : json['publication_type'],
+        'options': TargetOptionsPostFromJSON(json['options']),
+        'payload_map': !exists(json, 'payload_map') ? undefined : json['payload_map'],
         'scope_id': json['scope_id'],
     };
 }
@@ -124,8 +127,8 @@ export function TargetPostToJSON(value?: TargetPost | null): any {
         'hashed': value.hashed,
         'limit': value.limit,
         'name': value.name,
-        'options': value.options,
-        'publication_type': value.publication_type,
+        'options': TargetOptionsPostToJSON(value.options),
+        'payload_map': value.payload_map,
         'scope_id': value.scope_id,
     };
 }

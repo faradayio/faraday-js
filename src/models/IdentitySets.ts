@@ -21,7 +21,7 @@ import {
 } from './IdentitySet';
 
 /**
- * A mapping of {identity set name} -> {identity set object}. 
+ * A mapping of {identity set name} (ex. shipping) -> {identity set object}. 
  * 
  * Describes all the logical groupings of personally-identifiable information present in the dataset.
  * 

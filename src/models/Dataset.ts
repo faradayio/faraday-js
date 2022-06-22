@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DatasetOptions,
+    DatasetOptionsFromJSON,
+    DatasetOptionsFromJSONTyped,
+    DatasetOptionsToJSON,
+} from './DatasetOptions';
+import {
     IdentitySets,
     IdentitySetsFromJSON,
     IdentitySetsFromJSONTyped,
@@ -25,6 +31,12 @@ import {
     OutputToStreamsFromJSONTyped,
     OutputToStreamsToJSON,
 } from './OutputToStreams';
+import {
+    OutputToTraits,
+    OutputToTraitsFromJSON,
+    OutputToTraitsFromJSONTyped,
+    OutputToTraitsToJSON,
+} from './OutputToTraits';
 import {
     ResourceStatus,
     ResourceStatusFromJSON,
@@ -38,6 +50,16 @@ import {
  * @interface Dataset
  */
 export interface Dataset {
+    /**
+     * If this is a "retrieve" dataset, the UUID of a connection - see <a href="../reference/createconnection">/connections</a> for more detail. 
+     * 
+     * Only a subset of connection types can be configured for dataset ingestion - see the list available in `options`.
+     * 
+     * Note that if a `connection_id` is specified, `options` must also be specified.
+     * @type {string}
+     * @memberof Dataset
+     */
+    connection_id?: string;
     /**
      * When this resource was created.
      * @type {Date}
@@ -70,10 +92,22 @@ export interface Dataset {
     incremental_column?: string;
     /**
      * 
+     * @type {DatasetOptions}
+     * @memberof Dataset
+     */
+    options: DatasetOptions;
+    /**
+     * 
      * @type {OutputToStreams}
      * @memberof Dataset
      */
     output_to_streams: OutputToStreams;
+    /**
+     * 
+     * @type {OutputToTraits}
+     * @memberof Dataset
+     */
+    output_to_traits?: OutputToTraits;
     /**
      * The type of this resource.
      * @type {string}
@@ -105,12 +139,6 @@ export interface Dataset {
      */
     updated_at: Date;
     /**
-     * 
-     * @type {string}
-     * @memberof Dataset
-     */
-    upload_directory: string;
-    /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
      * specified by `upsert_columns`, the newest will be used.
@@ -135,17 +163,19 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
     }
     return {
         
+        'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'identity_sets': IdentitySetsFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'options': DatasetOptionsFromJSON(json['options']),
         'output_to_streams': OutputToStreamsFromJSON(json['output_to_streams']),
+        'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsFromJSON(json['output_to_traits']),
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
         'updated_at': (new Date(json['updated_at'])),
-        'upload_directory': json['upload_directory'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -159,17 +189,19 @@ export function DatasetToJSON(value?: Dataset | null): any {
     }
     return {
         
+        'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'identity_sets': IdentitySetsToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
+        'options': DatasetOptionsToJSON(value.options),
         'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
+        'output_to_traits': OutputToTraitsToJSON(value.output_to_traits),
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,
         'updated_at': (value.updated_at.toISOString()),
-        'upload_directory': value.upload_directory,
         'upsert_columns': value.upsert_columns,
     };
 }

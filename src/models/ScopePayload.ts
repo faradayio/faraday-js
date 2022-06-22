@@ -26,6 +26,12 @@ export interface ScopePayload {
      */
     attributes?: Array<string>;
     /**
+     * Specify a list of cohort membership(s) to include. The list can include any cohort, not just those in `population.cohort_ids`.
+     * @type {Array<string>}
+     * @memberof ScopePayload
+     */
+    cohort_ids?: Array<string>;
+    /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
      * @memberof ScopePayload
@@ -50,6 +56,7 @@ export function ScopePayloadFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'attributes': !exists(json, 'attributes') ? undefined : json['attributes'],
+        'cohort_ids': !exists(json, 'cohort_ids') ? undefined : json['cohort_ids'],
         'outcome_ids': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
         'persona_set_ids': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
     };
@@ -65,6 +72,7 @@ export function ScopePayloadToJSON(value?: ScopePayload | null): any {
     return {
         
         'attributes': value.attributes,
+        'cohort_ids': value.cohort_ids,
         'outcome_ids': value.outcome_ids,
         'persona_set_ids': value.persona_set_ids,
     };

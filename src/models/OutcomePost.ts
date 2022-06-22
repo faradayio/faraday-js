@@ -14,7 +14,9 @@
 
 import { exists, mapValues } from '../runtime';
 /**
+ * (Parameters used to POST a new value of the `Outcome` type.)
  * 
+ * A model describing how likely a group of people are to transition from one cohort to another (for example, from a prospect to a customer).
  * @export
  * @interface OutcomePost
  */
@@ -38,7 +40,14 @@ export interface OutcomePost {
      */
     eligible_cohort_id?: string;
     /**
-     * Human-readable label for this outcome. Each of your outcomes must have a unique name.
+     * The name of a field or category of fields which should not be considered for this Outcome. Should be used
+     * primarily for the purposes of Responsible AI.
+     * @type {Array<string>}
+     * @memberof OutcomePost
+     */
+    feature_blocklist?: Array<string>;
+    /**
+     * Human-readable label for this outcome. Each outcome must have a unique name.
      * @type {string}
      * @memberof OutcomePost
      */
@@ -58,6 +67,7 @@ export function OutcomePostFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'attainment_cohort_id': json['attainment_cohort_id'],
         'attrition_cohort_id': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
+        'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'name': json['name'],
     };
 }
@@ -74,6 +84,7 @@ export function OutcomePostToJSON(value?: OutcomePost | null): any {
         'attainment_cohort_id': value.attainment_cohort_id,
         'attrition_cohort_id': value.attrition_cohort_id,
         'eligible_cohort_id': value.eligible_cohort_id,
+        'feature_blocklist': value.feature_blocklist,
         'name': value.name,
     };
 }

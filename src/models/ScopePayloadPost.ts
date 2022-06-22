@@ -14,7 +14,9 @@
 
 import { exists, mapValues } from '../runtime';
 /**
+ * (Parameters used to POST a new value of the `ScopePayload` type.)
  * 
+ * The data to include for each person in this scope.
  * @export
  * @interface ScopePayloadPost
  */
@@ -25,6 +27,12 @@ export interface ScopePayloadPost {
      * @memberof ScopePayloadPost
      */
     attributes?: Array<string>;
+    /**
+     * Specify a list of cohort membership(s) to include. The list can include any cohort, not just those in `population.cohort_ids`.
+     * @type {Array<string>}
+     * @memberof ScopePayloadPost
+     */
+    cohort_ids?: Array<string>;
     /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
@@ -50,6 +58,7 @@ export function ScopePayloadPostFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'attributes': !exists(json, 'attributes') ? undefined : json['attributes'],
+        'cohort_ids': !exists(json, 'cohort_ids') ? undefined : json['cohort_ids'],
         'outcome_ids': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
         'persona_set_ids': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
     };
@@ -65,6 +74,7 @@ export function ScopePayloadPostToJSON(value?: ScopePayloadPost | null): any {
     return {
         
         'attributes': value.attributes,
+        'cohort_ids': value.cohort_ids,
         'outcome_ids': value.outcome_ids,
         'persona_set_ids': value.persona_set_ids,
     };

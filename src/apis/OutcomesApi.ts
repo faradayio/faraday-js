@@ -18,6 +18,9 @@ import {
     Outcome,
     OutcomeFromJSON,
     OutcomeToJSON,
+    OutcomeMergePatch,
+    OutcomeMergePatchFromJSON,
+    OutcomeMergePatchToJSON,
     OutcomePost,
     OutcomePostFromJSON,
     OutcomePostToJSON,
@@ -37,7 +40,7 @@ export interface GetOutcomeDownloadRequest {
 
 export interface UpdateOutcomeRequest {
     outcomeId: string;
-    outcomeFields: object;
+    outcomeFields: OutcomeMergePatch;
 }
 
 /**
@@ -236,7 +239,7 @@ export class OutcomesApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.outcomeFields as any,
+            body: OutcomeMergePatchToJSON(requestParameters.outcomeFields),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => OutcomeFromJSON(jsonValue));
@@ -246,7 +249,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Edit configuration of an existing outcome
      * Edit an outcome
      */
-    async updateOutcome(outcomeId: string, outcomeFields: object, ): Promise<Outcome> {
+    async updateOutcome(outcomeId: string, outcomeFields: OutcomeMergePatch, ): Promise<Outcome> {
         const response = await this.updateOutcomeRaw({ outcomeId: outcomeId, outcomeFields: outcomeFields }, );
         return await response.value();
     }

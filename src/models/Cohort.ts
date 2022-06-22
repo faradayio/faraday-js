@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortTrait,
+    CohortTraitFromJSON,
+    CohortTraitFromJSONTyped,
+    CohortTraitToJSON,
+} from './CohortTrait';
+import {
     ResourceStatus,
     ResourceStatusFromJSON,
     ResourceStatusFromJSONTyped,
@@ -69,6 +75,12 @@ export interface Cohort {
      */
     name?: string;
     /**
+     * Count of the population.
+     * @type {number}
+     * @memberof Cohort
+     */
+    population_count?: number;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof Cohort
@@ -97,7 +109,13 @@ export interface Cohort {
      * @type {string}
      * @memberof Cohort
      */
-    stream_name: string;
+    stream_name?: string;
+    /**
+     * List of traits to filter cohort membership
+     * @type {Array<CohortTrait>}
+     * @memberof Cohort
+     */
+    traits?: Array<CohortTrait>;
     /**
      * When this resource was last updated.
      * @type {Date}
@@ -123,11 +141,13 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'population_count': !exists(json, 'population_count') ? undefined : json['population_count'],
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'stream_name': json['stream_name'],
+        'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
+        'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
         'updated_at': (new Date(json['updated_at'])),
     };
 }
@@ -148,11 +168,13 @@ export function CohortToJSON(value?: Cohort | null): any {
         'min_count': value.min_count,
         'min_value': value.min_value,
         'name': value.name,
+        'population_count': value.population_count,
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,
         'stream_name': value.stream_name,
+        'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
         'updated_at': (value.updated_at.toISOString()),
     };
 }

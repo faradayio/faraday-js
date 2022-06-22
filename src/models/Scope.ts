@@ -51,6 +51,12 @@ export interface Scope {
      */
     id: string;
     /**
+     * Human-readable label for this scope. Each scope must have a unique name.
+     * @type {string}
+     * @memberof Scope
+     */
+    name: string;
+    /**
      * 
      * @type {ScopePayload}
      * @memberof Scope
@@ -62,6 +68,12 @@ export interface Scope {
      * @memberof Scope
      */
     population: ScopePopulation;
+    /**
+     * Count of the population. If a person appears in multiple cohorts, they are only counted once.
+     * @type {number}
+     * @memberof Scope
+     */
+    population_count?: number;
     /**
      * A preview scope provides only a limited number of output records, but
      * it is not billed.
@@ -113,8 +125,10 @@ export function ScopeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sco
         
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'name': json['name'],
         'payload': ScopePayloadFromJSON(json['payload']),
         'population': ScopePopulationFromJSON(json['population']),
+        'population_count': !exists(json, 'population_count') ? undefined : json['population_count'],
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
@@ -135,8 +149,10 @@ export function ScopeToJSON(value?: Scope | null): any {
         
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'name': value.name,
         'payload': ScopePayloadToJSON(value.payload),
         'population': ScopePopulationToJSON(value.population),
+        'population_count': value.population_count,
         'preview': value.preview,
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),

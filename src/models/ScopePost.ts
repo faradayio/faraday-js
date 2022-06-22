@@ -27,11 +27,19 @@ import {
 } from './ScopePopulationPost';
 
 /**
+ * (Parameters used to POST a new value of the `Scope` type.)
  * 
+ * Instructions on how to produce output data.
  * @export
  * @interface ScopePost
  */
 export interface ScopePost {
+    /**
+     * Human-readable label for this scope. Each scope must have a unique name.
+     * @type {string}
+     * @memberof ScopePost
+     */
+    name: string;
     /**
      * 
      * @type {ScopePayloadPost}
@@ -63,6 +71,7 @@ export function ScopePostFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
+        'name': json['name'],
         'payload': ScopePayloadPostFromJSON(json['payload']),
         'population': ScopePopulationPostFromJSON(json['population']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
@@ -78,6 +87,7 @@ export function ScopePostToJSON(value?: ScopePost | null): any {
     }
     return {
         
+        'name': value.name,
         'payload': ScopePayloadPostToJSON(value.payload),
         'population': ScopePopulationPostToJSON(value.population),
         'preview': value.preview,

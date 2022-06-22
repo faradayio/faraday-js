@@ -13,8 +13,17 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    CohortTrait,
+    CohortTraitFromJSON,
+    CohortTraitFromJSONTyped,
+    CohortTraitToJSON,
+} from './CohortTrait';
+
 /**
+ * (Parameters used to POST a new value of the `Cohort` type.)
  * 
+ * A specific group of people, such as "Customers" or "Subscription customers".
  * @export
  * @interface CohortPost
  */
@@ -54,7 +63,13 @@ export interface CohortPost {
      * @type {string}
      * @memberof CohortPost
      */
-    stream_name: string;
+    stream_name?: string;
+    /**
+     * List of traits to filter cohort membership
+     * @type {Array<CohortTrait>}
+     * @memberof CohortPost
+     */
+    traits?: Array<CohortTrait>;
 }
 
 export function CohortPostFromJSON(json: any): CohortPost {
@@ -72,7 +87,8 @@ export function CohortPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'stream_name': json['stream_name'],
+        'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
+        'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
 }
 
@@ -91,6 +107,7 @@ export function CohortPostToJSON(value?: CohortPost | null): any {
         'min_value': value.min_value,
         'name': value.name,
         'stream_name': value.stream_name,
+        'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
     };
 }
 

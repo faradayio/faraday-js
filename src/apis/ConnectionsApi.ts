@@ -18,9 +18,15 @@ import {
     Connection,
     ConnectionFromJSON,
     ConnectionToJSON,
+    ConnectionMergePatch,
+    ConnectionMergePatchFromJSON,
+    ConnectionMergePatchToJSON,
     ConnectionPost,
     ConnectionPostFromJSON,
     ConnectionPostToJSON,
+    Target,
+    TargetFromJSON,
+    TargetToJSON,
 } from '../models';
 
 export interface CreateConnectionRequest {
@@ -31,13 +37,22 @@ export interface GetConnectionRequest {
     connectionId: string;
 }
 
+export interface GetConnectionTargetsRequest {
+    connectionId: string;
+}
+
+export interface UpdateConnectionRequest {
+    connectionId: string;
+    connectionMergePatch: ConnectionMergePatch;
+}
+
 /**
  * 
  */
 export class ConnectionsApi extends runtime.BaseAPI {
 
     /**
-     * Add a new connection
+     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that corresponds to the data destination. The following types are currently supported: <table> <thead> <tr><th>Connection Type</th><th>Description</th></tr> </thead> <tbody> <tr><td><code>azure_sql_server</code></td><td>Azure SQL Server</td></tr> <tr><td><code>bigquery</code></td><td>Google BigQuery</td></tr> <tr><td><code>redshift</code></td><td>AWS Redshift</td></tr> <tr><td><code>snowflake</code></td><td>Snowflake (AWS/GCP supported)</td></tr> <tr><td><code>s3_csv</code></td><td>CSV on Amazon S3</td></tr> </tbody> </table>  Connection `type` is specified in the `options` object. 
      * Create connection
      */
     private async createConnectionRaw(requestParameters: CreateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
@@ -71,7 +86,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new connection
+     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that corresponds to the data destination. The following types are currently supported: <table> <thead> <tr><th>Connection Type</th><th>Description</th></tr> </thead> <tbody> <tr><td><code>azure_sql_server</code></td><td>Azure SQL Server</td></tr> <tr><td><code>bigquery</code></td><td>Google BigQuery</td></tr> <tr><td><code>redshift</code></td><td>AWS Redshift</td></tr> <tr><td><code>snowflake</code></td><td>Snowflake (AWS/GCP supported)</td></tr> <tr><td><code>s3_csv</code></td><td>CSV on Amazon S3</td></tr> </tbody> </table>  Connection `type` is specified in the `options` object. 
      * Create connection
      */
     async createConnection(connectionFields: ConnectionPost, ): Promise<Connection> {
@@ -120,6 +135,46 @@ export class ConnectionsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get all targets that use this connection
+     * Retrieve all targets that use this connection
+     */
+    private async getConnectionTargetsRaw(requestParameters: GetConnectionTargetsRequest, ): Promise<runtime.ApiResponse<Array<Target>>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling getConnectionTargets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}/targets`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TargetFromJSON));
+    }
+
+    /**
+     * Get all targets that use this connection
+     * Retrieve all targets that use this connection
+     */
+    async getConnectionTargets(connectionId: string, ): Promise<Array<Target>> {
+        const response = await this.getConnectionTargetsRaw({ connectionId: connectionId }, );
+        return await response.value();
+    }
+
+    /**
      * Get a list of connections defined on the account
      * List connections
      */
@@ -152,6 +207,53 @@ export class ConnectionsApi extends runtime.BaseAPI {
      */
     async getConnections(): Promise<Array<Connection>> {
         const response = await this.getConnectionsRaw();
+        return await response.value();
+    }
+
+    /**
+     * Update the configuration of a connection.
+     * Update a connection
+     */
+    private async updateConnectionRaw(requestParameters: UpdateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling updateConnection.');
+        }
+
+        if (requestParameters.connectionMergePatch === null || requestParameters.connectionMergePatch === undefined) {
+            throw new runtime.RequiredError('connectionMergePatch','Required parameter requestParameters.connectionMergePatch was null or undefined when calling updateConnection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json+merge-patch';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConnectionMergePatchToJSON(requestParameters.connectionMergePatch),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConnectionFromJSON(jsonValue));
+    }
+
+    /**
+     * Update the configuration of a connection.
+     * Update a connection
+     */
+    async updateConnection(connectionId: string, connectionMergePatch: ConnectionMergePatch, ): Promise<Connection> {
+        const response = await this.updateConnectionRaw({ connectionId: connectionId, connectionMergePatch: connectionMergePatch }, );
         return await response.value();
     }
 

@@ -21,7 +21,9 @@ import {
 } from './DataMapColumnPost';
 
 /**
+ * (Parameters used to POST a new value of the `DataMap` type.)
  * 
+ * A mapping from dataset columns to what they mean. Some fields have special meanings.
  * @export
  * @interface DataMapPost
  */

@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ScopePayloadPut,
+    ScopePayloadPutFromJSON,
+    ScopePayloadPutFromJSONTyped,
+    ScopePayloadPutToJSON,
+} from './ScopePayloadPut';
+import {
     ScopePopulationPut,
     ScopePopulationPutFromJSON,
     ScopePopulationPutFromJSONTyped,
@@ -21,11 +27,25 @@ import {
 } from './ScopePopulationPut';
 
 /**
+ * (Parameters used to PUT a value of the `Scope` type.)
  * 
+ * Instructions on how to produce output data.
  * @export
  * @interface ScopePut
  */
 export interface ScopePut {
+    /**
+     * Human-readable label for this scope. Each scope must have a unique name.
+     * @type {string}
+     * @memberof ScopePut
+     */
+    name: string;
+    /**
+     * 
+     * @type {ScopePayloadPut}
+     * @memberof ScopePut
+     */
+    payload: ScopePayloadPut;
     /**
      * 
      * @type {ScopePopulationPut}
@@ -51,6 +71,8 @@ export function ScopePutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
+        'name': json['name'],
+        'payload': ScopePayloadPutFromJSON(json['payload']),
         'population': ScopePopulationPutFromJSON(json['population']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
     };
@@ -65,6 +87,8 @@ export function ScopePutToJSON(value?: ScopePut | null): any {
     }
     return {
         
+        'name': value.name,
+        'payload': ScopePayloadPutToJSON(value.payload),
         'population': ScopePopulationPutToJSON(value.population),
         'preview': value.preview,
     };

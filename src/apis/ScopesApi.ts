@@ -15,12 +15,27 @@
 
 import * as runtime from '../runtime';
 import {
+    Cohort,
+    CohortFromJSON,
+    CohortToJSON,
+    Outcome,
+    OutcomeFromJSON,
+    OutcomeToJSON,
+    PersonaSet,
+    PersonaSetFromJSON,
+    PersonaSetToJSON,
     Scope,
     ScopeFromJSON,
     ScopeToJSON,
+    ScopeMergePatch,
+    ScopeMergePatchFromJSON,
+    ScopeMergePatchToJSON,
     ScopePost,
     ScopePostFromJSON,
     ScopePostToJSON,
+    Target,
+    TargetFromJSON,
+    TargetToJSON,
 } from '../models';
 
 export interface CreateScopeRequest {
@@ -35,9 +50,29 @@ export interface GetScopeRequest {
     scopeId: string;
 }
 
+export interface GetScopePayloadOutcomesRequest {
+    scopeId: string;
+}
+
+export interface GetScopePayloadPersonaSetsRequest {
+    scopeId: string;
+}
+
+export interface GetScopePopulationCohortsRequest {
+    scopeId: string;
+}
+
+export interface GetScopePopulationExclusionCohortsRequest {
+    scopeId: string;
+}
+
+export interface GetScopeTargetsRequest {
+    scopeId: string;
+}
+
 export interface UpdateScopeRequest {
     scopeId: string;
-    body: object;
+    scopeMergePatch: ScopeMergePatch;
 }
 
 /**
@@ -166,6 +201,206 @@ export class ScopesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get payload outcomes for a scope
+     * Get payload outcomes for a scope
+     */
+    private async getScopePayloadOutcomesRaw(requestParameters: GetScopePayloadOutcomesRequest, ): Promise<runtime.ApiResponse<Array<Outcome>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadOutcomes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/payload/outcomes`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OutcomeFromJSON));
+    }
+
+    /**
+     * Get payload outcomes for a scope
+     * Get payload outcomes for a scope
+     */
+    async getScopePayloadOutcomes(scopeId: string, ): Promise<Array<Outcome>> {
+        const response = await this.getScopePayloadOutcomesRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get payload persona sets for a scope
+     * Get payload persona sets for a scope
+     */
+    private async getScopePayloadPersonaSetsRaw(requestParameters: GetScopePayloadPersonaSetsRequest, ): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadPersonaSets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/payload/persona_sets`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PersonaSetFromJSON));
+    }
+
+    /**
+     * Get payload persona sets for a scope
+     * Get payload persona sets for a scope
+     */
+    async getScopePayloadPersonaSets(scopeId: string, ): Promise<Array<PersonaSet>> {
+        const response = await this.getScopePayloadPersonaSetsRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get population cohorts for a scope
+     * Get population cohorts for a scope
+     */
+    private async getScopePopulationCohortsRaw(requestParameters: GetScopePopulationCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePopulationCohorts.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/population/cohorts`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CohortFromJSON));
+    }
+
+    /**
+     * Get population cohorts for a scope
+     * Get population cohorts for a scope
+     */
+    async getScopePopulationCohorts(scopeId: string, ): Promise<Array<Cohort>> {
+        const response = await this.getScopePopulationCohortsRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get population exclusion cohorts for a scope
+     * Get population exclusion cohorts for a scope
+     */
+    private async getScopePopulationExclusionCohortsRaw(requestParameters: GetScopePopulationExclusionCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePopulationExclusionCohorts.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/population/exclusion_cohorts`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CohortFromJSON));
+    }
+
+    /**
+     * Get population exclusion cohorts for a scope
+     * Get population exclusion cohorts for a scope
+     */
+    async getScopePopulationExclusionCohorts(scopeId: string, ): Promise<Array<Cohort>> {
+        const response = await this.getScopePopulationExclusionCohortsRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get targets for a scope
+     * Get targets for a scope
+     */
+    private async getScopeTargetsRaw(requestParameters: GetScopeTargetsRequest, ): Promise<runtime.ApiResponse<Array<Target>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeTargets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/targets`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TargetFromJSON));
+    }
+
+    /**
+     * Get targets for a scope
+     * Get targets for a scope
+     */
+    async getScopeTargets(scopeId: string, ): Promise<Array<Target>> {
+        const response = await this.getScopeTargetsRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
      * Get a list of scopes defined on the account
      * List scopes
      */
@@ -210,8 +445,8 @@ export class ScopesApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling updateScope.');
         }
 
-        if (requestParameters.body === null || requestParameters.body === undefined) {
-            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling updateScope.');
+        if (requestParameters.scopeMergePatch === null || requestParameters.scopeMergePatch === undefined) {
+            throw new runtime.RequiredError('scopeMergePatch','Required parameter requestParameters.scopeMergePatch was null or undefined when calling updateScope.');
         }
 
         const queryParameters: any = {};
@@ -233,7 +468,7 @@ export class ScopesApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.body as any,
+            body: ScopeMergePatchToJSON(requestParameters.scopeMergePatch),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScopeFromJSON(jsonValue));
@@ -243,8 +478,8 @@ export class ScopesApi extends runtime.BaseAPI {
      * Update the configuration of a scope.
      * Update a scope
      */
-    async updateScope(scopeId: string, body: object, ): Promise<Scope> {
-        const response = await this.updateScopeRaw({ scopeId: scopeId, body: body }, );
+    async updateScope(scopeId: string, scopeMergePatch: ScopeMergePatch, ): Promise<Scope> {
+        const response = await this.updateScopeRaw({ scopeId: scopeId, scopeMergePatch: scopeMergePatch }, );
         return await response.value();
     }
 

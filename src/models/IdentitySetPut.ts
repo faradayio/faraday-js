@@ -14,7 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 /**
+ * (Parameters used to PUT a value of the `IdentitySet` type.)
  * 
+ * Information about how to extract personally identifiable information (name, contact, address) from the rows 
+ * in a dataset. 
+ * 
+ * At least one value must be provided.
  * @export
  * @interface IdentitySetPut
  */

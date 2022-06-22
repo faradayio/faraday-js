@@ -18,6 +18,9 @@ import {
     Cohort,
     CohortFromJSON,
     CohortToJSON,
+    CohortMergePatch,
+    CohortMergePatchFromJSON,
+    CohortMergePatchToJSON,
     CohortPost,
     CohortPostFromJSON,
     CohortPostToJSON,
@@ -29,6 +32,11 @@ export interface CreateCohortRequest {
 
 export interface GetCohortRequest {
     cohortId: string;
+}
+
+export interface UpdateCohortRequest {
+    cohortId: string;
+    cohortFields: CohortMergePatch;
 }
 
 /**
@@ -152,6 +160,53 @@ export class CohortsApi extends runtime.BaseAPI {
      */
     async getCohorts(): Promise<Array<Cohort>> {
         const response = await this.getCohortsRaw();
+        return await response.value();
+    }
+
+    /**
+     * Edit configuration of an cohort
+     * Edit a cohort
+     */
+    private async updateCohortRaw(requestParameters: UpdateCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
+        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling updateCohort.');
+        }
+
+        if (requestParameters.cohortFields === null || requestParameters.cohortFields === undefined) {
+            throw new runtime.RequiredError('cohortFields','Required parameter requestParameters.cohortFields was null or undefined when calling updateCohort.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json+merge-patch';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/cohorts/{cohort_id}`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CohortMergePatchToJSON(requestParameters.cohortFields),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CohortFromJSON(jsonValue));
+    }
+
+    /**
+     * Edit configuration of an cohort
+     * Edit a cohort
+     */
+    async updateCohort(cohortId: string, cohortFields: CohortMergePatch, ): Promise<Cohort> {
+        const response = await this.updateCohortRaw({ cohortId: cohortId, cohortFields: cohortFields }, );
         return await response.value();
     }
 

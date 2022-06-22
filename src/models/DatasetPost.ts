@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DatasetOptionsPost,
+    DatasetOptionsPostFromJSON,
+    DatasetOptionsPostFromJSONTyped,
+    DatasetOptionsPostToJSON,
+} from './DatasetOptionsPost';
+import {
     IdentitySetsPost,
     IdentitySetsPostFromJSON,
     IdentitySetsPostFromJSONTyped,
@@ -25,13 +31,31 @@ import {
     OutputToStreamsPostFromJSONTyped,
     OutputToStreamsPostToJSON,
 } from './OutputToStreamsPost';
+import {
+    OutputToTraitsPost,
+    OutputToTraitsPostFromJSON,
+    OutputToTraitsPostFromJSONTyped,
+    OutputToTraitsPostToJSON,
+} from './OutputToTraitsPost';
 
 /**
+ * (Parameters used to POST a new value of the `Dataset` type.)
  * 
+ * Tabular data describing orders, customers, leads, etc.
  * @export
  * @interface DatasetPost
  */
 export interface DatasetPost {
+    /**
+     * If this is a "retrieve" dataset, the UUID of a connection - see <a href="../reference/createconnection">/connections</a> for more detail. 
+     * 
+     * Only a subset of connection types can be configured for dataset ingestion - see the list available in `options`.
+     * 
+     * Note that if a `connection_id` is specified, `options` must also be specified.
+     * @type {string}
+     * @memberof DatasetPost
+     */
+    connection_id?: string;
     /**
      * 
      * @type {IdentitySetsPost}
@@ -52,16 +76,22 @@ export interface DatasetPost {
     incremental_column?: string;
     /**
      * 
+     * @type {DatasetOptionsPost}
+     * @memberof DatasetPost
+     */
+    options: DatasetOptionsPost;
+    /**
+     * 
      * @type {OutputToStreamsPost}
      * @memberof DatasetPost
      */
     output_to_streams: OutputToStreamsPost;
     /**
      * 
-     * @type {string}
+     * @type {OutputToTraitsPost}
      * @memberof DatasetPost
      */
-    upload_directory: string;
+    output_to_traits?: OutputToTraitsPost;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
@@ -87,10 +117,12 @@ export function DatasetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
+        'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'identity_sets': IdentitySetsPostFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'options': DatasetOptionsPostFromJSON(json['options']),
         'output_to_streams': OutputToStreamsPostFromJSON(json['output_to_streams']),
-        'upload_directory': json['upload_directory'],
+        'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPostFromJSON(json['output_to_traits']),
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -104,10 +136,12 @@ export function DatasetPostToJSON(value?: DatasetPost | null): any {
     }
     return {
         
+        'connection_id': value.connection_id,
         'identity_sets': IdentitySetsPostToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
+        'options': DatasetOptionsPostToJSON(value.options),
         'output_to_streams': OutputToStreamsPostToJSON(value.output_to_streams),
-        'upload_directory': value.upload_directory,
+        'output_to_traits': OutputToTraitsPostToJSON(value.output_to_traits),
         'upsert_columns': value.upsert_columns,
     };
 }

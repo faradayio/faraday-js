@@ -21,7 +21,9 @@ import {
 } from './DataMapColumnPut';
 
 /**
+ * (Parameters used to PUT a value of the `DataMap` type.)
  * 
+ * A mapping from dataset columns to what they mean. Some fields have special meanings.
  * @export
  * @interface DataMapPut
  */

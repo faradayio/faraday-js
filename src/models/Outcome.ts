@@ -69,13 +69,20 @@ export interface Outcome {
      */
     eligible_cohort_name?: string;
     /**
+     * The name of a field or category of fields which should not be considered for this Outcome. Should be used
+     * primarily for the purposes of Responsible AI.
+     * @type {Array<string>}
+     * @memberof Outcome
+     */
+    feature_blocklist?: Array<string>;
+    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Outcome
      */
     id: string;
     /**
-     * Human-readable label for this outcome. Each of your outcomes must have a unique name.
+     * Human-readable label for this outcome. Each outcome must have a unique name.
      * @type {string}
      * @memberof Outcome
      */
@@ -135,6 +142,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'created_at': (new Date(json['created_at'])),
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'eligible_cohort_name': !exists(json, 'eligible_cohort_name') ? undefined : json['eligible_cohort_name'],
+        'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'id': json['id'],
         'name': json['name'],
         'resource_type': json['resource_type'],
@@ -162,6 +170,7 @@ export function OutcomeToJSON(value?: Outcome | null): any {
         'created_at': (value.created_at.toISOString()),
         'eligible_cohort_id': value.eligible_cohort_id,
         'eligible_cohort_name': value.eligible_cohort_name,
+        'feature_blocklist': value.feature_blocklist,
         'id': value.id,
         'name': value.name,
         'resource_type': value.resource_type,

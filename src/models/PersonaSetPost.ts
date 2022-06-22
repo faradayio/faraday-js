@@ -21,7 +21,9 @@ import {
 } from './ModelingField';
 
 /**
+ * (Parameters used to POST a new value of the `PersonaSet` type.)
  * 
+ * A set of customer personas.
  * @export
  * @interface PersonaSetPost
  */

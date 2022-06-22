@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ConnectionOptions,
+    ConnectionOptionsFromJSON,
+    ConnectionOptionsFromJSONTyped,
+    ConnectionOptionsToJSON,
+} from './ConnectionOptions';
+import {
     ResourceStatus,
     ResourceStatusFromJSON,
     ResourceStatusFromJSONTyped,
@@ -47,27 +53,11 @@ export interface Connection {
      */
     name: string;
     /**
-     * The connection-specific options. These vary by `type`. The following are currently supported:
      * 
-     * <table>
-     * <thead>
-     * <tr><th>Key</th><th>Description</th><th>Applies to connection type(s) (* = required)</th></tr>
-     * </thead>
-     * <tbody>
-     * <tr><td><code>aws_region</code></td><td>AWS Region</td><td>redshift*, s3_csv*</td></tr>
-     * <tr><td><code>bucket_name</code></td><td>S3 bucket name</td><td>s3_csv*</td></tr>
-     * <tr><td><code>load_balancer_dns_name</code></td><td>Load balancer DNS name</td><td>redshift</td></tr>
-     * <tr><td><code>project_name</code></td><td>Project name</td><td>bigquery*</td></tr>
-     * <tr><td><code>schema</code></td><td>Schema</td><td>redshift*</td></tr>
-     * <tr><td><code>url</code></td><td>URL starting with redshift://</td><td>redshift*</td></tr>
-     * </tbody>
-     * </table>
-     * 
-     * If the desired connection has no required parameters, omit this from the request.
-     * @type {object}
+     * @type {ConnectionOptions}
      * @memberof Connection
      */
-    options?: object;
+    options: ConnectionOptions;
     /**
      * The type of this resource.
      * @type {string}
@@ -93,24 +83,6 @@ export interface Connection {
      */
     status_error?: string;
     /**
-     * The connection type. The following are currently supported:
-     * <table>
-     * <thead>
-     * <tr><th>Value</th><th>Description</th></tr>
-     * </thead>
-     * <tbody>
-     * <tr><td><code>bigquery</code></td><td>Google BigQuery</td></tr>
-     * <tr><td><code>redshift</code></td><td>AWS Redshift</td></tr>
-     * <tr><td><code>snowflake_aws</code></td><td>Snowflake on AWS</td></tr>
-     * <tr><td><code>snowflake_gcp</code></td><td>Snowflake on GCP</td></tr>
-     * <tr><td><code>s3_csv</code></td><td>CSV on Amazon S3</td></tr>
-     * </tbody>
-     * </table>
-     * @type {string}
-     * @memberof Connection
-     */
-    type: string;
-    /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Connection
@@ -131,12 +103,11 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'name': json['name'],
-        'options': !exists(json, 'options') ? undefined : json['options'],
+        'options': ConnectionOptionsFromJSON(json['options']),
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
-        'type': json['type'],
         'updated_at': (new Date(json['updated_at'])),
     };
 }
@@ -153,12 +124,11 @@ export function ConnectionToJSON(value?: Connection | null): any {
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'name': value.name,
-        'options': value.options,
+        'options': ConnectionOptionsToJSON(value.options),
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,
-        'type': value.type,
         'updated_at': (value.updated_at.toISOString()),
     };
 }

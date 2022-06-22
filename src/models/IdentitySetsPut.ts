@@ -21,7 +21,23 @@ import {
 } from './IdentitySetPut';
 
 /**
+ * (Parameters used to PUT a value of the `IdentitySets` type.)
  * 
+ * A mapping of {identity set name} (ex. shipping) -> {identity set object}. 
+ * 
+ * Describes all the logical groupings of personally-identifiable information present in the dataset.
+ * 
+ * Identity set objects map canonical names to dataset column names. The following keys are supported:
+ *   * `email`
+ *   * `phone`
+ *   * `person_last_name`
+ *   * `person_first_name`
+ *   * `house_number_and_street`
+ *   * `city`
+ *   * `state`
+ *   * `postcode`
+ * 
+ * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  * @export
  * @interface IdentitySetsPut
  */

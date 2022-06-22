@@ -13,8 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConnectionOptionsPost,
+    ConnectionOptionsPostFromJSON,
+    ConnectionOptionsPostFromJSONTyped,
+    ConnectionOptionsPostToJSON,
+} from './ConnectionOptionsPost';
+
 /**
+ * (Parameters used to POST a new value of the `Connection` type.)
  * 
+ * Configuration for connecting data between Faraday and an external location.
+ * 
+ * Connections are required when working with **replication targets**.
  * @export
  * @interface ConnectionPost
  */
@@ -26,45 +37,11 @@ export interface ConnectionPost {
      */
     name: string;
     /**
-     * The connection-specific options. These vary by `type`. The following are currently supported:
      * 
-     * <table>
-     * <thead>
-     * <tr><th>Key</th><th>Description</th><th>Applies to connection type(s) (* = required)</th></tr>
-     * </thead>
-     * <tbody>
-     * <tr><td><code>aws_region</code></td><td>AWS Region</td><td>redshift*, s3_csv*</td></tr>
-     * <tr><td><code>bucket_name</code></td><td>S3 bucket name</td><td>s3_csv*</td></tr>
-     * <tr><td><code>load_balancer_dns_name</code></td><td>Load balancer DNS name</td><td>redshift</td></tr>
-     * <tr><td><code>project_name</code></td><td>Project name</td><td>bigquery*</td></tr>
-     * <tr><td><code>schema</code></td><td>Schema</td><td>redshift*</td></tr>
-     * <tr><td><code>url</code></td><td>URL starting with redshift://</td><td>redshift*</td></tr>
-     * </tbody>
-     * </table>
-     * 
-     * If the desired connection has no required parameters, omit this from the request.
-     * @type {object}
+     * @type {ConnectionOptionsPost}
      * @memberof ConnectionPost
      */
-    options?: object;
-    /**
-     * The connection type. The following are currently supported:
-     * <table>
-     * <thead>
-     * <tr><th>Value</th><th>Description</th></tr>
-     * </thead>
-     * <tbody>
-     * <tr><td><code>bigquery</code></td><td>Google BigQuery</td></tr>
-     * <tr><td><code>redshift</code></td><td>AWS Redshift</td></tr>
-     * <tr><td><code>snowflake_aws</code></td><td>Snowflake on AWS</td></tr>
-     * <tr><td><code>snowflake_gcp</code></td><td>Snowflake on GCP</td></tr>
-     * <tr><td><code>s3_csv</code></td><td>CSV on Amazon S3</td></tr>
-     * </tbody>
-     * </table>
-     * @type {string}
-     * @memberof ConnectionPost
-     */
-    type: string;
+    options: ConnectionOptionsPost;
 }
 
 export function ConnectionPostFromJSON(json: any): ConnectionPost {
@@ -78,8 +55,7 @@ export function ConnectionPostFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'name': json['name'],
-        'options': !exists(json, 'options') ? undefined : json['options'],
-        'type': json['type'],
+        'options': ConnectionOptionsPostFromJSON(json['options']),
     };
 }
 
@@ -93,8 +69,7 @@ export function ConnectionPostToJSON(value?: ConnectionPost | null): any {
     return {
         
         'name': value.name,
-        'options': value.options,
-        'type': value.type,
+        'options': ConnectionOptionsPostToJSON(value.options),
     };
 }
 

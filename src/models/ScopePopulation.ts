@@ -20,13 +20,13 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ScopePopulation {
     /**
-     * 
+     * Include people from the specified cohorts in this scope.
      * @type {Array<string>}
      * @memberof ScopePopulation
      */
     cohort_ids: Array<string>;
     /**
-     * 
+     * Exclude people from the specified cohorts in this scope.
      * @type {Array<string>}
      * @memberof ScopePopulation
      */

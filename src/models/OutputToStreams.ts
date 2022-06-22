@@ -21,7 +21,7 @@ import {
 } from './DatasetStream';
 
 /**
- * A mapping of {stream type} -> {data map object}
+ * A mapping of {stream type} (ex. orders) -> {data map object}
  * 
  * Describes how to transform the dataset to a stream of events with canonical field names.
  * 

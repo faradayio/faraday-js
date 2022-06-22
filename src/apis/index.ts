@@ -28,6 +28,9 @@ import {
 import {
     UploadsApi
 } from './UploadsApi';
+import {
+    UsageApi
+} from './UsageApi';
 
 export class FaradayClient {
     configuration: Configuration;
@@ -40,6 +43,7 @@ export class FaradayClient {
     streams: StreamsApi;
     targets: TargetsApi;
     uploads: UploadsApi;
+    usage: UsageApi;
 
     constructor(configuration: Configuration) {
         this.configuration = configuration
@@ -52,5 +56,6 @@ export class FaradayClient {
         this.streams = new StreamsApi(configuration);
         this.targets = new TargetsApi(configuration);
         this.uploads = new UploadsApi(configuration);
+        this.usage = new UsageApi(configuration);
     }
 }

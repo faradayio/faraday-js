@@ -21,7 +21,25 @@ import {
 } from './DatasetStreamPut';
 
 /**
+ * (Parameters used to PUT a value of the `OutputToStreams` type.)
  * 
+ * A mapping of {stream type} (ex. orders) -> {data map object}
+ * 
+ * Describes how to transform the dataset to a stream of events with canonical field names.
+ * 
+ * A data map object has the following keys: `datetime`, `value`, `product`, `channel`. `datetime`
+ * is required, the remaining are optional. Each key must specificy at mimumum a `column_name` (source 
+ * column) and optionally a `format`, which can be one of:
+ *   * `currency_cents`
+ *   * `currency_dollars`
+ *   * `date_iso8601`
+ *   * `date_month_day_fullyear`
+ *   * `date_month_day_shortyear`
+ *   * `date_month_day_fullyear_hours_minutes`
+ *   * `date_month_day_fullyear_hours_minutes_seconds`
+ *   * `list_comma_separated`
+ *   * `list_semicolon_separated`
+ *   * `list_single_value`
  * @export
  * @interface OutputToStreamsPut
  */

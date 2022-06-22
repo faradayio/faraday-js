@@ -18,6 +18,9 @@ import {
     Dataset,
     DatasetFromJSON,
     DatasetToJSON,
+    DatasetMergePatch,
+    DatasetMergePatchFromJSON,
+    DatasetMergePatchToJSON,
     DatasetPost,
     DatasetPostFromJSON,
     DatasetPostToJSON,
@@ -33,7 +36,7 @@ export interface GetDatasetRequest {
 
 export interface UpdateDatasetRequest {
     datasetId: string;
-    datasetFields: object;
+    datasetFields: DatasetMergePatch;
 }
 
 /**
@@ -192,7 +195,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.datasetFields as any,
+            body: DatasetMergePatchToJSON(requestParameters.datasetFields),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DatasetFromJSON(jsonValue));
@@ -202,7 +205,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Update an existing dataset
      * Update dataset
      */
-    async updateDataset(datasetId: string, datasetFields: object, ): Promise<Dataset> {
+    async updateDataset(datasetId: string, datasetFields: DatasetMergePatch, ): Promise<Dataset> {
         const response = await this.updateDatasetRaw({ datasetId: datasetId, datasetFields: datasetFields }, );
         return await response.value();
     }
