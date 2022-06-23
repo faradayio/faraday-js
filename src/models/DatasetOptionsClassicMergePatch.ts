@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsClassic` type.)
  * 
- * Classic Faraday dataset options.
+ * Classic Faraday Sources dataset options
  * @export
  * @interface DatasetOptionsClassicMergePatch
  */

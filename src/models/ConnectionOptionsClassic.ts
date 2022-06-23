@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * A classic Faraday dataset. Created internally, outside of the API.
+ * Classic Faraday Sources connection options
  * @export
  * @interface ConnectionOptionsClassic
  */

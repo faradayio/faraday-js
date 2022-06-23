@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsClassic` type.)
  * 
- * Classic Faraday dataset options.
+ * Classic Faraday Sources dataset options
  * @export
  * @interface DatasetOptionsClassicPost
  */

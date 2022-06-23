@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Classic Faraday dataset options.
+ * Classic Faraday Sources dataset options
  * @export
  * @interface DatasetOptionsClassic
  */

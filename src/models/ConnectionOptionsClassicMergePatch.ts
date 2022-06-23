@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `ConnectionOptionsClassic` type.)
  * 
- * A classic Faraday dataset. Created internally, outside of the API.
+ * Classic Faraday Sources connection options
  * @export
  * @interface ConnectionOptionsClassicMergePatch
  */
