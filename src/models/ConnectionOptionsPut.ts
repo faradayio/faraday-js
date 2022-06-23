@@ -25,6 +25,12 @@ import {
     ConnectionOptionsBigQueryPutToJSON,
 } from './ConnectionOptionsBigQueryPut';
 import {
+    ConnectionOptionsClassicPut,
+    ConnectionOptionsClassicPutFromJSON,
+    ConnectionOptionsClassicPutFromJSONTyped,
+    ConnectionOptionsClassicPutToJSON,
+} from './ConnectionOptionsClassicPut';
+import {
     ConnectionOptionsRedshiftPut,
     ConnectionOptionsRedshiftPutFromJSON,
     ConnectionOptionsRedshiftPutFromJSONTyped,
@@ -48,7 +54,7 @@ import {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPut = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPut | { type: 'bigquery' } & ConnectionOptionsBigQueryPut | { type: 'redshift' } & ConnectionOptionsRedshiftPut | { type: 's3_csv' } & ConnectionOptionsS3CsvPut | { type: 'snowflake' } & ConnectionOptionsSnowflakePut;
+export type ConnectionOptionsPut = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPut | { type: 'bigquery' } & ConnectionOptionsBigQueryPut | { type: 'classic' } & ConnectionOptionsClassicPut | { type: 'redshift' } & ConnectionOptionsRedshiftPut | { type: 's3_csv' } & ConnectionOptionsS3CsvPut | { type: 'snowflake' } & ConnectionOptionsSnowflakePut;
 
 export function ConnectionOptionsPutFromJSON(json: any): ConnectionOptionsPut {
     return ConnectionOptionsPutFromJSONTyped(json, false);
@@ -63,6 +69,8 @@ export function ConnectionOptionsPutFromJSONTyped(json: any, ignoreDiscriminator
             return {...ConnectionOptionsAzureSqlServerPutFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...ConnectionOptionsBigQueryPutFromJSONTyped(json, true), type: 'bigquery'};
+        case 'classic':
+            return {...ConnectionOptionsClassicPutFromJSONTyped(json, true), type: 'classic'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftPutFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
@@ -86,6 +94,8 @@ export function ConnectionOptionsPutToJSON(value?: ConnectionOptionsPut | null):
             return ConnectionOptionsAzureSqlServerPutToJSON(value);
         case 'bigquery':
             return ConnectionOptionsBigQueryPutToJSON(value);
+        case 'classic':
+            return ConnectionOptionsClassicPutToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftPutToJSON(value);
         case 's3_csv':

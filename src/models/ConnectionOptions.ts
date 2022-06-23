@@ -25,6 +25,12 @@ import {
     ConnectionOptionsBigQueryToJSON,
 } from './ConnectionOptionsBigQuery';
 import {
+    ConnectionOptionsClassic,
+    ConnectionOptionsClassicFromJSON,
+    ConnectionOptionsClassicFromJSONTyped,
+    ConnectionOptionsClassicToJSON,
+} from './ConnectionOptionsClassic';
+import {
     ConnectionOptionsRedshift,
     ConnectionOptionsRedshiftFromJSON,
     ConnectionOptionsRedshiftFromJSONTyped,
@@ -48,7 +54,7 @@ import {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptions = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'snowflake' } & ConnectionOptionsSnowflake;
+export type ConnectionOptions = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'snowflake' } & ConnectionOptionsSnowflake;
 
 export function ConnectionOptionsFromJSON(json: any): ConnectionOptions {
     return ConnectionOptionsFromJSONTyped(json, false);
@@ -63,6 +69,8 @@ export function ConnectionOptionsFromJSONTyped(json: any, ignoreDiscriminator: b
             return {...ConnectionOptionsAzureSqlServerFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...ConnectionOptionsBigQueryFromJSONTyped(json, true), type: 'bigquery'};
+        case 'classic':
+            return {...ConnectionOptionsClassicFromJSONTyped(json, true), type: 'classic'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
@@ -86,6 +94,8 @@ export function ConnectionOptionsToJSON(value?: ConnectionOptions | null): any {
             return ConnectionOptionsAzureSqlServerToJSON(value);
         case 'bigquery':
             return ConnectionOptionsBigQueryToJSON(value);
+        case 'classic':
+            return ConnectionOptionsClassicToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftToJSON(value);
         case 's3_csv':

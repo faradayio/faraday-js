@@ -33,6 +33,10 @@ src/models/ConnectionOptionsBigQuery.ts
 src/models/ConnectionOptionsBigQueryMergePatch.ts
 src/models/ConnectionOptionsBigQueryPost.ts
 src/models/ConnectionOptionsBigQueryPut.ts
+src/models/ConnectionOptionsClassic.ts
+src/models/ConnectionOptionsClassicMergePatch.ts
+src/models/ConnectionOptionsClassicPost.ts
+src/models/ConnectionOptionsClassicPut.ts
 src/models/ConnectionOptionsMergePatch.ts
 src/models/ConnectionOptionsPost.ts
 src/models/ConnectionOptionsPut.ts
@@ -67,6 +71,10 @@ src/models/DatasetOptionsBigQuery.ts
 src/models/DatasetOptionsBigQueryMergePatch.ts
 src/models/DatasetOptionsBigQueryPost.ts
 src/models/DatasetOptionsBigQueryPut.ts
+src/models/DatasetOptionsClassic.ts
+src/models/DatasetOptionsClassicMergePatch.ts
+src/models/DatasetOptionsClassicPost.ts
+src/models/DatasetOptionsClassicPut.ts
 src/models/DatasetOptionsHostedCsv.ts
 src/models/DatasetOptionsHostedCsvMergePatch.ts
 src/models/DatasetOptionsHostedCsvPost.ts

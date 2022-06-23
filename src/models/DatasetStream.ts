@@ -27,6 +27,12 @@ import {
  */
 export interface DatasetStream {
     /**
+     * A classic dataset stream, created internally at Faraday.
+     * @type {boolean}
+     * @memberof DatasetStream
+     */
+    classic?: boolean;
+    /**
      * 
      * @type {DataMap}
      * @memberof DatasetStream
@@ -50,6 +56,7 @@ export function DatasetStreamFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'classic': !exists(json, 'classic') ? undefined : json['classic'],
         'data_map': DataMapFromJSON(json['data_map']),
         'stream_id': json['stream_id'],
     };
@@ -64,6 +71,7 @@ export function DatasetStreamToJSON(value?: DatasetStream | null): any {
     }
     return {
         
+        'classic': value.classic,
         'data_map': DataMapToJSON(value.data_map),
         'stream_id': value.stream_id,
     };

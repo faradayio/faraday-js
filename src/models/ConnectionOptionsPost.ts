@@ -25,6 +25,12 @@ import {
     ConnectionOptionsBigQueryPostToJSON,
 } from './ConnectionOptionsBigQueryPost';
 import {
+    ConnectionOptionsClassicPost,
+    ConnectionOptionsClassicPostFromJSON,
+    ConnectionOptionsClassicPostFromJSONTyped,
+    ConnectionOptionsClassicPostToJSON,
+} from './ConnectionOptionsClassicPost';
+import {
     ConnectionOptionsRedshiftPost,
     ConnectionOptionsRedshiftPostFromJSON,
     ConnectionOptionsRedshiftPostFromJSONTyped,
@@ -48,7 +54,7 @@ import {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPost = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost;
+export type ConnectionOptionsPost = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost;
 
 export function ConnectionOptionsPostFromJSON(json: any): ConnectionOptionsPost {
     return ConnectionOptionsPostFromJSONTyped(json, false);
@@ -63,6 +69,8 @@ export function ConnectionOptionsPostFromJSONTyped(json: any, ignoreDiscriminato
             return {...ConnectionOptionsAzureSqlServerPostFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...ConnectionOptionsBigQueryPostFromJSONTyped(json, true), type: 'bigquery'};
+        case 'classic':
+            return {...ConnectionOptionsClassicPostFromJSONTyped(json, true), type: 'classic'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftPostFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
@@ -86,6 +94,8 @@ export function ConnectionOptionsPostToJSON(value?: ConnectionOptionsPost | null
             return ConnectionOptionsAzureSqlServerPostToJSON(value);
         case 'bigquery':
             return ConnectionOptionsBigQueryPostToJSON(value);
+        case 'classic':
+            return ConnectionOptionsClassicPostToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftPostToJSON(value);
         case 's3_csv':

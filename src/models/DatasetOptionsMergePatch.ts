@@ -19,6 +19,12 @@ import {
     DatasetOptionsBigQueryMergePatchToJSON,
 } from './DatasetOptionsBigQueryMergePatch';
 import {
+    DatasetOptionsClassicMergePatch,
+    DatasetOptionsClassicMergePatchFromJSON,
+    DatasetOptionsClassicMergePatchFromJSONTyped,
+    DatasetOptionsClassicMergePatchToJSON,
+} from './DatasetOptionsClassicMergePatch';
+import {
     DatasetOptionsHostedCsvMergePatch,
     DatasetOptionsHostedCsvMergePatchFromJSON,
     DatasetOptionsHostedCsvMergePatchFromJSONTyped,
@@ -30,7 +36,7 @@ import {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsMergePatch = { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch;
+export type DatasetOptionsMergePatch = { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch;
 
 export function DatasetOptionsMergePatchFromJSON(json: any): DatasetOptionsMergePatch {
     return DatasetOptionsMergePatchFromJSONTyped(json, false);
@@ -43,6 +49,8 @@ export function DatasetOptionsMergePatchFromJSONTyped(json: any, ignoreDiscrimin
     switch (json['type']) {
         case 'bigquery':
             return {...DatasetOptionsBigQueryMergePatchFromJSONTyped(json, true), type: 'bigquery'};
+        case 'classic':
+            return {...DatasetOptionsClassicMergePatchFromJSONTyped(json, true), type: 'classic'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvMergePatchFromJSONTyped(json, true), type: 'hosted_csv'};
         default:
@@ -60,6 +68,8 @@ export function DatasetOptionsMergePatchToJSON(value?: DatasetOptionsMergePatch 
     switch (value['type']) {
         case 'bigquery':
             return DatasetOptionsBigQueryMergePatchToJSON(value);
+        case 'classic':
+            return DatasetOptionsClassicMergePatchToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvMergePatchToJSON(value);
         default:

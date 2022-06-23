@@ -19,6 +19,12 @@ import {
     DatasetOptionsBigQueryPostToJSON,
 } from './DatasetOptionsBigQueryPost';
 import {
+    DatasetOptionsClassicPost,
+    DatasetOptionsClassicPostFromJSON,
+    DatasetOptionsClassicPostFromJSONTyped,
+    DatasetOptionsClassicPostToJSON,
+} from './DatasetOptionsClassicPost';
+import {
     DatasetOptionsHostedCsvPost,
     DatasetOptionsHostedCsvPostFromJSON,
     DatasetOptionsHostedCsvPostFromJSONTyped,
@@ -30,7 +36,7 @@ import {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPost = { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost;
+export type DatasetOptionsPost = { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost;
 
 export function DatasetOptionsPostFromJSON(json: any): DatasetOptionsPost {
     return DatasetOptionsPostFromJSONTyped(json, false);
@@ -43,6 +49,8 @@ export function DatasetOptionsPostFromJSONTyped(json: any, ignoreDiscriminator: 
     switch (json['type']) {
         case 'bigquery':
             return {...DatasetOptionsBigQueryPostFromJSONTyped(json, true), type: 'bigquery'};
+        case 'classic':
+            return {...DatasetOptionsClassicPostFromJSONTyped(json, true), type: 'classic'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvPostFromJSONTyped(json, true), type: 'hosted_csv'};
         default:
@@ -60,6 +68,8 @@ export function DatasetOptionsPostToJSON(value?: DatasetOptionsPost | null): any
     switch (value['type']) {
         case 'bigquery':
             return DatasetOptionsBigQueryPostToJSON(value);
+        case 'classic':
+            return DatasetOptionsClassicPostToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvPostToJSON(value);
         default:

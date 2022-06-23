@@ -25,6 +25,12 @@ import {
     ConnectionOptionsBigQueryMergePatchToJSON,
 } from './ConnectionOptionsBigQueryMergePatch';
 import {
+    ConnectionOptionsClassicMergePatch,
+    ConnectionOptionsClassicMergePatchFromJSON,
+    ConnectionOptionsClassicMergePatchFromJSONTyped,
+    ConnectionOptionsClassicMergePatchToJSON,
+} from './ConnectionOptionsClassicMergePatch';
+import {
     ConnectionOptionsRedshiftMergePatch,
     ConnectionOptionsRedshiftMergePatchFromJSON,
     ConnectionOptionsRedshiftMergePatchFromJSONTyped,
@@ -48,7 +54,7 @@ import {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsMergePatch = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch;
+export type ConnectionOptionsMergePatch = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch;
 
 export function ConnectionOptionsMergePatchFromJSON(json: any): ConnectionOptionsMergePatch {
     return ConnectionOptionsMergePatchFromJSONTyped(json, false);
@@ -63,6 +69,8 @@ export function ConnectionOptionsMergePatchFromJSONTyped(json: any, ignoreDiscri
             return {...ConnectionOptionsAzureSqlServerMergePatchFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...ConnectionOptionsBigQueryMergePatchFromJSONTyped(json, true), type: 'bigquery'};
+        case 'classic':
+            return {...ConnectionOptionsClassicMergePatchFromJSONTyped(json, true), type: 'classic'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftMergePatchFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
@@ -86,6 +94,8 @@ export function ConnectionOptionsMergePatchToJSON(value?: ConnectionOptionsMerge
             return ConnectionOptionsAzureSqlServerMergePatchToJSON(value);
         case 'bigquery':
             return ConnectionOptionsBigQueryMergePatchToJSON(value);
+        case 'classic':
+            return ConnectionOptionsClassicMergePatchToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftMergePatchToJSON(value);
         case 's3_csv':
