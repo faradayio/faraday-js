@@ -73,6 +73,7 @@ export * from './IdentitySets';
 export * from './IdentitySetsMergePatch';
 export * from './IdentitySetsPost';
 export * from './IdentitySetsPut';
+export * from './InlineResponse200';
 export * from './ModelError';
 export * from './ModelingField';
 export * from './Outcome';

@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    InlineResponse200,
+    InlineResponse200FromJSON,
+    InlineResponse200ToJSON,
     Target,
     TargetFromJSON,
     TargetToJSON,
@@ -99,7 +102,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Trigger a preview delivery (first 100 results) of a target
      * Start a preview delivery
      */
-    private async createTargetPreviewRaw(requestParameters: CreateTargetPreviewRequest, ): Promise<runtime.ApiResponse<void>> {
+    private async createTargetPreviewRaw(requestParameters: CreateTargetPreviewRequest, ): Promise<runtime.ApiResponse<InlineResponse200>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling createTargetPreview.');
         }
@@ -123,15 +126,16 @@ export class TargetsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse200FromJSON(jsonValue));
     }
 
     /**
      * Trigger a preview delivery (first 100 results) of a target
      * Start a preview delivery
      */
-    async createTargetPreview(targetId: string, ): Promise<void> {
-        await this.createTargetPreviewRaw({ targetId: targetId }, );
+    async createTargetPreview(targetId: string, ): Promise<InlineResponse200> {
+        const response = await this.createTargetPreviewRaw({ targetId: targetId }, );
+        return await response.value();
     }
 
     /**
