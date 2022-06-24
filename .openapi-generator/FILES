@@ -116,6 +116,11 @@ src/models/Persona.ts
 src/models/PersonaDetails.ts
 src/models/PersonaSet.ts
 src/models/PersonaSetPost.ts
+src/models/Recency.ts
+src/models/RecencyMergePatch.ts
+src/models/RecencyOccurrence.ts
+src/models/RecencyPost.ts
+src/models/RecencyPut.ts
 src/models/Resource.ts
 src/models/ResourceStatus.ts
 src/models/ResourceType.ts

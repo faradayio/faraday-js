@@ -20,6 +20,12 @@ import {
     CohortTraitToJSON,
 } from './CohortTrait';
 import {
+    Recency,
+    RecencyFromJSON,
+    RecencyFromJSONTyped,
+    RecencyToJSON,
+} from './Recency';
+import {
     ResourceStatus,
     ResourceStatusFromJSON,
     ResourceStatusFromJSONTyped,
@@ -80,6 +86,12 @@ export interface Cohort {
      * @memberof Cohort
      */
     population_count?: number;
+    /**
+     * 
+     * @type {Recency}
+     * @memberof Cohort
+     */
+    recency?: Recency;
     /**
      * The type of this resource.
      * @type {string}
@@ -142,6 +154,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'population_count': !exists(json, 'population_count') ? undefined : json['population_count'],
+        'recency': !exists(json, 'recency') ? undefined : RecencyFromJSON(json['recency']),
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
@@ -169,6 +182,7 @@ export function CohortToJSON(value?: Cohort | null): any {
         'min_value': value.min_value,
         'name': value.name,
         'population_count': value.population_count,
+        'recency': RecencyToJSON(value.recency),
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
