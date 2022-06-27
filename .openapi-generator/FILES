@@ -82,6 +82,10 @@ src/models/DatasetOptionsHostedCsvPut.ts
 src/models/DatasetOptionsMergePatch.ts
 src/models/DatasetOptionsPost.ts
 src/models/DatasetOptionsPut.ts
+src/models/DatasetOptionsSnowflake.ts
+src/models/DatasetOptionsSnowflakeMergePatch.ts
+src/models/DatasetOptionsSnowflakePost.ts
+src/models/DatasetOptionsSnowflakePut.ts
 src/models/DatasetPost.ts
 src/models/DatasetPut.ts
 src/models/DatasetStream.ts

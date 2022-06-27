@@ -30,13 +30,19 @@ import {
     DatasetOptionsHostedCsvPostFromJSONTyped,
     DatasetOptionsHostedCsvPostToJSON,
 } from './DatasetOptionsHostedCsvPost';
+import {
+    DatasetOptionsSnowflakePost,
+    DatasetOptionsSnowflakePostFromJSON,
+    DatasetOptionsSnowflakePostFromJSONTyped,
+    DatasetOptionsSnowflakePostToJSON,
+} from './DatasetOptionsSnowflakePost';
 
 /**
  * @type DatasetOptionsPost
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPost = { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost;
+export type DatasetOptionsPost = { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost;
 
 export function DatasetOptionsPostFromJSON(json: any): DatasetOptionsPost {
     return DatasetOptionsPostFromJSONTyped(json, false);
@@ -53,6 +59,8 @@ export function DatasetOptionsPostFromJSONTyped(json: any, ignoreDiscriminator: 
             return {...DatasetOptionsClassicPostFromJSONTyped(json, true), type: 'classic'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvPostFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'snowflake':
+            return {...DatasetOptionsSnowflakePostFromJSONTyped(json, true), type: 'snowflake'};
         default:
             throw new Error(`No variant of DatasetOptionsPost exists with 'type=${json['type']}'`);
     }
@@ -72,6 +80,8 @@ export function DatasetOptionsPostToJSON(value?: DatasetOptionsPost | null): any
             return DatasetOptionsClassicPostToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvPostToJSON(value);
+        case 'snowflake':
+            return DatasetOptionsSnowflakePostToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptionsPost exists with 'type=${value['type']}'`);
     }

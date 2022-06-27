@@ -30,13 +30,19 @@ import {
     DatasetOptionsHostedCsvMergePatchFromJSONTyped,
     DatasetOptionsHostedCsvMergePatchToJSON,
 } from './DatasetOptionsHostedCsvMergePatch';
+import {
+    DatasetOptionsSnowflakeMergePatch,
+    DatasetOptionsSnowflakeMergePatchFromJSON,
+    DatasetOptionsSnowflakeMergePatchFromJSONTyped,
+    DatasetOptionsSnowflakeMergePatchToJSON,
+} from './DatasetOptionsSnowflakeMergePatch';
 
 /**
  * @type DatasetOptionsMergePatch
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsMergePatch = { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch;
+export type DatasetOptionsMergePatch = { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch;
 
 export function DatasetOptionsMergePatchFromJSON(json: any): DatasetOptionsMergePatch {
     return DatasetOptionsMergePatchFromJSONTyped(json, false);
@@ -53,6 +59,8 @@ export function DatasetOptionsMergePatchFromJSONTyped(json: any, ignoreDiscrimin
             return {...DatasetOptionsClassicMergePatchFromJSONTyped(json, true), type: 'classic'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvMergePatchFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'snowflake':
+            return {...DatasetOptionsSnowflakeMergePatchFromJSONTyped(json, true), type: 'snowflake'};
         default:
             throw new Error(`No variant of DatasetOptionsMergePatch exists with 'type=${json['type']}'`);
     }
@@ -72,6 +80,8 @@ export function DatasetOptionsMergePatchToJSON(value?: DatasetOptionsMergePatch 
             return DatasetOptionsClassicMergePatchToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvMergePatchToJSON(value);
+        case 'snowflake':
+            return DatasetOptionsSnowflakeMergePatchToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptionsMergePatch exists with 'type=${value['type']}'`);
     }

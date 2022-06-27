@@ -30,13 +30,19 @@ import {
     DatasetOptionsHostedCsvPutFromJSONTyped,
     DatasetOptionsHostedCsvPutToJSON,
 } from './DatasetOptionsHostedCsvPut';
+import {
+    DatasetOptionsSnowflakePut,
+    DatasetOptionsSnowflakePutFromJSON,
+    DatasetOptionsSnowflakePutFromJSONTyped,
+    DatasetOptionsSnowflakePutToJSON,
+} from './DatasetOptionsSnowflakePut';
 
 /**
  * @type DatasetOptionsPut
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPut = { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut;
+export type DatasetOptionsPut = { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut;
 
 export function DatasetOptionsPutFromJSON(json: any): DatasetOptionsPut {
     return DatasetOptionsPutFromJSONTyped(json, false);
@@ -53,6 +59,8 @@ export function DatasetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: b
             return {...DatasetOptionsClassicPutFromJSONTyped(json, true), type: 'classic'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvPutFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'snowflake':
+            return {...DatasetOptionsSnowflakePutFromJSONTyped(json, true), type: 'snowflake'};
         default:
             throw new Error(`No variant of DatasetOptionsPut exists with 'type=${json['type']}'`);
     }
@@ -72,6 +80,8 @@ export function DatasetOptionsPutToJSON(value?: DatasetOptionsPut | null): any {
             return DatasetOptionsClassicPutToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvPutToJSON(value);
+        case 'snowflake':
+            return DatasetOptionsSnowflakePutToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptionsPut exists with 'type=${value['type']}'`);
     }

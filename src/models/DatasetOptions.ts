@@ -30,13 +30,19 @@ import {
     DatasetOptionsHostedCsvFromJSONTyped,
     DatasetOptionsHostedCsvToJSON,
 } from './DatasetOptionsHostedCsv';
+import {
+    DatasetOptionsSnowflake,
+    DatasetOptionsSnowflakeFromJSON,
+    DatasetOptionsSnowflakeFromJSONTyped,
+    DatasetOptionsSnowflakeToJSON,
+} from './DatasetOptionsSnowflake';
 
 /**
  * @type DatasetOptions
  * Dataset connection options
  * @export
  */
-export type DatasetOptions = { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'hosted_csv' } & DatasetOptionsHostedCsv;
+export type DatasetOptions = { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'snowflake' } & DatasetOptionsSnowflake;
 
 export function DatasetOptionsFromJSON(json: any): DatasetOptions {
     return DatasetOptionsFromJSONTyped(json, false);
@@ -53,6 +59,8 @@ export function DatasetOptionsFromJSONTyped(json: any, ignoreDiscriminator: bool
             return {...DatasetOptionsClassicFromJSONTyped(json, true), type: 'classic'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'snowflake':
+            return {...DatasetOptionsSnowflakeFromJSONTyped(json, true), type: 'snowflake'};
         default:
             throw new Error(`No variant of DatasetOptions exists with 'type=${json['type']}'`);
     }
@@ -72,6 +80,8 @@ export function DatasetOptionsToJSON(value?: DatasetOptions | null): any {
             return DatasetOptionsClassicToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvToJSON(value);
+        case 'snowflake':
+            return DatasetOptionsSnowflakeToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptions exists with 'type=${value['type']}'`);
     }
