@@ -24,6 +24,9 @@ import {
     ConnectionPost,
     ConnectionPostFromJSON,
     ConnectionPostToJSON,
+    Dataset,
+    DatasetFromJSON,
+    DatasetToJSON,
     Target,
     TargetFromJSON,
     TargetToJSON,
@@ -34,6 +37,10 @@ export interface CreateConnectionRequest {
 }
 
 export interface GetConnectionRequest {
+    connectionId: string;
+}
+
+export interface GetConnectionDatasetsRequest {
     connectionId: string;
 }
 
@@ -131,6 +138,46 @@ export class ConnectionsApi extends runtime.BaseAPI {
      */
     async getConnection(connectionId: string, ): Promise<Connection> {
         const response = await this.getConnectionRaw({ connectionId: connectionId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get all datasets that use this connection
+     * Retrieve all datasets that use this connection
+     */
+    private async getConnectionDatasetsRaw(requestParameters: GetConnectionDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling getConnectionDatasets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}/datasets`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetFromJSON));
+    }
+
+    /**
+     * Get all datasets that use this connection
+     * Retrieve all datasets that use this connection
+     */
+    async getConnectionDatasets(connectionId: string, ): Promise<Array<Dataset>> {
+        const response = await this.getConnectionDatasetsRaw({ connectionId: connectionId }, );
         return await response.value();
     }
 
