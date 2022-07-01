@@ -175,9 +175,11 @@ src/models/TargetOptionsSnowflakePut.ts
 src/models/TargetPost.ts
 src/models/TargetPut.ts
 src/models/Trait.ts
+src/models/TraitCategory.ts
 src/models/TraitMergePatch.ts
 src/models/TraitPost.ts
 src/models/TraitPut.ts
+src/models/TraitStatisticalType.ts
 src/models/Upload.ts
 src/models/Usage.ts
 src/models/ValidationError.ts

@@ -13,6 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TraitCategory,
+    TraitCategoryFromJSON,
+    TraitCategoryFromJSONTyped,
+    TraitCategoryToJSON,
+} from './TraitCategory';
+import {
+    TraitStatisticalType,
+    TraitStatisticalTypeFromJSON,
+    TraitStatisticalTypeFromJSONTyped,
+    TraitStatisticalTypeToJSON,
+} from './TraitStatisticalType';
+
 /**
  * A fact about a person. 
  * 
@@ -24,11 +37,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface Trait {
     /**
-     * A broad category describing the flavor of this Trait.
-     * @type {string}
+     * 
+     * @type {TraitCategory}
      * @memberof Trait
      */
-    category?: TraitCategoryEnum;
+    category?: TraitCategory;
     /**
      * When this resource was created.
      * @type {Date}
@@ -48,45 +61,17 @@ export interface Trait {
      */
     name: string;
     /**
-     * statistical_type is an optional field which helps Faraday understand the nature of your data. 
-     * For instance, when we know that a field has only a distinct set of values (e.g. it is categorical) we
-     * can take steps to use that field more effectively in modeling, and we can provide more useful feedback when
-     * reporting on its use. 
      * 
-     * While this field is not required, it is recommended that you set it if possible.
-     * @type {string}
+     * @type {TraitStatisticalType}
      * @memberof Trait
      */
-    statistical_type?: TraitStatisticalTypeEnum;
+    statistical_type?: TraitStatisticalType;
     /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Trait
      */
     updated_at: Date;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum TraitCategoryEnum {
-    Property = 'property',
-    Identity = 'identity',
-    Demography = 'demography',
-    Society = 'society',
-    Environment = 'environment',
-    Lifestyle = 'lifestyle',
-    UserDefined = 'user_defined'
-}/**
-* @export
-* @enum {string}
-*/
-export enum TraitStatisticalTypeEnum {
-    Categorical = 'categorical',
-    Multicategorical = 'multicategorical',
-    Ordinal = 'ordinal',
-    Nominal = 'nominal'
 }
 
 export function TraitFromJSON(json: any): Trait {
@@ -99,11 +84,11 @@ export function TraitFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tra
     }
     return {
         
-        'category': !exists(json, 'category') ? undefined : json['category'],
+        'category': !exists(json, 'category') ? undefined : TraitCategoryFromJSON(json['category']),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'name': json['name'],
-        'statistical_type': !exists(json, 'statistical_type') ? undefined : json['statistical_type'],
+        'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
         'updated_at': (new Date(json['updated_at'])),
     };
 }
@@ -117,11 +102,11 @@ export function TraitToJSON(value?: Trait | null): any {
     }
     return {
         
-        'category': value.category,
+        'category': TraitCategoryToJSON(value.category),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'name': value.name,
-        'statistical_type': value.statistical_type,
+        'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
         'updated_at': (value.updated_at.toISOString()),
     };
 }

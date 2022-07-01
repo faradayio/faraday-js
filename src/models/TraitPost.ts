@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TraitStatisticalType,
+    TraitStatisticalTypeFromJSON,
+    TraitStatisticalTypeFromJSONTyped,
+    TraitStatisticalTypeToJSON,
+} from './TraitStatisticalType';
+
 /**
  * (Parameters used to POST a new value of the `Trait` type.)
  * 
@@ -32,27 +39,11 @@ export interface TraitPost {
      */
     name: string;
     /**
-     * statistical_type is an optional field which helps Faraday understand the nature of your data. 
-     * For instance, when we know that a field has only a distinct set of values (e.g. it is categorical) we
-     * can take steps to use that field more effectively in modeling, and we can provide more useful feedback when
-     * reporting on its use. 
      * 
-     * While this field is not required, it is recommended that you set it if possible.
-     * @type {string}
+     * @type {TraitStatisticalType}
      * @memberof TraitPost
      */
-    statistical_type?: TraitPostStatisticalTypeEnum;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum TraitPostStatisticalTypeEnum {
-    Categorical = 'categorical',
-    Multicategorical = 'multicategorical',
-    Ordinal = 'ordinal',
-    Nominal = 'nominal'
+    statistical_type?: TraitStatisticalType;
 }
 
 export function TraitPostFromJSON(json: any): TraitPost {
@@ -66,7 +57,7 @@ export function TraitPostFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'name': json['name'],
-        'statistical_type': !exists(json, 'statistical_type') ? undefined : json['statistical_type'],
+        'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
     };
 }
 
@@ -80,7 +71,7 @@ export function TraitPostToJSON(value?: TraitPost | null): any {
     return {
         
         'name': value.name,
-        'statistical_type': value.statistical_type,
+        'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
     };
 }
 

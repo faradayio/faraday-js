@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TraitStatisticalType,
+    TraitStatisticalTypeFromJSON,
+    TraitStatisticalTypeFromJSONTyped,
+    TraitStatisticalTypeToJSON,
+} from './TraitStatisticalType';
+
 /**
  * (Parameters used to PATCH the `Trait` type.)
  * 
@@ -26,27 +33,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TraitMergePatch {
     /**
-     * statistical_type is an optional field which helps Faraday understand the nature of your data. 
-     * For instance, when we know that a field has only a distinct set of values (e.g. it is categorical) we
-     * can take steps to use that field more effectively in modeling, and we can provide more useful feedback when
-     * reporting on its use. 
      * 
-     * While this field is not required, it is recommended that you set it if possible.
-     * @type {string}
+     * @type {TraitStatisticalType}
      * @memberof TraitMergePatch
      */
-    statistical_type?: TraitMergePatchStatisticalTypeEnum;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum TraitMergePatchStatisticalTypeEnum {
-    Categorical = 'categorical',
-    Multicategorical = 'multicategorical',
-    Ordinal = 'ordinal',
-    Nominal = 'nominal'
+    statistical_type?: TraitStatisticalType | null;
 }
 
 export function TraitMergePatchFromJSON(json: any): TraitMergePatch {
@@ -59,7 +50,7 @@ export function TraitMergePatchFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'statistical_type': !exists(json, 'statistical_type') ? undefined : json['statistical_type'],
+        'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
     };
 }
 
@@ -72,7 +63,7 @@ export function TraitMergePatchToJSON(value?: TraitMergePatch | null): any {
     }
     return {
         
-        'statistical_type': value.statistical_type,
+        'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
     };
 }
 
