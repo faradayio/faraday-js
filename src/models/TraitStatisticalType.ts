@@ -13,12 +13,12 @@
  */
 
 /**
- * A string describing the type of data represented by the trait.
+ * A string describing the nature of data represented by the trait.
  * 
- * categorical: the field contains one value of a bounded set. Example "favorite_color": one "red", "blue", or "yellow"
+ * categorical: the field contains one value of a bounded set. Example "favorite_color": one of "red", "blue", or "yellow".
  * multicategorical: the field contains one or more values of a bounded set. 
  * ordinal: the field contains values which have a natural ordering from low to high.  
- * nominal: the field contains values which do not have a natural ordering and are not part of a bounded set.
+ * nominal: Anything else. Fields which are boolean in nature (0/1, T/F, true/false) should be set to `nominal`.
  * @export
  * @enum {string}
  */
