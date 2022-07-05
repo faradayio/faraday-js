@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DataType,
+    DataTypeFromJSON,
+    DataTypeFromJSONTyped,
+    DataTypeToJSON,
+} from './DataType';
+import {
     TraitCategory,
     TraitCategoryFromJSON,
     TraitCategoryFromJSONTyped,
@@ -37,6 +43,18 @@ import {
  */
 export interface Trait {
     /**
+     * For continuous data types, list of reasonable cutoff values.
+     * @type {Array<number>}
+     * @memberof Trait
+     */
+    breaks?: Array<number>;
+    /**
+     * For STRING type, list of allowed values.
+     * @type {Array<string>}
+     * @memberof Trait
+     */
+    categories?: Array<string>;
+    /**
      * 
      * @type {TraitCategory}
      * @memberof Trait
@@ -49,11 +67,23 @@ export interface Trait {
      */
     created_at: Date;
     /**
+     * Information about this field.
+     * @type {string}
+     * @memberof Trait
+     */
+    description?: string;
+    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Trait
      */
     id: string;
+    /**
+     * A more human-consumable version of the name of this field.
+     * @type {string}
+     * @memberof Trait
+     */
+    literate: string;
     /**
      * How to refer to this Trait in other API calls to Faraday.
      * @type {string}
@@ -66,6 +96,18 @@ export interface Trait {
      * @memberof Trait
      */
     statistical_type?: TraitStatisticalType;
+    /**
+     * 
+     * @type {DataType}
+     * @memberof Trait
+     */
+    type?: DataType;
+    /**
+     * For numeric types, in what units is the data stored.
+     * @type {string}
+     * @memberof Trait
+     */
+    unit?: string;
     /**
      * When this resource was last updated.
      * @type {Date}
@@ -84,11 +126,17 @@ export function TraitFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tra
     }
     return {
         
+        'breaks': !exists(json, 'breaks') ? undefined : json['breaks'],
+        'categories': !exists(json, 'categories') ? undefined : json['categories'],
         'category': !exists(json, 'category') ? undefined : TraitCategoryFromJSON(json['category']),
         'created_at': (new Date(json['created_at'])),
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': json['id'],
+        'literate': json['literate'],
         'name': json['name'],
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
+        'type': !exists(json, 'type') ? undefined : DataTypeFromJSON(json['type']),
+        'unit': !exists(json, 'unit') ? undefined : json['unit'],
         'updated_at': (new Date(json['updated_at'])),
     };
 }
@@ -102,11 +150,17 @@ export function TraitToJSON(value?: Trait | null): any {
     }
     return {
         
+        'breaks': value.breaks,
+        'categories': value.categories,
         'category': TraitCategoryToJSON(value.category),
         'created_at': (value.created_at.toISOString()),
+        'description': value.description,
         'id': value.id,
+        'literate': value.literate,
         'name': value.name,
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
+        'type': DataTypeToJSON(value.type),
+        'unit': value.unit,
         'updated_at': (value.updated_at.toISOString()),
     };
 }

@@ -64,6 +64,7 @@ src/models/DataMapColumnPut.ts
 src/models/DataMapMergePatch.ts
 src/models/DataMapPost.ts
 src/models/DataMapPut.ts
+src/models/DataType.ts
 src/models/Dataset.ts
 src/models/DatasetMergePatch.ts
 src/models/DatasetOptions.ts

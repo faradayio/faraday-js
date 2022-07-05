@@ -48,6 +48,7 @@ export * from './DataMapColumnPut';
 export * from './DataMapMergePatch';
 export * from './DataMapPost';
 export * from './DataMapPut';
+export * from './DataType';
 export * from './Dataset';
 export * from './DatasetMergePatch';
 export * from './DatasetOptions';
