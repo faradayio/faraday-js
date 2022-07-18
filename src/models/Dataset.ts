@@ -109,6 +109,13 @@ export interface Dataset {
      */
     output_to_traits?: OutputToTraits;
     /**
+     * The name of the column that references an ID from an external system.
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {string}
+     * @memberof Dataset
+     */
+    primary_key_column?: string;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof Dataset
@@ -171,6 +178,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'options': DatasetOptionsFromJSON(json['options']),
         'output_to_streams': OutputToStreamsFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsFromJSON(json['output_to_traits']),
+        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
@@ -197,6 +205,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'options': DatasetOptionsToJSON(value.options),
         'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsToJSON(value.output_to_traits),
+        'primary_key_column': value.primary_key_column,
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),

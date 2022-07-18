@@ -70,6 +70,13 @@ export interface DatasetMergePatch {
      * @memberof DatasetMergePatch
      */
     output_to_traits?: OutputToTraitsMergePatch | null;
+    /**
+     * The name of the column that references an ID from an external system.
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {string}
+     * @memberof DatasetMergePatch
+     */
+    primary_key_column?: string | null;
 }
 
 export function DatasetMergePatchFromJSON(json: any): DatasetMergePatch {
@@ -86,6 +93,7 @@ export function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
         'options': !exists(json, 'options') ? undefined : DatasetOptionsMergePatchFromJSON(json['options']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsMergePatchFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
+        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
     };
 }
 
@@ -102,6 +110,7 @@ export function DatasetMergePatchToJSON(value?: DatasetMergePatch | null): any {
         'options': DatasetOptionsMergePatchToJSON(value.options),
         'output_to_streams': OutputToStreamsMergePatchToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsMergePatchToJSON(value.output_to_traits),
+        'primary_key_column': value.primary_key_column,
     };
 }
 

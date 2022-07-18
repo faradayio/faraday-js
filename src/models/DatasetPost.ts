@@ -93,6 +93,13 @@ export interface DatasetPost {
      */
     output_to_traits?: OutputToTraitsPost;
     /**
+     * The name of the column that references an ID from an external system.
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {string}
+     * @memberof DatasetPost
+     */
+    primary_key_column?: string;
+    /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
      * specified by `upsert_columns`, the newest will be used.
@@ -123,6 +130,7 @@ export function DatasetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'options': DatasetOptionsPostFromJSON(json['options']),
         'output_to_streams': OutputToStreamsPostFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPostFromJSON(json['output_to_traits']),
+        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -142,6 +150,7 @@ export function DatasetPostToJSON(value?: DatasetPost | null): any {
         'options': DatasetOptionsPostToJSON(value.options),
         'output_to_streams': OutputToStreamsPostToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPostToJSON(value.output_to_traits),
+        'primary_key_column': value.primary_key_column,
         'upsert_columns': value.upsert_columns,
     };
 }

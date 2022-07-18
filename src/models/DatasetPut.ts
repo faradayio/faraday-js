@@ -70,6 +70,13 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     output_to_traits?: OutputToTraitsPut;
+    /**
+     * The name of the column that references an ID from an external system.
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {string}
+     * @memberof DatasetPut
+     */
+    primary_key_column?: string;
 }
 
 export function DatasetPutFromJSON(json: any): DatasetPut {
@@ -86,6 +93,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'options': DatasetOptionsPutFromJSON(json['options']),
         'output_to_streams': OutputToStreamsPutFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
+        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
     };
 }
 
@@ -102,6 +110,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
         'options': DatasetOptionsPutToJSON(value.options),
         'output_to_streams': OutputToStreamsPutToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
+        'primary_key_column': value.primary_key_column,
     };
 }
 
