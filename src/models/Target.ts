@@ -92,6 +92,12 @@ export interface Target {
      */
     options: TargetOptions;
     /**
+     * URL for the default output of the target
+     * @type {string}
+     * @memberof Target
+     */
+    output_url?: string;
+    /**
      * This specifies which columns should be sent to the target, and which columns should be renamed.
      * Each key is the name the column originally had, and each value is the desired name.
      * If a payload_map is provided, then the target download will only columns in the payload_map.
@@ -157,6 +163,7 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'name': json['name'],
         'options': TargetOptionsFromJSON(json['options']),
+        'output_url': !exists(json, 'output_url') ? undefined : json['output_url'],
         'payload_map': !exists(json, 'payload_map') ? undefined : json['payload_map'],
         'resource_type': json['resource_type'],
         'scope_id': json['scope_id'],
@@ -183,6 +190,7 @@ export function TargetToJSON(value?: Target | null): any {
         'limit': value.limit,
         'name': value.name,
         'options': TargetOptionsToJSON(value.options),
+        'output_url': value.output_url,
         'payload_map': value.payload_map,
         'resource_type': value.resource_type,
         'scope_id': value.scope_id,

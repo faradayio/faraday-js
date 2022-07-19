@@ -88,6 +88,12 @@ export interface Outcome {
      */
     name: string;
     /**
+     * URL of an HTML report containing information such as the objective of the model, performance, and important features.
+     * @type {string}
+     * @memberof Outcome
+     */
+    report_url?: string;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof Outcome
@@ -145,6 +151,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'id': json['id'],
         'name': json['name'],
+        'report_url': !exists(json, 'report_url') ? undefined : json['report_url'],
         'resource_type': json['resource_type'],
         'roc_auc': !exists(json, 'roc_auc') ? undefined : json['roc_auc'],
         'status': ResourceStatusFromJSON(json['status']),
@@ -173,6 +180,7 @@ export function OutcomeToJSON(value?: Outcome | null): any {
         'feature_blocklist': value.feature_blocklist,
         'id': value.id,
         'name': value.name,
+        'report_url': value.report_url,
         'resource_type': value.resource_type,
         'roc_auc': value.roc_auc,
         'status': ResourceStatusToJSON(value.status),
