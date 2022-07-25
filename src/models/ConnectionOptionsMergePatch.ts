@@ -13,6 +13,42 @@
  */
 
 import {
+    ConnectionOptionsAwsAuroraMysqlMergePatch,
+    ConnectionOptionsAwsAuroraMysqlMergePatchFromJSON,
+    ConnectionOptionsAwsAuroraMysqlMergePatchFromJSONTyped,
+    ConnectionOptionsAwsAuroraMysqlMergePatchToJSON,
+} from './ConnectionOptionsAwsAuroraMysqlMergePatch';
+import {
+    ConnectionOptionsAwsAuroraPostgresMergePatch,
+    ConnectionOptionsAwsAuroraPostgresMergePatchFromJSON,
+    ConnectionOptionsAwsAuroraPostgresMergePatchFromJSONTyped,
+    ConnectionOptionsAwsAuroraPostgresMergePatchToJSON,
+} from './ConnectionOptionsAwsAuroraPostgresMergePatch';
+import {
+    ConnectionOptionsAwsRdsMysqlMergePatch,
+    ConnectionOptionsAwsRdsMysqlMergePatchFromJSON,
+    ConnectionOptionsAwsRdsMysqlMergePatchFromJSONTyped,
+    ConnectionOptionsAwsRdsMysqlMergePatchToJSON,
+} from './ConnectionOptionsAwsRdsMysqlMergePatch';
+import {
+    ConnectionOptionsAwsRdsPostgresMergePatch,
+    ConnectionOptionsAwsRdsPostgresMergePatchFromJSON,
+    ConnectionOptionsAwsRdsPostgresMergePatchFromJSONTyped,
+    ConnectionOptionsAwsRdsPostgresMergePatchToJSON,
+} from './ConnectionOptionsAwsRdsPostgresMergePatch';
+import {
+    ConnectionOptionsAwsRdsSqlServerMergePatch,
+    ConnectionOptionsAwsRdsSqlServerMergePatchFromJSON,
+    ConnectionOptionsAwsRdsSqlServerMergePatchFromJSONTyped,
+    ConnectionOptionsAwsRdsSqlServerMergePatchToJSON,
+} from './ConnectionOptionsAwsRdsSqlServerMergePatch';
+import {
+    ConnectionOptionsAwsRedshiftServerlessMergePatch,
+    ConnectionOptionsAwsRedshiftServerlessMergePatchFromJSON,
+    ConnectionOptionsAwsRedshiftServerlessMergePatchFromJSONTyped,
+    ConnectionOptionsAwsRedshiftServerlessMergePatchToJSON,
+} from './ConnectionOptionsAwsRedshiftServerlessMergePatch';
+import {
     ConnectionOptionsAzureSqlServerMergePatch,
     ConnectionOptionsAzureSqlServerMergePatchFromJSON,
     ConnectionOptionsAzureSqlServerMergePatchFromJSONTyped,
@@ -31,6 +67,42 @@ import {
     ConnectionOptionsClassicMergePatchToJSON,
 } from './ConnectionOptionsClassicMergePatch';
 import {
+    ConnectionOptionsGcpCloudSqlMysqlMergePatch,
+    ConnectionOptionsGcpCloudSqlMysqlMergePatchFromJSON,
+    ConnectionOptionsGcpCloudSqlMysqlMergePatchFromJSONTyped,
+    ConnectionOptionsGcpCloudSqlMysqlMergePatchToJSON,
+} from './ConnectionOptionsGcpCloudSqlMysqlMergePatch';
+import {
+    ConnectionOptionsGcpCloudSqlPostgresMergePatch,
+    ConnectionOptionsGcpCloudSqlPostgresMergePatchFromJSON,
+    ConnectionOptionsGcpCloudSqlPostgresMergePatchFromJSONTyped,
+    ConnectionOptionsGcpCloudSqlPostgresMergePatchToJSON,
+} from './ConnectionOptionsGcpCloudSqlPostgresMergePatch';
+import {
+    ConnectionOptionsGcpCloudSqlSqlServerMergePatch,
+    ConnectionOptionsGcpCloudSqlSqlServerMergePatchFromJSON,
+    ConnectionOptionsGcpCloudSqlSqlServerMergePatchFromJSONTyped,
+    ConnectionOptionsGcpCloudSqlSqlServerMergePatchToJSON,
+} from './ConnectionOptionsGcpCloudSqlSqlServerMergePatch';
+import {
+    ConnectionOptionsGcpGcsCsvMergePatch,
+    ConnectionOptionsGcpGcsCsvMergePatchFromJSON,
+    ConnectionOptionsGcpGcsCsvMergePatchFromJSONTyped,
+    ConnectionOptionsGcpGcsCsvMergePatchToJSON,
+} from './ConnectionOptionsGcpGcsCsvMergePatch';
+import {
+    ConnectionOptionsMysqlMergePatch,
+    ConnectionOptionsMysqlMergePatchFromJSON,
+    ConnectionOptionsMysqlMergePatchFromJSONTyped,
+    ConnectionOptionsMysqlMergePatchToJSON,
+} from './ConnectionOptionsMysqlMergePatch';
+import {
+    ConnectionOptionsPostgresMergePatch,
+    ConnectionOptionsPostgresMergePatchFromJSON,
+    ConnectionOptionsPostgresMergePatchFromJSONTyped,
+    ConnectionOptionsPostgresMergePatchToJSON,
+} from './ConnectionOptionsPostgresMergePatch';
+import {
     ConnectionOptionsRedshiftMergePatch,
     ConnectionOptionsRedshiftMergePatchFromJSON,
     ConnectionOptionsRedshiftMergePatchFromJSONTyped,
@@ -48,13 +120,19 @@ import {
     ConnectionOptionsSnowflakeMergePatchFromJSONTyped,
     ConnectionOptionsSnowflakeMergePatchToJSON,
 } from './ConnectionOptionsSnowflakeMergePatch';
+import {
+    ConnectionOptionsSqlServerMergePatch,
+    ConnectionOptionsSqlServerMergePatchFromJSON,
+    ConnectionOptionsSqlServerMergePatchFromJSONTyped,
+    ConnectionOptionsSqlServerMergePatchToJSON,
+} from './ConnectionOptionsSqlServerMergePatch';
 
 /**
  * @type ConnectionOptionsMergePatch
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsMergePatch = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch;
+export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvMergePatch | { type: 'mysql' } & ConnectionOptionsMysqlMergePatch | { type: 'postgres' } & ConnectionOptionsPostgresMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch | { type: 'sql_server' } & ConnectionOptionsSqlServerMergePatch;
 
 export function ConnectionOptionsMergePatchFromJSON(json: any): ConnectionOptionsMergePatch {
     return ConnectionOptionsMergePatchFromJSONTyped(json, false);
@@ -65,18 +143,44 @@ export function ConnectionOptionsMergePatchFromJSONTyped(json: any, ignoreDiscri
         return json;
     }
     switch (json['type']) {
+        case 'aws_aurora_mysql':
+            return {...ConnectionOptionsAwsAuroraMysqlMergePatchFromJSONTyped(json, true), type: 'aws_aurora_mysql'};
+        case 'aws_aurora_postgres':
+            return {...ConnectionOptionsAwsAuroraPostgresMergePatchFromJSONTyped(json, true), type: 'aws_aurora_postgres'};
+        case 'aws_rds_mysql':
+            return {...ConnectionOptionsAwsRdsMysqlMergePatchFromJSONTyped(json, true), type: 'aws_rds_mysql'};
+        case 'aws_rds_postgres':
+            return {...ConnectionOptionsAwsRdsPostgresMergePatchFromJSONTyped(json, true), type: 'aws_rds_postgres'};
+        case 'aws_rds_sql_server':
+            return {...ConnectionOptionsAwsRdsSqlServerMergePatchFromJSONTyped(json, true), type: 'aws_rds_sql_server'};
+        case 'aws_redshift_serverless':
+            return {...ConnectionOptionsAwsRedshiftServerlessMergePatchFromJSONTyped(json, true), type: 'aws_redshift_serverless'};
         case 'azure_sql_server':
             return {...ConnectionOptionsAzureSqlServerMergePatchFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...ConnectionOptionsBigQueryMergePatchFromJSONTyped(json, true), type: 'bigquery'};
         case 'classic':
             return {...ConnectionOptionsClassicMergePatchFromJSONTyped(json, true), type: 'classic'};
+        case 'gcp_cloud_sql_mysql':
+            return {...ConnectionOptionsGcpCloudSqlMysqlMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
+        case 'gcp_cloud_sql_postgres':
+            return {...ConnectionOptionsGcpCloudSqlPostgresMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_postgres'};
+        case 'gcp_cloud_sql_sql_server':
+            return {...ConnectionOptionsGcpCloudSqlSqlServerMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
+        case 'gcp_gcs_csv':
+            return {...ConnectionOptionsGcpGcsCsvMergePatchFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
+        case 'mysql':
+            return {...ConnectionOptionsMysqlMergePatchFromJSONTyped(json, true), type: 'mysql'};
+        case 'postgres':
+            return {...ConnectionOptionsPostgresMergePatchFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftMergePatchFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...ConnectionOptionsS3CsvMergePatchFromJSONTyped(json, true), type: 's3_csv'};
         case 'snowflake':
             return {...ConnectionOptionsSnowflakeMergePatchFromJSONTyped(json, true), type: 'snowflake'};
+        case 'sql_server':
+            return {...ConnectionOptionsSqlServerMergePatchFromJSONTyped(json, true), type: 'sql_server'};
         default:
             throw new Error(`No variant of ConnectionOptionsMergePatch exists with 'type=${json['type']}'`);
     }
@@ -90,18 +194,44 @@ export function ConnectionOptionsMergePatchToJSON(value?: ConnectionOptionsMerge
         return null;
     }
     switch (value['type']) {
+        case 'aws_aurora_mysql':
+            return ConnectionOptionsAwsAuroraMysqlMergePatchToJSON(value);
+        case 'aws_aurora_postgres':
+            return ConnectionOptionsAwsAuroraPostgresMergePatchToJSON(value);
+        case 'aws_rds_mysql':
+            return ConnectionOptionsAwsRdsMysqlMergePatchToJSON(value);
+        case 'aws_rds_postgres':
+            return ConnectionOptionsAwsRdsPostgresMergePatchToJSON(value);
+        case 'aws_rds_sql_server':
+            return ConnectionOptionsAwsRdsSqlServerMergePatchToJSON(value);
+        case 'aws_redshift_serverless':
+            return ConnectionOptionsAwsRedshiftServerlessMergePatchToJSON(value);
         case 'azure_sql_server':
             return ConnectionOptionsAzureSqlServerMergePatchToJSON(value);
         case 'bigquery':
             return ConnectionOptionsBigQueryMergePatchToJSON(value);
         case 'classic':
             return ConnectionOptionsClassicMergePatchToJSON(value);
+        case 'gcp_cloud_sql_mysql':
+            return ConnectionOptionsGcpCloudSqlMysqlMergePatchToJSON(value);
+        case 'gcp_cloud_sql_postgres':
+            return ConnectionOptionsGcpCloudSqlPostgresMergePatchToJSON(value);
+        case 'gcp_cloud_sql_sql_server':
+            return ConnectionOptionsGcpCloudSqlSqlServerMergePatchToJSON(value);
+        case 'gcp_gcs_csv':
+            return ConnectionOptionsGcpGcsCsvMergePatchToJSON(value);
+        case 'mysql':
+            return ConnectionOptionsMysqlMergePatchToJSON(value);
+        case 'postgres':
+            return ConnectionOptionsPostgresMergePatchToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftMergePatchToJSON(value);
         case 's3_csv':
             return ConnectionOptionsS3CsvMergePatchToJSON(value);
         case 'snowflake':
             return ConnectionOptionsSnowflakeMergePatchToJSON(value);
+        case 'sql_server':
+            return ConnectionOptionsSqlServerMergePatchToJSON(value);
         default:
             throw new Error(`No variant of ConnectionOptionsMergePatch exists with 'type=${value['type']}'`);
     }

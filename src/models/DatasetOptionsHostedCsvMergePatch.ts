@@ -22,6 +22,24 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsHostedCsvMergePatch {
     /**
+     * CSV delimiter
+     * @type {string}
+     * @memberof DatasetOptionsHostedCsvMergePatch
+     */
+    delimiter?: string | null;
+    /**
+     * Whether the files you uploaded are encrypted with Faraday's public key.
+     * @type {boolean}
+     * @memberof DatasetOptionsHostedCsvMergePatch
+     */
+    encrypted?: boolean | null;
+    /**
+     * Whether to replace all data with only the data in the latest file upon every ingestion.
+     * @type {boolean}
+     * @memberof DatasetOptionsHostedCsvMergePatch
+     */
+    replace_all_with_latest_file?: boolean | null;
+    /**
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsHostedCsvMergePatch
@@ -46,6 +64,9 @@ export function DatasetOptionsHostedCsvMergePatchFromJSONTyped(json: any, ignore
     }
     return {
         
+        'delimiter': !exists(json, 'delimiter') ? undefined : json['delimiter'],
+        'encrypted': !exists(json, 'encrypted') ? undefined : json['encrypted'],
+        'replace_all_with_latest_file': !exists(json, 'replace_all_with_latest_file') ? undefined : json['replace_all_with_latest_file'],
         'type': json['type'],
         'upload_directory': !exists(json, 'upload_directory') ? undefined : json['upload_directory'],
     };
@@ -60,6 +81,9 @@ export function DatasetOptionsHostedCsvMergePatchToJSON(value?: DatasetOptionsHo
     }
     return {
         
+        'delimiter': value.delimiter,
+        'encrypted': value.encrypted,
+        'replace_all_with_latest_file': value.replace_all_with_latest_file,
         'type': value.type,
         'upload_directory': value.upload_directory,
     };

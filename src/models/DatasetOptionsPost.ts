@@ -13,6 +13,48 @@
  */
 
 import {
+    DatasetOptionsAwsAuroraMysqlPost,
+    DatasetOptionsAwsAuroraMysqlPostFromJSON,
+    DatasetOptionsAwsAuroraMysqlPostFromJSONTyped,
+    DatasetOptionsAwsAuroraMysqlPostToJSON,
+} from './DatasetOptionsAwsAuroraMysqlPost';
+import {
+    DatasetOptionsAwsAuroraPostgresPost,
+    DatasetOptionsAwsAuroraPostgresPostFromJSON,
+    DatasetOptionsAwsAuroraPostgresPostFromJSONTyped,
+    DatasetOptionsAwsAuroraPostgresPostToJSON,
+} from './DatasetOptionsAwsAuroraPostgresPost';
+import {
+    DatasetOptionsAwsRdsMysqlPost,
+    DatasetOptionsAwsRdsMysqlPostFromJSON,
+    DatasetOptionsAwsRdsMysqlPostFromJSONTyped,
+    DatasetOptionsAwsRdsMysqlPostToJSON,
+} from './DatasetOptionsAwsRdsMysqlPost';
+import {
+    DatasetOptionsAwsRdsPostgresPost,
+    DatasetOptionsAwsRdsPostgresPostFromJSON,
+    DatasetOptionsAwsRdsPostgresPostFromJSONTyped,
+    DatasetOptionsAwsRdsPostgresPostToJSON,
+} from './DatasetOptionsAwsRdsPostgresPost';
+import {
+    DatasetOptionsAwsRdsSqlServerPost,
+    DatasetOptionsAwsRdsSqlServerPostFromJSON,
+    DatasetOptionsAwsRdsSqlServerPostFromJSONTyped,
+    DatasetOptionsAwsRdsSqlServerPostToJSON,
+} from './DatasetOptionsAwsRdsSqlServerPost';
+import {
+    DatasetOptionsAwsRedshiftServerlessPost,
+    DatasetOptionsAwsRedshiftServerlessPostFromJSON,
+    DatasetOptionsAwsRedshiftServerlessPostFromJSONTyped,
+    DatasetOptionsAwsRedshiftServerlessPostToJSON,
+} from './DatasetOptionsAwsRedshiftServerlessPost';
+import {
+    DatasetOptionsAzureSqlServerPost,
+    DatasetOptionsAzureSqlServerPostFromJSON,
+    DatasetOptionsAzureSqlServerPostFromJSONTyped,
+    DatasetOptionsAzureSqlServerPostToJSON,
+} from './DatasetOptionsAzureSqlServerPost';
+import {
     DatasetOptionsBigQueryPost,
     DatasetOptionsBigQueryPostFromJSON,
     DatasetOptionsBigQueryPostFromJSONTyped,
@@ -25,24 +67,78 @@ import {
     DatasetOptionsClassicPostToJSON,
 } from './DatasetOptionsClassicPost';
 import {
+    DatasetOptionsGcpCloudSqlMysqlPost,
+    DatasetOptionsGcpCloudSqlMysqlPostFromJSON,
+    DatasetOptionsGcpCloudSqlMysqlPostFromJSONTyped,
+    DatasetOptionsGcpCloudSqlMysqlPostToJSON,
+} from './DatasetOptionsGcpCloudSqlMysqlPost';
+import {
+    DatasetOptionsGcpCloudSqlPostgresPost,
+    DatasetOptionsGcpCloudSqlPostgresPostFromJSON,
+    DatasetOptionsGcpCloudSqlPostgresPostFromJSONTyped,
+    DatasetOptionsGcpCloudSqlPostgresPostToJSON,
+} from './DatasetOptionsGcpCloudSqlPostgresPost';
+import {
+    DatasetOptionsGcpCloudSqlSqlServerPost,
+    DatasetOptionsGcpCloudSqlSqlServerPostFromJSON,
+    DatasetOptionsGcpCloudSqlSqlServerPostFromJSONTyped,
+    DatasetOptionsGcpCloudSqlSqlServerPostToJSON,
+} from './DatasetOptionsGcpCloudSqlSqlServerPost';
+import {
+    DatasetOptionsGcpGcsCsvPost,
+    DatasetOptionsGcpGcsCsvPostFromJSON,
+    DatasetOptionsGcpGcsCsvPostFromJSONTyped,
+    DatasetOptionsGcpGcsCsvPostToJSON,
+} from './DatasetOptionsGcpGcsCsvPost';
+import {
     DatasetOptionsHostedCsvPost,
     DatasetOptionsHostedCsvPostFromJSON,
     DatasetOptionsHostedCsvPostFromJSONTyped,
     DatasetOptionsHostedCsvPostToJSON,
 } from './DatasetOptionsHostedCsvPost';
 import {
+    DatasetOptionsMysqlPost,
+    DatasetOptionsMysqlPostFromJSON,
+    DatasetOptionsMysqlPostFromJSONTyped,
+    DatasetOptionsMysqlPostToJSON,
+} from './DatasetOptionsMysqlPost';
+import {
+    DatasetOptionsPostgresPost,
+    DatasetOptionsPostgresPostFromJSON,
+    DatasetOptionsPostgresPostFromJSONTyped,
+    DatasetOptionsPostgresPostToJSON,
+} from './DatasetOptionsPostgresPost';
+import {
+    DatasetOptionsRedshiftPost,
+    DatasetOptionsRedshiftPostFromJSON,
+    DatasetOptionsRedshiftPostFromJSONTyped,
+    DatasetOptionsRedshiftPostToJSON,
+} from './DatasetOptionsRedshiftPost';
+import {
+    DatasetOptionsS3CsvPost,
+    DatasetOptionsS3CsvPostFromJSON,
+    DatasetOptionsS3CsvPostFromJSONTyped,
+    DatasetOptionsS3CsvPostToJSON,
+} from './DatasetOptionsS3CsvPost';
+import {
     DatasetOptionsSnowflakePost,
     DatasetOptionsSnowflakePostFromJSON,
     DatasetOptionsSnowflakePostFromJSONTyped,
     DatasetOptionsSnowflakePostToJSON,
 } from './DatasetOptionsSnowflakePost';
+import {
+    DatasetOptionsSqlServerPost,
+    DatasetOptionsSqlServerPostFromJSON,
+    DatasetOptionsSqlServerPostFromJSONTyped,
+    DatasetOptionsSqlServerPostToJSON,
+} from './DatasetOptionsSqlServerPost';
 
 /**
  * @type DatasetOptionsPost
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPost = { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost;
+export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost;
 
 export function DatasetOptionsPostFromJSON(json: any): DatasetOptionsPost {
     return DatasetOptionsPostFromJSONTyped(json, false);
@@ -53,14 +149,46 @@ export function DatasetOptionsPostFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     switch (json['type']) {
+        case 'aws_aurora_mysql':
+            return {...DatasetOptionsAwsAuroraMysqlPostFromJSONTyped(json, true), type: 'aws_aurora_mysql'};
+        case 'aws_aurora_postgres':
+            return {...DatasetOptionsAwsAuroraPostgresPostFromJSONTyped(json, true), type: 'aws_aurora_postgres'};
+        case 'aws_rds_mysql':
+            return {...DatasetOptionsAwsRdsMysqlPostFromJSONTyped(json, true), type: 'aws_rds_mysql'};
+        case 'aws_rds_postgres':
+            return {...DatasetOptionsAwsRdsPostgresPostFromJSONTyped(json, true), type: 'aws_rds_postgres'};
+        case 'aws_rds_sql_server':
+            return {...DatasetOptionsAwsRdsSqlServerPostFromJSONTyped(json, true), type: 'aws_rds_sql_server'};
+        case 'aws_redshift_serverless':
+            return {...DatasetOptionsAwsRedshiftServerlessPostFromJSONTyped(json, true), type: 'aws_redshift_serverless'};
+        case 'azure_sql_server':
+            return {...DatasetOptionsAzureSqlServerPostFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...DatasetOptionsBigQueryPostFromJSONTyped(json, true), type: 'bigquery'};
         case 'classic':
             return {...DatasetOptionsClassicPostFromJSONTyped(json, true), type: 'classic'};
+        case 'gcp_cloud_sql_mysql':
+            return {...DatasetOptionsGcpCloudSqlMysqlPostFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
+        case 'gcp_cloud_sql_postgres':
+            return {...DatasetOptionsGcpCloudSqlPostgresPostFromJSONTyped(json, true), type: 'gcp_cloud_sql_postgres'};
+        case 'gcp_cloud_sql_sql_server':
+            return {...DatasetOptionsGcpCloudSqlSqlServerPostFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
+        case 'gcp_gcs_csv':
+            return {...DatasetOptionsGcpGcsCsvPostFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvPostFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'mysql':
+            return {...DatasetOptionsMysqlPostFromJSONTyped(json, true), type: 'mysql'};
+        case 'postgres':
+            return {...DatasetOptionsPostgresPostFromJSONTyped(json, true), type: 'postgres'};
+        case 'redshift':
+            return {...DatasetOptionsRedshiftPostFromJSONTyped(json, true), type: 'redshift'};
+        case 's3_csv':
+            return {...DatasetOptionsS3CsvPostFromJSONTyped(json, true), type: 's3_csv'};
         case 'snowflake':
             return {...DatasetOptionsSnowflakePostFromJSONTyped(json, true), type: 'snowflake'};
+        case 'sql_server':
+            return {...DatasetOptionsSqlServerPostFromJSONTyped(json, true), type: 'sql_server'};
         default:
             throw new Error(`No variant of DatasetOptionsPost exists with 'type=${json['type']}'`);
     }
@@ -74,14 +202,46 @@ export function DatasetOptionsPostToJSON(value?: DatasetOptionsPost | null): any
         return null;
     }
     switch (value['type']) {
+        case 'aws_aurora_mysql':
+            return DatasetOptionsAwsAuroraMysqlPostToJSON(value);
+        case 'aws_aurora_postgres':
+            return DatasetOptionsAwsAuroraPostgresPostToJSON(value);
+        case 'aws_rds_mysql':
+            return DatasetOptionsAwsRdsMysqlPostToJSON(value);
+        case 'aws_rds_postgres':
+            return DatasetOptionsAwsRdsPostgresPostToJSON(value);
+        case 'aws_rds_sql_server':
+            return DatasetOptionsAwsRdsSqlServerPostToJSON(value);
+        case 'aws_redshift_serverless':
+            return DatasetOptionsAwsRedshiftServerlessPostToJSON(value);
+        case 'azure_sql_server':
+            return DatasetOptionsAzureSqlServerPostToJSON(value);
         case 'bigquery':
             return DatasetOptionsBigQueryPostToJSON(value);
         case 'classic':
             return DatasetOptionsClassicPostToJSON(value);
+        case 'gcp_cloud_sql_mysql':
+            return DatasetOptionsGcpCloudSqlMysqlPostToJSON(value);
+        case 'gcp_cloud_sql_postgres':
+            return DatasetOptionsGcpCloudSqlPostgresPostToJSON(value);
+        case 'gcp_cloud_sql_sql_server':
+            return DatasetOptionsGcpCloudSqlSqlServerPostToJSON(value);
+        case 'gcp_gcs_csv':
+            return DatasetOptionsGcpGcsCsvPostToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvPostToJSON(value);
+        case 'mysql':
+            return DatasetOptionsMysqlPostToJSON(value);
+        case 'postgres':
+            return DatasetOptionsPostgresPostToJSON(value);
+        case 'redshift':
+            return DatasetOptionsRedshiftPostToJSON(value);
+        case 's3_csv':
+            return DatasetOptionsS3CsvPostToJSON(value);
         case 'snowflake':
             return DatasetOptionsSnowflakePostToJSON(value);
+        case 'sql_server':
+            return DatasetOptionsSqlServerPostToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptionsPost exists with 'type=${value['type']}'`);
     }

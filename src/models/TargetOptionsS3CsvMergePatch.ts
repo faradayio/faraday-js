@@ -28,13 +28,13 @@ export interface TargetOptionsS3CsvMergePatch {
      */
     delimiter?: string | null;
     /**
-     * Whether to gzip files before uploading.
+     * Whether files are gzipped.
      * @type {boolean}
      * @memberof TargetOptionsS3CsvMergePatch
      */
     gzip?: boolean | null;
     /**
-     * The S3 object key inside of the bucket. For example, path/to/my/file.csv. If you enable gzip, best practice is to add .gz to the end. Note: strftime substitutions like %Y-%m-%d are supported.
+     * The object key inside of the bucket. For example, path/to/my/file.csv. If you enable gzip, best practice is to add .gz to the end. Note: strftime substitutions like %Y-%m-%d are supported.
      * @type {string}
      * @memberof TargetOptionsS3CsvMergePatch
      */

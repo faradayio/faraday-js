@@ -28,7 +28,7 @@ export interface TargetOptionsHostedCsvPost {
      */
     delimiter?: string;
     /**
-     * Whether to gzip files before uploading.
+     * Whether files are gzipped.
      * @type {boolean}
      * @memberof TargetOptionsHostedCsvPost
      */

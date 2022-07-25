@@ -17,9 +17,6 @@ import { exists, mapValues } from '../runtime';
  * (Parameters used to PUT a value of the `ConnectionOptionsBigQuery` type.)
  * 
  * Google BigQuery connection options
- * 
- * Prerequisites:
- * * Faraday's service account must be configured with necessary permissions in Google Cloud IAM
  * @export
  * @interface ConnectionOptionsBigQueryPut
  */

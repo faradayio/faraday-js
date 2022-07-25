@@ -22,12 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TargetOptionsAzureSqlServerPut {
     /**
-     * Schema
-     * @type {string}
-     * @memberof TargetOptionsAzureSqlServerPut
-     */
-    schema: string;
-    /**
      * Table name
      * @type {string}
      * @memberof TargetOptionsAzureSqlServerPut
@@ -51,7 +45,6 @@ export function TargetOptionsAzureSqlServerPutFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'schema': json['schema'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -66,7 +59,6 @@ export function TargetOptionsAzureSqlServerPutToJSON(value?: TargetOptionsAzureS
     }
     return {
         
-        'schema': value.schema,
         'table_name': value.table_name,
         'type': value.type,
     };

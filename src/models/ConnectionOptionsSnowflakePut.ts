@@ -26,11 +26,41 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsSnowflakePut {
     /**
+     * Snowflake account name. If provided, also provide organization name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakePut
+     */
+    account_name?: string;
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakePut
+     */
+    database: string;
+    /**
+     * Not needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakePut
+     */
+    legacy_account_locator?: string;
+    /**
+     * Snowflake organization name. If provided, also provide account name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakePut
+     */
+    organization_name?: string;
+    /**
      * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY)
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
     role: string;
+    /**
+     * Schema
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakePut
+     */
+    schema: string;
     /**
      * The type of connection
      * @type {string}
@@ -38,19 +68,13 @@ export interface ConnectionOptionsSnowflakePut {
      */
     type: string;
     /**
-     * Every Snowflake instance has a unique URL that contains the account identifier. For eg: https://test1234.us-east-2.aws.snowflakecomputing.com
-     * @type {string}
-     * @memberof ConnectionOptionsSnowflakePut
-     */
-    url: string;
-    /**
-     * The Snowflake account user that will be used by Faraday to connect to the instance (Usually this is FARADAY)
+     * Snowflake user.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
     user: string;
     /**
-     * Snowflake warehouse
+     * Warehouse
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
@@ -67,9 +91,13 @@ export function ConnectionOptionsSnowflakePutFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'account_name': !exists(json, 'account_name') ? undefined : json['account_name'],
+        'database': json['database'],
+        'legacy_account_locator': !exists(json, 'legacy_account_locator') ? undefined : json['legacy_account_locator'],
+        'organization_name': !exists(json, 'organization_name') ? undefined : json['organization_name'],
         'role': json['role'],
+        'schema': json['schema'],
         'type': json['type'],
-        'url': json['url'],
         'user': json['user'],
         'warehouse': json['warehouse'],
     };
@@ -84,9 +112,13 @@ export function ConnectionOptionsSnowflakePutToJSON(value?: ConnectionOptionsSno
     }
     return {
         
+        'account_name': value.account_name,
+        'database': value.database,
+        'legacy_account_locator': value.legacy_account_locator,
+        'organization_name': value.organization_name,
         'role': value.role,
+        'schema': value.schema,
         'type': value.type,
-        'url': value.url,
         'user': value.user,
         'warehouse': value.warehouse,
     };

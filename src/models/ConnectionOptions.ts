@@ -13,6 +13,42 @@
  */
 
 import {
+    ConnectionOptionsAwsAuroraMysql,
+    ConnectionOptionsAwsAuroraMysqlFromJSON,
+    ConnectionOptionsAwsAuroraMysqlFromJSONTyped,
+    ConnectionOptionsAwsAuroraMysqlToJSON,
+} from './ConnectionOptionsAwsAuroraMysql';
+import {
+    ConnectionOptionsAwsAuroraPostgres,
+    ConnectionOptionsAwsAuroraPostgresFromJSON,
+    ConnectionOptionsAwsAuroraPostgresFromJSONTyped,
+    ConnectionOptionsAwsAuroraPostgresToJSON,
+} from './ConnectionOptionsAwsAuroraPostgres';
+import {
+    ConnectionOptionsAwsRdsMysql,
+    ConnectionOptionsAwsRdsMysqlFromJSON,
+    ConnectionOptionsAwsRdsMysqlFromJSONTyped,
+    ConnectionOptionsAwsRdsMysqlToJSON,
+} from './ConnectionOptionsAwsRdsMysql';
+import {
+    ConnectionOptionsAwsRdsPostgres,
+    ConnectionOptionsAwsRdsPostgresFromJSON,
+    ConnectionOptionsAwsRdsPostgresFromJSONTyped,
+    ConnectionOptionsAwsRdsPostgresToJSON,
+} from './ConnectionOptionsAwsRdsPostgres';
+import {
+    ConnectionOptionsAwsRdsSqlServer,
+    ConnectionOptionsAwsRdsSqlServerFromJSON,
+    ConnectionOptionsAwsRdsSqlServerFromJSONTyped,
+    ConnectionOptionsAwsRdsSqlServerToJSON,
+} from './ConnectionOptionsAwsRdsSqlServer';
+import {
+    ConnectionOptionsAwsRedshiftServerless,
+    ConnectionOptionsAwsRedshiftServerlessFromJSON,
+    ConnectionOptionsAwsRedshiftServerlessFromJSONTyped,
+    ConnectionOptionsAwsRedshiftServerlessToJSON,
+} from './ConnectionOptionsAwsRedshiftServerless';
+import {
     ConnectionOptionsAzureSqlServer,
     ConnectionOptionsAzureSqlServerFromJSON,
     ConnectionOptionsAzureSqlServerFromJSONTyped,
@@ -31,6 +67,42 @@ import {
     ConnectionOptionsClassicToJSON,
 } from './ConnectionOptionsClassic';
 import {
+    ConnectionOptionsGcpCloudSqlMysql,
+    ConnectionOptionsGcpCloudSqlMysqlFromJSON,
+    ConnectionOptionsGcpCloudSqlMysqlFromJSONTyped,
+    ConnectionOptionsGcpCloudSqlMysqlToJSON,
+} from './ConnectionOptionsGcpCloudSqlMysql';
+import {
+    ConnectionOptionsGcpCloudSqlPostgres,
+    ConnectionOptionsGcpCloudSqlPostgresFromJSON,
+    ConnectionOptionsGcpCloudSqlPostgresFromJSONTyped,
+    ConnectionOptionsGcpCloudSqlPostgresToJSON,
+} from './ConnectionOptionsGcpCloudSqlPostgres';
+import {
+    ConnectionOptionsGcpCloudSqlSqlServer,
+    ConnectionOptionsGcpCloudSqlSqlServerFromJSON,
+    ConnectionOptionsGcpCloudSqlSqlServerFromJSONTyped,
+    ConnectionOptionsGcpCloudSqlSqlServerToJSON,
+} from './ConnectionOptionsGcpCloudSqlSqlServer';
+import {
+    ConnectionOptionsGcpGcsCsv,
+    ConnectionOptionsGcpGcsCsvFromJSON,
+    ConnectionOptionsGcpGcsCsvFromJSONTyped,
+    ConnectionOptionsGcpGcsCsvToJSON,
+} from './ConnectionOptionsGcpGcsCsv';
+import {
+    ConnectionOptionsMysql,
+    ConnectionOptionsMysqlFromJSON,
+    ConnectionOptionsMysqlFromJSONTyped,
+    ConnectionOptionsMysqlToJSON,
+} from './ConnectionOptionsMysql';
+import {
+    ConnectionOptionsPostgres,
+    ConnectionOptionsPostgresFromJSON,
+    ConnectionOptionsPostgresFromJSONTyped,
+    ConnectionOptionsPostgresToJSON,
+} from './ConnectionOptionsPostgres';
+import {
     ConnectionOptionsRedshift,
     ConnectionOptionsRedshiftFromJSON,
     ConnectionOptionsRedshiftFromJSONTyped,
@@ -48,13 +120,19 @@ import {
     ConnectionOptionsSnowflakeFromJSONTyped,
     ConnectionOptionsSnowflakeToJSON,
 } from './ConnectionOptionsSnowflake';
+import {
+    ConnectionOptionsSqlServer,
+    ConnectionOptionsSqlServerFromJSON,
+    ConnectionOptionsSqlServerFromJSONTyped,
+    ConnectionOptionsSqlServerToJSON,
+} from './ConnectionOptionsSqlServer';
 
 /**
  * @type ConnectionOptions
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptions = { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'snowflake' } & ConnectionOptionsSnowflake;
+export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer;
 
 export function ConnectionOptionsFromJSON(json: any): ConnectionOptions {
     return ConnectionOptionsFromJSONTyped(json, false);
@@ -65,18 +143,44 @@ export function ConnectionOptionsFromJSONTyped(json: any, ignoreDiscriminator: b
         return json;
     }
     switch (json['type']) {
+        case 'aws_aurora_mysql':
+            return {...ConnectionOptionsAwsAuroraMysqlFromJSONTyped(json, true), type: 'aws_aurora_mysql'};
+        case 'aws_aurora_postgres':
+            return {...ConnectionOptionsAwsAuroraPostgresFromJSONTyped(json, true), type: 'aws_aurora_postgres'};
+        case 'aws_rds_mysql':
+            return {...ConnectionOptionsAwsRdsMysqlFromJSONTyped(json, true), type: 'aws_rds_mysql'};
+        case 'aws_rds_postgres':
+            return {...ConnectionOptionsAwsRdsPostgresFromJSONTyped(json, true), type: 'aws_rds_postgres'};
+        case 'aws_rds_sql_server':
+            return {...ConnectionOptionsAwsRdsSqlServerFromJSONTyped(json, true), type: 'aws_rds_sql_server'};
+        case 'aws_redshift_serverless':
+            return {...ConnectionOptionsAwsRedshiftServerlessFromJSONTyped(json, true), type: 'aws_redshift_serverless'};
         case 'azure_sql_server':
             return {...ConnectionOptionsAzureSqlServerFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...ConnectionOptionsBigQueryFromJSONTyped(json, true), type: 'bigquery'};
         case 'classic':
             return {...ConnectionOptionsClassicFromJSONTyped(json, true), type: 'classic'};
+        case 'gcp_cloud_sql_mysql':
+            return {...ConnectionOptionsGcpCloudSqlMysqlFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
+        case 'gcp_cloud_sql_postgres':
+            return {...ConnectionOptionsGcpCloudSqlPostgresFromJSONTyped(json, true), type: 'gcp_cloud_sql_postgres'};
+        case 'gcp_cloud_sql_sql_server':
+            return {...ConnectionOptionsGcpCloudSqlSqlServerFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
+        case 'gcp_gcs_csv':
+            return {...ConnectionOptionsGcpGcsCsvFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
+        case 'mysql':
+            return {...ConnectionOptionsMysqlFromJSONTyped(json, true), type: 'mysql'};
+        case 'postgres':
+            return {...ConnectionOptionsPostgresFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...ConnectionOptionsS3CsvFromJSONTyped(json, true), type: 's3_csv'};
         case 'snowflake':
             return {...ConnectionOptionsSnowflakeFromJSONTyped(json, true), type: 'snowflake'};
+        case 'sql_server':
+            return {...ConnectionOptionsSqlServerFromJSONTyped(json, true), type: 'sql_server'};
         default:
             throw new Error(`No variant of ConnectionOptions exists with 'type=${json['type']}'`);
     }
@@ -90,18 +194,44 @@ export function ConnectionOptionsToJSON(value?: ConnectionOptions | null): any {
         return null;
     }
     switch (value['type']) {
+        case 'aws_aurora_mysql':
+            return ConnectionOptionsAwsAuroraMysqlToJSON(value);
+        case 'aws_aurora_postgres':
+            return ConnectionOptionsAwsAuroraPostgresToJSON(value);
+        case 'aws_rds_mysql':
+            return ConnectionOptionsAwsRdsMysqlToJSON(value);
+        case 'aws_rds_postgres':
+            return ConnectionOptionsAwsRdsPostgresToJSON(value);
+        case 'aws_rds_sql_server':
+            return ConnectionOptionsAwsRdsSqlServerToJSON(value);
+        case 'aws_redshift_serverless':
+            return ConnectionOptionsAwsRedshiftServerlessToJSON(value);
         case 'azure_sql_server':
             return ConnectionOptionsAzureSqlServerToJSON(value);
         case 'bigquery':
             return ConnectionOptionsBigQueryToJSON(value);
         case 'classic':
             return ConnectionOptionsClassicToJSON(value);
+        case 'gcp_cloud_sql_mysql':
+            return ConnectionOptionsGcpCloudSqlMysqlToJSON(value);
+        case 'gcp_cloud_sql_postgres':
+            return ConnectionOptionsGcpCloudSqlPostgresToJSON(value);
+        case 'gcp_cloud_sql_sql_server':
+            return ConnectionOptionsGcpCloudSqlSqlServerToJSON(value);
+        case 'gcp_gcs_csv':
+            return ConnectionOptionsGcpGcsCsvToJSON(value);
+        case 'mysql':
+            return ConnectionOptionsMysqlToJSON(value);
+        case 'postgres':
+            return ConnectionOptionsPostgresToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftToJSON(value);
         case 's3_csv':
             return ConnectionOptionsS3CsvToJSON(value);
         case 'snowflake':
             return ConnectionOptionsSnowflakeToJSON(value);
+        case 'sql_server':
+            return ConnectionOptionsSqlServerToJSON(value);
         default:
             throw new Error(`No variant of ConnectionOptions exists with 'type=${value['type']}'`);
     }

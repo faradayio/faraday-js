@@ -26,11 +26,41 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsSnowflakeMergePatch {
     /**
+     * Snowflake account name. If provided, also provide organization name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakeMergePatch
+     */
+    account_name?: string | null;
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakeMergePatch
+     */
+    database?: string;
+    /**
+     * Not needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakeMergePatch
+     */
+    legacy_account_locator?: string | null;
+    /**
+     * Snowflake organization name. If provided, also provide account name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakeMergePatch
+     */
+    organization_name?: string | null;
+    /**
      * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY)
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
     role?: string;
+    /**
+     * Schema
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflakeMergePatch
+     */
+    schema?: string;
     /**
      * The type of connection
      * @type {string}
@@ -38,19 +68,13 @@ export interface ConnectionOptionsSnowflakeMergePatch {
      */
     type: string;
     /**
-     * Every Snowflake instance has a unique URL that contains the account identifier. For eg: https://test1234.us-east-2.aws.snowflakecomputing.com
-     * @type {string}
-     * @memberof ConnectionOptionsSnowflakeMergePatch
-     */
-    url?: string;
-    /**
-     * The Snowflake account user that will be used by Faraday to connect to the instance (Usually this is FARADAY)
+     * Snowflake user.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
     user?: string;
     /**
-     * Snowflake warehouse
+     * Warehouse
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
@@ -67,9 +91,13 @@ export function ConnectionOptionsSnowflakeMergePatchFromJSONTyped(json: any, ign
     }
     return {
         
+        'account_name': !exists(json, 'account_name') ? undefined : json['account_name'],
+        'database': !exists(json, 'database') ? undefined : json['database'],
+        'legacy_account_locator': !exists(json, 'legacy_account_locator') ? undefined : json['legacy_account_locator'],
+        'organization_name': !exists(json, 'organization_name') ? undefined : json['organization_name'],
         'role': !exists(json, 'role') ? undefined : json['role'],
+        'schema': !exists(json, 'schema') ? undefined : json['schema'],
         'type': json['type'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
         'user': !exists(json, 'user') ? undefined : json['user'],
         'warehouse': !exists(json, 'warehouse') ? undefined : json['warehouse'],
     };
@@ -84,9 +112,13 @@ export function ConnectionOptionsSnowflakeMergePatchToJSON(value?: ConnectionOpt
     }
     return {
         
+        'account_name': value.account_name,
+        'database': value.database,
+        'legacy_account_locator': value.legacy_account_locator,
+        'organization_name': value.organization_name,
         'role': value.role,
+        'schema': value.schema,
         'type': value.type,
-        'url': value.url,
         'user': value.user,
         'warehouse': value.warehouse,
     };

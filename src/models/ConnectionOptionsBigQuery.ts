@@ -15,9 +15,6 @@
 import { exists, mapValues } from '../runtime';
 /**
  * Google BigQuery connection options
- * 
- * Prerequisites:
- * * Faraday's service account must be configured with necessary permissions in Google Cloud IAM
  * @export
  * @interface ConnectionOptionsBigQuery
  */

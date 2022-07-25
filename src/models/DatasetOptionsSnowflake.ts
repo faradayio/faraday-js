@@ -20,18 +20,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsSnowflake {
     /**
-     * Database
-     * @type {string}
-     * @memberof DatasetOptionsSnowflake
-     */
-    database: string;
-    /**
-     * Schema
-     * @type {string}
-     * @memberof DatasetOptionsSnowflake
-     */
-    schema: string;
-    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsSnowflake
@@ -55,8 +43,6 @@ export function DatasetOptionsSnowflakeFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'database': json['database'],
-        'schema': json['schema'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -71,8 +57,6 @@ export function DatasetOptionsSnowflakeToJSON(value?: DatasetOptionsSnowflake | 
     }
     return {
         
-        'database': value.database,
-        'schema': value.schema,
         'table_name': value.table_name,
         'type': value.type,
     };

@@ -28,6 +28,12 @@ export interface ConnectionOptionsAzureSqlServerPost {
      */
     database: string;
     /**
+     * Host
+     * @type {string}
+     * @memberof ConnectionOptionsAzureSqlServerPost
+     */
+    host: string;
+    /**
      * Password
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServerPost
@@ -40,23 +46,17 @@ export interface ConnectionOptionsAzureSqlServerPost {
      */
     port: number;
     /**
-     * Server
-     * @type {string}
-     * @memberof ConnectionOptionsAzureSqlServerPost
-     */
-    server: string;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServerPost
      */
     type: string;
     /**
-     * Username
+     * User
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServerPost
      */
-    username: string;
+    user: string;
 }
 
 export function ConnectionOptionsAzureSqlServerPostFromJSON(json: any): ConnectionOptionsAzureSqlServerPost {
@@ -70,11 +70,11 @@ export function ConnectionOptionsAzureSqlServerPostFromJSONTyped(json: any, igno
     return {
         
         'database': json['database'],
+        'host': json['host'],
         'password': json['password'],
         'port': json['port'],
-        'server': json['server'],
         'type': json['type'],
-        'username': json['username'],
+        'user': json['user'],
     };
 }
 
@@ -88,11 +88,11 @@ export function ConnectionOptionsAzureSqlServerPostToJSON(value?: ConnectionOpti
     return {
         
         'database': value.database,
+        'host': value.host,
         'password': value.password,
         'port': value.port,
-        'server': value.server,
         'type': value.type,
-        'username': value.username,
+        'user': value.user,
     };
 }
 

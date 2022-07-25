@@ -22,18 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TargetOptionsSnowflakeMergePatch {
     /**
-     * Database
-     * @type {string}
-     * @memberof TargetOptionsSnowflakeMergePatch
-     */
-    database?: string;
-    /**
-     * Schema
-     * @type {string}
-     * @memberof TargetOptionsSnowflakeMergePatch
-     */
-    schema?: string;
-    /**
      * Table name
      * @type {string}
      * @memberof TargetOptionsSnowflakeMergePatch
@@ -57,8 +45,6 @@ export function TargetOptionsSnowflakeMergePatchFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'database': !exists(json, 'database') ? undefined : json['database'],
-        'schema': !exists(json, 'schema') ? undefined : json['schema'],
         'table_name': !exists(json, 'table_name') ? undefined : json['table_name'],
         'type': json['type'],
     };
@@ -73,8 +59,6 @@ export function TargetOptionsSnowflakeMergePatchToJSON(value?: TargetOptionsSnow
     }
     return {
         
-        'database': value.database,
-        'schema': value.schema,
         'table_name': value.table_name,
         'type': value.type,
     };

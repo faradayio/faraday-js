@@ -13,6 +13,42 @@
  */
 
 import {
+    TargetOptionsAwsAuroraMysqlPut,
+    TargetOptionsAwsAuroraMysqlPutFromJSON,
+    TargetOptionsAwsAuroraMysqlPutFromJSONTyped,
+    TargetOptionsAwsAuroraMysqlPutToJSON,
+} from './TargetOptionsAwsAuroraMysqlPut';
+import {
+    TargetOptionsAwsAuroraPostgresPut,
+    TargetOptionsAwsAuroraPostgresPutFromJSON,
+    TargetOptionsAwsAuroraPostgresPutFromJSONTyped,
+    TargetOptionsAwsAuroraPostgresPutToJSON,
+} from './TargetOptionsAwsAuroraPostgresPut';
+import {
+    TargetOptionsAwsRdsMysqlPut,
+    TargetOptionsAwsRdsMysqlPutFromJSON,
+    TargetOptionsAwsRdsMysqlPutFromJSONTyped,
+    TargetOptionsAwsRdsMysqlPutToJSON,
+} from './TargetOptionsAwsRdsMysqlPut';
+import {
+    TargetOptionsAwsRdsPostgresPut,
+    TargetOptionsAwsRdsPostgresPutFromJSON,
+    TargetOptionsAwsRdsPostgresPutFromJSONTyped,
+    TargetOptionsAwsRdsPostgresPutToJSON,
+} from './TargetOptionsAwsRdsPostgresPut';
+import {
+    TargetOptionsAwsRdsSqlServerPut,
+    TargetOptionsAwsRdsSqlServerPutFromJSON,
+    TargetOptionsAwsRdsSqlServerPutFromJSONTyped,
+    TargetOptionsAwsRdsSqlServerPutToJSON,
+} from './TargetOptionsAwsRdsSqlServerPut';
+import {
+    TargetOptionsAwsRedshiftServerlessPut,
+    TargetOptionsAwsRedshiftServerlessPutFromJSON,
+    TargetOptionsAwsRedshiftServerlessPutFromJSONTyped,
+    TargetOptionsAwsRedshiftServerlessPutToJSON,
+} from './TargetOptionsAwsRedshiftServerlessPut';
+import {
     TargetOptionsAzureSqlServerPut,
     TargetOptionsAzureSqlServerPutFromJSON,
     TargetOptionsAzureSqlServerPutFromJSONTyped,
@@ -25,11 +61,47 @@ import {
     TargetOptionsBigQueryPutToJSON,
 } from './TargetOptionsBigQueryPut';
 import {
+    TargetOptionsGcpCloudSqlMysqlPut,
+    TargetOptionsGcpCloudSqlMysqlPutFromJSON,
+    TargetOptionsGcpCloudSqlMysqlPutFromJSONTyped,
+    TargetOptionsGcpCloudSqlMysqlPutToJSON,
+} from './TargetOptionsGcpCloudSqlMysqlPut';
+import {
+    TargetOptionsGcpCloudSqlPostgresPut,
+    TargetOptionsGcpCloudSqlPostgresPutFromJSON,
+    TargetOptionsGcpCloudSqlPostgresPutFromJSONTyped,
+    TargetOptionsGcpCloudSqlPostgresPutToJSON,
+} from './TargetOptionsGcpCloudSqlPostgresPut';
+import {
+    TargetOptionsGcpCloudSqlSqlServerPut,
+    TargetOptionsGcpCloudSqlSqlServerPutFromJSON,
+    TargetOptionsGcpCloudSqlSqlServerPutFromJSONTyped,
+    TargetOptionsGcpCloudSqlSqlServerPutToJSON,
+} from './TargetOptionsGcpCloudSqlSqlServerPut';
+import {
+    TargetOptionsGcpGcsCsvPut,
+    TargetOptionsGcpGcsCsvPutFromJSON,
+    TargetOptionsGcpGcsCsvPutFromJSONTyped,
+    TargetOptionsGcpGcsCsvPutToJSON,
+} from './TargetOptionsGcpGcsCsvPut';
+import {
     TargetOptionsHostedCsvPut,
     TargetOptionsHostedCsvPutFromJSON,
     TargetOptionsHostedCsvPutFromJSONTyped,
     TargetOptionsHostedCsvPutToJSON,
 } from './TargetOptionsHostedCsvPut';
+import {
+    TargetOptionsMysqlPut,
+    TargetOptionsMysqlPutFromJSON,
+    TargetOptionsMysqlPutFromJSONTyped,
+    TargetOptionsMysqlPutToJSON,
+} from './TargetOptionsMysqlPut';
+import {
+    TargetOptionsPostgresPut,
+    TargetOptionsPostgresPutFromJSON,
+    TargetOptionsPostgresPutFromJSONTyped,
+    TargetOptionsPostgresPutToJSON,
+} from './TargetOptionsPostgresPut';
 import {
     TargetOptionsRedshiftPut,
     TargetOptionsRedshiftPutFromJSON,
@@ -48,6 +120,12 @@ import {
     TargetOptionsSnowflakePutFromJSONTyped,
     TargetOptionsSnowflakePutToJSON,
 } from './TargetOptionsSnowflakePut';
+import {
+    TargetOptionsSqlServerPut,
+    TargetOptionsSqlServerPutFromJSON,
+    TargetOptionsSqlServerPutFromJSONTyped,
+    TargetOptionsSqlServerPutToJSON,
+} from './TargetOptionsSqlServerPut';
 
 /**
  * @type TargetOptionsPut
@@ -63,7 +141,7 @@ import {
  *   * `hosted_csv` - Faraday hosts a CSV for you to retrieve by your choice of protocol: HTTPS, S3, GCS, or SFTP.
  * @export
  */
-export type TargetOptionsPut = { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'snowflake' } & TargetOptionsSnowflakePut;
+export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut;
 
 export function TargetOptionsPutFromJSON(json: any): TargetOptionsPut {
     return TargetOptionsPutFromJSONTyped(json, false);
@@ -74,18 +152,44 @@ export function TargetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: bo
         return json;
     }
     switch (json['type']) {
+        case 'aws_aurora_mysql':
+            return {...TargetOptionsAwsAuroraMysqlPutFromJSONTyped(json, true), type: 'aws_aurora_mysql'};
+        case 'aws_aurora_postgres':
+            return {...TargetOptionsAwsAuroraPostgresPutFromJSONTyped(json, true), type: 'aws_aurora_postgres'};
+        case 'aws_rds_mysql':
+            return {...TargetOptionsAwsRdsMysqlPutFromJSONTyped(json, true), type: 'aws_rds_mysql'};
+        case 'aws_rds_postgres':
+            return {...TargetOptionsAwsRdsPostgresPutFromJSONTyped(json, true), type: 'aws_rds_postgres'};
+        case 'aws_rds_sql_server':
+            return {...TargetOptionsAwsRdsSqlServerPutFromJSONTyped(json, true), type: 'aws_rds_sql_server'};
+        case 'aws_redshift_serverless':
+            return {...TargetOptionsAwsRedshiftServerlessPutFromJSONTyped(json, true), type: 'aws_redshift_serverless'};
         case 'azure_sql_server':
             return {...TargetOptionsAzureSqlServerPutFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...TargetOptionsBigQueryPutFromJSONTyped(json, true), type: 'bigquery'};
+        case 'gcp_cloud_sql_mysql':
+            return {...TargetOptionsGcpCloudSqlMysqlPutFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
+        case 'gcp_cloud_sql_postgres':
+            return {...TargetOptionsGcpCloudSqlPostgresPutFromJSONTyped(json, true), type: 'gcp_cloud_sql_postgres'};
+        case 'gcp_cloud_sql_sql_server':
+            return {...TargetOptionsGcpCloudSqlSqlServerPutFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
+        case 'gcp_gcs_csv':
+            return {...TargetOptionsGcpGcsCsvPutFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...TargetOptionsHostedCsvPutFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'mysql':
+            return {...TargetOptionsMysqlPutFromJSONTyped(json, true), type: 'mysql'};
+        case 'postgres':
+            return {...TargetOptionsPostgresPutFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...TargetOptionsRedshiftPutFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...TargetOptionsS3CsvPutFromJSONTyped(json, true), type: 's3_csv'};
         case 'snowflake':
             return {...TargetOptionsSnowflakePutFromJSONTyped(json, true), type: 'snowflake'};
+        case 'sql_server':
+            return {...TargetOptionsSqlServerPutFromJSONTyped(json, true), type: 'sql_server'};
         default:
             throw new Error(`No variant of TargetOptionsPut exists with 'type=${json['type']}'`);
     }
@@ -99,18 +203,44 @@ export function TargetOptionsPutToJSON(value?: TargetOptionsPut | null): any {
         return null;
     }
     switch (value['type']) {
+        case 'aws_aurora_mysql':
+            return TargetOptionsAwsAuroraMysqlPutToJSON(value);
+        case 'aws_aurora_postgres':
+            return TargetOptionsAwsAuroraPostgresPutToJSON(value);
+        case 'aws_rds_mysql':
+            return TargetOptionsAwsRdsMysqlPutToJSON(value);
+        case 'aws_rds_postgres':
+            return TargetOptionsAwsRdsPostgresPutToJSON(value);
+        case 'aws_rds_sql_server':
+            return TargetOptionsAwsRdsSqlServerPutToJSON(value);
+        case 'aws_redshift_serverless':
+            return TargetOptionsAwsRedshiftServerlessPutToJSON(value);
         case 'azure_sql_server':
             return TargetOptionsAzureSqlServerPutToJSON(value);
         case 'bigquery':
             return TargetOptionsBigQueryPutToJSON(value);
+        case 'gcp_cloud_sql_mysql':
+            return TargetOptionsGcpCloudSqlMysqlPutToJSON(value);
+        case 'gcp_cloud_sql_postgres':
+            return TargetOptionsGcpCloudSqlPostgresPutToJSON(value);
+        case 'gcp_cloud_sql_sql_server':
+            return TargetOptionsGcpCloudSqlSqlServerPutToJSON(value);
+        case 'gcp_gcs_csv':
+            return TargetOptionsGcpGcsCsvPutToJSON(value);
         case 'hosted_csv':
             return TargetOptionsHostedCsvPutToJSON(value);
+        case 'mysql':
+            return TargetOptionsMysqlPutToJSON(value);
+        case 'postgres':
+            return TargetOptionsPostgresPutToJSON(value);
         case 'redshift':
             return TargetOptionsRedshiftPutToJSON(value);
         case 's3_csv':
             return TargetOptionsS3CsvPutToJSON(value);
         case 'snowflake':
             return TargetOptionsSnowflakePutToJSON(value);
+        case 'sql_server':
+            return TargetOptionsSqlServerPutToJSON(value);
         default:
             throw new Error(`No variant of TargetOptionsPut exists with 'type=${value['type']}'`);
     }

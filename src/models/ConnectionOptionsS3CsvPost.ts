@@ -31,7 +31,7 @@ export interface ConnectionOptionsS3CsvPost {
      */
     aws_region: string;
     /**
-     * S3 bucket name
+     * Bucket name
      * @type {string}
      * @memberof ConnectionOptionsS3CsvPost
      */

@@ -29,7 +29,7 @@ export interface ConnectionOptionsS3Csv {
      */
     aws_region: string;
     /**
-     * S3 bucket name
+     * Bucket name
      * @type {string}
      * @memberof ConnectionOptionsS3Csv
      */

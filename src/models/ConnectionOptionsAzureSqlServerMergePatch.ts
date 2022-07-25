@@ -28,6 +28,12 @@ export interface ConnectionOptionsAzureSqlServerMergePatch {
      */
     database?: string;
     /**
+     * Host
+     * @type {string}
+     * @memberof ConnectionOptionsAzureSqlServerMergePatch
+     */
+    host?: string;
+    /**
      * Password
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServerMergePatch
@@ -40,23 +46,17 @@ export interface ConnectionOptionsAzureSqlServerMergePatch {
      */
     port?: number;
     /**
-     * Server
-     * @type {string}
-     * @memberof ConnectionOptionsAzureSqlServerMergePatch
-     */
-    server?: string;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServerMergePatch
      */
     type: string;
     /**
-     * Username
+     * User
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServerMergePatch
      */
-    username?: string;
+    user?: string;
 }
 
 export function ConnectionOptionsAzureSqlServerMergePatchFromJSON(json: any): ConnectionOptionsAzureSqlServerMergePatch {
@@ -70,11 +70,11 @@ export function ConnectionOptionsAzureSqlServerMergePatchFromJSONTyped(json: any
     return {
         
         'database': !exists(json, 'database') ? undefined : json['database'],
+        'host': !exists(json, 'host') ? undefined : json['host'],
         'password': !exists(json, 'password') ? undefined : json['password'],
         'port': !exists(json, 'port') ? undefined : json['port'],
-        'server': !exists(json, 'server') ? undefined : json['server'],
         'type': json['type'],
-        'username': !exists(json, 'username') ? undefined : json['username'],
+        'user': !exists(json, 'user') ? undefined : json['user'],
     };
 }
 
@@ -88,11 +88,11 @@ export function ConnectionOptionsAzureSqlServerMergePatchToJSON(value?: Connecti
     return {
         
         'database': value.database,
+        'host': value.host,
         'password': value.password,
         'port': value.port,
-        'server': value.server,
         'type': value.type,
-        'username': value.username,
+        'user': value.user,
     };
 }
 

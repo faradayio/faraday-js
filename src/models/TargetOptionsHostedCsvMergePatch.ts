@@ -28,7 +28,7 @@ export interface TargetOptionsHostedCsvMergePatch {
      */
     delimiter?: string | null;
     /**
-     * Whether to gzip files before uploading.
+     * Whether files are gzipped.
      * @type {boolean}
      * @memberof TargetOptionsHostedCsvMergePatch
      */

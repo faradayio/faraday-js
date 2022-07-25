@@ -22,18 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TargetOptionsSnowflakePost {
     /**
-     * Database
-     * @type {string}
-     * @memberof TargetOptionsSnowflakePost
-     */
-    database: string;
-    /**
-     * Schema
-     * @type {string}
-     * @memberof TargetOptionsSnowflakePost
-     */
-    schema: string;
-    /**
      * Table name
      * @type {string}
      * @memberof TargetOptionsSnowflakePost
@@ -57,8 +45,6 @@ export function TargetOptionsSnowflakePostFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'database': json['database'],
-        'schema': json['schema'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -73,8 +59,6 @@ export function TargetOptionsSnowflakePostToJSON(value?: TargetOptionsSnowflakeP
     }
     return {
         
-        'database': value.database,
-        'schema': value.schema,
         'table_name': value.table_name,
         'type': value.type,
     };

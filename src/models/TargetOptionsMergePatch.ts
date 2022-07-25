@@ -13,6 +13,42 @@
  */
 
 import {
+    TargetOptionsAwsAuroraMysqlMergePatch,
+    TargetOptionsAwsAuroraMysqlMergePatchFromJSON,
+    TargetOptionsAwsAuroraMysqlMergePatchFromJSONTyped,
+    TargetOptionsAwsAuroraMysqlMergePatchToJSON,
+} from './TargetOptionsAwsAuroraMysqlMergePatch';
+import {
+    TargetOptionsAwsAuroraPostgresMergePatch,
+    TargetOptionsAwsAuroraPostgresMergePatchFromJSON,
+    TargetOptionsAwsAuroraPostgresMergePatchFromJSONTyped,
+    TargetOptionsAwsAuroraPostgresMergePatchToJSON,
+} from './TargetOptionsAwsAuroraPostgresMergePatch';
+import {
+    TargetOptionsAwsRdsMysqlMergePatch,
+    TargetOptionsAwsRdsMysqlMergePatchFromJSON,
+    TargetOptionsAwsRdsMysqlMergePatchFromJSONTyped,
+    TargetOptionsAwsRdsMysqlMergePatchToJSON,
+} from './TargetOptionsAwsRdsMysqlMergePatch';
+import {
+    TargetOptionsAwsRdsPostgresMergePatch,
+    TargetOptionsAwsRdsPostgresMergePatchFromJSON,
+    TargetOptionsAwsRdsPostgresMergePatchFromJSONTyped,
+    TargetOptionsAwsRdsPostgresMergePatchToJSON,
+} from './TargetOptionsAwsRdsPostgresMergePatch';
+import {
+    TargetOptionsAwsRdsSqlServerMergePatch,
+    TargetOptionsAwsRdsSqlServerMergePatchFromJSON,
+    TargetOptionsAwsRdsSqlServerMergePatchFromJSONTyped,
+    TargetOptionsAwsRdsSqlServerMergePatchToJSON,
+} from './TargetOptionsAwsRdsSqlServerMergePatch';
+import {
+    TargetOptionsAwsRedshiftServerlessMergePatch,
+    TargetOptionsAwsRedshiftServerlessMergePatchFromJSON,
+    TargetOptionsAwsRedshiftServerlessMergePatchFromJSONTyped,
+    TargetOptionsAwsRedshiftServerlessMergePatchToJSON,
+} from './TargetOptionsAwsRedshiftServerlessMergePatch';
+import {
     TargetOptionsAzureSqlServerMergePatch,
     TargetOptionsAzureSqlServerMergePatchFromJSON,
     TargetOptionsAzureSqlServerMergePatchFromJSONTyped,
@@ -25,11 +61,47 @@ import {
     TargetOptionsBigQueryMergePatchToJSON,
 } from './TargetOptionsBigQueryMergePatch';
 import {
+    TargetOptionsGcpCloudSqlMysqlMergePatch,
+    TargetOptionsGcpCloudSqlMysqlMergePatchFromJSON,
+    TargetOptionsGcpCloudSqlMysqlMergePatchFromJSONTyped,
+    TargetOptionsGcpCloudSqlMysqlMergePatchToJSON,
+} from './TargetOptionsGcpCloudSqlMysqlMergePatch';
+import {
+    TargetOptionsGcpCloudSqlPostgresMergePatch,
+    TargetOptionsGcpCloudSqlPostgresMergePatchFromJSON,
+    TargetOptionsGcpCloudSqlPostgresMergePatchFromJSONTyped,
+    TargetOptionsGcpCloudSqlPostgresMergePatchToJSON,
+} from './TargetOptionsGcpCloudSqlPostgresMergePatch';
+import {
+    TargetOptionsGcpCloudSqlSqlServerMergePatch,
+    TargetOptionsGcpCloudSqlSqlServerMergePatchFromJSON,
+    TargetOptionsGcpCloudSqlSqlServerMergePatchFromJSONTyped,
+    TargetOptionsGcpCloudSqlSqlServerMergePatchToJSON,
+} from './TargetOptionsGcpCloudSqlSqlServerMergePatch';
+import {
+    TargetOptionsGcpGcsCsvMergePatch,
+    TargetOptionsGcpGcsCsvMergePatchFromJSON,
+    TargetOptionsGcpGcsCsvMergePatchFromJSONTyped,
+    TargetOptionsGcpGcsCsvMergePatchToJSON,
+} from './TargetOptionsGcpGcsCsvMergePatch';
+import {
     TargetOptionsHostedCsvMergePatch,
     TargetOptionsHostedCsvMergePatchFromJSON,
     TargetOptionsHostedCsvMergePatchFromJSONTyped,
     TargetOptionsHostedCsvMergePatchToJSON,
 } from './TargetOptionsHostedCsvMergePatch';
+import {
+    TargetOptionsMysqlMergePatch,
+    TargetOptionsMysqlMergePatchFromJSON,
+    TargetOptionsMysqlMergePatchFromJSONTyped,
+    TargetOptionsMysqlMergePatchToJSON,
+} from './TargetOptionsMysqlMergePatch';
+import {
+    TargetOptionsPostgresMergePatch,
+    TargetOptionsPostgresMergePatchFromJSON,
+    TargetOptionsPostgresMergePatchFromJSONTyped,
+    TargetOptionsPostgresMergePatchToJSON,
+} from './TargetOptionsPostgresMergePatch';
 import {
     TargetOptionsRedshiftMergePatch,
     TargetOptionsRedshiftMergePatchFromJSON,
@@ -48,6 +120,12 @@ import {
     TargetOptionsSnowflakeMergePatchFromJSONTyped,
     TargetOptionsSnowflakeMergePatchToJSON,
 } from './TargetOptionsSnowflakeMergePatch';
+import {
+    TargetOptionsSqlServerMergePatch,
+    TargetOptionsSqlServerMergePatchFromJSON,
+    TargetOptionsSqlServerMergePatchFromJSONTyped,
+    TargetOptionsSqlServerMergePatchToJSON,
+} from './TargetOptionsSqlServerMergePatch';
 
 /**
  * @type TargetOptionsMergePatch
@@ -63,7 +141,7 @@ import {
  *   * `hosted_csv` - Faraday hosts a CSV for you to retrieve by your choice of protocol: HTTPS, S3, GCS, or SFTP.
  * @export
  */
-export type TargetOptionsMergePatch = { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch;
+export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch;
 
 export function TargetOptionsMergePatchFromJSON(json: any): TargetOptionsMergePatch {
     return TargetOptionsMergePatchFromJSONTyped(json, false);
@@ -74,18 +152,44 @@ export function TargetOptionsMergePatchFromJSONTyped(json: any, ignoreDiscrimina
         return json;
     }
     switch (json['type']) {
+        case 'aws_aurora_mysql':
+            return {...TargetOptionsAwsAuroraMysqlMergePatchFromJSONTyped(json, true), type: 'aws_aurora_mysql'};
+        case 'aws_aurora_postgres':
+            return {...TargetOptionsAwsAuroraPostgresMergePatchFromJSONTyped(json, true), type: 'aws_aurora_postgres'};
+        case 'aws_rds_mysql':
+            return {...TargetOptionsAwsRdsMysqlMergePatchFromJSONTyped(json, true), type: 'aws_rds_mysql'};
+        case 'aws_rds_postgres':
+            return {...TargetOptionsAwsRdsPostgresMergePatchFromJSONTyped(json, true), type: 'aws_rds_postgres'};
+        case 'aws_rds_sql_server':
+            return {...TargetOptionsAwsRdsSqlServerMergePatchFromJSONTyped(json, true), type: 'aws_rds_sql_server'};
+        case 'aws_redshift_serverless':
+            return {...TargetOptionsAwsRedshiftServerlessMergePatchFromJSONTyped(json, true), type: 'aws_redshift_serverless'};
         case 'azure_sql_server':
             return {...TargetOptionsAzureSqlServerMergePatchFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...TargetOptionsBigQueryMergePatchFromJSONTyped(json, true), type: 'bigquery'};
+        case 'gcp_cloud_sql_mysql':
+            return {...TargetOptionsGcpCloudSqlMysqlMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
+        case 'gcp_cloud_sql_postgres':
+            return {...TargetOptionsGcpCloudSqlPostgresMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_postgres'};
+        case 'gcp_cloud_sql_sql_server':
+            return {...TargetOptionsGcpCloudSqlSqlServerMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
+        case 'gcp_gcs_csv':
+            return {...TargetOptionsGcpGcsCsvMergePatchFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...TargetOptionsHostedCsvMergePatchFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'mysql':
+            return {...TargetOptionsMysqlMergePatchFromJSONTyped(json, true), type: 'mysql'};
+        case 'postgres':
+            return {...TargetOptionsPostgresMergePatchFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...TargetOptionsRedshiftMergePatchFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...TargetOptionsS3CsvMergePatchFromJSONTyped(json, true), type: 's3_csv'};
         case 'snowflake':
             return {...TargetOptionsSnowflakeMergePatchFromJSONTyped(json, true), type: 'snowflake'};
+        case 'sql_server':
+            return {...TargetOptionsSqlServerMergePatchFromJSONTyped(json, true), type: 'sql_server'};
         default:
             throw new Error(`No variant of TargetOptionsMergePatch exists with 'type=${json['type']}'`);
     }
@@ -99,18 +203,44 @@ export function TargetOptionsMergePatchToJSON(value?: TargetOptionsMergePatch | 
         return null;
     }
     switch (value['type']) {
+        case 'aws_aurora_mysql':
+            return TargetOptionsAwsAuroraMysqlMergePatchToJSON(value);
+        case 'aws_aurora_postgres':
+            return TargetOptionsAwsAuroraPostgresMergePatchToJSON(value);
+        case 'aws_rds_mysql':
+            return TargetOptionsAwsRdsMysqlMergePatchToJSON(value);
+        case 'aws_rds_postgres':
+            return TargetOptionsAwsRdsPostgresMergePatchToJSON(value);
+        case 'aws_rds_sql_server':
+            return TargetOptionsAwsRdsSqlServerMergePatchToJSON(value);
+        case 'aws_redshift_serverless':
+            return TargetOptionsAwsRedshiftServerlessMergePatchToJSON(value);
         case 'azure_sql_server':
             return TargetOptionsAzureSqlServerMergePatchToJSON(value);
         case 'bigquery':
             return TargetOptionsBigQueryMergePatchToJSON(value);
+        case 'gcp_cloud_sql_mysql':
+            return TargetOptionsGcpCloudSqlMysqlMergePatchToJSON(value);
+        case 'gcp_cloud_sql_postgres':
+            return TargetOptionsGcpCloudSqlPostgresMergePatchToJSON(value);
+        case 'gcp_cloud_sql_sql_server':
+            return TargetOptionsGcpCloudSqlSqlServerMergePatchToJSON(value);
+        case 'gcp_gcs_csv':
+            return TargetOptionsGcpGcsCsvMergePatchToJSON(value);
         case 'hosted_csv':
             return TargetOptionsHostedCsvMergePatchToJSON(value);
+        case 'mysql':
+            return TargetOptionsMysqlMergePatchToJSON(value);
+        case 'postgres':
+            return TargetOptionsPostgresMergePatchToJSON(value);
         case 'redshift':
             return TargetOptionsRedshiftMergePatchToJSON(value);
         case 's3_csv':
             return TargetOptionsS3CsvMergePatchToJSON(value);
         case 'snowflake':
             return TargetOptionsSnowflakeMergePatchToJSON(value);
+        case 'sql_server':
+            return TargetOptionsSqlServerMergePatchToJSON(value);
         default:
             throw new Error(`No variant of TargetOptionsMergePatch exists with 'type=${value['type']}'`);
     }

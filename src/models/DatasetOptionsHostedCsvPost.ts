@@ -22,6 +22,24 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsHostedCsvPost {
     /**
+     * CSV delimiter
+     * @type {string}
+     * @memberof DatasetOptionsHostedCsvPost
+     */
+    delimiter?: string;
+    /**
+     * Whether the files you uploaded are encrypted with Faraday's public key.
+     * @type {boolean}
+     * @memberof DatasetOptionsHostedCsvPost
+     */
+    encrypted?: boolean;
+    /**
+     * Whether to replace all data with only the data in the latest file upon every ingestion.
+     * @type {boolean}
+     * @memberof DatasetOptionsHostedCsvPost
+     */
+    replace_all_with_latest_file?: boolean;
+    /**
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsHostedCsvPost
@@ -46,6 +64,9 @@ export function DatasetOptionsHostedCsvPostFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
+        'delimiter': !exists(json, 'delimiter') ? undefined : json['delimiter'],
+        'encrypted': !exists(json, 'encrypted') ? undefined : json['encrypted'],
+        'replace_all_with_latest_file': !exists(json, 'replace_all_with_latest_file') ? undefined : json['replace_all_with_latest_file'],
         'type': json['type'],
         'upload_directory': json['upload_directory'],
     };
@@ -60,6 +81,9 @@ export function DatasetOptionsHostedCsvPostToJSON(value?: DatasetOptionsHostedCs
     }
     return {
         
+        'delimiter': value.delimiter,
+        'encrypted': value.encrypted,
+        'replace_all_with_latest_file': value.replace_all_with_latest_file,
         'type': value.type,
         'upload_directory': value.upload_directory,
     };

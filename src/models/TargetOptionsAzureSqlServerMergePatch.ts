@@ -22,12 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TargetOptionsAzureSqlServerMergePatch {
     /**
-     * Schema
-     * @type {string}
-     * @memberof TargetOptionsAzureSqlServerMergePatch
-     */
-    schema?: string;
-    /**
      * Table name
      * @type {string}
      * @memberof TargetOptionsAzureSqlServerMergePatch
@@ -51,7 +45,6 @@ export function TargetOptionsAzureSqlServerMergePatchFromJSONTyped(json: any, ig
     }
     return {
         
-        'schema': !exists(json, 'schema') ? undefined : json['schema'],
         'table_name': !exists(json, 'table_name') ? undefined : json['table_name'],
         'type': json['type'],
     };
@@ -66,7 +59,6 @@ export function TargetOptionsAzureSqlServerMergePatchToJSON(value?: TargetOption
     }
     return {
         
-        'schema': value.schema,
         'table_name': value.table_name,
         'type': value.type,
     };

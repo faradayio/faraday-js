@@ -13,6 +13,48 @@
  */
 
 import {
+    DatasetOptionsAwsAuroraMysql,
+    DatasetOptionsAwsAuroraMysqlFromJSON,
+    DatasetOptionsAwsAuroraMysqlFromJSONTyped,
+    DatasetOptionsAwsAuroraMysqlToJSON,
+} from './DatasetOptionsAwsAuroraMysql';
+import {
+    DatasetOptionsAwsAuroraPostgres,
+    DatasetOptionsAwsAuroraPostgresFromJSON,
+    DatasetOptionsAwsAuroraPostgresFromJSONTyped,
+    DatasetOptionsAwsAuroraPostgresToJSON,
+} from './DatasetOptionsAwsAuroraPostgres';
+import {
+    DatasetOptionsAwsRdsMysql,
+    DatasetOptionsAwsRdsMysqlFromJSON,
+    DatasetOptionsAwsRdsMysqlFromJSONTyped,
+    DatasetOptionsAwsRdsMysqlToJSON,
+} from './DatasetOptionsAwsRdsMysql';
+import {
+    DatasetOptionsAwsRdsPostgres,
+    DatasetOptionsAwsRdsPostgresFromJSON,
+    DatasetOptionsAwsRdsPostgresFromJSONTyped,
+    DatasetOptionsAwsRdsPostgresToJSON,
+} from './DatasetOptionsAwsRdsPostgres';
+import {
+    DatasetOptionsAwsRdsSqlServer,
+    DatasetOptionsAwsRdsSqlServerFromJSON,
+    DatasetOptionsAwsRdsSqlServerFromJSONTyped,
+    DatasetOptionsAwsRdsSqlServerToJSON,
+} from './DatasetOptionsAwsRdsSqlServer';
+import {
+    DatasetOptionsAwsRedshiftServerless,
+    DatasetOptionsAwsRedshiftServerlessFromJSON,
+    DatasetOptionsAwsRedshiftServerlessFromJSONTyped,
+    DatasetOptionsAwsRedshiftServerlessToJSON,
+} from './DatasetOptionsAwsRedshiftServerless';
+import {
+    DatasetOptionsAzureSqlServer,
+    DatasetOptionsAzureSqlServerFromJSON,
+    DatasetOptionsAzureSqlServerFromJSONTyped,
+    DatasetOptionsAzureSqlServerToJSON,
+} from './DatasetOptionsAzureSqlServer';
+import {
     DatasetOptionsBigQuery,
     DatasetOptionsBigQueryFromJSON,
     DatasetOptionsBigQueryFromJSONTyped,
@@ -25,24 +67,78 @@ import {
     DatasetOptionsClassicToJSON,
 } from './DatasetOptionsClassic';
 import {
+    DatasetOptionsGcpCloudSqlMysql,
+    DatasetOptionsGcpCloudSqlMysqlFromJSON,
+    DatasetOptionsGcpCloudSqlMysqlFromJSONTyped,
+    DatasetOptionsGcpCloudSqlMysqlToJSON,
+} from './DatasetOptionsGcpCloudSqlMysql';
+import {
+    DatasetOptionsGcpCloudSqlPostgres,
+    DatasetOptionsGcpCloudSqlPostgresFromJSON,
+    DatasetOptionsGcpCloudSqlPostgresFromJSONTyped,
+    DatasetOptionsGcpCloudSqlPostgresToJSON,
+} from './DatasetOptionsGcpCloudSqlPostgres';
+import {
+    DatasetOptionsGcpCloudSqlSqlServer,
+    DatasetOptionsGcpCloudSqlSqlServerFromJSON,
+    DatasetOptionsGcpCloudSqlSqlServerFromJSONTyped,
+    DatasetOptionsGcpCloudSqlSqlServerToJSON,
+} from './DatasetOptionsGcpCloudSqlSqlServer';
+import {
+    DatasetOptionsGcpGcsCsv,
+    DatasetOptionsGcpGcsCsvFromJSON,
+    DatasetOptionsGcpGcsCsvFromJSONTyped,
+    DatasetOptionsGcpGcsCsvToJSON,
+} from './DatasetOptionsGcpGcsCsv';
+import {
     DatasetOptionsHostedCsv,
     DatasetOptionsHostedCsvFromJSON,
     DatasetOptionsHostedCsvFromJSONTyped,
     DatasetOptionsHostedCsvToJSON,
 } from './DatasetOptionsHostedCsv';
 import {
+    DatasetOptionsMysql,
+    DatasetOptionsMysqlFromJSON,
+    DatasetOptionsMysqlFromJSONTyped,
+    DatasetOptionsMysqlToJSON,
+} from './DatasetOptionsMysql';
+import {
+    DatasetOptionsPostgres,
+    DatasetOptionsPostgresFromJSON,
+    DatasetOptionsPostgresFromJSONTyped,
+    DatasetOptionsPostgresToJSON,
+} from './DatasetOptionsPostgres';
+import {
+    DatasetOptionsRedshift,
+    DatasetOptionsRedshiftFromJSON,
+    DatasetOptionsRedshiftFromJSONTyped,
+    DatasetOptionsRedshiftToJSON,
+} from './DatasetOptionsRedshift';
+import {
+    DatasetOptionsS3Csv,
+    DatasetOptionsS3CsvFromJSON,
+    DatasetOptionsS3CsvFromJSONTyped,
+    DatasetOptionsS3CsvToJSON,
+} from './DatasetOptionsS3Csv';
+import {
     DatasetOptionsSnowflake,
     DatasetOptionsSnowflakeFromJSON,
     DatasetOptionsSnowflakeFromJSONTyped,
     DatasetOptionsSnowflakeToJSON,
 } from './DatasetOptionsSnowflake';
+import {
+    DatasetOptionsSqlServer,
+    DatasetOptionsSqlServerFromJSON,
+    DatasetOptionsSqlServerFromJSONTyped,
+    DatasetOptionsSqlServerToJSON,
+} from './DatasetOptionsSqlServer';
 
 /**
  * @type DatasetOptions
  * Dataset connection options
  * @export
  */
-export type DatasetOptions = { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'snowflake' } & DatasetOptionsSnowflake;
+export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer;
 
 export function DatasetOptionsFromJSON(json: any): DatasetOptions {
     return DatasetOptionsFromJSONTyped(json, false);
@@ -53,14 +149,46 @@ export function DatasetOptionsFromJSONTyped(json: any, ignoreDiscriminator: bool
         return json;
     }
     switch (json['type']) {
+        case 'aws_aurora_mysql':
+            return {...DatasetOptionsAwsAuroraMysqlFromJSONTyped(json, true), type: 'aws_aurora_mysql'};
+        case 'aws_aurora_postgres':
+            return {...DatasetOptionsAwsAuroraPostgresFromJSONTyped(json, true), type: 'aws_aurora_postgres'};
+        case 'aws_rds_mysql':
+            return {...DatasetOptionsAwsRdsMysqlFromJSONTyped(json, true), type: 'aws_rds_mysql'};
+        case 'aws_rds_postgres':
+            return {...DatasetOptionsAwsRdsPostgresFromJSONTyped(json, true), type: 'aws_rds_postgres'};
+        case 'aws_rds_sql_server':
+            return {...DatasetOptionsAwsRdsSqlServerFromJSONTyped(json, true), type: 'aws_rds_sql_server'};
+        case 'aws_redshift_serverless':
+            return {...DatasetOptionsAwsRedshiftServerlessFromJSONTyped(json, true), type: 'aws_redshift_serverless'};
+        case 'azure_sql_server':
+            return {...DatasetOptionsAzureSqlServerFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...DatasetOptionsBigQueryFromJSONTyped(json, true), type: 'bigquery'};
         case 'classic':
             return {...DatasetOptionsClassicFromJSONTyped(json, true), type: 'classic'};
+        case 'gcp_cloud_sql_mysql':
+            return {...DatasetOptionsGcpCloudSqlMysqlFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
+        case 'gcp_cloud_sql_postgres':
+            return {...DatasetOptionsGcpCloudSqlPostgresFromJSONTyped(json, true), type: 'gcp_cloud_sql_postgres'};
+        case 'gcp_cloud_sql_sql_server':
+            return {...DatasetOptionsGcpCloudSqlSqlServerFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
+        case 'gcp_gcs_csv':
+            return {...DatasetOptionsGcpGcsCsvFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'mysql':
+            return {...DatasetOptionsMysqlFromJSONTyped(json, true), type: 'mysql'};
+        case 'postgres':
+            return {...DatasetOptionsPostgresFromJSONTyped(json, true), type: 'postgres'};
+        case 'redshift':
+            return {...DatasetOptionsRedshiftFromJSONTyped(json, true), type: 'redshift'};
+        case 's3_csv':
+            return {...DatasetOptionsS3CsvFromJSONTyped(json, true), type: 's3_csv'};
         case 'snowflake':
             return {...DatasetOptionsSnowflakeFromJSONTyped(json, true), type: 'snowflake'};
+        case 'sql_server':
+            return {...DatasetOptionsSqlServerFromJSONTyped(json, true), type: 'sql_server'};
         default:
             throw new Error(`No variant of DatasetOptions exists with 'type=${json['type']}'`);
     }
@@ -74,14 +202,46 @@ export function DatasetOptionsToJSON(value?: DatasetOptions | null): any {
         return null;
     }
     switch (value['type']) {
+        case 'aws_aurora_mysql':
+            return DatasetOptionsAwsAuroraMysqlToJSON(value);
+        case 'aws_aurora_postgres':
+            return DatasetOptionsAwsAuroraPostgresToJSON(value);
+        case 'aws_rds_mysql':
+            return DatasetOptionsAwsRdsMysqlToJSON(value);
+        case 'aws_rds_postgres':
+            return DatasetOptionsAwsRdsPostgresToJSON(value);
+        case 'aws_rds_sql_server':
+            return DatasetOptionsAwsRdsSqlServerToJSON(value);
+        case 'aws_redshift_serverless':
+            return DatasetOptionsAwsRedshiftServerlessToJSON(value);
+        case 'azure_sql_server':
+            return DatasetOptionsAzureSqlServerToJSON(value);
         case 'bigquery':
             return DatasetOptionsBigQueryToJSON(value);
         case 'classic':
             return DatasetOptionsClassicToJSON(value);
+        case 'gcp_cloud_sql_mysql':
+            return DatasetOptionsGcpCloudSqlMysqlToJSON(value);
+        case 'gcp_cloud_sql_postgres':
+            return DatasetOptionsGcpCloudSqlPostgresToJSON(value);
+        case 'gcp_cloud_sql_sql_server':
+            return DatasetOptionsGcpCloudSqlSqlServerToJSON(value);
+        case 'gcp_gcs_csv':
+            return DatasetOptionsGcpGcsCsvToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvToJSON(value);
+        case 'mysql':
+            return DatasetOptionsMysqlToJSON(value);
+        case 'postgres':
+            return DatasetOptionsPostgresToJSON(value);
+        case 'redshift':
+            return DatasetOptionsRedshiftToJSON(value);
+        case 's3_csv':
+            return DatasetOptionsS3CsvToJSON(value);
         case 'snowflake':
             return DatasetOptionsSnowflakeToJSON(value);
+        case 'sql_server':
+            return DatasetOptionsSqlServerToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptions exists with 'type=${value['type']}'`);
     }

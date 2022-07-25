@@ -15,9 +15,6 @@
 import { exists, mapValues } from '../runtime';
 /**
  * AWS Redshift connection options
- * 
- * Prerequisites:
- * * A database system user must be configured with necessary permissions
  * @export
  * @interface ConnectionOptionsRedshift
  */
@@ -29,11 +26,35 @@ export interface ConnectionOptionsRedshift {
      */
     aws_region: string;
     /**
-     * Sometimes Redshift is deployed on a private IP behind an AWS Load Balancer. In this case, specify the DNS name here and Faraday will check for an SSL certificate matching the name of the underlying Redshift cluster.
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsRedshift
+     */
+    database: string;
+    /**
+     * Host
+     * @type {string}
+     * @memberof ConnectionOptionsRedshift
+     */
+    host: string;
+    /**
+     * In case the host is deployed behind a load balancer.
      * @type {string}
      * @memberof ConnectionOptionsRedshift
      */
     load_balancer?: string;
+    /**
+     * Password
+     * @type {string}
+     * @memberof ConnectionOptionsRedshift
+     */
+    password: string;
+    /**
+     * Port
+     * @type {number}
+     * @memberof ConnectionOptionsRedshift
+     */
+    port: number;
     /**
      * Redshift tables exist inside of schemas, e.g. ANALYTICS or PUBLIC.
      * @type {string}
@@ -41,17 +62,23 @@ export interface ConnectionOptionsRedshift {
      */
     schema: string;
     /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsRedshift
+     */
+    ssh_bastion?: string;
+    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsRedshift
      */
     type: string;
     /**
-     * This URL (starting with redshift://) should reference the cluster's own (possibly private) DNS name. If you use a load balancer in front of it, specify that in other options.
+     * User
      * @type {string}
      * @memberof ConnectionOptionsRedshift
      */
-    url: string;
+    user: string;
 }
 
 export function ConnectionOptionsRedshiftFromJSON(json: any): ConnectionOptionsRedshift {
@@ -65,10 +92,15 @@ export function ConnectionOptionsRedshiftFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'aws_region': json['aws_region'],
+        'database': json['database'],
+        'host': json['host'],
         'load_balancer': !exists(json, 'load_balancer') ? undefined : json['load_balancer'],
+        'password': json['password'],
+        'port': json['port'],
         'schema': json['schema'],
+        'ssh_bastion': !exists(json, 'ssh_bastion') ? undefined : json['ssh_bastion'],
         'type': json['type'],
-        'url': json['url'],
+        'user': json['user'],
     };
 }
 
@@ -82,10 +114,15 @@ export function ConnectionOptionsRedshiftToJSON(value?: ConnectionOptionsRedshif
     return {
         
         'aws_region': value.aws_region,
+        'database': value.database,
+        'host': value.host,
         'load_balancer': value.load_balancer,
+        'password': value.password,
+        'port': value.port,
         'schema': value.schema,
+        'ssh_bastion': value.ssh_bastion,
         'type': value.type,
-        'url': value.url,
+        'user': value.user,
     };
 }
 

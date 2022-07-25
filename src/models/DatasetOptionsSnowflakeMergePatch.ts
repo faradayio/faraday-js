@@ -22,18 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsSnowflakeMergePatch {
     /**
-     * Database
-     * @type {string}
-     * @memberof DatasetOptionsSnowflakeMergePatch
-     */
-    database?: string;
-    /**
-     * Schema
-     * @type {string}
-     * @memberof DatasetOptionsSnowflakeMergePatch
-     */
-    schema?: string;
-    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsSnowflakeMergePatch
@@ -57,8 +45,6 @@ export function DatasetOptionsSnowflakeMergePatchFromJSONTyped(json: any, ignore
     }
     return {
         
-        'database': !exists(json, 'database') ? undefined : json['database'],
-        'schema': !exists(json, 'schema') ? undefined : json['schema'],
         'table_name': !exists(json, 'table_name') ? undefined : json['table_name'],
         'type': json['type'],
     };
@@ -73,8 +59,6 @@ export function DatasetOptionsSnowflakeMergePatchToJSON(value?: DatasetOptionsSn
     }
     return {
         
-        'database': value.database,
-        'schema': value.schema,
         'table_name': value.table_name,
         'type': value.type,
     };

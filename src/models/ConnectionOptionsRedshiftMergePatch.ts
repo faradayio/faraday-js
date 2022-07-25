@@ -17,9 +17,6 @@ import { exists, mapValues } from '../runtime';
  * (Parameters used to PATCH the `ConnectionOptionsRedshift` type.)
  * 
  * AWS Redshift connection options
- * 
- * Prerequisites:
- * * A database system user must be configured with necessary permissions
  * @export
  * @interface ConnectionOptionsRedshiftMergePatch
  */
@@ -31,11 +28,35 @@ export interface ConnectionOptionsRedshiftMergePatch {
      */
     aws_region?: string;
     /**
-     * Sometimes Redshift is deployed on a private IP behind an AWS Load Balancer. In this case, specify the DNS name here and Faraday will check for an SSL certificate matching the name of the underlying Redshift cluster.
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsRedshiftMergePatch
+     */
+    database?: string;
+    /**
+     * Host
+     * @type {string}
+     * @memberof ConnectionOptionsRedshiftMergePatch
+     */
+    host?: string;
+    /**
+     * In case the host is deployed behind a load balancer.
      * @type {string}
      * @memberof ConnectionOptionsRedshiftMergePatch
      */
     load_balancer?: string | null;
+    /**
+     * Password
+     * @type {string}
+     * @memberof ConnectionOptionsRedshiftMergePatch
+     */
+    password?: string;
+    /**
+     * Port
+     * @type {number}
+     * @memberof ConnectionOptionsRedshiftMergePatch
+     */
+    port?: number;
     /**
      * Redshift tables exist inside of schemas, e.g. ANALYTICS or PUBLIC.
      * @type {string}
@@ -43,17 +64,23 @@ export interface ConnectionOptionsRedshiftMergePatch {
      */
     schema?: string;
     /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsRedshiftMergePatch
+     */
+    ssh_bastion?: string | null;
+    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsRedshiftMergePatch
      */
     type: string;
     /**
-     * This URL (starting with redshift://) should reference the cluster's own (possibly private) DNS name. If you use a load balancer in front of it, specify that in other options.
+     * User
      * @type {string}
      * @memberof ConnectionOptionsRedshiftMergePatch
      */
-    url?: string;
+    user?: string;
 }
 
 export function ConnectionOptionsRedshiftMergePatchFromJSON(json: any): ConnectionOptionsRedshiftMergePatch {
@@ -67,10 +94,15 @@ export function ConnectionOptionsRedshiftMergePatchFromJSONTyped(json: any, igno
     return {
         
         'aws_region': !exists(json, 'aws_region') ? undefined : json['aws_region'],
+        'database': !exists(json, 'database') ? undefined : json['database'],
+        'host': !exists(json, 'host') ? undefined : json['host'],
         'load_balancer': !exists(json, 'load_balancer') ? undefined : json['load_balancer'],
+        'password': !exists(json, 'password') ? undefined : json['password'],
+        'port': !exists(json, 'port') ? undefined : json['port'],
         'schema': !exists(json, 'schema') ? undefined : json['schema'],
+        'ssh_bastion': !exists(json, 'ssh_bastion') ? undefined : json['ssh_bastion'],
         'type': json['type'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
+        'user': !exists(json, 'user') ? undefined : json['user'],
     };
 }
 
@@ -84,10 +116,15 @@ export function ConnectionOptionsRedshiftMergePatchToJSON(value?: ConnectionOpti
     return {
         
         'aws_region': value.aws_region,
+        'database': value.database,
+        'host': value.host,
         'load_balancer': value.load_balancer,
+        'password': value.password,
+        'port': value.port,
         'schema': value.schema,
+        'ssh_bastion': value.ssh_bastion,
         'type': value.type,
-        'url': value.url,
+        'user': value.user,
     };
 }
 

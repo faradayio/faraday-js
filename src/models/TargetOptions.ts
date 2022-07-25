@@ -13,6 +13,42 @@
  */
 
 import {
+    TargetOptionsAwsAuroraMysql,
+    TargetOptionsAwsAuroraMysqlFromJSON,
+    TargetOptionsAwsAuroraMysqlFromJSONTyped,
+    TargetOptionsAwsAuroraMysqlToJSON,
+} from './TargetOptionsAwsAuroraMysql';
+import {
+    TargetOptionsAwsAuroraPostgres,
+    TargetOptionsAwsAuroraPostgresFromJSON,
+    TargetOptionsAwsAuroraPostgresFromJSONTyped,
+    TargetOptionsAwsAuroraPostgresToJSON,
+} from './TargetOptionsAwsAuroraPostgres';
+import {
+    TargetOptionsAwsRdsMysql,
+    TargetOptionsAwsRdsMysqlFromJSON,
+    TargetOptionsAwsRdsMysqlFromJSONTyped,
+    TargetOptionsAwsRdsMysqlToJSON,
+} from './TargetOptionsAwsRdsMysql';
+import {
+    TargetOptionsAwsRdsPostgres,
+    TargetOptionsAwsRdsPostgresFromJSON,
+    TargetOptionsAwsRdsPostgresFromJSONTyped,
+    TargetOptionsAwsRdsPostgresToJSON,
+} from './TargetOptionsAwsRdsPostgres';
+import {
+    TargetOptionsAwsRdsSqlServer,
+    TargetOptionsAwsRdsSqlServerFromJSON,
+    TargetOptionsAwsRdsSqlServerFromJSONTyped,
+    TargetOptionsAwsRdsSqlServerToJSON,
+} from './TargetOptionsAwsRdsSqlServer';
+import {
+    TargetOptionsAwsRedshiftServerless,
+    TargetOptionsAwsRedshiftServerlessFromJSON,
+    TargetOptionsAwsRedshiftServerlessFromJSONTyped,
+    TargetOptionsAwsRedshiftServerlessToJSON,
+} from './TargetOptionsAwsRedshiftServerless';
+import {
     TargetOptionsAzureSqlServer,
     TargetOptionsAzureSqlServerFromJSON,
     TargetOptionsAzureSqlServerFromJSONTyped,
@@ -25,11 +61,47 @@ import {
     TargetOptionsBigQueryToJSON,
 } from './TargetOptionsBigQuery';
 import {
+    TargetOptionsGcpCloudSqlMysql,
+    TargetOptionsGcpCloudSqlMysqlFromJSON,
+    TargetOptionsGcpCloudSqlMysqlFromJSONTyped,
+    TargetOptionsGcpCloudSqlMysqlToJSON,
+} from './TargetOptionsGcpCloudSqlMysql';
+import {
+    TargetOptionsGcpCloudSqlPostgres,
+    TargetOptionsGcpCloudSqlPostgresFromJSON,
+    TargetOptionsGcpCloudSqlPostgresFromJSONTyped,
+    TargetOptionsGcpCloudSqlPostgresToJSON,
+} from './TargetOptionsGcpCloudSqlPostgres';
+import {
+    TargetOptionsGcpCloudSqlSqlServer,
+    TargetOptionsGcpCloudSqlSqlServerFromJSON,
+    TargetOptionsGcpCloudSqlSqlServerFromJSONTyped,
+    TargetOptionsGcpCloudSqlSqlServerToJSON,
+} from './TargetOptionsGcpCloudSqlSqlServer';
+import {
+    TargetOptionsGcpGcsCsv,
+    TargetOptionsGcpGcsCsvFromJSON,
+    TargetOptionsGcpGcsCsvFromJSONTyped,
+    TargetOptionsGcpGcsCsvToJSON,
+} from './TargetOptionsGcpGcsCsv';
+import {
     TargetOptionsHostedCsv,
     TargetOptionsHostedCsvFromJSON,
     TargetOptionsHostedCsvFromJSONTyped,
     TargetOptionsHostedCsvToJSON,
 } from './TargetOptionsHostedCsv';
+import {
+    TargetOptionsMysql,
+    TargetOptionsMysqlFromJSON,
+    TargetOptionsMysqlFromJSONTyped,
+    TargetOptionsMysqlToJSON,
+} from './TargetOptionsMysql';
+import {
+    TargetOptionsPostgres,
+    TargetOptionsPostgresFromJSON,
+    TargetOptionsPostgresFromJSONTyped,
+    TargetOptionsPostgresToJSON,
+} from './TargetOptionsPostgres';
 import {
     TargetOptionsRedshift,
     TargetOptionsRedshiftFromJSON,
@@ -48,6 +120,12 @@ import {
     TargetOptionsSnowflakeFromJSONTyped,
     TargetOptionsSnowflakeToJSON,
 } from './TargetOptionsSnowflake';
+import {
+    TargetOptionsSqlServer,
+    TargetOptionsSqlServerFromJSON,
+    TargetOptionsSqlServerFromJSONTyped,
+    TargetOptionsSqlServerToJSON,
+} from './TargetOptionsSqlServer';
 
 /**
  * @type TargetOptions
@@ -63,7 +141,7 @@ import {
  *   * `hosted_csv` - Faraday hosts a CSV for you to retrieve by your choice of protocol: HTTPS, S3, GCS, or SFTP.
  * @export
  */
-export type TargetOptions = { type: 'azure_sql_server' } & TargetOptionsAzureSqlServer | { type: 'bigquery' } & TargetOptionsBigQuery | { type: 'hosted_csv' } & TargetOptionsHostedCsv | { type: 'redshift' } & TargetOptionsRedshift | { type: 's3_csv' } & TargetOptionsS3Csv | { type: 'snowflake' } & TargetOptionsSnowflake;
+export type TargetOptions = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServer | { type: 'bigquery' } & TargetOptionsBigQuery | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsv | { type: 'hosted_csv' } & TargetOptionsHostedCsv | { type: 'mysql' } & TargetOptionsMysql | { type: 'postgres' } & TargetOptionsPostgres | { type: 'redshift' } & TargetOptionsRedshift | { type: 's3_csv' } & TargetOptionsS3Csv | { type: 'snowflake' } & TargetOptionsSnowflake | { type: 'sql_server' } & TargetOptionsSqlServer;
 
 export function TargetOptionsFromJSON(json: any): TargetOptions {
     return TargetOptionsFromJSONTyped(json, false);
@@ -74,18 +152,44 @@ export function TargetOptionsFromJSONTyped(json: any, ignoreDiscriminator: boole
         return json;
     }
     switch (json['type']) {
+        case 'aws_aurora_mysql':
+            return {...TargetOptionsAwsAuroraMysqlFromJSONTyped(json, true), type: 'aws_aurora_mysql'};
+        case 'aws_aurora_postgres':
+            return {...TargetOptionsAwsAuroraPostgresFromJSONTyped(json, true), type: 'aws_aurora_postgres'};
+        case 'aws_rds_mysql':
+            return {...TargetOptionsAwsRdsMysqlFromJSONTyped(json, true), type: 'aws_rds_mysql'};
+        case 'aws_rds_postgres':
+            return {...TargetOptionsAwsRdsPostgresFromJSONTyped(json, true), type: 'aws_rds_postgres'};
+        case 'aws_rds_sql_server':
+            return {...TargetOptionsAwsRdsSqlServerFromJSONTyped(json, true), type: 'aws_rds_sql_server'};
+        case 'aws_redshift_serverless':
+            return {...TargetOptionsAwsRedshiftServerlessFromJSONTyped(json, true), type: 'aws_redshift_serverless'};
         case 'azure_sql_server':
             return {...TargetOptionsAzureSqlServerFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...TargetOptionsBigQueryFromJSONTyped(json, true), type: 'bigquery'};
+        case 'gcp_cloud_sql_mysql':
+            return {...TargetOptionsGcpCloudSqlMysqlFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
+        case 'gcp_cloud_sql_postgres':
+            return {...TargetOptionsGcpCloudSqlPostgresFromJSONTyped(json, true), type: 'gcp_cloud_sql_postgres'};
+        case 'gcp_cloud_sql_sql_server':
+            return {...TargetOptionsGcpCloudSqlSqlServerFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
+        case 'gcp_gcs_csv':
+            return {...TargetOptionsGcpGcsCsvFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...TargetOptionsHostedCsvFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'mysql':
+            return {...TargetOptionsMysqlFromJSONTyped(json, true), type: 'mysql'};
+        case 'postgres':
+            return {...TargetOptionsPostgresFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...TargetOptionsRedshiftFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...TargetOptionsS3CsvFromJSONTyped(json, true), type: 's3_csv'};
         case 'snowflake':
             return {...TargetOptionsSnowflakeFromJSONTyped(json, true), type: 'snowflake'};
+        case 'sql_server':
+            return {...TargetOptionsSqlServerFromJSONTyped(json, true), type: 'sql_server'};
         default:
             throw new Error(`No variant of TargetOptions exists with 'type=${json['type']}'`);
     }
@@ -99,18 +203,44 @@ export function TargetOptionsToJSON(value?: TargetOptions | null): any {
         return null;
     }
     switch (value['type']) {
+        case 'aws_aurora_mysql':
+            return TargetOptionsAwsAuroraMysqlToJSON(value);
+        case 'aws_aurora_postgres':
+            return TargetOptionsAwsAuroraPostgresToJSON(value);
+        case 'aws_rds_mysql':
+            return TargetOptionsAwsRdsMysqlToJSON(value);
+        case 'aws_rds_postgres':
+            return TargetOptionsAwsRdsPostgresToJSON(value);
+        case 'aws_rds_sql_server':
+            return TargetOptionsAwsRdsSqlServerToJSON(value);
+        case 'aws_redshift_serverless':
+            return TargetOptionsAwsRedshiftServerlessToJSON(value);
         case 'azure_sql_server':
             return TargetOptionsAzureSqlServerToJSON(value);
         case 'bigquery':
             return TargetOptionsBigQueryToJSON(value);
+        case 'gcp_cloud_sql_mysql':
+            return TargetOptionsGcpCloudSqlMysqlToJSON(value);
+        case 'gcp_cloud_sql_postgres':
+            return TargetOptionsGcpCloudSqlPostgresToJSON(value);
+        case 'gcp_cloud_sql_sql_server':
+            return TargetOptionsGcpCloudSqlSqlServerToJSON(value);
+        case 'gcp_gcs_csv':
+            return TargetOptionsGcpGcsCsvToJSON(value);
         case 'hosted_csv':
             return TargetOptionsHostedCsvToJSON(value);
+        case 'mysql':
+            return TargetOptionsMysqlToJSON(value);
+        case 'postgres':
+            return TargetOptionsPostgresToJSON(value);
         case 'redshift':
             return TargetOptionsRedshiftToJSON(value);
         case 's3_csv':
             return TargetOptionsS3CsvToJSON(value);
         case 'snowflake':
             return TargetOptionsSnowflakeToJSON(value);
+        case 'sql_server':
+            return TargetOptionsSqlServerToJSON(value);
         default:
             throw new Error(`No variant of TargetOptions exists with 'type=${value['type']}'`);
     }

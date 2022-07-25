@@ -22,18 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TargetOptionsSnowflakePut {
     /**
-     * Database
-     * @type {string}
-     * @memberof TargetOptionsSnowflakePut
-     */
-    database: string;
-    /**
-     * Schema
-     * @type {string}
-     * @memberof TargetOptionsSnowflakePut
-     */
-    schema: string;
-    /**
      * Table name
      * @type {string}
      * @memberof TargetOptionsSnowflakePut
@@ -57,8 +45,6 @@ export function TargetOptionsSnowflakePutFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'database': json['database'],
-        'schema': json['schema'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -73,8 +59,6 @@ export function TargetOptionsSnowflakePutToJSON(value?: TargetOptionsSnowflakePu
     }
     return {
         
-        'database': value.database,
-        'schema': value.schema,
         'table_name': value.table_name,
         'type': value.type,
     };
