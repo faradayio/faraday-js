@@ -24,6 +24,7 @@ export enum TraitCategory {
     FigSociety = 'fig/society',
     FigEnvironment = 'fig/environment',
     FigLifestyle = 'fig/lifestyle',
+    FigGeography = 'fig/geography',
     UserDefined = 'user_defined'
 }
 
