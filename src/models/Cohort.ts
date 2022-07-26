@@ -79,7 +79,7 @@ export interface Cohort {
      * @type {string}
      * @memberof Cohort
      */
-    name?: string;
+    name: string;
     /**
      * Count of the population.
      * @type {number}
@@ -152,7 +152,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'],
         'population_count': !exists(json, 'population_count') ? undefined : json['population_count'],
         'recency': !exists(json, 'recency') ? undefined : RecencyFromJSON(json['recency']),
         'resource_type': json['resource_type'],

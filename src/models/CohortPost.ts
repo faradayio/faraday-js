@@ -63,7 +63,7 @@ export interface CohortPost {
      * @type {string}
      * @memberof CohortPost
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {Recency}
@@ -98,7 +98,7 @@ export function CohortPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'],
         'recency': !exists(json, 'recency') ? undefined : RecencyFromJSON(json['recency']),
         'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
         'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),

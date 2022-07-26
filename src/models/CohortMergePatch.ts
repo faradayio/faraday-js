@@ -63,7 +63,7 @@ export interface CohortMergePatch {
      * @type {string}
      * @memberof CohortMergePatch
      */
-    name?: string | null;
+    name?: string;
     /**
      * 
      * @type {Recency}
