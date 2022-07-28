@@ -18,6 +18,9 @@ import {
     Cohort,
     CohortFromJSON,
     CohortToJSON,
+    Dataset,
+    DatasetFromJSON,
+    DatasetToJSON,
     Outcome,
     OutcomeFromJSON,
     OutcomeToJSON,
@@ -47,6 +50,10 @@ export interface DeleteScopeRequest {
 }
 
 export interface GetScopeRequest {
+    scopeId: string;
+}
+
+export interface GetScopeDatasetsRequest {
     scopeId: string;
 }
 
@@ -201,6 +208,46 @@ export class ScopesApi extends runtime.BaseAPI {
      */
     async getScope(scopeId: string, ): Promise<Scope> {
         const response = await this.getScopeRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Retrieve all datasets associated with a scope. For example, if your scope has population_cohorts, you built those cohorts using data from one of your datasets. This endpoint gets all such datasets. This can be used with referenced targets, to figure out which source tables the target can reference.
+     * Retrieve all datasets associated with a scope
+     */
+    private async getScopeDatasetsRaw(requestParameters: GetScopeDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeDatasets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/datasets`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetFromJSON));
+    }
+
+    /**
+     * Retrieve all datasets associated with a scope. For example, if your scope has population_cohorts, you built those cohorts using data from one of your datasets. This endpoint gets all such datasets. This can be used with referenced targets, to figure out which source tables the target can reference.
+     * Retrieve all datasets associated with a scope
+     */
+    async getScopeDatasets(scopeId: string, ): Promise<Array<Dataset>> {
+        const response = await this.getScopeDatasetsRaw({ scopeId: scopeId }, );
         return await response.value();
     }
 
