@@ -20,11 +20,11 @@ import {
     CohortTraitToJSON,
 } from './CohortTrait';
 import {
-    Recency,
-    RecencyFromJSON,
-    RecencyFromJSONTyped,
-    RecencyToJSON,
-} from './Recency';
+    RecencyPut,
+    RecencyPutFromJSON,
+    RecencyPutFromJSONTyped,
+    RecencyPutToJSON,
+} from './RecencyPut';
 
 /**
  * (Parameters used to PUT a value of the `Cohort` type.)
@@ -66,10 +66,10 @@ export interface CohortPut {
     name: string;
     /**
      * 
-     * @type {Recency}
+     * @type {RecencyPut}
      * @memberof CohortPut
      */
-    recency?: Recency;
+    recency?: RecencyPut;
     /**
      * List of traits to filter cohort membership
      * @type {Array<CohortTrait>}
@@ -93,7 +93,7 @@ export function CohortPutFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': json['name'],
-        'recency': !exists(json, 'recency') ? undefined : RecencyFromJSON(json['recency']),
+        'recency': !exists(json, 'recency') ? undefined : RecencyPutFromJSON(json['recency']),
         'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
 }
@@ -112,7 +112,7 @@ export function CohortPutToJSON(value?: CohortPut | null): any {
         'min_count': value.min_count,
         'min_value': value.min_value,
         'name': value.name,
-        'recency': RecencyToJSON(value.recency),
+        'recency': RecencyPutToJSON(value.recency),
         'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
     };
 }

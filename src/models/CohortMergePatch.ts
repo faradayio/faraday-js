@@ -20,11 +20,11 @@ import {
     CohortTraitToJSON,
 } from './CohortTrait';
 import {
-    Recency,
-    RecencyFromJSON,
-    RecencyFromJSONTyped,
-    RecencyToJSON,
-} from './Recency';
+    RecencyMergePatch,
+    RecencyMergePatchFromJSON,
+    RecencyMergePatchFromJSONTyped,
+    RecencyMergePatchToJSON,
+} from './RecencyMergePatch';
 
 /**
  * (Parameters used to PATCH the `Cohort` type.)
@@ -66,10 +66,10 @@ export interface CohortMergePatch {
     name?: string;
     /**
      * 
-     * @type {Recency}
+     * @type {RecencyMergePatch}
      * @memberof CohortMergePatch
      */
-    recency?: Recency | null;
+    recency?: RecencyMergePatch | null;
     /**
      * List of traits to filter cohort membership
      * @type {Array<CohortTrait>}
@@ -93,7 +93,7 @@ export function CohortMergePatchFromJSONTyped(json: any, ignoreDiscriminator: bo
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'recency': !exists(json, 'recency') ? undefined : RecencyFromJSON(json['recency']),
+        'recency': !exists(json, 'recency') ? undefined : RecencyMergePatchFromJSON(json['recency']),
         'traits': !exists(json, 'traits') ? undefined : (json['traits'] === null ? null : (json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
 }
@@ -112,7 +112,7 @@ export function CohortMergePatchToJSON(value?: CohortMergePatch | null): any {
         'min_count': value.min_count,
         'min_value': value.min_value,
         'name': value.name,
-        'recency': RecencyToJSON(value.recency),
+        'recency': RecencyMergePatchToJSON(value.recency),
         'traits': value.traits === undefined ? undefined : (value.traits === null ? null : (value.traits as Array<any>).map(CohortTraitToJSON)),
     };
 }

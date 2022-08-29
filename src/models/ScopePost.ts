@@ -58,7 +58,7 @@ export interface ScopePost {
      * @type {boolean}
      * @memberof ScopePost
      */
-    preview?: boolean;
+    preview: boolean;
 }
 
 export function ScopePostFromJSON(json: any): ScopePost {
@@ -74,7 +74,7 @@ export function ScopePostFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'name': json['name'],
         'payload': ScopePayloadPostFromJSON(json['payload']),
         'population': ScopePopulationPostFromJSON(json['population']),
-        'preview': !exists(json, 'preview') ? undefined : json['preview'],
+        'preview': json['preview'],
     };
 }
 

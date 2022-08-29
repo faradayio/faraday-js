@@ -21,6 +21,7 @@
  * 
  * - BAD_REQUEST: The request could not be validated.
  * - FORBIDDEN: You do not have permission to access the specified resource.
+ * - MAX_RESOURCES_REACHED: You have created too many of this resource type on your account. You must delete some before making more.
  * - INTERNAL_SERVER_ERROR: An internal error of an unknown type occurred.
  * - INVALID_AUTHORIZATION: The Authorization header could not be parsed.
  * - NOT_FOUND: The specified resource could not be found.
@@ -42,6 +43,7 @@
 export enum ErrorCode {
     BadRequest = 'BAD_REQUEST',
     Forbidden = 'FORBIDDEN',
+    MaxResourcesReached = 'MAX_RESOURCES_REACHED',
     InternalServerError = 'INTERNAL_SERVER_ERROR',
     InvalidAuthorization = 'INVALID_AUTHORIZATION',
     NotFound = 'NOT_FOUND',

@@ -75,6 +75,12 @@ export interface DatasetPost {
      */
     incremental_column?: string;
     /**
+     * An identifying name for this dataset.
+     * @type {string}
+     * @memberof DatasetPost
+     */
+    name: string;
+    /**
      * 
      * @type {DatasetOptionsPost}
      * @memberof DatasetPost
@@ -85,7 +91,7 @@ export interface DatasetPost {
      * @type {OutputToStreamsPost}
      * @memberof DatasetPost
      */
-    output_to_streams: OutputToStreamsPost;
+    output_to_streams?: OutputToStreamsPost;
     /**
      * 
      * @type {OutputToTraitsPost}
@@ -94,11 +100,12 @@ export interface DatasetPost {
     output_to_traits?: OutputToTraitsPost;
     /**
      * The name of the column that references an ID from an external system.
+     * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
      * @type {string}
      * @memberof DatasetPost
      */
-    primary_key_column?: string;
+    reference_key_column?: string;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
@@ -127,10 +134,11 @@ export function DatasetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'identity_sets': IdentitySetsPostFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'name': json['name'],
         'options': DatasetOptionsPostFromJSON(json['options']),
-        'output_to_streams': OutputToStreamsPostFromJSON(json['output_to_streams']),
+        'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsPostFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPostFromJSON(json['output_to_traits']),
-        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
+        'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -147,10 +155,11 @@ export function DatasetPostToJSON(value?: DatasetPost | null): any {
         'connection_id': value.connection_id,
         'identity_sets': IdentitySetsPostToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
+        'name': value.name,
         'options': DatasetOptionsPostToJSON(value.options),
         'output_to_streams': OutputToStreamsPostToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPostToJSON(value.output_to_traits),
-        'primary_key_column': value.primary_key_column,
+        'reference_key_column': value.reference_key_column,
         'upsert_columns': value.upsert_columns,
     };
 }

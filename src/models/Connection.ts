@@ -20,6 +20,12 @@ import {
     ConnectionOptionsToJSON,
 } from './ConnectionOptions';
 import {
+    ContentsRow,
+    ContentsRowFromJSON,
+    ContentsRowFromJSONTyped,
+    ContentsRowToJSON,
+} from './ContentsRow';
+import {
     ResourceStatus,
     ResourceStatusFromJSON,
     ResourceStatusFromJSONTyped,
@@ -34,6 +40,18 @@ import {
  * @interface Connection
  */
 export interface Connection {
+    /**
+     * 
+     * @type {Array<ContentsRow>}
+     * @memberof Connection
+     */
+    contents?: Array<ContentsRow>;
+    /**
+     * The error encountered when trying to connect, if any
+     * @type {string}
+     * @memberof Connection
+     */
+    contents_error?: string;
     /**
      * When this resource was created.
      * @type {Date}
@@ -100,6 +118,8 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'contents': !exists(json, 'contents') ? undefined : ((json['contents'] as Array<any>).map(ContentsRowFromJSON)),
+        'contents_error': !exists(json, 'contents_error') ? undefined : json['contents_error'],
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'name': json['name'],
@@ -121,6 +141,8 @@ export function ConnectionToJSON(value?: Connection | null): any {
     }
     return {
         
+        'contents': value.contents === undefined ? undefined : ((value.contents as Array<any>).map(ContentsRowToJSON)),
+        'contents_error': value.contents_error,
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'name': value.name,

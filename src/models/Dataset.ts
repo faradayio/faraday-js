@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DatasetColumn,
+    DatasetColumnFromJSON,
+    DatasetColumnFromJSONTyped,
+    DatasetColumnToJSON,
+} from './DatasetColumn';
+import {
     DatasetOptions,
     DatasetOptionsFromJSON,
     DatasetOptionsFromJSONTyped,
@@ -67,11 +73,26 @@ export interface Dataset {
      */
     created_at: Date;
     /**
+     * An array of columns
+     * @type {Array<DatasetColumn>}
+     * @memberof Dataset
+     */
+    detected_columns?: Array<DatasetColumn>;
+    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Dataset
      */
     id: string;
+    /**
+     * The number of unique people identified in this dataset.
+     * This can be different from the row_count, for example, in a table of orders.
+     * The same person can order multiple things, so there are more rows than identified people.
+     * This will only be displayed if the dataset built successfully.
+     * @type {number}
+     * @memberof Dataset
+     */
+    identified_count?: number;
     /**
      * 
      * @type {IdentitySets}
@@ -91,6 +112,12 @@ export interface Dataset {
      */
     incremental_column?: string;
     /**
+     * An identifying name for this dataset.
+     * @type {string}
+     * @memberof Dataset
+     */
+    name: string;
+    /**
      * 
      * @type {DatasetOptions}
      * @memberof Dataset
@@ -101,7 +128,7 @@ export interface Dataset {
      * @type {OutputToStreams}
      * @memberof Dataset
      */
-    output_to_streams: OutputToStreams;
+    output_to_streams?: OutputToStreams;
     /**
      * 
      * @type {OutputToTraits}
@@ -110,17 +137,25 @@ export interface Dataset {
     output_to_traits?: OutputToTraits;
     /**
      * The name of the column that references an ID from an external system.
+     * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
      * @type {string}
      * @memberof Dataset
      */
-    primary_key_column?: string;
+    reference_key_column?: string;
     /**
      * The type of this resource.
      * @type {string}
      * @memberof Dataset
      */
     resource_type: string;
+    /**
+     * The total number of rows in this dataset.
+     * This will only be displayed if the dataset built successfully.
+     * @type {number}
+     * @memberof Dataset
+     */
+    row_count?: number;
     /**
      * 
      * @type {ResourceStatus}
@@ -172,14 +207,18 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
+        'detected_columns': !exists(json, 'detected_columns') ? undefined : ((json['detected_columns'] as Array<any>).map(DatasetColumnFromJSON)),
         'id': json['id'],
+        'identified_count': !exists(json, 'identified_count') ? undefined : json['identified_count'],
         'identity_sets': IdentitySetsFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'name': json['name'],
         'options': DatasetOptionsFromJSON(json['options']),
-        'output_to_streams': OutputToStreamsFromJSON(json['output_to_streams']),
+        'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsFromJSON(json['output_to_traits']),
-        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
+        'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'resource_type': json['resource_type'],
+        'row_count': !exists(json, 'row_count') ? undefined : json['row_count'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
@@ -199,14 +238,18 @@ export function DatasetToJSON(value?: Dataset | null): any {
         
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
+        'detected_columns': value.detected_columns === undefined ? undefined : ((value.detected_columns as Array<any>).map(DatasetColumnToJSON)),
         'id': value.id,
+        'identified_count': value.identified_count,
         'identity_sets': IdentitySetsToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
+        'name': value.name,
         'options': DatasetOptionsToJSON(value.options),
         'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsToJSON(value.output_to_traits),
-        'primary_key_column': value.primary_key_column,
+        'reference_key_column': value.reference_key_column,
         'resource_type': value.resource_type,
+        'row_count': value.row_count,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,

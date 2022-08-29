@@ -58,7 +58,7 @@ export interface ScopeMergePatch {
      * @type {boolean}
      * @memberof ScopeMergePatch
      */
-    preview?: boolean | null;
+    preview?: boolean;
 }
 
 export function ScopeMergePatchFromJSON(json: any): ScopeMergePatch {

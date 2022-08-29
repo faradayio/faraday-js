@@ -58,7 +58,7 @@ export interface ScopePut {
      * @type {boolean}
      * @memberof ScopePut
      */
-    preview?: boolean;
+    preview: boolean;
 }
 
 export function ScopePutFromJSON(json: any): ScopePut {
@@ -74,7 +74,7 @@ export function ScopePutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'name': json['name'],
         'payload': ScopePayloadPutFromJSON(json['payload']),
         'population': ScopePopulationPutFromJSON(json['population']),
-        'preview': !exists(json, 'preview') ? undefined : json['preview'],
+        'preview': json['preview'],
     };
 }
 

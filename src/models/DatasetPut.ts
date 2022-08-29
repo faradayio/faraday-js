@@ -53,6 +53,12 @@ export interface DatasetPut {
      */
     identity_sets: IdentitySetsPut;
     /**
+     * An identifying name for this dataset.
+     * @type {string}
+     * @memberof DatasetPut
+     */
+    name: string;
+    /**
      * 
      * @type {DatasetOptionsPut}
      * @memberof DatasetPut
@@ -63,7 +69,7 @@ export interface DatasetPut {
      * @type {OutputToStreamsPut}
      * @memberof DatasetPut
      */
-    output_to_streams: OutputToStreamsPut;
+    output_to_streams?: OutputToStreamsPut;
     /**
      * 
      * @type {OutputToTraitsPut}
@@ -72,11 +78,12 @@ export interface DatasetPut {
     output_to_traits?: OutputToTraitsPut;
     /**
      * The name of the column that references an ID from an external system.
+     * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
      * @type {string}
      * @memberof DatasetPut
      */
-    primary_key_column?: string;
+    reference_key_column?: string;
 }
 
 export function DatasetPutFromJSON(json: any): DatasetPut {
@@ -90,10 +97,11 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'identity_sets': IdentitySetsPutFromJSON(json['identity_sets']),
+        'name': json['name'],
         'options': DatasetOptionsPutFromJSON(json['options']),
-        'output_to_streams': OutputToStreamsPutFromJSON(json['output_to_streams']),
+        'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsPutFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
-        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
+        'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
     };
 }
 
@@ -107,10 +115,11 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
     return {
         
         'identity_sets': IdentitySetsPutToJSON(value.identity_sets),
+        'name': value.name,
         'options': DatasetOptionsPutToJSON(value.options),
         'output_to_streams': OutputToStreamsPutToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
-        'primary_key_column': value.primary_key_column,
+        'reference_key_column': value.reference_key_column,
     };
 }
 

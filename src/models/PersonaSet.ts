@@ -39,6 +39,12 @@ import {
  */
 export interface PersonaSet {
     /**
+     * Is the related cohort using this as the primary persona set?
+     * @type {boolean}
+     * @memberof PersonaSet
+     */
+    active?: boolean;
+    /**
      * 
      * @type {string}
      * @memberof PersonaSet
@@ -110,6 +116,7 @@ export function PersonaSetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'active': !exists(json, 'active') ? undefined : json['active'],
         'cohort_id': json['cohort_id'],
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
@@ -132,6 +139,7 @@ export function PersonaSetToJSON(value?: PersonaSet | null): any {
     }
     return {
         
+        'active': value.active,
         'cohort_id': value.cohort_id,
         'created_at': (value.created_at.toISOString()),
         'id': value.id,

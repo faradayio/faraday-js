@@ -80,7 +80,7 @@ export interface Scope {
      * @type {boolean}
      * @memberof Scope
      */
-    preview?: boolean;
+    preview: boolean;
     /**
      * The type of this resource.
      * @type {string}
@@ -129,7 +129,7 @@ export function ScopeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sco
         'payload': ScopePayloadFromJSON(json['payload']),
         'population': ScopePopulationFromJSON(json['population']),
         'population_count': !exists(json, 'population_count') ? undefined : json['population_count'],
-        'preview': !exists(json, 'preview') ? undefined : json['preview'],
+        'preview': json['preview'],
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),

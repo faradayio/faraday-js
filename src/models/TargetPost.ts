@@ -14,6 +14,18 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    TargetLimitPost,
+    TargetLimitPostFromJSON,
+    TargetLimitPostFromJSONTyped,
+    TargetLimitPostToJSON,
+} from './TargetLimitPost';
+import {
+    TargetModesPost,
+    TargetModesPostFromJSON,
+    TargetModesPostFromJSONTyped,
+    TargetModesPostToJSON,
+} from './TargetModesPost';
+import {
     TargetOptionsPost,
     TargetOptionsPostFromJSON,
     TargetOptionsPostFromJSONTyped,
@@ -25,14 +37,15 @@ import {
  * 
  * Instructions on how to export output data defined by a scope.
  * 
- * There are two flavors of targets, each requiring different treatment in the API:
+ * There are three types of targets:
  * <table>
  * <thead>
  * <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr>
  * </thead>
  * <tbody>
- * <tr><td><strong>Publication targets</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr>
- * <tr><td><strong>Replication targets</strong></td><td>Faraday copies your predictions to systems <em>you</em> control.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> in <code>options</code>.</td></tr>
+ * <tr><td><strong>Publication</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr>
+ * <tr><td><strong>Replication</strong></td><td>Faraday copies your predictions to systems <em>you</em> control. You may then push them to third parties like Facebook, Google Ads, etc.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> of the connection in <code>options</code>.</td></tr>
+ * <tr><td><strong>Managed</strong></td><td>Faraday manages a push to third parties like Facebook, Google Ads, and more.</td><td>Must be on an enterprise plan. Contact Customer Success to set up.</td></tr>
  * </tbody>
  * </table>
  * @export
@@ -48,21 +61,11 @@ export interface TargetPost {
      */
     connection_id?: string;
     /**
-     * There are two options to receive back identifying information about exported individuals, each supporting different use cases:
-     *   * **Identified**: All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see <a href="../reference/createdataset">/datasets</a> for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned. This facilitates most conversion, engagement, and retention use cases, along with direct mail acquisition.
-     *   * **Hashed**: Faraday's name, physical address, and email is emitted in hashed form. Data is randomly ordered to prevent re-identification. All payload columns are emitted except raw propensity scores and attributes. This facilitates digital acquisition use cases.
      * 
-     * Specify `"hashed": true` to receive **hashed** representations of individuals, and `"hashed": false` to receive **identified** representation. Not specifying a value is equivalent to `false`.
-     * @type {boolean}
+     * @type {TargetLimitPost}
      * @memberof TargetPost
      */
-    hashed?: boolean;
-    /**
-     * Maximum individuals to export via this target.
-     * @type {number}
-     * @memberof TargetPost
-     */
-    limit?: number;
+    limit?: TargetLimitPost;
     /**
      * A user-friendly name of the target.
      * @type {string}
@@ -76,16 +79,33 @@ export interface TargetPost {
      */
     options: TargetOptionsPost;
     /**
-     * This specifies which columns should be sent to the target, and which columns should be renamed.
+     * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
+     * 
+     * This parameter is an override of the default that enables an explicit mapping of columns that should be included in the target export, along with the exported column name.
+     * 
      * Each key is the name the column originally had, and each value is the desired name.
-     * If a payload_map is provided, then the target download will only columns in the payload_map.
-     * If a payload_map isn't provided, then the download will include all columns in the scope preview, with no name changes.
-     * So, for the example above, the target will only include the "first_name", "last_name", and "city" columns.
-     * To see what columns are available, check the scope preview.
+     * 
+     * Example:
+     * 
+     * ```
+     * {
+     *   "person_first_name": "first_name",
+     *   "person_last_name": "last_name",
+     *   "city": "city"
+     * }
+     * ```
+     * 
+     * In the example above, the target will only include the "first_name", "last_name", and "city" columns.
      * @type {{ [key: string]: string; }}
      * @memberof TargetPost
      */
     payload_map?: { [key: string]: string; };
+    /**
+     * 
+     * @type {TargetModesPost}
+     * @memberof TargetPost
+     */
+    representation: TargetModesPost;
     /**
      * The UUID of a scope - see <a href="../reference/createscope">/scopes</a> for more detail.
      * @type {string}
@@ -105,11 +125,11 @@ export function TargetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
-        'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'limit': !exists(json, 'limit') ? undefined : TargetLimitPostFromJSON(json['limit']),
         'name': json['name'],
         'options': TargetOptionsPostFromJSON(json['options']),
         'payload_map': !exists(json, 'payload_map') ? undefined : json['payload_map'],
+        'representation': TargetModesPostFromJSON(json['representation']),
         'scope_id': json['scope_id'],
     };
 }
@@ -124,11 +144,11 @@ export function TargetPostToJSON(value?: TargetPost | null): any {
     return {
         
         'connection_id': value.connection_id,
-        'hashed': value.hashed,
-        'limit': value.limit,
+        'limit': TargetLimitPostToJSON(value.limit),
         'name': value.name,
         'options': TargetOptionsPostToJSON(value.options),
         'payload_map': value.payload_map,
+        'representation': TargetModesPostToJSON(value.representation),
         'scope_id': value.scope_id,
     };
 }

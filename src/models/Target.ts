@@ -20,6 +20,18 @@ import {
     ResourceStatusToJSON,
 } from './ResourceStatus';
 import {
+    TargetLimit,
+    TargetLimitFromJSON,
+    TargetLimitFromJSONTyped,
+    TargetLimitToJSON,
+} from './TargetLimit';
+import {
+    TargetModes,
+    TargetModesFromJSON,
+    TargetModesFromJSONTyped,
+    TargetModesToJSON,
+} from './TargetModes';
+import {
     TargetOptions,
     TargetOptionsFromJSON,
     TargetOptionsFromJSONTyped,
@@ -29,14 +41,15 @@ import {
 /**
  * Instructions on how to export output data defined by a scope.
  * 
- * There are two flavors of targets, each requiring different treatment in the API:
+ * There are three types of targets:
  * <table>
  * <thead>
  * <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr>
  * </thead>
  * <tbody>
- * <tr><td><strong>Publication targets</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr>
- * <tr><td><strong>Replication targets</strong></td><td>Faraday copies your predictions to systems <em>you</em> control.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> in <code>options</code>.</td></tr>
+ * <tr><td><strong>Publication</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr>
+ * <tr><td><strong>Replication</strong></td><td>Faraday copies your predictions to systems <em>you</em> control. You may then push them to third parties like Facebook, Google Ads, etc.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> of the connection in <code>options</code>.</td></tr>
+ * <tr><td><strong>Managed</strong></td><td>Faraday manages a push to third parties like Facebook, Google Ads, and more.</td><td>Must be on an enterprise plan. Contact Customer Success to set up.</td></tr>
  * </tbody>
  * </table>
  * @export
@@ -58,27 +71,17 @@ export interface Target {
      */
     created_at: Date;
     /**
-     * There are two options to receive back identifying information about exported individuals, each supporting different use cases:
-     *   * **Identified**: All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see <a href="../reference/createdataset">/datasets</a> for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned. This facilitates most conversion, engagement, and retention use cases, along with direct mail acquisition.
-     *   * **Hashed**: Faraday's name, physical address, and email is emitted in hashed form. Data is randomly ordered to prevent re-identification. All payload columns are emitted except raw propensity scores and attributes. This facilitates digital acquisition use cases.
-     * 
-     * Specify `"hashed": true` to receive **hashed** representations of individuals, and `"hashed": false` to receive **identified** representation. Not specifying a value is equivalent to `false`.
-     * @type {boolean}
-     * @memberof Target
-     */
-    hashed?: boolean;
-    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Target
      */
     id: string;
     /**
-     * Maximum individuals to export via this target.
-     * @type {number}
+     * 
+     * @type {TargetLimit}
      * @memberof Target
      */
-    limit?: number;
+    limit?: TargetLimit;
     /**
      * A user-friendly name of the target.
      * @type {string}
@@ -92,22 +95,33 @@ export interface Target {
      */
     options: TargetOptions;
     /**
-     * URL for the default output of the target
-     * @type {string}
-     * @memberof Target
-     */
-    output_url?: string;
-    /**
-     * This specifies which columns should be sent to the target, and which columns should be renamed.
+     * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
+     * 
+     * This parameter is an override of the default that enables an explicit mapping of columns that should be included in the target export, along with the exported column name.
+     * 
      * Each key is the name the column originally had, and each value is the desired name.
-     * If a payload_map is provided, then the target download will only columns in the payload_map.
-     * If a payload_map isn't provided, then the download will include all columns in the scope preview, with no name changes.
-     * So, for the example above, the target will only include the "first_name", "last_name", and "city" columns.
-     * To see what columns are available, check the scope preview.
+     * 
+     * Example:
+     * 
+     * ```
+     * {
+     *   "person_first_name": "first_name",
+     *   "person_last_name": "last_name",
+     *   "city": "city"
+     * }
+     * ```
+     * 
+     * In the example above, the target will only include the "first_name", "last_name", and "city" columns.
      * @type {{ [key: string]: string; }}
      * @memberof Target
      */
     payload_map?: { [key: string]: string; };
+    /**
+     * 
+     * @type {TargetModes}
+     * @memberof Target
+     */
+    representation: TargetModes;
     /**
      * The type of this resource.
      * @type {string}
@@ -158,13 +172,12 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
-        'hashed': !exists(json, 'hashed') ? undefined : json['hashed'],
         'id': json['id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'limit': !exists(json, 'limit') ? undefined : TargetLimitFromJSON(json['limit']),
         'name': json['name'],
         'options': TargetOptionsFromJSON(json['options']),
-        'output_url': !exists(json, 'output_url') ? undefined : json['output_url'],
         'payload_map': !exists(json, 'payload_map') ? undefined : json['payload_map'],
+        'representation': TargetModesFromJSON(json['representation']),
         'resource_type': json['resource_type'],
         'scope_id': json['scope_id'],
         'status': ResourceStatusFromJSON(json['status']),
@@ -185,13 +198,12 @@ export function TargetToJSON(value?: Target | null): any {
         
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
-        'hashed': value.hashed,
         'id': value.id,
-        'limit': value.limit,
+        'limit': TargetLimitToJSON(value.limit),
         'name': value.name,
         'options': TargetOptionsToJSON(value.options),
-        'output_url': value.output_url,
         'payload_map': value.payload_map,
+        'representation': TargetModesToJSON(value.representation),
         'resource_type': value.resource_type,
         'scope_id': value.scope_id,
         'status': ResourceStatusToJSON(value.status),

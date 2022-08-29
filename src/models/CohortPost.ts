@@ -20,11 +20,11 @@ import {
     CohortTraitToJSON,
 } from './CohortTrait';
 import {
-    Recency,
-    RecencyFromJSON,
-    RecencyFromJSONTyped,
-    RecencyToJSON,
-} from './Recency';
+    RecencyPost,
+    RecencyPostFromJSON,
+    RecencyPostFromJSONTyped,
+    RecencyPostToJSON,
+} from './RecencyPost';
 
 /**
  * (Parameters used to POST a new value of the `Cohort` type.)
@@ -66,10 +66,10 @@ export interface CohortPost {
     name: string;
     /**
      * 
-     * @type {Recency}
+     * @type {RecencyPost}
      * @memberof CohortPost
      */
-    recency?: Recency;
+    recency?: RecencyPost;
     /**
      * The `name` field of the stream from which to build this cohort.
      * @type {string}
@@ -99,7 +99,7 @@ export function CohortPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': json['name'],
-        'recency': !exists(json, 'recency') ? undefined : RecencyFromJSON(json['recency']),
+        'recency': !exists(json, 'recency') ? undefined : RecencyPostFromJSON(json['recency']),
         'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
         'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
@@ -119,7 +119,7 @@ export function CohortPostToJSON(value?: CohortPost | null): any {
         'min_count': value.min_count,
         'min_value': value.min_value,
         'name': value.name,
-        'recency': RecencyToJSON(value.recency),
+        'recency': RecencyPostToJSON(value.recency),
         'stream_name': value.stream_name,
         'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
     };

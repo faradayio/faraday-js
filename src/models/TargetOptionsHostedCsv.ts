@@ -32,6 +32,12 @@ export interface TargetOptionsHostedCsv {
      */
     gzip?: boolean;
     /**
+     * The Faraday-hosted URL of the target's csv output file.
+     * @type {string}
+     * @memberof TargetOptionsHostedCsv
+     */
+    output_url?: string;
+    /**
      * Whether to always quote all fields, even if they don't require it. Some systems require this.
      * @type {boolean}
      * @memberof TargetOptionsHostedCsv
@@ -57,6 +63,7 @@ export function TargetOptionsHostedCsvFromJSONTyped(json: any, ignoreDiscriminat
         
         'delimiter': !exists(json, 'delimiter') ? undefined : json['delimiter'],
         'gzip': !exists(json, 'gzip') ? undefined : json['gzip'],
+        'output_url': !exists(json, 'output_url') ? undefined : json['output_url'],
         'quote_all': !exists(json, 'quote_all') ? undefined : json['quote_all'],
         'type': json['type'],
     };
@@ -73,6 +80,7 @@ export function TargetOptionsHostedCsvToJSON(value?: TargetOptionsHostedCsv | nu
         
         'delimiter': value.delimiter,
         'gzip': value.gzip,
+        'output_url': value.output_url,
         'quote_all': value.quote_all,
         'type': value.type,
     };

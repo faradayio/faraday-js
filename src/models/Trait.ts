@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    DataType,
-    DataTypeFromJSON,
-    DataTypeFromJSONTyped,
-    DataTypeToJSON,
-} from './DataType';
+    PrimitiveDataType,
+    PrimitiveDataTypeFromJSON,
+    PrimitiveDataTypeFromJSONTyped,
+    PrimitiveDataTypeToJSON,
+} from './PrimitiveDataType';
 import {
     TraitCategory,
     TraitCategoryFromJSON,
@@ -98,10 +98,10 @@ export interface Trait {
     statistical_type?: TraitStatisticalType;
     /**
      * 
-     * @type {DataType}
+     * @type {PrimitiveDataType}
      * @memberof Trait
      */
-    type?: DataType;
+    type?: PrimitiveDataType;
     /**
      * For numeric types, in what units is the data stored.
      * @type {string}
@@ -135,7 +135,7 @@ export function TraitFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tra
         'literate': json['literate'],
         'name': json['name'],
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
-        'type': !exists(json, 'type') ? undefined : DataTypeFromJSON(json['type']),
+        'type': !exists(json, 'type') ? undefined : PrimitiveDataTypeFromJSON(json['type']),
         'unit': !exists(json, 'unit') ? undefined : json['unit'],
         'updated_at': (new Date(json['updated_at'])),
     };
@@ -159,7 +159,7 @@ export function TraitToJSON(value?: Trait | null): any {
         'literate': value.literate,
         'name': value.name,
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
-        'type': DataTypeToJSON(value.type),
+        'type': PrimitiveDataTypeToJSON(value.type),
         'unit': value.unit,
         'updated_at': (value.updated_at.toISOString()),
     };

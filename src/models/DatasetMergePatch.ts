@@ -53,6 +53,12 @@ export interface DatasetMergePatch {
      */
     identity_sets?: IdentitySetsMergePatch;
     /**
+     * An identifying name for this dataset.
+     * @type {string}
+     * @memberof DatasetMergePatch
+     */
+    name?: string;
+    /**
      * 
      * @type {DatasetOptionsMergePatch}
      * @memberof DatasetMergePatch
@@ -63,7 +69,7 @@ export interface DatasetMergePatch {
      * @type {OutputToStreamsMergePatch}
      * @memberof DatasetMergePatch
      */
-    output_to_streams?: OutputToStreamsMergePatch;
+    output_to_streams?: OutputToStreamsMergePatch | null;
     /**
      * 
      * @type {OutputToTraitsMergePatch}
@@ -72,11 +78,12 @@ export interface DatasetMergePatch {
     output_to_traits?: OutputToTraitsMergePatch | null;
     /**
      * The name of the column that references an ID from an external system.
+     * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
      * @type {string}
      * @memberof DatasetMergePatch
      */
-    primary_key_column?: string | null;
+    reference_key_column?: string | null;
 }
 
 export function DatasetMergePatchFromJSON(json: any): DatasetMergePatch {
@@ -90,10 +97,11 @@ export function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'identity_sets': !exists(json, 'identity_sets') ? undefined : IdentitySetsMergePatchFromJSON(json['identity_sets']),
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'options': !exists(json, 'options') ? undefined : DatasetOptionsMergePatchFromJSON(json['options']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsMergePatchFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
-        'primary_key_column': !exists(json, 'primary_key_column') ? undefined : json['primary_key_column'],
+        'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
     };
 }
 
@@ -107,10 +115,11 @@ export function DatasetMergePatchToJSON(value?: DatasetMergePatch | null): any {
     return {
         
         'identity_sets': IdentitySetsMergePatchToJSON(value.identity_sets),
+        'name': value.name,
         'options': DatasetOptionsMergePatchToJSON(value.options),
         'output_to_streams': OutputToStreamsMergePatchToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsMergePatchToJSON(value.output_to_traits),
-        'primary_key_column': value.primary_key_column,
+        'reference_key_column': value.reference_key_column,
     };
 }
 
