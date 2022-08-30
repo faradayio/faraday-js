@@ -22,12 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsBigQueryPut {
     /**
-     * Dataset name
-     * @type {string}
-     * @memberof DatasetOptionsBigQueryPut
-     */
-    dataset_name: string;
-    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsBigQueryPut
@@ -51,7 +45,6 @@ export function DatasetOptionsBigQueryPutFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'dataset_name': json['dataset_name'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -66,7 +59,6 @@ export function DatasetOptionsBigQueryPutToJSON(value?: DatasetOptionsBigQueryPu
     }
     return {
         
-        'dataset_name': value.dataset_name,
         'table_name': value.table_name,
         'type': value.type,
     };

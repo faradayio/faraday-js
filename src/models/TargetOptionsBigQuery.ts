@@ -20,12 +20,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TargetOptionsBigQuery {
     /**
-     * Dataset name
-     * @type {string}
-     * @memberof TargetOptionsBigQuery
-     */
-    dataset_name: string;
-    /**
      * Date-based partitioning allows the data to be <a href ="https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables">partitioned by date</a>. This will appear as a `fdy_batch_date` column.
      * @type {boolean}
      * @memberof TargetOptionsBigQuery
@@ -55,7 +49,6 @@ export function TargetOptionsBigQueryFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'dataset_name': json['dataset_name'],
         'day_partitioned': !exists(json, 'day_partitioned') ? undefined : json['day_partitioned'],
         'table_name': json['table_name'],
         'type': json['type'],
@@ -71,7 +64,6 @@ export function TargetOptionsBigQueryToJSON(value?: TargetOptionsBigQuery | null
     }
     return {
         
-        'dataset_name': value.dataset_name,
         'day_partitioned': value.day_partitioned,
         'table_name': value.table_name,
         'type': value.type,

@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsBigQuery {
     /**
+     * Dataset name
+     * @type {string}
+     * @memberof ConnectionOptionsBigQuery
+     */
+    dataset_name: string;
+    /**
      * Project ID
      * @type {string}
      * @memberof ConnectionOptionsBigQuery
@@ -43,6 +49,7 @@ export function ConnectionOptionsBigQueryFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'dataset_name': json['dataset_name'],
         'project_id': json['project_id'],
         'type': json['type'],
     };
@@ -57,6 +64,7 @@ export function ConnectionOptionsBigQueryToJSON(value?: ConnectionOptionsBigQuer
     }
     return {
         
+        'dataset_name': value.dataset_name,
         'project_id': value.project_id,
         'type': value.type,
     };

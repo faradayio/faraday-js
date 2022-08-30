@@ -22,12 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsBigQueryMergePatch {
     /**
-     * Dataset name
-     * @type {string}
-     * @memberof DatasetOptionsBigQueryMergePatch
-     */
-    dataset_name?: string;
-    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsBigQueryMergePatch
@@ -51,7 +45,6 @@ export function DatasetOptionsBigQueryMergePatchFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'dataset_name': !exists(json, 'dataset_name') ? undefined : json['dataset_name'],
         'table_name': !exists(json, 'table_name') ? undefined : json['table_name'],
         'type': json['type'],
     };
@@ -66,7 +59,6 @@ export function DatasetOptionsBigQueryMergePatchToJSON(value?: DatasetOptionsBig
     }
     return {
         
-        'dataset_name': value.dataset_name,
         'table_name': value.table_name,
         'type': value.type,
     };

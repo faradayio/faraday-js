@@ -22,12 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TargetOptionsBigQueryMergePatch {
     /**
-     * Dataset name
-     * @type {string}
-     * @memberof TargetOptionsBigQueryMergePatch
-     */
-    dataset_name?: string;
-    /**
      * Date-based partitioning allows the data to be <a href ="https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables">partitioned by date</a>. This will appear as a `fdy_batch_date` column.
      * @type {boolean}
      * @memberof TargetOptionsBigQueryMergePatch
@@ -57,7 +51,6 @@ export function TargetOptionsBigQueryMergePatchFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'dataset_name': !exists(json, 'dataset_name') ? undefined : json['dataset_name'],
         'day_partitioned': !exists(json, 'day_partitioned') ? undefined : json['day_partitioned'],
         'table_name': !exists(json, 'table_name') ? undefined : json['table_name'],
         'type': json['type'],
@@ -73,7 +66,6 @@ export function TargetOptionsBigQueryMergePatchToJSON(value?: TargetOptionsBigQu
     }
     return {
         
-        'dataset_name': value.dataset_name,
         'day_partitioned': value.day_partitioned,
         'table_name': value.table_name,
         'type': value.type,

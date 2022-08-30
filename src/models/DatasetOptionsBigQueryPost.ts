@@ -22,12 +22,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsBigQueryPost {
     /**
-     * Dataset name
-     * @type {string}
-     * @memberof DatasetOptionsBigQueryPost
-     */
-    dataset_name: string;
-    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsBigQueryPost
@@ -51,7 +45,6 @@ export function DatasetOptionsBigQueryPostFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'dataset_name': json['dataset_name'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -66,7 +59,6 @@ export function DatasetOptionsBigQueryPostToJSON(value?: DatasetOptionsBigQueryP
     }
     return {
         
-        'dataset_name': value.dataset_name,
         'table_name': value.table_name,
         'type': value.type,
     };

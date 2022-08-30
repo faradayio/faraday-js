@@ -22,6 +22,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsBigQueryMergePatch {
     /**
+     * Dataset name
+     * @type {string}
+     * @memberof ConnectionOptionsBigQueryMergePatch
+     */
+    dataset_name?: string;
+    /**
      * Project ID
      * @type {string}
      * @memberof ConnectionOptionsBigQueryMergePatch
@@ -45,6 +51,7 @@ export function ConnectionOptionsBigQueryMergePatchFromJSONTyped(json: any, igno
     }
     return {
         
+        'dataset_name': !exists(json, 'dataset_name') ? undefined : json['dataset_name'],
         'project_id': !exists(json, 'project_id') ? undefined : json['project_id'],
         'type': json['type'],
     };
@@ -59,6 +66,7 @@ export function ConnectionOptionsBigQueryMergePatchToJSON(value?: ConnectionOpti
     }
     return {
         
+        'dataset_name': value.dataset_name,
         'project_id': value.project_id,
         'type': value.type,
     };

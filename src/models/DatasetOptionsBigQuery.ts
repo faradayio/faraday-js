@@ -20,12 +20,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsBigQuery {
     /**
-     * Dataset name
-     * @type {string}
-     * @memberof DatasetOptionsBigQuery
-     */
-    dataset_name: string;
-    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsBigQuery
@@ -49,7 +43,6 @@ export function DatasetOptionsBigQueryFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'dataset_name': json['dataset_name'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -64,7 +57,6 @@ export function DatasetOptionsBigQueryToJSON(value?: DatasetOptionsBigQuery | nu
     }
     return {
         
-        'dataset_name': value.dataset_name,
         'table_name': value.table_name,
         'type': value.type,
     };
