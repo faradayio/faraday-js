@@ -77,6 +77,14 @@ export interface DatasetPut {
      */
     output_to_traits?: OutputToTraitsPut;
     /**
+     * A dataset in preview mode will only detect columns and produce a data preview, but not ingest the data.
+     * 
+     * Defaults to undefined, which is equivalent to false.
+     * @type {boolean}
+     * @memberof DatasetPut
+     */
+    preview?: boolean;
+    /**
      * The name of the column that references an ID from an external system.
      * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
@@ -101,6 +109,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'options': DatasetOptionsPutFromJSON(json['options']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsPutFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
+        'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
     };
 }
@@ -119,6 +128,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
         'options': DatasetOptionsPutToJSON(value.options),
         'output_to_streams': OutputToStreamsPutToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
+        'preview': value.preview,
         'reference_key_column': value.reference_key_column,
     };
 }

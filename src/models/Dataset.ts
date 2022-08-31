@@ -136,6 +136,14 @@ export interface Dataset {
      */
     output_to_traits?: OutputToTraits;
     /**
+     * A dataset in preview mode will only detect columns and produce a data preview, but not ingest the data.
+     * 
+     * Defaults to undefined, which is equivalent to false.
+     * @type {boolean}
+     * @memberof Dataset
+     */
+    preview?: boolean;
+    /**
      * The name of the column that references an ID from an external system.
      * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
@@ -216,6 +224,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'options': DatasetOptionsFromJSON(json['options']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsFromJSON(json['output_to_traits']),
+        'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'resource_type': json['resource_type'],
         'row_count': !exists(json, 'row_count') ? undefined : json['row_count'],
@@ -247,6 +256,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'options': DatasetOptionsToJSON(value.options),
         'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsToJSON(value.output_to_traits),
+        'preview': value.preview,
         'reference_key_column': value.reference_key_column,
         'resource_type': value.resource_type,
         'row_count': value.row_count,

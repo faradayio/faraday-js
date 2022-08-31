@@ -77,6 +77,14 @@ export interface DatasetMergePatch {
      */
     output_to_traits?: OutputToTraitsMergePatch | null;
     /**
+     * A dataset in preview mode will only detect columns and produce a data preview, but not ingest the data.
+     * 
+     * Defaults to undefined, which is equivalent to false.
+     * @type {boolean}
+     * @memberof DatasetMergePatch
+     */
+    preview?: boolean | null;
+    /**
      * The name of the column that references an ID from an external system.
      * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
@@ -101,6 +109,7 @@ export function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
         'options': !exists(json, 'options') ? undefined : DatasetOptionsMergePatchFromJSON(json['options']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsMergePatchFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
+        'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
     };
 }
@@ -119,6 +128,7 @@ export function DatasetMergePatchToJSON(value?: DatasetMergePatch | null): any {
         'options': DatasetOptionsMergePatchToJSON(value.options),
         'output_to_streams': OutputToStreamsMergePatchToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsMergePatchToJSON(value.output_to_traits),
+        'preview': value.preview,
         'reference_key_column': value.reference_key_column,
     };
 }
