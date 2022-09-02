@@ -59,7 +59,7 @@ export interface UpdateConnectionRequest {
 export class ConnectionsApi extends runtime.BaseAPI {
 
     /**
-     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that corresponds to the data destination. The following types are currently supported: <table> <thead> <tr><th>Connection Type</th><th>Description</th></tr> </thead> <tbody> <tr><td><code>azure_sql_server</code></td><td>Azure SQL Server</td></tr> <tr><td><code>bigquery</code></td><td>Google BigQuery</td></tr> <tr><td><code>redshift</code></td><td>AWS Redshift</td></tr> <tr><td><code>snowflake</code></td><td>Snowflake (AWS/GCP supported)</td></tr> <tr><td><code>s3_csv</code></td><td>CSV on Amazon S3</td></tr> </tbody> </table>  Connection `type` is specified in the `options` object. 
+     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
      * Create connection
      */
     private async createConnectionRaw(requestParameters: CreateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
@@ -93,7 +93,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that corresponds to the data destination. The following types are currently supported: <table> <thead> <tr><th>Connection Type</th><th>Description</th></tr> </thead> <tbody> <tr><td><code>azure_sql_server</code></td><td>Azure SQL Server</td></tr> <tr><td><code>bigquery</code></td><td>Google BigQuery</td></tr> <tr><td><code>redshift</code></td><td>AWS Redshift</td></tr> <tr><td><code>snowflake</code></td><td>Snowflake (AWS/GCP supported)</td></tr> <tr><td><code>s3_csv</code></td><td>CSV on Amazon S3</td></tr> </tbody> </table>  Connection `type` is specified in the `options` object. 
+     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
      * Create connection
      */
     async createConnection(connectionFields: ConnectionPost, ): Promise<Connection> {
