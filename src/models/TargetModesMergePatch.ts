@@ -39,7 +39,7 @@ import {
 
 /**
  * @type TargetModesMergePatch
- * Choose how you want the scopes's output to be formatted for this target. The following **modes** are available:
+ * Choose how the scopes's output should be formatted for this target. The following **modes** are available:
  * 
  * #### `aggregated`
  *   * This option will produce one row per geographical area. At this time, only propensity scores are included in the output (traits and persona sets in the payload are not included).

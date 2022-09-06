@@ -267,8 +267,16 @@ src/models/TargetAggregateGeographic.ts
 src/models/TargetAggregateIdentified.ts
 src/models/TargetLimit.ts
 src/models/TargetLimitMergePatch.ts
+src/models/TargetLimitPercentile.ts
+src/models/TargetLimitPercentileMergePatch.ts
+src/models/TargetLimitPercentilePost.ts
+src/models/TargetLimitPercentilePut.ts
 src/models/TargetLimitPost.ts
 src/models/TargetLimitPut.ts
+src/models/TargetLimitRowCount.ts
+src/models/TargetLimitRowCountMergePatch.ts
+src/models/TargetLimitRowCountPost.ts
+src/models/TargetLimitRowCountPut.ts
 src/models/TargetMergePatch.ts
 src/models/TargetModes.ts
 src/models/TargetModesAggregated.ts

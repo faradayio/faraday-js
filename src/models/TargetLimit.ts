@@ -12,41 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-/**
- * Restrict the number of rows exported in a target.
- * @export
- * @interface TargetLimit
- */
-export interface TargetLimit {
-    /**
-     * For the "top" number of records, specify `descending`. For the "bottom" number of records, specify `ascending`.
-     * @type {string}
-     * @memberof TargetLimit
-     */
-    direction: TargetLimitDirectionEnum;
-    /**
-     * Use the ranking suggested by the outcome's scores.
-     * @type {string}
-     * @memberof TargetLimit
-     */
-    outcome_id: string;
-    /**
-     * Specify a whole number to restrict the target to a specific number of records. Specify a decimal less than 1 to indicate the export should only include the top/bottom % of scored records. For example, `0.1` would retrieve the top/bottom 10%.
-     * @type {number}
-     * @memberof TargetLimit
-     */
-    threshold: number;
-}
+import {
+    TargetLimitPercentile,
+    TargetLimitPercentileFromJSON,
+    TargetLimitPercentileFromJSONTyped,
+    TargetLimitPercentileToJSON,
+} from './TargetLimitPercentile';
+import {
+    TargetLimitRowCount,
+    TargetLimitRowCountFromJSON,
+    TargetLimitRowCountFromJSONTyped,
+    TargetLimitRowCountToJSON,
+} from './TargetLimitRowCount';
 
 /**
-* @export
-* @enum {string}
-*/
-export enum TargetLimitDirectionEnum {
-    Ascending = 'ascending',
-    Descending = 'descending'
-}
+ * @type TargetLimit
+ * Restrict the number of rows exported in a target.
+ * - To filter by percentile scores, use `percentile`.
+ * - To apply an absolute row limit, use `row_count`.
+ * @export
+ */
+export type TargetLimit = { method: 'percentile' } & TargetLimitPercentile | { method: 'row_count' } & TargetLimitRowCount;
 
 export function TargetLimitFromJSON(json: any): TargetLimit {
     return TargetLimitFromJSONTyped(json, false);
@@ -56,12 +42,14 @@ export function TargetLimitFromJSONTyped(json: any, ignoreDiscriminator: boolean
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
-        'direction': json['direction'],
-        'outcome_id': json['outcome_id'],
-        'threshold': json['threshold'],
-    };
+    switch (json['method']) {
+        case 'percentile':
+            return {...TargetLimitPercentileFromJSONTyped(json, true), method: 'percentile'};
+        case 'row_count':
+            return {...TargetLimitRowCountFromJSONTyped(json, true), method: 'row_count'};
+        default:
+            throw new Error(`No variant of TargetLimit exists with 'method=${json['method']}'`);
+    }
 }
 
 export function TargetLimitToJSON(value?: TargetLimit | null): any {
@@ -71,11 +59,13 @@ export function TargetLimitToJSON(value?: TargetLimit | null): any {
     if (value === null) {
         return null;
     }
-    return {
-        
-        'direction': value.direction,
-        'outcome_id': value.outcome_id,
-        'threshold': value.threshold,
-    };
+    switch (value['method']) {
+        case 'percentile':
+            return TargetLimitPercentileToJSON(value);
+        case 'row_count':
+            return TargetLimitRowCountToJSON(value);
+        default:
+            throw new Error(`No variant of TargetLimit exists with 'method=${value['method']}'`);
+    }
 }
 

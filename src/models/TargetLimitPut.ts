@@ -12,43 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-/**
- * (Parameters used to PUT a value of the `TargetLimit` type.)
- * 
- * Restrict the number of rows exported in a target.
- * @export
- * @interface TargetLimitPut
- */
-export interface TargetLimitPut {
-    /**
-     * For the "top" number of records, specify `descending`. For the "bottom" number of records, specify `ascending`.
-     * @type {string}
-     * @memberof TargetLimitPut
-     */
-    direction: TargetLimitPutDirectionEnum;
-    /**
-     * Use the ranking suggested by the outcome's scores.
-     * @type {string}
-     * @memberof TargetLimitPut
-     */
-    outcome_id: string;
-    /**
-     * Specify a whole number to restrict the target to a specific number of records. Specify a decimal less than 1 to indicate the export should only include the top/bottom % of scored records. For example, `0.1` would retrieve the top/bottom 10%.
-     * @type {number}
-     * @memberof TargetLimitPut
-     */
-    threshold: number;
-}
+import {
+    TargetLimitPercentilePut,
+    TargetLimitPercentilePutFromJSON,
+    TargetLimitPercentilePutFromJSONTyped,
+    TargetLimitPercentilePutToJSON,
+} from './TargetLimitPercentilePut';
+import {
+    TargetLimitRowCountPut,
+    TargetLimitRowCountPutFromJSON,
+    TargetLimitRowCountPutFromJSONTyped,
+    TargetLimitRowCountPutToJSON,
+} from './TargetLimitRowCountPut';
 
 /**
-* @export
-* @enum {string}
-*/
-export enum TargetLimitPutDirectionEnum {
-    Ascending = 'ascending',
-    Descending = 'descending'
-}
+ * @type TargetLimitPut
+ * Restrict the number of rows exported in a target.
+ * - To filter by percentile scores, use `percentile`.
+ * - To apply an absolute row limit, use `row_count`.
+ * @export
+ */
+export type TargetLimitPut = { method: 'percentile' } & TargetLimitPercentilePut | { method: 'row_count' } & TargetLimitRowCountPut;
 
 export function TargetLimitPutFromJSON(json: any): TargetLimitPut {
     return TargetLimitPutFromJSONTyped(json, false);
@@ -58,12 +42,14 @@ export function TargetLimitPutFromJSONTyped(json: any, ignoreDiscriminator: bool
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
-        'direction': json['direction'],
-        'outcome_id': json['outcome_id'],
-        'threshold': json['threshold'],
-    };
+    switch (json['method']) {
+        case 'percentile':
+            return {...TargetLimitPercentilePutFromJSONTyped(json, true), method: 'percentile'};
+        case 'row_count':
+            return {...TargetLimitRowCountPutFromJSONTyped(json, true), method: 'row_count'};
+        default:
+            throw new Error(`No variant of TargetLimitPut exists with 'method=${json['method']}'`);
+    }
 }
 
 export function TargetLimitPutToJSON(value?: TargetLimitPut | null): any {
@@ -73,11 +59,13 @@ export function TargetLimitPutToJSON(value?: TargetLimitPut | null): any {
     if (value === null) {
         return null;
     }
-    return {
-        
-        'direction': value.direction,
-        'outcome_id': value.outcome_id,
-        'threshold': value.threshold,
-    };
+    switch (value['method']) {
+        case 'percentile':
+            return TargetLimitPercentilePutToJSON(value);
+        case 'row_count':
+            return TargetLimitRowCountPutToJSON(value);
+        default:
+            throw new Error(`No variant of TargetLimitPut exists with 'method=${value['method']}'`);
+    }
 }
 

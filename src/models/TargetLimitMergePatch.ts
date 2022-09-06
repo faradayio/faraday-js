@@ -12,43 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-/**
- * (Parameters used to PATCH the `TargetLimit` type.)
- * 
- * Restrict the number of rows exported in a target.
- * @export
- * @interface TargetLimitMergePatch
- */
-export interface TargetLimitMergePatch {
-    /**
-     * For the "top" number of records, specify `descending`. For the "bottom" number of records, specify `ascending`.
-     * @type {string}
-     * @memberof TargetLimitMergePatch
-     */
-    direction?: TargetLimitMergePatchDirectionEnum;
-    /**
-     * Use the ranking suggested by the outcome's scores.
-     * @type {string}
-     * @memberof TargetLimitMergePatch
-     */
-    outcome_id?: string;
-    /**
-     * Specify a whole number to restrict the target to a specific number of records. Specify a decimal less than 1 to indicate the export should only include the top/bottom % of scored records. For example, `0.1` would retrieve the top/bottom 10%.
-     * @type {number}
-     * @memberof TargetLimitMergePatch
-     */
-    threshold?: number;
-}
+import {
+    TargetLimitPercentileMergePatch,
+    TargetLimitPercentileMergePatchFromJSON,
+    TargetLimitPercentileMergePatchFromJSONTyped,
+    TargetLimitPercentileMergePatchToJSON,
+} from './TargetLimitPercentileMergePatch';
+import {
+    TargetLimitRowCountMergePatch,
+    TargetLimitRowCountMergePatchFromJSON,
+    TargetLimitRowCountMergePatchFromJSONTyped,
+    TargetLimitRowCountMergePatchToJSON,
+} from './TargetLimitRowCountMergePatch';
 
 /**
-* @export
-* @enum {string}
-*/
-export enum TargetLimitMergePatchDirectionEnum {
-    Ascending = 'ascending',
-    Descending = 'descending'
-}
+ * @type TargetLimitMergePatch
+ * Restrict the number of rows exported in a target.
+ * - To filter by percentile scores, use `percentile`.
+ * - To apply an absolute row limit, use `row_count`.
+ * @export
+ */
+export type TargetLimitMergePatch = { method: 'percentile' } & TargetLimitPercentileMergePatch | { method: 'row_count' } & TargetLimitRowCountMergePatch;
 
 export function TargetLimitMergePatchFromJSON(json: any): TargetLimitMergePatch {
     return TargetLimitMergePatchFromJSONTyped(json, false);
@@ -58,12 +42,14 @@ export function TargetLimitMergePatchFromJSONTyped(json: any, ignoreDiscriminato
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
-        'direction': !exists(json, 'direction') ? undefined : json['direction'],
-        'outcome_id': !exists(json, 'outcome_id') ? undefined : json['outcome_id'],
-        'threshold': !exists(json, 'threshold') ? undefined : json['threshold'],
-    };
+    switch (json['method']) {
+        case 'percentile':
+            return {...TargetLimitPercentileMergePatchFromJSONTyped(json, true), method: 'percentile'};
+        case 'row_count':
+            return {...TargetLimitRowCountMergePatchFromJSONTyped(json, true), method: 'row_count'};
+        default:
+            throw new Error(`No variant of TargetLimitMergePatch exists with 'method=${json['method']}'`);
+    }
 }
 
 export function TargetLimitMergePatchToJSON(value?: TargetLimitMergePatch | null): any {
@@ -73,11 +59,13 @@ export function TargetLimitMergePatchToJSON(value?: TargetLimitMergePatch | null
     if (value === null) {
         return null;
     }
-    return {
-        
-        'direction': value.direction,
-        'outcome_id': value.outcome_id,
-        'threshold': value.threshold,
-    };
+    switch (value['method']) {
+        case 'percentile':
+            return TargetLimitPercentileMergePatchToJSON(value);
+        case 'row_count':
+            return TargetLimitRowCountMergePatchToJSON(value);
+        default:
+            throw new Error(`No variant of TargetLimitMergePatch exists with 'method=${value['method']}'`);
+    }
 }
 
