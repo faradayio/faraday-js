@@ -35,6 +35,14 @@ import {
  */
 export interface CohortMergePatch {
     /**
+     * Whether to show the Cohort in Explore, the map view on https://app.faraday.ai.
+     * 
+     * This will slow down Cohort builds.
+     * @type {boolean}
+     * @memberof CohortMergePatch
+     */
+    explore?: boolean | null;
+    /**
      * Max count for this cohort's config
      * @type {number}
      * @memberof CohortMergePatch
@@ -88,6 +96,7 @@ export function CohortMergePatchFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'max_count': !exists(json, 'max_count') ? undefined : json['max_count'],
         'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
@@ -107,6 +116,7 @@ export function CohortMergePatchToJSON(value?: CohortMergePatch | null): any {
     }
     return {
         
+        'explore': value.explore,
         'max_count': value.max_count,
         'max_value': value.max_value,
         'min_count': value.min_count,

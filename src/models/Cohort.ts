@@ -45,6 +45,14 @@ export interface Cohort {
      */
     created_at: Date;
     /**
+     * Whether to show the Cohort in Explore, the map view on https://app.faraday.ai.
+     * 
+     * This will slow down Cohort builds.
+     * @type {boolean}
+     * @memberof Cohort
+     */
+    explore?: boolean;
+    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Cohort
@@ -147,6 +155,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
     return {
         
         'created_at': (new Date(json['created_at'])),
+        'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'id': json['id'],
         'max_count': !exists(json, 'max_count') ? undefined : json['max_count'],
         'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
@@ -175,6 +184,7 @@ export function CohortToJSON(value?: Cohort | null): any {
     return {
         
         'created_at': (value.created_at.toISOString()),
+        'explore': value.explore,
         'id': value.id,
         'max_count': value.max_count,
         'max_value': value.max_value,
