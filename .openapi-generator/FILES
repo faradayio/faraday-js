@@ -211,6 +211,7 @@ src/models/DatasetStream.ts
 src/models/DatasetStreamMergePatch.ts
 src/models/DatasetStreamPost.ts
 src/models/DatasetStreamPut.ts
+src/models/DatasetUpdateHistory.ts
 src/models/ErrorCode.ts
 src/models/IdentitySet.ts
 src/models/IdentitySetMergePatch.ts

@@ -26,6 +26,12 @@ import {
     DatasetOptionsToJSON,
 } from './DatasetOptions';
 import {
+    DatasetUpdateHistory,
+    DatasetUpdateHistoryFromJSON,
+    DatasetUpdateHistoryFromJSONTyped,
+    DatasetUpdateHistoryToJSON,
+} from './DatasetUpdateHistory';
+import {
     IdentitySets,
     IdentitySetsFromJSON,
     IdentitySetsFromJSONTyped,
@@ -189,6 +195,14 @@ export interface Dataset {
      */
     updated_at: Date;
     /**
+     * A list of updates including how many rows were added.
+     * 
+     * If the dataset updates incrementally, these rows are added to the previous total. If the dataset is overwritten upon every ingestion, then these rows will be the new total row count.
+     * @type {Array<DatasetUpdateHistory>}
+     * @memberof Dataset
+     */
+    updates?: Array<DatasetUpdateHistory>;
+    /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
      * specified by `upsert_columns`, the newest will be used.
@@ -232,6 +246,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
         'updated_at': (new Date(json['updated_at'])),
+        'updates': !exists(json, 'updates') ? undefined : ((json['updates'] as Array<any>).map(DatasetUpdateHistoryFromJSON)),
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -264,6 +279,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,
         'updated_at': (value.updated_at.toISOString()),
+        'updates': value.updates === undefined ? undefined : ((value.updates as Array<any>).map(DatasetUpdateHistoryToJSON)),
         'upsert_columns': value.upsert_columns,
     };
 }

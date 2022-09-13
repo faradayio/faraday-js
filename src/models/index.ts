@@ -195,6 +195,7 @@ export * from './DatasetStream';
 export * from './DatasetStreamMergePatch';
 export * from './DatasetStreamPost';
 export * from './DatasetStreamPut';
+export * from './DatasetUpdateHistory';
 export * from './ErrorCode';
 export * from './IdentitySet';
 export * from './IdentitySetMergePatch';
