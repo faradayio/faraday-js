@@ -39,6 +39,12 @@ import {
  */
 export interface Cohort {
     /**
+     * A Managed Cohort.
+     * @type {boolean}
+     * @memberof Cohort
+     */
+    classic?: boolean;
+    /**
      * When this resource was created.
      * @type {Date}
      * @memberof Cohort
@@ -154,6 +160,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
     }
     return {
         
+        'classic': !exists(json, 'classic') ? undefined : json['classic'],
         'created_at': (new Date(json['created_at'])),
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'id': json['id'],
@@ -183,6 +190,7 @@ export function CohortToJSON(value?: Cohort | null): any {
     }
     return {
         
+        'classic': value.classic,
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,
         'id': value.id,
