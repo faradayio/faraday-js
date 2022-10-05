@@ -25,6 +25,8 @@ export enum DataMapColumnFormat {
     DateMonthDayShortyear = 'date_month_day_shortyear',
     DateMonthDayFullyearHoursMinutes = 'date_month_day_fullyear_hours_minutes',
     DateMonthDayFullyearHoursMinutesSeconds = 'date_month_day_fullyear_hours_minutes_seconds',
+    DateSecondsSinceEpochUtc = 'date_seconds_since_epoch_utc',
+    DateMillisecondsSinceEpochUtc = 'date_milliseconds_since_epoch_utc',
     ListCommaSeparated = 'list_comma_separated',
     ListSemicolonSeparated = 'list_semicolon_separated',
     ListSingleValue = 'list_single_value'
