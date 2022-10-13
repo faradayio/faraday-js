@@ -39,6 +39,12 @@ export interface TargetOptionsBigQueryPost {
      * @memberof TargetOptionsBigQueryPost
      */
     type: string;
+    /**
+     * Currently only supported on Referenced targets for GCP BigQuery, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
+     * @type {boolean}
+     * @memberof TargetOptionsBigQueryPost
+     */
+    upsert?: boolean;
 }
 
 export function TargetOptionsBigQueryPostFromJSON(json: any): TargetOptionsBigQueryPost {
@@ -54,6 +60,7 @@ export function TargetOptionsBigQueryPostFromJSONTyped(json: any, ignoreDiscrimi
         'day_partitioned': !exists(json, 'day_partitioned') ? undefined : json['day_partitioned'],
         'table_name': json['table_name'],
         'type': json['type'],
+        'upsert': !exists(json, 'upsert') ? undefined : json['upsert'],
     };
 }
 
@@ -69,6 +76,7 @@ export function TargetOptionsBigQueryPostToJSON(value?: TargetOptionsBigQueryPos
         'day_partitioned': value.day_partitioned,
         'table_name': value.table_name,
         'type': value.type,
+        'upsert': value.upsert,
     };
 }
 
