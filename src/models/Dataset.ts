@@ -118,6 +118,12 @@ export interface Dataset {
      */
     incremental_column?: string;
     /**
+     * The number of identified people in this dataset that Faraday found a match for in its data. This will only be displayed if the dataset built successfully.
+     * @type {number}
+     * @memberof Dataset
+     */
+    matched_count?: number;
+    /**
      * An identifying name for this dataset.
      * @type {string}
      * @memberof Dataset
@@ -234,6 +240,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'identified_count': !exists(json, 'identified_count') ? undefined : json['identified_count'],
         'identity_sets': IdentitySetsFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'matched_count': !exists(json, 'matched_count') ? undefined : json['matched_count'],
         'name': json['name'],
         'options': DatasetOptionsFromJSON(json['options']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsFromJSON(json['output_to_streams']),
@@ -267,6 +274,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'identified_count': value.identified_count,
         'identity_sets': IdentitySetsToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
+        'matched_count': value.matched_count,
         'name': value.name,
         'options': DatasetOptionsToJSON(value.options),
         'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
