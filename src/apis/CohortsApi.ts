@@ -30,6 +30,10 @@ export interface CreateCohortRequest {
     cohortFields: CohortPost;
 }
 
+export interface DeleteCohortRequest {
+    cohortId: string;
+}
+
 export interface GetCohortRequest {
     cohortId: string;
 }
@@ -85,6 +89,43 @@ export class CohortsApi extends runtime.BaseAPI {
     async createCohort(cohortFields: CohortPost, ): Promise<Cohort> {
         const response = await this.createCohortRaw({ cohortFields: cohortFields }, );
         return await response.value();
+    }
+
+    /**
+     * Delete a cohort
+     */
+    private async deleteCohortRaw(requestParameters: DeleteCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling deleteCohort.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/cohorts/{cohort_id}`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a cohort
+     */
+    async deleteCohort(cohortId: string, ): Promise<void> {
+        await this.deleteCohortRaw({ cohortId: cohortId }, );
     }
 
     /**

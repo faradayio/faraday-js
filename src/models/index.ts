@@ -91,7 +91,6 @@ export * from './ConnectionOptionsSqlServerPost';
 export * from './ConnectionOptionsSqlServerPut';
 export * from './ConnectionPost';
 export * from './ConnectionPut';
-export * from './ConnectionType';
 export * from './ContentsRow';
 export * from './DataMap';
 export * from './DataMapColumn';

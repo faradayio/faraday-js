@@ -20,6 +20,10 @@ import {
     StreamToJSON,
 } from '../models';
 
+export interface DeleteStreamRequest {
+    streamIdOrName: string;
+}
+
 export interface FindOrCreateStreamRequest {
     streamName: string;
 }
@@ -32,6 +36,43 @@ export interface GetStreamRequest {
  * 
  */
 export class StreamsApi extends runtime.BaseAPI {
+
+    /**
+     * Delete a stream
+     */
+    private async deleteStreamRaw(requestParameters: DeleteStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+            throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling deleteStream.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id_or_name}`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a stream
+     */
+    async deleteStream(streamIdOrName: string, ): Promise<void> {
+        await this.deleteStreamRaw({ streamIdOrName: streamIdOrName }, );
+    }
 
     /**
      * Look up (or create) an event stream by name.

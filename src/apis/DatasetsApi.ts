@@ -30,6 +30,10 @@ export interface CreateDatasetRequest {
     datasetFields: DatasetPost;
 }
 
+export interface DeleteDatasetRequest {
+    datasetId: string;
+}
+
 export interface GetDatasetRequest {
     datasetId: string;
 }
@@ -85,6 +89,43 @@ export class DatasetsApi extends runtime.BaseAPI {
     async createDataset(datasetFields: DatasetPost, ): Promise<Dataset> {
         const response = await this.createDatasetRaw({ datasetFields: datasetFields }, );
         return await response.value();
+    }
+
+    /**
+     * Delete a dataset
+     */
+    private async deleteDatasetRaw(requestParameters: DeleteDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
+            throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling deleteDataset.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/datasets/{dataset_id}`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a dataset
+     */
+    async deleteDataset(datasetId: string, ): Promise<void> {
+        await this.deleteDatasetRaw({ datasetId: datasetId }, );
     }
 
     /**

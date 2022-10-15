@@ -107,7 +107,6 @@ src/models/ConnectionOptionsSqlServerPost.ts
 src/models/ConnectionOptionsSqlServerPut.ts
 src/models/ConnectionPost.ts
 src/models/ConnectionPut.ts
-src/models/ConnectionType.ts
 src/models/ContentsRow.ts
 src/models/DataMap.ts
 src/models/DataMapColumn.ts

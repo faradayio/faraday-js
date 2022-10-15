@@ -27,6 +27,10 @@ export interface CreatePersonaSetRequest {
     personaSetPost: PersonaSetPost;
 }
 
+export interface DeletePersonaSetRequest {
+    personaSetId: string;
+}
+
 export interface GetPersonaSetRequest {
     personaSetId: string;
 }
@@ -77,6 +81,43 @@ export class PersonaSetsApi extends runtime.BaseAPI {
     async createPersonaSet(personaSetPost: PersonaSetPost, ): Promise<PersonaSet> {
         const response = await this.createPersonaSetRaw({ personaSetPost: personaSetPost }, );
         return await response.value();
+    }
+
+    /**
+     * Delete a persona set
+     */
+    private async deletePersonaSetRaw(requestParameters: DeletePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+            throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling deletePersonaSet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/persona_sets/{persona_set_id}`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a persona set
+     */
+    async deletePersonaSet(personaSetId: string, ): Promise<void> {
+        await this.deletePersonaSetRaw({ personaSetId: personaSetId }, );
     }
 
     /**

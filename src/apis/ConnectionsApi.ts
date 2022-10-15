@@ -36,6 +36,10 @@ export interface CreateConnectionRequest {
     connectionFields: ConnectionPost;
 }
 
+export interface DeleteConnectionRequest {
+    connectionId: string;
+}
+
 export interface GetConnectionRequest {
     connectionId: string;
 }
@@ -99,6 +103,45 @@ export class ConnectionsApi extends runtime.BaseAPI {
     async createConnection(connectionFields: ConnectionPost, ): Promise<Connection> {
         const response = await this.createConnectionRaw({ connectionFields: connectionFields }, );
         return await response.value();
+    }
+
+    /**
+     * Delete a connection
+     * Delete a connection
+     */
+    private async deleteConnectionRaw(requestParameters: DeleteConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling deleteConnection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a connection
+     * Delete a connection
+     */
+    async deleteConnection(connectionId: string, ): Promise<void> {
+        await this.deleteConnectionRaw({ connectionId: connectionId }, );
     }
 
     /**

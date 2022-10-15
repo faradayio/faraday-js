@@ -37,6 +37,10 @@ export interface CreateTargetPreviewRequest {
     targetId: string;
 }
 
+export interface DeleteTargetRequest {
+    targetId: string;
+}
+
 export interface DownloadTargetRequest {
     targetId: string;
 }
@@ -136,6 +140,45 @@ export class TargetsApi extends runtime.BaseAPI {
     async createTargetPreview(targetId: string, ): Promise<InlineResponse200> {
         const response = await this.createTargetPreviewRaw({ targetId: targetId }, );
         return await response.value();
+    }
+
+    /**
+     * Delete a target
+     * Delete a target
+     */
+    private async deleteTargetRaw(requestParameters: DeleteTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling deleteTarget.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a target
+     * Delete a target
+     */
+    async deleteTarget(targetId: string, ): Promise<void> {
+        await this.deleteTargetRaw({ targetId: targetId }, );
     }
 
     /**

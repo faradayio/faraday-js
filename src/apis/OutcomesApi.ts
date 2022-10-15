@@ -30,6 +30,10 @@ export interface CreateOutcomeRequest {
     outcomeFields: OutcomePost;
 }
 
+export interface DeleteOutcomeRequest {
+    outcomeId: string;
+}
+
 export interface GetOutcomeRequest {
     outcomeId: string;
 }
@@ -89,6 +93,43 @@ export class OutcomesApi extends runtime.BaseAPI {
     async createOutcome(outcomeFields: OutcomePost, ): Promise<Outcome> {
         const response = await this.createOutcomeRaw({ outcomeFields: outcomeFields }, );
         return await response.value();
+    }
+
+    /**
+     * Delete an outcome
+     */
+    private async deleteOutcomeRaw(requestParameters: DeleteOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+            throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling deleteOutcome.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/outcomes/{outcome_id}`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete an outcome
+     */
+    async deleteOutcome(outcomeId: string, ): Promise<void> {
+        await this.deleteOutcomeRaw({ outcomeId: outcomeId }, );
     }
 
     /**
