@@ -238,7 +238,9 @@ src/models/OutputToTraitsPut.ts
 src/models/Persona.ts
 src/models/PersonaDetails.ts
 src/models/PersonaSet.ts
+src/models/PersonaSetMergePatch.ts
 src/models/PersonaSetPost.ts
+src/models/PersonaSetPut.ts
 src/models/PrimitiveDataType.ts
 src/models/Recency.ts
 src/models/RecencyMergePatch.ts

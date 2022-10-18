@@ -57,6 +57,14 @@ export interface PersonaSet {
      */
     created_at: Date;
     /**
+     * Whether to show the persona set in Explore, the map view on https://app.faraday.ai.
+     * 
+     * This will slow down persona set builds.
+     * @type {boolean}
+     * @memberof PersonaSet
+     */
+    explore?: boolean;
+    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof PersonaSet
@@ -68,6 +76,12 @@ export interface PersonaSet {
      * @memberof PersonaSet
      */
     modeling_fields?: Array<ModelingField>;
+    /**
+     * Human-readable label for this persona set.
+     * @type {string}
+     * @memberof PersonaSet
+     */
+    name: string;
     /**
      * The personas that belong to this persona set
      * @type {Array<Persona>}
@@ -119,8 +133,10 @@ export function PersonaSetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'active': !exists(json, 'active') ? undefined : json['active'],
         'cohort_id': json['cohort_id'],
         'created_at': (new Date(json['created_at'])),
+        'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'id': json['id'],
         'modeling_fields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
+        'name': json['name'],
         'personas': !exists(json, 'personas') ? undefined : ((json['personas'] as Array<any>).map(PersonaFromJSON)),
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
@@ -142,8 +158,10 @@ export function PersonaSetToJSON(value?: PersonaSet | null): any {
         'active': value.active,
         'cohort_id': value.cohort_id,
         'created_at': (value.created_at.toISOString()),
+        'explore': value.explore,
         'id': value.id,
         'modeling_fields': value.modeling_fields === undefined ? undefined : ((value.modeling_fields as Array<any>).map(ModelingFieldToJSON)),
+        'name': value.name,
         'personas': value.personas === undefined ? undefined : ((value.personas as Array<any>).map(PersonaToJSON)),
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),

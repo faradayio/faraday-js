@@ -35,11 +35,25 @@ export interface PersonaSetPost {
      */
     cohort_id: string;
     /**
+     * Whether to show the persona set in Explore, the map view on https://app.faraday.ai.
+     * 
+     * This will slow down persona set builds.
+     * @type {boolean}
+     * @memberof PersonaSetPost
+     */
+    explore?: boolean;
+    /**
      * Specify customer attributes to use in modeling
      * @type {Array<ModelingField>}
      * @memberof PersonaSetPost
      */
     modeling_fields?: Array<ModelingField>;
+    /**
+     * Human-readable label for this persona set.
+     * @type {string}
+     * @memberof PersonaSetPost
+     */
+    name: string;
 }
 
 export function PersonaSetPostFromJSON(json: any): PersonaSetPost {
@@ -53,7 +67,9 @@ export function PersonaSetPostFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'cohort_id': json['cohort_id'],
+        'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'modeling_fields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
+        'name': json['name'],
     };
 }
 
@@ -67,7 +83,9 @@ export function PersonaSetPostToJSON(value?: PersonaSetPost | null): any {
     return {
         
         'cohort_id': value.cohort_id,
+        'explore': value.explore,
         'modeling_fields': value.modeling_fields === undefined ? undefined : ((value.modeling_fields as Array<any>).map(ModelingFieldToJSON)),
+        'name': value.name,
     };
 }
 
