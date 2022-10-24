@@ -34,6 +34,12 @@ export interface ConnectionOptionsAzureSqlServerMergePatch {
      */
     host?: string;
     /**
+     * In case the host is deployed behind a load balancer.
+     * @type {string}
+     * @memberof ConnectionOptionsAzureSqlServerMergePatch
+     */
+    load_balancer?: string | null;
+    /**
      * Password
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServerMergePatch
@@ -45,6 +51,12 @@ export interface ConnectionOptionsAzureSqlServerMergePatch {
      * @memberof ConnectionOptionsAzureSqlServerMergePatch
      */
     port?: number;
+    /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsAzureSqlServerMergePatch
+     */
+    ssh_bastion?: string | null;
     /**
      * The type of connection
      * @type {string}
@@ -71,8 +83,10 @@ export function ConnectionOptionsAzureSqlServerMergePatchFromJSONTyped(json: any
         
         'database': !exists(json, 'database') ? undefined : json['database'],
         'host': !exists(json, 'host') ? undefined : json['host'],
+        'load_balancer': !exists(json, 'load_balancer') ? undefined : json['load_balancer'],
         'password': !exists(json, 'password') ? undefined : json['password'],
         'port': !exists(json, 'port') ? undefined : json['port'],
+        'ssh_bastion': !exists(json, 'ssh_bastion') ? undefined : json['ssh_bastion'],
         'type': json['type'],
         'user': !exists(json, 'user') ? undefined : json['user'],
     };
@@ -89,8 +103,10 @@ export function ConnectionOptionsAzureSqlServerMergePatchToJSON(value?: Connecti
         
         'database': value.database,
         'host': value.host,
+        'load_balancer': value.load_balancer,
         'password': value.password,
         'port': value.port,
+        'ssh_bastion': value.ssh_bastion,
         'type': value.type,
         'user': value.user,
     };

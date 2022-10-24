@@ -32,11 +32,23 @@ export interface ConnectionOptionsGcpCloudSqlSqlServer {
      */
     instance_connection_name: string;
     /**
+     * In case the host is deployed behind a load balancer.
+     * @type {string}
+     * @memberof ConnectionOptionsGcpCloudSqlSqlServer
+     */
+    load_balancer?: string;
+    /**
      * Password
      * @type {string}
      * @memberof ConnectionOptionsGcpCloudSqlSqlServer
      */
     password: string;
+    /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsGcpCloudSqlSqlServer
+     */
+    ssh_bastion?: string;
     /**
      * The type of connection
      * @type {string}
@@ -63,7 +75,9 @@ export function ConnectionOptionsGcpCloudSqlSqlServerFromJSONTyped(json: any, ig
         
         'database': json['database'],
         'instance_connection_name': json['instance_connection_name'],
+        'load_balancer': !exists(json, 'load_balancer') ? undefined : json['load_balancer'],
         'password': json['password'],
+        'ssh_bastion': !exists(json, 'ssh_bastion') ? undefined : json['ssh_bastion'],
         'type': json['type'],
         'user': json['user'],
     };
@@ -80,7 +94,9 @@ export function ConnectionOptionsGcpCloudSqlSqlServerToJSON(value?: ConnectionOp
         
         'database': value.database,
         'instance_connection_name': value.instance_connection_name,
+        'load_balancer': value.load_balancer,
         'password': value.password,
+        'ssh_bastion': value.ssh_bastion,
         'type': value.type,
         'user': value.user,
     };

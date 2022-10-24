@@ -34,11 +34,23 @@ export interface ConnectionOptionsGcpCloudSqlSqlServerMergePatch {
      */
     instance_connection_name?: string;
     /**
+     * In case the host is deployed behind a load balancer.
+     * @type {string}
+     * @memberof ConnectionOptionsGcpCloudSqlSqlServerMergePatch
+     */
+    load_balancer?: string | null;
+    /**
      * Password
      * @type {string}
      * @memberof ConnectionOptionsGcpCloudSqlSqlServerMergePatch
      */
     password?: string;
+    /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsGcpCloudSqlSqlServerMergePatch
+     */
+    ssh_bastion?: string | null;
     /**
      * The type of connection
      * @type {string}
@@ -65,7 +77,9 @@ export function ConnectionOptionsGcpCloudSqlSqlServerMergePatchFromJSONTyped(jso
         
         'database': !exists(json, 'database') ? undefined : json['database'],
         'instance_connection_name': !exists(json, 'instance_connection_name') ? undefined : json['instance_connection_name'],
+        'load_balancer': !exists(json, 'load_balancer') ? undefined : json['load_balancer'],
         'password': !exists(json, 'password') ? undefined : json['password'],
+        'ssh_bastion': !exists(json, 'ssh_bastion') ? undefined : json['ssh_bastion'],
         'type': json['type'],
         'user': !exists(json, 'user') ? undefined : json['user'],
     };
@@ -82,7 +96,9 @@ export function ConnectionOptionsGcpCloudSqlSqlServerMergePatchToJSON(value?: Co
         
         'database': value.database,
         'instance_connection_name': value.instance_connection_name,
+        'load_balancer': value.load_balancer,
         'password': value.password,
+        'ssh_bastion': value.ssh_bastion,
         'type': value.type,
         'user': value.user,
     };

@@ -22,6 +22,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsSnowflakeMergePatch {
     /**
+     * If the table was created with case sensitive columns, this setting may be required.
+     * @type {boolean}
+     * @memberof DatasetOptionsSnowflakeMergePatch
+     */
+    case_sensitive_columns?: boolean | null;
+    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsSnowflakeMergePatch
@@ -45,6 +51,7 @@ export function DatasetOptionsSnowflakeMergePatchFromJSONTyped(json: any, ignore
     }
     return {
         
+        'case_sensitive_columns': !exists(json, 'case_sensitive_columns') ? undefined : json['case_sensitive_columns'],
         'table_name': !exists(json, 'table_name') ? undefined : json['table_name'],
         'type': json['type'],
     };
@@ -59,6 +66,7 @@ export function DatasetOptionsSnowflakeMergePatchToJSON(value?: DatasetOptionsSn
     }
     return {
         
+        'case_sensitive_columns': value.case_sensitive_columns,
         'table_name': value.table_name,
         'type': value.type,
     };

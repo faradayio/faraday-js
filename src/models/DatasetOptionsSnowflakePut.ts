@@ -22,6 +22,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DatasetOptionsSnowflakePut {
     /**
+     * If the table was created with case sensitive columns, this setting may be required.
+     * @type {boolean}
+     * @memberof DatasetOptionsSnowflakePut
+     */
+    case_sensitive_columns?: boolean;
+    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsSnowflakePut
@@ -45,6 +51,7 @@ export function DatasetOptionsSnowflakePutFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'case_sensitive_columns': !exists(json, 'case_sensitive_columns') ? undefined : json['case_sensitive_columns'],
         'table_name': json['table_name'],
         'type': json['type'],
     };
@@ -59,6 +66,7 @@ export function DatasetOptionsSnowflakePutToJSON(value?: DatasetOptionsSnowflake
     }
     return {
         
+        'case_sensitive_columns': value.case_sensitive_columns,
         'table_name': value.table_name,
         'type': value.type,
     };
