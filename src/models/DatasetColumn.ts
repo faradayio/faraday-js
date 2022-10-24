@@ -39,7 +39,7 @@ export interface DatasetColumn {
      */
     is_nullable: boolean;
     /**
-     * Faraday's transformed version of the column name as a C-style ident
+     * Name of the column found in the client data.
      * @type {string}
      * @memberof DatasetColumn
      */
