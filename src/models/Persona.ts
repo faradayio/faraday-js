@@ -45,6 +45,12 @@ export interface Persona {
      */
     id?: string;
     /**
+     * The number of individuals that match this persona within the cohort used to generate the persona set.
+     * @type {number}
+     * @memberof Persona
+     */
+    individuals_count?: number;
+    /**
      * A human-readable label for this persona.
      * @type {string}
      * @memberof Persona
@@ -65,6 +71,7 @@ export function PersonaFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'avatar': !exists(json, 'avatar') ? undefined : json['avatar'],
         'details': !exists(json, 'details') ? undefined : PersonaDetailsFromJSON(json['details']),
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'individuals_count': !exists(json, 'individuals_count') ? undefined : json['individuals_count'],
         'name': !exists(json, 'name') ? undefined : json['name'],
     };
 }
@@ -81,6 +88,7 @@ export function PersonaToJSON(value?: Persona | null): any {
         'avatar': value.avatar,
         'details': PersonaDetailsToJSON(value.details),
         'id': value.id,
+        'individuals_count': value.individuals_count,
         'name': value.name,
     };
 }
