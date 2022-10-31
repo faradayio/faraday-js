@@ -21,7 +21,7 @@ import {
 } from './ResourceStatus';
 
 /**
- * A model describing how likely a group of people are to transition from one cohort to another (for example, from a prospect to a customer).
+ * A business objective describing how likely a group of people are to transition from one cohort to another (for example, from a prospect to a customer).
  * @export
  * @interface Outcome
  */

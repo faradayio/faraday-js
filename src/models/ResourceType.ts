@@ -21,7 +21,7 @@ export enum ResourceType {
     Cohorts = 'cohorts',
     Connections = 'connections',
     Datasets = 'datasets',
-    EventEmitters = 'event_emitters',
+    Accounts = 'accounts',
     Outcomes = 'outcomes',
     PersonaSets = 'persona_sets',
     Scopes = 'scopes',

@@ -3,6 +3,8 @@
 .openapi-generator-ignore
 README.md
 package.json
+src/apis/AccountsApi.ts
+src/apis/BillingApi.ts
 src/apis/CohortsApi.ts
 src/apis/ConnectionsApi.ts
 src/apis/DatasetsApi.ts
@@ -16,6 +18,13 @@ src/apis/UploadsApi.ts
 src/apis/UsageApi.ts
 src/apis/index.ts
 src/index.ts
+src/models/Account.ts
+src/models/AccountBilling.ts
+src/models/AccountCommitment.ts
+src/models/AccountMergePatch.ts
+src/models/AccountPost.ts
+src/models/AccountPut.ts
+src/models/AccountUsage.ts
 src/models/Cohort.ts
 src/models/CohortMergePatch.ts
 src/models/CohortPost.ts
@@ -221,6 +230,7 @@ src/models/IdentitySetsMergePatch.ts
 src/models/IdentitySetsPost.ts
 src/models/IdentitySetsPut.ts
 src/models/InlineResponse200.ts
+src/models/Invoice.ts
 src/models/ModelError.ts
 src/models/ModelingField.ts
 src/models/Outcome.ts
@@ -235,6 +245,7 @@ src/models/OutputToTraits.ts
 src/models/OutputToTraitsMergePatch.ts
 src/models/OutputToTraitsPost.ts
 src/models/OutputToTraitsPut.ts
+src/models/Payment.ts
 src/models/Persona.ts
 src/models/PersonaDetails.ts
 src/models/PersonaSet.ts

@@ -2,6 +2,12 @@
 /* eslint-disable */
 import {Configuration} from '../runtime';
 import {
+    AccountsApi
+} from './AccountsApi';
+import {
+    BillingApi
+} from './BillingApi';
+import {
     CohortsApi
 } from './CohortsApi';
 import {
@@ -37,6 +43,8 @@ import {
 
 export class FaradayClient {
     configuration: Configuration;
+    accounts: AccountsApi;
+    billing: BillingApi;
     cohorts: CohortsApi;
     connections: ConnectionsApi;
     datasets: DatasetsApi;
@@ -51,6 +59,8 @@ export class FaradayClient {
 
     constructor(configuration: Configuration) {
         this.configuration = configuration
+        this.accounts = new AccountsApi(configuration);
+        this.billing = new BillingApi(configuration);
         this.cohorts = new CohortsApi(configuration);
         this.connections = new ConnectionsApi(configuration);
         this.datasets = new DatasetsApi(configuration);
