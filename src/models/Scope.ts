@@ -51,6 +51,12 @@ export interface Scope {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Scope
+     */
+    last_updated_output_at?: Date;
+    /**
      * Human-readable label for this scope. Each scope must have a unique name.
      * @type {string}
      * @memberof Scope
@@ -125,6 +131,7 @@ export function ScopeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sco
         
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
         'payload': ScopePayloadFromJSON(json['payload']),
         'population': ScopePopulationFromJSON(json['population']),
@@ -149,6 +156,7 @@ export function ScopeToJSON(value?: Scope | null): any {
         
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
         'payload': ScopePayloadToJSON(value.payload),
         'population': ScopePopulationToJSON(value.population),

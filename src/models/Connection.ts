@@ -65,6 +65,12 @@ export interface Connection {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Connection
+     */
+    last_updated_output_at?: Date;
+    /**
      * A user-friendly name of the connection.
      * @type {string}
      * @memberof Connection
@@ -122,6 +128,7 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'contents_error': !exists(json, 'contents_error') ? undefined : json['contents_error'],
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
         'options': ConnectionOptionsFromJSON(json['options']),
         'resource_type': json['resource_type'],
@@ -145,6 +152,7 @@ export function ConnectionToJSON(value?: Connection | null): any {
         'contents_error': value.contents_error,
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
         'options': ConnectionOptionsToJSON(value.options),
         'resource_type': value.resource_type,

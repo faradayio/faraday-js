@@ -39,6 +39,12 @@ export interface Resource {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Resource
+     */
+    last_updated_output_at?: Date;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof Resource
@@ -82,6 +88,7 @@ export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
@@ -101,6 +108,7 @@ export function ResourceToJSON(value?: Resource | null): any {
         
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),

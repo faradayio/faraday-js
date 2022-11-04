@@ -71,6 +71,12 @@ export interface PersonaSet {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof PersonaSet
+     */
+    last_updated_output_at?: Date;
+    /**
      * Specify customer attributes to use in modeling
      * @type {Array<ModelingField>}
      * @memberof PersonaSet
@@ -135,6 +141,7 @@ export function PersonaSetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'created_at': (new Date(json['created_at'])),
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'modeling_fields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
         'name': json['name'],
         'personas': !exists(json, 'personas') ? undefined : ((json['personas'] as Array<any>).map(PersonaFromJSON)),
@@ -160,6 +167,7 @@ export function PersonaSetToJSON(value?: PersonaSet | null): any {
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'modeling_fields': value.modeling_fields === undefined ? undefined : ((value.modeling_fields as Array<any>).map(ModelingFieldToJSON)),
         'name': value.name,
         'personas': value.personas === undefined ? undefined : ((value.personas as Array<any>).map(PersonaToJSON)),

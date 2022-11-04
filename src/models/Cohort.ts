@@ -65,6 +65,12 @@ export interface Cohort {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Cohort
+     */
+    last_updated_output_at?: Date;
+    /**
      * Max count for this cohort's config
      * @type {number}
      * @memberof Cohort
@@ -164,6 +170,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'created_at': (new Date(json['created_at'])),
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'max_count': !exists(json, 'max_count') ? undefined : json['max_count'],
         'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
@@ -194,6 +201,7 @@ export function CohortToJSON(value?: Cohort | null): any {
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'max_count': value.max_count,
         'max_value': value.max_value,
         'min_count': value.min_count,

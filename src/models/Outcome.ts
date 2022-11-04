@@ -82,6 +82,12 @@ export interface Outcome {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Outcome
+     */
+    last_updated_output_at?: Date;
+    /**
      * Human-readable label for this outcome. Each outcome must have a unique name.
      * @type {string}
      * @memberof Outcome
@@ -150,6 +156,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'eligible_cohort_name': !exists(json, 'eligible_cohort_name') ? undefined : json['eligible_cohort_name'],
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
         'report_url': !exists(json, 'report_url') ? undefined : json['report_url'],
         'resource_type': json['resource_type'],
@@ -179,6 +186,7 @@ export function OutcomeToJSON(value?: Outcome | null): any {
         'eligible_cohort_name': value.eligible_cohort_name,
         'feature_blocklist': value.feature_blocklist,
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
         'report_url': value.report_url,
         'resource_type': value.resource_type,

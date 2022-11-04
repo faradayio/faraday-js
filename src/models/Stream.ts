@@ -39,6 +39,12 @@ export interface Stream {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Stream
+     */
+    last_updated_output_at?: Date;
+    /**
      * 
      * @type {string}
      * @memberof Stream
@@ -88,6 +94,7 @@ export function StreamFromJSONTyped(json: any, ignoreDiscriminator: boolean): St
         
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
@@ -108,6 +115,7 @@ export function StreamToJSON(value?: Stream | null): any {
         
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),

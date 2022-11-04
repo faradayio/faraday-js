@@ -77,6 +77,12 @@ export interface Target {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Target
+     */
+    last_updated_output_at?: Date;
+    /**
      * 
      * @type {TargetLimit}
      * @memberof Target
@@ -173,6 +179,7 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'limit': !exists(json, 'limit') ? undefined : TargetLimitFromJSON(json['limit']),
         'name': json['name'],
         'options': TargetOptionsFromJSON(json['options']),
@@ -199,6 +206,7 @@ export function TargetToJSON(value?: Target | null): any {
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'limit': TargetLimitToJSON(value.limit),
         'name': value.name,
         'options': TargetOptionsToJSON(value.options),

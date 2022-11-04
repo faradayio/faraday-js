@@ -58,6 +58,12 @@ export interface Account {
      */
     id: string;
     /**
+     * The last time this resource successfully built.
+     * @type {Date}
+     * @memberof Account
+     */
+    last_updated_output_at?: Date;
+    /**
      * The name of the account.
      * @type {string}
      * @memberof Account
@@ -121,6 +127,7 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
         'commitment': !exists(json, 'commitment') ? undefined : AccountCommitmentFromJSON(json['commitment']),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
         'parent_account_id': !exists(json, 'parent_account_id') ? undefined : json['parent_account_id'],
         'resource_type': json['resource_type'],
@@ -145,6 +152,7 @@ export function AccountToJSON(value?: Account | null): any {
         'commitment': AccountCommitmentToJSON(value.commitment),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
         'parent_account_id': value.parent_account_id,
         'resource_type': value.resource_type,
