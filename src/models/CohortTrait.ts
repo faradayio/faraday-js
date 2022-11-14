@@ -56,6 +56,12 @@ export interface CohortTrait {
      */
     _lte?: number;
     /**
+     * Value contains a match to the regex (re2) expression provided. For an exact regex match, use the ^ and $ characters as specified by the (re2 documentation)[https://github.com/google/re2/wiki/Syntax].
+     * @type {string}
+     * @memberof CohortTrait
+     */
+    _matches?: string;
+    /**
      * Value is not one of
      * @type {Array<string>}
      * @memberof CohortTrait
@@ -103,6 +109,7 @@ export function CohortTraitFromJSONTyped(json: any, ignoreDiscriminator: boolean
         '_in': !exists(json, '_in') ? undefined : json['_in'],
         '_lt': !exists(json, '_lt') ? undefined : json['_lt'],
         '_lte': !exists(json, '_lte') ? undefined : json['_lte'],
+        '_matches': !exists(json, '_matches') ? undefined : json['_matches'],
         '_nin': !exists(json, '_nin') ? undefined : json['_nin'],
         '_nnull': !exists(json, '_nnull') ? undefined : json['_nnull'],
         '_null': !exists(json, '_null') ? undefined : json['_null'],
@@ -126,6 +133,7 @@ export function CohortTraitToJSON(value?: CohortTrait | null): any {
         '_in': value._in,
         '_lt': value._lt,
         '_lte': value._lte,
+        '_matches': value._matches,
         '_nin': value._nin,
         '_nnull': value._nnull,
         '_null': value._null,
