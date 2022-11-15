@@ -33,6 +33,12 @@ export interface TargetOptionsSnowflakePut {
      * @memberof TargetOptionsSnowflakePut
      */
     type: string;
+    /**
+     * Currently only supported on Referenced targets on GCP BigQuery and Snowflake, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
+     * @type {boolean}
+     * @memberof TargetOptionsSnowflakePut
+     */
+    upsert?: boolean;
 }
 
 export function TargetOptionsSnowflakePutFromJSON(json: any): TargetOptionsSnowflakePut {
@@ -47,6 +53,7 @@ export function TargetOptionsSnowflakePutFromJSONTyped(json: any, ignoreDiscrimi
         
         'table_name': json['table_name'],
         'type': json['type'],
+        'upsert': !exists(json, 'upsert') ? undefined : json['upsert'],
     };
 }
 
@@ -61,6 +68,7 @@ export function TargetOptionsSnowflakePutToJSON(value?: TargetOptionsSnowflakePu
         
         'table_name': value.table_name,
         'type': value.type,
+        'upsert': value.upsert,
     };
 }
 
