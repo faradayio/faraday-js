@@ -249,6 +249,13 @@ src/models/Payment.ts
 src/models/Persona.ts
 src/models/PersonaDetails.ts
 src/models/PersonaSet.ts
+src/models/PersonaSetAnalysisDimensions.ts
+src/models/PersonaSetAnalysisDimensionsTrait.ts
+src/models/PersonaSetAnalysisDimensionsTraitBin.ts
+src/models/PersonaSetAnalysisDimensionsTraitBinBoolean.ts
+src/models/PersonaSetAnalysisDimensionsTraitBinDate.ts
+src/models/PersonaSetAnalysisDimensionsTraitBinNumber.ts
+src/models/PersonaSetAnalysisDimensionsTraitBinText.ts
 src/models/PersonaSetMergePatch.ts
 src/models/PersonaSetPost.ts
 src/models/PersonaSetPut.ts
