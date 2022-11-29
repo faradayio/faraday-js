@@ -13,13 +13,21 @@
  */
 
 /**
- * Specify the format of a column in the dataset
+ * Additional context for the column's data that isn't captured by its data type. For example, a 'revenue' column's data type would likely be 'int64', but format specifies if this number represents 'dollars' or 'cents'. This can be left blank if no additional context is needed.
  * @export
  * @enum {string}
  */
 export enum DataMapColumnFormat {
     CurrencyCents = 'currency_cents',
     CurrencyDollars = 'currency_dollars',
+    MmDdYySlash = 'mm_dd_yy_slash',
+    MmDdYyyySlash = 'mm_dd_yyyy_slash',
+    MmDdYyDash = 'mm_dd_yy_dash',
+    MmDdYyyyDash = 'mm_dd_yyyy_dash',
+    YyyyMmDdSlash = 'yyyy_mm_dd_slash',
+    YyMmDdSlash = 'yy_mm_dd_slash',
+    YyyyMmDdDash = 'yyyy_mm_dd_dash',
+    YyMmDdDash = 'yy_mm_dd_dash',
     DateIso8601 = 'date_iso8601',
     DateMonthDayFullyear = 'date_month_day_fullyear',
     DateMonthDayShortyear = 'date_month_day_shortyear',

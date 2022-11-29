@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to PUT a value of the `DataMap` type.)
  * 
- * A mapping from dataset columns to what they mean. Some fields have special meanings.
+ * A mapping from dataset columns to what they mean. It is recommended to include a "datetime" column if possible, as it will improve the accuracy of models.
  * @export
  * @interface DataMapPut
  */
@@ -34,25 +34,7 @@ export interface DataMapPut {
      * @type {DataMapColumnPut}
      * @memberof DataMapPut
      */
-    channel?: DataMapColumnPut;
-    /**
-     * 
-     * @type {DataMapColumnPut}
-     * @memberof DataMapPut
-     */
     datetime?: DataMapColumnPut;
-    /**
-     * 
-     * @type {DataMapColumnPut}
-     * @memberof DataMapPut
-     */
-    product?: DataMapColumnPut;
-    /**
-     * 
-     * @type {DataMapColumnPut}
-     * @memberof DataMapPut
-     */
-    value?: DataMapColumnPut;
 }
 
 export function DataMapPutFromJSON(json: any): DataMapPut {
@@ -66,10 +48,7 @@ export function DataMapPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
             ...json,
-        'channel': !exists(json, 'channel') ? undefined : DataMapColumnPutFromJSON(json['channel']),
         'datetime': !exists(json, 'datetime') ? undefined : DataMapColumnPutFromJSON(json['datetime']),
-        'product': !exists(json, 'product') ? undefined : DataMapColumnPutFromJSON(json['product']),
-        'value': !exists(json, 'value') ? undefined : DataMapColumnPutFromJSON(json['value']),
     };
 }
 
@@ -83,10 +62,7 @@ export function DataMapPutToJSON(value?: DataMapPut | null): any {
     return {
         
             ...value,
-        'channel': DataMapColumnPutToJSON(value.channel),
         'datetime': DataMapColumnPutToJSON(value.datetime),
-        'product': DataMapColumnPutToJSON(value.product),
-        'value': DataMapColumnPutToJSON(value.value),
     };
 }
 

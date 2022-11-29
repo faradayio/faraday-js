@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to POST a new value of the `DataMap` type.)
  * 
- * A mapping from dataset columns to what they mean. Some fields have special meanings.
+ * A mapping from dataset columns to what they mean. It is recommended to include a "datetime" column if possible, as it will improve the accuracy of models.
  * @export
  * @interface DataMapPost
  */
@@ -34,25 +34,7 @@ export interface DataMapPost {
      * @type {DataMapColumnPost}
      * @memberof DataMapPost
      */
-    channel?: DataMapColumnPost;
-    /**
-     * 
-     * @type {DataMapColumnPost}
-     * @memberof DataMapPost
-     */
     datetime?: DataMapColumnPost;
-    /**
-     * 
-     * @type {DataMapColumnPost}
-     * @memberof DataMapPost
-     */
-    product?: DataMapColumnPost;
-    /**
-     * 
-     * @type {DataMapColumnPost}
-     * @memberof DataMapPost
-     */
-    value?: DataMapColumnPost;
 }
 
 export function DataMapPostFromJSON(json: any): DataMapPost {
@@ -66,10 +48,7 @@ export function DataMapPostFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
             ...json,
-        'channel': !exists(json, 'channel') ? undefined : DataMapColumnPostFromJSON(json['channel']),
         'datetime': !exists(json, 'datetime') ? undefined : DataMapColumnPostFromJSON(json['datetime']),
-        'product': !exists(json, 'product') ? undefined : DataMapColumnPostFromJSON(json['product']),
-        'value': !exists(json, 'value') ? undefined : DataMapColumnPostFromJSON(json['value']),
     };
 }
 
@@ -83,10 +62,7 @@ export function DataMapPostToJSON(value?: DataMapPost | null): any {
     return {
         
             ...value,
-        'channel': DataMapColumnPostToJSON(value.channel),
         'datetime': DataMapColumnPostToJSON(value.datetime),
-        'product': DataMapColumnPostToJSON(value.product),
-        'value': DataMapColumnPostToJSON(value.value),
     };
 }
 

@@ -21,7 +21,7 @@ import {
 } from './DataMapColumn';
 
 /**
- * A mapping from dataset columns to what they mean. Some fields have special meanings.
+ * A mapping from dataset columns to what they mean. It is recommended to include a "datetime" column if possible, as it will improve the accuracy of models.
  * @export
  * @interface DataMap
  */
@@ -32,25 +32,7 @@ export interface DataMap {
      * @type {DataMapColumn}
      * @memberof DataMap
      */
-    channel?: DataMapColumn;
-    /**
-     * 
-     * @type {DataMapColumn}
-     * @memberof DataMap
-     */
     datetime?: DataMapColumn;
-    /**
-     * 
-     * @type {DataMapColumn}
-     * @memberof DataMap
-     */
-    product?: DataMapColumn;
-    /**
-     * 
-     * @type {DataMapColumn}
-     * @memberof DataMap
-     */
-    value?: DataMapColumn;
 }
 
 export function DataMapFromJSON(json: any): DataMap {
@@ -64,10 +46,7 @@ export function DataMapFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
     return {
         
             ...json,
-        'channel': !exists(json, 'channel') ? undefined : DataMapColumnFromJSON(json['channel']),
         'datetime': !exists(json, 'datetime') ? undefined : DataMapColumnFromJSON(json['datetime']),
-        'product': !exists(json, 'product') ? undefined : DataMapColumnFromJSON(json['product']),
-        'value': !exists(json, 'value') ? undefined : DataMapColumnFromJSON(json['value']),
     };
 }
 
@@ -81,10 +60,7 @@ export function DataMapToJSON(value?: DataMap | null): any {
     return {
         
             ...value,
-        'channel': DataMapColumnToJSON(value.channel),
         'datetime': DataMapColumnToJSON(value.datetime),
-        'product': DataMapColumnToJSON(value.product),
-        'value': DataMapColumnToJSON(value.value),
     };
 }
 

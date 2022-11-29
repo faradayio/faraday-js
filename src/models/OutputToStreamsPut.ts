@@ -27,19 +27,28 @@ import {
  * 
  * Describes how to transform the dataset to a stream of events with canonical field names.
  * 
- * A data map object has the following keys: `datetime`, `value`, `product`, `channel`. `datetime`
- * is required, the remaining are optional. Each key must specificy at mimumum a `column_name` (source 
+ * A data map object can have any keys, but it is recommended to include a `datetime` key if possible, as this will improve modeling. 
+ * Each key must specificy at mimumum a `column_name` (source 
  * column) and optionally a `format`, which can be one of:
  *   * `currency_cents`
  *   * `currency_dollars`
- *   * `date_iso8601`
- *   * `date_month_day_fullyear`
- *   * `date_month_day_shortyear`
- *   * `date_month_day_fullyear_hours_minutes`
- *   * `date_month_day_fullyear_hours_minutes_seconds`
+ *   * `mm_dd_yy_slash`
+ *   * `mm_dd_yyyy_slash`
+ *   * `mm_dd_yy_dash`
+ *   * `mm_dd_yyyy_dash`
+ *   * `yyyy_mm_dd_slash`
+ *   * `yy_mm_dd_slash`
+ *   * `yyyy_mm_dd_dash`
+ *   * `yy_mm_dd_dash`
+ *   * `date_iso8601` (deprecated)
+ *   * `date_month_day_fullyear` (deprecated)
+ *   * `date_month_day_shortyear` (deprecated)
+ *   * `date_month_day_fullyear_hours_minutes` (deprecated)
+ *   * `date_month_day_fullyear_hours_minutes_seconds` (deprecated)
  *   * `list_comma_separated`
  *   * `list_semicolon_separated`
  *   * `list_single_value`
+ * For the date formats, time values are ignored. In other words, if you have YYYY-MM-DDTHH:MM:SS, you can pick yyyy_mm_dd_dash.
  * @export
  * @interface OutputToStreamsPut
  */

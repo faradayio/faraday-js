@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to PATCH the `DataMap` type.)
  * 
- * A mapping from dataset columns to what they mean. Some fields have special meanings.
+ * A mapping from dataset columns to what they mean. It is recommended to include a "datetime" column if possible, as it will improve the accuracy of models.
  * @export
  * @interface DataMapMergePatch
  */
@@ -34,25 +34,7 @@ export interface DataMapMergePatch {
      * @type {DataMapColumnMergePatch}
      * @memberof DataMapMergePatch
      */
-    channel?: DataMapColumnMergePatch | null;
-    /**
-     * 
-     * @type {DataMapColumnMergePatch}
-     * @memberof DataMapMergePatch
-     */
     datetime?: DataMapColumnMergePatch | null;
-    /**
-     * 
-     * @type {DataMapColumnMergePatch}
-     * @memberof DataMapMergePatch
-     */
-    product?: DataMapColumnMergePatch | null;
-    /**
-     * 
-     * @type {DataMapColumnMergePatch}
-     * @memberof DataMapMergePatch
-     */
-    value?: DataMapColumnMergePatch | null;
 }
 
 export function DataMapMergePatchFromJSON(json: any): DataMapMergePatch {
@@ -66,10 +48,7 @@ export function DataMapMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
             ...json,
-        'channel': !exists(json, 'channel') ? undefined : DataMapColumnMergePatchFromJSON(json['channel']),
         'datetime': !exists(json, 'datetime') ? undefined : DataMapColumnMergePatchFromJSON(json['datetime']),
-        'product': !exists(json, 'product') ? undefined : DataMapColumnMergePatchFromJSON(json['product']),
-        'value': !exists(json, 'value') ? undefined : DataMapColumnMergePatchFromJSON(json['value']),
     };
 }
 
@@ -83,10 +62,7 @@ export function DataMapMergePatchToJSON(value?: DataMapMergePatch | null): any {
     return {
         
             ...value,
-        'channel': DataMapColumnMergePatchToJSON(value.channel),
         'datetime': DataMapColumnMergePatchToJSON(value.datetime),
-        'product': DataMapColumnMergePatchToJSON(value.product),
-        'value': DataMapColumnMergePatchToJSON(value.value),
     };
 }
 
