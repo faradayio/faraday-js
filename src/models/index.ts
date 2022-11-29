@@ -264,6 +264,8 @@ export * from './ScopePopulationPut';
 export * from './ScopePost';
 export * from './ScopePut';
 export * from './Stream';
+export * from './StreamProperties';
+export * from './StreamPropertyDetails';
 export * from './Target';
 export * from './TargetAggregateGeographic';
 export * from './TargetAggregateIdentified';

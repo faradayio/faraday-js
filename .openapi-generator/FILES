@@ -282,6 +282,8 @@ src/models/ScopePopulationPut.ts
 src/models/ScopePost.ts
 src/models/ScopePut.ts
 src/models/Stream.ts
+src/models/StreamProperties.ts
+src/models/StreamPropertyDetails.ts
 src/models/Target.ts
 src/models/TargetAggregateGeographic.ts
 src/models/TargetAggregateIdentified.ts

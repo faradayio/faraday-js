@@ -19,6 +19,12 @@ import {
     ResourceStatusFromJSONTyped,
     ResourceStatusToJSON,
 } from './ResourceStatus';
+import {
+    StreamProperties,
+    StreamPropertiesFromJSON,
+    StreamPropertiesFromJSONTyped,
+    StreamPropertiesToJSON,
+} from './StreamProperties';
 
 /**
  * A stream of events associated with the account.
@@ -50,6 +56,12 @@ export interface Stream {
      * @memberof Stream
      */
     name: string;
+    /**
+     * 
+     * @type {StreamProperties}
+     * @memberof Stream
+     */
+    properties?: StreamProperties;
     /**
      * The type of this resource.
      * @type {string}
@@ -96,6 +108,7 @@ export function StreamFromJSONTyped(json: any, ignoreDiscriminator: boolean): St
         'id': json['id'],
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
+        'properties': !exists(json, 'properties') ? undefined : StreamPropertiesFromJSON(json['properties']),
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
@@ -117,6 +130,7 @@ export function StreamToJSON(value?: Stream | null): any {
         'id': value.id,
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
+        'properties': StreamPropertiesToJSON(value.properties),
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
