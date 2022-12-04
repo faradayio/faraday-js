@@ -49,6 +49,12 @@ export interface IdentitySetPut {
      */
     person_first_name?: string;
     /**
+     * Only provide this if you don't have first name and last name separately
+     * @type {string}
+     * @memberof IdentitySetPut
+     */
+    person_full_name?: string;
+    /**
      * 
      * @type {string}
      * @memberof IdentitySetPut
@@ -88,6 +94,7 @@ export function IdentitySetPutFromJSONTyped(json: any, ignoreDiscriminator: bool
         'email': !exists(json, 'email') ? undefined : json['email'],
         'house_number_and_street': !exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'],
         'person_first_name': !exists(json, 'person_first_name') ? undefined : json['person_first_name'],
+        'person_full_name': !exists(json, 'person_full_name') ? undefined : json['person_full_name'],
         'person_last_name': !exists(json, 'person_last_name') ? undefined : json['person_last_name'],
         'phone': !exists(json, 'phone') ? undefined : json['phone'],
         'postcode': !exists(json, 'postcode') ? undefined : json['postcode'],
@@ -108,6 +115,7 @@ export function IdentitySetPutToJSON(value?: IdentitySetPut | null): any {
         'email': value.email,
         'house_number_and_street': value.house_number_and_street,
         'person_first_name': value.person_first_name,
+        'person_full_name': value.person_full_name,
         'person_last_name': value.person_last_name,
         'phone': value.phone,
         'postcode': value.postcode,

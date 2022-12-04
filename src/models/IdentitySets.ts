@@ -28,6 +28,7 @@ import {
  * Identity set objects map canonical names to dataset column names. The following keys are supported:
  *   * `email`
  *   * `phone`
+ *   * `person_full_name`
  *   * `person_last_name`
  *   * `person_first_name`
  *   * `house_number_and_street`
