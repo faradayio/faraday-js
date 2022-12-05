@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortStreamCondition,
+    CohortStreamConditionFromJSON,
+    CohortStreamConditionFromJSONTyped,
+    CohortStreamConditionToJSON,
+} from './CohortStreamCondition';
+import {
     CohortTrait,
     CohortTraitFromJSON,
     CohortTraitFromJSONTyped,
@@ -79,6 +85,12 @@ export interface CohortMergePatch {
      */
     recency?: RecencyMergePatch | null;
     /**
+     * List of stream properties to filter cohort membership on. The stream properties must be for the same stream set as the cohort `stream_name`.
+     * @type {Array<CohortStreamCondition>}
+     * @memberof CohortMergePatch
+     */
+    stream_conditions?: Array<CohortStreamCondition> | null;
+    /**
      * List of traits to filter cohort membership
      * @type {Array<CohortTrait>}
      * @memberof CohortMergePatch
@@ -103,6 +115,7 @@ export function CohortMergePatchFromJSONTyped(json: any, ignoreDiscriminator: bo
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'recency': !exists(json, 'recency') ? undefined : RecencyMergePatchFromJSON(json['recency']),
+        'stream_conditions': !exists(json, 'stream_conditions') ? undefined : (json['stream_conditions'] === null ? null : (json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
         'traits': !exists(json, 'traits') ? undefined : (json['traits'] === null ? null : (json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
 }
@@ -123,6 +136,7 @@ export function CohortMergePatchToJSON(value?: CohortMergePatch | null): any {
         'min_value': value.min_value,
         'name': value.name,
         'recency': RecencyMergePatchToJSON(value.recency),
+        'stream_conditions': value.stream_conditions === undefined ? undefined : (value.stream_conditions === null ? null : (value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
         'traits': value.traits === undefined ? undefined : (value.traits === null ? null : (value.traits as Array<any>).map(CohortTraitToJSON)),
     };
 }

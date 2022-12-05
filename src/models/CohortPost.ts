@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortStreamCondition,
+    CohortStreamConditionFromJSON,
+    CohortStreamConditionFromJSONTyped,
+    CohortStreamConditionToJSON,
+} from './CohortStreamCondition';
+import {
     CohortTrait,
     CohortTraitFromJSON,
     CohortTraitFromJSONTyped,
@@ -79,6 +85,12 @@ export interface CohortPost {
      */
     recency?: RecencyPost;
     /**
+     * List of stream properties to filter cohort membership on. The stream properties must be for the same stream set as the cohort `stream_name`.
+     * @type {Array<CohortStreamCondition>}
+     * @memberof CohortPost
+     */
+    stream_conditions?: Array<CohortStreamCondition>;
+    /**
      * The `name` field of the stream from which to build this cohort.
      * @type {string}
      * @memberof CohortPost
@@ -109,6 +121,7 @@ export function CohortPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': json['name'],
         'recency': !exists(json, 'recency') ? undefined : RecencyPostFromJSON(json['recency']),
+        'stream_conditions': !exists(json, 'stream_conditions') ? undefined : ((json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
         'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
         'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
@@ -130,6 +143,7 @@ export function CohortPostToJSON(value?: CohortPost | null): any {
         'min_value': value.min_value,
         'name': value.name,
         'recency': RecencyPostToJSON(value.recency),
+        'stream_conditions': value.stream_conditions === undefined ? undefined : ((value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
         'stream_name': value.stream_name,
         'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
     };

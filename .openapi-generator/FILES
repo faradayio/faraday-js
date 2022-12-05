@@ -29,6 +29,7 @@ src/models/Cohort.ts
 src/models/CohortMergePatch.ts
 src/models/CohortPost.ts
 src/models/CohortPut.ts
+src/models/CohortStreamCondition.ts
 src/models/CohortTrait.ts
 src/models/ComplexDataType.ts
 src/models/ComplexDataTypeOneOf.ts

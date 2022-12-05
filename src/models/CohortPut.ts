@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortStreamCondition,
+    CohortStreamConditionFromJSON,
+    CohortStreamConditionFromJSONTyped,
+    CohortStreamConditionToJSON,
+} from './CohortStreamCondition';
+import {
     CohortTrait,
     CohortTraitFromJSON,
     CohortTraitFromJSONTyped,
@@ -79,6 +85,12 @@ export interface CohortPut {
      */
     recency?: RecencyPut;
     /**
+     * List of stream properties to filter cohort membership on. The stream properties must be for the same stream set as the cohort `stream_name`.
+     * @type {Array<CohortStreamCondition>}
+     * @memberof CohortPut
+     */
+    stream_conditions?: Array<CohortStreamCondition>;
+    /**
      * List of traits to filter cohort membership
      * @type {Array<CohortTrait>}
      * @memberof CohortPut
@@ -103,6 +115,7 @@ export function CohortPutFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': json['name'],
         'recency': !exists(json, 'recency') ? undefined : RecencyPutFromJSON(json['recency']),
+        'stream_conditions': !exists(json, 'stream_conditions') ? undefined : ((json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
         'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
 }
@@ -123,6 +136,7 @@ export function CohortPutToJSON(value?: CohortPut | null): any {
         'min_value': value.min_value,
         'name': value.name,
         'recency': RecencyPutToJSON(value.recency),
+        'stream_conditions': value.stream_conditions === undefined ? undefined : ((value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
         'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
     };
 }

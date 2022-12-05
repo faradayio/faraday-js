@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortStreamCondition,
+    CohortStreamConditionFromJSON,
+    CohortStreamConditionFromJSONTyped,
+    CohortStreamConditionToJSON,
+} from './CohortStreamCondition';
+import {
     CohortTrait,
     CohortTraitFromJSON,
     CohortTraitFromJSONTyped,
@@ -137,6 +143,12 @@ export interface Cohort {
      */
     status_error?: string;
     /**
+     * List of stream properties to filter cohort membership on. The stream properties must be for the same stream set as the cohort `stream_name`.
+     * @type {Array<CohortStreamCondition>}
+     * @memberof Cohort
+     */
+    stream_conditions?: Array<CohortStreamCondition>;
+    /**
      * The `name` field of the stream from which to build this cohort.
      * @type {string}
      * @memberof Cohort
@@ -182,6 +194,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'stream_conditions': !exists(json, 'stream_conditions') ? undefined : ((json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
         'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
         'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
         'updated_at': (new Date(json['updated_at'])),
@@ -213,6 +226,7 @@ export function CohortToJSON(value?: Cohort | null): any {
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,
+        'stream_conditions': value.stream_conditions === undefined ? undefined : ((value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
         'stream_name': value.stream_name,
         'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
         'updated_at': (value.updated_at.toISOString()),

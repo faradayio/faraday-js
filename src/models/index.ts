@@ -11,6 +11,7 @@ export * from './Cohort';
 export * from './CohortMergePatch';
 export * from './CohortPost';
 export * from './CohortPut';
+export * from './CohortStreamCondition';
 export * from './CohortTrait';
 export * from './ComplexDataType';
 export * from './ComplexDataTypeOneOf';
