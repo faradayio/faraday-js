@@ -257,6 +257,9 @@ src/models/PersonaSetAnalysisDimensionsTraitBinBoolean.ts
 src/models/PersonaSetAnalysisDimensionsTraitBinDate.ts
 src/models/PersonaSetAnalysisDimensionsTraitBinNumber.ts
 src/models/PersonaSetAnalysisDimensionsTraitBinText.ts
+src/models/PersonaSetAnalysisFlow.ts
+src/models/PersonaSetAnalysisFlowPersona.ts
+src/models/PersonaSetAnalysisFlowPersonaDate.ts
 src/models/PersonaSetMergePatch.ts
 src/models/PersonaSetPost.ts
 src/models/PersonaSetPut.ts

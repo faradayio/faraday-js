@@ -21,6 +21,9 @@ import {
     PersonaSetAnalysisDimensions,
     PersonaSetAnalysisDimensionsFromJSON,
     PersonaSetAnalysisDimensionsToJSON,
+    PersonaSetAnalysisFlow,
+    PersonaSetAnalysisFlowFromJSON,
+    PersonaSetAnalysisFlowToJSON,
     PersonaSetMergePatch,
     PersonaSetMergePatchFromJSON,
     PersonaSetMergePatchToJSON,
@@ -42,6 +45,10 @@ export interface GetPersonaSetRequest {
 }
 
 export interface GetPersonaSetAnalysisDimensionsRequest {
+    personaSetId: string;
+}
+
+export interface GetPersonaSetAnalysisFlowRequest {
     personaSetId: string;
 }
 
@@ -210,6 +217,44 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      */
     async getPersonaSetAnalysisDimensions(personaSetId: string, ): Promise<Array<PersonaSetAnalysisDimensions>> {
         const response = await this.getPersonaSetAnalysisDimensionsRaw({ personaSetId: personaSetId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get various flow of persona sets over time.
+     */
+    private async getPersonaSetAnalysisFlowRaw(requestParameters: GetPersonaSetAnalysisFlowRequest, ): Promise<runtime.ApiResponse<PersonaSetAnalysisFlow>> {
+        if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+            throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling getPersonaSetAnalysisFlow.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/persona_sets/{persona_set_id}/analysis/flow`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PersonaSetAnalysisFlowFromJSON(jsonValue));
+    }
+
+    /**
+     * Get various flow of persona sets over time.
+     */
+    async getPersonaSetAnalysisFlow(personaSetId: string, ): Promise<PersonaSetAnalysisFlow> {
+        const response = await this.getPersonaSetAnalysisFlowRaw({ personaSetId: personaSetId }, );
         return await response.value();
     }
 
