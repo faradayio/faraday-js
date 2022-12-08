@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TargetTransformPresetReferenced,
+    TargetTransformPresetReferencedFromJSON,
+    TargetTransformPresetReferencedFromJSONTyped,
+    TargetTransformPresetReferencedToJSON,
+} from './TargetTransformPresetReferenced';
+
 /**
  * (Parameters used to PUT a value of the `TargetModesReferenced` type.)
  * 
@@ -33,6 +40,12 @@ export interface TargetModesReferencedPut {
      * @memberof TargetModesReferencedPut
      */
     reference_dataset_id: string;
+    /**
+     * 
+     * @type {TargetTransformPresetReferenced}
+     * @memberof TargetModesReferencedPut
+     */
+    transform_preset?: TargetTransformPresetReferenced;
 }
 
 export function TargetModesReferencedPutFromJSON(json: any): TargetModesReferencedPut {
@@ -47,6 +60,7 @@ export function TargetModesReferencedPutFromJSONTyped(json: any, ignoreDiscrimin
         
         'mode': json['mode'],
         'reference_dataset_id': json['reference_dataset_id'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetReferencedFromJSON(json['transform_preset']),
     };
 }
 
@@ -61,6 +75,7 @@ export function TargetModesReferencedPutToJSON(value?: TargetModesReferencedPut 
         
         'mode': value.mode,
         'reference_dataset_id': value.reference_dataset_id,
+        'transform_preset': TargetTransformPresetReferencedToJSON(value.transform_preset),
     };
 }
 

@@ -19,6 +19,12 @@ import {
     TargetAggregateIdentifiedFromJSONTyped,
     TargetAggregateIdentifiedToJSON,
 } from './TargetAggregateIdentified';
+import {
+    TargetTransformPresetIdentified,
+    TargetTransformPresetIdentifiedFromJSON,
+    TargetTransformPresetIdentifiedFromJSONTyped,
+    TargetTransformPresetIdentifiedToJSON,
+} from './TargetTransformPresetIdentified';
 
 /**
  * Identified representation. Suitable for direct mail and canvassing.
@@ -38,6 +44,12 @@ export interface TargetModesIdentified {
      * @memberof TargetModesIdentified
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetIdentified}
+     * @memberof TargetModesIdentified
+     */
+    transform_preset?: TargetTransformPresetIdentified;
 }
 
 export function TargetModesIdentifiedFromJSON(json: any): TargetModesIdentified {
@@ -52,6 +64,7 @@ export function TargetModesIdentifiedFromJSONTyped(json: any, ignoreDiscriminato
         
         'aggregate': TargetAggregateIdentifiedFromJSON(json['aggregate']),
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetIdentifiedFromJSON(json['transform_preset']),
     };
 }
 
@@ -66,6 +79,7 @@ export function TargetModesIdentifiedToJSON(value?: TargetModesIdentified | null
         
         'aggregate': TargetAggregateIdentifiedToJSON(value.aggregate),
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetIdentifiedToJSON(value.transform_preset),
     };
 }
 

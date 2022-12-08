@@ -19,6 +19,12 @@ import {
     TargetAggregateGeographicFromJSONTyped,
     TargetAggregateGeographicToJSON,
 } from './TargetAggregateGeographic';
+import {
+    TargetTransformPresetAggregated,
+    TargetTransformPresetAggregatedFromJSON,
+    TargetTransformPresetAggregatedFromJSONTyped,
+    TargetTransformPresetAggregatedToJSON,
+} from './TargetTransformPresetAggregated';
 
 /**
  * (Parameters used to PUT a value of the `TargetModesAggregated` type.)
@@ -40,6 +46,12 @@ export interface TargetModesAggregatedPut {
      * @memberof TargetModesAggregatedPut
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetAggregated}
+     * @memberof TargetModesAggregatedPut
+     */
+    transform_preset?: TargetTransformPresetAggregated;
 }
 
 export function TargetModesAggregatedPutFromJSON(json: any): TargetModesAggregatedPut {
@@ -54,6 +66,7 @@ export function TargetModesAggregatedPutFromJSONTyped(json: any, ignoreDiscrimin
         
         'aggregate': TargetAggregateGeographicFromJSON(json['aggregate']),
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetAggregatedFromJSON(json['transform_preset']),
     };
 }
 
@@ -68,6 +81,7 @@ export function TargetModesAggregatedPutToJSON(value?: TargetModesAggregatedPut 
         
         'aggregate': TargetAggregateGeographicToJSON(value.aggregate),
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetAggregatedToJSON(value.transform_preset),
     };
 }
 

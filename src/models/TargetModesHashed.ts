@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TargetTransformPresetHashed,
+    TargetTransformPresetHashedFromJSON,
+    TargetTransformPresetHashedFromJSONTyped,
+    TargetTransformPresetHashedToJSON,
+} from './TargetTransformPresetHashed';
+
 /**
  * Hashed representation. Suitable for digital acquisition use cases.
  * @export
@@ -25,6 +32,12 @@ export interface TargetModesHashed {
      * @memberof TargetModesHashed
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetHashed}
+     * @memberof TargetModesHashed
+     */
+    transform_preset?: TargetTransformPresetHashed;
 }
 
 export function TargetModesHashedFromJSON(json: any): TargetModesHashed {
@@ -38,6 +51,7 @@ export function TargetModesHashedFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetHashedFromJSON(json['transform_preset']),
     };
 }
 
@@ -51,6 +65,7 @@ export function TargetModesHashedToJSON(value?: TargetModesHashed | null): any {
     return {
         
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetHashedToJSON(value.transform_preset),
     };
 }
 

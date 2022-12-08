@@ -19,6 +19,12 @@ import {
     TargetAggregateIdentifiedFromJSONTyped,
     TargetAggregateIdentifiedToJSON,
 } from './TargetAggregateIdentified';
+import {
+    TargetTransformPresetIdentified,
+    TargetTransformPresetIdentifiedFromJSON,
+    TargetTransformPresetIdentifiedFromJSONTyped,
+    TargetTransformPresetIdentifiedToJSON,
+} from './TargetTransformPresetIdentified';
 
 /**
  * (Parameters used to PUT a value of the `TargetModesIdentified` type.)
@@ -40,6 +46,12 @@ export interface TargetModesIdentifiedPut {
      * @memberof TargetModesIdentifiedPut
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetIdentified}
+     * @memberof TargetModesIdentifiedPut
+     */
+    transform_preset?: TargetTransformPresetIdentified;
 }
 
 export function TargetModesIdentifiedPutFromJSON(json: any): TargetModesIdentifiedPut {
@@ -54,6 +66,7 @@ export function TargetModesIdentifiedPutFromJSONTyped(json: any, ignoreDiscrimin
         
         'aggregate': TargetAggregateIdentifiedFromJSON(json['aggregate']),
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetIdentifiedFromJSON(json['transform_preset']),
     };
 }
 
@@ -68,6 +81,7 @@ export function TargetModesIdentifiedPutToJSON(value?: TargetModesIdentifiedPut 
         
         'aggregate': TargetAggregateIdentifiedToJSON(value.aggregate),
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetIdentifiedToJSON(value.transform_preset),
     };
 }
 

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TargetTransformPresetReferenced,
+    TargetTransformPresetReferencedFromJSON,
+    TargetTransformPresetReferencedFromJSONTyped,
+    TargetTransformPresetReferencedToJSON,
+} from './TargetTransformPresetReferenced';
+
 /**
  * (Parameters used to PATCH the `TargetModesReferenced` type.)
  * 
@@ -33,6 +40,12 @@ export interface TargetModesReferencedMergePatch {
      * @memberof TargetModesReferencedMergePatch
      */
     reference_dataset_id?: string;
+    /**
+     * 
+     * @type {TargetTransformPresetReferenced}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    transform_preset?: TargetTransformPresetReferenced | null;
 }
 
 export function TargetModesReferencedMergePatchFromJSON(json: any): TargetModesReferencedMergePatch {
@@ -47,6 +60,7 @@ export function TargetModesReferencedMergePatchFromJSONTyped(json: any, ignoreDi
         
         'mode': json['mode'],
         'reference_dataset_id': !exists(json, 'reference_dataset_id') ? undefined : json['reference_dataset_id'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetReferencedFromJSON(json['transform_preset']),
     };
 }
 
@@ -61,6 +75,7 @@ export function TargetModesReferencedMergePatchToJSON(value?: TargetModesReferen
         
         'mode': value.mode,
         'reference_dataset_id': value.reference_dataset_id,
+        'transform_preset': TargetTransformPresetReferencedToJSON(value.transform_preset),
     };
 }
 

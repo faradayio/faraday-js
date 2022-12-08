@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TargetTransformPresetHashed,
+    TargetTransformPresetHashedFromJSON,
+    TargetTransformPresetHashedFromJSONTyped,
+    TargetTransformPresetHashedToJSON,
+} from './TargetTransformPresetHashed';
+
 /**
  * (Parameters used to PATCH the `TargetModesHashed` type.)
  * 
@@ -27,6 +34,12 @@ export interface TargetModesHashedMergePatch {
      * @memberof TargetModesHashedMergePatch
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetHashed}
+     * @memberof TargetModesHashedMergePatch
+     */
+    transform_preset?: TargetTransformPresetHashed | null;
 }
 
 export function TargetModesHashedMergePatchFromJSON(json: any): TargetModesHashedMergePatch {
@@ -40,6 +53,7 @@ export function TargetModesHashedMergePatchFromJSONTyped(json: any, ignoreDiscri
     return {
         
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetHashedFromJSON(json['transform_preset']),
     };
 }
 
@@ -53,6 +67,7 @@ export function TargetModesHashedMergePatchToJSON(value?: TargetModesHashedMerge
     return {
         
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetHashedToJSON(value.transform_preset),
     };
 }
 

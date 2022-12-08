@@ -19,6 +19,12 @@ import {
     TargetAggregateIdentifiedFromJSONTyped,
     TargetAggregateIdentifiedToJSON,
 } from './TargetAggregateIdentified';
+import {
+    TargetTransformPresetIdentified,
+    TargetTransformPresetIdentifiedFromJSON,
+    TargetTransformPresetIdentifiedFromJSONTyped,
+    TargetTransformPresetIdentifiedToJSON,
+} from './TargetTransformPresetIdentified';
 
 /**
  * (Parameters used to PATCH the `TargetModesIdentified` type.)
@@ -40,6 +46,12 @@ export interface TargetModesIdentifiedMergePatch {
      * @memberof TargetModesIdentifiedMergePatch
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetIdentified}
+     * @memberof TargetModesIdentifiedMergePatch
+     */
+    transform_preset?: TargetTransformPresetIdentified | null;
 }
 
 export function TargetModesIdentifiedMergePatchFromJSON(json: any): TargetModesIdentifiedMergePatch {
@@ -54,6 +66,7 @@ export function TargetModesIdentifiedMergePatchFromJSONTyped(json: any, ignoreDi
         
         'aggregate': !exists(json, 'aggregate') ? undefined : TargetAggregateIdentifiedFromJSON(json['aggregate']),
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetIdentifiedFromJSON(json['transform_preset']),
     };
 }
 
@@ -68,6 +81,7 @@ export function TargetModesIdentifiedMergePatchToJSON(value?: TargetModesIdentif
         
         'aggregate': TargetAggregateIdentifiedToJSON(value.aggregate),
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetIdentifiedToJSON(value.transform_preset),
     };
 }
 

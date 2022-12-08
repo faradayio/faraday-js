@@ -19,6 +19,12 @@ import {
     TargetAggregateGeographicFromJSONTyped,
     TargetAggregateGeographicToJSON,
 } from './TargetAggregateGeographic';
+import {
+    TargetTransformPresetAggregated,
+    TargetTransformPresetAggregatedFromJSON,
+    TargetTransformPresetAggregatedFromJSONTyped,
+    TargetTransformPresetAggregatedToJSON,
+} from './TargetTransformPresetAggregated';
 
 /**
  * Aggregated representation (geographic). Suitable for geo-targeted ad campaigns.
@@ -38,6 +44,12 @@ export interface TargetModesAggregated {
      * @memberof TargetModesAggregated
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetAggregated}
+     * @memberof TargetModesAggregated
+     */
+    transform_preset?: TargetTransformPresetAggregated;
 }
 
 export function TargetModesAggregatedFromJSON(json: any): TargetModesAggregated {
@@ -52,6 +64,7 @@ export function TargetModesAggregatedFromJSONTyped(json: any, ignoreDiscriminato
         
         'aggregate': TargetAggregateGeographicFromJSON(json['aggregate']),
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetAggregatedFromJSON(json['transform_preset']),
     };
 }
 
@@ -66,6 +79,7 @@ export function TargetModesAggregatedToJSON(value?: TargetModesAggregated | null
         
         'aggregate': TargetAggregateGeographicToJSON(value.aggregate),
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetAggregatedToJSON(value.transform_preset),
     };
 }
 

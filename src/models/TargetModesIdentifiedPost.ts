@@ -19,6 +19,12 @@ import {
     TargetAggregateIdentifiedFromJSONTyped,
     TargetAggregateIdentifiedToJSON,
 } from './TargetAggregateIdentified';
+import {
+    TargetTransformPresetIdentified,
+    TargetTransformPresetIdentifiedFromJSON,
+    TargetTransformPresetIdentifiedFromJSONTyped,
+    TargetTransformPresetIdentifiedToJSON,
+} from './TargetTransformPresetIdentified';
 
 /**
  * (Parameters used to POST a new value of the `TargetModesIdentified` type.)
@@ -40,6 +46,12 @@ export interface TargetModesIdentifiedPost {
      * @memberof TargetModesIdentifiedPost
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetIdentified}
+     * @memberof TargetModesIdentifiedPost
+     */
+    transform_preset?: TargetTransformPresetIdentified;
 }
 
 export function TargetModesIdentifiedPostFromJSON(json: any): TargetModesIdentifiedPost {
@@ -54,6 +66,7 @@ export function TargetModesIdentifiedPostFromJSONTyped(json: any, ignoreDiscrimi
         
         'aggregate': TargetAggregateIdentifiedFromJSON(json['aggregate']),
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetIdentifiedFromJSON(json['transform_preset']),
     };
 }
 
@@ -68,6 +81,7 @@ export function TargetModesIdentifiedPostToJSON(value?: TargetModesIdentifiedPos
         
         'aggregate': TargetAggregateIdentifiedToJSON(value.aggregate),
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetIdentifiedToJSON(value.transform_preset),
     };
 }
 

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TargetTransformPresetReferenced,
+    TargetTransformPresetReferencedFromJSON,
+    TargetTransformPresetReferencedFromJSONTyped,
+    TargetTransformPresetReferencedToJSON,
+} from './TargetTransformPresetReferenced';
+
 /**
  * Referenced representation. Suitable for data warehouse integrations.
  * @export
@@ -31,6 +38,12 @@ export interface TargetModesReferenced {
      * @memberof TargetModesReferenced
      */
     reference_dataset_id: string;
+    /**
+     * 
+     * @type {TargetTransformPresetReferenced}
+     * @memberof TargetModesReferenced
+     */
+    transform_preset?: TargetTransformPresetReferenced;
 }
 
 export function TargetModesReferencedFromJSON(json: any): TargetModesReferenced {
@@ -45,6 +58,7 @@ export function TargetModesReferencedFromJSONTyped(json: any, ignoreDiscriminato
         
         'mode': json['mode'],
         'reference_dataset_id': json['reference_dataset_id'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetReferencedFromJSON(json['transform_preset']),
     };
 }
 
@@ -59,6 +73,7 @@ export function TargetModesReferencedToJSON(value?: TargetModesReferenced | null
         
         'mode': value.mode,
         'reference_dataset_id': value.reference_dataset_id,
+        'transform_preset': TargetTransformPresetReferencedToJSON(value.transform_preset),
     };
 }
 

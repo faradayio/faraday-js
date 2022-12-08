@@ -406,6 +406,10 @@ src/models/TargetOptionsSqlServerPost.ts
 src/models/TargetOptionsSqlServerPut.ts
 src/models/TargetPost.ts
 src/models/TargetPut.ts
+src/models/TargetTransformPresetAggregated.ts
+src/models/TargetTransformPresetHashed.ts
+src/models/TargetTransformPresetIdentified.ts
+src/models/TargetTransformPresetReferenced.ts
 src/models/Trait.ts
 src/models/TraitCategory.ts
 src/models/TraitMergePatch.ts

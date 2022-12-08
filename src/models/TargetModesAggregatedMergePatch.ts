@@ -19,6 +19,12 @@ import {
     TargetAggregateGeographicFromJSONTyped,
     TargetAggregateGeographicToJSON,
 } from './TargetAggregateGeographic';
+import {
+    TargetTransformPresetAggregated,
+    TargetTransformPresetAggregatedFromJSON,
+    TargetTransformPresetAggregatedFromJSONTyped,
+    TargetTransformPresetAggregatedToJSON,
+} from './TargetTransformPresetAggregated';
 
 /**
  * (Parameters used to PATCH the `TargetModesAggregated` type.)
@@ -40,6 +46,12 @@ export interface TargetModesAggregatedMergePatch {
      * @memberof TargetModesAggregatedMergePatch
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetAggregated}
+     * @memberof TargetModesAggregatedMergePatch
+     */
+    transform_preset?: TargetTransformPresetAggregated | null;
 }
 
 export function TargetModesAggregatedMergePatchFromJSON(json: any): TargetModesAggregatedMergePatch {
@@ -54,6 +66,7 @@ export function TargetModesAggregatedMergePatchFromJSONTyped(json: any, ignoreDi
         
         'aggregate': !exists(json, 'aggregate') ? undefined : TargetAggregateGeographicFromJSON(json['aggregate']),
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetAggregatedFromJSON(json['transform_preset']),
     };
 }
 
@@ -68,6 +81,7 @@ export function TargetModesAggregatedMergePatchToJSON(value?: TargetModesAggrega
         
         'aggregate': TargetAggregateGeographicToJSON(value.aggregate),
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetAggregatedToJSON(value.transform_preset),
     };
 }
 

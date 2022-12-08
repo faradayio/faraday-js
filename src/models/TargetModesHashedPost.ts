@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TargetTransformPresetHashed,
+    TargetTransformPresetHashedFromJSON,
+    TargetTransformPresetHashedFromJSONTyped,
+    TargetTransformPresetHashedToJSON,
+} from './TargetTransformPresetHashed';
+
 /**
  * (Parameters used to POST a new value of the `TargetModesHashed` type.)
  * 
@@ -27,6 +34,12 @@ export interface TargetModesHashedPost {
      * @memberof TargetModesHashedPost
      */
     mode: string;
+    /**
+     * 
+     * @type {TargetTransformPresetHashed}
+     * @memberof TargetModesHashedPost
+     */
+    transform_preset?: TargetTransformPresetHashed;
 }
 
 export function TargetModesHashedPostFromJSON(json: any): TargetModesHashedPost {
@@ -40,6 +53,7 @@ export function TargetModesHashedPostFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'mode': json['mode'],
+        'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetHashedFromJSON(json['transform_preset']),
     };
 }
 
@@ -53,6 +67,7 @@ export function TargetModesHashedPostToJSON(value?: TargetModesHashedPost | null
     return {
         
         'mode': value.mode,
+        'transform_preset': TargetTransformPresetHashedToJSON(value.transform_preset),
     };
 }
 
