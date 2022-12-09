@@ -92,6 +92,19 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     reference_key_column?: string;
+    /**
+     * A column or set of columns that uniquely identify an input row. If
+     * multiple rows are ingested with identical values in the columns
+     * specified by `upsert_columns`, the newest will be used.
+     * 
+     * Cannot currently be used with `incremental_column`.
+     * 
+     * If neither `upsert_columns` nor `incremental_column` are
+     * specified, each unique row will be ingested once.
+     * @type {Array<string>}
+     * @memberof DatasetPut
+     */
+    upsert_columns?: Array<string>;
 }
 
 export function DatasetPutFromJSON(json: any): DatasetPut {
@@ -111,6 +124,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
 
@@ -130,6 +144,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'upsert_columns': value.upsert_columns,
     };
 }
 
