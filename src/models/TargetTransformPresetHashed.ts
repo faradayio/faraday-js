@@ -15,13 +15,15 @@
 /**
  * One of:
  *   * default: Faraday default hashed representation
+ *   * linkedin: Hashed email upload format for Linkedin
  * 
  * If not specified `default` is used.
  * @export
  * @enum {string}
  */
 export enum TargetTransformPresetHashed {
-    Default = 'default'
+    Default = 'default',
+    Linkedin = 'linkedin'
 }
 
 export function TargetTransformPresetHashedFromJSON(json: any): TargetTransformPresetHashed {

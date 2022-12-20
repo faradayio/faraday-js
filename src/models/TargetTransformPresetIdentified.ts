@@ -15,13 +15,15 @@
 /**
  * One of:
  *   * default: Faraday default identified representation
+ *   * linkedin: Plaintext upload format for Linkedin
  * 
  * If not specified `default` is used.
  * @export
  * @enum {string}
  */
 export enum TargetTransformPresetIdentified {
-    Default = 'default'
+    Default = 'default',
+    Linkedin = 'linkedin'
 }
 
 export function TargetTransformPresetIdentifiedFromJSON(json: any): TargetTransformPresetIdentified {
