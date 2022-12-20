@@ -34,7 +34,7 @@ export interface DatasetOptionsHostedCsvPut {
      */
     encrypted?: boolean;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion.
+     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
      * @type {boolean}
      * @memberof DatasetOptionsHostedCsvPut
      */
