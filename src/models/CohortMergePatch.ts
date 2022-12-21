@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortPlaceCondition,
+    CohortPlaceConditionFromJSON,
+    CohortPlaceConditionFromJSONTyped,
+    CohortPlaceConditionToJSON,
+} from './CohortPlaceCondition';
+import {
     CohortStreamCondition,
     CohortStreamConditionFromJSON,
     CohortStreamConditionFromJSONTyped,
@@ -79,6 +85,12 @@ export interface CohortMergePatch {
      */
     name?: string;
     /**
+     * List of places to use to spatially filter Cohort membership.
+     * @type {Array<CohortPlaceCondition>}
+     * @memberof CohortMergePatch
+     */
+    place_conditions?: Array<CohortPlaceCondition> | null;
+    /**
      * 
      * @type {RecencyMergePatch}
      * @memberof CohortMergePatch
@@ -114,6 +126,7 @@ export function CohortMergePatchFromJSONTyped(json: any, ignoreDiscriminator: bo
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'place_conditions': !exists(json, 'place_conditions') ? undefined : (json['place_conditions'] === null ? null : (json['place_conditions'] as Array<any>).map(CohortPlaceConditionFromJSON)),
         'recency': !exists(json, 'recency') ? undefined : RecencyMergePatchFromJSON(json['recency']),
         'stream_conditions': !exists(json, 'stream_conditions') ? undefined : (json['stream_conditions'] === null ? null : (json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
         'traits': !exists(json, 'traits') ? undefined : (json['traits'] === null ? null : (json['traits'] as Array<any>).map(CohortTraitFromJSON)),
@@ -135,6 +148,7 @@ export function CohortMergePatchToJSON(value?: CohortMergePatch | null): any {
         'min_count': value.min_count,
         'min_value': value.min_value,
         'name': value.name,
+        'place_conditions': value.place_conditions === undefined ? undefined : (value.place_conditions === null ? null : (value.place_conditions as Array<any>).map(CohortPlaceConditionToJSON)),
         'recency': RecencyMergePatchToJSON(value.recency),
         'stream_conditions': value.stream_conditions === undefined ? undefined : (value.stream_conditions === null ? null : (value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
         'traits': value.traits === undefined ? undefined : (value.traits === null ? null : (value.traits as Array<any>).map(CohortTraitToJSON)),

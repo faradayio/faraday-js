@@ -23,6 +23,9 @@ import {
     PersonaSetsApi
 } from './PersonaSetsApi';
 import {
+    PlacesApi
+} from './PlacesApi';
+import {
     ScopesApi
 } from './ScopesApi';
 import {
@@ -50,6 +53,7 @@ export class FaradayClient {
     datasets: DatasetsApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
+    places: PlacesApi;
     scopes: ScopesApi;
     streams: StreamsApi;
     targets: TargetsApi;
@@ -66,6 +70,7 @@ export class FaradayClient {
         this.datasets = new DatasetsApi(configuration);
         this.outcomes = new OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi(configuration);
+        this.places = new PlacesApi(configuration);
         this.scopes = new ScopesApi(configuration);
         this.streams = new StreamsApi(configuration);
         this.targets = new TargetsApi(configuration);

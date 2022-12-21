@@ -26,7 +26,9 @@ export enum ResourceType {
     PersonaSets = 'persona_sets',
     Scopes = 'scopes',
     Streams = 'streams',
-    Targets = 'targets'
+    Targets = 'targets',
+    Traits = 'traits',
+    Places = 'places'
 }
 
 export function ResourceTypeFromJSON(json: any): ResourceType {

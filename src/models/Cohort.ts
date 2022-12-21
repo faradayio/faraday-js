@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortPlaceCondition,
+    CohortPlaceConditionFromJSON,
+    CohortPlaceConditionFromJSONTyped,
+    CohortPlaceConditionToJSON,
+} from './CohortPlaceCondition';
+import {
     CohortStreamCondition,
     CohortStreamConditionFromJSON,
     CohortStreamConditionFromJSONTyped,
@@ -107,6 +113,12 @@ export interface Cohort {
      */
     name: string;
     /**
+     * List of places to use to spatially filter Cohort membership.
+     * @type {Array<CohortPlaceCondition>}
+     * @memberof Cohort
+     */
+    place_conditions?: Array<CohortPlaceCondition>;
+    /**
      * Count of the population.
      * @type {number}
      * @memberof Cohort
@@ -188,6 +200,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': json['name'],
+        'place_conditions': !exists(json, 'place_conditions') ? undefined : ((json['place_conditions'] as Array<any>).map(CohortPlaceConditionFromJSON)),
         'population_count': !exists(json, 'population_count') ? undefined : json['population_count'],
         'recency': !exists(json, 'recency') ? undefined : RecencyFromJSON(json['recency']),
         'resource_type': json['resource_type'],
@@ -220,6 +233,7 @@ export function CohortToJSON(value?: Cohort | null): any {
         'min_count': value.min_count,
         'min_value': value.min_value,
         'name': value.name,
+        'place_conditions': value.place_conditions === undefined ? undefined : ((value.place_conditions as Array<any>).map(CohortPlaceConditionToJSON)),
         'population_count': value.population_count,
         'recency': RecencyToJSON(value.recency),
         'resource_type': value.resource_type,

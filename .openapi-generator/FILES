@@ -10,6 +10,7 @@ src/apis/ConnectionsApi.ts
 src/apis/DatasetsApi.ts
 src/apis/OutcomesApi.ts
 src/apis/PersonaSetsApi.ts
+src/apis/PlacesApi.ts
 src/apis/ScopesApi.ts
 src/apis/StreamsApi.ts
 src/apis/TargetsApi.ts
@@ -25,8 +26,10 @@ src/models/AccountMergePatch.ts
 src/models/AccountPost.ts
 src/models/AccountPut.ts
 src/models/AccountUsage.ts
+src/models/AddressInfo.ts
 src/models/Cohort.ts
 src/models/CohortMergePatch.ts
+src/models/CohortPlaceCondition.ts
 src/models/CohortPost.ts
 src/models/CohortPut.ts
 src/models/CohortStreamCondition.ts
@@ -263,6 +266,10 @@ src/models/PersonaSetAnalysisFlowPersonaDate.ts
 src/models/PersonaSetMergePatch.ts
 src/models/PersonaSetPost.ts
 src/models/PersonaSetPut.ts
+src/models/Place.ts
+src/models/PlaceMergePatch.ts
+src/models/PlacePost.ts
+src/models/PlacePut.ts
 src/models/PrimitiveDataType.ts
 src/models/Recency.ts
 src/models/RecencyMergePatch.ts

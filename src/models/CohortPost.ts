@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CohortPlaceCondition,
+    CohortPlaceConditionFromJSON,
+    CohortPlaceConditionFromJSONTyped,
+    CohortPlaceConditionToJSON,
+} from './CohortPlaceCondition';
+import {
     CohortStreamCondition,
     CohortStreamConditionFromJSON,
     CohortStreamConditionFromJSONTyped,
@@ -79,6 +85,12 @@ export interface CohortPost {
      */
     name: string;
     /**
+     * List of places to use to spatially filter Cohort membership.
+     * @type {Array<CohortPlaceCondition>}
+     * @memberof CohortPost
+     */
+    place_conditions?: Array<CohortPlaceCondition>;
+    /**
      * 
      * @type {RecencyPost}
      * @memberof CohortPost
@@ -120,6 +132,7 @@ export function CohortPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'min_count': !exists(json, 'min_count') ? undefined : json['min_count'],
         'min_value': !exists(json, 'min_value') ? undefined : json['min_value'],
         'name': json['name'],
+        'place_conditions': !exists(json, 'place_conditions') ? undefined : ((json['place_conditions'] as Array<any>).map(CohortPlaceConditionFromJSON)),
         'recency': !exists(json, 'recency') ? undefined : RecencyPostFromJSON(json['recency']),
         'stream_conditions': !exists(json, 'stream_conditions') ? undefined : ((json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
         'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
@@ -142,6 +155,7 @@ export function CohortPostToJSON(value?: CohortPost | null): any {
         'min_count': value.min_count,
         'min_value': value.min_value,
         'name': value.name,
+        'place_conditions': value.place_conditions === undefined ? undefined : ((value.place_conditions as Array<any>).map(CohortPlaceConditionToJSON)),
         'recency': RecencyPostToJSON(value.recency),
         'stream_conditions': value.stream_conditions === undefined ? undefined : ((value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
         'stream_name': value.stream_name,
