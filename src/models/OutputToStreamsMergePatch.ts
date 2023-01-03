@@ -28,14 +28,22 @@ import {
  * Describes how to transform the dataset to a stream of events with canonical field names.
  * 
  * A data map object can have any keys, but it is recommended to include a `datetime` key if possible, as this will improve modeling. 
- * Each key must specificy at mimumum a `column_name` (source 
+ * Each key must specify at minimum a `column_name` (source 
  * column) and optionally a `format`, which can be one of:
  *   * `currency_cents`
  *   * `currency_dollars`
+ *   * `m_d_yy_slash`
+ *   * `m_d_yyyy_slash`
+ *   * `m_d_yy_dash`
+ *   * `m_d_yyyy_dash`
  *   * `mm_dd_yy_slash`
  *   * `mm_dd_yyyy_slash`
  *   * `mm_dd_yy_dash`
  *   * `mm_dd_yyyy_dash`
+ *   * `yyyy_m_d_slash`
+ *   * `yy_m_d_slash`
+ *   * `yyyy_m_d_dash`
+ *   * `yy_m_d_dash`
  *   * `yyyy_mm_dd_slash`
  *   * `yy_mm_dd_slash`
  *   * `yyyy_mm_dd_dash`
@@ -48,7 +56,7 @@ import {
  *   * `list_comma_separated`
  *   * `list_semicolon_separated`
  *   * `list_single_value`
- * For the date formats, time values are ignored. In other words, if you have YYYY-MM-DDTHH:MM:SS, you can pick yyyy_mm_dd_dash.
+ * For the date formats, time values are ignored. In other words, if you have YYYY-MM-DDTHH:MM:SS, you can pick yyyy_mm_dd_dash. If you are missing leading zeros on month or day such as, 1/3/2023, then you can select m_d_yyyy_slash.
  * @export
  * @interface OutputToStreamsMergePatch
  */
