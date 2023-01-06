@@ -50,6 +50,12 @@ export interface Usage {
      * @memberof Usage
      */
     scope_id: string;
+    /**
+     * Human-readable label of the scope specified in scope_id.
+     * @type {string}
+     * @memberof Usage
+     */
+    scope_literate: string;
 }
 
 export function UsageFromJSON(json: any): Usage {
@@ -65,6 +71,7 @@ export function UsageFromJSONTyped(json: any, ignoreDiscriminator: boolean): Usa
         'date': (new Date(json['date'])),
         'ppd': json['ppd'],
         'scope_id': json['scope_id'],
+        'scope_literate': json['scope_literate'],
     };
 }
 
@@ -80,6 +87,7 @@ export function UsageToJSON(value?: Usage | null): any {
         'date': (value.date.toISOString().substr(0,10)),
         'ppd': value.ppd,
         'scope_id': value.scope_id,
+        'scope_literate': value.scope_literate,
     };
 }
 
