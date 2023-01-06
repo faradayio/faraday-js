@@ -30,6 +30,10 @@ export interface CreateTraitRequest {
     traitFields: TraitPost;
 }
 
+export interface DeleteTraitRequest {
+    traitId: string;
+}
+
 export interface GetTraitRequest {
     traitId: string;
 }
@@ -85,6 +89,45 @@ export class TraitsApi extends runtime.BaseAPI {
     async createTrait(traitFields: TraitPost, ): Promise<Trait> {
         const response = await this.createTraitRaw({ traitFields: traitFields }, );
         return await response.value();
+    }
+
+    /**
+     * Delete a trait
+     * Delete a trait
+     */
+    private async deleteTraitRaw(requestParameters: DeleteTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+            throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling deleteTrait.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/traits/{trait_id}`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a trait
+     * Delete a trait
+     */
+    async deleteTrait(traitId: string, ): Promise<void> {
+        await this.deleteTraitRaw({ traitId: traitId }, );
     }
 
     /**
