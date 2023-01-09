@@ -31,6 +31,12 @@ import {
     TargetOptionsMergePatchFromJSONTyped,
     TargetOptionsMergePatchToJSON,
 } from './TargetOptionsMergePatch';
+import {
+    TargetStructureTransformation,
+    TargetStructureTransformationFromJSON,
+    TargetStructureTransformationFromJSONTyped,
+    TargetStructureTransformationToJSON,
+} from './TargetStructureTransformation';
 
 /**
  * (Parameters used to PATCH the `Target` type.)
@@ -61,6 +67,24 @@ export interface TargetMergePatch {
      */
     connection_id?: string | null;
     /**
+     * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
+     * 
+     * Users may use this parameter to specify their own set of "structure transformations" to override the default selection, order, and name of exported columns.
+     * 
+     * The shape of this parameter is an array of objects where the order of the columns to export is given by the order of the array. Each item represents a 1:1 mapping of scope input column to target output column. Only those columns specified here are emitted in the target output.
+     * @type {Array<TargetStructureTransformation>}
+     * @memberof TargetMergePatch
+     */
+    custom_structure?: Array<TargetStructureTransformation> | null;
+    /**
+     * By default, column names are exported in a machine-readable format with underscored uuids. 
+     * 
+     * Setting this to `true` replaces ids with literates in the exported column names.
+     * @type {boolean}
+     * @memberof TargetMergePatch
+     */
+    human_readable?: boolean | null;
+    /**
      * 
      * @type {TargetLimitMergePatch}
      * @memberof TargetMergePatch
@@ -79,14 +103,12 @@ export interface TargetMergePatch {
      */
     options?: TargetOptionsMergePatch;
     /**
+     * **Deprecated: use `custom_structure`.**
+     * 
      * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
-     * 
      * This parameter is an override of the default that enables an explicit mapping of columns that should be included in the target export, along with the exported column name.
-     * 
      * Each key is the name the column originally had, and each value is the desired name.
-     * 
      * Example:
-     * 
      * ```
      * {
      *   "person_first_name": "first_name",
@@ -94,7 +116,6 @@ export interface TargetMergePatch {
      *   "city": "city"
      * }
      * ```
-     * 
      * In the example above, the target will only include the "first_name", "last_name", and "city" columns.
      * @type {{ [key: string]: string; }}
      * @memberof TargetMergePatch
@@ -119,6 +140,8 @@ export function TargetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
+        'custom_structure': !exists(json, 'custom_structure') ? undefined : (json['custom_structure'] === null ? null : (json['custom_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
+        'human_readable': !exists(json, 'human_readable') ? undefined : json['human_readable'],
         'limit': !exists(json, 'limit') ? undefined : TargetLimitMergePatchFromJSON(json['limit']),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'options': !exists(json, 'options') ? undefined : TargetOptionsMergePatchFromJSON(json['options']),
@@ -137,6 +160,8 @@ export function TargetMergePatchToJSON(value?: TargetMergePatch | null): any {
     return {
         
         'connection_id': value.connection_id,
+        'custom_structure': value.custom_structure === undefined ? undefined : (value.custom_structure === null ? null : (value.custom_structure as Array<any>).map(TargetStructureTransformationToJSON)),
+        'human_readable': value.human_readable,
         'limit': TargetLimitMergePatchToJSON(value.limit),
         'name': value.name,
         'options': TargetOptionsMergePatchToJSON(value.options),

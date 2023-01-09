@@ -21,13 +21,33 @@ import {
 } from './DatasetStream';
 
 /**
- * A mapping of {stream type} (ex. orders) -> {data map object}
+ * Describes how to transform the dataset into one or more streams. 
  * 
- * Describes how to transform the dataset to a stream of events with canonical field names.
+ * Streams typically represent events. They can have multiple dataset sources and each dataset can be used to populate multiple streams.
  * 
- * A data map object can have any keys, but it is recommended to include a `datetime` key if possible, as this will improve modeling. 
- * Each key must specify at minimum a `column_name` (source 
- * column) and optionally a `format`, which can be one of:
+ * The shape of this parameter is a mapping of stream names to stream output columns, given by a `data_map` object. Ex:
+ * ```
+ * "output_to_streams": {
+ *   "orders": {                               <-- stream name
+ *       "data_map": {
+ *         "datetime": {                       <-- stream column
+ *           "column_name": "purchase_date",   <-- dataset column name
+ *           "format": "mm_dd_yyyy_slash"      <-- dataset column format
+ *         },
+ *         "value": {
+ *           "column_name": "purchase_amount"
+ *         }
+ *       }
+ *     }
+ *   }
+ * }
+ * ```
+ * 
+ * Streams named here will be automatically generated if they do not exist. They can be fetched with <a href="../reference/getstream">/streams/{stream_id_or_name}</a>.
+ * 
+ * A `data_map` object can have any keys, but it is recommended to include the reserved `datetime` key as this will improve modeling.
+ * 
+ * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`, which can be one of:
  *   * `currency_cents`
  *   * `currency_dollars`
  *   * `mm_dd_yy_slash`
@@ -46,6 +66,9 @@ import {
  *   * `list_comma_separated`
  *   * `list_semicolon_separated`
  *   * `list_single_value`
+ * 
+ * If no format is provided, the dataset type will be retained (data uploaded through csv are text by default).
+ * 
  * For the date formats, time values are ignored. In other words, if you have YYYY-MM-DDTHH:MM:SS, you can pick yyyy_mm_dd_dash.
  * @export
  * @interface OutputToStreams

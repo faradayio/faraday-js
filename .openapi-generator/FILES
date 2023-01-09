@@ -280,9 +280,12 @@ src/models/Resource.ts
 src/models/ResourceStatus.ts
 src/models/ResourceType.ts
 src/models/Scope.ts
-src/models/ScopeInclude.ts
+src/models/ScopeColumns.ts
+src/models/ScopeColumnsColumnsForMode.ts
+src/models/ScopeColumnsForMode.ts
 src/models/ScopeMergePatch.ts
 src/models/ScopePayload.ts
+src/models/ScopePayloadColumn.ts
 src/models/ScopePayloadMergePatch.ts
 src/models/ScopePayloadPost.ts
 src/models/ScopePayloadPut.ts
@@ -413,6 +416,7 @@ src/models/TargetOptionsSqlServerPost.ts
 src/models/TargetOptionsSqlServerPut.ts
 src/models/TargetPost.ts
 src/models/TargetPut.ts
+src/models/TargetStructureTransformation.ts
 src/models/TargetTransformPresetAggregated.ts
 src/models/TargetTransformPresetHashed.ts
 src/models/TargetTransformPresetIdentified.ts

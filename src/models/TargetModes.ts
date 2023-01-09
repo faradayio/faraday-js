@@ -41,19 +41,19 @@ import {
  * @type TargetModes
  * Choose how the scopes's output should be formatted for this target. The following **modes** are available:
  * 
- * #### `aggregated`
- *   * This option will produce one row per geographical area. At this time, only propensity scores are included in the output (traits and persona sets in the payload are not included).
+ * **`aggregated`**
+ *   * This option will produce one row per geographical area.
  *   * This option is best for geo-targeted ad campaigns.
  * 
- * #### `hashed`
+ * **`hashed`**
  *   * Faraday's name, physical address, and email is emitted in hashed form. Data is randomly ordered to prevent re-identification. All payload columns are emitted except raw propensity scores and attributes. 
  *   * This option facilitates digital acquisition use cases.
  * 
- * #### `identified`
+ * **`identified`**
  *   * All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see <a href="../reference/createdataset">/datasets</a> for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned.
  *   * This option is best for direct mail and canvassing campaigns.
  * 
- * #### `referenced`
+ * **`referenced`**
  *   * This option will produce one row per person based on the identifier column of a dataset of your choice. To protect privacy, this will not include identifying information other than the key you select.
  *   * This option is best for merging data back into your stack.
  * @export

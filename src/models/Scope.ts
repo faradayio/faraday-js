@@ -20,6 +20,12 @@ import {
     ResourceStatusToJSON,
 } from './ResourceStatus';
 import {
+    ScopeColumns,
+    ScopeColumnsFromJSON,
+    ScopeColumnsFromJSONTyped,
+    ScopeColumnsToJSON,
+} from './ScopeColumns';
+import {
     ScopePayload,
     ScopePayloadFromJSON,
     ScopePayloadFromJSONTyped,
@@ -38,6 +44,12 @@ import {
  * @interface Scope
  */
 export interface Scope {
+    /**
+     * 
+     * @type {ScopeColumns}
+     * @memberof Scope
+     */
+    columns?: ScopeColumns;
     /**
      * When this resource was created.
      * @type {Date}
@@ -129,6 +141,7 @@ export function ScopeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sco
     }
     return {
         
+        'columns': !exists(json, 'columns') ? undefined : ScopeColumnsFromJSON(json['columns']),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
@@ -154,6 +167,7 @@ export function ScopeToJSON(value?: Scope | null): any {
     }
     return {
         
+        'columns': ScopeColumnsToJSON(value.columns),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
