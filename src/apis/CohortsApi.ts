@@ -18,6 +18,9 @@ import {
     Cohort,
     CohortFromJSON,
     CohortToJSON,
+    CohortAnalysisMembership,
+    CohortAnalysisMembershipFromJSON,
+    CohortAnalysisMembershipToJSON,
     CohortMergePatch,
     CohortMergePatchFromJSON,
     CohortMergePatchToJSON,
@@ -35,6 +38,10 @@ export interface DeleteCohortRequest {
 }
 
 export interface GetCohortRequest {
+    cohortId: string;
+}
+
+export interface GetCohortAnalysisMembershipRequest {
     cohortId: string;
 }
 
@@ -165,6 +172,44 @@ export class CohortsApi extends runtime.BaseAPI {
      */
     async getCohort(cohortId: string, ): Promise<Cohort> {
         const response = await this.getCohortRaw({ cohortId: cohortId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get the cohort membership counts over time.
+     */
+    private async getCohortAnalysisMembershipRaw(requestParameters: GetCohortAnalysisMembershipRequest, ): Promise<runtime.ApiResponse<CohortAnalysisMembership>> {
+        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling getCohortAnalysisMembership.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/cohorts/{cohort_id}/analysis/membership`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CohortAnalysisMembershipFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the cohort membership counts over time.
+     */
+    async getCohortAnalysisMembership(cohortId: string, ): Promise<CohortAnalysisMembership> {
+        const response = await this.getCohortAnalysisMembershipRaw({ cohortId: cohortId }, );
         return await response.value();
     }
 

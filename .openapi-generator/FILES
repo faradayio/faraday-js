@@ -28,6 +28,8 @@ src/models/AccountPut.ts
 src/models/AccountUsage.ts
 src/models/AddressInfo.ts
 src/models/Cohort.ts
+src/models/CohortAnalysisMembership.ts
+src/models/CohortAnalysisMembershipDatum.ts
 src/models/CohortMergePatch.ts
 src/models/CohortPlaceCondition.ts
 src/models/CohortPost.ts

@@ -9,6 +9,8 @@ export * from './AccountPut';
 export * from './AccountUsage';
 export * from './AddressInfo';
 export * from './Cohort';
+export * from './CohortAnalysisMembership';
+export * from './CohortAnalysisMembershipDatum';
 export * from './CohortMergePatch';
 export * from './CohortPlaceCondition';
 export * from './CohortPost';
