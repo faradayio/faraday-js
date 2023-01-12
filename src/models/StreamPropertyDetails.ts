@@ -13,6 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    PrimitiveDataType,
+    PrimitiveDataTypeFromJSON,
+    PrimitiveDataTypeFromJSONTyped,
+    PrimitiveDataTypeToJSON,
+} from './PrimitiveDataType';
+import {
+    StreamPropertyInputFromDatasets,
+    StreamPropertyInputFromDatasetsFromJSON,
+    StreamPropertyInputFromDatasetsFromJSONTyped,
+    StreamPropertyInputFromDatasetsToJSON,
+} from './StreamPropertyInputFromDatasets';
+import {
+    TraitStatisticalType,
+    TraitStatisticalTypeFromJSON,
+    TraitStatisticalTypeFromJSONTyped,
+    TraitStatisticalTypeToJSON,
+} from './TraitStatisticalType';
+
 /**
  * 
  * @export
@@ -20,17 +39,41 @@ import { exists, mapValues } from '../runtime';
  */
 export interface StreamPropertyDetails {
     /**
-     * the column used to populate this property on the event stream
-     * @type {string}
+     * For continuous data types, list of reasonable cutoff values.
+     * @type {Array<number>}
      * @memberof StreamPropertyDetails
      */
-    column_name?: string;
+    breaks?: Array<number>;
     /**
-     * the dataset the column comes from
+     * For STRING type, list of allowed values.
+     * @type {Array<string>}
+     * @memberof StreamPropertyDetails
+     */
+    categories?: Array<string>;
+    /**
+     * 
+     * @type {Array<StreamPropertyInputFromDatasets>}
+     * @memberof StreamPropertyDetails
+     */
+    emitted_by_datasets?: Array<StreamPropertyInputFromDatasets>;
+    /**
+     * 
+     * @type {TraitStatisticalType}
+     * @memberof StreamPropertyDetails
+     */
+    statistical_type?: TraitStatisticalType;
+    /**
+     * 
+     * @type {PrimitiveDataType}
+     * @memberof StreamPropertyDetails
+     */
+    type?: PrimitiveDataType;
+    /**
+     * For numeric types, in what units is the data stored.
      * @type {string}
      * @memberof StreamPropertyDetails
      */
-    dataset_id?: string;
+    unit?: string;
 }
 
 export function StreamPropertyDetailsFromJSON(json: any): StreamPropertyDetails {
@@ -43,8 +86,12 @@ export function StreamPropertyDetailsFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'column_name': !exists(json, 'column_name') ? undefined : json['column_name'],
-        'dataset_id': !exists(json, 'dataset_id') ? undefined : json['dataset_id'],
+        'breaks': !exists(json, 'breaks') ? undefined : json['breaks'],
+        'categories': !exists(json, 'categories') ? undefined : json['categories'],
+        'emitted_by_datasets': !exists(json, 'emitted_by_datasets') ? undefined : ((json['emitted_by_datasets'] as Array<any>).map(StreamPropertyInputFromDatasetsFromJSON)),
+        'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
+        'type': !exists(json, 'type') ? undefined : PrimitiveDataTypeFromJSON(json['type']),
+        'unit': !exists(json, 'unit') ? undefined : json['unit'],
     };
 }
 
@@ -57,8 +104,12 @@ export function StreamPropertyDetailsToJSON(value?: StreamPropertyDetails | null
     }
     return {
         
-        'column_name': value.column_name,
-        'dataset_id': value.dataset_id,
+        'breaks': value.breaks,
+        'categories': value.categories,
+        'emitted_by_datasets': value.emitted_by_datasets === undefined ? undefined : ((value.emitted_by_datasets as Array<any>).map(StreamPropertyInputFromDatasetsToJSON)),
+        'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
+        'type': PrimitiveDataTypeToJSON(value.type),
+        'unit': value.unit,
     };
 }
 

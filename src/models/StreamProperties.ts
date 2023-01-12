@@ -26,7 +26,7 @@ import {
  * @interface StreamProperties
  */
 export interface StreamProperties {
-    [key: string]: Array<StreamPropertyDetails>;
+    [key: string]: StreamPropertyDetails;
 }
 
 export function StreamPropertiesFromJSON(json: any): StreamProperties {
