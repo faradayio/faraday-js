@@ -89,6 +89,16 @@ export interface PersonaSet {
      */
     name: string;
     /**
+     * Specify the exact number of clusters (i.e. personas) there should be in the persona set.
+     * 
+     * By default, the optimal value for this parameter is determined automatically.
+     * 
+     * Setting this requires external knowledge and should only be done when the use-case necessitates a specific number of clusters.
+     * @type {number}
+     * @memberof PersonaSet
+     */
+    number_of_clusters?: number;
+    /**
      * The personas that belong to this persona set
      * @type {Array<Persona>}
      * @memberof PersonaSet
@@ -144,6 +154,7 @@ export function PersonaSetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'modeling_fields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
         'name': json['name'],
+        'number_of_clusters': !exists(json, 'number_of_clusters') ? undefined : json['number_of_clusters'],
         'personas': !exists(json, 'personas') ? undefined : ((json['personas'] as Array<any>).map(PersonaFromJSON)),
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
@@ -170,6 +181,7 @@ export function PersonaSetToJSON(value?: PersonaSet | null): any {
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'modeling_fields': value.modeling_fields === undefined ? undefined : ((value.modeling_fields as Array<any>).map(ModelingFieldToJSON)),
         'name': value.name,
+        'number_of_clusters': value.number_of_clusters,
         'personas': value.personas === undefined ? undefined : ((value.personas as Array<any>).map(PersonaToJSON)),
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),

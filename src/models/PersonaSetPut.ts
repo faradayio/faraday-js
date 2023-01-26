@@ -35,6 +35,16 @@ export interface PersonaSetPut {
      * @memberof PersonaSetPut
      */
     name: string;
+    /**
+     * Specify the exact number of clusters (i.e. personas) there should be in the persona set.
+     * 
+     * By default, the optimal value for this parameter is determined automatically.
+     * 
+     * Setting this requires external knowledge and should only be done when the use-case necessitates a specific number of clusters.
+     * @type {number}
+     * @memberof PersonaSetPut
+     */
+    number_of_clusters?: number;
 }
 
 export function PersonaSetPutFromJSON(json: any): PersonaSetPut {
@@ -49,6 +59,7 @@ export function PersonaSetPutFromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'name': json['name'],
+        'number_of_clusters': !exists(json, 'number_of_clusters') ? undefined : json['number_of_clusters'],
     };
 }
 
@@ -63,6 +74,7 @@ export function PersonaSetPutToJSON(value?: PersonaSetPut | null): any {
         
         'explore': value.explore,
         'name': value.name,
+        'number_of_clusters': value.number_of_clusters,
     };
 }
 

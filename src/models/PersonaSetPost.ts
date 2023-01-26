@@ -54,6 +54,16 @@ export interface PersonaSetPost {
      * @memberof PersonaSetPost
      */
     name: string;
+    /**
+     * Specify the exact number of clusters (i.e. personas) there should be in the persona set.
+     * 
+     * By default, the optimal value for this parameter is determined automatically.
+     * 
+     * Setting this requires external knowledge and should only be done when the use-case necessitates a specific number of clusters.
+     * @type {number}
+     * @memberof PersonaSetPost
+     */
+    number_of_clusters?: number;
 }
 
 export function PersonaSetPostFromJSON(json: any): PersonaSetPost {
@@ -70,6 +80,7 @@ export function PersonaSetPostFromJSONTyped(json: any, ignoreDiscriminator: bool
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'modeling_fields': !exists(json, 'modeling_fields') ? undefined : ((json['modeling_fields'] as Array<any>).map(ModelingFieldFromJSON)),
         'name': json['name'],
+        'number_of_clusters': !exists(json, 'number_of_clusters') ? undefined : json['number_of_clusters'],
     };
 }
 
@@ -86,6 +97,7 @@ export function PersonaSetPostToJSON(value?: PersonaSetPost | null): any {
         'explore': value.explore,
         'modeling_fields': value.modeling_fields === undefined ? undefined : ((value.modeling_fields as Array<any>).map(ModelingFieldToJSON)),
         'name': value.name,
+        'number_of_clusters': value.number_of_clusters,
     };
 }
 

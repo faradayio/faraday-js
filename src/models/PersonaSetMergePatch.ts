@@ -35,6 +35,16 @@ export interface PersonaSetMergePatch {
      * @memberof PersonaSetMergePatch
      */
     name?: string;
+    /**
+     * Specify the exact number of clusters (i.e. personas) there should be in the persona set.
+     * 
+     * By default, the optimal value for this parameter is determined automatically.
+     * 
+     * Setting this requires external knowledge and should only be done when the use-case necessitates a specific number of clusters.
+     * @type {number}
+     * @memberof PersonaSetMergePatch
+     */
+    number_of_clusters?: number | null;
 }
 
 export function PersonaSetMergePatchFromJSON(json: any): PersonaSetMergePatch {
@@ -49,6 +59,7 @@ export function PersonaSetMergePatchFromJSONTyped(json: any, ignoreDiscriminator
         
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'number_of_clusters': !exists(json, 'number_of_clusters') ? undefined : json['number_of_clusters'],
     };
 }
 
@@ -63,6 +74,7 @@ export function PersonaSetMergePatchToJSON(value?: PersonaSetMergePatch | null):
         
         'explore': value.explore,
         'name': value.name,
+        'number_of_clusters': value.number_of_clusters,
     };
 }
 
