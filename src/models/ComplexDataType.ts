@@ -7,7 +7,7 @@
  *
  *
  * NOTE: This file was modified manually. There is a bug in the openapi-generator, which until patched,
- * cannot handle `oneOf` both a primitive and object type.
+ * cannot handle `oneOf` both a primitive and object type. Here we are manually overriding the issue.
  */
 
 import {
@@ -33,7 +33,16 @@ import {
 export type ComplexDataType = ComplexDataTypeOneOf | PrimitiveDataType;
 
 export function ComplexDataTypeFromJSON(json: any): ComplexDataType {
-  return ComplexDataTypeFromJSONTyped(json, false);
+  if (json === undefined || json === null) {
+    return json;
+  }
+  // if json is an object we have a complex data type
+  if (typeof json === "object") {
+    return ComplexDataTypeOneOfFromJSON(json);
+  }
+
+  // else we have a primitive data type
+  return PrimitiveDataTypeFromJSON(json);
 }
 
 export function ComplexDataTypeFromJSONTyped(
@@ -45,7 +54,7 @@ export function ComplexDataTypeFromJSONTyped(
   }
   // if json is an object we have a complex data type
   if (typeof json === "object") {
-    return ComplexDataTypeFromJSONTyped(json, true);
+    return ComplexDataTypeOneOfFromJSONTyped(json, true);
   }
 
   // else we have a primitive data type
@@ -61,7 +70,7 @@ export function ComplexDataTypeToJSON(value?: ComplexDataType | null): any {
   }
 
   if (typeof value === "object") {
-    return ComplexDataTypeToJSON(value);
+    return ComplexDataTypeOneOfToJSON(value);
   }
 
   return PrimitiveDataTypeToJSON(value);
