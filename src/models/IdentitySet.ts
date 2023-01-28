@@ -35,6 +35,18 @@ export interface IdentitySet {
      */
     email?: string;
     /**
+     * SHA-256 hash of the lowercase version of the email, with plus-addressing removed
+     * @type {string}
+     * @memberof IdentitySet
+     */
+    email_hash?: string;
+    /**
+     * House number and Street, City, State, and Zip all on one line if they are not available separately
+     * @type {Array<string>}
+     * @memberof IdentitySet
+     */
+    freeform_address?: Array<string>;
+    /**
      * 
      * @type {Array<string>}
      * @memberof IdentitySet
@@ -90,6 +102,8 @@ export function IdentitySetFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'city': !exists(json, 'city') ? undefined : json['city'],
         'email': !exists(json, 'email') ? undefined : json['email'],
+        'email_hash': !exists(json, 'email_hash') ? undefined : json['email_hash'],
+        'freeform_address': !exists(json, 'freeform_address') ? undefined : json['freeform_address'],
         'house_number_and_street': !exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'],
         'person_first_name': !exists(json, 'person_first_name') ? undefined : json['person_first_name'],
         'person_full_name': !exists(json, 'person_full_name') ? undefined : json['person_full_name'],
@@ -111,6 +125,8 @@ export function IdentitySetToJSON(value?: IdentitySet | null): any {
         
         'city': value.city,
         'email': value.email,
+        'email_hash': value.email_hash,
+        'freeform_address': value.freeform_address,
         'house_number_and_street': value.house_number_and_street,
         'person_first_name': value.person_first_name,
         'person_full_name': value.person_full_name,

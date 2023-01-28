@@ -27,6 +27,7 @@ import {
  * 
  * Identity set objects map canonical names to dataset column names. The following keys are supported:
  *   * `email`
+ *   * `email_hash`
  *   * `phone`
  *   * `person_full_name`
  *   * `person_last_name`
@@ -35,6 +36,7 @@ import {
  *   * `city`
  *   * `state`
  *   * `postcode`
+ *   * `freeform_address`
  * 
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  * @export
