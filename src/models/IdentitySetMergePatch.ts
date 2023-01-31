@@ -44,10 +44,10 @@ export interface IdentitySetMergePatch {
     email_hash?: string | null;
     /**
      * House number and Street, City, State, and Zip all on one line if they are not available separately
-     * @type {Array<string>}
+     * @type {string}
      * @memberof IdentitySetMergePatch
      */
-    freeform_address?: Array<string> | null;
+    freeform_address?: string | null;
     /**
      * 
      * @type {Array<string>}

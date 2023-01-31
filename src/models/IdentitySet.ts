@@ -42,10 +42,10 @@ export interface IdentitySet {
     email_hash?: string;
     /**
      * House number and Street, City, State, and Zip all on one line if they are not available separately
-     * @type {Array<string>}
+     * @type {string}
      * @memberof IdentitySet
      */
-    freeform_address?: Array<string>;
+    freeform_address?: string;
     /**
      * 
      * @type {Array<string>}
