@@ -18,7 +18,6 @@
  * @enum {string}
  */
 export enum RecencyOccurrence {
-    Any = 'any',
     First = 'first',
     Last = 'last'
 }
