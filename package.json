@@ -1,8 +1,8 @@
 {
-  "name": "@faradayio/faraday-js",
-  "version": "0.1.77",
-  "description": "OpenAPI client for @faradayio/faraday-js",
-  "author": "OpenAPI-Generator",
+  "name": "@fdy/faraday-js",
+  "version": "0.1.78",
+  "description": "OpenAPI client for @fdy/faraday-js",
+  "author": "@hana.kslr",
   "repository": "git://github.com/faradayio/faraday-js.git",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -12,8 +12,5 @@
   },
   "devDependencies": {
     "typescript": "^2.4"
-  },
-  "publishConfig": {
-    "@faradayio:registry": "https://npm.pkg.github.com"
   }
 }
