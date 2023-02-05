@@ -60,6 +60,7 @@ import {
  *   * `yy_mm_dd_slash`
  *   * `yyyy_mm_dd_dash`
  *   * `yy_mm_dd_dash`
+ *   * `yyyymm`
  *   * `date_iso8601` (deprecated)
  *   * `date_month_day_fullyear` (deprecated)
  *   * `date_month_day_shortyear` (deprecated)
@@ -68,6 +69,7 @@ import {
  *   * `list_comma_separated`
  *   * `list_semicolon_separated`
  *   * `list_single_value`
+ *   * `static_date_iso8601`
  * 
  * If no format is provided, the dataset type will be retained (data uploaded through csv are text by default).
  * 

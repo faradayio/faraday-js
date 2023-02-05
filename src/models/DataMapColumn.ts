@@ -27,7 +27,7 @@ import {
  */
 export interface DataMapColumn {
     /**
-     * The name of a column in the dataset
+     * The name of a column in the dataset. If format is "static_date_iso8601", then the static value.
      * @type {string}
      * @memberof DataMapColumn
      */

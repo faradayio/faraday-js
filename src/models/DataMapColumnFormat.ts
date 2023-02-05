@@ -28,6 +28,7 @@ export enum DataMapColumnFormat {
     YyMmDdSlash = 'yy_mm_dd_slash',
     YyyyMmDdDash = 'yyyy_mm_dd_dash',
     YyMmDdDash = 'yy_mm_dd_dash',
+    Yyyymm = 'yyyymm',
     DateIso8601 = 'date_iso8601',
     DateMonthDayFullyear = 'date_month_day_fullyear',
     DateMonthDayShortyear = 'date_month_day_shortyear',
@@ -37,7 +38,8 @@ export enum DataMapColumnFormat {
     DateMillisecondsSinceEpochUtc = 'date_milliseconds_since_epoch_utc',
     ListCommaSeparated = 'list_comma_separated',
     ListSemicolonSeparated = 'list_semicolon_separated',
-    ListSingleValue = 'list_single_value'
+    ListSingleValue = 'list_single_value',
+    StaticDateIso8601 = 'static_date_iso8601'
 }
 
 export function DataMapColumnFormatFromJSON(json: any): DataMapColumnFormat {
