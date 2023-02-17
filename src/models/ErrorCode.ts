@@ -32,6 +32,7 @@
  * 
  * - MALFORMED_API_KEY: Could not parse the supplied API key.
  * - MISSING_API_KEY: An API key was not supplied.
+ * - EXPIRED_API_KEY: The supplied API key has expired.
  * 
  * **Application Errors**
  * 
@@ -49,6 +50,7 @@ export enum ErrorCode {
     NotFound = 'NOT_FOUND',
     MalformedApiKey = 'MALFORMED_API_KEY',
     MissingApiKey = 'MISSING_API_KEY',
+    ExpiredApiKey = 'EXPIRED_API_KEY',
     ValidationFailed = 'VALIDATION_FAILED',
     Conflict = 'CONFLICT'
 }
