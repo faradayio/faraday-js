@@ -16,6 +16,13 @@
  * One of:
  *   * default: Faraday default hashed representation
  *   * linkedin: Hashed email upload format for Linkedin
+ *   * taboola: Hashed email upload format for Taboola
+ *   * snapchat: Hashed email upload format for Snapchat
+ *   * tiktok: Hashed email upload format for Tiktok
+ *   * pinterest: Hashed email upload format for Pinterest
+ *   * youtube: Hashed upload format for Youtube
+ *   * google_ads: Hashed upload format for Google Ads
+ *   * facebook: Hashed upload format for Facebook
  * 
  * If not specified `default` is used.
  * @export
@@ -23,7 +30,14 @@
  */
 export enum TargetTransformPresetHashed {
     Default = 'default',
-    Linkedin = 'linkedin'
+    Linkedin = 'linkedin',
+    Taboola = 'taboola',
+    Snapchat = 'snapchat',
+    Tiktok = 'tiktok',
+    Pinterest = 'pinterest',
+    Youtube = 'youtube',
+    GoogleAds = 'google_ads',
+    Facebook = 'facebook'
 }
 
 export function TargetTransformPresetHashedFromJSON(json: any): TargetTransformPresetHashed {

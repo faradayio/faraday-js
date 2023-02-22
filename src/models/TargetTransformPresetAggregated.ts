@@ -15,13 +15,15 @@
 /**
  * One of:
  *   * default: Faraday default aggregated representation
+ *   * google_ads: Aggregated upload format for Google Ads
  * 
  * If not specified `default` is used.
  * @export
  * @enum {string}
  */
 export enum TargetTransformPresetAggregated {
-    Default = 'default'
+    Default = 'default',
+    GoogleAds = 'google_ads'
 }
 
 export function TargetTransformPresetAggregatedFromJSON(json: any): TargetTransformPresetAggregated {
