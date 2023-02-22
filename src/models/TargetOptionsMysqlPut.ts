@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `TargetOptionsMysql` type.)
  * 
- * mysql target options
+ * MySQL target options
  * @export
  * @interface TargetOptionsMysqlPut
  */

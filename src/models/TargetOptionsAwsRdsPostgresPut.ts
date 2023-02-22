@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAwsRdsPostgres` type.)
  * 
- * aws_rds_postgres target options
+ * RDS (Postgres) target options
  * @export
  * @interface TargetOptionsAwsRdsPostgresPut
  */

@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Microsoft Azure SQL Server connection options
+ * Azure SQL connection options
  * @export
  * @interface ConnectionOptionsAzureSqlServer
  */

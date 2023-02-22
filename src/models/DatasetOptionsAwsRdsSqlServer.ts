@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * aws_rds_sql_server dataset options
+ * RDS (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsSqlServer
  */

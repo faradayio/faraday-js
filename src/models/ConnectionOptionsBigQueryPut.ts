@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsBigQuery` type.)
  * 
- * Google BigQuery connection options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQueryPut
  */

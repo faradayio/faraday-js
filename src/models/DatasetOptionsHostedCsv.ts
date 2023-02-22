@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Hosted CSV dataset options
+ * Upload dataset options
  * @export
  * @interface DatasetOptionsHostedCsv
  */

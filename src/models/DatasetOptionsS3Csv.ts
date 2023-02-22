@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * CSV on Amazon S3 dataset options
+ * S3 dataset options
  * @export
  * @interface DatasetOptionsS3Csv
  */

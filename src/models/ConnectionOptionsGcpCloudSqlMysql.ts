@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * gcp_cloud_sql_mysql connection options
+ * Cloud SQL (MySQL) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlMysql
  */

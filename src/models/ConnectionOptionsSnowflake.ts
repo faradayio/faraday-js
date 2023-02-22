@@ -15,10 +15,6 @@
 import { exists, mapValues } from '../runtime';
 /**
  * Snowflake connection options
- * 
- * Prerequisites:
- * * A Faraday-specific keypair must be generated in Snowflake
- * * A Snowflake user must be configured with necessary permissions using the generated keypair
  * @export
  * @interface ConnectionOptionsSnowflake
  */

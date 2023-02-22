@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsRdsPostgres` type.)
  * 
- * aws_rds_postgres connection options
+ * RDS (Postgres) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsPostgresPost
  */

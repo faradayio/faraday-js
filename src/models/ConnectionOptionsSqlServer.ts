@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * sql_server connection options
+ * SQL Server connection options
  * @export
  * @interface ConnectionOptionsSqlServer
  */

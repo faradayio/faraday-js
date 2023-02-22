@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * gcp_cloud_sql_postgres dataset options
+ * Cloud SQL (Postgres) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlPostgres
  */

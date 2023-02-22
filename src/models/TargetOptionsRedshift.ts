@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * AWS Redshift target options
+ * Redshift target options
  * @export
  * @interface TargetOptionsRedshift
  */

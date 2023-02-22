@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * postgres dataset options
+ * Postgres dataset options
  * @export
  * @interface DatasetOptionsPostgres
  */

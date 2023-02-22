@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * mysql dataset options
+ * MySQL dataset options
  * @export
  * @interface DatasetOptionsMysql
  */

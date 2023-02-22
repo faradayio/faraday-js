@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * sql_server dataset options
+ * SQL Server dataset options
  * @export
  * @interface DatasetOptionsSqlServer
  */

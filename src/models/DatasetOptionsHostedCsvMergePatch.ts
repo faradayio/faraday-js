@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsHostedCsv` type.)
  * 
- * Hosted CSV dataset options
+ * Upload dataset options
  * @export
  * @interface DatasetOptionsHostedCsvMergePatch
  */

@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `TargetOptionsBigQuery` type.)
  * 
- * Google BigQuery target options
+ * BigQuery target options
  * @export
  * @interface TargetOptionsBigQueryPost
  */

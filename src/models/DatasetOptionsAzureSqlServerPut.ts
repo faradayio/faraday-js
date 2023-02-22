@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAzureSqlServer` type.)
  * 
- * Microsoft Azure SQL Server dataset options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServerPut
  */

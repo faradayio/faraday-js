@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsS3Csv` type.)
  * 
- * CSV on Amazon S3 dataset options
+ * S3 dataset options
  * @export
  * @interface DatasetOptionsS3CsvMergePatch
  */

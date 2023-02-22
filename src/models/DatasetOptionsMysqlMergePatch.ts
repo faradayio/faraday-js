@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsMysql` type.)
  * 
- * mysql dataset options
+ * MySQL dataset options
  * @export
  * @interface DatasetOptionsMysqlMergePatch
  */

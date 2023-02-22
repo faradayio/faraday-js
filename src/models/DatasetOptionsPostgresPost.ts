@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsPostgres` type.)
  * 
- * postgres dataset options
+ * Postgres dataset options
  * @export
  * @interface DatasetOptionsPostgresPost
  */

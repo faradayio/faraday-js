@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * aws_rds_postgres dataset options
+ * RDS (Postgres) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsPostgres
  */

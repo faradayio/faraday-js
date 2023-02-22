@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Google BigQuery connection options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQuery
  */

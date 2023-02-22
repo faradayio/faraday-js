@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * mysql connection options
+ * MySQL connection options
  * @export
  * @interface ConnectionOptionsMysql
  */

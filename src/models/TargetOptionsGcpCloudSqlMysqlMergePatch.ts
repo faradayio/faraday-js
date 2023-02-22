@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsGcpCloudSqlMysql` type.)
  * 
- * gcp_cloud_sql_mysql target options
+ * Cloud SQL (MySQL) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlMysqlMergePatch
  */

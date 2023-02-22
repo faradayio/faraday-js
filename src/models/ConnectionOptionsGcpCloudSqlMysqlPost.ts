@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsGcpCloudSqlMysql` type.)
  * 
- * gcp_cloud_sql_mysql connection options
+ * Cloud SQL (MySQL) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlMysqlPost
  */

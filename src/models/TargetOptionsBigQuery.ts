@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Google BigQuery target options
+ * BigQuery target options
  * @export
  * @interface TargetOptionsBigQuery
  */

@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsAuroraMysql` type.)
  * 
- * AWS Aurora MySQL target options
+ * Aurora (MySQL) target options
  * @export
  * @interface TargetOptionsAwsAuroraMysqlPost
  */

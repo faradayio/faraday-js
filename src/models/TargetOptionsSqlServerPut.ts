@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `TargetOptionsSqlServer` type.)
  * 
- * sql_server target options
+ * SQL Server target options
  * @export
  * @interface TargetOptionsSqlServerPut
  */

@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * aws_rds_mysql connection options
+ * RDS (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsMysql
  */

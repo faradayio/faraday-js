@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Microsoft Azure SQL Server dataset options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServer
  */

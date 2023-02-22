@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsRdsSqlServer` type.)
  * 
- * aws_rds_sql_server target options
+ * RDS (SQL Server) target options
  * @export
  * @interface TargetOptionsAwsRdsSqlServerPost
  */

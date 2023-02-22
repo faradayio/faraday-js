@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsRdsMysql` type.)
  * 
- * aws_rds_mysql dataset options
+ * RDS (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsMysqlMergePatch
  */

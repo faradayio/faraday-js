@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsRdsMysql` type.)
  * 
- * aws_rds_mysql target options
+ * RDS (MySQL) target options
  * @export
  * @interface TargetOptionsAwsRdsMysqlMergePatch
  */

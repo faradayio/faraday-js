@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsRdsSqlServer` type.)
  * 
- * aws_rds_sql_server target options
+ * RDS (SQL Server) target options
  * @export
  * @interface TargetOptionsAwsRdsSqlServerMergePatch
  */

@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsRdsMysql` type.)
  * 
- * aws_rds_mysql connection options
+ * RDS (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsMysqlPut
  */

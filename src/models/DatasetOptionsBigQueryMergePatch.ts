@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsBigQuery` type.)
  * 
- * Google BigQuery dataset options
+ * BigQuery dataset options
  * @export
  * @interface DatasetOptionsBigQueryMergePatch
  */

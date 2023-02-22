@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsGcpGcsCsv` type.)
  * 
- * GCP Google Cloud Storage (GCS) CSV dataset options
+ * GCS dataset options
  * @export
  * @interface DatasetOptionsGcpGcsCsvPut
  */

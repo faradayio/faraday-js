@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * gcp_cloud_sql_postgres connection options
+ * Cloud SQL (Postgres) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlPostgres
  */

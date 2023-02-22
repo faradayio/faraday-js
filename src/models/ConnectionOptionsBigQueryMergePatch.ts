@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `ConnectionOptionsBigQuery` type.)
  * 
- * Google BigQuery connection options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQueryMergePatch
  */

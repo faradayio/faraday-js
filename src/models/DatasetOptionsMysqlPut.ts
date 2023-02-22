@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsMysql` type.)
  * 
- * mysql dataset options
+ * MySQL dataset options
  * @export
  * @interface DatasetOptionsMysqlPut
  */

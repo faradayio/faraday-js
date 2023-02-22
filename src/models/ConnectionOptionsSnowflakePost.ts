@@ -17,10 +17,6 @@ import { exists, mapValues } from '../runtime';
  * (Parameters used to POST a new value of the `ConnectionOptionsSnowflake` type.)
  * 
  * Snowflake connection options
- * 
- * Prerequisites:
- * * A Faraday-specific keypair must be generated in Snowflake
- * * A Snowflake user must be configured with necessary permissions using the generated keypair
  * @export
  * @interface ConnectionOptionsSnowflakePost
  */

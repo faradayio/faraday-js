@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsAuroraMysql` type.)
  * 
- * AWS Aurora MySQL connection options
+ * Aurora (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraMysqlPost
  */

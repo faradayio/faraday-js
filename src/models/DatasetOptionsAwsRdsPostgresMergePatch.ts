@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsRdsPostgres` type.)
  * 
- * aws_rds_postgres dataset options
+ * RDS (Postgres) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsPostgresMergePatch
  */

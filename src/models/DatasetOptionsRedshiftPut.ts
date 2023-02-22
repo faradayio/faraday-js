@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsRedshift` type.)
  * 
- * AWS Redshift dataset options
+ * Redshift dataset options
  * @export
  * @interface DatasetOptionsRedshiftPut
  */

@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsBigQuery` type.)
  * 
- * Google BigQuery dataset options
+ * BigQuery dataset options
  * @export
  * @interface DatasetOptionsBigQueryPut
  */

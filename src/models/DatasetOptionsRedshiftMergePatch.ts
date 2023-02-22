@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsRedshift` type.)
  * 
- * AWS Redshift dataset options
+ * Redshift dataset options
  * @export
  * @interface DatasetOptionsRedshiftMergePatch
  */

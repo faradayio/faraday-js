@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsRdsSqlServer` type.)
  * 
- * aws_rds_sql_server dataset options
+ * RDS (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsSqlServerPost
  */

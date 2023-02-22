@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * postgres connection options
+ * Postgres connection options
  * @export
  * @interface ConnectionOptionsPostgres
  */

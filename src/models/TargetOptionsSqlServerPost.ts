@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `TargetOptionsSqlServer` type.)
  * 
- * sql_server target options
+ * SQL Server target options
  * @export
  * @interface TargetOptionsSqlServerPost
  */

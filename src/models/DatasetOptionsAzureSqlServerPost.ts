@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAzureSqlServer` type.)
  * 
- * Microsoft Azure SQL Server dataset options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServerPost
  */

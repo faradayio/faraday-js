@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsGcpGcsCsv` type.)
  * 
- * GCP Google Cloud Storage (GCS) CSV dataset options
+ * GCS dataset options
  * @export
  * @interface DatasetOptionsGcpGcsCsvMergePatch
  */

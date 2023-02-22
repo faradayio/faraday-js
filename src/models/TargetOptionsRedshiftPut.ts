@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `TargetOptionsRedshift` type.)
  * 
- * AWS Redshift target options
+ * Redshift target options
  * @export
  * @interface TargetOptionsRedshiftPut
  */

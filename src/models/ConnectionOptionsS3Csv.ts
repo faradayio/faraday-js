@@ -14,10 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * CSV on Amazon S3 connection options
- * 
- * Prerequisites:
- * * Faraday's service account must be added to the S3 Bucket policy
+ * S3 connection options
  * @export
  * @interface ConnectionOptionsS3Csv
  */

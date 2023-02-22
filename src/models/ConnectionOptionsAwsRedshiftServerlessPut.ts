@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsRedshiftServerless` type.)
  * 
- * AWS Redshift Serverless connection options
+ * Redshift Serverless connection options
  * @export
  * @interface ConnectionOptionsAwsRedshiftServerlessPut
  */

@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAzureSqlServer` type.)
  * 
- * Microsoft Azure SQL Server target options
+ * Azure SQL target options
  * @export
  * @interface TargetOptionsAzureSqlServerPut
  */

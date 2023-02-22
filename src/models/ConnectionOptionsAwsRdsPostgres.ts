@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * aws_rds_postgres connection options
+ * RDS (Postgres) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsPostgres
  */

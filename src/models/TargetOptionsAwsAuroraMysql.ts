@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * AWS Aurora MySQL target options
+ * Aurora (MySQL) target options
  * @export
  * @interface TargetOptionsAwsAuroraMysql
  */

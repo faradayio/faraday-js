@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Google BigQuery dataset options
+ * BigQuery dataset options
  * @export
  * @interface DatasetOptionsBigQuery
  */

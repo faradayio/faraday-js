@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * AWS Redshift Serverless dataset options
+ * Redshift Serverless dataset options
  * @export
  * @interface DatasetOptionsAwsRedshiftServerless
  */

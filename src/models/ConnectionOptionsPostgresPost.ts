@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsPostgres` type.)
  * 
- * postgres connection options
+ * Postgres connection options
  * @export
  * @interface ConnectionOptionsPostgresPost
  */

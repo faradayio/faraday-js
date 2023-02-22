@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * GCP Google Cloud Storage (GCS) CSV target options
+ * GCS target options
  * @export
  * @interface TargetOptionsGcpGcsCsv
  */

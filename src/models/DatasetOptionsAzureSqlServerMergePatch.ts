@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsAzureSqlServer` type.)
  * 
- * Microsoft Azure SQL Server dataset options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServerMergePatch
  */

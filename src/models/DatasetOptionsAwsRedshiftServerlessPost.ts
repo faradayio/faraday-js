@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsRedshiftServerless` type.)
  * 
- * AWS Redshift Serverless dataset options
+ * Redshift Serverless dataset options
  * @export
  * @interface DatasetOptionsAwsRedshiftServerlessPost
  */

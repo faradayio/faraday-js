@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsS3Csv` type.)
  * 
- * CSV on Amazon S3 target options
+ * S3 target options
  * @export
  * @interface TargetOptionsS3CsvMergePatch
  */

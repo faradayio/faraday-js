@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `ConnectionOptionsPostgres` type.)
  * 
- * postgres connection options
+ * Postgres connection options
  * @export
  * @interface ConnectionOptionsPostgresMergePatch
  */

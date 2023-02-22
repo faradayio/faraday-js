@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsAuroraMysql` type.)
  * 
- * AWS Aurora MySQL dataset options
+ * Aurora (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraMysqlMergePatch
  */

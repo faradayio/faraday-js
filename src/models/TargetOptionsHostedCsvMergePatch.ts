@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsHostedCsv` type.)
  * 
- * Hosted CSV target options
+ * Upload target options
  * @export
  * @interface TargetOptionsHostedCsvMergePatch
  */

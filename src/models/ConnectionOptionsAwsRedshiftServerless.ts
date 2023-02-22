@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * AWS Redshift Serverless connection options
+ * Redshift Serverless connection options
  * @export
  * @interface ConnectionOptionsAwsRedshiftServerless
  */

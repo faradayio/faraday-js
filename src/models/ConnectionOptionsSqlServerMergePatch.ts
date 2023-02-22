@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `ConnectionOptionsSqlServer` type.)
  * 
- * sql_server connection options
+ * SQL Server connection options
  * @export
  * @interface ConnectionOptionsSqlServerMergePatch
  */

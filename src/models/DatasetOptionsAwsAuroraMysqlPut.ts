@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAwsAuroraMysql` type.)
  * 
- * AWS Aurora MySQL dataset options
+ * Aurora (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraMysqlPut
  */

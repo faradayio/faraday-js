@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsAzureSqlServer` type.)
  * 
- * Microsoft Azure SQL Server target options
+ * Azure SQL target options
  * @export
  * @interface TargetOptionsAzureSqlServerMergePatch
  */

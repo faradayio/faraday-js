@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsBigQuery` type.)
  * 
- * Google BigQuery connection options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQueryPost
  */

@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * aws_rds_postgres target options
+ * RDS (Postgres) target options
  * @export
  * @interface TargetOptionsAwsRdsPostgres
  */

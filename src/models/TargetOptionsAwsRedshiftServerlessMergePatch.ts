@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsRedshiftServerless` type.)
  * 
- * AWS Redshift Serverless target options
+ * Redshift Serverless target options
  * @export
  * @interface TargetOptionsAwsRedshiftServerlessMergePatch
  */

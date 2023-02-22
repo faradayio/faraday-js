@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAzureSqlServer` type.)
  * 
- * Microsoft Azure SQL Server connection options
+ * Azure SQL connection options
  * @export
  * @interface ConnectionOptionsAzureSqlServerMergePatch
  */

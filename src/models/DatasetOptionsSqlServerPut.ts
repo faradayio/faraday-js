@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsSqlServer` type.)
  * 
- * sql_server dataset options
+ * SQL Server dataset options
  * @export
  * @interface DatasetOptionsSqlServerPut
  */

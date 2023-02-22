@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsPostgres` type.)
  * 
- * postgres dataset options
+ * Postgres dataset options
  * @export
  * @interface DatasetOptionsPostgresMergePatch
  */

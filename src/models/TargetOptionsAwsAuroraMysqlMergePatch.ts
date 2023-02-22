@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsAuroraMysql` type.)
  * 
- * AWS Aurora MySQL target options
+ * Aurora (MySQL) target options
  * @export
  * @interface TargetOptionsAwsAuroraMysqlMergePatch
  */

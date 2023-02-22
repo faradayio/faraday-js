@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsMysql` type.)
  * 
- * mysql connection options
+ * MySQL connection options
  * @export
  * @interface ConnectionOptionsMysqlPost
  */
