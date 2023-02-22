@@ -103,6 +103,12 @@ export interface CohortPut {
      */
     stream_conditions?: Array<CohortStreamCondition>;
     /**
+     * The `name` field of the stream from which to build this cohort.
+     * @type {string}
+     * @memberof CohortPut
+     */
+    stream_name?: string;
+    /**
      * List of traits to filter cohort membership
      * @type {Array<CohortTrait>}
      * @memberof CohortPut
@@ -129,6 +135,7 @@ export function CohortPutFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'place_conditions': !exists(json, 'place_conditions') ? undefined : ((json['place_conditions'] as Array<any>).map(CohortPlaceConditionFromJSON)),
         'recency': !exists(json, 'recency') ? undefined : RecencyPutFromJSON(json['recency']),
         'stream_conditions': !exists(json, 'stream_conditions') ? undefined : ((json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
+        'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
         'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
 }
@@ -151,6 +158,7 @@ export function CohortPutToJSON(value?: CohortPut | null): any {
         'place_conditions': value.place_conditions === undefined ? undefined : ((value.place_conditions as Array<any>).map(CohortPlaceConditionToJSON)),
         'recency': RecencyPutToJSON(value.recency),
         'stream_conditions': value.stream_conditions === undefined ? undefined : ((value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
+        'stream_name': value.stream_name,
         'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(CohortTraitToJSON)),
     };
 }

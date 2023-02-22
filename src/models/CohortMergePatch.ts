@@ -103,6 +103,12 @@ export interface CohortMergePatch {
      */
     stream_conditions?: Array<CohortStreamCondition> | null;
     /**
+     * The `name` field of the stream from which to build this cohort.
+     * @type {string}
+     * @memberof CohortMergePatch
+     */
+    stream_name?: string | null;
+    /**
      * List of traits to filter cohort membership
      * @type {Array<CohortTrait>}
      * @memberof CohortMergePatch
@@ -129,6 +135,7 @@ export function CohortMergePatchFromJSONTyped(json: any, ignoreDiscriminator: bo
         'place_conditions': !exists(json, 'place_conditions') ? undefined : (json['place_conditions'] === null ? null : (json['place_conditions'] as Array<any>).map(CohortPlaceConditionFromJSON)),
         'recency': !exists(json, 'recency') ? undefined : RecencyMergePatchFromJSON(json['recency']),
         'stream_conditions': !exists(json, 'stream_conditions') ? undefined : (json['stream_conditions'] === null ? null : (json['stream_conditions'] as Array<any>).map(CohortStreamConditionFromJSON)),
+        'stream_name': !exists(json, 'stream_name') ? undefined : json['stream_name'],
         'traits': !exists(json, 'traits') ? undefined : (json['traits'] === null ? null : (json['traits'] as Array<any>).map(CohortTraitFromJSON)),
     };
 }
@@ -151,6 +158,7 @@ export function CohortMergePatchToJSON(value?: CohortMergePatch | null): any {
         'place_conditions': value.place_conditions === undefined ? undefined : (value.place_conditions === null ? null : (value.place_conditions as Array<any>).map(CohortPlaceConditionToJSON)),
         'recency': RecencyMergePatchToJSON(value.recency),
         'stream_conditions': value.stream_conditions === undefined ? undefined : (value.stream_conditions === null ? null : (value.stream_conditions as Array<any>).map(CohortStreamConditionToJSON)),
+        'stream_name': value.stream_name,
         'traits': value.traits === undefined ? undefined : (value.traits === null ? null : (value.traits as Array<any>).map(CohortTraitToJSON)),
     };
 }
