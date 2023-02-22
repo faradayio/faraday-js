@@ -15,11 +15,11 @@
 /**
  * One of:
  *   * default: Faraday default hashed representation
- *   * linkedin: Hashed email upload format for Linkedin
- *   * taboola: Hashed email upload format for Taboola
- *   * snapchat: Hashed email upload format for Snapchat
- *   * tiktok: Hashed email upload format for Tiktok
- *   * pinterest: Hashed email upload format for Pinterest
+ *   * linkedin: Hashed upload format for Linkedin
+ *   * taboola: Hashed upload format for Taboola
+ *   * snapchat: Hashed upload format for Snapchat
+ *   * tiktok: Hashed upload format for Tiktok
+ *   * pinterest: Hashed upload format for Pinterest
  *   * youtube: Hashed upload format for Youtube
  *   * google_ads: Hashed upload format for Google Ads
  *   * facebook: Hashed upload format for Facebook
