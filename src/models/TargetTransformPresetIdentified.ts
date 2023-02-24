@@ -23,6 +23,7 @@
  *   * poplar: Plaintext upload format for Poplar
  *   * salesforce: Plaintext upload format for Salesforce
  *   * hubspot: Plaintext upload format for Hubspot
+ *   * liveramp: Plaintext upload format for LiveRamp
  * 
  * If not specified `default` is used.
  * @export
@@ -37,7 +38,8 @@ export enum TargetTransformPresetIdentified {
     Iterable = 'iterable',
     Poplar = 'poplar',
     Salesforce = 'salesforce',
-    Hubspot = 'hubspot'
+    Hubspot = 'hubspot',
+    Liveramp = 'liveramp'
 }
 
 export function TargetTransformPresetIdentifiedFromJSON(json: any): TargetTransformPresetIdentified {
