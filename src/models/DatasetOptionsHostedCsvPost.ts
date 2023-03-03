@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsHostedCsv` type.)
  * 
- * Upload dataset options
+ * CSV dataset options
  * @export
  * @interface DatasetOptionsHostedCsvPost
  */

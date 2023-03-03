@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Upload target options
+ * CSV target options
  * @export
  * @interface TargetOptionsHostedCsv
  */

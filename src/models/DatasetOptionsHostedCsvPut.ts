@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsHostedCsv` type.)
  * 
- * Upload dataset options
+ * CSV dataset options
  * @export
  * @interface DatasetOptionsHostedCsvPut
  */

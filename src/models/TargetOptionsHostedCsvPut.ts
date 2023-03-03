@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `TargetOptionsHostedCsv` type.)
  * 
- * Upload target options
+ * CSV target options
  * @export
  * @interface TargetOptionsHostedCsvPut
  */
