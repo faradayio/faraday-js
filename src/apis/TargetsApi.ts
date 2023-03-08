@@ -103,7 +103,7 @@ export class TargetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Trigger a preview delivery (first 100 results) of a target
+     * Trigger a preview delivery (first 1000 results) of a target
      * Start a preview delivery
      */
     private async createTargetPreviewRaw(requestParameters: CreateTargetPreviewRequest, ): Promise<runtime.ApiResponse<InlineResponse200>> {
@@ -134,7 +134,7 @@ export class TargetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Trigger a preview delivery (first 100 results) of a target
+     * Trigger a preview delivery (first 1000 results) of a target
      * Start a preview delivery
      */
     async createTargetPreview(targetId: string, ): Promise<InlineResponse200> {
