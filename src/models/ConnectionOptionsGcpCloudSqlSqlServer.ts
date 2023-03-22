@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Cloud SQL (SQL Server) connection options
+ * Google Cloud SQL (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlSqlServer
  */

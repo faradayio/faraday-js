@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Cloud SQL (SQL Server) target options
+ * Google Cloud SQL (SQL Server) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlSqlServerMergePatch
  */

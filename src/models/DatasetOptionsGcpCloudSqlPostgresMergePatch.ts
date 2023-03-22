@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `DatasetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Cloud SQL (Postgres) dataset options
+ * Google Cloud SQL (Postgres) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlPostgresMergePatch
  */

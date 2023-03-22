@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `TargetOptionsGcpCloudSqlMysql` type.)
  * 
- * Cloud SQL (MySQL) target options
+ * Google Cloud SQL (MySQL) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlMysqlPost
  */

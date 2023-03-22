@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Cloud SQL (SQL Server) dataset options
+ * Google Cloud SQL (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlSqlServer
  */

@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Cloud SQL (SQL Server) dataset options
+ * Google Cloud SQL (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlSqlServerPost
  */

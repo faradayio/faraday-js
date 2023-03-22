@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsGcpCloudSqlPostgres` type.)
  * 
- * Cloud SQL (Postgres) connection options
+ * Google Cloud SQL (Postgres) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlPostgresPut
  */

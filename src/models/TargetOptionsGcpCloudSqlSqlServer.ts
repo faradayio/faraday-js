@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Cloud SQL (SQL Server) target options
+ * Google Cloud SQL (SQL Server) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlSqlServer
  */

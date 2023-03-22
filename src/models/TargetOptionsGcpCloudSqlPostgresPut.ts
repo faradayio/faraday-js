@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PUT a value of the `TargetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Cloud SQL (Postgres) target options
+ * Google Cloud SQL (Postgres) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlPostgresPut
  */

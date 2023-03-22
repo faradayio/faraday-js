@@ -16,7 +16,7 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Cloud SQL (Postgres) dataset options
+ * Google Cloud SQL (Postgres) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlPostgresPost
  */
