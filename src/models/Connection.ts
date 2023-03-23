@@ -71,6 +71,12 @@ export interface Connection {
      */
     last_updated_output_at?: Date;
     /**
+     * A managed connection requires special configuration from a Faraday admin, and is read-only.
+     * @type {boolean}
+     * @memberof Connection
+     */
+    managed?: boolean;
+    /**
      * A user-friendly name of the connection.
      * @type {string}
      * @memberof Connection
@@ -129,6 +135,7 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
+        'managed': !exists(json, 'managed') ? undefined : json['managed'],
         'name': json['name'],
         'options': ConnectionOptionsFromJSON(json['options']),
         'resource_type': json['resource_type'],
@@ -153,6 +160,7 @@ export function ConnectionToJSON(value?: Connection | null): any {
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
+        'managed': value.managed,
         'name': value.name,
         'options': ConnectionOptionsToJSON(value.options),
         'resource_type': value.resource_type,

@@ -124,6 +124,12 @@ export interface Dataset {
      */
     last_updated_output_at?: Date;
     /**
+     * A managed dataset requires special configuration from a Faraday admin, and is read-only.
+     * @type {boolean}
+     * @memberof Dataset
+     */
+    managed?: boolean;
+    /**
      * The number of identified people in this dataset that Faraday found a match for in its data. This will only be displayed if the dataset built successfully.
      * @type {number}
      * @memberof Dataset
@@ -247,6 +253,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'identity_sets': IdentitySetsFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
+        'managed': !exists(json, 'managed') ? undefined : json['managed'],
         'matched_count': !exists(json, 'matched_count') ? undefined : json['matched_count'],
         'name': json['name'],
         'options': DatasetOptionsFromJSON(json['options']),
@@ -282,6 +289,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'identity_sets': IdentitySetsToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
+        'managed': value.managed,
         'matched_count': value.matched_count,
         'name': value.name,
         'options': DatasetOptionsToJSON(value.options),

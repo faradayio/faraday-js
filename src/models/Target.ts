@@ -119,6 +119,12 @@ export interface Target {
      */
     limit?: TargetLimit;
     /**
+     * A managed target requires special configuration from a Faraday admin, and is read-only.
+     * @type {boolean}
+     * @memberof Target
+     */
+    managed?: boolean;
+    /**
      * A user-friendly name of the target.
      * @type {string}
      * @memberof Target
@@ -211,6 +217,7 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         'id': json['id'],
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'limit': !exists(json, 'limit') ? undefined : TargetLimitFromJSON(json['limit']),
+        'managed': !exists(json, 'managed') ? undefined : json['managed'],
         'name': json['name'],
         'options': TargetOptionsFromJSON(json['options']),
         'payload_map': !exists(json, 'payload_map') ? undefined : json['payload_map'],
@@ -241,6 +248,7 @@ export function TargetToJSON(value?: Target | null): any {
         'id': value.id,
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'limit': TargetLimitToJSON(value.limit),
+        'managed': value.managed,
         'name': value.name,
         'options': TargetOptionsToJSON(value.options),
         'payload_map': value.payload_map,
