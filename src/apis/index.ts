@@ -17,6 +17,9 @@ import {
     DatasetsApi
 } from './DatasetsApi';
 import {
+    GraphApi
+} from './GraphApi';
+import {
     OutcomesApi
 } from './OutcomesApi';
 import {
@@ -51,6 +54,7 @@ export class FaradayClient {
     cohorts: CohortsApi;
     connections: ConnectionsApi;
     datasets: DatasetsApi;
+    graph: GraphApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
     places: PlacesApi;
@@ -68,6 +72,7 @@ export class FaradayClient {
         this.cohorts = new CohortsApi(configuration);
         this.connections = new ConnectionsApi(configuration);
         this.datasets = new DatasetsApi(configuration);
+        this.graph = new GraphApi(configuration);
         this.outcomes = new OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi(configuration);
         this.places = new PlacesApi(configuration);

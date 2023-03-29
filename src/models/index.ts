@@ -208,6 +208,7 @@ export * from './DatasetStreamPost';
 export * from './DatasetStreamPut';
 export * from './DatasetUpdateHistory';
 export * from './ErrorCode';
+export * from './GraphEdge';
 export * from './IdentitySet';
 export * from './IdentitySetMergePatch';
 export * from './IdentitySetPost';
