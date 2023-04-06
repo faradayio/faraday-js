@@ -31,6 +31,11 @@ export interface DeleteUploadRequest {
     filename: string;
 }
 
+export interface GetUploadRequest {
+    directory: string;
+    filename: string;
+}
+
 /**
  * 
  */
@@ -123,6 +128,50 @@ export class UploadsApi extends runtime.BaseAPI {
      */
     async deleteUpload(directory: string, filename: string, ): Promise<void> {
         await this.deleteUploadRaw({ directory: directory, filename: filename }, );
+    }
+
+    /**
+     * The file uploaded via /uploads/{directory}/{filename}
+     * Download a previously uploaded file
+     */
+    private async getUploadRaw(requestParameters: GetUploadRequest, ): Promise<runtime.ApiResponse<Blob>> {
+        if (requestParameters.directory === null || requestParameters.directory === undefined) {
+            throw new runtime.RequiredError('directory','Required parameter requestParameters.directory was null or undefined when calling getUpload.');
+        }
+
+        if (requestParameters.filename === null || requestParameters.filename === undefined) {
+            throw new runtime.RequiredError('filename','Required parameter requestParameters.filename was null or undefined when calling getUpload.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/uploads/{directory}/{filename}`.replace(`{${"directory"}}`, encodeURIComponent(String(requestParameters.directory))).replace(`{${"filename"}}`, encodeURIComponent(String(requestParameters.filename))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.BlobApiResponse(response);
+    }
+
+    /**
+     * The file uploaded via /uploads/{directory}/{filename}
+     * Download a previously uploaded file
+     */
+    async getUpload(directory: string, filename: string, ): Promise<Blob> {
+        const response = await this.getUploadRaw({ directory: directory, filename: filename }, );
+        return await response.value();
     }
 
     /**
