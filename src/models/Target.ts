@@ -20,6 +20,12 @@ import {
     ResourceStatusToJSON,
 } from './ResourceStatus';
 import {
+    TargetFilter,
+    TargetFilterFromJSON,
+    TargetFilterFromJSONTyped,
+    TargetFilterToJSON,
+} from './TargetFilter';
+import {
     TargetLimit,
     TargetLimitFromJSON,
     TargetLimitFromJSONTyped,
@@ -86,6 +92,12 @@ export interface Target {
      * @memberof Target
      */
     custom_structure?: Array<TargetStructureTransformation>;
+    /**
+     * 
+     * @type {TargetFilter}
+     * @memberof Target
+     */
+    filter?: TargetFilter;
     /**
      * Final structure of the target export. This is only included in the response if the target is built.
      * @type {Array<TargetStructureTransformation>}
@@ -212,6 +224,7 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'custom_structure': !exists(json, 'custom_structure') ? undefined : ((json['custom_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
+        'filter': !exists(json, 'filter') ? undefined : TargetFilterFromJSON(json['filter']),
         'final_structure': !exists(json, 'final_structure') ? undefined : ((json['final_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
         'human_readable': !exists(json, 'human_readable') ? undefined : json['human_readable'],
         'id': json['id'],
@@ -243,6 +256,7 @@ export function TargetToJSON(value?: Target | null): any {
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'custom_structure': value.custom_structure === undefined ? undefined : ((value.custom_structure as Array<any>).map(TargetStructureTransformationToJSON)),
+        'filter': TargetFilterToJSON(value.filter),
         'final_structure': value.final_structure === undefined ? undefined : ((value.final_structure as Array<any>).map(TargetStructureTransformationToJSON)),
         'human_readable': value.human_readable,
         'id': value.id,

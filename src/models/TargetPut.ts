@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    TargetFilterPut,
+    TargetFilterPutFromJSON,
+    TargetFilterPutFromJSONTyped,
+    TargetFilterPutToJSON,
+} from './TargetFilterPut';
+import {
     TargetLimitPut,
     TargetLimitPutFromJSON,
     TargetLimitPutFromJSONTyped,
@@ -76,6 +82,12 @@ export interface TargetPut {
      * @memberof TargetPut
      */
     custom_structure?: Array<TargetStructureTransformation>;
+    /**
+     * 
+     * @type {TargetFilterPut}
+     * @memberof TargetPut
+     */
+    filter?: TargetFilterPut;
     /**
      * By default, column names are exported in a machine-readable format with underscored uuids. 
      * 
@@ -141,6 +153,7 @@ export function TargetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'custom_structure': !exists(json, 'custom_structure') ? undefined : ((json['custom_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
+        'filter': !exists(json, 'filter') ? undefined : TargetFilterPutFromJSON(json['filter']),
         'human_readable': !exists(json, 'human_readable') ? undefined : json['human_readable'],
         'limit': !exists(json, 'limit') ? undefined : TargetLimitPutFromJSON(json['limit']),
         'name': json['name'],
@@ -161,6 +174,7 @@ export function TargetPutToJSON(value?: TargetPut | null): any {
         
         'connection_id': value.connection_id,
         'custom_structure': value.custom_structure === undefined ? undefined : ((value.custom_structure as Array<any>).map(TargetStructureTransformationToJSON)),
+        'filter': TargetFilterPutToJSON(value.filter),
         'human_readable': value.human_readable,
         'limit': TargetLimitPutToJSON(value.limit),
         'name': value.name,

@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    TargetFilterPost,
+    TargetFilterPostFromJSON,
+    TargetFilterPostFromJSONTyped,
+    TargetFilterPostToJSON,
+} from './TargetFilterPost';
+import {
     TargetLimitPost,
     TargetLimitPostFromJSON,
     TargetLimitPostFromJSONTyped,
@@ -76,6 +82,12 @@ export interface TargetPost {
      * @memberof TargetPost
      */
     custom_structure?: Array<TargetStructureTransformation>;
+    /**
+     * 
+     * @type {TargetFilterPost}
+     * @memberof TargetPost
+     */
+    filter?: TargetFilterPost;
     /**
      * By default, column names are exported in a machine-readable format with underscored uuids. 
      * 
@@ -147,6 +159,7 @@ export function TargetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'custom_structure': !exists(json, 'custom_structure') ? undefined : ((json['custom_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
+        'filter': !exists(json, 'filter') ? undefined : TargetFilterPostFromJSON(json['filter']),
         'human_readable': !exists(json, 'human_readable') ? undefined : json['human_readable'],
         'limit': !exists(json, 'limit') ? undefined : TargetLimitPostFromJSON(json['limit']),
         'name': json['name'],
@@ -168,6 +181,7 @@ export function TargetPostToJSON(value?: TargetPost | null): any {
         
         'connection_id': value.connection_id,
         'custom_structure': value.custom_structure === undefined ? undefined : ((value.custom_structure as Array<any>).map(TargetStructureTransformationToJSON)),
+        'filter': TargetFilterPostToJSON(value.filter),
         'human_readable': value.human_readable,
         'limit': TargetLimitPostToJSON(value.limit),
         'name': value.name,

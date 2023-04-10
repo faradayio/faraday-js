@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    TargetFilterMergePatch,
+    TargetFilterMergePatchFromJSON,
+    TargetFilterMergePatchFromJSONTyped,
+    TargetFilterMergePatchToJSON,
+} from './TargetFilterMergePatch';
+import {
     TargetLimitMergePatch,
     TargetLimitMergePatchFromJSON,
     TargetLimitMergePatchFromJSONTyped,
@@ -76,6 +82,12 @@ export interface TargetMergePatch {
      * @memberof TargetMergePatch
      */
     custom_structure?: Array<TargetStructureTransformation> | null;
+    /**
+     * 
+     * @type {TargetFilterMergePatch}
+     * @memberof TargetMergePatch
+     */
+    filter?: TargetFilterMergePatch | null;
     /**
      * By default, column names are exported in a machine-readable format with underscored uuids. 
      * 
@@ -141,6 +153,7 @@ export function TargetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'custom_structure': !exists(json, 'custom_structure') ? undefined : (json['custom_structure'] === null ? null : (json['custom_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
+        'filter': !exists(json, 'filter') ? undefined : TargetFilterMergePatchFromJSON(json['filter']),
         'human_readable': !exists(json, 'human_readable') ? undefined : json['human_readable'],
         'limit': !exists(json, 'limit') ? undefined : TargetLimitMergePatchFromJSON(json['limit']),
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -161,6 +174,7 @@ export function TargetMergePatchToJSON(value?: TargetMergePatch | null): any {
         
         'connection_id': value.connection_id,
         'custom_structure': value.custom_structure === undefined ? undefined : (value.custom_structure === null ? null : (value.custom_structure as Array<any>).map(TargetStructureTransformationToJSON)),
+        'filter': TargetFilterMergePatchToJSON(value.filter),
         'human_readable': value.human_readable,
         'limit': TargetLimitMergePatchToJSON(value.limit),
         'name': value.name,

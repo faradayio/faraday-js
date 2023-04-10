@@ -16,6 +16,8 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to POST a new value of the `TargetLimitPercentile` type.)
  * 
+ * **Deprecated: use `filter outcome_percentile`.**
+ * 
  * Restrict the number of rows exported in a target by specifying a score percentile range.
  * @export
  * @interface TargetLimitPercentilePost

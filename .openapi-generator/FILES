@@ -306,6 +306,15 @@ src/models/StreamPropertyInputFromDatasets.ts
 src/models/Target.ts
 src/models/TargetAggregateGeographic.ts
 src/models/TargetAggregateIdentified.ts
+src/models/TargetFilter.ts
+src/models/TargetFilterCohortMembershipConditions.ts
+src/models/TargetFilterMergePatch.ts
+src/models/TargetFilterOutcomePercentileConditions.ts
+src/models/TargetFilterOutcomeScoreConditions.ts
+src/models/TargetFilterPersonaSetPersonaIdConditions.ts
+src/models/TargetFilterPost.ts
+src/models/TargetFilterPut.ts
+src/models/TargetFilterTraitConditions.ts
 src/models/TargetLimit.ts
 src/models/TargetLimitMergePatch.ts
 src/models/TargetLimitPercentile.ts
