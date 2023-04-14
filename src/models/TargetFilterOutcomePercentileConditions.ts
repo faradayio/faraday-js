@@ -50,18 +50,6 @@ export interface TargetFilterOutcomePercentileConditions {
      */
     _lte?: number;
     /**
-     * Value is not null
-     * @type {boolean}
-     * @memberof TargetFilterOutcomePercentileConditions
-     */
-    _nnull?: boolean;
-    /**
-     * Value is null
-     * @type {boolean}
-     * @memberof TargetFilterOutcomePercentileConditions
-     */
-    _null?: boolean;
-    /**
      * Outcome id to filter on.
      * @type {string}
      * @memberof TargetFilterOutcomePercentileConditions
@@ -84,8 +72,6 @@ export function TargetFilterOutcomePercentileConditionsFromJSONTyped(json: any, 
         '_gte': !exists(json, '_gte') ? undefined : json['_gte'],
         '_lt': !exists(json, '_lt') ? undefined : json['_lt'],
         '_lte': !exists(json, '_lte') ? undefined : json['_lte'],
-        '_nnull': !exists(json, '_nnull') ? undefined : json['_nnull'],
-        '_null': !exists(json, '_null') ? undefined : json['_null'],
         'outcome_id': json['outcome_id'],
     };
 }
@@ -104,8 +90,6 @@ export function TargetFilterOutcomePercentileConditionsToJSON(value?: TargetFilt
         '_gte': value._gte,
         '_lt': value._lt,
         '_lte': value._lte,
-        '_nnull': value._nnull,
-        '_null': value._null,
         'outcome_id': value.outcome_id,
     };
 }
