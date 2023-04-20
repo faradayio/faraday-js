@@ -50,6 +50,18 @@ export interface TargetFilterOutcomeScoreConditions {
      */
     _lte?: number;
     /**
+     * Value is not null
+     * @type {boolean}
+     * @memberof TargetFilterOutcomeScoreConditions
+     */
+    _nnull?: boolean;
+    /**
+     * Value is null
+     * @type {boolean}
+     * @memberof TargetFilterOutcomeScoreConditions
+     */
+    _null?: boolean;
+    /**
      * Outcome id to filter on.
      * @type {string}
      * @memberof TargetFilterOutcomeScoreConditions
@@ -72,6 +84,8 @@ export function TargetFilterOutcomeScoreConditionsFromJSONTyped(json: any, ignor
         '_gte': !exists(json, '_gte') ? undefined : json['_gte'],
         '_lt': !exists(json, '_lt') ? undefined : json['_lt'],
         '_lte': !exists(json, '_lte') ? undefined : json['_lte'],
+        '_nnull': !exists(json, '_nnull') ? undefined : json['_nnull'],
+        '_null': !exists(json, '_null') ? undefined : json['_null'],
         'outcome_id': json['outcome_id'],
     };
 }
@@ -90,6 +104,8 @@ export function TargetFilterOutcomeScoreConditionsToJSON(value?: TargetFilterOut
         '_gte': value._gte,
         '_lt': value._lt,
         '_lte': value._lte,
+        '_nnull': value._nnull,
+        '_null': value._null,
         'outcome_id': value.outcome_id,
     };
 }
