@@ -16,15 +16,17 @@ import { exists, mapValues } from '../runtime';
 /**
  * (Parameters used to PATCH the `TargetLimitRowCount` type.)
  * 
- * Restrict the number of rows exported in a target by specifying an absolute row limit.
+ * Restrict the number of rows exported in a target by specifying an absolute row limit. Equivalent to `LIMIT` in SQL.
  * 
- * Equivalent to `LIMIT` in SQL.
+ * If an outcome is specified, the results are sorted by score before taking the limit. Otherwise the ordering is random.
  * @export
  * @interface TargetLimitRowCountMergePatch
  */
 export interface TargetLimitRowCountMergePatch {
     /**
-     * For the "top" number of records, specify `descending`. For the "bottom" number of records, specify `ascending`.
+     * When an `outcome_id` is given, this parameter sets the sort direction: for the "top" scores, specify `descending`. For the "bottom" scores, specify `ascending`.
+     * 
+     * If not specified, defaults to `descending`.
      * @type {string}
      * @memberof TargetLimitRowCountMergePatch
      */
@@ -40,7 +42,7 @@ export interface TargetLimitRowCountMergePatch {
      * @type {string}
      * @memberof TargetLimitRowCountMergePatch
      */
-    outcome_id?: string;
+    outcome_id?: string | null;
     /**
      * Specify a whole number to restrict the target to a specific number of records.
      * @type {number}

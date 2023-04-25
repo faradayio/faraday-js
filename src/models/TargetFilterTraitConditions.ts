@@ -80,7 +80,7 @@ export interface TargetFilterTraitConditions {
      */
     _nnull?: boolean;
     /**
-     * Value is null
+     * Value is null (nulls are otherwise excluded)
      * @type {boolean}
      * @memberof TargetFilterTraitConditions
      */

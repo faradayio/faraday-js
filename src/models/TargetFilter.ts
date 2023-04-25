@@ -51,6 +51,10 @@ import {
  * - To filter by persona set persona id, use `persona`.
  * - To filter by cohort membership, use `cohort_membership`.
  * - To filter by trait, use `trait`.
+ * 
+ * Conditions are AND-ed together (like SQL) - each condition applies an additional constraint.
+ * 
+ * Nulls are excluded unless explicitly requested with `_null: true`.
  * @export
  * @interface TargetFilter
  */

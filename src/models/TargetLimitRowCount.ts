@@ -14,19 +14,21 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Restrict the number of rows exported in a target by specifying an absolute row limit.
+ * Restrict the number of rows exported in a target by specifying an absolute row limit. Equivalent to `LIMIT` in SQL.
  * 
- * Equivalent to `LIMIT` in SQL.
+ * If an outcome is specified, the results are sorted by score before taking the limit. Otherwise the ordering is random.
  * @export
  * @interface TargetLimitRowCount
  */
 export interface TargetLimitRowCount {
     /**
-     * For the "top" number of records, specify `descending`. For the "bottom" number of records, specify `ascending`.
+     * When an `outcome_id` is given, this parameter sets the sort direction: for the "top" scores, specify `descending`. For the "bottom" scores, specify `ascending`.
+     * 
+     * If not specified, defaults to `descending`.
      * @type {string}
      * @memberof TargetLimitRowCount
      */
-    direction: TargetLimitRowCountDirectionEnum;
+    direction?: TargetLimitRowCountDirectionEnum;
     /**
      * The limit method
      * @type {string}
@@ -38,7 +40,7 @@ export interface TargetLimitRowCount {
      * @type {string}
      * @memberof TargetLimitRowCount
      */
-    outcome_id: string;
+    outcome_id?: string;
     /**
      * Specify a whole number to restrict the target to a specific number of records.
      * @type {number}
@@ -66,9 +68,9 @@ export function TargetLimitRowCountFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'direction': json['direction'],
+        'direction': !exists(json, 'direction') ? undefined : json['direction'],
         'method': json['method'],
-        'outcome_id': json['outcome_id'],
+        'outcome_id': !exists(json, 'outcome_id') ? undefined : json['outcome_id'],
         'threshold': json['threshold'],
     };
 }

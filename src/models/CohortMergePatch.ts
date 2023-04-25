@@ -98,6 +98,8 @@ export interface CohortMergePatch {
     recency?: RecencyMergePatch | null;
     /**
      * List of stream properties to filter cohort membership on. The stream properties must be for the same stream set as the cohort `stream_name`.
+     * 
+     * Nulls are excluded unless explicitly requested with `_null: true`.
      * @type {Array<CohortStreamCondition>}
      * @memberof CohortMergePatch
      */

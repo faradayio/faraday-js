@@ -74,7 +74,7 @@ export interface CohortStreamCondition {
      */
     _nnull?: boolean;
     /**
-     * Value is null
+     * Value is null (nulls are otherwise excluded)
      * @type {boolean}
      * @memberof CohortStreamCondition
      */

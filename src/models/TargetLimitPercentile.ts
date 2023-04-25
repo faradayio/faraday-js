@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * **Deprecated: use `filter outcome_percentile`.**
+ * **Deprecated: use `filter.outcome_percentile` instead.**
  * 
  * Restrict the number of rows exported in a target by specifying a score percentile range.
  * @export

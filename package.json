@@ -1,6 +1,6 @@
 {
   "name": "@fdy/faraday-js",
-  "version": "0.1.102",
+  "version": "0.1.103",
   "description": "OpenAPI client for @fdy/faraday-js",
   "author": "@hana.kslr",
   "repository": "git://github.com/faradayio/faraday-js.git",
