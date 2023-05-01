@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to PATCH the `TargetModesHashed` type.)
  * 
- * Hashed representation. Suitable for digital acquisition use cases.
+ * Suitable for digital acquisition use cases.
  * @export
  * @interface TargetModesHashedMergePatch
  */

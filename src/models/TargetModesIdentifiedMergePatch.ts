@@ -29,7 +29,7 @@ import {
 /**
  * (Parameters used to PATCH the `TargetModesIdentified` type.)
  * 
- * Identified representation. Suitable for direct mail and canvassing.
+ * Suitable for direct mail and canvassing.
  * @export
  * @interface TargetModesIdentifiedMergePatch
  */

@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to POST a new value of the `TargetModesHashed` type.)
  * 
- * Hashed representation. Suitable for digital acquisition use cases.
+ * Suitable for digital acquisition use cases.
  * @export
  * @interface TargetModesHashedPost
  */

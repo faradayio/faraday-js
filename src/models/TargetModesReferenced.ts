@@ -21,7 +21,7 @@ import {
 } from './TargetTransformPresetReferenced';
 
 /**
- * Referenced representation. Suitable for data warehouse integrations.
+ * Suitable for data warehouse integrations.
  * @export
  * @interface TargetModesReferenced
  */

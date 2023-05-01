@@ -27,7 +27,7 @@ import {
 } from './TargetTransformPresetAggregated';
 
 /**
- * Aggregated representation (geographic). Suitable for geo-targeted ad campaigns.
+ * Suitable for geo-targeted ad campaigns.
  * @export
  * @interface TargetModesAggregated
  */

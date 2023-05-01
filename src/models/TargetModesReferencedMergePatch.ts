@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to PATCH the `TargetModesReferenced` type.)
  * 
- * Referenced representation. Suitable for data warehouse integrations.
+ * Suitable for data warehouse integrations.
  * @export
  * @interface TargetModesReferencedMergePatch
  */

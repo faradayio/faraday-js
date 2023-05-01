@@ -29,7 +29,7 @@ import {
 /**
  * (Parameters used to PUT a value of the `TargetModesAggregated` type.)
  * 
- * Aggregated representation (geographic). Suitable for geo-targeted ad campaigns.
+ * Suitable for geo-targeted ad campaigns.
  * @export
  * @interface TargetModesAggregatedPut
  */

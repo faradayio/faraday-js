@@ -21,7 +21,7 @@ import {
 } from './TargetTransformPresetHashed';
 
 /**
- * Hashed representation. Suitable for digital acquisition use cases.
+ * Suitable for digital acquisition use cases.
  * @export
  * @interface TargetModesHashed
  */

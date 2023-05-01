@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to POST a new value of the `TargetModesReferenced` type.)
  * 
- * Referenced representation. Suitable for data warehouse integrations.
+ * Suitable for data warehouse integrations.
  * @export
  * @interface TargetModesReferencedPost
  */
