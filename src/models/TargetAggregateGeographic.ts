@@ -21,7 +21,10 @@ export enum TargetAggregateGeographic {
     Postcode = 'postcode',
     County = 'county',
     Metro = 'metro',
-    State = 'state'
+    State = 'state',
+    CensusBlockGroup = 'census_block_group',
+    CensusTract = 'census_tract',
+    Dma = 'dma'
 }
 
 export function TargetAggregateGeographicFromJSON(json: any): TargetAggregateGeographic {
