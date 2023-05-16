@@ -92,10 +92,10 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a specific account
+     * Request an account deletion. In 24 hours, the account and all resources associated with it will be deleted. Contact support within the 24 hour window if you wish to reverse this.
      * Delete an account
      */
-    private async deleteAccountRaw(requestParameters: DeleteAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
+    private async deleteAccountRaw(requestParameters: DeleteAccountRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteAccount.');
         }
@@ -119,16 +119,15 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AccountFromJSON(jsonValue));
+        return new runtime.VoidApiResponse(response);
     }
 
     /**
-     * Delete a specific account
+     * Request an account deletion. In 24 hours, the account and all resources associated with it will be deleted. Contact support within the 24 hour window if you wish to reverse this.
      * Delete an account
      */
-    async deleteAccount(accountId: string, ): Promise<Account> {
-        const response = await this.deleteAccountRaw({ accountId: accountId }, );
-        return await response.value();
+    async deleteAccount(accountId: string, ): Promise<void> {
+        await this.deleteAccountRaw({ accountId: accountId }, );
     }
 
     /**
