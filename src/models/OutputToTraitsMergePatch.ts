@@ -13,24 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    TraitDataMapColumnMergePatch,
-    TraitDataMapColumnMergePatchFromJSON,
-    TraitDataMapColumnMergePatchFromJSONTyped,
-    TraitDataMapColumnMergePatchToJSON,
-} from './TraitDataMapColumnMergePatch';
-
 /**
  * (Parameters used to PATCH the `OutputToTraits` type.)
  * 
- * A mapping of trait name to trait definition, where the key is what the trait will be called in Faraday's system.
+ * A mapping of {trait_name}: {column_name} which this dataset provides.
  * 
- * Traits are characteristics about people, that are unrelated to particular events.
+ * {trait_name} is how the trait will be called in Faraday's system, and {column_name} is the name of the column in the created dataset which it should draw from. They can be the same, if desired.
+ * 
+ * Traits should be eternal values, not ones which vary over time.
  * @export
  * @interface OutputToTraitsMergePatch
  */
 export interface OutputToTraitsMergePatch {
-    [key: string]: TraitDataMapColumnMergePatch;
+    [key: string]: string;
 }
 
 export function OutputToTraitsMergePatchFromJSON(json: any): OutputToTraitsMergePatch {

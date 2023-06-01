@@ -437,11 +437,6 @@ src/models/TargetTransformPresetIdentified.ts
 src/models/TargetTransformPresetReferenced.ts
 src/models/Trait.ts
 src/models/TraitCategory.ts
-src/models/TraitDataMapColumn.ts
-src/models/TraitDataMapColumnMergePatch.ts
-src/models/TraitDataMapColumnPost.ts
-src/models/TraitDataMapColumnPut.ts
-src/models/TraitInputFromDatasets.ts
 src/models/TraitMergePatch.ts
 src/models/TraitPost.ts
 src/models/TraitPut.ts

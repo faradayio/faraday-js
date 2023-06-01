@@ -33,35 +33,11 @@ import {
  */
 export interface TraitMergePatch {
     /**
-     * Information about this field.
-     * @type {string}
-     * @memberof TraitMergePatch
-     */
-    description?: string | null;
-    /**
-     * A more human-consumable version of the name of this field.
-     * @type {string}
-     * @memberof TraitMergePatch
-     */
-    literate?: string;
-    /**
-     * A mapping of the input values used in modeling, to how they should be displayed in reports.
-     * @type {object}
-     * @memberof TraitMergePatch
-     */
-    lookup_table?: object | null;
-    /**
      * 
      * @type {TraitStatisticalType}
      * @memberof TraitMergePatch
      */
     statistical_type?: TraitStatisticalType | null;
-    /**
-     * For numeric types, in what units is the data stored.
-     * @type {string}
-     * @memberof TraitMergePatch
-     */
-    unit?: string | null;
 }
 
 export function TraitMergePatchFromJSON(json: any): TraitMergePatch {
@@ -74,11 +50,7 @@ export function TraitMergePatchFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'literate': !exists(json, 'literate') ? undefined : json['literate'],
-        'lookup_table': !exists(json, 'lookup_table') ? undefined : json['lookup_table'],
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
-        'unit': !exists(json, 'unit') ? undefined : json['unit'],
     };
 }
 
@@ -91,11 +63,7 @@ export function TraitMergePatchToJSON(value?: TraitMergePatch | null): any {
     }
     return {
         
-        'description': value.description,
-        'literate': value.literate,
-        'lookup_table': value.lookup_table,
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
-        'unit': value.unit,
     };
 }
 

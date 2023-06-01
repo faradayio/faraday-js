@@ -26,12 +26,6 @@ import {
     TraitCategoryToJSON,
 } from './TraitCategory';
 import {
-    TraitInputFromDatasets,
-    TraitInputFromDatasetsFromJSON,
-    TraitInputFromDatasetsFromJSONTyped,
-    TraitInputFromDatasetsToJSON,
-} from './TraitInputFromDatasets';
-import {
     TraitStatisticalType,
     TraitStatisticalTypeFromJSON,
     TraitStatisticalTypeFromJSONTyped,
@@ -79,12 +73,6 @@ export interface Trait {
      */
     description?: string;
     /**
-     * 
-     * @type {Array<TraitInputFromDatasets>}
-     * @memberof Trait
-     */
-    emitted_by_datasets?: Array<TraitInputFromDatasets>;
-    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Trait
@@ -96,12 +84,6 @@ export interface Trait {
      * @memberof Trait
      */
     literate: string;
-    /**
-     * A mapping of the input values used in modeling, to how they should be displayed in reports.
-     * @type {object}
-     * @memberof Trait
-     */
-    lookup_table?: object;
     /**
      * How to refer to this Trait in other API calls to Faraday.
      * @type {string}
@@ -149,10 +131,8 @@ export function TraitFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tra
         'category': !exists(json, 'category') ? undefined : TraitCategoryFromJSON(json['category']),
         'created_at': (new Date(json['created_at'])),
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'emitted_by_datasets': !exists(json, 'emitted_by_datasets') ? undefined : ((json['emitted_by_datasets'] as Array<any>).map(TraitInputFromDatasetsFromJSON)),
         'id': json['id'],
         'literate': json['literate'],
-        'lookup_table': !exists(json, 'lookup_table') ? undefined : json['lookup_table'],
         'name': json['name'],
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
         'type': !exists(json, 'type') ? undefined : PrimitiveDataTypeFromJSON(json['type']),
@@ -175,10 +155,8 @@ export function TraitToJSON(value?: Trait | null): any {
         'category': TraitCategoryToJSON(value.category),
         'created_at': (value.created_at.toISOString()),
         'description': value.description,
-        'emitted_by_datasets': value.emitted_by_datasets === undefined ? undefined : ((value.emitted_by_datasets as Array<any>).map(TraitInputFromDatasetsToJSON)),
         'id': value.id,
         'literate': value.literate,
-        'lookup_table': value.lookup_table,
         'name': value.name,
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
         'type': PrimitiveDataTypeToJSON(value.type),

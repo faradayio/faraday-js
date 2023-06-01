@@ -33,35 +33,11 @@ import {
  */
 export interface TraitPut {
     /**
-     * Information about this field.
-     * @type {string}
-     * @memberof TraitPut
-     */
-    description?: string;
-    /**
-     * A more human-consumable version of the name of this field.
-     * @type {string}
-     * @memberof TraitPut
-     */
-    literate: string;
-    /**
-     * A mapping of the input values used in modeling, to how they should be displayed in reports.
-     * @type {object}
-     * @memberof TraitPut
-     */
-    lookup_table?: object;
-    /**
      * 
      * @type {TraitStatisticalType}
      * @memberof TraitPut
      */
     statistical_type?: TraitStatisticalType;
-    /**
-     * For numeric types, in what units is the data stored.
-     * @type {string}
-     * @memberof TraitPut
-     */
-    unit?: string;
 }
 
 export function TraitPutFromJSON(json: any): TraitPut {
@@ -74,11 +50,7 @@ export function TraitPutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'literate': json['literate'],
-        'lookup_table': !exists(json, 'lookup_table') ? undefined : json['lookup_table'],
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
-        'unit': !exists(json, 'unit') ? undefined : json['unit'],
     };
 }
 
@@ -91,11 +63,7 @@ export function TraitPutToJSON(value?: TraitPut | null): any {
     }
     return {
         
-        'description': value.description,
-        'literate': value.literate,
-        'lookup_table': value.lookup_table,
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
-        'unit': value.unit,
     };
 }
 
