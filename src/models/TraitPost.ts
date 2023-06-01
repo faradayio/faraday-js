@@ -33,6 +33,24 @@ import {
  */
 export interface TraitPost {
     /**
+     * Information about this field.
+     * @type {string}
+     * @memberof TraitPost
+     */
+    description?: string;
+    /**
+     * A more human-consumable version of the name of this field.
+     * @type {string}
+     * @memberof TraitPost
+     */
+    literate: string;
+    /**
+     * A mapping of the input values used in modeling, to how they should be displayed in reports.
+     * @type {object}
+     * @memberof TraitPost
+     */
+    lookup_table?: object;
+    /**
      * How to refer to this Trait in other API calls to Faraday.
      * @type {string}
      * @memberof TraitPost
@@ -44,6 +62,12 @@ export interface TraitPost {
      * @memberof TraitPost
      */
     statistical_type?: TraitStatisticalType;
+    /**
+     * For numeric types, in what units is the data stored.
+     * @type {string}
+     * @memberof TraitPost
+     */
+    unit?: string;
 }
 
 export function TraitPostFromJSON(json: any): TraitPost {
@@ -56,8 +80,12 @@ export function TraitPostFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'literate': json['literate'],
+        'lookup_table': !exists(json, 'lookup_table') ? undefined : json['lookup_table'],
         'name': json['name'],
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
+        'unit': !exists(json, 'unit') ? undefined : json['unit'],
     };
 }
 
@@ -70,8 +98,12 @@ export function TraitPostToJSON(value?: TraitPost | null): any {
     }
     return {
         
+        'description': value.description,
+        'literate': value.literate,
+        'lookup_table': value.lookup_table,
         'name': value.name,
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
+        'unit': value.unit,
     };
 }
 

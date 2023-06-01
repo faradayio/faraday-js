@@ -13,17 +13,22 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    TraitDataMapColumn,
+    TraitDataMapColumnFromJSON,
+    TraitDataMapColumnFromJSONTyped,
+    TraitDataMapColumnToJSON,
+} from './TraitDataMapColumn';
+
 /**
- * A mapping of {trait_name}: {column_name} which this dataset provides.
+ * A mapping of trait name to trait definition, where the key is what the trait will be called in Faraday's system.
  * 
- * {trait_name} is how the trait will be called in Faraday's system, and {column_name} is the name of the column in the created dataset which it should draw from. They can be the same, if desired.
- * 
- * Traits should be eternal values, not ones which vary over time.
+ * Traits are characteristics about people, that are unrelated to particular events.
  * @export
  * @interface OutputToTraits
  */
 export interface OutputToTraits {
-    [key: string]: string;
+    [key: string]: TraitDataMapColumn;
 }
 
 export function OutputToTraitsFromJSON(json: any): OutputToTraits {
