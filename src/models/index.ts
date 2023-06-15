@@ -290,6 +290,7 @@ export * from './TargetFilter';
 export * from './TargetFilterCohortMembershipConditions';
 export * from './TargetFilterMergePatch';
 export * from './TargetFilterOutcomePercentileConditions';
+export * from './TargetFilterOutcomeProbabilityConditions';
 export * from './TargetFilterOutcomeScoreConditions';
 export * from './TargetFilterPersonaSetPersonaIdConditions';
 export * from './TargetFilterPost';

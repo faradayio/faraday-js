@@ -26,6 +26,12 @@ import {
     TargetFilterOutcomePercentileConditionsToJSON,
 } from './TargetFilterOutcomePercentileConditions';
 import {
+    TargetFilterOutcomeProbabilityConditions,
+    TargetFilterOutcomeProbabilityConditionsFromJSON,
+    TargetFilterOutcomeProbabilityConditionsFromJSONTyped,
+    TargetFilterOutcomeProbabilityConditionsToJSON,
+} from './TargetFilterOutcomeProbabilityConditions';
+import {
     TargetFilterOutcomeScoreConditions,
     TargetFilterOutcomeScoreConditionsFromJSON,
     TargetFilterOutcomeScoreConditionsFromJSONTyped,
@@ -74,7 +80,13 @@ export interface TargetFilterMergePatch {
      */
     outcome_percentile?: Array<TargetFilterOutcomePercentileConditions> | null;
     /**
-     * List of conditions to filter outcome probablity on.
+     * List of conditions to filter outcome probability on.
+     * @type {Array<TargetFilterOutcomeProbabilityConditions>}
+     * @memberof TargetFilterMergePatch
+     */
+    outcome_probability?: Array<TargetFilterOutcomeProbabilityConditions> | null;
+    /**
+     * List of conditions to filter outcome score on.
      * @type {Array<TargetFilterOutcomeScoreConditions>}
      * @memberof TargetFilterMergePatch
      */
@@ -105,6 +117,7 @@ export function TargetFilterMergePatchFromJSONTyped(json: any, ignoreDiscriminat
         
         'cohort_membership': !exists(json, 'cohort_membership') ? undefined : (json['cohort_membership'] === null ? null : (json['cohort_membership'] as Array<any>).map(TargetFilterCohortMembershipConditionsFromJSON)),
         'outcome_percentile': !exists(json, 'outcome_percentile') ? undefined : (json['outcome_percentile'] === null ? null : (json['outcome_percentile'] as Array<any>).map(TargetFilterOutcomePercentileConditionsFromJSON)),
+        'outcome_probability': !exists(json, 'outcome_probability') ? undefined : (json['outcome_probability'] === null ? null : (json['outcome_probability'] as Array<any>).map(TargetFilterOutcomeProbabilityConditionsFromJSON)),
         'outcome_score': !exists(json, 'outcome_score') ? undefined : (json['outcome_score'] === null ? null : (json['outcome_score'] as Array<any>).map(TargetFilterOutcomeScoreConditionsFromJSON)),
         'persona': !exists(json, 'persona') ? undefined : (json['persona'] === null ? null : (json['persona'] as Array<any>).map(TargetFilterPersonaSetPersonaIdConditionsFromJSON)),
         'trait': !exists(json, 'trait') ? undefined : (json['trait'] === null ? null : (json['trait'] as Array<any>).map(TargetFilterTraitConditionsFromJSON)),
@@ -122,6 +135,7 @@ export function TargetFilterMergePatchToJSON(value?: TargetFilterMergePatch | nu
         
         'cohort_membership': value.cohort_membership === undefined ? undefined : (value.cohort_membership === null ? null : (value.cohort_membership as Array<any>).map(TargetFilterCohortMembershipConditionsToJSON)),
         'outcome_percentile': value.outcome_percentile === undefined ? undefined : (value.outcome_percentile === null ? null : (value.outcome_percentile as Array<any>).map(TargetFilterOutcomePercentileConditionsToJSON)),
+        'outcome_probability': value.outcome_probability === undefined ? undefined : (value.outcome_probability === null ? null : (value.outcome_probability as Array<any>).map(TargetFilterOutcomeProbabilityConditionsToJSON)),
         'outcome_score': value.outcome_score === undefined ? undefined : (value.outcome_score === null ? null : (value.outcome_score as Array<any>).map(TargetFilterOutcomeScoreConditionsToJSON)),
         'persona': value.persona === undefined ? undefined : (value.persona === null ? null : (value.persona as Array<any>).map(TargetFilterPersonaSetPersonaIdConditionsToJSON)),
         'trait': value.trait === undefined ? undefined : (value.trait === null ? null : (value.trait as Array<any>).map(TargetFilterTraitConditionsToJSON)),

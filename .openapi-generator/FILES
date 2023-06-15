@@ -310,6 +310,7 @@ src/models/TargetFilter.ts
 src/models/TargetFilterCohortMembershipConditions.ts
 src/models/TargetFilterMergePatch.ts
 src/models/TargetFilterOutcomePercentileConditions.ts
+src/models/TargetFilterOutcomeProbabilityConditions.ts
 src/models/TargetFilterOutcomeScoreConditions.ts
 src/models/TargetFilterPersonaSetPersonaIdConditions.ts
 src/models/TargetFilterPost.ts
