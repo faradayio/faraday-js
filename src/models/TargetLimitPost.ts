@@ -28,8 +28,8 @@ import {
 /**
  * @type TargetLimitPost
  * Restrict the number of rows exported in a target.
- * - To filter by percentile scores, use `percentile` (**Deprecated: use `filter outcome_percentile`**).
  * - To apply an absolute row limit, use `row_count`.
+ * - **Deprecated:** To filter by percentile scores, use `percentile` (use `filter outcome_percentile` instead).
  * @export
  */
 export type TargetLimitPost = { method: 'percentile' } & TargetLimitPercentilePost | { method: 'row_count' } & TargetLimitRowCountPost;

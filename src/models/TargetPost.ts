@@ -115,25 +115,6 @@ export interface TargetPost {
      */
     options: TargetOptionsPost;
     /**
-     * **Deprecated: use `custom_structure`.**
-     * 
-     * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
-     * This parameter is an override of the default that enables an explicit mapping of columns that should be included in the target export, along with the exported column name.
-     * Each key is the name the column originally had, and each value is the desired name.
-     * Example:
-     * ```
-     * {
-     *   "person_first_name": "first_name",
-     *   "person_last_name": "last_name",
-     *   "city": "city"
-     * }
-     * ```
-     * In the example above, the target will only include the "first_name", "last_name", and "city" columns.
-     * @type {{ [key: string]: string; }}
-     * @memberof TargetPost
-     */
-    payload_map?: { [key: string]: string; };
-    /**
      * 
      * @type {TargetModesPost}
      * @memberof TargetPost
@@ -164,7 +145,6 @@ export function TargetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'limit': !exists(json, 'limit') ? undefined : TargetLimitPostFromJSON(json['limit']),
         'name': json['name'],
         'options': TargetOptionsPostFromJSON(json['options']),
-        'payload_map': !exists(json, 'payload_map') ? undefined : json['payload_map'],
         'representation': TargetModesPostFromJSON(json['representation']),
         'scope_id': json['scope_id'],
     };
@@ -186,7 +166,6 @@ export function TargetPostToJSON(value?: TargetPost | null): any {
         'limit': TargetLimitPostToJSON(value.limit),
         'name': value.name,
         'options': TargetOptionsPostToJSON(value.options),
-        'payload_map': value.payload_map,
         'representation': TargetModesPostToJSON(value.representation),
         'scope_id': value.scope_id,
     };

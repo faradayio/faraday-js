@@ -61,6 +61,12 @@ import {
     TargetOptionsBigQueryPutToJSON,
 } from './TargetOptionsBigQueryPut';
 import {
+    TargetOptionsFacebookCustomAudiencesPut,
+    TargetOptionsFacebookCustomAudiencesPutFromJSON,
+    TargetOptionsFacebookCustomAudiencesPutFromJSONTyped,
+    TargetOptionsFacebookCustomAudiencesPutToJSON,
+} from './TargetOptionsFacebookCustomAudiencesPut';
+import {
     TargetOptionsGcpCloudSqlMysqlPut,
     TargetOptionsGcpCloudSqlMysqlPutFromJSON,
     TargetOptionsGcpCloudSqlMysqlPutFromJSONTyped,
@@ -85,17 +91,47 @@ import {
     TargetOptionsGcpGcsCsvPutToJSON,
 } from './TargetOptionsGcpGcsCsvPut';
 import {
+    TargetOptionsGoogleAdsPut,
+    TargetOptionsGoogleAdsPutFromJSON,
+    TargetOptionsGoogleAdsPutFromJSONTyped,
+    TargetOptionsGoogleAdsPutToJSON,
+} from './TargetOptionsGoogleAdsPut';
+import {
     TargetOptionsHostedCsvPut,
     TargetOptionsHostedCsvPutFromJSON,
     TargetOptionsHostedCsvPutFromJSONTyped,
     TargetOptionsHostedCsvPutToJSON,
 } from './TargetOptionsHostedCsvPut';
 import {
+    TargetOptionsHubspotPut,
+    TargetOptionsHubspotPutFromJSON,
+    TargetOptionsHubspotPutFromJSONTyped,
+    TargetOptionsHubspotPutToJSON,
+} from './TargetOptionsHubspotPut';
+import {
+    TargetOptionsIterablePut,
+    TargetOptionsIterablePutFromJSON,
+    TargetOptionsIterablePutFromJSONTyped,
+    TargetOptionsIterablePutToJSON,
+} from './TargetOptionsIterablePut';
+import {
+    TargetOptionsKlaviyoPut,
+    TargetOptionsKlaviyoPutFromJSON,
+    TargetOptionsKlaviyoPutFromJSONTyped,
+    TargetOptionsKlaviyoPutToJSON,
+} from './TargetOptionsKlaviyoPut';
+import {
     TargetOptionsMysqlPut,
     TargetOptionsMysqlPutFromJSON,
     TargetOptionsMysqlPutFromJSONTyped,
     TargetOptionsMysqlPutToJSON,
 } from './TargetOptionsMysqlPut';
+import {
+    TargetOptionsPinterestAdsPut,
+    TargetOptionsPinterestAdsPutFromJSON,
+    TargetOptionsPinterestAdsPutFromJSONTyped,
+    TargetOptionsPinterestAdsPutToJSON,
+} from './TargetOptionsPinterestAdsPut';
 import {
     TargetOptionsPostgresPut,
     TargetOptionsPostgresPutFromJSON,
@@ -115,6 +151,18 @@ import {
     TargetOptionsS3CsvPutToJSON,
 } from './TargetOptionsS3CsvPut';
 import {
+    TargetOptionsSalesforceMarketingCloudPut,
+    TargetOptionsSalesforceMarketingCloudPutFromJSON,
+    TargetOptionsSalesforceMarketingCloudPutFromJSONTyped,
+    TargetOptionsSalesforceMarketingCloudPutToJSON,
+} from './TargetOptionsSalesforceMarketingCloudPut';
+import {
+    TargetOptionsSegmentPut,
+    TargetOptionsSegmentPutFromJSON,
+    TargetOptionsSegmentPutFromJSONTyped,
+    TargetOptionsSegmentPutToJSON,
+} from './TargetOptionsSegmentPut';
+import {
     TargetOptionsSnowflakePut,
     TargetOptionsSnowflakePutFromJSON,
     TargetOptionsSnowflakePutFromJSONTyped,
@@ -126,13 +174,19 @@ import {
     TargetOptionsSqlServerPutFromJSONTyped,
     TargetOptionsSqlServerPutToJSON,
 } from './TargetOptionsSqlServerPut';
+import {
+    TargetOptionsTiktokPut,
+    TargetOptionsTiktokPutFromJSON,
+    TargetOptionsTiktokPutFromJSONTyped,
+    TargetOptionsTiktokPutToJSON,
+} from './TargetOptionsTiktokPut';
 
 /**
  * @type TargetOptionsPut
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut;
+export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
 
 export function TargetOptionsPutFromJSON(json: any): TargetOptionsPut {
     return TargetOptionsPutFromJSONTyped(json, false);
@@ -159,6 +213,8 @@ export function TargetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: bo
             return {...TargetOptionsAzureSqlServerPutFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...TargetOptionsBigQueryPutFromJSONTyped(json, true), type: 'bigquery'};
+        case 'facebook_custom_audiences':
+            return {...TargetOptionsFacebookCustomAudiencesPutFromJSONTyped(json, true), type: 'facebook_custom_audiences'};
         case 'gcp_cloud_sql_mysql':
             return {...TargetOptionsGcpCloudSqlMysqlPutFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
         case 'gcp_cloud_sql_postgres':
@@ -167,20 +223,36 @@ export function TargetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: bo
             return {...TargetOptionsGcpCloudSqlSqlServerPutFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
         case 'gcp_gcs_csv':
             return {...TargetOptionsGcpGcsCsvPutFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
+        case 'google_ads':
+            return {...TargetOptionsGoogleAdsPutFromJSONTyped(json, true), type: 'google_ads'};
         case 'hosted_csv':
             return {...TargetOptionsHostedCsvPutFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'hubspot':
+            return {...TargetOptionsHubspotPutFromJSONTyped(json, true), type: 'hubspot'};
+        case 'iterable':
+            return {...TargetOptionsIterablePutFromJSONTyped(json, true), type: 'iterable'};
+        case 'klaviyo':
+            return {...TargetOptionsKlaviyoPutFromJSONTyped(json, true), type: 'klaviyo'};
         case 'mysql':
             return {...TargetOptionsMysqlPutFromJSONTyped(json, true), type: 'mysql'};
+        case 'pinterest_ads':
+            return {...TargetOptionsPinterestAdsPutFromJSONTyped(json, true), type: 'pinterest_ads'};
         case 'postgres':
             return {...TargetOptionsPostgresPutFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...TargetOptionsRedshiftPutFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...TargetOptionsS3CsvPutFromJSONTyped(json, true), type: 's3_csv'};
+        case 'salesforce_marketing_cloud':
+            return {...TargetOptionsSalesforceMarketingCloudPutFromJSONTyped(json, true), type: 'salesforce_marketing_cloud'};
+        case 'segment':
+            return {...TargetOptionsSegmentPutFromJSONTyped(json, true), type: 'segment'};
         case 'snowflake':
             return {...TargetOptionsSnowflakePutFromJSONTyped(json, true), type: 'snowflake'};
         case 'sql_server':
             return {...TargetOptionsSqlServerPutFromJSONTyped(json, true), type: 'sql_server'};
+        case 'tiktok':
+            return {...TargetOptionsTiktokPutFromJSONTyped(json, true), type: 'tiktok'};
         default:
             throw new Error(`No variant of TargetOptionsPut exists with 'type=${json['type']}'`);
     }
@@ -210,6 +282,8 @@ export function TargetOptionsPutToJSON(value?: TargetOptionsPut | null): any {
             return TargetOptionsAzureSqlServerPutToJSON(value);
         case 'bigquery':
             return TargetOptionsBigQueryPutToJSON(value);
+        case 'facebook_custom_audiences':
+            return TargetOptionsFacebookCustomAudiencesPutToJSON(value);
         case 'gcp_cloud_sql_mysql':
             return TargetOptionsGcpCloudSqlMysqlPutToJSON(value);
         case 'gcp_cloud_sql_postgres':
@@ -218,20 +292,36 @@ export function TargetOptionsPutToJSON(value?: TargetOptionsPut | null): any {
             return TargetOptionsGcpCloudSqlSqlServerPutToJSON(value);
         case 'gcp_gcs_csv':
             return TargetOptionsGcpGcsCsvPutToJSON(value);
+        case 'google_ads':
+            return TargetOptionsGoogleAdsPutToJSON(value);
         case 'hosted_csv':
             return TargetOptionsHostedCsvPutToJSON(value);
+        case 'hubspot':
+            return TargetOptionsHubspotPutToJSON(value);
+        case 'iterable':
+            return TargetOptionsIterablePutToJSON(value);
+        case 'klaviyo':
+            return TargetOptionsKlaviyoPutToJSON(value);
         case 'mysql':
             return TargetOptionsMysqlPutToJSON(value);
+        case 'pinterest_ads':
+            return TargetOptionsPinterestAdsPutToJSON(value);
         case 'postgres':
             return TargetOptionsPostgresPutToJSON(value);
         case 'redshift':
             return TargetOptionsRedshiftPutToJSON(value);
         case 's3_csv':
             return TargetOptionsS3CsvPutToJSON(value);
+        case 'salesforce_marketing_cloud':
+            return TargetOptionsSalesforceMarketingCloudPutToJSON(value);
+        case 'segment':
+            return TargetOptionsSegmentPutToJSON(value);
         case 'snowflake':
             return TargetOptionsSnowflakePutToJSON(value);
         case 'sql_server':
             return TargetOptionsSqlServerPutToJSON(value);
+        case 'tiktok':
+            return TargetOptionsTiktokPutToJSON(value);
         default:
             throw new Error(`No variant of TargetOptionsPut exists with 'type=${value['type']}'`);
     }

@@ -61,6 +61,12 @@ import {
     TargetOptionsBigQueryMergePatchToJSON,
 } from './TargetOptionsBigQueryMergePatch';
 import {
+    TargetOptionsFacebookCustomAudiencesMergePatch,
+    TargetOptionsFacebookCustomAudiencesMergePatchFromJSON,
+    TargetOptionsFacebookCustomAudiencesMergePatchFromJSONTyped,
+    TargetOptionsFacebookCustomAudiencesMergePatchToJSON,
+} from './TargetOptionsFacebookCustomAudiencesMergePatch';
+import {
     TargetOptionsGcpCloudSqlMysqlMergePatch,
     TargetOptionsGcpCloudSqlMysqlMergePatchFromJSON,
     TargetOptionsGcpCloudSqlMysqlMergePatchFromJSONTyped,
@@ -85,17 +91,47 @@ import {
     TargetOptionsGcpGcsCsvMergePatchToJSON,
 } from './TargetOptionsGcpGcsCsvMergePatch';
 import {
+    TargetOptionsGoogleAdsMergePatch,
+    TargetOptionsGoogleAdsMergePatchFromJSON,
+    TargetOptionsGoogleAdsMergePatchFromJSONTyped,
+    TargetOptionsGoogleAdsMergePatchToJSON,
+} from './TargetOptionsGoogleAdsMergePatch';
+import {
     TargetOptionsHostedCsvMergePatch,
     TargetOptionsHostedCsvMergePatchFromJSON,
     TargetOptionsHostedCsvMergePatchFromJSONTyped,
     TargetOptionsHostedCsvMergePatchToJSON,
 } from './TargetOptionsHostedCsvMergePatch';
 import {
+    TargetOptionsHubspotMergePatch,
+    TargetOptionsHubspotMergePatchFromJSON,
+    TargetOptionsHubspotMergePatchFromJSONTyped,
+    TargetOptionsHubspotMergePatchToJSON,
+} from './TargetOptionsHubspotMergePatch';
+import {
+    TargetOptionsIterableMergePatch,
+    TargetOptionsIterableMergePatchFromJSON,
+    TargetOptionsIterableMergePatchFromJSONTyped,
+    TargetOptionsIterableMergePatchToJSON,
+} from './TargetOptionsIterableMergePatch';
+import {
+    TargetOptionsKlaviyoMergePatch,
+    TargetOptionsKlaviyoMergePatchFromJSON,
+    TargetOptionsKlaviyoMergePatchFromJSONTyped,
+    TargetOptionsKlaviyoMergePatchToJSON,
+} from './TargetOptionsKlaviyoMergePatch';
+import {
     TargetOptionsMysqlMergePatch,
     TargetOptionsMysqlMergePatchFromJSON,
     TargetOptionsMysqlMergePatchFromJSONTyped,
     TargetOptionsMysqlMergePatchToJSON,
 } from './TargetOptionsMysqlMergePatch';
+import {
+    TargetOptionsPinterestAdsMergePatch,
+    TargetOptionsPinterestAdsMergePatchFromJSON,
+    TargetOptionsPinterestAdsMergePatchFromJSONTyped,
+    TargetOptionsPinterestAdsMergePatchToJSON,
+} from './TargetOptionsPinterestAdsMergePatch';
 import {
     TargetOptionsPostgresMergePatch,
     TargetOptionsPostgresMergePatchFromJSON,
@@ -115,6 +151,18 @@ import {
     TargetOptionsS3CsvMergePatchToJSON,
 } from './TargetOptionsS3CsvMergePatch';
 import {
+    TargetOptionsSalesforceMarketingCloudMergePatch,
+    TargetOptionsSalesforceMarketingCloudMergePatchFromJSON,
+    TargetOptionsSalesforceMarketingCloudMergePatchFromJSONTyped,
+    TargetOptionsSalesforceMarketingCloudMergePatchToJSON,
+} from './TargetOptionsSalesforceMarketingCloudMergePatch';
+import {
+    TargetOptionsSegmentMergePatch,
+    TargetOptionsSegmentMergePatchFromJSON,
+    TargetOptionsSegmentMergePatchFromJSONTyped,
+    TargetOptionsSegmentMergePatchToJSON,
+} from './TargetOptionsSegmentMergePatch';
+import {
     TargetOptionsSnowflakeMergePatch,
     TargetOptionsSnowflakeMergePatchFromJSON,
     TargetOptionsSnowflakeMergePatchFromJSONTyped,
@@ -126,13 +174,19 @@ import {
     TargetOptionsSqlServerMergePatchFromJSONTyped,
     TargetOptionsSqlServerMergePatchToJSON,
 } from './TargetOptionsSqlServerMergePatch';
+import {
+    TargetOptionsTiktokMergePatch,
+    TargetOptionsTiktokMergePatchFromJSON,
+    TargetOptionsTiktokMergePatchFromJSONTyped,
+    TargetOptionsTiktokMergePatchToJSON,
+} from './TargetOptionsTiktokMergePatch';
 
 /**
  * @type TargetOptionsMergePatch
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch;
+export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & TargetOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'hubspot' } & TargetOptionsHubspotMergePatch | { type: 'iterable' } & TargetOptionsIterableMergePatch | { type: 'klaviyo' } & TargetOptionsKlaviyoMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & TargetOptionsSegmentMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch | { type: 'tiktok' } & TargetOptionsTiktokMergePatch;
 
 export function TargetOptionsMergePatchFromJSON(json: any): TargetOptionsMergePatch {
     return TargetOptionsMergePatchFromJSONTyped(json, false);
@@ -159,6 +213,8 @@ export function TargetOptionsMergePatchFromJSONTyped(json: any, ignoreDiscrimina
             return {...TargetOptionsAzureSqlServerMergePatchFromJSONTyped(json, true), type: 'azure_sql_server'};
         case 'bigquery':
             return {...TargetOptionsBigQueryMergePatchFromJSONTyped(json, true), type: 'bigquery'};
+        case 'facebook_custom_audiences':
+            return {...TargetOptionsFacebookCustomAudiencesMergePatchFromJSONTyped(json, true), type: 'facebook_custom_audiences'};
         case 'gcp_cloud_sql_mysql':
             return {...TargetOptionsGcpCloudSqlMysqlMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
         case 'gcp_cloud_sql_postgres':
@@ -167,20 +223,36 @@ export function TargetOptionsMergePatchFromJSONTyped(json: any, ignoreDiscrimina
             return {...TargetOptionsGcpCloudSqlSqlServerMergePatchFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
         case 'gcp_gcs_csv':
             return {...TargetOptionsGcpGcsCsvMergePatchFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
+        case 'google_ads':
+            return {...TargetOptionsGoogleAdsMergePatchFromJSONTyped(json, true), type: 'google_ads'};
         case 'hosted_csv':
             return {...TargetOptionsHostedCsvMergePatchFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'hubspot':
+            return {...TargetOptionsHubspotMergePatchFromJSONTyped(json, true), type: 'hubspot'};
+        case 'iterable':
+            return {...TargetOptionsIterableMergePatchFromJSONTyped(json, true), type: 'iterable'};
+        case 'klaviyo':
+            return {...TargetOptionsKlaviyoMergePatchFromJSONTyped(json, true), type: 'klaviyo'};
         case 'mysql':
             return {...TargetOptionsMysqlMergePatchFromJSONTyped(json, true), type: 'mysql'};
+        case 'pinterest_ads':
+            return {...TargetOptionsPinterestAdsMergePatchFromJSONTyped(json, true), type: 'pinterest_ads'};
         case 'postgres':
             return {...TargetOptionsPostgresMergePatchFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...TargetOptionsRedshiftMergePatchFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...TargetOptionsS3CsvMergePatchFromJSONTyped(json, true), type: 's3_csv'};
+        case 'salesforce_marketing_cloud':
+            return {...TargetOptionsSalesforceMarketingCloudMergePatchFromJSONTyped(json, true), type: 'salesforce_marketing_cloud'};
+        case 'segment':
+            return {...TargetOptionsSegmentMergePatchFromJSONTyped(json, true), type: 'segment'};
         case 'snowflake':
             return {...TargetOptionsSnowflakeMergePatchFromJSONTyped(json, true), type: 'snowflake'};
         case 'sql_server':
             return {...TargetOptionsSqlServerMergePatchFromJSONTyped(json, true), type: 'sql_server'};
+        case 'tiktok':
+            return {...TargetOptionsTiktokMergePatchFromJSONTyped(json, true), type: 'tiktok'};
         default:
             throw new Error(`No variant of TargetOptionsMergePatch exists with 'type=${json['type']}'`);
     }
@@ -210,6 +282,8 @@ export function TargetOptionsMergePatchToJSON(value?: TargetOptionsMergePatch | 
             return TargetOptionsAzureSqlServerMergePatchToJSON(value);
         case 'bigquery':
             return TargetOptionsBigQueryMergePatchToJSON(value);
+        case 'facebook_custom_audiences':
+            return TargetOptionsFacebookCustomAudiencesMergePatchToJSON(value);
         case 'gcp_cloud_sql_mysql':
             return TargetOptionsGcpCloudSqlMysqlMergePatchToJSON(value);
         case 'gcp_cloud_sql_postgres':
@@ -218,20 +292,36 @@ export function TargetOptionsMergePatchToJSON(value?: TargetOptionsMergePatch | 
             return TargetOptionsGcpCloudSqlSqlServerMergePatchToJSON(value);
         case 'gcp_gcs_csv':
             return TargetOptionsGcpGcsCsvMergePatchToJSON(value);
+        case 'google_ads':
+            return TargetOptionsGoogleAdsMergePatchToJSON(value);
         case 'hosted_csv':
             return TargetOptionsHostedCsvMergePatchToJSON(value);
+        case 'hubspot':
+            return TargetOptionsHubspotMergePatchToJSON(value);
+        case 'iterable':
+            return TargetOptionsIterableMergePatchToJSON(value);
+        case 'klaviyo':
+            return TargetOptionsKlaviyoMergePatchToJSON(value);
         case 'mysql':
             return TargetOptionsMysqlMergePatchToJSON(value);
+        case 'pinterest_ads':
+            return TargetOptionsPinterestAdsMergePatchToJSON(value);
         case 'postgres':
             return TargetOptionsPostgresMergePatchToJSON(value);
         case 'redshift':
             return TargetOptionsRedshiftMergePatchToJSON(value);
         case 's3_csv':
             return TargetOptionsS3CsvMergePatchToJSON(value);
+        case 'salesforce_marketing_cloud':
+            return TargetOptionsSalesforceMarketingCloudMergePatchToJSON(value);
+        case 'segment':
+            return TargetOptionsSegmentMergePatchToJSON(value);
         case 'snowflake':
             return TargetOptionsSnowflakeMergePatchToJSON(value);
         case 'sql_server':
             return TargetOptionsSqlServerMergePatchToJSON(value);
+        case 'tiktok':
+            return TargetOptionsTiktokMergePatchToJSON(value);
         default:
             throw new Error(`No variant of TargetOptionsMergePatch exists with 'type=${value['type']}'`);
     }

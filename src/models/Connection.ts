@@ -59,6 +59,12 @@ export interface Connection {
      */
     created_at: Date;
     /**
+     * Whether the connection can be used as a source (for datasets), a destination (for targets), or both.
+     * @type {string}
+     * @memberof Connection
+     */
+    directionality: ConnectionDirectionalityEnum;
+    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Connection
@@ -120,6 +126,16 @@ export interface Connection {
     updated_at: Date;
 }
 
+/**
+* @export
+* @enum {string}
+*/
+export enum ConnectionDirectionalityEnum {
+    Bidirectional = 'bidirectional',
+    SourceOnly = 'source_only',
+    DestinationOnly = 'destination_only'
+}
+
 export function ConnectionFromJSON(json: any): Connection {
     return ConnectionFromJSONTyped(json, false);
 }
@@ -133,6 +149,7 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'contents': !exists(json, 'contents') ? undefined : ((json['contents'] as Array<any>).map(ContentsRowFromJSON)),
         'contents_error': !exists(json, 'contents_error') ? undefined : json['contents_error'],
         'created_at': (new Date(json['created_at'])),
+        'directionality': json['directionality'],
         'id': json['id'],
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'managed': !exists(json, 'managed') ? undefined : json['managed'],
@@ -158,6 +175,7 @@ export function ConnectionToJSON(value?: Connection | null): any {
         'contents': value.contents === undefined ? undefined : ((value.contents as Array<any>).map(ContentsRowToJSON)),
         'contents_error': value.contents_error,
         'created_at': (value.created_at.toISOString()),
+        'directionality': value.directionality,
         'id': value.id,
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'managed': value.managed,

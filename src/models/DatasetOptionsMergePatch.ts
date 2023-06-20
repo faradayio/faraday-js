@@ -97,6 +97,24 @@ import {
     DatasetOptionsHostedCsvMergePatchToJSON,
 } from './DatasetOptionsHostedCsvMergePatch';
 import {
+    DatasetOptionsHubspotMergePatch,
+    DatasetOptionsHubspotMergePatchFromJSON,
+    DatasetOptionsHubspotMergePatchFromJSONTyped,
+    DatasetOptionsHubspotMergePatchToJSON,
+} from './DatasetOptionsHubspotMergePatch';
+import {
+    DatasetOptionsIterableMergePatch,
+    DatasetOptionsIterableMergePatchFromJSON,
+    DatasetOptionsIterableMergePatchFromJSONTyped,
+    DatasetOptionsIterableMergePatchToJSON,
+} from './DatasetOptionsIterableMergePatch';
+import {
+    DatasetOptionsKlaviyoMergePatch,
+    DatasetOptionsKlaviyoMergePatchFromJSON,
+    DatasetOptionsKlaviyoMergePatchFromJSONTyped,
+    DatasetOptionsKlaviyoMergePatchToJSON,
+} from './DatasetOptionsKlaviyoMergePatch';
+import {
     DatasetOptionsMysqlMergePatch,
     DatasetOptionsMysqlMergePatchFromJSON,
     DatasetOptionsMysqlMergePatchFromJSONTyped,
@@ -121,6 +139,18 @@ import {
     DatasetOptionsS3CsvMergePatchToJSON,
 } from './DatasetOptionsS3CsvMergePatch';
 import {
+    DatasetOptionsSalesforceMergePatch,
+    DatasetOptionsSalesforceMergePatchFromJSON,
+    DatasetOptionsSalesforceMergePatchFromJSONTyped,
+    DatasetOptionsSalesforceMergePatchToJSON,
+} from './DatasetOptionsSalesforceMergePatch';
+import {
+    DatasetOptionsShopifyMergePatch,
+    DatasetOptionsShopifyMergePatchFromJSON,
+    DatasetOptionsShopifyMergePatchFromJSONTyped,
+    DatasetOptionsShopifyMergePatchToJSON,
+} from './DatasetOptionsShopifyMergePatch';
+import {
     DatasetOptionsSnowflakeMergePatch,
     DatasetOptionsSnowflakeMergePatchFromJSON,
     DatasetOptionsSnowflakeMergePatchFromJSONTyped,
@@ -132,13 +162,19 @@ import {
     DatasetOptionsSqlServerMergePatchFromJSONTyped,
     DatasetOptionsSqlServerMergePatchToJSON,
 } from './DatasetOptionsSqlServerMergePatch';
+import {
+    DatasetOptionsStripeMergePatch,
+    DatasetOptionsStripeMergePatchFromJSON,
+    DatasetOptionsStripeMergePatchFromJSONTyped,
+    DatasetOptionsStripeMergePatchToJSON,
+} from './DatasetOptionsStripeMergePatch';
 
 /**
  * @type DatasetOptionsMergePatch
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch;
+export type DatasetOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'hubspot' } & DatasetOptionsHubspotMergePatch | { type: 'iterable' } & DatasetOptionsIterableMergePatch | { type: 'klaviyo' } & DatasetOptionsKlaviyoMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'salesforce' } & DatasetOptionsSalesforceMergePatch | { type: 'shopify' } & DatasetOptionsShopifyMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch | { type: 'stripe' } & DatasetOptionsStripeMergePatch;
 
 export function DatasetOptionsMergePatchFromJSON(json: any): DatasetOptionsMergePatch {
     return DatasetOptionsMergePatchFromJSONTyped(json, false);
@@ -177,6 +213,12 @@ export function DatasetOptionsMergePatchFromJSONTyped(json: any, ignoreDiscrimin
             return {...DatasetOptionsGcpGcsCsvMergePatchFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvMergePatchFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'hubspot':
+            return {...DatasetOptionsHubspotMergePatchFromJSONTyped(json, true), type: 'hubspot'};
+        case 'iterable':
+            return {...DatasetOptionsIterableMergePatchFromJSONTyped(json, true), type: 'iterable'};
+        case 'klaviyo':
+            return {...DatasetOptionsKlaviyoMergePatchFromJSONTyped(json, true), type: 'klaviyo'};
         case 'mysql':
             return {...DatasetOptionsMysqlMergePatchFromJSONTyped(json, true), type: 'mysql'};
         case 'postgres':
@@ -185,10 +227,16 @@ export function DatasetOptionsMergePatchFromJSONTyped(json: any, ignoreDiscrimin
             return {...DatasetOptionsRedshiftMergePatchFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...DatasetOptionsS3CsvMergePatchFromJSONTyped(json, true), type: 's3_csv'};
+        case 'salesforce':
+            return {...DatasetOptionsSalesforceMergePatchFromJSONTyped(json, true), type: 'salesforce'};
+        case 'shopify':
+            return {...DatasetOptionsShopifyMergePatchFromJSONTyped(json, true), type: 'shopify'};
         case 'snowflake':
             return {...DatasetOptionsSnowflakeMergePatchFromJSONTyped(json, true), type: 'snowflake'};
         case 'sql_server':
             return {...DatasetOptionsSqlServerMergePatchFromJSONTyped(json, true), type: 'sql_server'};
+        case 'stripe':
+            return {...DatasetOptionsStripeMergePatchFromJSONTyped(json, true), type: 'stripe'};
         default:
             throw new Error(`No variant of DatasetOptionsMergePatch exists with 'type=${json['type']}'`);
     }
@@ -230,6 +278,12 @@ export function DatasetOptionsMergePatchToJSON(value?: DatasetOptionsMergePatch 
             return DatasetOptionsGcpGcsCsvMergePatchToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvMergePatchToJSON(value);
+        case 'hubspot':
+            return DatasetOptionsHubspotMergePatchToJSON(value);
+        case 'iterable':
+            return DatasetOptionsIterableMergePatchToJSON(value);
+        case 'klaviyo':
+            return DatasetOptionsKlaviyoMergePatchToJSON(value);
         case 'mysql':
             return DatasetOptionsMysqlMergePatchToJSON(value);
         case 'postgres':
@@ -238,10 +292,16 @@ export function DatasetOptionsMergePatchToJSON(value?: DatasetOptionsMergePatch 
             return DatasetOptionsRedshiftMergePatchToJSON(value);
         case 's3_csv':
             return DatasetOptionsS3CsvMergePatchToJSON(value);
+        case 'salesforce':
+            return DatasetOptionsSalesforceMergePatchToJSON(value);
+        case 'shopify':
+            return DatasetOptionsShopifyMergePatchToJSON(value);
         case 'snowflake':
             return DatasetOptionsSnowflakeMergePatchToJSON(value);
         case 'sql_server':
             return DatasetOptionsSqlServerMergePatchToJSON(value);
+        case 'stripe':
+            return DatasetOptionsStripeMergePatchToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptionsMergePatch exists with 'type=${value['type']}'`);
     }

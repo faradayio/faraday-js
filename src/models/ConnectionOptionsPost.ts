@@ -67,6 +67,12 @@ import {
     ConnectionOptionsClassicPostToJSON,
 } from './ConnectionOptionsClassicPost';
 import {
+    ConnectionOptionsFacebookCustomAudiencesPost,
+    ConnectionOptionsFacebookCustomAudiencesPostFromJSON,
+    ConnectionOptionsFacebookCustomAudiencesPostFromJSONTyped,
+    ConnectionOptionsFacebookCustomAudiencesPostToJSON,
+} from './ConnectionOptionsFacebookCustomAudiencesPost';
+import {
     ConnectionOptionsGcpCloudSqlMysqlPost,
     ConnectionOptionsGcpCloudSqlMysqlPostFromJSON,
     ConnectionOptionsGcpCloudSqlMysqlPostFromJSONTyped,
@@ -91,11 +97,47 @@ import {
     ConnectionOptionsGcpGcsCsvPostToJSON,
 } from './ConnectionOptionsGcpGcsCsvPost';
 import {
+    ConnectionOptionsGoogleAdsPost,
+    ConnectionOptionsGoogleAdsPostFromJSON,
+    ConnectionOptionsGoogleAdsPostFromJSONTyped,
+    ConnectionOptionsGoogleAdsPostToJSON,
+} from './ConnectionOptionsGoogleAdsPost';
+import {
+    ConnectionOptionsHostedCsvPost,
+    ConnectionOptionsHostedCsvPostFromJSON,
+    ConnectionOptionsHostedCsvPostFromJSONTyped,
+    ConnectionOptionsHostedCsvPostToJSON,
+} from './ConnectionOptionsHostedCsvPost';
+import {
+    ConnectionOptionsHubspotPost,
+    ConnectionOptionsHubspotPostFromJSON,
+    ConnectionOptionsHubspotPostFromJSONTyped,
+    ConnectionOptionsHubspotPostToJSON,
+} from './ConnectionOptionsHubspotPost';
+import {
+    ConnectionOptionsIterablePost,
+    ConnectionOptionsIterablePostFromJSON,
+    ConnectionOptionsIterablePostFromJSONTyped,
+    ConnectionOptionsIterablePostToJSON,
+} from './ConnectionOptionsIterablePost';
+import {
+    ConnectionOptionsKlaviyoPost,
+    ConnectionOptionsKlaviyoPostFromJSON,
+    ConnectionOptionsKlaviyoPostFromJSONTyped,
+    ConnectionOptionsKlaviyoPostToJSON,
+} from './ConnectionOptionsKlaviyoPost';
+import {
     ConnectionOptionsMysqlPost,
     ConnectionOptionsMysqlPostFromJSON,
     ConnectionOptionsMysqlPostFromJSONTyped,
     ConnectionOptionsMysqlPostToJSON,
 } from './ConnectionOptionsMysqlPost';
+import {
+    ConnectionOptionsPinterestAdsPost,
+    ConnectionOptionsPinterestAdsPostFromJSON,
+    ConnectionOptionsPinterestAdsPostFromJSONTyped,
+    ConnectionOptionsPinterestAdsPostToJSON,
+} from './ConnectionOptionsPinterestAdsPost';
 import {
     ConnectionOptionsPostgresPost,
     ConnectionOptionsPostgresPostFromJSON,
@@ -115,6 +157,30 @@ import {
     ConnectionOptionsS3CsvPostToJSON,
 } from './ConnectionOptionsS3CsvPost';
 import {
+    ConnectionOptionsSalesforceMarketingCloudPost,
+    ConnectionOptionsSalesforceMarketingCloudPostFromJSON,
+    ConnectionOptionsSalesforceMarketingCloudPostFromJSONTyped,
+    ConnectionOptionsSalesforceMarketingCloudPostToJSON,
+} from './ConnectionOptionsSalesforceMarketingCloudPost';
+import {
+    ConnectionOptionsSalesforcePost,
+    ConnectionOptionsSalesforcePostFromJSON,
+    ConnectionOptionsSalesforcePostFromJSONTyped,
+    ConnectionOptionsSalesforcePostToJSON,
+} from './ConnectionOptionsSalesforcePost';
+import {
+    ConnectionOptionsSegmentPost,
+    ConnectionOptionsSegmentPostFromJSON,
+    ConnectionOptionsSegmentPostFromJSONTyped,
+    ConnectionOptionsSegmentPostToJSON,
+} from './ConnectionOptionsSegmentPost';
+import {
+    ConnectionOptionsShopifyPost,
+    ConnectionOptionsShopifyPostFromJSON,
+    ConnectionOptionsShopifyPostFromJSONTyped,
+    ConnectionOptionsShopifyPostToJSON,
+} from './ConnectionOptionsShopifyPost';
+import {
     ConnectionOptionsSnowflakePost,
     ConnectionOptionsSnowflakePostFromJSON,
     ConnectionOptionsSnowflakePostFromJSONTyped,
@@ -126,13 +192,25 @@ import {
     ConnectionOptionsSqlServerPostFromJSONTyped,
     ConnectionOptionsSqlServerPostToJSON,
 } from './ConnectionOptionsSqlServerPost';
+import {
+    ConnectionOptionsStripePost,
+    ConnectionOptionsStripePostFromJSON,
+    ConnectionOptionsStripePostFromJSONTyped,
+    ConnectionOptionsStripePostToJSON,
+} from './ConnectionOptionsStripePost';
+import {
+    ConnectionOptionsTiktokPost,
+    ConnectionOptionsTiktokPostFromJSON,
+    ConnectionOptionsTiktokPostFromJSONTyped,
+    ConnectionOptionsTiktokPostToJSON,
+} from './ConnectionOptionsTiktokPost';
 
 /**
  * @type ConnectionOptionsPost
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost;
+export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
 
 export function ConnectionOptionsPostFromJSON(json: any): ConnectionOptionsPost {
     return ConnectionOptionsPostFromJSONTyped(json, false);
@@ -161,6 +239,8 @@ export function ConnectionOptionsPostFromJSONTyped(json: any, ignoreDiscriminato
             return {...ConnectionOptionsBigQueryPostFromJSONTyped(json, true), type: 'bigquery'};
         case 'classic':
             return {...ConnectionOptionsClassicPostFromJSONTyped(json, true), type: 'classic'};
+        case 'facebook_custom_audiences':
+            return {...ConnectionOptionsFacebookCustomAudiencesPostFromJSONTyped(json, true), type: 'facebook_custom_audiences'};
         case 'gcp_cloud_sql_mysql':
             return {...ConnectionOptionsGcpCloudSqlMysqlPostFromJSONTyped(json, true), type: 'gcp_cloud_sql_mysql'};
         case 'gcp_cloud_sql_postgres':
@@ -169,18 +249,42 @@ export function ConnectionOptionsPostFromJSONTyped(json: any, ignoreDiscriminato
             return {...ConnectionOptionsGcpCloudSqlSqlServerPostFromJSONTyped(json, true), type: 'gcp_cloud_sql_sql_server'};
         case 'gcp_gcs_csv':
             return {...ConnectionOptionsGcpGcsCsvPostFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
+        case 'google_ads':
+            return {...ConnectionOptionsGoogleAdsPostFromJSONTyped(json, true), type: 'google_ads'};
+        case 'hosted_csv':
+            return {...ConnectionOptionsHostedCsvPostFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'hubspot':
+            return {...ConnectionOptionsHubspotPostFromJSONTyped(json, true), type: 'hubspot'};
+        case 'iterable':
+            return {...ConnectionOptionsIterablePostFromJSONTyped(json, true), type: 'iterable'};
+        case 'klaviyo':
+            return {...ConnectionOptionsKlaviyoPostFromJSONTyped(json, true), type: 'klaviyo'};
         case 'mysql':
             return {...ConnectionOptionsMysqlPostFromJSONTyped(json, true), type: 'mysql'};
+        case 'pinterest_ads':
+            return {...ConnectionOptionsPinterestAdsPostFromJSONTyped(json, true), type: 'pinterest_ads'};
         case 'postgres':
             return {...ConnectionOptionsPostgresPostFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftPostFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...ConnectionOptionsS3CsvPostFromJSONTyped(json, true), type: 's3_csv'};
+        case 'salesforce':
+            return {...ConnectionOptionsSalesforcePostFromJSONTyped(json, true), type: 'salesforce'};
+        case 'salesforce_marketing_cloud':
+            return {...ConnectionOptionsSalesforceMarketingCloudPostFromJSONTyped(json, true), type: 'salesforce_marketing_cloud'};
+        case 'segment':
+            return {...ConnectionOptionsSegmentPostFromJSONTyped(json, true), type: 'segment'};
+        case 'shopify':
+            return {...ConnectionOptionsShopifyPostFromJSONTyped(json, true), type: 'shopify'};
         case 'snowflake':
             return {...ConnectionOptionsSnowflakePostFromJSONTyped(json, true), type: 'snowflake'};
         case 'sql_server':
             return {...ConnectionOptionsSqlServerPostFromJSONTyped(json, true), type: 'sql_server'};
+        case 'stripe':
+            return {...ConnectionOptionsStripePostFromJSONTyped(json, true), type: 'stripe'};
+        case 'tiktok':
+            return {...ConnectionOptionsTiktokPostFromJSONTyped(json, true), type: 'tiktok'};
         default:
             throw new Error(`No variant of ConnectionOptionsPost exists with 'type=${json['type']}'`);
     }
@@ -212,6 +316,8 @@ export function ConnectionOptionsPostToJSON(value?: ConnectionOptionsPost | null
             return ConnectionOptionsBigQueryPostToJSON(value);
         case 'classic':
             return ConnectionOptionsClassicPostToJSON(value);
+        case 'facebook_custom_audiences':
+            return ConnectionOptionsFacebookCustomAudiencesPostToJSON(value);
         case 'gcp_cloud_sql_mysql':
             return ConnectionOptionsGcpCloudSqlMysqlPostToJSON(value);
         case 'gcp_cloud_sql_postgres':
@@ -220,18 +326,42 @@ export function ConnectionOptionsPostToJSON(value?: ConnectionOptionsPost | null
             return ConnectionOptionsGcpCloudSqlSqlServerPostToJSON(value);
         case 'gcp_gcs_csv':
             return ConnectionOptionsGcpGcsCsvPostToJSON(value);
+        case 'google_ads':
+            return ConnectionOptionsGoogleAdsPostToJSON(value);
+        case 'hosted_csv':
+            return ConnectionOptionsHostedCsvPostToJSON(value);
+        case 'hubspot':
+            return ConnectionOptionsHubspotPostToJSON(value);
+        case 'iterable':
+            return ConnectionOptionsIterablePostToJSON(value);
+        case 'klaviyo':
+            return ConnectionOptionsKlaviyoPostToJSON(value);
         case 'mysql':
             return ConnectionOptionsMysqlPostToJSON(value);
+        case 'pinterest_ads':
+            return ConnectionOptionsPinterestAdsPostToJSON(value);
         case 'postgres':
             return ConnectionOptionsPostgresPostToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftPostToJSON(value);
         case 's3_csv':
             return ConnectionOptionsS3CsvPostToJSON(value);
+        case 'salesforce':
+            return ConnectionOptionsSalesforcePostToJSON(value);
+        case 'salesforce_marketing_cloud':
+            return ConnectionOptionsSalesforceMarketingCloudPostToJSON(value);
+        case 'segment':
+            return ConnectionOptionsSegmentPostToJSON(value);
+        case 'shopify':
+            return ConnectionOptionsShopifyPostToJSON(value);
         case 'snowflake':
             return ConnectionOptionsSnowflakePostToJSON(value);
         case 'sql_server':
             return ConnectionOptionsSqlServerPostToJSON(value);
+        case 'stripe':
+            return ConnectionOptionsStripePostToJSON(value);
+        case 'tiktok':
+            return ConnectionOptionsTiktokPostToJSON(value);
         default:
             throw new Error(`No variant of ConnectionOptionsPost exists with 'type=${value['type']}'`);
     }

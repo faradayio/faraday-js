@@ -20,9 +20,9 @@ import { exists, mapValues } from '../runtime';
  */
 export interface PersonaDetails {
     /**
-     * How much the members of the persona differ from an average member. This is represented as a histogram. For example, if the average member is 38 years old, this will show how many members are 0-20 years old, 20-30, 30-40, and so on.
-     * 
      * **Deprecated**: Use `/persona_sets/{persona_set_id}/analysis/dimensions` instead.
+     * 
+     * How much the members of the persona differ from an average member. This is represented as a histogram. For example, if the average member is 38 years old, this will show how many members are 0-20 years old, 20-30, 30-40, and so on.
      * @type {object}
      * @memberof PersonaDetails
      */

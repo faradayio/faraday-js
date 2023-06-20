@@ -97,6 +97,24 @@ import {
     DatasetOptionsHostedCsvPutToJSON,
 } from './DatasetOptionsHostedCsvPut';
 import {
+    DatasetOptionsHubspotPut,
+    DatasetOptionsHubspotPutFromJSON,
+    DatasetOptionsHubspotPutFromJSONTyped,
+    DatasetOptionsHubspotPutToJSON,
+} from './DatasetOptionsHubspotPut';
+import {
+    DatasetOptionsIterablePut,
+    DatasetOptionsIterablePutFromJSON,
+    DatasetOptionsIterablePutFromJSONTyped,
+    DatasetOptionsIterablePutToJSON,
+} from './DatasetOptionsIterablePut';
+import {
+    DatasetOptionsKlaviyoPut,
+    DatasetOptionsKlaviyoPutFromJSON,
+    DatasetOptionsKlaviyoPutFromJSONTyped,
+    DatasetOptionsKlaviyoPutToJSON,
+} from './DatasetOptionsKlaviyoPut';
+import {
     DatasetOptionsMysqlPut,
     DatasetOptionsMysqlPutFromJSON,
     DatasetOptionsMysqlPutFromJSONTyped,
@@ -121,6 +139,18 @@ import {
     DatasetOptionsS3CsvPutToJSON,
 } from './DatasetOptionsS3CsvPut';
 import {
+    DatasetOptionsSalesforcePut,
+    DatasetOptionsSalesforcePutFromJSON,
+    DatasetOptionsSalesforcePutFromJSONTyped,
+    DatasetOptionsSalesforcePutToJSON,
+} from './DatasetOptionsSalesforcePut';
+import {
+    DatasetOptionsShopifyPut,
+    DatasetOptionsShopifyPutFromJSON,
+    DatasetOptionsShopifyPutFromJSONTyped,
+    DatasetOptionsShopifyPutToJSON,
+} from './DatasetOptionsShopifyPut';
+import {
     DatasetOptionsSnowflakePut,
     DatasetOptionsSnowflakePutFromJSON,
     DatasetOptionsSnowflakePutFromJSONTyped,
@@ -132,13 +162,19 @@ import {
     DatasetOptionsSqlServerPutFromJSONTyped,
     DatasetOptionsSqlServerPutToJSON,
 } from './DatasetOptionsSqlServerPut';
+import {
+    DatasetOptionsStripePut,
+    DatasetOptionsStripePutFromJSON,
+    DatasetOptionsStripePutFromJSONTyped,
+    DatasetOptionsStripePutToJSON,
+} from './DatasetOptionsStripePut';
 
 /**
  * @type DatasetOptionsPut
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut;
+export type DatasetOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'hubspot' } & DatasetOptionsHubspotPut | { type: 'iterable' } & DatasetOptionsIterablePut | { type: 'klaviyo' } & DatasetOptionsKlaviyoPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'salesforce' } & DatasetOptionsSalesforcePut | { type: 'shopify' } & DatasetOptionsShopifyPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut | { type: 'stripe' } & DatasetOptionsStripePut;
 
 export function DatasetOptionsPutFromJSON(json: any): DatasetOptionsPut {
     return DatasetOptionsPutFromJSONTyped(json, false);
@@ -177,6 +213,12 @@ export function DatasetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: b
             return {...DatasetOptionsGcpGcsCsvPutFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvPutFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'hubspot':
+            return {...DatasetOptionsHubspotPutFromJSONTyped(json, true), type: 'hubspot'};
+        case 'iterable':
+            return {...DatasetOptionsIterablePutFromJSONTyped(json, true), type: 'iterable'};
+        case 'klaviyo':
+            return {...DatasetOptionsKlaviyoPutFromJSONTyped(json, true), type: 'klaviyo'};
         case 'mysql':
             return {...DatasetOptionsMysqlPutFromJSONTyped(json, true), type: 'mysql'};
         case 'postgres':
@@ -185,10 +227,16 @@ export function DatasetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: b
             return {...DatasetOptionsRedshiftPutFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...DatasetOptionsS3CsvPutFromJSONTyped(json, true), type: 's3_csv'};
+        case 'salesforce':
+            return {...DatasetOptionsSalesforcePutFromJSONTyped(json, true), type: 'salesforce'};
+        case 'shopify':
+            return {...DatasetOptionsShopifyPutFromJSONTyped(json, true), type: 'shopify'};
         case 'snowflake':
             return {...DatasetOptionsSnowflakePutFromJSONTyped(json, true), type: 'snowflake'};
         case 'sql_server':
             return {...DatasetOptionsSqlServerPutFromJSONTyped(json, true), type: 'sql_server'};
+        case 'stripe':
+            return {...DatasetOptionsStripePutFromJSONTyped(json, true), type: 'stripe'};
         default:
             throw new Error(`No variant of DatasetOptionsPut exists with 'type=${json['type']}'`);
     }
@@ -230,6 +278,12 @@ export function DatasetOptionsPutToJSON(value?: DatasetOptionsPut | null): any {
             return DatasetOptionsGcpGcsCsvPutToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvPutToJSON(value);
+        case 'hubspot':
+            return DatasetOptionsHubspotPutToJSON(value);
+        case 'iterable':
+            return DatasetOptionsIterablePutToJSON(value);
+        case 'klaviyo':
+            return DatasetOptionsKlaviyoPutToJSON(value);
         case 'mysql':
             return DatasetOptionsMysqlPutToJSON(value);
         case 'postgres':
@@ -238,10 +292,16 @@ export function DatasetOptionsPutToJSON(value?: DatasetOptionsPut | null): any {
             return DatasetOptionsRedshiftPutToJSON(value);
         case 's3_csv':
             return DatasetOptionsS3CsvPutToJSON(value);
+        case 'salesforce':
+            return DatasetOptionsSalesforcePutToJSON(value);
+        case 'shopify':
+            return DatasetOptionsShopifyPutToJSON(value);
         case 'snowflake':
             return DatasetOptionsSnowflakePutToJSON(value);
         case 'sql_server':
             return DatasetOptionsSqlServerPutToJSON(value);
+        case 'stripe':
+            return DatasetOptionsStripePutToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptionsPut exists with 'type=${value['type']}'`);
     }

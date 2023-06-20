@@ -97,6 +97,24 @@ import {
     DatasetOptionsHostedCsvPostToJSON,
 } from './DatasetOptionsHostedCsvPost';
 import {
+    DatasetOptionsHubspotPost,
+    DatasetOptionsHubspotPostFromJSON,
+    DatasetOptionsHubspotPostFromJSONTyped,
+    DatasetOptionsHubspotPostToJSON,
+} from './DatasetOptionsHubspotPost';
+import {
+    DatasetOptionsIterablePost,
+    DatasetOptionsIterablePostFromJSON,
+    DatasetOptionsIterablePostFromJSONTyped,
+    DatasetOptionsIterablePostToJSON,
+} from './DatasetOptionsIterablePost';
+import {
+    DatasetOptionsKlaviyoPost,
+    DatasetOptionsKlaviyoPostFromJSON,
+    DatasetOptionsKlaviyoPostFromJSONTyped,
+    DatasetOptionsKlaviyoPostToJSON,
+} from './DatasetOptionsKlaviyoPost';
+import {
     DatasetOptionsMysqlPost,
     DatasetOptionsMysqlPostFromJSON,
     DatasetOptionsMysqlPostFromJSONTyped,
@@ -121,6 +139,18 @@ import {
     DatasetOptionsS3CsvPostToJSON,
 } from './DatasetOptionsS3CsvPost';
 import {
+    DatasetOptionsSalesforcePost,
+    DatasetOptionsSalesforcePostFromJSON,
+    DatasetOptionsSalesforcePostFromJSONTyped,
+    DatasetOptionsSalesforcePostToJSON,
+} from './DatasetOptionsSalesforcePost';
+import {
+    DatasetOptionsShopifyPost,
+    DatasetOptionsShopifyPostFromJSON,
+    DatasetOptionsShopifyPostFromJSONTyped,
+    DatasetOptionsShopifyPostToJSON,
+} from './DatasetOptionsShopifyPost';
+import {
     DatasetOptionsSnowflakePost,
     DatasetOptionsSnowflakePostFromJSON,
     DatasetOptionsSnowflakePostFromJSONTyped,
@@ -132,13 +162,19 @@ import {
     DatasetOptionsSqlServerPostFromJSONTyped,
     DatasetOptionsSqlServerPostToJSON,
 } from './DatasetOptionsSqlServerPost';
+import {
+    DatasetOptionsStripePost,
+    DatasetOptionsStripePostFromJSON,
+    DatasetOptionsStripePostFromJSONTyped,
+    DatasetOptionsStripePostToJSON,
+} from './DatasetOptionsStripePost';
 
 /**
  * @type DatasetOptionsPost
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost;
+export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
 
 export function DatasetOptionsPostFromJSON(json: any): DatasetOptionsPost {
     return DatasetOptionsPostFromJSONTyped(json, false);
@@ -177,6 +213,12 @@ export function DatasetOptionsPostFromJSONTyped(json: any, ignoreDiscriminator: 
             return {...DatasetOptionsGcpGcsCsvPostFromJSONTyped(json, true), type: 'gcp_gcs_csv'};
         case 'hosted_csv':
             return {...DatasetOptionsHostedCsvPostFromJSONTyped(json, true), type: 'hosted_csv'};
+        case 'hubspot':
+            return {...DatasetOptionsHubspotPostFromJSONTyped(json, true), type: 'hubspot'};
+        case 'iterable':
+            return {...DatasetOptionsIterablePostFromJSONTyped(json, true), type: 'iterable'};
+        case 'klaviyo':
+            return {...DatasetOptionsKlaviyoPostFromJSONTyped(json, true), type: 'klaviyo'};
         case 'mysql':
             return {...DatasetOptionsMysqlPostFromJSONTyped(json, true), type: 'mysql'};
         case 'postgres':
@@ -185,10 +227,16 @@ export function DatasetOptionsPostFromJSONTyped(json: any, ignoreDiscriminator: 
             return {...DatasetOptionsRedshiftPostFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...DatasetOptionsS3CsvPostFromJSONTyped(json, true), type: 's3_csv'};
+        case 'salesforce':
+            return {...DatasetOptionsSalesforcePostFromJSONTyped(json, true), type: 'salesforce'};
+        case 'shopify':
+            return {...DatasetOptionsShopifyPostFromJSONTyped(json, true), type: 'shopify'};
         case 'snowflake':
             return {...DatasetOptionsSnowflakePostFromJSONTyped(json, true), type: 'snowflake'};
         case 'sql_server':
             return {...DatasetOptionsSqlServerPostFromJSONTyped(json, true), type: 'sql_server'};
+        case 'stripe':
+            return {...DatasetOptionsStripePostFromJSONTyped(json, true), type: 'stripe'};
         default:
             throw new Error(`No variant of DatasetOptionsPost exists with 'type=${json['type']}'`);
     }
@@ -230,6 +278,12 @@ export function DatasetOptionsPostToJSON(value?: DatasetOptionsPost | null): any
             return DatasetOptionsGcpGcsCsvPostToJSON(value);
         case 'hosted_csv':
             return DatasetOptionsHostedCsvPostToJSON(value);
+        case 'hubspot':
+            return DatasetOptionsHubspotPostToJSON(value);
+        case 'iterable':
+            return DatasetOptionsIterablePostToJSON(value);
+        case 'klaviyo':
+            return DatasetOptionsKlaviyoPostToJSON(value);
         case 'mysql':
             return DatasetOptionsMysqlPostToJSON(value);
         case 'postgres':
@@ -238,10 +292,16 @@ export function DatasetOptionsPostToJSON(value?: DatasetOptionsPost | null): any
             return DatasetOptionsRedshiftPostToJSON(value);
         case 's3_csv':
             return DatasetOptionsS3CsvPostToJSON(value);
+        case 'salesforce':
+            return DatasetOptionsSalesforcePostToJSON(value);
+        case 'shopify':
+            return DatasetOptionsShopifyPostToJSON(value);
         case 'snowflake':
             return DatasetOptionsSnowflakePostToJSON(value);
         case 'sql_server':
             return DatasetOptionsSqlServerPostToJSON(value);
+        case 'stripe':
+            return DatasetOptionsStripePostToJSON(value);
         default:
             throw new Error(`No variant of DatasetOptionsPost exists with 'type=${value['type']}'`);
     }
