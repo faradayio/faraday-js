@@ -34,30 +34,6 @@ export interface ConnectionOptionsSalesforceMarketingCloudMergePatch {
      */
     client_secret?: string;
     /**
-     * Private SSH key of the FTP user created in SFMC. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-ftp-user">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudMergePatch
-     */
-    ftp_private_key?: string | null;
-    /**
-     * Password of the FTP user created in SFMC. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-ftp-user">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudMergePatch
-     */
-    ftp_user_password?: string | null;
-    /**
-     * Username of the FTP user created in SFMC. Typically a numeric Marketing Cloud MID. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-ftp-user">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudMergePatch
-     */
-    ftp_username?: string | null;
-    /**
-     * Subdomain of the API Integration within your installed package in SFMC. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-server-to-server-package">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudMergePatch
-     */
-    subdomain?: string;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsSalesforceMarketingCloudMergePatch
@@ -77,10 +53,6 @@ export function ConnectionOptionsSalesforceMarketingCloudMergePatchFromJSONTyped
         
         'client_id': !exists(json, 'client_id') ? undefined : json['client_id'],
         'client_secret': !exists(json, 'client_secret') ? undefined : json['client_secret'],
-        'ftp_private_key': !exists(json, 'ftp_private_key') ? undefined : json['ftp_private_key'],
-        'ftp_user_password': !exists(json, 'ftp_user_password') ? undefined : json['ftp_user_password'],
-        'ftp_username': !exists(json, 'ftp_username') ? undefined : json['ftp_username'],
-        'subdomain': !exists(json, 'subdomain') ? undefined : json['subdomain'],
         'type': json['type'],
     };
 }
@@ -96,10 +68,6 @@ export function ConnectionOptionsSalesforceMarketingCloudMergePatchToJSON(value?
         
         'client_id': value.client_id,
         'client_secret': value.client_secret,
-        'ftp_private_key': value.ftp_private_key,
-        'ftp_user_password': value.ftp_user_password,
-        'ftp_username': value.ftp_username,
-        'subdomain': value.subdomain,
         'type': value.type,
     };
 }

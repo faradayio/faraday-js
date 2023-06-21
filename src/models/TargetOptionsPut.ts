@@ -157,6 +157,12 @@ import {
     TargetOptionsSalesforceMarketingCloudPutToJSON,
 } from './TargetOptionsSalesforceMarketingCloudPut';
 import {
+    TargetOptionsSalesforcePut,
+    TargetOptionsSalesforcePutFromJSON,
+    TargetOptionsSalesforcePutFromJSONTyped,
+    TargetOptionsSalesforcePutToJSON,
+} from './TargetOptionsSalesforcePut';
+import {
     TargetOptionsSegmentPut,
     TargetOptionsSegmentPutFromJSON,
     TargetOptionsSegmentPutFromJSONTyped,
@@ -175,6 +181,12 @@ import {
     TargetOptionsSqlServerPutToJSON,
 } from './TargetOptionsSqlServerPut';
 import {
+    TargetOptionsTheTradeDeskPut,
+    TargetOptionsTheTradeDeskPutFromJSON,
+    TargetOptionsTheTradeDeskPutFromJSONTyped,
+    TargetOptionsTheTradeDeskPutToJSON,
+} from './TargetOptionsTheTradeDeskPut';
+import {
     TargetOptionsTiktokPut,
     TargetOptionsTiktokPutFromJSON,
     TargetOptionsTiktokPutFromJSONTyped,
@@ -186,7 +198,7 @@ import {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
+export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce' } & TargetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
 
 export function TargetOptionsPutFromJSON(json: any): TargetOptionsPut {
     return TargetOptionsPutFromJSONTyped(json, false);
@@ -243,6 +255,8 @@ export function TargetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: bo
             return {...TargetOptionsRedshiftPutFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...TargetOptionsS3CsvPutFromJSONTyped(json, true), type: 's3_csv'};
+        case 'salesforce':
+            return {...TargetOptionsSalesforcePutFromJSONTyped(json, true), type: 'salesforce'};
         case 'salesforce_marketing_cloud':
             return {...TargetOptionsSalesforceMarketingCloudPutFromJSONTyped(json, true), type: 'salesforce_marketing_cloud'};
         case 'segment':
@@ -251,6 +265,8 @@ export function TargetOptionsPutFromJSONTyped(json: any, ignoreDiscriminator: bo
             return {...TargetOptionsSnowflakePutFromJSONTyped(json, true), type: 'snowflake'};
         case 'sql_server':
             return {...TargetOptionsSqlServerPutFromJSONTyped(json, true), type: 'sql_server'};
+        case 'the_trade_desk':
+            return {...TargetOptionsTheTradeDeskPutFromJSONTyped(json, true), type: 'the_trade_desk'};
         case 'tiktok':
             return {...TargetOptionsTiktokPutFromJSONTyped(json, true), type: 'tiktok'};
         default:
@@ -312,6 +328,8 @@ export function TargetOptionsPutToJSON(value?: TargetOptionsPut | null): any {
             return TargetOptionsRedshiftPutToJSON(value);
         case 's3_csv':
             return TargetOptionsS3CsvPutToJSON(value);
+        case 'salesforce':
+            return TargetOptionsSalesforcePutToJSON(value);
         case 'salesforce_marketing_cloud':
             return TargetOptionsSalesforceMarketingCloudPutToJSON(value);
         case 'segment':
@@ -320,6 +338,8 @@ export function TargetOptionsPutToJSON(value?: TargetOptionsPut | null): any {
             return TargetOptionsSnowflakePutToJSON(value);
         case 'sql_server':
             return TargetOptionsSqlServerPutToJSON(value);
+        case 'the_trade_desk':
+            return TargetOptionsTheTradeDeskPutToJSON(value);
         case 'tiktok':
             return TargetOptionsTiktokPutToJSON(value);
         default:

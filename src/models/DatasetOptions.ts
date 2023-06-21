@@ -127,6 +127,12 @@ import {
     DatasetOptionsPostgresToJSON,
 } from './DatasetOptionsPostgres';
 import {
+    DatasetOptionsRecharge,
+    DatasetOptionsRechargeFromJSON,
+    DatasetOptionsRechargeFromJSONTyped,
+    DatasetOptionsRechargeToJSON,
+} from './DatasetOptionsRecharge';
+import {
     DatasetOptionsRedshift,
     DatasetOptionsRedshiftFromJSON,
     DatasetOptionsRedshiftFromJSONTyped,
@@ -144,6 +150,12 @@ import {
     DatasetOptionsSalesforceFromJSONTyped,
     DatasetOptionsSalesforceToJSON,
 } from './DatasetOptionsSalesforce';
+import {
+    DatasetOptionsSalesforceMarketingCloud,
+    DatasetOptionsSalesforceMarketingCloudFromJSON,
+    DatasetOptionsSalesforceMarketingCloudFromJSONTyped,
+    DatasetOptionsSalesforceMarketingCloudToJSON,
+} from './DatasetOptionsSalesforceMarketingCloud';
 import {
     DatasetOptionsShopify,
     DatasetOptionsShopifyFromJSON,
@@ -174,7 +186,7 @@ import {
  * Dataset connection options
  * @export
  */
-export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'hubspot' } & DatasetOptionsHubspot | { type: 'iterable' } & DatasetOptionsIterable | { type: 'klaviyo' } & DatasetOptionsKlaviyo | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'salesforce' } & DatasetOptionsSalesforce | { type: 'shopify' } & DatasetOptionsShopify | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer | { type: 'stripe' } & DatasetOptionsStripe;
+export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'hubspot' } & DatasetOptionsHubspot | { type: 'iterable' } & DatasetOptionsIterable | { type: 'klaviyo' } & DatasetOptionsKlaviyo | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'recharge' } & DatasetOptionsRecharge | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'salesforce' } & DatasetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloud | { type: 'shopify' } & DatasetOptionsShopify | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer | { type: 'stripe' } & DatasetOptionsStripe;
 
 export function DatasetOptionsFromJSON(json: any): DatasetOptions {
     return DatasetOptionsFromJSONTyped(json, false);
@@ -223,12 +235,16 @@ export function DatasetOptionsFromJSONTyped(json: any, ignoreDiscriminator: bool
             return {...DatasetOptionsMysqlFromJSONTyped(json, true), type: 'mysql'};
         case 'postgres':
             return {...DatasetOptionsPostgresFromJSONTyped(json, true), type: 'postgres'};
+        case 'recharge':
+            return {...DatasetOptionsRechargeFromJSONTyped(json, true), type: 'recharge'};
         case 'redshift':
             return {...DatasetOptionsRedshiftFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...DatasetOptionsS3CsvFromJSONTyped(json, true), type: 's3_csv'};
         case 'salesforce':
             return {...DatasetOptionsSalesforceFromJSONTyped(json, true), type: 'salesforce'};
+        case 'salesforce_marketing_cloud':
+            return {...DatasetOptionsSalesforceMarketingCloudFromJSONTyped(json, true), type: 'salesforce_marketing_cloud'};
         case 'shopify':
             return {...DatasetOptionsShopifyFromJSONTyped(json, true), type: 'shopify'};
         case 'snowflake':
@@ -288,12 +304,16 @@ export function DatasetOptionsToJSON(value?: DatasetOptions | null): any {
             return DatasetOptionsMysqlToJSON(value);
         case 'postgres':
             return DatasetOptionsPostgresToJSON(value);
+        case 'recharge':
+            return DatasetOptionsRechargeToJSON(value);
         case 'redshift':
             return DatasetOptionsRedshiftToJSON(value);
         case 's3_csv':
             return DatasetOptionsS3CsvToJSON(value);
         case 'salesforce':
             return DatasetOptionsSalesforceToJSON(value);
+        case 'salesforce_marketing_cloud':
+            return DatasetOptionsSalesforceMarketingCloudToJSON(value);
         case 'shopify':
             return DatasetOptionsShopifyToJSON(value);
         case 'snowflake':

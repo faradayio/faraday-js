@@ -127,6 +127,12 @@ import {
     DatasetOptionsPostgresPostToJSON,
 } from './DatasetOptionsPostgresPost';
 import {
+    DatasetOptionsRechargePost,
+    DatasetOptionsRechargePostFromJSON,
+    DatasetOptionsRechargePostFromJSONTyped,
+    DatasetOptionsRechargePostToJSON,
+} from './DatasetOptionsRechargePost';
+import {
     DatasetOptionsRedshiftPost,
     DatasetOptionsRedshiftPostFromJSON,
     DatasetOptionsRedshiftPostFromJSONTyped,
@@ -138,6 +144,12 @@ import {
     DatasetOptionsS3CsvPostFromJSONTyped,
     DatasetOptionsS3CsvPostToJSON,
 } from './DatasetOptionsS3CsvPost';
+import {
+    DatasetOptionsSalesforceMarketingCloudPost,
+    DatasetOptionsSalesforceMarketingCloudPostFromJSON,
+    DatasetOptionsSalesforceMarketingCloudPostFromJSONTyped,
+    DatasetOptionsSalesforceMarketingCloudPostToJSON,
+} from './DatasetOptionsSalesforceMarketingCloudPost';
 import {
     DatasetOptionsSalesforcePost,
     DatasetOptionsSalesforcePostFromJSON,
@@ -174,7 +186,7 @@ import {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
+export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'recharge' } & DatasetOptionsRechargePost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
 
 export function DatasetOptionsPostFromJSON(json: any): DatasetOptionsPost {
     return DatasetOptionsPostFromJSONTyped(json, false);
@@ -223,12 +235,16 @@ export function DatasetOptionsPostFromJSONTyped(json: any, ignoreDiscriminator: 
             return {...DatasetOptionsMysqlPostFromJSONTyped(json, true), type: 'mysql'};
         case 'postgres':
             return {...DatasetOptionsPostgresPostFromJSONTyped(json, true), type: 'postgres'};
+        case 'recharge':
+            return {...DatasetOptionsRechargePostFromJSONTyped(json, true), type: 'recharge'};
         case 'redshift':
             return {...DatasetOptionsRedshiftPostFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
             return {...DatasetOptionsS3CsvPostFromJSONTyped(json, true), type: 's3_csv'};
         case 'salesforce':
             return {...DatasetOptionsSalesforcePostFromJSONTyped(json, true), type: 'salesforce'};
+        case 'salesforce_marketing_cloud':
+            return {...DatasetOptionsSalesforceMarketingCloudPostFromJSONTyped(json, true), type: 'salesforce_marketing_cloud'};
         case 'shopify':
             return {...DatasetOptionsShopifyPostFromJSONTyped(json, true), type: 'shopify'};
         case 'snowflake':
@@ -288,12 +304,16 @@ export function DatasetOptionsPostToJSON(value?: DatasetOptionsPost | null): any
             return DatasetOptionsMysqlPostToJSON(value);
         case 'postgres':
             return DatasetOptionsPostgresPostToJSON(value);
+        case 'recharge':
+            return DatasetOptionsRechargePostToJSON(value);
         case 'redshift':
             return DatasetOptionsRedshiftPostToJSON(value);
         case 's3_csv':
             return DatasetOptionsS3CsvPostToJSON(value);
         case 'salesforce':
             return DatasetOptionsSalesforcePostToJSON(value);
+        case 'salesforce_marketing_cloud':
+            return DatasetOptionsSalesforceMarketingCloudPostToJSON(value);
         case 'shopify':
             return DatasetOptionsShopifyPostToJSON(value);
         case 'snowflake':

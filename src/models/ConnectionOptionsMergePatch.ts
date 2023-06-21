@@ -145,6 +145,12 @@ import {
     ConnectionOptionsPostgresMergePatchToJSON,
 } from './ConnectionOptionsPostgresMergePatch';
 import {
+    ConnectionOptionsRechargeMergePatch,
+    ConnectionOptionsRechargeMergePatchFromJSON,
+    ConnectionOptionsRechargeMergePatchFromJSONTyped,
+    ConnectionOptionsRechargeMergePatchToJSON,
+} from './ConnectionOptionsRechargeMergePatch';
+import {
     ConnectionOptionsRedshiftMergePatch,
     ConnectionOptionsRedshiftMergePatchFromJSON,
     ConnectionOptionsRedshiftMergePatchFromJSONTyped,
@@ -199,6 +205,12 @@ import {
     ConnectionOptionsStripeMergePatchToJSON,
 } from './ConnectionOptionsStripeMergePatch';
 import {
+    ConnectionOptionsTheTradeDeskMergePatch,
+    ConnectionOptionsTheTradeDeskMergePatchFromJSON,
+    ConnectionOptionsTheTradeDeskMergePatchFromJSONTyped,
+    ConnectionOptionsTheTradeDeskMergePatchToJSON,
+} from './ConnectionOptionsTheTradeDeskMergePatch';
+import {
     ConnectionOptionsTiktokMergePatch,
     ConnectionOptionsTiktokMergePatchFromJSON,
     ConnectionOptionsTiktokMergePatchFromJSONTyped,
@@ -210,7 +222,7 @@ import {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & ConnectionOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvMergePatch | { type: 'hubspot' } & ConnectionOptionsHubspotMergePatch | { type: 'iterable' } & ConnectionOptionsIterableMergePatch | { type: 'klaviyo' } & ConnectionOptionsKlaviyoMergePatch | { type: 'mysql' } & ConnectionOptionsMysqlMergePatch | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsMergePatch | { type: 'postgres' } & ConnectionOptionsPostgresMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'salesforce' } & ConnectionOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & ConnectionOptionsSegmentMergePatch | { type: 'shopify' } & ConnectionOptionsShopifyMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch | { type: 'sql_server' } & ConnectionOptionsSqlServerMergePatch | { type: 'stripe' } & ConnectionOptionsStripeMergePatch | { type: 'tiktok' } & ConnectionOptionsTiktokMergePatch;
+export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & ConnectionOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvMergePatch | { type: 'hubspot' } & ConnectionOptionsHubspotMergePatch | { type: 'iterable' } & ConnectionOptionsIterableMergePatch | { type: 'klaviyo' } & ConnectionOptionsKlaviyoMergePatch | { type: 'mysql' } & ConnectionOptionsMysqlMergePatch | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsMergePatch | { type: 'postgres' } & ConnectionOptionsPostgresMergePatch | { type: 'recharge' } & ConnectionOptionsRechargeMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'salesforce' } & ConnectionOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & ConnectionOptionsSegmentMergePatch | { type: 'shopify' } & ConnectionOptionsShopifyMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch | { type: 'sql_server' } & ConnectionOptionsSqlServerMergePatch | { type: 'stripe' } & ConnectionOptionsStripeMergePatch | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & ConnectionOptionsTiktokMergePatch;
 
 export function ConnectionOptionsMergePatchFromJSON(json: any): ConnectionOptionsMergePatch {
     return ConnectionOptionsMergePatchFromJSONTyped(json, false);
@@ -265,6 +277,8 @@ export function ConnectionOptionsMergePatchFromJSONTyped(json: any, ignoreDiscri
             return {...ConnectionOptionsPinterestAdsMergePatchFromJSONTyped(json, true), type: 'pinterest_ads'};
         case 'postgres':
             return {...ConnectionOptionsPostgresMergePatchFromJSONTyped(json, true), type: 'postgres'};
+        case 'recharge':
+            return {...ConnectionOptionsRechargeMergePatchFromJSONTyped(json, true), type: 'recharge'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftMergePatchFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
@@ -283,6 +297,8 @@ export function ConnectionOptionsMergePatchFromJSONTyped(json: any, ignoreDiscri
             return {...ConnectionOptionsSqlServerMergePatchFromJSONTyped(json, true), type: 'sql_server'};
         case 'stripe':
             return {...ConnectionOptionsStripeMergePatchFromJSONTyped(json, true), type: 'stripe'};
+        case 'the_trade_desk':
+            return {...ConnectionOptionsTheTradeDeskMergePatchFromJSONTyped(json, true), type: 'the_trade_desk'};
         case 'tiktok':
             return {...ConnectionOptionsTiktokMergePatchFromJSONTyped(json, true), type: 'tiktok'};
         default:
@@ -342,6 +358,8 @@ export function ConnectionOptionsMergePatchToJSON(value?: ConnectionOptionsMerge
             return ConnectionOptionsPinterestAdsMergePatchToJSON(value);
         case 'postgres':
             return ConnectionOptionsPostgresMergePatchToJSON(value);
+        case 'recharge':
+            return ConnectionOptionsRechargeMergePatchToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftMergePatchToJSON(value);
         case 's3_csv':
@@ -360,6 +378,8 @@ export function ConnectionOptionsMergePatchToJSON(value?: ConnectionOptionsMerge
             return ConnectionOptionsSqlServerMergePatchToJSON(value);
         case 'stripe':
             return ConnectionOptionsStripeMergePatchToJSON(value);
+        case 'the_trade_desk':
+            return ConnectionOptionsTheTradeDeskMergePatchToJSON(value);
         case 'tiktok':
             return ConnectionOptionsTiktokMergePatchToJSON(value);
         default:

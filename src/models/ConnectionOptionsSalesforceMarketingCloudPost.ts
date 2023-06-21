@@ -34,30 +34,6 @@ export interface ConnectionOptionsSalesforceMarketingCloudPost {
      */
     client_secret: string;
     /**
-     * Private SSH key of the FTP user created in SFMC. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-ftp-user">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudPost
-     */
-    ftp_private_key?: string;
-    /**
-     * Password of the FTP user created in SFMC. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-ftp-user">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudPost
-     */
-    ftp_user_password?: string;
-    /**
-     * Username of the FTP user created in SFMC. Typically a numeric Marketing Cloud MID. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-ftp-user">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudPost
-     */
-    ftp_username?: string;
-    /**
-     * Subdomain of the API Integration within your installed package in SFMC. Refer to <a href="https://hightouch.com/docs/destinations/sfmc#create-server-to-server-package">the HighTouch docs</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsSalesforceMarketingCloudPost
-     */
-    subdomain: string;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsSalesforceMarketingCloudPost
@@ -77,10 +53,6 @@ export function ConnectionOptionsSalesforceMarketingCloudPostFromJSONTyped(json:
         
         'client_id': json['client_id'],
         'client_secret': json['client_secret'],
-        'ftp_private_key': !exists(json, 'ftp_private_key') ? undefined : json['ftp_private_key'],
-        'ftp_user_password': !exists(json, 'ftp_user_password') ? undefined : json['ftp_user_password'],
-        'ftp_username': !exists(json, 'ftp_username') ? undefined : json['ftp_username'],
-        'subdomain': json['subdomain'],
         'type': json['type'],
     };
 }
@@ -96,10 +68,6 @@ export function ConnectionOptionsSalesforceMarketingCloudPostToJSON(value?: Conn
         
         'client_id': value.client_id,
         'client_secret': value.client_secret,
-        'ftp_private_key': value.ftp_private_key,
-        'ftp_user_password': value.ftp_user_password,
-        'ftp_username': value.ftp_username,
-        'subdomain': value.subdomain,
         'type': value.type,
     };
 }

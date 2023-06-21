@@ -22,6 +22,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsPinterestAdsPut {
     /**
+     * The business ID is located below your business name on your Business Access page.
+     * @type {string}
+     * @memberof ConnectionOptionsPinterestAdsPut
+     */
+    business_id?: string;
+    /**
      * Password for the Pinterest Ads connection
      * @type {string}
      * @memberof ConnectionOptionsPinterestAdsPut
@@ -51,6 +57,7 @@ export function ConnectionOptionsPinterestAdsPutFromJSONTyped(json: any, ignoreD
     }
     return {
         
+        'business_id': !exists(json, 'business_id') ? undefined : json['business_id'],
         'password': !exists(json, 'password') ? undefined : json['password'],
         'type': json['type'],
         'username': !exists(json, 'username') ? undefined : json['username'],
@@ -66,6 +73,7 @@ export function ConnectionOptionsPinterestAdsPutToJSON(value?: ConnectionOptions
     }
     return {
         
+        'business_id': value.business_id,
         'password': value.password,
         'type': value.type,
         'username': value.username,

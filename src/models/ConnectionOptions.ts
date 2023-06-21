@@ -145,6 +145,12 @@ import {
     ConnectionOptionsPostgresToJSON,
 } from './ConnectionOptionsPostgres';
 import {
+    ConnectionOptionsRecharge,
+    ConnectionOptionsRechargeFromJSON,
+    ConnectionOptionsRechargeFromJSONTyped,
+    ConnectionOptionsRechargeToJSON,
+} from './ConnectionOptionsRecharge';
+import {
     ConnectionOptionsRedshift,
     ConnectionOptionsRedshiftFromJSON,
     ConnectionOptionsRedshiftFromJSONTyped,
@@ -199,6 +205,12 @@ import {
     ConnectionOptionsStripeToJSON,
 } from './ConnectionOptionsStripe';
 import {
+    ConnectionOptionsTheTradeDesk,
+    ConnectionOptionsTheTradeDeskFromJSON,
+    ConnectionOptionsTheTradeDeskFromJSONTyped,
+    ConnectionOptionsTheTradeDeskToJSON,
+} from './ConnectionOptionsTheTradeDesk';
+import {
     ConnectionOptionsTiktok,
     ConnectionOptionsTiktokFromJSON,
     ConnectionOptionsTiktokFromJSONTyped,
@@ -210,7 +222,7 @@ import {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'google_ads' } & ConnectionOptionsGoogleAds | { type: 'hosted_csv' } & ConnectionOptionsHostedCsv | { type: 'hubspot' } & ConnectionOptionsHubspot | { type: 'iterable' } & ConnectionOptionsIterable | { type: 'klaviyo' } & ConnectionOptionsKlaviyo | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAds | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'salesforce' } & ConnectionOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloud | { type: 'segment' } & ConnectionOptionsSegment | { type: 'shopify' } & ConnectionOptionsShopify | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer | { type: 'stripe' } & ConnectionOptionsStripe | { type: 'tiktok' } & ConnectionOptionsTiktok;
+export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'google_ads' } & ConnectionOptionsGoogleAds | { type: 'hosted_csv' } & ConnectionOptionsHostedCsv | { type: 'hubspot' } & ConnectionOptionsHubspot | { type: 'iterable' } & ConnectionOptionsIterable | { type: 'klaviyo' } & ConnectionOptionsKlaviyo | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAds | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'recharge' } & ConnectionOptionsRecharge | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'salesforce' } & ConnectionOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloud | { type: 'segment' } & ConnectionOptionsSegment | { type: 'shopify' } & ConnectionOptionsShopify | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer | { type: 'stripe' } & ConnectionOptionsStripe | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDesk | { type: 'tiktok' } & ConnectionOptionsTiktok;
 
 export function ConnectionOptionsFromJSON(json: any): ConnectionOptions {
     return ConnectionOptionsFromJSONTyped(json, false);
@@ -265,6 +277,8 @@ export function ConnectionOptionsFromJSONTyped(json: any, ignoreDiscriminator: b
             return {...ConnectionOptionsPinterestAdsFromJSONTyped(json, true), type: 'pinterest_ads'};
         case 'postgres':
             return {...ConnectionOptionsPostgresFromJSONTyped(json, true), type: 'postgres'};
+        case 'recharge':
+            return {...ConnectionOptionsRechargeFromJSONTyped(json, true), type: 'recharge'};
         case 'redshift':
             return {...ConnectionOptionsRedshiftFromJSONTyped(json, true), type: 'redshift'};
         case 's3_csv':
@@ -283,6 +297,8 @@ export function ConnectionOptionsFromJSONTyped(json: any, ignoreDiscriminator: b
             return {...ConnectionOptionsSqlServerFromJSONTyped(json, true), type: 'sql_server'};
         case 'stripe':
             return {...ConnectionOptionsStripeFromJSONTyped(json, true), type: 'stripe'};
+        case 'the_trade_desk':
+            return {...ConnectionOptionsTheTradeDeskFromJSONTyped(json, true), type: 'the_trade_desk'};
         case 'tiktok':
             return {...ConnectionOptionsTiktokFromJSONTyped(json, true), type: 'tiktok'};
         default:
@@ -342,6 +358,8 @@ export function ConnectionOptionsToJSON(value?: ConnectionOptions | null): any {
             return ConnectionOptionsPinterestAdsToJSON(value);
         case 'postgres':
             return ConnectionOptionsPostgresToJSON(value);
+        case 'recharge':
+            return ConnectionOptionsRechargeToJSON(value);
         case 'redshift':
             return ConnectionOptionsRedshiftToJSON(value);
         case 's3_csv':
@@ -360,6 +378,8 @@ export function ConnectionOptionsToJSON(value?: ConnectionOptions | null): any {
             return ConnectionOptionsSqlServerToJSON(value);
         case 'stripe':
             return ConnectionOptionsStripeToJSON(value);
+        case 'the_trade_desk':
+            return ConnectionOptionsTheTradeDeskToJSON(value);
         case 'tiktok':
             return ConnectionOptionsTiktokToJSON(value);
         default:
