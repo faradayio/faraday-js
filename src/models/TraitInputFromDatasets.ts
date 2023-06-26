@@ -20,19 +20,19 @@ import { exists, mapValues } from '../runtime';
  */
 export interface TraitInputFromDatasets {
     /**
-     * the column used used to populate this trait
+     * The column used used to populate this trait.
      * @type {string}
      * @memberof TraitInputFromDatasets
      */
     column_name: string;
     /**
-     * the dataset the column comes from
+     * The dataset the column comes from.
      * @type {string}
      * @memberof TraitInputFromDatasets
      */
     dataset_id: string;
     /**
-     * transformations that are applied to the source table to unify distinct values for modeling
+     * Transformations that are applied to the source table to unify distinct values for modeling.
      * @type {object}
      * @memberof TraitInputFromDatasets
      */

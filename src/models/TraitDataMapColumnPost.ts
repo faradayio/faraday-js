@@ -12,68 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists, mapValues } from "../runtime";
 import {
-    DataMapColumnFormat,
-    DataMapColumnFormatFromJSON,
-    DataMapColumnFormatFromJSONTyped,
-    DataMapColumnFormatToJSON,
-} from './DataMapColumnFormat';
+  DataMapColumnFormat,
+  DataMapColumnFormatFromJSON,
+  DataMapColumnFormatFromJSONTyped,
+  DataMapColumnFormatToJSON,
+} from "./DataMapColumnFormat";
 
 /**
- * 
+ *
  * @export
  * @interface TraitDataMapColumnPost
  */
 export interface TraitDataMapColumnPost {
-    /**
-     * The name of a column in the dataset. If format is "static_date_iso8601", then the static value.
-     * @type {string}
-     * @memberof TraitDataMapColumnPost
-     */
-    column_name: string;
-    /**
-     * 
-     * @type {DataMapColumnFormat}
-     * @memberof TraitDataMapColumnPost
-     */
-    format?: DataMapColumnFormat;
-    /**
-     * 
-     * @type {object}
-     * @memberof TraitDataMapColumnPost
-     */
-    transformation_table?: object;
+  /**
+   * The name of a column in the dataset.
+   * @type {string}
+   * @memberof TraitDataMapColumnPost
+   */
+  column_name: string;
+  /**
+   *
+   * @type {DataMapColumnFormat}
+   * @memberof TraitDataMapColumnPost
+   */
+  format?: DataMapColumnFormat;
+  /**
+   * A mapping of values as they appear in the dataset to how they should be used in models, where the key is what appears in the dataset and value is how it should be interpretted. This is used when multiple distinct values in the source table functionally represent the sme thing, or when combining traits from multiple datasets. Use '*' as the key to capture all values that have been excluded by all other conditions.
+   * @type {{ [key: string]: string | number | boolean; }}
+   * @memberof TraitDataMapColumnPost
+   */
+  transformation_table?: { [key: string]: string | number | boolean };
 }
 
-export function TraitDataMapColumnPostFromJSON(json: any): TraitDataMapColumnPost {
-    return TraitDataMapColumnPostFromJSONTyped(json, false);
+export function TraitDataMapColumnPostFromJSON(
+  json: any
+): TraitDataMapColumnPost {
+  return TraitDataMapColumnPostFromJSONTyped(json, false);
 }
 
-export function TraitDataMapColumnPostFromJSONTyped(json: any, ignoreDiscriminator: boolean): TraitDataMapColumnPost {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'column_name': json['column_name'],
-        'format': !exists(json, 'format') ? undefined : DataMapColumnFormatFromJSON(json['format']),
-        'transformation_table': !exists(json, 'transformation_table') ? undefined : json['transformation_table'],
-    };
+export function TraitDataMapColumnPostFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean
+): TraitDataMapColumnPost {
+  if (json === undefined || json === null) {
+    return json;
+  }
+  return {
+    column_name: json["column_name"],
+    format: !exists(json, "format")
+      ? undefined
+      : DataMapColumnFormatFromJSON(json["format"]),
+    transformation_table: !exists(json, "transformation_table")
+      ? undefined
+      : json["transformation_table"],
+  };
 }
 
-export function TraitDataMapColumnPostToJSON(value?: TraitDataMapColumnPost | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'column_name': value.column_name,
-        'format': DataMapColumnFormatToJSON(value.format),
-        'transformation_table': value.transformation_table,
-    };
+export function TraitDataMapColumnPostToJSON(
+  value?: TraitDataMapColumnPost | null
+): any {
+  if (value === undefined) {
+    return undefined;
+  }
+  if (value === null) {
+    return null;
+  }
+  return {
+    column_name: value.column_name,
+    format: DataMapColumnFormatToJSON(value.format),
+    transformation_table: value.transformation_table,
+  };
 }
-
