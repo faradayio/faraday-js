@@ -584,7 +584,6 @@ src/models/TraitPost.ts
 src/models/TraitPut.ts
 src/models/TraitStatisticalType.ts
 src/models/Upload.ts
-src/models/Usage.ts
 src/models/ValidationError.ts
 src/models/ValidationErrorContext.ts
 src/models/index.ts

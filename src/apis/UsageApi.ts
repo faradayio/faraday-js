@@ -15,9 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
-    Usage,
-    UsageFromJSON,
-    UsageToJSON,
+    AccountUsage,
+    AccountUsageFromJSON,
+    AccountUsageToJSON,
 } from '../models';
 
 /**
@@ -26,10 +26,10 @@ import {
 export class UsageApi extends runtime.BaseAPI {
 
     /**
-     * Get usage stats for your account\'s scopes.
-     * Get usage stats for your account\'s scopes.
+     * Get usage stats for your account.
+     * Get usage stats for your account.
      */
-    private async getUsagesRaw(): Promise<runtime.ApiResponse<Array<Usage>>> {
+    private async getUsagesRaw(): Promise<runtime.ApiResponse<Array<AccountUsage>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -49,14 +49,14 @@ export class UsageApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(UsageFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AccountUsageFromJSON));
     }
 
     /**
-     * Get usage stats for your account\'s scopes.
-     * Get usage stats for your account\'s scopes.
+     * Get usage stats for your account.
+     * Get usage stats for your account.
      */
-    async getUsages(): Promise<Array<Usage>> {
+    async getUsages(): Promise<Array<AccountUsage>> {
         const response = await this.getUsagesRaw();
         return await response.value();
     }

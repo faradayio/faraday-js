@@ -14,36 +14,29 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Your account's PPD usage in monthly bins. This is the amount you will be charged for.
+ * Your account's usage of various Faraday features.
  * @export
  * @interface AccountUsage
  */
 export interface AccountUsage {
     /**
-     * the month bin for the given PPD.
+     * The feature being used by the account
      * @type {string}
      * @memberof AccountUsage
      */
-    date: string;
+    description?: string;
     /**
-     * The unit of measurement faraday uses to bill predictions.
-     * PPD stands for person-predictions-per-day, 
-     * and represents the total volume of prediction data for a given account.
-     * The PPD of an account for any given day is calculated with the following formula:
-     * 
-     * ```
-     * Account PPD = SUM(the number of people in your scopes * the number of outcomes and persona sets in the scope).
-     * ```
-     * 
-     * The PPD of a given scope can change over time when:
-     * 1. The payload of a scope changes (either outcomes or persona sets are added or removed)
-     * 2. One or more of your datasets is updated
-     * 
-     * Your account is NOT charged for any scopes in "preview" mode.
+     * How many instances of this feature that the account is allowed to use as part of its current plan.
      * @type {number}
      * @memberof AccountUsage
      */
-    ppd?: number;
+    limit?: number;
+    /**
+     * How many instances of this feature that the account uses
+     * @type {number}
+     * @memberof AccountUsage
+     */
+    usage?: number;
 }
 
 export function AccountUsageFromJSON(json: any): AccountUsage {
@@ -56,8 +49,9 @@ export function AccountUsageFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'date': json['date'],
-        'ppd': !exists(json, 'ppd') ? undefined : json['ppd'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'usage': !exists(json, 'usage') ? undefined : json['usage'],
     };
 }
 
@@ -70,8 +64,9 @@ export function AccountUsageToJSON(value?: AccountUsage | null): any {
     }
     return {
         
-        'date': value.date,
-        'ppd': value.ppd,
+        'description': value.description,
+        'limit': value.limit,
+        'usage': value.usage,
     };
 }
 

@@ -564,6 +564,5 @@ export * from './TraitPost';
 export * from './TraitPut';
 export * from './TraitStatisticalType';
 export * from './Upload';
-export * from './Usage';
 export * from './ValidationError';
 export * from './ValidationErrorContext';
