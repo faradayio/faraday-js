@@ -58,6 +58,7 @@ import {
  *   * `yy_mm_dd_slash`
  *   * `yyyy_mm_dd_dash`
  *   * `yy_mm_dd_dash`
+ *   * `yyyymmdd`
  *   * `yyyymm`
  *   * `list_comma_separated`
  *   * `list_semicolon_separated`

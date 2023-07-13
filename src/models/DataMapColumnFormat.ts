@@ -28,6 +28,7 @@ export enum DataMapColumnFormat {
     YyMmDdSlash = 'yy_mm_dd_slash',
     YyyyMmDdDash = 'yyyy_mm_dd_dash',
     YyMmDdDash = 'yy_mm_dd_dash',
+    Yyyymmdd = 'yyyymmdd',
     Yyyymm = 'yyyymm',
     DateIso8601 = 'date_iso8601',
     DateMonthDayFullyear = 'date_month_day_fullyear',
