@@ -118,6 +118,10 @@ src/models/ConnectionOptionsKlaviyo.ts
 src/models/ConnectionOptionsKlaviyoMergePatch.ts
 src/models/ConnectionOptionsKlaviyoPost.ts
 src/models/ConnectionOptionsKlaviyoPut.ts
+src/models/ConnectionOptionsLinkedinAds.ts
+src/models/ConnectionOptionsLinkedinAdsMergePatch.ts
+src/models/ConnectionOptionsLinkedinAdsPost.ts
+src/models/ConnectionOptionsLinkedinAdsPut.ts
 src/models/ConnectionOptionsMergePatch.ts
 src/models/ConnectionOptionsMysql.ts
 src/models/ConnectionOptionsMysqlMergePatch.ts
@@ -514,6 +518,10 @@ src/models/TargetOptionsKlaviyo.ts
 src/models/TargetOptionsKlaviyoMergePatch.ts
 src/models/TargetOptionsKlaviyoPost.ts
 src/models/TargetOptionsKlaviyoPut.ts
+src/models/TargetOptionsLinkedinAds.ts
+src/models/TargetOptionsLinkedinAdsMergePatch.ts
+src/models/TargetOptionsLinkedinAdsPost.ts
+src/models/TargetOptionsLinkedinAdsPut.ts
 src/models/TargetOptionsMergePatch.ts
 src/models/TargetOptionsMysql.ts
 src/models/TargetOptionsMysqlMergePatch.ts
