@@ -22,11 +22,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsFacebookCustomAudiencesMergePatch {
     /**
-     * A Facebook system user access token with ads_management permission. Make sure the app has Ads Management Standard Access permissions. Refer to <a href="https://developers.facebook.com/docs/marketing-api/system-users/install-apps-and-generate-tokens">the Facebook docs</a> for more information.
+     * The Facebook ad account ID. Enter the numeric value only.
+     * @type {number}
+     * @memberof ConnectionOptionsFacebookCustomAudiencesMergePatch
+     */
+    account_id?: number;
+    /**
+     * The Facebook ad account literate.
      * @type {string}
      * @memberof ConnectionOptionsFacebookCustomAudiencesMergePatch
      */
-    system_user_token?: string;
+    account_literate?: string | null;
     /**
      * The type of connection
      * @type {string}
@@ -45,7 +51,8 @@ export function ConnectionOptionsFacebookCustomAudiencesMergePatchFromJSONTyped(
     }
     return {
         
-        'system_user_token': !exists(json, 'system_user_token') ? undefined : json['system_user_token'],
+        'account_id': !exists(json, 'account_id') ? undefined : json['account_id'],
+        'account_literate': !exists(json, 'account_literate') ? undefined : json['account_literate'],
         'type': json['type'],
     };
 }
@@ -59,7 +66,8 @@ export function ConnectionOptionsFacebookCustomAudiencesMergePatchToJSON(value?:
     }
     return {
         
-        'system_user_token': value.system_user_token,
+        'account_id': value.account_id,
+        'account_literate': value.account_literate,
         'type': value.type,
     };
 }
