@@ -18,6 +18,9 @@ import {
     Outcome,
     OutcomeFromJSON,
     OutcomeToJSON,
+    OutcomeAnalysis,
+    OutcomeAnalysisFromJSON,
+    OutcomeAnalysisToJSON,
     OutcomeMergePatch,
     OutcomeMergePatchFromJSON,
     OutcomeMergePatchToJSON,
@@ -35,6 +38,10 @@ export interface DeleteOutcomeRequest {
 }
 
 export interface GetOutcomeRequest {
+    outcomeId: string;
+}
+
+export interface GetOutcomeAnalysisRequest {
     outcomeId: string;
 }
 
@@ -169,6 +176,46 @@ export class OutcomesApi extends runtime.BaseAPI {
      */
     async getOutcome(outcomeId: string, ): Promise<Outcome> {
         const response = await this.getOutcomeRaw({ outcomeId: outcomeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get details on a specific outcome\'s analysis report on model performance, bias, etc.
+     * Retrieve an outcome\'s analysis
+     */
+    private async getOutcomeAnalysisRaw(requestParameters: GetOutcomeAnalysisRequest, ): Promise<runtime.ApiResponse<OutcomeAnalysis>> {
+        if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+            throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling getOutcomeAnalysis.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/outcomes/{outcome_id}/analysis`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OutcomeAnalysisFromJSON(jsonValue));
+    }
+
+    /**
+     * Get details on a specific outcome\'s analysis report on model performance, bias, etc.
+     * Retrieve an outcome\'s analysis
+     */
+    async getOutcomeAnalysis(outcomeId: string, ): Promise<OutcomeAnalysis> {
+        const response = await this.getOutcomeAnalysisRaw({ outcomeId: outcomeId }, );
         return await response.value();
     }
 
