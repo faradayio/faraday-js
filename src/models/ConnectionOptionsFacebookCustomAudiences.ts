@@ -20,11 +20,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsFacebookCustomAudiences {
     /**
-     * The Facebook ad account ID. Enter the numeric value only.
-     * @type {number}
+     * The Facebook ad account ID (numeric).
+     * @type {string}
      * @memberof ConnectionOptionsFacebookCustomAudiences
      */
-    account_id: number;
+    account_id: string;
     /**
      * The Facebook ad account literate.
      * @type {string}
