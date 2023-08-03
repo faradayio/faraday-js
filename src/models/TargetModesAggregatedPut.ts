@@ -29,7 +29,7 @@ import {
 /**
  * (Parameters used to PUT a value of the `TargetModesAggregated` type.)
  * 
- * Suitable for geo-targeted ad campaigns.
+ * Suitable for geo-targeted ad campaigns. Not supported by options.type = "lookup_api".
  * @export
  * @interface TargetModesAggregatedPut
  */

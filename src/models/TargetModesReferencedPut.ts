@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to PUT a value of the `TargetModesReferenced` type.)
  * 
- * Suitable for data warehouse integrations.
+ * Suitable for data warehouse integrations. Not supported by options.type = "lookup_api"
  * @export
  * @interface TargetModesReferencedPut
  */

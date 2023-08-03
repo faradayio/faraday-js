@@ -21,7 +21,7 @@ import {
 } from './TargetTransformPresetReferenced';
 
 /**
- * Suitable for data warehouse integrations.
+ * Suitable for data warehouse integrations. Not supported by options.type = "lookup_api"
  * @export
  * @interface TargetModesReferenced
  */

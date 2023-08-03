@@ -63,6 +63,8 @@ import {
  * Conditions are AND-ed together (like SQL) - each condition applies an additional constraint.
  * 
  * Nulls are excluded unless explicitly requested with `_null: true`.
+ * 
+ * Target filters are not supported for targets with options.type = "lookup_api".
  * @export
  * @interface TargetFilterMergePatch
  */

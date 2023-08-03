@@ -30,6 +30,7 @@ import {
  * Restrict the number of rows exported in a target.
  * - To apply an absolute row limit, use `row_count`.
  * - **Deprecated:** To filter by percentile scores, use `percentile` (use `filter outcome_percentile` instead).
+ * Target limits are not supported for targets with options.type = "lookup_api"
  * @export
  */
 export type TargetLimit = { method: 'percentile' } & TargetLimitPercentile | { method: 'row_count' } & TargetLimitRowCount;

@@ -21,7 +21,7 @@ import {
 } from './TargetTransformPresetHashed';
 
 /**
- * Suitable for digital acquisition use cases.
+ * Suitable for digital acquisition use cases. Not supported by options.type = "lookup_api"
  * @export
  * @interface TargetModesHashed
  */

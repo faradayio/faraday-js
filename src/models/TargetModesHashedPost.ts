@@ -23,7 +23,7 @@ import {
 /**
  * (Parameters used to POST a new value of the `TargetModesHashed` type.)
  * 
- * Suitable for digital acquisition use cases.
+ * Suitable for digital acquisition use cases. Not supported by options.type = "lookup_api"
  * @export
  * @interface TargetModesHashedPost
  */

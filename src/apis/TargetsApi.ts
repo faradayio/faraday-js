@@ -21,6 +21,12 @@ import {
     Target,
     TargetFromJSON,
     TargetToJSON,
+    TargetLookupRequest,
+    TargetLookupRequestFromJSON,
+    TargetLookupRequestToJSON,
+    TargetLookupResponse,
+    TargetLookupResponseFromJSON,
+    TargetLookupResponseToJSON,
     TargetMergePatch,
     TargetMergePatchFromJSON,
     TargetMergePatchToJSON,
@@ -47,6 +53,11 @@ export interface DownloadTargetRequest {
 
 export interface GetTargetRequest {
     targetId: string;
+}
+
+export interface LookupOnTargetRequest {
+    targetId: string;
+    targetLookupRequest: TargetLookupRequest;
 }
 
 export interface UpdateTargetRequest {
@@ -292,6 +303,53 @@ export class TargetsApi extends runtime.BaseAPI {
      */
     async getTargets(): Promise<Array<Target>> {
         const response = await this.getTargetsRaw();
+        return await response.value();
+    }
+
+    /**
+     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
+     * Perform a lookup on the target, if its type is Hosted API.
+     */
+    private async lookupOnTargetRaw(requestParameters: LookupOnTargetRequest, ): Promise<runtime.ApiResponse<TargetLookupResponse>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling lookupOnTarget.');
+        }
+
+        if (requestParameters.targetLookupRequest === null || requestParameters.targetLookupRequest === undefined) {
+            throw new runtime.RequiredError('targetLookupRequest','Required parameter requestParameters.targetLookupRequest was null or undefined when calling lookupOnTarget.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}/lookup`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TargetLookupRequestToJSON(requestParameters.targetLookupRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TargetLookupResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
+     * Perform a lookup on the target, if its type is Hosted API.
+     */
+    async lookupOnTarget(targetId: string, targetLookupRequest: TargetLookupRequest, ): Promise<TargetLookupResponse> {
+        const response = await this.lookupOnTargetRaw({ targetId: targetId, targetLookupRequest: targetLookupRequest }, );
         return await response.value();
     }
 

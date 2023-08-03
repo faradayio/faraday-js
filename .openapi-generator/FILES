@@ -122,6 +122,10 @@ src/models/ConnectionOptionsLinkedinAds.ts
 src/models/ConnectionOptionsLinkedinAdsMergePatch.ts
 src/models/ConnectionOptionsLinkedinAdsPost.ts
 src/models/ConnectionOptionsLinkedinAdsPut.ts
+src/models/ConnectionOptionsLookupApi.ts
+src/models/ConnectionOptionsLookupApiMergePatch.ts
+src/models/ConnectionOptionsLookupApiPost.ts
+src/models/ConnectionOptionsLookupApiPut.ts
 src/models/ConnectionOptionsMergePatch.ts
 src/models/ConnectionOptionsMysql.ts
 src/models/ConnectionOptionsMysqlMergePatch.ts
@@ -439,6 +443,8 @@ src/models/TargetLimitRowCount.ts
 src/models/TargetLimitRowCountMergePatch.ts
 src/models/TargetLimitRowCountPost.ts
 src/models/TargetLimitRowCountPut.ts
+src/models/TargetLookupRequest.ts
+src/models/TargetLookupResponse.ts
 src/models/TargetMergePatch.ts
 src/models/TargetModes.ts
 src/models/TargetModesAggregated.ts
@@ -537,6 +543,10 @@ src/models/TargetOptionsLinkedinAds.ts
 src/models/TargetOptionsLinkedinAdsMergePatch.ts
 src/models/TargetOptionsLinkedinAdsPost.ts
 src/models/TargetOptionsLinkedinAdsPut.ts
+src/models/TargetOptionsLookupApi.ts
+src/models/TargetOptionsLookupApiMergePatch.ts
+src/models/TargetOptionsLookupApiPost.ts
+src/models/TargetOptionsLookupApiPut.ts
 src/models/TargetOptionsMergePatch.ts
 src/models/TargetOptionsMysql.ts
 src/models/TargetOptionsMysqlMergePatch.ts

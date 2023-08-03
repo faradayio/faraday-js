@@ -13,7 +13,7 @@
  */
 
 /**
- * Available aggregation levels for data exported in `identified` targets.
+ * Available aggregation levels for data exported in `identified` targets. Only `person` is supported for targets with options.type = `lookup_api`.
  * @export
  * @enum {string}
  */
