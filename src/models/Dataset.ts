@@ -189,6 +189,12 @@ export interface Dataset {
      */
     row_count?: number;
     /**
+     * If supported by the connection, a sample of the data.
+     * @type {object}
+     * @memberof Dataset
+     */
+    sample?: object;
+    /**
      * 
      * @type {ResourceStatus}
      * @memberof Dataset
@@ -263,6 +269,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'resource_type': json['resource_type'],
         'row_count': !exists(json, 'row_count') ? undefined : json['row_count'],
+        'sample': !exists(json, 'sample') ? undefined : json['sample'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
@@ -299,6 +306,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'reference_key_column': value.reference_key_column,
         'resource_type': value.resource_type,
         'row_count': value.row_count,
+        'sample': value.sample,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,

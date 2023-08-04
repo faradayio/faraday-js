@@ -33,6 +33,12 @@ export interface DatasetColumn {
      */
     data_type: ComplexDataType;
     /**
+     * Count of non-null values divided by total count of values. 0.75 means 75% of the values are not null.
+     * @type {number}
+     * @memberof DatasetColumn
+     */
+    fill_rate?: number;
+    /**
      * 
      * @type {boolean}
      * @memberof DatasetColumn
@@ -57,6 +63,7 @@ export function DatasetColumnFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'data_type': ComplexDataTypeFromJSON(json['data_type']),
+        'fill_rate': !exists(json, 'fill_rate') ? undefined : json['fill_rate'],
         'is_nullable': json['is_nullable'],
         'name': json['name'],
     };
@@ -72,6 +79,7 @@ export function DatasetColumnToJSON(value?: DatasetColumn | null): any {
     return {
         
         'data_type': ComplexDataTypeToJSON(value.data_type),
+        'fill_rate': value.fill_rate,
         'is_nullable': value.is_nullable,
         'name': value.name,
     };
