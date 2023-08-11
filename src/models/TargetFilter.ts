@@ -52,7 +52,8 @@ import {
 
 /**
  * Filter the rows exported in a target using the scope payload elements.
- * - To filter by outcome scores, use `outcome_score`.
+ * - **Deprecated:** To filter by outcome scores, use `outcome_score`.
+ * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
  * - To filter by cohort membership, use `cohort_membership`.
@@ -86,7 +87,7 @@ export interface TargetFilter {
      */
     outcome_probability?: Array<TargetFilterOutcomeProbabilityConditions>;
     /**
-     * List of conditions to filter outcome score on.
+     * **Deprecated:** List of conditions to filter outcome score on.
      * @type {Array<TargetFilterOutcomeScoreConditions>}
      * @memberof TargetFilter
      */
