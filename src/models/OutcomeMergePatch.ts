@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    OutcomeMergePatchBiasMitigation,
+    OutcomeMergePatchBiasMitigationFromJSON,
+    OutcomeMergePatchBiasMitigationFromJSONTyped,
+    OutcomeMergePatchBiasMitigationToJSON,
+} from './OutcomeMergePatchBiasMitigation';
+
 /**
  * (Parameters used to PATCH the `Outcome` type.)
  * 
@@ -33,6 +40,12 @@ export interface OutcomeMergePatch {
      * @memberof OutcomeMergePatch
      */
     attrition_cohort_id?: string | null;
+    /**
+     * 
+     * @type {OutcomeMergePatchBiasMitigation}
+     * @memberof OutcomeMergePatch
+     */
+    bias_mitigation?: OutcomeMergePatchBiasMitigation | null;
     /**
      * A cohort of people who could attain or attrite the desired outcome (for example, if predicting transition from prospect to customer, the eligible cohort should be prospects). If no eligible cohort is specified, the model will use the US population as the eligible cohort.
      * @type {string}
@@ -66,6 +79,7 @@ export function OutcomeMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'attainment_cohort_id': !exists(json, 'attainment_cohort_id') ? undefined : json['attainment_cohort_id'],
         'attrition_cohort_id': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
+        'bias_mitigation': !exists(json, 'bias_mitigation') ? undefined : OutcomeMergePatchBiasMitigationFromJSON(json['bias_mitigation']),
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -83,6 +97,7 @@ export function OutcomeMergePatchToJSON(value?: OutcomeMergePatch | null): any {
         
         'attainment_cohort_id': value.attainment_cohort_id,
         'attrition_cohort_id': value.attrition_cohort_id,
+        'bias_mitigation': OutcomeMergePatchBiasMitigationToJSON(value.bias_mitigation),
         'eligible_cohort_id': value.eligible_cohort_id,
         'feature_blocklist': value.feature_blocklist,
         'name': value.name,

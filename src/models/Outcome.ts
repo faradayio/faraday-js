@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    OutcomeBiasMitigation,
+    OutcomeBiasMitigationFromJSON,
+    OutcomeBiasMitigationFromJSONTyped,
+    OutcomeBiasMitigationToJSON,
+} from './OutcomeBiasMitigation';
+import {
     ResourceStatus,
     ResourceStatusFromJSON,
     ResourceStatusFromJSONTyped,
@@ -50,6 +56,12 @@ export interface Outcome {
      * @memberof Outcome
      */
     attrition_cohort_name?: string;
+    /**
+     * 
+     * @type {OutcomeBiasMitigation}
+     * @memberof Outcome
+     */
+    bias_mitigation?: OutcomeBiasMitigation;
     /**
      * When this resource was created.
      * @type {Date}
@@ -151,6 +163,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'attainment_cohort_name': !exists(json, 'attainment_cohort_name') ? undefined : json['attainment_cohort_name'],
         'attrition_cohort_id': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
         'attrition_cohort_name': !exists(json, 'attrition_cohort_name') ? undefined : json['attrition_cohort_name'],
+        'bias_mitigation': !exists(json, 'bias_mitigation') ? undefined : OutcomeBiasMitigationFromJSON(json['bias_mitigation']),
         'created_at': (new Date(json['created_at'])),
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'eligible_cohort_name': !exists(json, 'eligible_cohort_name') ? undefined : json['eligible_cohort_name'],
@@ -181,6 +194,7 @@ export function OutcomeToJSON(value?: Outcome | null): any {
         'attainment_cohort_name': value.attainment_cohort_name,
         'attrition_cohort_id': value.attrition_cohort_id,
         'attrition_cohort_name': value.attrition_cohort_name,
+        'bias_mitigation': OutcomeBiasMitigationToJSON(value.bias_mitigation),
         'created_at': (value.created_at.toISOString()),
         'eligible_cohort_id': value.eligible_cohort_id,
         'eligible_cohort_name': value.eligible_cohort_name,

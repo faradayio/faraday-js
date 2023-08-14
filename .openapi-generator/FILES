@@ -353,7 +353,10 @@ src/models/OutcomeAnalysisOverallFeatures.ts
 src/models/OutcomeAnalysisOverallPerformance.ts
 src/models/OutcomeAnalysisTenureFeatures.ts
 src/models/OutcomeAnalysisTenurePerformances.ts
+src/models/OutcomeBiasMitigation.ts
+src/models/OutcomeBiasMitigationStrategy.ts
 src/models/OutcomeMergePatch.ts
+src/models/OutcomeMergePatchBiasMitigation.ts
 src/models/OutcomePerformanceLiftCurvePoint.ts
 src/models/OutcomePerformanceModel.ts
 src/models/OutcomePerformanceRocCurvePoint.ts

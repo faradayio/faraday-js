@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    OutcomeBiasMitigation,
+    OutcomeBiasMitigationFromJSON,
+    OutcomeBiasMitigationFromJSONTyped,
+    OutcomeBiasMitigationToJSON,
+} from './OutcomeBiasMitigation';
+
 /**
  * (Parameters used to POST a new value of the `Outcome` type.)
  * 
@@ -33,6 +40,12 @@ export interface OutcomePost {
      * @memberof OutcomePost
      */
     attrition_cohort_id?: string;
+    /**
+     * 
+     * @type {OutcomeBiasMitigation}
+     * @memberof OutcomePost
+     */
+    bias_mitigation?: OutcomeBiasMitigation;
     /**
      * A cohort of people who could attain or attrite the desired outcome (for example, if predicting transition from prospect to customer, the eligible cohort should be prospects). If no eligible cohort is specified, the model will use the US population as the eligible cohort.
      * @type {string}
@@ -66,6 +79,7 @@ export function OutcomePostFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'attainment_cohort_id': json['attainment_cohort_id'],
         'attrition_cohort_id': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
+        'bias_mitigation': !exists(json, 'bias_mitigation') ? undefined : OutcomeBiasMitigationFromJSON(json['bias_mitigation']),
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'name': json['name'],
@@ -83,6 +97,7 @@ export function OutcomePostToJSON(value?: OutcomePost | null): any {
         
         'attainment_cohort_id': value.attainment_cohort_id,
         'attrition_cohort_id': value.attrition_cohort_id,
+        'bias_mitigation': OutcomeBiasMitigationToJSON(value.bias_mitigation),
         'eligible_cohort_id': value.eligible_cohort_id,
         'feature_blocklist': value.feature_blocklist,
         'name': value.name,
