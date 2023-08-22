@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    PersonaSetAnalysisDimensionsTrait,
-    PersonaSetAnalysisDimensionsTraitFromJSON,
-    PersonaSetAnalysisDimensionsTraitFromJSONTyped,
-    PersonaSetAnalysisDimensionsTraitToJSON,
-} from './PersonaSetAnalysisDimensionsTrait';
+    AnalysisDimensionsTrait,
+    AnalysisDimensionsTraitFromJSON,
+    AnalysisDimensionsTraitFromJSONTyped,
+    AnalysisDimensionsTraitToJSON,
+} from './AnalysisDimensionsTrait';
 
 /**
  * 
@@ -34,10 +34,10 @@ export interface PersonaSetAnalysisDimensions {
     persona_id: string;
     /**
      * A list of counts and percents about the persona set based on a predefined list of traits, including the traits used to model the persona set.
-     * @type {Array<PersonaSetAnalysisDimensionsTrait>}
+     * @type {Array<AnalysisDimensionsTrait>}
      * @memberof PersonaSetAnalysisDimensions
      */
-    traits?: Array<PersonaSetAnalysisDimensionsTrait>;
+    traits?: Array<AnalysisDimensionsTrait>;
 }
 
 export function PersonaSetAnalysisDimensionsFromJSON(json: any): PersonaSetAnalysisDimensions {
@@ -51,7 +51,7 @@ export function PersonaSetAnalysisDimensionsFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'persona_id': json['persona_id'],
-        'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(PersonaSetAnalysisDimensionsTraitFromJSON)),
+        'traits': !exists(json, 'traits') ? undefined : ((json['traits'] as Array<any>).map(AnalysisDimensionsTraitFromJSON)),
     };
 }
 
@@ -65,7 +65,7 @@ export function PersonaSetAnalysisDimensionsToJSON(value?: PersonaSetAnalysisDim
     return {
         
         'persona_id': value.persona_id,
-        'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(PersonaSetAnalysisDimensionsTraitToJSON)),
+        'traits': value.traits === undefined ? undefined : ((value.traits as Array<any>).map(AnalysisDimensionsTraitToJSON)),
     };
 }
 

@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    AnalysisDimensionsTrait,
+    AnalysisDimensionsTraitFromJSON,
+    AnalysisDimensionsTraitToJSON,
     Trait,
     TraitFromJSON,
     TraitToJSON,
@@ -35,6 +38,10 @@ export interface DeleteTraitRequest {
 }
 
 export interface GetTraitRequest {
+    traitId: string;
+}
+
+export interface GetTraitAnalysisDimensionsRequest {
     traitId: string;
 }
 
@@ -167,6 +174,44 @@ export class TraitsApi extends runtime.BaseAPI {
      */
     async getTrait(traitId: string, ): Promise<Trait> {
         const response = await this.getTraitRaw({ traitId: traitId }, );
+        return await response.value();
+    }
+
+    /**
+     * The percentage of the US population that falls into each category of this trait.
+     */
+    private async getTraitAnalysisDimensionsRaw(requestParameters: GetTraitAnalysisDimensionsRequest, ): Promise<runtime.ApiResponse<AnalysisDimensionsTrait>> {
+        if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+            throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling getTraitAnalysisDimensions.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/traits/{trait_id}/analysis/dimensions`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisDimensionsTraitFromJSON(jsonValue));
+    }
+
+    /**
+     * The percentage of the US population that falls into each category of this trait.
+     */
+    async getTraitAnalysisDimensions(traitId: string, ): Promise<AnalysisDimensionsTrait> {
+        const response = await this.getTraitAnalysisDimensionsRaw({ traitId: traitId }, );
         return await response.value();
     }
 

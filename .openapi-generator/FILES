@@ -28,6 +28,12 @@ src/models/AccountPost.ts
 src/models/AccountPut.ts
 src/models/AccountUsage.ts
 src/models/AddressInfo.ts
+src/models/AnalysisDimensionsTrait.ts
+src/models/AnalysisDimensionsTraitBin.ts
+src/models/AnalysisDimensionsTraitBinBoolean.ts
+src/models/AnalysisDimensionsTraitBinDate.ts
+src/models/AnalysisDimensionsTraitBinNumber.ts
+src/models/AnalysisDimensionsTraitBinText.ts
 src/models/Cohort.ts
 src/models/CohortAnalysisMembership.ts
 src/models/CohortAnalysisMembershipDatum.ts
@@ -375,12 +381,6 @@ src/models/Persona.ts
 src/models/PersonaDetails.ts
 src/models/PersonaSet.ts
 src/models/PersonaSetAnalysisDimensions.ts
-src/models/PersonaSetAnalysisDimensionsTrait.ts
-src/models/PersonaSetAnalysisDimensionsTraitBin.ts
-src/models/PersonaSetAnalysisDimensionsTraitBinBoolean.ts
-src/models/PersonaSetAnalysisDimensionsTraitBinDate.ts
-src/models/PersonaSetAnalysisDimensionsTraitBinNumber.ts
-src/models/PersonaSetAnalysisDimensionsTraitBinText.ts
 src/models/PersonaSetAnalysisFlow.ts
 src/models/PersonaSetAnalysisFlowPersona.ts
 src/models/PersonaSetAnalysisFlowPersonaDate.ts
