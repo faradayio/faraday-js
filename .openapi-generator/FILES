@@ -349,6 +349,15 @@ src/models/ModelError.ts
 src/models/ModelingField.ts
 src/models/Outcome.ts
 src/models/OutcomeAnalysis.ts
+src/models/OutcomeAnalysisBias.ts
+src/models/OutcomeAnalysisBiasData.ts
+src/models/OutcomeAnalysisBiasDataAgeDistribution.ts
+src/models/OutcomeAnalysisBiasDataAgeDistributionDatum.ts
+src/models/OutcomeAnalysisBiasDataGenderProportion.ts
+src/models/OutcomeAnalysisBiasDataGenderProportionDatum.ts
+src/models/OutcomeAnalysisBiasSubpopulation.ts
+src/models/OutcomeAnalysisBiasSubpopulationMetric.ts
+src/models/OutcomeAnalysisBiasSummary.ts
 src/models/OutcomeAnalysisFeature.ts
 src/models/OutcomeAnalysisFeatureDirectionality.ts
 src/models/OutcomeAnalysisFeatureDirectionalityBoolean.ts

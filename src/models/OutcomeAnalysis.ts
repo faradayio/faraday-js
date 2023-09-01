@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    OutcomeAnalysisBias,
+    OutcomeAnalysisBiasFromJSON,
+    OutcomeAnalysisBiasFromJSONTyped,
+    OutcomeAnalysisBiasToJSON,
+} from './OutcomeAnalysisBias';
+import {
     OutcomeAnalysisOverallFeatures,
     OutcomeAnalysisOverallFeaturesFromJSON,
     OutcomeAnalysisOverallFeaturesFromJSONTyped,
@@ -52,6 +58,12 @@ import {
 export interface OutcomeAnalysis {
     /**
      * 
+     * @type {OutcomeAnalysisBias}
+     * @memberof OutcomeAnalysis
+     */
+    bias?: OutcomeAnalysisBias;
+    /**
+     * 
      * @type {OutcomeAnalysisOverallFeatures}
      * @memberof OutcomeAnalysis
      */
@@ -86,6 +98,7 @@ export function OutcomeAnalysisFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
+        'bias': !exists(json, 'bias') ? undefined : OutcomeAnalysisBiasFromJSON(json['bias']),
         'overall_features': OutcomeAnalysisOverallFeaturesFromJSON(json['overall_features']),
         'overall_performance': OutcomeAnalysisOverallPerformanceFromJSON(json['overall_performance']),
         'tenure_features': !exists(json, 'tenure_features') ? undefined : OutcomeAnalysisTenureFeaturesFromJSON(json['tenure_features']),
@@ -102,6 +115,7 @@ export function OutcomeAnalysisToJSON(value?: OutcomeAnalysis | null): any {
     }
     return {
         
+        'bias': OutcomeAnalysisBiasToJSON(value.bias),
         'overall_features': OutcomeAnalysisOverallFeaturesToJSON(value.overall_features),
         'overall_performance': OutcomeAnalysisOverallPerformanceToJSON(value.overall_performance),
         'tenure_features': OutcomeAnalysisTenureFeaturesToJSON(value.tenure_features),
