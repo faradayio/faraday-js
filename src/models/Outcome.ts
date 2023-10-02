@@ -94,6 +94,18 @@ export interface Outcome {
      */
     id: string;
     /**
+     * The last time this resource's input was read.
+     * @type {Date}
+     * @memberof Outcome
+     */
+    last_read_input_at?: Date;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {Date}
+     * @memberof Outcome
+     */
+    last_updated_config_at?: Date;
+    /**
      * The last time this resource successfully built.
      * @type {Date}
      * @memberof Outcome
@@ -169,6 +181,8 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'eligible_cohort_name': !exists(json, 'eligible_cohort_name') ? undefined : json['eligible_cohort_name'],
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'id': json['id'],
+        'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
+        'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
         'report_url': !exists(json, 'report_url') ? undefined : json['report_url'],
@@ -200,6 +214,8 @@ export function OutcomeToJSON(value?: Outcome | null): any {
         'eligible_cohort_name': value.eligible_cohort_name,
         'feature_blocklist': value.feature_blocklist,
         'id': value.id,
+        'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
+        'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
         'report_url': value.report_url,

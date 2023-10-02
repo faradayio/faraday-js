@@ -118,6 +118,18 @@ export interface Dataset {
      */
     incremental_column?: string;
     /**
+     * The last time this resource's input was read.
+     * @type {Date}
+     * @memberof Dataset
+     */
+    last_read_input_at?: Date;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {Date}
+     * @memberof Dataset
+     */
+    last_updated_config_at?: Date;
+    /**
      * The last time this resource successfully built.
      * @type {Date}
      * @memberof Dataset
@@ -258,6 +270,8 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'identified_count': !exists(json, 'identified_count') ? undefined : json['identified_count'],
         'identity_sets': IdentitySetsFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
+        'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
+        'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'managed': !exists(json, 'managed') ? undefined : json['managed'],
         'matched_count': !exists(json, 'matched_count') ? undefined : json['matched_count'],
@@ -295,6 +309,8 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'identified_count': value.identified_count,
         'identity_sets': IdentitySetsToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
+        'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
+        'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'managed': value.managed,
         'matched_count': value.matched_count,

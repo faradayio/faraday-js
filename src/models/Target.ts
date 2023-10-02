@@ -119,6 +119,18 @@ export interface Target {
      */
     id: string;
     /**
+     * The last time this resource's input was read.
+     * @type {Date}
+     * @memberof Target
+     */
+    last_read_input_at?: Date;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {Date}
+     * @memberof Target
+     */
+    last_updated_config_at?: Date;
+    /**
      * The last time this resource successfully built.
      * @type {Date}
      * @memberof Target
@@ -228,6 +240,8 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
         'final_structure': !exists(json, 'final_structure') ? undefined : ((json['final_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
         'human_readable': !exists(json, 'human_readable') ? undefined : json['human_readable'],
         'id': json['id'],
+        'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
+        'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'limit': !exists(json, 'limit') ? undefined : TargetLimitFromJSON(json['limit']),
         'managed': !exists(json, 'managed') ? undefined : json['managed'],
@@ -260,6 +274,8 @@ export function TargetToJSON(value?: Target | null): any {
         'final_structure': value.final_structure === undefined ? undefined : ((value.final_structure as Array<any>).map(TargetStructureTransformationToJSON)),
         'human_readable': value.human_readable,
         'id': value.id,
+        'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
+        'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'limit': TargetLimitToJSON(value.limit),
         'managed': value.managed,

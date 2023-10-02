@@ -45,6 +45,18 @@ export interface Stream {
      */
     id: string;
     /**
+     * The last time this resource's input was read.
+     * @type {Date}
+     * @memberof Stream
+     */
+    last_read_input_at?: Date;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {Date}
+     * @memberof Stream
+     */
+    last_updated_config_at?: Date;
+    /**
      * The last time this resource successfully built.
      * @type {Date}
      * @memberof Stream
@@ -106,6 +118,8 @@ export function StreamFromJSONTyped(json: any, ignoreDiscriminator: boolean): St
         
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
+        'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
+        'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
         'properties': !exists(json, 'properties') ? undefined : StreamPropertiesFromJSON(json['properties']),
@@ -128,6 +142,8 @@ export function StreamToJSON(value?: Stream | null): any {
         
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
+        'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
+        'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
         'properties': StreamPropertiesToJSON(value.properties),

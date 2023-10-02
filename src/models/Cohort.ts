@@ -77,6 +77,18 @@ export interface Cohort {
      */
     id: string;
     /**
+     * The last time this resource's input was read.
+     * @type {Date}
+     * @memberof Cohort
+     */
+    last_read_input_at?: Date;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {Date}
+     * @memberof Cohort
+     */
+    last_updated_config_at?: Date;
+    /**
      * The last time this resource successfully built.
      * @type {Date}
      * @memberof Cohort
@@ -196,6 +208,8 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'created_at': (new Date(json['created_at'])),
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
         'id': json['id'],
+        'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
+        'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'max_count': !exists(json, 'max_count') ? undefined : json['max_count'],
         'max_value': !exists(json, 'max_value') ? undefined : json['max_value'],
@@ -229,6 +243,8 @@ export function CohortToJSON(value?: Cohort | null): any {
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,
         'id': value.id,
+        'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
+        'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'max_count': value.max_count,
         'max_value': value.max_value,

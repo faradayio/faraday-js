@@ -71,6 +71,18 @@ export interface Connection {
      */
     id: string;
     /**
+     * The last time this resource's input was read.
+     * @type {Date}
+     * @memberof Connection
+     */
+    last_read_input_at?: Date;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {Date}
+     * @memberof Connection
+     */
+    last_updated_config_at?: Date;
+    /**
      * The last time this resource successfully built.
      * @type {Date}
      * @memberof Connection
@@ -151,6 +163,8 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'created_at': (new Date(json['created_at'])),
         'directionality': json['directionality'],
         'id': json['id'],
+        'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
+        'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'managed': !exists(json, 'managed') ? undefined : json['managed'],
         'name': json['name'],
@@ -177,6 +191,8 @@ export function ConnectionToJSON(value?: Connection | null): any {
         'created_at': (value.created_at.toISOString()),
         'directionality': value.directionality,
         'id': value.id,
+        'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
+        'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'managed': value.managed,
         'name': value.name,
