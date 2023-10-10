@@ -14,19 +14,19 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * A list of lift data for the model. Each lift point consists of a target score `x`, an estimated lift over random `y`, and error bounds on the lift `y_min` and `y_max`.
+ * A list of lift data for the model. Each lift point consists of a target percentile`x`, an estimated lift over random `y`, and error bounds on the lift `y_min` and `y_max`.
  * @export
  * @interface OutcomePerformanceLiftCurvePoint
  */
 export interface OutcomePerformanceLiftCurvePoint {
     /**
-     * The quantile-based target score. For example, a value of `.1` defines a target score specifying the top 10 percent of scores.
+     * The quantile-based target percentile. For example, a value of `.1` defines a target percentile specifying the top 10 percent of scores.
      * @type {number}
      * @memberof OutcomePerformanceLiftCurvePoint
      */
     x: number;
     /**
-     * The estimated lift over random at the given target score.
+     * The estimated lift over random at the given target percentile.
      * @type {number}
      * @memberof OutcomePerformanceLiftCurvePoint
      */
