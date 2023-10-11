@@ -22,7 +22,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ScopePayloadPut {
     /**
-     * Include additional attributes from Faraday's Internal Graph (FIG).
+     * Include additional traits.
+     * 
+     * For traits created through `output_to_traits` via `/datasets`, specify the trait name.
+     * 
+     * For traits from Faraday's Internal Graph (FIG), specify the name prefixed by `fig/` ex. `fig/age`.
      * @type {Array<string>}
      * @memberof ScopePayloadPut
      */
@@ -33,6 +37,12 @@ export interface ScopePayloadPut {
      * @memberof ScopePayloadPut
      */
     cohort_ids?: Array<string>;
+    /**
+     * Opt-in to include advanced features, ex. score explanation.
+     * @type {Array<string>}
+     * @memberof ScopePayloadPut
+     */
+    extras?: Array<ScopePayloadPutExtrasEnum>;
     /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
@@ -47,6 +57,14 @@ export interface ScopePayloadPut {
     persona_set_ids?: Array<string>;
 }
 
+/**
+* @export
+* @enum {string}
+*/
+export enum ScopePayloadPutExtrasEnum {
+    ScoreExplanation = 'score_explanation'
+}
+
 export function ScopePayloadPutFromJSON(json: any): ScopePayloadPut {
     return ScopePayloadPutFromJSONTyped(json, false);
 }
@@ -59,6 +77,7 @@ export function ScopePayloadPutFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'attributes': !exists(json, 'attributes') ? undefined : json['attributes'],
         'cohort_ids': !exists(json, 'cohort_ids') ? undefined : json['cohort_ids'],
+        'extras': !exists(json, 'extras') ? undefined : json['extras'],
         'outcome_ids': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
         'persona_set_ids': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
     };
@@ -75,6 +94,7 @@ export function ScopePayloadPutToJSON(value?: ScopePayloadPut | null): any {
         
         'attributes': value.attributes,
         'cohort_ids': value.cohort_ids,
+        'extras': value.extras,
         'outcome_ids': value.outcome_ids,
         'persona_set_ids': value.persona_set_ids,
     };
