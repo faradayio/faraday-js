@@ -38,11 +38,11 @@ export interface ScopePayloadPost {
      */
     cohort_ids?: Array<string>;
     /**
-     * Opt-in to include advanced features, ex. score explanation.
-     * @type {Array<string>}
+     * Opt-in to include prediction explainability.
+     * @type {boolean}
      * @memberof ScopePayloadPost
      */
-    extras?: Array<ScopePayloadPostExtrasEnum>;
+    explainability?: boolean;
     /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
@@ -57,14 +57,6 @@ export interface ScopePayloadPost {
     persona_set_ids?: Array<string>;
 }
 
-/**
-* @export
-* @enum {string}
-*/
-export enum ScopePayloadPostExtrasEnum {
-    ScoreExplanation = 'score_explanation'
-}
-
 export function ScopePayloadPostFromJSON(json: any): ScopePayloadPost {
     return ScopePayloadPostFromJSONTyped(json, false);
 }
@@ -77,7 +69,7 @@ export function ScopePayloadPostFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'attributes': !exists(json, 'attributes') ? undefined : json['attributes'],
         'cohort_ids': !exists(json, 'cohort_ids') ? undefined : json['cohort_ids'],
-        'extras': !exists(json, 'extras') ? undefined : json['extras'],
+        'explainability': !exists(json, 'explainability') ? undefined : json['explainability'],
         'outcome_ids': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
         'persona_set_ids': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
     };
@@ -94,7 +86,7 @@ export function ScopePayloadPostToJSON(value?: ScopePayloadPost | null): any {
         
         'attributes': value.attributes,
         'cohort_ids': value.cohort_ids,
-        'extras': value.extras,
+        'explainability': value.explainability,
         'outcome_ids': value.outcome_ids,
         'persona_set_ids': value.persona_set_ids,
     };
