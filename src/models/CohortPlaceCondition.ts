@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CohortPlaceCondition {
     /**
-     * A distance in meters which will be used to expand the Place's geometry. If the place is a set of addresses,
+     * A distance in meters which will be used to expand the Place's geometry. By default, the distance is set to 0 which means using the geometry itself, explicitly set your own value to override this. If the place is a set of addresses,
      * then each geocoded address point will be buffered by this amount. If the place is a geometry, the entire geometry will be expanded by this amount.
      * If the place is a GeometryCollect, each geometry will be expanded by this amount.
      * 
