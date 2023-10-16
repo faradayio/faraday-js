@@ -51,6 +51,12 @@ export interface OutcomePerformanceModel {
      */
     lift_table: TabularData;
     /**
+     * Average of lift at average conversion rate (r), (1-0.75 * r), (1-0.5*r), and (1-0.25*r).
+     * @type {number}
+     * @memberof OutcomePerformanceModel
+     */
+    lift_value: number;
+    /**
      * 
      * @type {TabularData}
      * @memberof OutcomePerformanceModel
@@ -94,6 +100,7 @@ export function OutcomePerformanceModelFromJSONTyped(json: any, ignoreDiscrimina
         
         'lift_curve': ((json['lift_curve'] as Array<any>).map(OutcomePerformanceLiftCurvePointFromJSON)),
         'lift_table': TabularDataFromJSON(json['lift_table']),
+        'lift_value': json['lift_value'],
         'metrics_table': TabularDataFromJSON(json['metrics_table']),
         'roc_auc': json['roc_auc'],
         'roc_curve': ((json['roc_curve'] as Array<any>).map(OutcomePerformanceRocCurvePointFromJSON)),
@@ -113,6 +120,7 @@ export function OutcomePerformanceModelToJSON(value?: OutcomePerformanceModel | 
         
         'lift_curve': ((value.lift_curve as Array<any>).map(OutcomePerformanceLiftCurvePointToJSON)),
         'lift_table': TabularDataToJSON(value.lift_table),
+        'lift_value': value.lift_value,
         'metrics_table': TabularDataToJSON(value.metrics_table),
         'roc_auc': value.roc_auc,
         'roc_curve': ((value.roc_curve as Array<any>).map(OutcomePerformanceRocCurvePointToJSON)),

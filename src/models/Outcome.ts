@@ -112,6 +112,12 @@ export interface Outcome {
      */
     last_updated_output_at?: Date;
     /**
+     * Average of lift at average conversion rate (r), (1-0.75 * r), (1-0.5*r), and (1-0.25*r).
+     * @type {number}
+     * @memberof Outcome
+     */
+    lift_value?: number;
+    /**
      * Human-readable label for this outcome. Each outcome must have a unique name.
      * @type {string}
      * @memberof Outcome
@@ -184,6 +190,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
         'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
+        'lift_value': !exists(json, 'lift_value') ? undefined : json['lift_value'],
         'name': json['name'],
         'report_url': !exists(json, 'report_url') ? undefined : json['report_url'],
         'resource_type': json['resource_type'],
@@ -217,6 +224,7 @@ export function OutcomeToJSON(value?: Outcome | null): any {
         'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
         'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
+        'lift_value': value.lift_value,
         'name': value.name,
         'report_url': value.report_url,
         'resource_type': value.resource_type,
