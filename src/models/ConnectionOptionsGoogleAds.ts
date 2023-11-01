@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsGoogleAds {
     /**
+     * Customer ID for the Google Ads connection
+     * @type {string}
+     * @memberof ConnectionOptionsGoogleAds
+     */
+    customer_id?: string;
+    /**
      * Password for the Google Ads connection
      * @type {string}
      * @memberof ConnectionOptionsGoogleAds
@@ -49,6 +55,7 @@ export function ConnectionOptionsGoogleAdsFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'customer_id': !exists(json, 'customer_id') ? undefined : json['customer_id'],
         'password': !exists(json, 'password') ? undefined : json['password'],
         'type': json['type'],
         'username': !exists(json, 'username') ? undefined : json['username'],
@@ -64,6 +71,7 @@ export function ConnectionOptionsGoogleAdsToJSON(value?: ConnectionOptionsGoogle
     }
     return {
         
+        'customer_id': value.customer_id,
         'password': value.password,
         'type': value.type,
         'username': value.username,

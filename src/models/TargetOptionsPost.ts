@@ -145,6 +145,12 @@ import {
     TargetOptionsPinterestAdsPostToJSON,
 } from './TargetOptionsPinterestAdsPost';
 import {
+    TargetOptionsPoplarPost,
+    TargetOptionsPoplarPostFromJSON,
+    TargetOptionsPoplarPostFromJSONTyped,
+    TargetOptionsPoplarPostToJSON,
+} from './TargetOptionsPoplarPost';
+import {
     TargetOptionsPostgresPost,
     TargetOptionsPostgresPostFromJSON,
     TargetOptionsPostgresPostFromJSONTyped,
@@ -210,7 +216,7 @@ import {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsPost = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPost | { type: 'bigquery' } & TargetOptionsBigQueryPost | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPost | { type: 'google_ads' } & TargetOptionsGoogleAdsPost | { type: 'hosted_csv' } & TargetOptionsHostedCsvPost | { type: 'hubspot' } & TargetOptionsHubspotPost | { type: 'iterable' } & TargetOptionsIterablePost | { type: 'klaviyo' } & TargetOptionsKlaviyoPost | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPost | { type: 'lookup_api' } & TargetOptionsLookupApiPost | { type: 'mysql' } & TargetOptionsMysqlPost | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPost | { type: 'postgres' } & TargetOptionsPostgresPost | { type: 'redshift' } & TargetOptionsRedshiftPost | { type: 's3_csv' } & TargetOptionsS3CsvPost | { type: 'salesforce' } & TargetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPost | { type: 'segment' } & TargetOptionsSegmentPost | { type: 'snowflake' } & TargetOptionsSnowflakePost | { type: 'sql_server' } & TargetOptionsSqlServerPost | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPost | { type: 'tiktok' } & TargetOptionsTiktokPost;
+export type TargetOptionsPost = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPost | { type: 'bigquery' } & TargetOptionsBigQueryPost | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPost | { type: 'google_ads' } & TargetOptionsGoogleAdsPost | { type: 'hosted_csv' } & TargetOptionsHostedCsvPost | { type: 'hubspot' } & TargetOptionsHubspotPost | { type: 'iterable' } & TargetOptionsIterablePost | { type: 'klaviyo' } & TargetOptionsKlaviyoPost | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPost | { type: 'lookup_api' } & TargetOptionsLookupApiPost | { type: 'mysql' } & TargetOptionsMysqlPost | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPost | { type: 'poplar' } & TargetOptionsPoplarPost | { type: 'postgres' } & TargetOptionsPostgresPost | { type: 'redshift' } & TargetOptionsRedshiftPost | { type: 's3_csv' } & TargetOptionsS3CsvPost | { type: 'salesforce' } & TargetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPost | { type: 'segment' } & TargetOptionsSegmentPost | { type: 'snowflake' } & TargetOptionsSnowflakePost | { type: 'sql_server' } & TargetOptionsSqlServerPost | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPost | { type: 'tiktok' } & TargetOptionsTiktokPost;
 
 export function TargetOptionsPostFromJSON(json: any): TargetOptionsPost {
     return TargetOptionsPostFromJSONTyped(json, false);
@@ -265,6 +271,8 @@ export function TargetOptionsPostFromJSONTyped(json: any, ignoreDiscriminator: b
             return {...TargetOptionsMysqlPostFromJSONTyped(json, true), type: 'mysql'};
         case 'pinterest_ads':
             return {...TargetOptionsPinterestAdsPostFromJSONTyped(json, true), type: 'pinterest_ads'};
+        case 'poplar':
+            return {...TargetOptionsPoplarPostFromJSONTyped(json, true), type: 'poplar'};
         case 'postgres':
             return {...TargetOptionsPostgresPostFromJSONTyped(json, true), type: 'postgres'};
         case 'redshift':
@@ -342,6 +350,8 @@ export function TargetOptionsPostToJSON(value?: TargetOptionsPost | null): any {
             return TargetOptionsMysqlPostToJSON(value);
         case 'pinterest_ads':
             return TargetOptionsPinterestAdsPostToJSON(value);
+        case 'poplar':
+            return TargetOptionsPoplarPostToJSON(value);
         case 'postgres':
             return TargetOptionsPostgresPostToJSON(value);
         case 'redshift':

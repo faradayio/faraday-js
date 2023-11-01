@@ -141,6 +141,10 @@ src/models/ConnectionOptionsPinterestAds.ts
 src/models/ConnectionOptionsPinterestAdsMergePatch.ts
 src/models/ConnectionOptionsPinterestAdsPost.ts
 src/models/ConnectionOptionsPinterestAdsPut.ts
+src/models/ConnectionOptionsPoplar.ts
+src/models/ConnectionOptionsPoplarMergePatch.ts
+src/models/ConnectionOptionsPoplarPost.ts
+src/models/ConnectionOptionsPoplarPut.ts
 src/models/ConnectionOptionsPost.ts
 src/models/ConnectionOptionsPostgres.ts
 src/models/ConnectionOptionsPostgresMergePatch.ts
@@ -568,6 +572,10 @@ src/models/TargetOptionsPinterestAds.ts
 src/models/TargetOptionsPinterestAdsMergePatch.ts
 src/models/TargetOptionsPinterestAdsPost.ts
 src/models/TargetOptionsPinterestAdsPut.ts
+src/models/TargetOptionsPoplar.ts
+src/models/TargetOptionsPoplarMergePatch.ts
+src/models/TargetOptionsPoplarPost.ts
+src/models/TargetOptionsPoplarPut.ts
 src/models/TargetOptionsPost.ts
 src/models/TargetOptionsPostgres.ts
 src/models/TargetOptionsPostgresMergePatch.ts

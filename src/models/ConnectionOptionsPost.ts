@@ -151,6 +151,12 @@ import {
     ConnectionOptionsPinterestAdsPostToJSON,
 } from './ConnectionOptionsPinterestAdsPost';
 import {
+    ConnectionOptionsPoplarPost,
+    ConnectionOptionsPoplarPostFromJSON,
+    ConnectionOptionsPoplarPostFromJSONTyped,
+    ConnectionOptionsPoplarPostToJSON,
+} from './ConnectionOptionsPoplarPost';
+import {
     ConnectionOptionsPostgresPost,
     ConnectionOptionsPostgresPostFromJSON,
     ConnectionOptionsPostgresPostFromJSONTyped,
@@ -234,7 +240,7 @@ import {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPost | { type: 'lookup_api' } & ConnectionOptionsLookupApiPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'recharge' } & ConnectionOptionsRechargePost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
+export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPost | { type: 'lookup_api' } & ConnectionOptionsLookupApiPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'poplar' } & ConnectionOptionsPoplarPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'recharge' } & ConnectionOptionsRechargePost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
 
 export function ConnectionOptionsPostFromJSON(json: any): ConnectionOptionsPost {
     return ConnectionOptionsPostFromJSONTyped(json, false);
@@ -291,6 +297,8 @@ export function ConnectionOptionsPostFromJSONTyped(json: any, ignoreDiscriminato
             return {...ConnectionOptionsMysqlPostFromJSONTyped(json, true), type: 'mysql'};
         case 'pinterest_ads':
             return {...ConnectionOptionsPinterestAdsPostFromJSONTyped(json, true), type: 'pinterest_ads'};
+        case 'poplar':
+            return {...ConnectionOptionsPoplarPostFromJSONTyped(json, true), type: 'poplar'};
         case 'postgres':
             return {...ConnectionOptionsPostgresPostFromJSONTyped(json, true), type: 'postgres'};
         case 'recharge':
@@ -376,6 +384,8 @@ export function ConnectionOptionsPostToJSON(value?: ConnectionOptionsPost | null
             return ConnectionOptionsMysqlPostToJSON(value);
         case 'pinterest_ads':
             return ConnectionOptionsPinterestAdsPostToJSON(value);
+        case 'poplar':
+            return ConnectionOptionsPoplarPostToJSON(value);
         case 'postgres':
             return ConnectionOptionsPostgresPostToJSON(value);
         case 'recharge':

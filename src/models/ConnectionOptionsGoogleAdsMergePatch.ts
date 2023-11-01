@@ -22,6 +22,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsGoogleAdsMergePatch {
     /**
+     * Customer ID for the Google Ads connection
+     * @type {string}
+     * @memberof ConnectionOptionsGoogleAdsMergePatch
+     */
+    customer_id?: string | null;
+    /**
      * Password for the Google Ads connection
      * @type {string}
      * @memberof ConnectionOptionsGoogleAdsMergePatch
@@ -51,6 +57,7 @@ export function ConnectionOptionsGoogleAdsMergePatchFromJSONTyped(json: any, ign
     }
     return {
         
+        'customer_id': !exists(json, 'customer_id') ? undefined : json['customer_id'],
         'password': !exists(json, 'password') ? undefined : json['password'],
         'type': json['type'],
         'username': !exists(json, 'username') ? undefined : json['username'],
@@ -66,6 +73,7 @@ export function ConnectionOptionsGoogleAdsMergePatchToJSON(value?: ConnectionOpt
     }
     return {
         
+        'customer_id': value.customer_id,
         'password': value.password,
         'type': value.type,
         'username': value.username,
