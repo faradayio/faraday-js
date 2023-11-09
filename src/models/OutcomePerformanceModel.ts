@@ -55,7 +55,7 @@ export interface OutcomePerformanceModel {
      * @type {number}
      * @memberof OutcomePerformanceModel
      */
-    lift_value: number;
+    lift_value?: number;
     /**
      * 
      * @type {TabularData}
@@ -100,7 +100,7 @@ export function OutcomePerformanceModelFromJSONTyped(json: any, ignoreDiscrimina
         
         'lift_curve': ((json['lift_curve'] as Array<any>).map(OutcomePerformanceLiftCurvePointFromJSON)),
         'lift_table': TabularDataFromJSON(json['lift_table']),
-        'lift_value': json['lift_value'],
+        'lift_value': !exists(json, 'lift_value') ? undefined : json['lift_value'],
         'metrics_table': TabularDataFromJSON(json['metrics_table']),
         'roc_auc': json['roc_auc'],
         'roc_curve': ((json['roc_curve'] as Array<any>).map(OutcomePerformanceRocCurvePointFromJSON)),
