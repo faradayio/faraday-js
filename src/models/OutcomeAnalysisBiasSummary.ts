@@ -56,7 +56,7 @@ export interface OutcomeAnalysisBiasSummary {
      * - Average odds difference: The average of the equal opportunity difference and the statistical parity difference.
      * - Disparate impact: The ratio of the proportion of positive predictions for a subpopulation and the proportion of positive predictions for the overall population.
      * 
-     * To compute these metrics, a decision threshold of `0.95` is used to define a target population of positive predictions.
+     * To compute these metrics, a decision threshold corresponding to a top 5% target population is chosen,
      * 
      * The `total_fairness` of a subpopulation is defined as the sum of these 4 fairness metrics.
      * 
@@ -73,7 +73,7 @@ export interface OutcomeAnalysisBiasSummary {
      * This boolean value indicates whether the predictive performance of an outcome is unbiased across subpopulations.
      * 
      * To measure predictive performance, the F1 score, the harmonic mean of precision and recall,
-     * is computed at a decision threshold of `0.95`.
+     * is computed at a top 5% decision threshold.
      * 
      * The F1 score of the overall population is compared to the F1 score of each subpopulation by computing
      * the relative difference between the F1 scores: `(subpopulation_f1 - overall_f1) / overall_f1`.
@@ -89,7 +89,7 @@ export interface OutcomeAnalysisBiasSummary {
     /**
      * This boolean value indicates that all subpopulations are equally represented among positive predictions.
      * 
-     * To measure this, a decision threshold of `0.95` is used to define a target population of positive predictions,
+     * To measure this, a decision threshold corresponding to a top 5% target population is chosen,
      * and the odds ratio is computed for each subpopulation as:
      * `(proportion of subpopulation members in the target population) / (the proportion of subpopulation members among the eligible population)`.
      * 
