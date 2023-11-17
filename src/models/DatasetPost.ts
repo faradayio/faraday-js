@@ -47,7 +47,7 @@ import {
  */
 export interface DatasetPost {
     /**
-     * If this is a "retrieve" dataset, the UUID of a connection - see <a href="../reference/createconnection">/connections</a> for more detail. 
+     * If this is a "retrieve" dataset, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail. 
      * 
      * Only a subset of connection types can be configured for dataset ingestion - see the list available in `options`.
      * 

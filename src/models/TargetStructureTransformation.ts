@@ -32,7 +32,7 @@ export interface TargetStructureTransformation {
      */
     aggregation_criteria?: string;
     /**
-     * Set this to true when exporting first party identifiers (given by <a href="../reference/createdataset">identity_sets</a>).
+     * Set this to true when exporting first party identifiers (given by <a href="https://faraday.ai/developers/reference/createdataset">identity_sets</a>).
      * 
      * If `true`, `scope_col` represents the dataset field name being selected (ex: "client_email").
      * @type {boolean}

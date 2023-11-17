@@ -65,7 +65,7 @@ import {
  */
 export interface TargetMergePatch {
     /**
-     * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="../reference/createconnection">/connections</a> for more detail. 
+     * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail. 
      * 
      * If this is not a replication target, omit this parameter.
      * @type {string}
@@ -73,7 +73,7 @@ export interface TargetMergePatch {
      */
     connection_id?: string | null;
     /**
-     * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
+     * By default, targets include all columns in <a href="https://faraday.ai/developers/reference/createtargetpreview">the target preview</a>, with no name changes.
      * 
      * Users may use this parameter to specify their own set of "structure transformations" to override the default selection, order, and name of exported columns.
      * 
@@ -117,7 +117,7 @@ export interface TargetMergePatch {
     /**
      * **Deprecated: use `custom_structure`.**
      * 
-     * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
+     * By default, targets include all columns in <a href="https://faraday.ai/developers/reference/createtargetpreview">the target preview</a>, with no name changes.
      * This parameter is an override of the default that enables an explicit mapping of columns that should be included in the target export, along with the exported column name.
      * Each key is the name the column originally had, and each value is the desired name.
      * Example:

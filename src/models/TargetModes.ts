@@ -50,7 +50,7 @@ import {
  *   * This option facilitates digital acquisition use cases.
  * 
  * **`identified`**
- *   * All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see <a href="../reference/createdataset">/datasets</a> for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned.
+ *   * All identifiable information specified by `identity_sets` in source data is emitted in cleartext - see <a href="https://faraday.ai/developers/reference/createdataset">/datasets</a> for more detail. All payload columns are emitted. Your account may have a limit on how many rows can be returned.
  *   * This option is best for direct mail and canvassing campaigns.
  * 
  * **`referenced`**

@@ -43,7 +43,7 @@ import {
  * }
  * ```
  * 
- * Streams named here will be automatically generated if they do not exist. They can be fetched with <a href="../reference/getstream">/streams/{stream_id_or_name}</a>.
+ * Streams named here will be automatically generated if they do not exist. They can be fetched with <a href="https://faraday.ai/developers/reference/getstream">/streams/{stream_id_or_name}</a>.
  * 
  * A `data_map` object can have any keys, but it is recommended to include the reserved `datetime` key as this will improve modeling.
  * 

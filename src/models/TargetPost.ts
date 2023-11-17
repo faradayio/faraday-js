@@ -65,7 +65,7 @@ import {
  */
 export interface TargetPost {
     /**
-     * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="../reference/createconnection">/connections</a> for more detail. 
+     * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail. 
      * 
      * If this is not a replication target, omit this parameter.
      * @type {string}
@@ -73,7 +73,7 @@ export interface TargetPost {
      */
     connection_id?: string;
     /**
-     * By default, targets include all columns in <a href="../reference/createtargetpreview">the target preview</a>, with no name changes.
+     * By default, targets include all columns in <a href="https://faraday.ai/developers/reference/createtargetpreview">the target preview</a>, with no name changes.
      * 
      * Users may use this parameter to specify their own set of "structure transformations" to override the default selection, order, and name of exported columns.
      * 
@@ -121,7 +121,7 @@ export interface TargetPost {
      */
     representation: TargetModesPost;
     /**
-     * The UUID of a scope - see <a href="../reference/createscope">/scopes</a> for more detail.
+     * The UUID of a scope - see <a href="https://faraday.ai/developers/reference/createscope">/scopes</a> for more detail.
      * @type {string}
      * @memberof TargetPost
      */

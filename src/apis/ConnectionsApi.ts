@@ -63,7 +63,7 @@ export interface UpdateConnectionRequest {
 export class ConnectionsApi extends runtime.BaseAPI {
 
     /**
-     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
+     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
      * Create connection
      */
     private async createConnectionRaw(requestParameters: CreateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
@@ -97,7 +97,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"../reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
+     * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
      * Create connection
      */
     async createConnection(connectionFields: ConnectionPost, ): Promise<Connection> {
