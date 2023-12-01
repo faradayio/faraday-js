@@ -175,6 +175,10 @@ src/models/ConnectionOptionsSegment.ts
 src/models/ConnectionOptionsSegmentMergePatch.ts
 src/models/ConnectionOptionsSegmentPost.ts
 src/models/ConnectionOptionsSegmentPut.ts
+src/models/ConnectionOptionsSftp.ts
+src/models/ConnectionOptionsSftpMergePatch.ts
+src/models/ConnectionOptionsSftpPost.ts
+src/models/ConnectionOptionsSftpPut.ts
 src/models/ConnectionOptionsShopify.ts
 src/models/ConnectionOptionsShopifyMergePatch.ts
 src/models/ConnectionOptionsShopifyPost.ts
@@ -314,6 +318,10 @@ src/models/DatasetOptionsSalesforceMarketingCloudPut.ts
 src/models/DatasetOptionsSalesforceMergePatch.ts
 src/models/DatasetOptionsSalesforcePost.ts
 src/models/DatasetOptionsSalesforcePut.ts
+src/models/DatasetOptionsSftp.ts
+src/models/DatasetOptionsSftpMergePatch.ts
+src/models/DatasetOptionsSftpPost.ts
+src/models/DatasetOptionsSftpPut.ts
 src/models/DatasetOptionsShopify.ts
 src/models/DatasetOptionsShopifyMergePatch.ts
 src/models/DatasetOptionsShopifyPost.ts
@@ -602,6 +610,10 @@ src/models/TargetOptionsSegment.ts
 src/models/TargetOptionsSegmentMergePatch.ts
 src/models/TargetOptionsSegmentPost.ts
 src/models/TargetOptionsSegmentPut.ts
+src/models/TargetOptionsSftp.ts
+src/models/TargetOptionsSftpMergePatch.ts
+src/models/TargetOptionsSftpPost.ts
+src/models/TargetOptionsSftpPut.ts
 src/models/TargetOptionsSnowflake.ts
 src/models/TargetOptionsSnowflakeMergePatch.ts
 src/models/TargetOptionsSnowflakePost.ts
