@@ -1,0 +1,35 @@
+import { Configuration } from '../runtime';
+import { AccountsApi } from './AccountsApi';
+import { BillingApi } from './BillingApi';
+import { CohortsApi } from './CohortsApi';
+import { ConnectionsApi } from './ConnectionsApi';
+import { DatasetsApi } from './DatasetsApi';
+import { GraphApi } from './GraphApi';
+import { OutcomesApi } from './OutcomesApi';
+import { PersonaSetsApi } from './PersonaSetsApi';
+import { PlacesApi } from './PlacesApi';
+import { ScopesApi } from './ScopesApi';
+import { StreamsApi } from './StreamsApi';
+import { TargetsApi } from './TargetsApi';
+import { TraitsApi } from './TraitsApi';
+import { UploadsApi } from './UploadsApi';
+import { UsageApi } from './UsageApi';
+export declare class FaradayClient {
+    configuration: Configuration;
+    accounts: AccountsApi;
+    billing: BillingApi;
+    cohorts: CohortsApi;
+    connections: ConnectionsApi;
+    datasets: DatasetsApi;
+    graph: GraphApi;
+    outcomes: OutcomesApi;
+    personaSets: PersonaSetsApi;
+    places: PlacesApi;
+    scopes: ScopesApi;
+    streams: StreamsApi;
+    targets: TargetsApi;
+    traits: TraitsApi;
+    uploads: UploadsApi;
+    usage: UsageApi;
+    constructor(configuration: Configuration);
+}
