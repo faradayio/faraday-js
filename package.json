@@ -1,15 +1,16 @@
 {
   "name": "@fdy/faraday-js",
-  "version": "1.0.0",
+  "version": "0.1.145",
   "description": "OpenAPI client for @fdy/faraday-js",
-  "author": "@faradayio",
+  "author": "@hana.kslr",
   "repository": "git://github.com/faradayio/faraday-js.git",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "devDependencies": {
-    "typescript": "^3.9.5"
+    "typescript": "^2.4"
   }
 }
