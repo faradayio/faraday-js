@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.9.0] - 2023-12-14
+
+### Fixed
+
+- Changed targets/{target_id}/lookup success response code from 201 to 200
+
 ## [0.8.2] - 2023-11-27
 
 ### Added
