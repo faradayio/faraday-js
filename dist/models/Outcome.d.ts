@@ -97,7 +97,7 @@ export interface Outcome {
      */
     last_updated_output_at?: Date;
     /**
-     * Average of lift at average conversion rate (r), (0.25 + 0.75 * r), (0.5 + 0.5 * r), (0.75 + 0.25 * r).
+     * Average of lift over random at average conversion rate (r), (0.75 * r), (0.5 * r), (0.25 * r).
      * @type {number}
      * @memberof Outcome
      */
