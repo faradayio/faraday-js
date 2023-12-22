@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.9.1] - 2023-12-05
+
+### Added
+
+- Add Recommenders endpoints for building and managing recommendation models.
+
 ## [0.9.1] - 2023-12-21
 
 - Updated lift value descriptions for outcomes
@@ -27,6 +33,8 @@ Until we reach API 1.0, the following special rules apply:
 - Relaxed reference key pattern to allow for leading underscore.
 
 ## [0.8.1] - 2023-11-17
+
+### Changed
 
 - Outcome analysis descriptions for bias metrics updated.
 

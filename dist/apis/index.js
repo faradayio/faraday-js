@@ -10,6 +10,7 @@ const GraphApi_1 = require("./GraphApi");
 const OutcomesApi_1 = require("./OutcomesApi");
 const PersonaSetsApi_1 = require("./PersonaSetsApi");
 const PlacesApi_1 = require("./PlacesApi");
+const RecommendersApi_1 = require("./RecommendersApi");
 const ScopesApi_1 = require("./ScopesApi");
 const StreamsApi_1 = require("./StreamsApi");
 const TargetsApi_1 = require("./TargetsApi");
@@ -28,6 +29,7 @@ class FaradayClient {
         this.outcomes = new OutcomesApi_1.OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi_1.PersonaSetsApi(configuration);
         this.places = new PlacesApi_1.PlacesApi(configuration);
+        this.recommenders = new RecommendersApi_1.RecommendersApi(configuration);
         this.scopes = new ScopesApi_1.ScopesApi(configuration);
         this.streams = new StreamsApi_1.StreamsApi(configuration);
         this.targets = new TargetsApi_1.TargetsApi(configuration);

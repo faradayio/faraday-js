@@ -21,6 +21,7 @@ export declare enum ResourceType {
     Accounts = "accounts",
     Outcomes = "outcomes",
     PersonaSets = "persona_sets",
+    Recommenders = "recommenders",
     Scopes = "scopes",
     Streams = "streams",
     Targets = "targets",

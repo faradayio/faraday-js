@@ -8,6 +8,7 @@ import { GraphApi } from './GraphApi';
 import { OutcomesApi } from './OutcomesApi';
 import { PersonaSetsApi } from './PersonaSetsApi';
 import { PlacesApi } from './PlacesApi';
+import { RecommendersApi } from './RecommendersApi';
 import { ScopesApi } from './ScopesApi';
 import { StreamsApi } from './StreamsApi';
 import { TargetsApi } from './TargetsApi';
@@ -25,6 +26,7 @@ export declare class FaradayClient {
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
     places: PlacesApi;
+    recommenders: RecommendersApi;
     scopes: ScopesApi;
     streams: StreamsApi;
     targets: TargetsApi;
