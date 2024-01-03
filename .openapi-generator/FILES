@@ -12,6 +12,7 @@ src/apis/GraphApi.ts
 src/apis/OutcomesApi.ts
 src/apis/PersonaSetsApi.ts
 src/apis/PlacesApi.ts
+src/apis/RecommendersApi.ts
 src/apis/ScopesApi.ts
 src/apis/StreamsApi.ts
 src/apis/TargetsApi.ts
@@ -418,6 +419,10 @@ src/models/RecencyMergePatch.ts
 src/models/RecencyOccurrence.ts
 src/models/RecencyPost.ts
 src/models/RecencyPut.ts
+src/models/Recommender.ts
+src/models/RecommenderMergePatch.ts
+src/models/RecommenderPost.ts
+src/models/RecommenderPut.ts
 src/models/Resource.ts
 src/models/ResourceStatus.ts
 src/models/ResourceType.ts

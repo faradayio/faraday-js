@@ -27,6 +27,7 @@ var ResourceType;
     ResourceType["Accounts"] = "accounts";
     ResourceType["Outcomes"] = "outcomes";
     ResourceType["PersonaSets"] = "persona_sets";
+    ResourceType["Recommenders"] = "recommenders";
     ResourceType["Scopes"] = "scopes";
     ResourceType["Streams"] = "streams";
     ResourceType["Targets"] = "targets";
