@@ -49,7 +49,7 @@ export interface UpdateRecommenderRequest {
 export class RecommendersApi extends runtime.BaseAPI {
 
     /**
-     * Add a new recommender
+     * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager. 
      * Create recommender
      */
     private async createRecommenderRaw(requestParameters: CreateRecommenderRequest, ): Promise<runtime.ApiResponse<Recommender>> {
@@ -83,7 +83,7 @@ export class RecommendersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new recommender
+     * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager. 
      * Create recommender
      */
     async createRecommender(recommenderFields: RecommenderPost, ): Promise<Recommender> {

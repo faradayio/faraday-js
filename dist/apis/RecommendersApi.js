@@ -30,7 +30,7 @@ const models_1 = require("../models");
  */
 class RecommendersApi extends runtime.BaseAPI {
     /**
-     * Add a new recommender
+     * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager.
      * Create recommender
      */
     createRecommenderRaw(requestParameters) {
@@ -59,7 +59,7 @@ class RecommendersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add a new recommender
+     * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager.
      * Create recommender
      */
     createRecommender(recommenderFields) {

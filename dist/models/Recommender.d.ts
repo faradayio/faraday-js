@@ -11,7 +11,9 @@
  */
 import { ResourceStatus } from './ResourceStatus';
 /**
- * TODO
+ * Recommender resources are used to predict future associations (e.g. future purchase). They are based on an event stream containing all previous associations such as an order event stream or a product rating event stream
+ *
+ * This feature is experimental and subject to change. To enable this feature, contact your account manager.
  * @export
  * @interface Recommender
  */
