@@ -218,6 +218,8 @@ src/models/DataMapPost.ts
 src/models/DataMapPut.ts
 src/models/Dataset.ts
 src/models/DatasetColumn.ts
+src/models/DatasetEnrichment.ts
+src/models/DatasetEnrichments.ts
 src/models/DatasetMergePatch.ts
 src/models/DatasetOptions.ts
 src/models/DatasetOptionsAwsAuroraMysql.ts

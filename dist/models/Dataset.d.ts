@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { DatasetColumn } from './DatasetColumn';
+import { DatasetEnrichments } from './DatasetEnrichments';
 import { DatasetOptions } from './DatasetOptions';
 import { DatasetUpdateHistory } from './DatasetUpdateHistory';
 import { IdentitySets } from './IdentitySets';
@@ -44,6 +45,12 @@ export interface Dataset {
      * @memberof Dataset
      */
     detected_columns?: Array<DatasetColumn>;
+    /**
+     *
+     * @type {DatasetEnrichments}
+     * @memberof Dataset
+     */
+    enrichment?: DatasetEnrichments;
     /**
      * A unique ID for this resource.
      * @type {string}

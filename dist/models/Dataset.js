@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetToJSON = exports.DatasetFromJSONTyped = exports.DatasetFromJSON = void 0;
 const runtime_1 = require("../runtime");
 const DatasetColumn_1 = require("./DatasetColumn");
+const DatasetEnrichments_1 = require("./DatasetEnrichments");
 const DatasetOptions_1 = require("./DatasetOptions");
 const DatasetUpdateHistory_1 = require("./DatasetUpdateHistory");
 const IdentitySets_1 = require("./IdentitySets");
@@ -34,6 +35,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         'connection_id': !runtime_1.exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'detected_columns': !runtime_1.exists(json, 'detected_columns') ? undefined : (json['detected_columns'].map(DatasetColumn_1.DatasetColumnFromJSON)),
+        'enrichment': !runtime_1.exists(json, 'enrichment') ? undefined : DatasetEnrichments_1.DatasetEnrichmentsFromJSON(json['enrichment']),
         'id': json['id'],
         'identified_count': !runtime_1.exists(json, 'identified_count') ? undefined : json['identified_count'],
         'identity_sets': IdentitySets_1.IdentitySetsFromJSON(json['identity_sets']),
@@ -72,6 +74,7 @@ function DatasetToJSON(value) {
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'detected_columns': value.detected_columns === undefined ? undefined : (value.detected_columns.map(DatasetColumn_1.DatasetColumnToJSON)),
+        'enrichment': DatasetEnrichments_1.DatasetEnrichmentsToJSON(value.enrichment),
         'id': value.id,
         'identified_count': value.identified_count,
         'identity_sets': IdentitySets_1.IdentitySetsToJSON(value.identity_sets),

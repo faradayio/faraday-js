@@ -209,6 +209,8 @@ __exportStar(require("./DataMapPost"), exports);
 __exportStar(require("./DataMapPut"), exports);
 __exportStar(require("./Dataset"), exports);
 __exportStar(require("./DatasetColumn"), exports);
+__exportStar(require("./DatasetEnrichment"), exports);
+__exportStar(require("./DatasetEnrichments"), exports);
 __exportStar(require("./DatasetMergePatch"), exports);
 __exportStar(require("./DatasetOptions"), exports);
 __exportStar(require("./DatasetOptionsAwsAuroraMysql"), exports);

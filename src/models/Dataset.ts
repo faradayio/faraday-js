@@ -20,6 +20,12 @@ import {
     DatasetColumnToJSON,
 } from './DatasetColumn';
 import {
+    DatasetEnrichments,
+    DatasetEnrichmentsFromJSON,
+    DatasetEnrichmentsFromJSONTyped,
+    DatasetEnrichmentsToJSON,
+} from './DatasetEnrichments';
+import {
     DatasetOptions,
     DatasetOptionsFromJSON,
     DatasetOptionsFromJSONTyped,
@@ -84,6 +90,12 @@ export interface Dataset {
      * @memberof Dataset
      */
     detected_columns?: Array<DatasetColumn>;
+    /**
+     * 
+     * @type {DatasetEnrichments}
+     * @memberof Dataset
+     */
+    enrichment?: DatasetEnrichments;
     /**
      * A unique ID for this resource.
      * @type {string}
@@ -266,6 +278,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'detected_columns': !exists(json, 'detected_columns') ? undefined : ((json['detected_columns'] as Array<any>).map(DatasetColumnFromJSON)),
+        'enrichment': !exists(json, 'enrichment') ? undefined : DatasetEnrichmentsFromJSON(json['enrichment']),
         'id': json['id'],
         'identified_count': !exists(json, 'identified_count') ? undefined : json['identified_count'],
         'identity_sets': IdentitySetsFromJSON(json['identity_sets']),
@@ -305,6 +318,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'detected_columns': value.detected_columns === undefined ? undefined : ((value.detected_columns as Array<any>).map(DatasetColumnToJSON)),
+        'enrichment': DatasetEnrichmentsToJSON(value.enrichment),
         'id': value.id,
         'identified_count': value.identified_count,
         'identity_sets': IdentitySetsToJSON(value.identity_sets),
