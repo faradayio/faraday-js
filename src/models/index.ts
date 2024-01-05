@@ -197,6 +197,8 @@ export * from './DataMapPost';
 export * from './DataMapPut';
 export * from './Dataset';
 export * from './DatasetColumn';
+export * from './DatasetEnrichment';
+export * from './DatasetEnrichments';
 export * from './DatasetMergePatch';
 export * from './DatasetOptions';
 export * from './DatasetOptionsAwsAuroraMysql';

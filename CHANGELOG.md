@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.9.2] - 2024-01-05
+
+### Added
+
+- Added dataset enrichment rates. This reports the number of identities that were appended with additional data, grouped by provider.
+
 ## [0.9.1] - 2023-12-05
 
 ### Added
