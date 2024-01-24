@@ -27,6 +27,7 @@ function TargetModesAggregatedPutFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'aggregate': TargetAggregateGeographic_1.TargetAggregateGeographicFromJSON(json['aggregate']),
+        'include_geometry': !runtime_1.exists(json, 'include_geometry') ? undefined : json['include_geometry'],
         'mode': json['mode'],
         'transform_preset': !runtime_1.exists(json, 'transform_preset') ? undefined : TargetTransformPresetAggregated_1.TargetTransformPresetAggregatedFromJSON(json['transform_preset']),
     };
@@ -41,6 +42,7 @@ function TargetModesAggregatedPutToJSON(value) {
     }
     return {
         'aggregate': TargetAggregateGeographic_1.TargetAggregateGeographicToJSON(value.aggregate),
+        'include_geometry': value.include_geometry,
         'mode': value.mode,
         'transform_preset': TargetTransformPresetAggregated_1.TargetTransformPresetAggregatedToJSON(value.transform_preset),
     };

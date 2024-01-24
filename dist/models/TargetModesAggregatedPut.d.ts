@@ -26,6 +26,12 @@ export interface TargetModesAggregatedPut {
      */
     aggregate: TargetAggregateGeographic;
     /**
+     * Include the geometry of the geographic area in the target output.
+     * @type {boolean}
+     * @memberof TargetModesAggregatedPut
+     */
+    include_geometry?: boolean;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesAggregatedPut

@@ -41,6 +41,12 @@ export interface TargetModesAggregatedMergePatch {
      */
     aggregate?: TargetAggregateGeographic;
     /**
+     * Include the geometry of the geographic area in the target output.
+     * @type {boolean}
+     * @memberof TargetModesAggregatedMergePatch
+     */
+    include_geometry?: boolean | null;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesAggregatedMergePatch
@@ -65,6 +71,7 @@ export function TargetModesAggregatedMergePatchFromJSONTyped(json: any, ignoreDi
     return {
         
         'aggregate': !exists(json, 'aggregate') ? undefined : TargetAggregateGeographicFromJSON(json['aggregate']),
+        'include_geometry': !exists(json, 'include_geometry') ? undefined : json['include_geometry'],
         'mode': json['mode'],
         'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetAggregatedFromJSON(json['transform_preset']),
     };
@@ -80,6 +87,7 @@ export function TargetModesAggregatedMergePatchToJSON(value?: TargetModesAggrega
     return {
         
         'aggregate': TargetAggregateGeographicToJSON(value.aggregate),
+        'include_geometry': value.include_geometry,
         'mode': value.mode,
         'transform_preset': TargetTransformPresetAggregatedToJSON(value.transform_preset),
     };
