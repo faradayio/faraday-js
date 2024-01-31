@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.9.3] - 2024-01-31
+
+### Added
+
+- Added include_geometry boolean to TargetModesAggregated to append optional geometries to aggregated targets.
+
 ## [0.9.2] - 2024-01-05
 
 ### Added

@@ -26,6 +26,12 @@ export interface TargetModesAggregatedMergePatch {
      */
     aggregate?: TargetAggregateGeographic;
     /**
+     * Include the geometry of the geographic area in the target output.
+     * @type {boolean}
+     * @memberof TargetModesAggregatedMergePatch
+     */
+    include_geometry?: boolean | null;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesAggregatedMergePatch
