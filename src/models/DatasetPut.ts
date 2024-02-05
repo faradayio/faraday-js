@@ -47,6 +47,12 @@ import {
  */
 export interface DatasetPut {
     /**
+     * If true, best effort will be made to delete this individual from data and systems that Faraday manages for this account.
+     * @type {boolean}
+     * @memberof DatasetPut
+     */
+    deletion?: boolean;
+    /**
      * 
      * @type {IdentitySetsPut}
      * @memberof DatasetPut
@@ -93,6 +99,12 @@ export interface DatasetPut {
      */
     reference_key_column?: string;
     /**
+     * If true, best effort will be made to suppress any individual found in this dataset from any output of the system, but allow them to be used to train prediction objectives.
+     * @type {boolean}
+     * @memberof DatasetPut
+     */
+    suppression?: boolean;
+    /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
      * specified by `upsert_columns`, the newest will be used.
@@ -117,6 +129,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'deletion': !exists(json, 'deletion') ? undefined : json['deletion'],
         'identity_sets': IdentitySetsPutFromJSON(json['identity_sets']),
         'name': json['name'],
         'options': DatasetOptionsPutFromJSON(json['options']),
@@ -124,6 +137,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'suppression': !exists(json, 'suppression') ? undefined : json['suppression'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -137,6 +151,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
     }
     return {
         
+        'deletion': value.deletion,
         'identity_sets': IdentitySetsPutToJSON(value.identity_sets),
         'name': value.name,
         'options': DatasetOptionsPutToJSON(value.options),
@@ -144,6 +159,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'suppression': value.suppression,
         'upsert_columns': value.upsert_columns,
     };
 }

@@ -22,6 +22,12 @@ import { OutputToTraitsPut } from './OutputToTraitsPut';
  */
 export interface DatasetPut {
     /**
+     * If true, best effort will be made to delete this individual from data and systems that Faraday manages for this account.
+     * @type {boolean}
+     * @memberof DatasetPut
+     */
+    deletion?: boolean;
+    /**
      *
      * @type {IdentitySetsPut}
      * @memberof DatasetPut
@@ -67,6 +73,12 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     reference_key_column?: string;
+    /**
+     * If true, best effort will be made to suppress any individual found in this dataset from any output of the system, but allow them to be used to train prediction objectives.
+     * @type {boolean}
+     * @memberof DatasetPut
+     */
+    suppression?: boolean;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns

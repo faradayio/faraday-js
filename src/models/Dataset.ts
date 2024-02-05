@@ -85,6 +85,12 @@ export interface Dataset {
      */
     created_at: Date;
     /**
+     * If true, best effort will be made to delete this individual from data and systems that Faraday manages for this account.
+     * @type {boolean}
+     * @memberof Dataset
+     */
+    deletion?: boolean;
+    /**
      * An array of columns
      * @type {Array<DatasetColumn>}
      * @memberof Dataset
@@ -237,6 +243,12 @@ export interface Dataset {
      */
     status_error?: string;
     /**
+     * If true, best effort will be made to suppress any individual found in this dataset from any output of the system, but allow them to be used to train prediction objectives.
+     * @type {boolean}
+     * @memberof Dataset
+     */
+    suppression?: boolean;
+    /**
      * When this resource was last updated.
      * @type {Date}
      * @memberof Dataset
@@ -277,6 +289,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
+        'deletion': !exists(json, 'deletion') ? undefined : json['deletion'],
         'detected_columns': !exists(json, 'detected_columns') ? undefined : ((json['detected_columns'] as Array<any>).map(DatasetColumnFromJSON)),
         'enrichment': !exists(json, 'enrichment') ? undefined : DatasetEnrichmentsFromJSON(json['enrichment']),
         'id': json['id'],
@@ -300,6 +313,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !exists(json, 'status_error') ? undefined : json['status_error'],
+        'suppression': !exists(json, 'suppression') ? undefined : json['suppression'],
         'updated_at': (new Date(json['updated_at'])),
         'updates': !exists(json, 'updates') ? undefined : ((json['updates'] as Array<any>).map(DatasetUpdateHistoryFromJSON)),
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
@@ -317,6 +331,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
+        'deletion': value.deletion,
         'detected_columns': value.detected_columns === undefined ? undefined : ((value.detected_columns as Array<any>).map(DatasetColumnToJSON)),
         'enrichment': DatasetEnrichmentsToJSON(value.enrichment),
         'id': value.id,
@@ -340,6 +355,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,
+        'suppression': value.suppression,
         'updated_at': (value.updated_at.toISOString()),
         'updates': value.updates === undefined ? undefined : ((value.updates as Array<any>).map(DatasetUpdateHistoryToJSON)),
         'upsert_columns': value.upsert_columns,

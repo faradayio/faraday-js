@@ -40,6 +40,12 @@ export interface Dataset {
      */
     created_at: Date;
     /**
+     * If true, best effort will be made to delete this individual from data and systems that Faraday manages for this account.
+     * @type {boolean}
+     * @memberof Dataset
+     */
+    deletion?: boolean;
+    /**
      * An array of columns
      * @type {Array<DatasetColumn>}
      * @memberof Dataset
@@ -191,6 +197,12 @@ export interface Dataset {
      * @memberof Dataset
      */
     status_error?: string;
+    /**
+     * If true, best effort will be made to suppress any individual found in this dataset from any output of the system, but allow them to be used to train prediction objectives.
+     * @type {boolean}
+     * @memberof Dataset
+     */
+    suppression?: boolean;
     /**
      * When this resource was last updated.
      * @type {Date}

@@ -47,6 +47,12 @@ import {
  */
 export interface DatasetMergePatch {
     /**
+     * If true, best effort will be made to delete this individual from data and systems that Faraday manages for this account.
+     * @type {boolean}
+     * @memberof DatasetMergePatch
+     */
+    deletion?: boolean | null;
+    /**
      * 
      * @type {IdentitySetsMergePatch}
      * @memberof DatasetMergePatch
@@ -93,6 +99,12 @@ export interface DatasetMergePatch {
      */
     reference_key_column?: string | null;
     /**
+     * If true, best effort will be made to suppress any individual found in this dataset from any output of the system, but allow them to be used to train prediction objectives.
+     * @type {boolean}
+     * @memberof DatasetMergePatch
+     */
+    suppression?: boolean | null;
+    /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
      * specified by `upsert_columns`, the newest will be used.
@@ -117,6 +129,7 @@ export function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
+        'deletion': !exists(json, 'deletion') ? undefined : json['deletion'],
         'identity_sets': !exists(json, 'identity_sets') ? undefined : IdentitySetsMergePatchFromJSON(json['identity_sets']),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'options': !exists(json, 'options') ? undefined : DatasetOptionsMergePatchFromJSON(json['options']),
@@ -124,6 +137,7 @@ export function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'suppression': !exists(json, 'suppression') ? undefined : json['suppression'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -137,6 +151,7 @@ export function DatasetMergePatchToJSON(value?: DatasetMergePatch | null): any {
     }
     return {
         
+        'deletion': value.deletion,
         'identity_sets': IdentitySetsMergePatchToJSON(value.identity_sets),
         'name': value.name,
         'options': DatasetOptionsMergePatchToJSON(value.options),
@@ -144,6 +159,7 @@ export function DatasetMergePatchToJSON(value?: DatasetMergePatch | null): any {
         'output_to_traits': OutputToTraitsMergePatchToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'suppression': value.suppression,
         'upsert_columns': value.upsert_columns,
     };
 }

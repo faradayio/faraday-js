@@ -22,6 +22,12 @@ import { OutputToTraitsMergePatch } from './OutputToTraitsMergePatch';
  */
 export interface DatasetMergePatch {
     /**
+     * If true, best effort will be made to delete this individual from data and systems that Faraday manages for this account.
+     * @type {boolean}
+     * @memberof DatasetMergePatch
+     */
+    deletion?: boolean | null;
+    /**
      *
      * @type {IdentitySetsMergePatch}
      * @memberof DatasetMergePatch
@@ -67,6 +73,12 @@ export interface DatasetMergePatch {
      * @memberof DatasetMergePatch
      */
     reference_key_column?: string | null;
+    /**
+     * If true, best effort will be made to suppress any individual found in this dataset from any output of the system, but allow them to be used to train prediction objectives.
+     * @type {boolean}
+     * @memberof DatasetMergePatch
+     */
+    suppression?: boolean | null;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns

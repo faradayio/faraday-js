@@ -28,6 +28,7 @@ function DatasetMergePatchFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'deletion': !runtime_1.exists(json, 'deletion') ? undefined : json['deletion'],
         'identity_sets': !runtime_1.exists(json, 'identity_sets') ? undefined : IdentitySetsMergePatch_1.IdentitySetsMergePatchFromJSON(json['identity_sets']),
         'name': !runtime_1.exists(json, 'name') ? undefined : json['name'],
         'options': !runtime_1.exists(json, 'options') ? undefined : DatasetOptionsMergePatch_1.DatasetOptionsMergePatchFromJSON(json['options']),
@@ -35,6 +36,7 @@ function DatasetMergePatchFromJSONTyped(json, ignoreDiscriminator) {
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatch_1.OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !runtime_1.exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'suppression': !runtime_1.exists(json, 'suppression') ? undefined : json['suppression'],
         'upsert_columns': !runtime_1.exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -47,6 +49,7 @@ function DatasetMergePatchToJSON(value) {
         return null;
     }
     return {
+        'deletion': value.deletion,
         'identity_sets': IdentitySetsMergePatch_1.IdentitySetsMergePatchToJSON(value.identity_sets),
         'name': value.name,
         'options': DatasetOptionsMergePatch_1.DatasetOptionsMergePatchToJSON(value.options),
@@ -54,6 +57,7 @@ function DatasetMergePatchToJSON(value) {
         'output_to_traits': OutputToTraitsMergePatch_1.OutputToTraitsMergePatchToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'suppression': value.suppression,
         'upsert_columns': value.upsert_columns,
     };
 }

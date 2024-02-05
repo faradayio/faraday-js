@@ -34,6 +34,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'connection_id': !runtime_1.exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
+        'deletion': !runtime_1.exists(json, 'deletion') ? undefined : json['deletion'],
         'detected_columns': !runtime_1.exists(json, 'detected_columns') ? undefined : (json['detected_columns'].map(DatasetColumn_1.DatasetColumnFromJSON)),
         'enrichment': !runtime_1.exists(json, 'enrichment') ? undefined : DatasetEnrichments_1.DatasetEnrichmentsFromJSON(json['enrichment']),
         'id': json['id'],
@@ -57,6 +58,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         'status': ResourceStatus_1.ResourceStatusFromJSON(json['status']),
         'status_changed_at': !runtime_1.exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
         'status_error': !runtime_1.exists(json, 'status_error') ? undefined : json['status_error'],
+        'suppression': !runtime_1.exists(json, 'suppression') ? undefined : json['suppression'],
         'updated_at': (new Date(json['updated_at'])),
         'updates': !runtime_1.exists(json, 'updates') ? undefined : (json['updates'].map(DatasetUpdateHistory_1.DatasetUpdateHistoryFromJSON)),
         'upsert_columns': !runtime_1.exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
@@ -73,6 +75,7 @@ function DatasetToJSON(value) {
     return {
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
+        'deletion': value.deletion,
         'detected_columns': value.detected_columns === undefined ? undefined : (value.detected_columns.map(DatasetColumn_1.DatasetColumnToJSON)),
         'enrichment': DatasetEnrichments_1.DatasetEnrichmentsToJSON(value.enrichment),
         'id': value.id,
@@ -96,6 +99,7 @@ function DatasetToJSON(value) {
         'status': ResourceStatus_1.ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),
         'status_error': value.status_error,
+        'suppression': value.suppression,
         'updated_at': (value.updated_at.toISOString()),
         'updates': value.updates === undefined ? undefined : (value.updates.map(DatasetUpdateHistory_1.DatasetUpdateHistoryToJSON)),
         'upsert_columns': value.upsert_columns,

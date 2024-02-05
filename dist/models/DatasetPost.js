@@ -29,6 +29,7 @@ function DatasetPostFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'connection_id': !runtime_1.exists(json, 'connection_id') ? undefined : json['connection_id'],
+        'deletion': !runtime_1.exists(json, 'deletion') ? undefined : json['deletion'],
         'identity_sets': IdentitySetsPost_1.IdentitySetsPostFromJSON(json['identity_sets']),
         'incremental_column': !runtime_1.exists(json, 'incremental_column') ? undefined : json['incremental_column'],
         'name': json['name'],
@@ -37,6 +38,7 @@ function DatasetPostFromJSONTyped(json, ignoreDiscriminator) {
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraitsPost_1.OutputToTraitsPostFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !runtime_1.exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'suppression': !runtime_1.exists(json, 'suppression') ? undefined : json['suppression'],
         'upsert_columns': !runtime_1.exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -50,6 +52,7 @@ function DatasetPostToJSON(value) {
     }
     return {
         'connection_id': value.connection_id,
+        'deletion': value.deletion,
         'identity_sets': IdentitySetsPost_1.IdentitySetsPostToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
         'name': value.name,
@@ -58,6 +61,7 @@ function DatasetPostToJSON(value) {
         'output_to_traits': OutputToTraitsPost_1.OutputToTraitsPostToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'suppression': value.suppression,
         'upsert_columns': value.upsert_columns,
     };
 }

@@ -57,6 +57,12 @@ export interface DatasetPost {
      */
     connection_id?: string;
     /**
+     * If true, best effort will be made to delete this individual from data and systems that Faraday manages for this account.
+     * @type {boolean}
+     * @memberof DatasetPost
+     */
+    deletion?: boolean;
+    /**
      * 
      * @type {IdentitySetsPost}
      * @memberof DatasetPost
@@ -115,6 +121,12 @@ export interface DatasetPost {
      */
     reference_key_column?: string;
     /**
+     * If true, best effort will be made to suppress any individual found in this dataset from any output of the system, but allow them to be used to train prediction objectives.
+     * @type {boolean}
+     * @memberof DatasetPost
+     */
+    suppression?: boolean;
+    /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
      * specified by `upsert_columns`, the newest will be used.
@@ -140,6 +152,7 @@ export function DatasetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
+        'deletion': !exists(json, 'deletion') ? undefined : json['deletion'],
         'identity_sets': IdentitySetsPostFromJSON(json['identity_sets']),
         'incremental_column': !exists(json, 'incremental_column') ? undefined : json['incremental_column'],
         'name': json['name'],
@@ -148,6 +161,7 @@ export function DatasetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPostFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'suppression': !exists(json, 'suppression') ? undefined : json['suppression'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -162,6 +176,7 @@ export function DatasetPostToJSON(value?: DatasetPost | null): any {
     return {
         
         'connection_id': value.connection_id,
+        'deletion': value.deletion,
         'identity_sets': IdentitySetsPostToJSON(value.identity_sets),
         'incremental_column': value.incremental_column,
         'name': value.name,
@@ -170,6 +185,7 @@ export function DatasetPostToJSON(value?: DatasetPost | null): any {
         'output_to_traits': OutputToTraitsPostToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'suppression': value.suppression,
         'upsert_columns': value.upsert_columns,
     };
 }
