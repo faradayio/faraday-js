@@ -63,7 +63,13 @@ export interface Stream {
      */
     last_updated_output_at?: Date;
     /**
-     * 
+     * The human-readable name of the stream
+     * @type {string}
+     * @memberof Stream
+     */
+    literate?: string;
+    /**
+     * The identifier for the stream
      * @type {string}
      * @memberof Stream
      */
@@ -121,6 +127,7 @@ export function StreamFromJSONTyped(json: any, ignoreDiscriminator: boolean): St
         'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
         'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
+        'literate': !exists(json, 'literate') ? undefined : json['literate'],
         'name': json['name'],
         'properties': !exists(json, 'properties') ? undefined : StreamPropertiesFromJSON(json['properties']),
         'resource_type': json['resource_type'],
@@ -145,6 +152,7 @@ export function StreamToJSON(value?: Stream | null): any {
         'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
         'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
+        'literate': value.literate,
         'name': value.name,
         'properties': StreamPropertiesToJSON(value.properties),
         'resource_type': value.resource_type,

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Stream } from '../models';
+import { Stream, StreamMergePatch } from '../models';
 export interface DeleteStreamRequest {
     streamIdOrName: string;
 }
@@ -19,6 +19,10 @@ export interface FindOrCreateStreamRequest {
 }
 export interface GetStreamRequest {
     streamIdOrName: string;
+}
+export interface UpdateStreamRequest {
+    streamIdOrName: string;
+    streamMergePatch: StreamMergePatch;
 }
 /**
  *
@@ -62,4 +66,14 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * List streams
      */
     getStreams(): Promise<Array<Stream>>;
+    /**
+     * Update an existing stream
+     * Update stream
+     */
+    private updateStreamRaw;
+    /**
+     * Update an existing stream
+     * Update stream
+     */
+    updateStream(streamIdOrName: string, streamMergePatch: StreamMergePatch): Promise<Stream>;
 }

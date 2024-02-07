@@ -18,6 +18,9 @@ import {
     Stream,
     StreamFromJSON,
     StreamToJSON,
+    StreamMergePatch,
+    StreamMergePatchFromJSON,
+    StreamMergePatchToJSON,
 } from '../models';
 
 export interface DeleteStreamRequest {
@@ -30,6 +33,11 @@ export interface FindOrCreateStreamRequest {
 
 export interface GetStreamRequest {
     streamIdOrName: string;
+}
+
+export interface UpdateStreamRequest {
+    streamIdOrName: string;
+    streamMergePatch: StreamMergePatch;
 }
 
 /**
@@ -187,6 +195,53 @@ export class StreamsApi extends runtime.BaseAPI {
      */
     async getStreams(): Promise<Array<Stream>> {
         const response = await this.getStreamsRaw();
+        return await response.value();
+    }
+
+    /**
+     * Update an existing stream
+     * Update stream
+     */
+    private async updateStreamRaw(requestParameters: UpdateStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
+        if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+            throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling updateStream.');
+        }
+
+        if (requestParameters.streamMergePatch === null || requestParameters.streamMergePatch === undefined) {
+            throw new runtime.RequiredError('streamMergePatch','Required parameter requestParameters.streamMergePatch was null or undefined when calling updateStream.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json+merge-patch';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id_or_name}`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: StreamMergePatchToJSON(requestParameters.streamMergePatch),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => StreamFromJSON(jsonValue));
+    }
+
+    /**
+     * Update an existing stream
+     * Update stream
+     */
+    async updateStream(streamIdOrName: string, streamMergePatch: StreamMergePatch, ): Promise<Stream> {
+        const response = await this.updateStreamRaw({ streamIdOrName: streamIdOrName, streamMergePatch: streamMergePatch }, );
         return await response.value();
     }
 

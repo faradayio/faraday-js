@@ -48,7 +48,13 @@ export interface Stream {
      */
     last_updated_output_at?: Date;
     /**
-     *
+     * The human-readable name of the stream
+     * @type {string}
+     * @memberof Stream
+     */
+    literate?: string;
+    /**
+     * The identifier for the stream
      * @type {string}
      * @memberof Stream
      */

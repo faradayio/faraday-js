@@ -445,9 +445,12 @@ src/models/ScopePopulationPut.ts
 src/models/ScopePost.ts
 src/models/ScopePut.ts
 src/models/Stream.ts
+src/models/StreamMergePatch.ts
+src/models/StreamPost.ts
 src/models/StreamProperties.ts
 src/models/StreamPropertyDetails.ts
 src/models/StreamPropertyInputFromDatasets.ts
+src/models/StreamPut.ts
 src/models/TabularData.ts
 src/models/Target.ts
 src/models/TargetAggregateGeographic.ts
