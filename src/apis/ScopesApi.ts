@@ -27,6 +27,9 @@ import {
     PersonaSet,
     PersonaSetFromJSON,
     PersonaSetToJSON,
+    Recommender,
+    RecommenderFromJSON,
+    RecommenderToJSON,
     Scope,
     ScopeFromJSON,
     ScopeToJSON,
@@ -66,6 +69,10 @@ export interface GetScopePayloadOutcomesRequest {
 }
 
 export interface GetScopePayloadPersonaSetsRequest {
+    scopeId: string;
+}
+
+export interface GetScopePayloadRecommendersRequest {
     scopeId: string;
 }
 
@@ -368,6 +375,46 @@ export class ScopesApi extends runtime.BaseAPI {
      */
     async getScopePayloadPersonaSets(scopeId: string, ): Promise<Array<PersonaSet>> {
         const response = await this.getScopePayloadPersonaSetsRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get payload recommenders for a scope
+     * Get payload recommenders for a scope
+     */
+    private async getScopePayloadRecommendersRaw(requestParameters: GetScopePayloadRecommendersRequest, ): Promise<runtime.ApiResponse<Array<Recommender>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadRecommenders.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/payload/recommenders`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RecommenderFromJSON));
+    }
+
+    /**
+     * Get payload recommenders for a scope
+     * Get payload recommenders for a scope
+     */
+    async getScopePayloadRecommenders(scopeId: string, ): Promise<Array<Recommender>> {
+        const response = await this.getScopePayloadRecommendersRaw({ scopeId: scopeId }, );
         return await response.value();
     }
 

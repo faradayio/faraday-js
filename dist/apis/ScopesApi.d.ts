@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Cohort, Dataset, Outcome, PersonaSet, Scope, ScopeMergePatch, ScopePost, Target } from '../models';
+import { Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeMergePatch, ScopePost, Target } from '../models';
 export interface CreateScopeRequest {
     scopeFields: ScopePost;
 }
@@ -30,6 +30,9 @@ export interface GetScopePayloadOutcomesRequest {
     scopeId: string;
 }
 export interface GetScopePayloadPersonaSetsRequest {
+    scopeId: string;
+}
+export interface GetScopePayloadRecommendersRequest {
     scopeId: string;
 }
 export interface GetScopePopulationCohortsRequest {
@@ -117,6 +120,16 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get payload persona sets for a scope
      */
     getScopePayloadPersonaSets(scopeId: string): Promise<Array<PersonaSet>>;
+    /**
+     * Get payload recommenders for a scope
+     * Get payload recommenders for a scope
+     */
+    private getScopePayloadRecommendersRaw;
+    /**
+     * Get payload recommenders for a scope
+     * Get payload recommenders for a scope
+     */
+    getScopePayloadRecommenders(scopeId: string): Promise<Array<Recommender>>;
     /**
      * Get population cohorts for a scope
      * Get population cohorts for a scope

@@ -29,6 +29,7 @@ function ScopePayloadPutFromJSONTyped(json, ignoreDiscriminator) {
         'explainability': !runtime_1.exists(json, 'explainability') ? undefined : json['explainability'],
         'outcome_ids': !runtime_1.exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
         'persona_set_ids': !runtime_1.exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
+        'recommender_ids': !runtime_1.exists(json, 'recommender_ids') ? undefined : json['recommender_ids'],
     };
 }
 exports.ScopePayloadPutFromJSONTyped = ScopePayloadPutFromJSONTyped;
@@ -45,6 +46,7 @@ function ScopePayloadPutToJSON(value) {
         'explainability': value.explainability,
         'outcome_ids': value.outcome_ids,
         'persona_set_ids': value.persona_set_ids,
+        'recommender_ids': value.recommender_ids,
     };
 }
 exports.ScopePayloadPutToJSON = ScopePayloadPutToJSON;

@@ -55,6 +55,14 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     persona_set_ids?: Array<string> | null;
+    /**
+     * Include the recommendation(s) from the specified recommender(s).
+     * 
+     * This feature is experimental and subject to change. To enable this feature, contact your account manager.
+     * @type {Array<string>}
+     * @memberof ScopePayloadMergePatch
+     */
+    recommender_ids?: Array<string> | null;
 }
 
 export function ScopePayloadMergePatchFromJSON(json: any): ScopePayloadMergePatch {
@@ -72,6 +80,7 @@ export function ScopePayloadMergePatchFromJSONTyped(json: any, ignoreDiscriminat
         'explainability': !exists(json, 'explainability') ? undefined : json['explainability'],
         'outcome_ids': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
         'persona_set_ids': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
+        'recommender_ids': !exists(json, 'recommender_ids') ? undefined : json['recommender_ids'],
     };
 }
 
@@ -89,6 +98,7 @@ export function ScopePayloadMergePatchToJSON(value?: ScopePayloadMergePatch | nu
         'explainability': value.explainability,
         'outcome_ids': value.outcome_ids,
         'persona_set_ids': value.persona_set_ids,
+        'recommender_ids': value.recommender_ids,
     };
 }
 

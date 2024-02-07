@@ -288,6 +288,43 @@ class ScopesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get payload recommenders for a scope
+     * Get payload recommenders for a scope
+     */
+    getScopePayloadRecommendersRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadRecommenders.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/scopes/{scope_id}/payload/recommenders`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.RecommenderFromJSON));
+        });
+    }
+    /**
+     * Get payload recommenders for a scope
+     * Get payload recommenders for a scope
+     */
+    getScopePayloadRecommenders(scopeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getScopePayloadRecommendersRaw({ scopeId: scopeId });
+            return yield response.value();
+        });
+    }
+    /**
      * Get population cohorts for a scope
      * Get population cohorts for a scope
      */
