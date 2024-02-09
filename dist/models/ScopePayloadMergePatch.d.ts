@@ -51,6 +51,14 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     persona_set_ids?: Array<string> | null;
+    /**
+     * Include the recommendation(s) from the specified recommender(s).
+     *
+     * This feature is experimental and subject to change. To enable this feature, contact your account manager.
+     * @type {Array<string>}
+     * @memberof ScopePayloadMergePatch
+     */
+    recommender_ids?: Array<string> | null;
 }
 export declare function ScopePayloadMergePatchFromJSON(json: any): ScopePayloadMergePatch;
 export declare function ScopePayloadMergePatchFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScopePayloadMergePatch;

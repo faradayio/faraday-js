@@ -51,6 +51,14 @@ export interface ScopePayloadPut {
      * @memberof ScopePayloadPut
      */
     persona_set_ids?: Array<string>;
+    /**
+     * Include the recommendation(s) from the specified recommender(s).
+     *
+     * This feature is experimental and subject to change. To enable this feature, contact your account manager.
+     * @type {Array<string>}
+     * @memberof ScopePayloadPut
+     */
+    recommender_ids?: Array<string>;
 }
 export declare function ScopePayloadPutFromJSON(json: any): ScopePayloadPut;
 export declare function ScopePayloadPutFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScopePayloadPut;

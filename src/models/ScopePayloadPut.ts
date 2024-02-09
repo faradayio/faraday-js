@@ -55,6 +55,14 @@ export interface ScopePayloadPut {
      * @memberof ScopePayloadPut
      */
     persona_set_ids?: Array<string>;
+    /**
+     * Include the recommendation(s) from the specified recommender(s).
+     * 
+     * This feature is experimental and subject to change. To enable this feature, contact your account manager.
+     * @type {Array<string>}
+     * @memberof ScopePayloadPut
+     */
+    recommender_ids?: Array<string>;
 }
 
 export function ScopePayloadPutFromJSON(json: any): ScopePayloadPut {
@@ -72,6 +80,7 @@ export function ScopePayloadPutFromJSONTyped(json: any, ignoreDiscriminator: boo
         'explainability': !exists(json, 'explainability') ? undefined : json['explainability'],
         'outcome_ids': !exists(json, 'outcome_ids') ? undefined : json['outcome_ids'],
         'persona_set_ids': !exists(json, 'persona_set_ids') ? undefined : json['persona_set_ids'],
+        'recommender_ids': !exists(json, 'recommender_ids') ? undefined : json['recommender_ids'],
     };
 }
 
@@ -89,6 +98,7 @@ export function ScopePayloadPutToJSON(value?: ScopePayloadPut | null): any {
         'explainability': value.explainability,
         'outcome_ids': value.outcome_ids,
         'persona_set_ids': value.persona_set_ids,
+        'recommender_ids': value.recommender_ids,
     };
 }
 
