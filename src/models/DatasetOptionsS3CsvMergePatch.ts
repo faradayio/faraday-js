@@ -34,6 +34,12 @@ export interface DatasetOptionsS3CsvMergePatch {
      */
     encrypted?: boolean | null;
     /**
+     * A row of column headers. The delimiter must be the same as the `delimiter` parameter and match the data. If not provided, the first row of the CSV file will be used as the headers.
+     * @type {string}
+     * @memberof DatasetOptionsS3CsvMergePatch
+     */
+    header_row?: string | null;
+    /**
      * The prefix inside the bucket. May optionally include full filename, file globs (not regexp), and stftime date parsing formatting (which will override blob storage's native timestamps). For example, orders/, orders/file.csv, orders/*.csv, or orders/files-%Y-%m-%d.csv
      * @type {string}
      * @memberof DatasetOptionsS3CsvMergePatch
@@ -65,6 +71,7 @@ export function DatasetOptionsS3CsvMergePatchFromJSONTyped(json: any, ignoreDisc
         
         'delimiter': !exists(json, 'delimiter') ? undefined : json['delimiter'],
         'encrypted': !exists(json, 'encrypted') ? undefined : json['encrypted'],
+        'header_row': !exists(json, 'header_row') ? undefined : json['header_row'],
         'prefix': !exists(json, 'prefix') ? undefined : json['prefix'],
         'replace_all_with_latest_file': !exists(json, 'replace_all_with_latest_file') ? undefined : json['replace_all_with_latest_file'],
         'type': json['type'],
@@ -82,6 +89,7 @@ export function DatasetOptionsS3CsvMergePatchToJSON(value?: DatasetOptionsS3CsvM
         
         'delimiter': value.delimiter,
         'encrypted': value.encrypted,
+        'header_row': value.header_row,
         'prefix': value.prefix,
         'replace_all_with_latest_file': value.replace_all_with_latest_file,
         'type': value.type,
