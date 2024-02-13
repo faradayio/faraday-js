@@ -30,6 +30,12 @@ export interface DatasetOptionsS3CsvPut {
      */
     encrypted?: boolean;
     /**
+     * A row of column headers. The delimiter must be the same as the `delimiter` parameter and match the data. If not provided, the first row of the CSV file will be used as the headers.
+     * @type {string}
+     * @memberof DatasetOptionsS3CsvPut
+     */
+    header_row?: string;
+    /**
      * The prefix inside the bucket. May optionally include full filename, file globs (not regexp), and stftime date parsing formatting (which will override blob storage's native timestamps). For example, orders/, orders/file.csv, orders/*.csv, or orders/files-%Y-%m-%d.csv
      * @type {string}
      * @memberof DatasetOptionsS3CsvPut

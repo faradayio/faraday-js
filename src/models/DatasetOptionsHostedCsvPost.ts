@@ -34,6 +34,12 @@ export interface DatasetOptionsHostedCsvPost {
      */
     encrypted?: boolean;
     /**
+     * A row of column headers. The delimiter must be the same as the `delimiter` parameter and match the data. If not provided, the first row of the CSV file will be used as the headers.
+     * @type {string}
+     * @memberof DatasetOptionsHostedCsvPost
+     */
+    header_row?: string;
+    /**
      * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
      * @type {boolean}
      * @memberof DatasetOptionsHostedCsvPost
@@ -66,6 +72,7 @@ export function DatasetOptionsHostedCsvPostFromJSONTyped(json: any, ignoreDiscri
         
         'delimiter': !exists(json, 'delimiter') ? undefined : json['delimiter'],
         'encrypted': !exists(json, 'encrypted') ? undefined : json['encrypted'],
+        'header_row': !exists(json, 'header_row') ? undefined : json['header_row'],
         'replace_all_with_latest_file': !exists(json, 'replace_all_with_latest_file') ? undefined : json['replace_all_with_latest_file'],
         'type': json['type'],
         'upload_directory': json['upload_directory'],
@@ -83,6 +90,7 @@ export function DatasetOptionsHostedCsvPostToJSON(value?: DatasetOptionsHostedCs
         
         'delimiter': value.delimiter,
         'encrypted': value.encrypted,
+        'header_row': value.header_row,
         'replace_all_with_latest_file': value.replace_all_with_latest_file,
         'type': value.type,
         'upload_directory': value.upload_directory,

@@ -28,6 +28,12 @@ export interface DatasetOptionsSftp {
      */
     encrypted?: boolean;
     /**
+     * A row of column headers. The delimiter must be the same as the `delimiter` parameter and match the data. If not provided, the first row of the CSV file will be used as the headers.
+     * @type {string}
+     * @memberof DatasetOptionsSftp
+     */
+    header_row?: string;
+    /**
      * The path to the data inside the server. May optionally include full filename, file globs (not regexp), and stftime date parsing formatting. For example, orders/, orders/file.csv, orders/*.csv, or orders/files-%Y-%m-%d.csv
      * @type {string}
      * @memberof DatasetOptionsSftp

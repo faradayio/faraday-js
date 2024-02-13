@@ -26,6 +26,7 @@ function DatasetOptionsSftpMergePatchFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'delimiter': !runtime_1.exists(json, 'delimiter') ? undefined : json['delimiter'],
         'encrypted': !runtime_1.exists(json, 'encrypted') ? undefined : json['encrypted'],
+        'header_row': !runtime_1.exists(json, 'header_row') ? undefined : json['header_row'],
         'prefix': !runtime_1.exists(json, 'prefix') ? undefined : json['prefix'],
         'replace_all_with_latest_file': !runtime_1.exists(json, 'replace_all_with_latest_file') ? undefined : json['replace_all_with_latest_file'],
         'type': json['type'],
@@ -42,6 +43,7 @@ function DatasetOptionsSftpMergePatchToJSON(value) {
     return {
         'delimiter': value.delimiter,
         'encrypted': value.encrypted,
+        'header_row': value.header_row,
         'prefix': value.prefix,
         'replace_all_with_latest_file': value.replace_all_with_latest_file,
         'type': value.type,
