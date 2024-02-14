@@ -50,6 +50,12 @@ export interface ConnectionOptionsAzureSqlServer {
      */
     port: number;
     /**
+     * Schema
+     * @type {string}
+     * @memberof ConnectionOptionsAzureSqlServer
+     */
+    schema?: string;
+    /**
      * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
      * @type {string}
      * @memberof ConnectionOptionsAzureSqlServer
@@ -84,6 +90,7 @@ export function ConnectionOptionsAzureSqlServerFromJSONTyped(json: any, ignoreDi
         'load_balancer': !exists(json, 'load_balancer') ? undefined : json['load_balancer'],
         'password': json['password'],
         'port': json['port'],
+        'schema': !exists(json, 'schema') ? undefined : json['schema'],
         'ssh_bastion': !exists(json, 'ssh_bastion') ? undefined : json['ssh_bastion'],
         'type': json['type'],
         'user': json['user'],
@@ -104,6 +111,7 @@ export function ConnectionOptionsAzureSqlServerToJSON(value?: ConnectionOptionsA
         'load_balancer': value.load_balancer,
         'password': value.password,
         'port': value.port,
+        'schema': value.schema,
         'ssh_bastion': value.ssh_bastion,
         'type': value.type,
         'user': value.user,
