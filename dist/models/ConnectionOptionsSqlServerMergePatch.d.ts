@@ -48,6 +48,12 @@ export interface ConnectionOptionsSqlServerMergePatch {
      */
     port?: number;
     /**
+     * Schema
+     * @type {string}
+     * @memberof ConnectionOptionsSqlServerMergePatch
+     */
+    schema?: string | null;
+    /**
      * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
      * @type {string}
      * @memberof ConnectionOptionsSqlServerMergePatch
