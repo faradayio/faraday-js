@@ -243,7 +243,7 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the configuration of a account.
+     * Update the configuration of an account.
      * Update an account
      */
     private async updateAccountRaw(requestParameters: UpdateAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
@@ -281,7 +281,7 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the configuration of a account.
+     * Update the configuration of an account.
      * Update an account
      */
     async updateAccount(accountId: string, accountMergePatch: AccountMergePatch, ): Promise<Account> {
