@@ -210,7 +210,7 @@ class AccountsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update the configuration of a account.
+     * Update the configuration of an account.
      * Update an account
      */
     updateAccountRaw(requestParameters) {
@@ -242,7 +242,7 @@ class AccountsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update the configuration of a account.
+     * Update the configuration of an account.
      * Update an account
      */
     updateAccount(accountId, accountMergePatch) {

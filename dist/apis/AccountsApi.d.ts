@@ -79,12 +79,12 @@ export declare class AccountsApi extends runtime.BaseAPI {
      */
     getCurrentAccount(): Promise<Account>;
     /**
-     * Update the configuration of a account.
+     * Update the configuration of an account.
      * Update an account
      */
     private updateAccountRaw;
     /**
-     * Update the configuration of a account.
+     * Update the configuration of an account.
      * Update an account
      */
     updateAccount(accountId: string, accountMergePatch: AccountMergePatch): Promise<Account>;
