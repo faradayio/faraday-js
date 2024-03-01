@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TraitToJSON = exports.TraitFromJSONTyped = exports.TraitFromJSON = void 0;
 const runtime_1 = require("../runtime");
 const PrimitiveDataType_1 = require("./PrimitiveDataType");
+const ResourceType_1 = require("./ResourceType");
 const TraitCategory_1 = require("./TraitCategory");
 const TraitInputFromDatasets_1 = require("./TraitInputFromDatasets");
 const TraitStatisticalType_1 = require("./TraitStatisticalType");
@@ -38,6 +39,7 @@ function TraitFromJSONTyped(json, ignoreDiscriminator) {
         'literate': !runtime_1.exists(json, 'literate') ? undefined : json['literate'],
         'lookup_table': !runtime_1.exists(json, 'lookup_table') ? undefined : json['lookup_table'],
         'name': json['name'],
+        'resource_type': ResourceType_1.ResourceTypeFromJSON(json['resource_type']),
         'statistical_type': !runtime_1.exists(json, 'statistical_type') ? undefined : TraitStatisticalType_1.TraitStatisticalTypeFromJSON(json['statistical_type']),
         'type': !runtime_1.exists(json, 'type') ? undefined : PrimitiveDataType_1.PrimitiveDataTypeFromJSON(json['type']),
         'unit': !runtime_1.exists(json, 'unit') ? undefined : json['unit'],
@@ -63,6 +65,7 @@ function TraitToJSON(value) {
         'literate': value.literate,
         'lookup_table': value.lookup_table,
         'name': value.name,
+        'resource_type': ResourceType_1.ResourceTypeToJSON(value.resource_type),
         'statistical_type': TraitStatisticalType_1.TraitStatisticalTypeToJSON(value.statistical_type),
         'type': PrimitiveDataType_1.PrimitiveDataTypeToJSON(value.type),
         'unit': value.unit,

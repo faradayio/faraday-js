@@ -20,6 +20,12 @@ import {
     PrimitiveDataTypeToJSON,
 } from './PrimitiveDataType';
 import {
+    ResourceType,
+    ResourceTypeFromJSON,
+    ResourceTypeFromJSONTyped,
+    ResourceTypeToJSON,
+} from './ResourceType';
+import {
     TraitCategory,
     TraitCategoryFromJSON,
     TraitCategoryFromJSONTyped,
@@ -110,6 +116,12 @@ export interface Trait {
     name: string;
     /**
      * 
+     * @type {ResourceType}
+     * @memberof Trait
+     */
+    resource_type: ResourceType;
+    /**
+     * 
      * @type {TraitStatisticalType}
      * @memberof Trait
      */
@@ -154,6 +166,7 @@ export function TraitFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tra
         'literate': !exists(json, 'literate') ? undefined : json['literate'],
         'lookup_table': !exists(json, 'lookup_table') ? undefined : json['lookup_table'],
         'name': json['name'],
+        'resource_type': ResourceTypeFromJSON(json['resource_type']),
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
         'type': !exists(json, 'type') ? undefined : PrimitiveDataTypeFromJSON(json['type']),
         'unit': !exists(json, 'unit') ? undefined : json['unit'],
@@ -180,6 +193,7 @@ export function TraitToJSON(value?: Trait | null): any {
         'literate': value.literate,
         'lookup_table': value.lookup_table,
         'name': value.name,
+        'resource_type': ResourceTypeToJSON(value.resource_type),
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
         'type': PrimitiveDataTypeToJSON(value.type),
         'unit': value.unit,

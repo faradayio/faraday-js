@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { PrimitiveDataType } from './PrimitiveDataType';
+import { ResourceType } from './ResourceType';
 import { TraitCategory } from './TraitCategory';
 import { TraitInputFromDatasets } from './TraitInputFromDatasets';
 import { TraitStatisticalType } from './TraitStatisticalType';
@@ -83,6 +84,12 @@ export interface Trait {
      * @memberof Trait
      */
     name: string;
+    /**
+     *
+     * @type {ResourceType}
+     * @memberof Trait
+     */
+    resource_type: ResourceType;
     /**
      *
      * @type {TraitStatisticalType}
