@@ -14,6 +14,8 @@ import { TargetFilterOutcomePercentileConditions } from './TargetFilterOutcomePe
 import { TargetFilterOutcomeProbabilityConditions } from './TargetFilterOutcomeProbabilityConditions';
 import { TargetFilterOutcomeScoreConditions } from './TargetFilterOutcomeScoreConditions';
 import { TargetFilterPersonaSetPersonaIdConditions } from './TargetFilterPersonaSetPersonaIdConditions';
+import { TargetFilterRecommenderRankConditions } from './TargetFilterRecommenderRankConditions';
+import { TargetFilterRecommenderUncalibratedProbabilityConditions } from './TargetFilterRecommenderUncalibratedProbabilityConditions';
 import { TargetFilterTraitConditions } from './TargetFilterTraitConditions';
 /**
  * (Parameters used to PATCH the `TargetFilter` type.)
@@ -25,6 +27,8 @@ import { TargetFilterTraitConditions } from './TargetFilterTraitConditions';
  * - To filter by persona set persona id, use `persona`.
  * - To filter by cohort membership, use `cohort_membership`.
  * - To filter by trait, use `trait`.
+ * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
+ * - To filter by recommender rank, use `recommender_rank`.
  *
  * Conditions are AND-ed together (like SQL) - each condition applies an additional constraint.
  *
@@ -65,6 +69,18 @@ export interface TargetFilterMergePatch {
      * @memberof TargetFilterMergePatch
      */
     persona?: Array<TargetFilterPersonaSetPersonaIdConditions> | null;
+    /**
+     * List of conditions to filter recommender rank on.
+     * @type {Array<TargetFilterRecommenderRankConditions>}
+     * @memberof TargetFilterMergePatch
+     */
+    recommender_rank?: Array<TargetFilterRecommenderRankConditions> | null;
+    /**
+     * List of conditions to filter recommender uncalibrated probability on.
+     * @type {Array<TargetFilterRecommenderUncalibratedProbabilityConditions>}
+     * @memberof TargetFilterMergePatch
+     */
+    recommender_uncalibrated_probability?: Array<TargetFilterRecommenderUncalibratedProbabilityConditions> | null;
     /**
      * List of conditions to filter traits.
      * @type {Array<TargetFilterTraitConditions>}

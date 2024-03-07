@@ -44,6 +44,18 @@ import {
     TargetFilterPersonaSetPersonaIdConditionsToJSON,
 } from './TargetFilterPersonaSetPersonaIdConditions';
 import {
+    TargetFilterRecommenderRankConditions,
+    TargetFilterRecommenderRankConditionsFromJSON,
+    TargetFilterRecommenderRankConditionsFromJSONTyped,
+    TargetFilterRecommenderRankConditionsToJSON,
+} from './TargetFilterRecommenderRankConditions';
+import {
+    TargetFilterRecommenderUncalibratedProbabilityConditions,
+    TargetFilterRecommenderUncalibratedProbabilityConditionsFromJSON,
+    TargetFilterRecommenderUncalibratedProbabilityConditionsFromJSONTyped,
+    TargetFilterRecommenderUncalibratedProbabilityConditionsToJSON,
+} from './TargetFilterRecommenderUncalibratedProbabilityConditions';
+import {
     TargetFilterTraitConditions,
     TargetFilterTraitConditionsFromJSON,
     TargetFilterTraitConditionsFromJSONTyped,
@@ -60,6 +72,8 @@ import {
  * - To filter by persona set persona id, use `persona`.
  * - To filter by cohort membership, use `cohort_membership`.
  * - To filter by trait, use `trait`.
+ * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
+ * - To filter by recommender rank, use `recommender_rank`.
  * 
  * Conditions are AND-ed together (like SQL) - each condition applies an additional constraint.
  * 
@@ -101,6 +115,18 @@ export interface TargetFilterMergePatch {
      */
     persona?: Array<TargetFilterPersonaSetPersonaIdConditions> | null;
     /**
+     * List of conditions to filter recommender rank on.
+     * @type {Array<TargetFilterRecommenderRankConditions>}
+     * @memberof TargetFilterMergePatch
+     */
+    recommender_rank?: Array<TargetFilterRecommenderRankConditions> | null;
+    /**
+     * List of conditions to filter recommender uncalibrated probability on.
+     * @type {Array<TargetFilterRecommenderUncalibratedProbabilityConditions>}
+     * @memberof TargetFilterMergePatch
+     */
+    recommender_uncalibrated_probability?: Array<TargetFilterRecommenderUncalibratedProbabilityConditions> | null;
+    /**
      * List of conditions to filter traits.
      * @type {Array<TargetFilterTraitConditions>}
      * @memberof TargetFilterMergePatch
@@ -123,6 +149,8 @@ export function TargetFilterMergePatchFromJSONTyped(json: any, ignoreDiscriminat
         'outcome_probability': !exists(json, 'outcome_probability') ? undefined : (json['outcome_probability'] === null ? null : (json['outcome_probability'] as Array<any>).map(TargetFilterOutcomeProbabilityConditionsFromJSON)),
         'outcome_score': !exists(json, 'outcome_score') ? undefined : (json['outcome_score'] === null ? null : (json['outcome_score'] as Array<any>).map(TargetFilterOutcomeScoreConditionsFromJSON)),
         'persona': !exists(json, 'persona') ? undefined : (json['persona'] === null ? null : (json['persona'] as Array<any>).map(TargetFilterPersonaSetPersonaIdConditionsFromJSON)),
+        'recommender_rank': !exists(json, 'recommender_rank') ? undefined : (json['recommender_rank'] === null ? null : (json['recommender_rank'] as Array<any>).map(TargetFilterRecommenderRankConditionsFromJSON)),
+        'recommender_uncalibrated_probability': !exists(json, 'recommender_uncalibrated_probability') ? undefined : (json['recommender_uncalibrated_probability'] === null ? null : (json['recommender_uncalibrated_probability'] as Array<any>).map(TargetFilterRecommenderUncalibratedProbabilityConditionsFromJSON)),
         'trait': !exists(json, 'trait') ? undefined : (json['trait'] === null ? null : (json['trait'] as Array<any>).map(TargetFilterTraitConditionsFromJSON)),
     };
 }
@@ -141,6 +169,8 @@ export function TargetFilterMergePatchToJSON(value?: TargetFilterMergePatch | nu
         'outcome_probability': value.outcome_probability === undefined ? undefined : (value.outcome_probability === null ? null : (value.outcome_probability as Array<any>).map(TargetFilterOutcomeProbabilityConditionsToJSON)),
         'outcome_score': value.outcome_score === undefined ? undefined : (value.outcome_score === null ? null : (value.outcome_score as Array<any>).map(TargetFilterOutcomeScoreConditionsToJSON)),
         'persona': value.persona === undefined ? undefined : (value.persona === null ? null : (value.persona as Array<any>).map(TargetFilterPersonaSetPersonaIdConditionsToJSON)),
+        'recommender_rank': value.recommender_rank === undefined ? undefined : (value.recommender_rank === null ? null : (value.recommender_rank as Array<any>).map(TargetFilterRecommenderRankConditionsToJSON)),
+        'recommender_uncalibrated_probability': value.recommender_uncalibrated_probability === undefined ? undefined : (value.recommender_uncalibrated_probability === null ? null : (value.recommender_uncalibrated_probability as Array<any>).map(TargetFilterRecommenderUncalibratedProbabilityConditionsToJSON)),
         'trait': value.trait === undefined ? undefined : (value.trait === null ? null : (value.trait as Array<any>).map(TargetFilterTraitConditionsToJSON)),
     };
 }
