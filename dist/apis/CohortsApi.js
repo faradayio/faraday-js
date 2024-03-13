@@ -209,7 +209,7 @@ class CohortsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Edit configuration of an cohort
+     * Edit configuration of a cohort
      * Edit a cohort
      */
     updateCohortRaw(requestParameters) {
@@ -241,7 +241,7 @@ class CohortsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Edit configuration of an cohort
+     * Edit configuration of a cohort
      * Edit a cohort
      */
     updateCohort(cohortId, cohortFields) {

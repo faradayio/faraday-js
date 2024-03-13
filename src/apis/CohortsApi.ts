@@ -250,7 +250,7 @@ export class CohortsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Edit configuration of an cohort
+     * Edit configuration of a cohort
      * Edit a cohort
      */
     private async updateCohortRaw(requestParameters: UpdateCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
@@ -288,7 +288,7 @@ export class CohortsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Edit configuration of an cohort
+     * Edit configuration of a cohort
      * Edit a cohort
      */
     async updateCohort(cohortId: string, cohortFields: CohortMergePatch, ): Promise<Cohort> {

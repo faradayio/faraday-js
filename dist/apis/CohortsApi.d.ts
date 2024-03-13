@@ -78,12 +78,12 @@ export declare class CohortsApi extends runtime.BaseAPI {
      */
     getCohorts(): Promise<Array<Cohort>>;
     /**
-     * Edit configuration of an cohort
+     * Edit configuration of a cohort
      * Edit a cohort
      */
     private updateCohortRaw;
     /**
-     * Edit configuration of an cohort
+     * Edit configuration of a cohort
      * Edit a cohort
      */
     updateCohort(cohortId: string, cohortFields: CohortMergePatch): Promise<Cohort>;
