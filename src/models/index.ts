@@ -440,6 +440,8 @@ export * from './TargetFilterOutcomeScoreConditions';
 export * from './TargetFilterPersonaSetPersonaIdConditions';
 export * from './TargetFilterPost';
 export * from './TargetFilterPut';
+export * from './TargetFilterRecommenderRankConditions';
+export * from './TargetFilterRecommenderUncalibratedProbabilityConditions';
 export * from './TargetFilterTraitConditions';
 export * from './TargetLimit';
 export * from './TargetLimitMergePatch';

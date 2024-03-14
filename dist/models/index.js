@@ -452,6 +452,8 @@ __exportStar(require("./TargetFilterOutcomeScoreConditions"), exports);
 __exportStar(require("./TargetFilterPersonaSetPersonaIdConditions"), exports);
 __exportStar(require("./TargetFilterPost"), exports);
 __exportStar(require("./TargetFilterPut"), exports);
+__exportStar(require("./TargetFilterRecommenderRankConditions"), exports);
+__exportStar(require("./TargetFilterRecommenderUncalibratedProbabilityConditions"), exports);
 __exportStar(require("./TargetFilterTraitConditions"), exports);
 __exportStar(require("./TargetLimit"), exports);
 __exportStar(require("./TargetLimitMergePatch"), exports);

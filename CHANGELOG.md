@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.5] - 2024-03-13
+
+### Added
+
+- Added `target_filter_recommender_ranks` and `target_filter_recommender_uncalibrated_probabilities` to the `filter` object of a `target`.
+
 ## [0.10.4] - 2024-02-14
 
 ### Added

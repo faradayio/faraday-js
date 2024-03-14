@@ -461,6 +461,8 @@ src/models/TargetFilterOutcomeScoreConditions.ts
 src/models/TargetFilterPersonaSetPersonaIdConditions.ts
 src/models/TargetFilterPost.ts
 src/models/TargetFilterPut.ts
+src/models/TargetFilterRecommenderRankConditions.ts
+src/models/TargetFilterRecommenderUncalibratedProbabilityConditions.ts
 src/models/TargetFilterTraitConditions.ts
 src/models/TargetLimit.ts
 src/models/TargetLimitMergePatch.ts
