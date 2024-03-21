@@ -31,6 +31,7 @@ const DatasetOptionsHostedCsvMergePatch_1 = require("./DatasetOptionsHostedCsvMe
 const DatasetOptionsHubspotMergePatch_1 = require("./DatasetOptionsHubspotMergePatch");
 const DatasetOptionsIterableMergePatch_1 = require("./DatasetOptionsIterableMergePatch");
 const DatasetOptionsKlaviyoMergePatch_1 = require("./DatasetOptionsKlaviyoMergePatch");
+const DatasetOptionsMergeMergePatch_1 = require("./DatasetOptionsMergeMergePatch");
 const DatasetOptionsMysqlMergePatch_1 = require("./DatasetOptionsMysqlMergePatch");
 const DatasetOptionsPostgresMergePatch_1 = require("./DatasetOptionsPostgresMergePatch");
 const DatasetOptionsRechargeMergePatch_1 = require("./DatasetOptionsRechargeMergePatch");
@@ -86,6 +87,8 @@ function DatasetOptionsMergePatchFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, DatasetOptionsIterableMergePatch_1.DatasetOptionsIterableMergePatchFromJSONTyped(json, true)), { type: 'iterable' });
         case 'klaviyo':
             return Object.assign(Object.assign({}, DatasetOptionsKlaviyoMergePatch_1.DatasetOptionsKlaviyoMergePatchFromJSONTyped(json, true)), { type: 'klaviyo' });
+        case 'merge':
+            return Object.assign(Object.assign({}, DatasetOptionsMergeMergePatch_1.DatasetOptionsMergeMergePatchFromJSONTyped(json, true)), { type: 'merge' });
         case 'mysql':
             return Object.assign(Object.assign({}, DatasetOptionsMysqlMergePatch_1.DatasetOptionsMysqlMergePatchFromJSONTyped(json, true)), { type: 'mysql' });
         case 'postgres':
@@ -157,6 +160,8 @@ function DatasetOptionsMergePatchToJSON(value) {
             return DatasetOptionsIterableMergePatch_1.DatasetOptionsIterableMergePatchToJSON(value);
         case 'klaviyo':
             return DatasetOptionsKlaviyoMergePatch_1.DatasetOptionsKlaviyoMergePatchToJSON(value);
+        case 'merge':
+            return DatasetOptionsMergeMergePatch_1.DatasetOptionsMergeMergePatchToJSON(value);
         case 'mysql':
             return DatasetOptionsMysqlMergePatch_1.DatasetOptionsMysqlMergePatchToJSON(value);
         case 'postgres':

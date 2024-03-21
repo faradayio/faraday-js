@@ -26,6 +26,7 @@ import { DatasetOptionsHostedCsv } from './DatasetOptionsHostedCsv';
 import { DatasetOptionsHubspot } from './DatasetOptionsHubspot';
 import { DatasetOptionsIterable } from './DatasetOptionsIterable';
 import { DatasetOptionsKlaviyo } from './DatasetOptionsKlaviyo';
+import { DatasetOptionsMerge } from './DatasetOptionsMerge';
 import { DatasetOptionsMysql } from './DatasetOptionsMysql';
 import { DatasetOptionsPostgres } from './DatasetOptionsPostgres';
 import { DatasetOptionsRecharge } from './DatasetOptionsRecharge';
@@ -78,6 +79,8 @@ export declare type DatasetOptions = {
 } & DatasetOptionsIterable | {
     type: 'klaviyo';
 } & DatasetOptionsKlaviyo | {
+    type: 'merge';
+} & DatasetOptionsMerge | {
     type: 'mysql';
 } & DatasetOptionsMysql | {
     type: 'postgres';

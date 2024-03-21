@@ -35,6 +35,7 @@ const ConnectionOptionsIterableMergePatch_1 = require("./ConnectionOptionsIterab
 const ConnectionOptionsKlaviyoMergePatch_1 = require("./ConnectionOptionsKlaviyoMergePatch");
 const ConnectionOptionsLinkedinAdsMergePatch_1 = require("./ConnectionOptionsLinkedinAdsMergePatch");
 const ConnectionOptionsLookupApiMergePatch_1 = require("./ConnectionOptionsLookupApiMergePatch");
+const ConnectionOptionsMergeMergePatch_1 = require("./ConnectionOptionsMergeMergePatch");
 const ConnectionOptionsMysqlMergePatch_1 = require("./ConnectionOptionsMysqlMergePatch");
 const ConnectionOptionsPinterestAdsMergePatch_1 = require("./ConnectionOptionsPinterestAdsMergePatch");
 const ConnectionOptionsPoplarMergePatch_1 = require("./ConnectionOptionsPoplarMergePatch");
@@ -103,6 +104,8 @@ function ConnectionOptionsMergePatchFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, ConnectionOptionsLinkedinAdsMergePatch_1.ConnectionOptionsLinkedinAdsMergePatchFromJSONTyped(json, true)), { type: 'linkedin_ads' });
         case 'lookup_api':
             return Object.assign(Object.assign({}, ConnectionOptionsLookupApiMergePatch_1.ConnectionOptionsLookupApiMergePatchFromJSONTyped(json, true)), { type: 'lookup_api' });
+        case 'merge':
+            return Object.assign(Object.assign({}, ConnectionOptionsMergeMergePatch_1.ConnectionOptionsMergeMergePatchFromJSONTyped(json, true)), { type: 'merge' });
         case 'mysql':
             return Object.assign(Object.assign({}, ConnectionOptionsMysqlMergePatch_1.ConnectionOptionsMysqlMergePatchFromJSONTyped(json, true)), { type: 'mysql' });
         case 'pinterest_ads':
@@ -192,6 +195,8 @@ function ConnectionOptionsMergePatchToJSON(value) {
             return ConnectionOptionsLinkedinAdsMergePatch_1.ConnectionOptionsLinkedinAdsMergePatchToJSON(value);
         case 'lookup_api':
             return ConnectionOptionsLookupApiMergePatch_1.ConnectionOptionsLookupApiMergePatchToJSON(value);
+        case 'merge':
+            return ConnectionOptionsMergeMergePatch_1.ConnectionOptionsMergeMergePatchToJSON(value);
         case 'mysql':
             return ConnectionOptionsMysqlMergePatch_1.ConnectionOptionsMysqlMergePatchToJSON(value);
         case 'pinterest_ads':

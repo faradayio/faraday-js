@@ -35,6 +35,7 @@ const ConnectionOptionsIterablePut_1 = require("./ConnectionOptionsIterablePut")
 const ConnectionOptionsKlaviyoPut_1 = require("./ConnectionOptionsKlaviyoPut");
 const ConnectionOptionsLinkedinAdsPut_1 = require("./ConnectionOptionsLinkedinAdsPut");
 const ConnectionOptionsLookupApiPut_1 = require("./ConnectionOptionsLookupApiPut");
+const ConnectionOptionsMergePut_1 = require("./ConnectionOptionsMergePut");
 const ConnectionOptionsMysqlPut_1 = require("./ConnectionOptionsMysqlPut");
 const ConnectionOptionsPinterestAdsPut_1 = require("./ConnectionOptionsPinterestAdsPut");
 const ConnectionOptionsPoplarPut_1 = require("./ConnectionOptionsPoplarPut");
@@ -103,6 +104,8 @@ function ConnectionOptionsPutFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, ConnectionOptionsLinkedinAdsPut_1.ConnectionOptionsLinkedinAdsPutFromJSONTyped(json, true)), { type: 'linkedin_ads' });
         case 'lookup_api':
             return Object.assign(Object.assign({}, ConnectionOptionsLookupApiPut_1.ConnectionOptionsLookupApiPutFromJSONTyped(json, true)), { type: 'lookup_api' });
+        case 'merge':
+            return Object.assign(Object.assign({}, ConnectionOptionsMergePut_1.ConnectionOptionsMergePutFromJSONTyped(json, true)), { type: 'merge' });
         case 'mysql':
             return Object.assign(Object.assign({}, ConnectionOptionsMysqlPut_1.ConnectionOptionsMysqlPutFromJSONTyped(json, true)), { type: 'mysql' });
         case 'pinterest_ads':
@@ -192,6 +195,8 @@ function ConnectionOptionsPutToJSON(value) {
             return ConnectionOptionsLinkedinAdsPut_1.ConnectionOptionsLinkedinAdsPutToJSON(value);
         case 'lookup_api':
             return ConnectionOptionsLookupApiPut_1.ConnectionOptionsLookupApiPutToJSON(value);
+        case 'merge':
+            return ConnectionOptionsMergePut_1.ConnectionOptionsMergePutToJSON(value);
         case 'mysql':
             return ConnectionOptionsMysqlPut_1.ConnectionOptionsMysqlPutToJSON(value);
         case 'pinterest_ads':

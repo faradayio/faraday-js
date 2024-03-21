@@ -26,6 +26,7 @@ import { DatasetOptionsHostedCsvMergePatch } from './DatasetOptionsHostedCsvMerg
 import { DatasetOptionsHubspotMergePatch } from './DatasetOptionsHubspotMergePatch';
 import { DatasetOptionsIterableMergePatch } from './DatasetOptionsIterableMergePatch';
 import { DatasetOptionsKlaviyoMergePatch } from './DatasetOptionsKlaviyoMergePatch';
+import { DatasetOptionsMergeMergePatch } from './DatasetOptionsMergeMergePatch';
 import { DatasetOptionsMysqlMergePatch } from './DatasetOptionsMysqlMergePatch';
 import { DatasetOptionsPostgresMergePatch } from './DatasetOptionsPostgresMergePatch';
 import { DatasetOptionsRechargeMergePatch } from './DatasetOptionsRechargeMergePatch';
@@ -78,6 +79,8 @@ export declare type DatasetOptionsMergePatch = {
 } & DatasetOptionsIterableMergePatch | {
     type: 'klaviyo';
 } & DatasetOptionsKlaviyoMergePatch | {
+    type: 'merge';
+} & DatasetOptionsMergeMergePatch | {
     type: 'mysql';
 } & DatasetOptionsMysqlMergePatch | {
     type: 'postgres';

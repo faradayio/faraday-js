@@ -30,6 +30,7 @@ import { ConnectionOptionsIterablePost } from './ConnectionOptionsIterablePost';
 import { ConnectionOptionsKlaviyoPost } from './ConnectionOptionsKlaviyoPost';
 import { ConnectionOptionsLinkedinAdsPost } from './ConnectionOptionsLinkedinAdsPost';
 import { ConnectionOptionsLookupApiPost } from './ConnectionOptionsLookupApiPost';
+import { ConnectionOptionsMergePost } from './ConnectionOptionsMergePost';
 import { ConnectionOptionsMysqlPost } from './ConnectionOptionsMysqlPost';
 import { ConnectionOptionsPinterestAdsPost } from './ConnectionOptionsPinterestAdsPost';
 import { ConnectionOptionsPoplarPost } from './ConnectionOptionsPoplarPost';
@@ -95,6 +96,8 @@ export declare type ConnectionOptionsPost = {
 } & ConnectionOptionsLinkedinAdsPost | {
     type: 'lookup_api';
 } & ConnectionOptionsLookupApiPost | {
+    type: 'merge';
+} & ConnectionOptionsMergePost | {
     type: 'mysql';
 } & ConnectionOptionsMysqlPost | {
     type: 'pinterest_ads';

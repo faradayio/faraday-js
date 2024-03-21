@@ -30,6 +30,7 @@ import { ConnectionOptionsIterablePut } from './ConnectionOptionsIterablePut';
 import { ConnectionOptionsKlaviyoPut } from './ConnectionOptionsKlaviyoPut';
 import { ConnectionOptionsLinkedinAdsPut } from './ConnectionOptionsLinkedinAdsPut';
 import { ConnectionOptionsLookupApiPut } from './ConnectionOptionsLookupApiPut';
+import { ConnectionOptionsMergePut } from './ConnectionOptionsMergePut';
 import { ConnectionOptionsMysqlPut } from './ConnectionOptionsMysqlPut';
 import { ConnectionOptionsPinterestAdsPut } from './ConnectionOptionsPinterestAdsPut';
 import { ConnectionOptionsPoplarPut } from './ConnectionOptionsPoplarPut';
@@ -95,6 +96,8 @@ export declare type ConnectionOptionsPut = {
 } & ConnectionOptionsLinkedinAdsPut | {
     type: 'lookup_api';
 } & ConnectionOptionsLookupApiPut | {
+    type: 'merge';
+} & ConnectionOptionsMergePut | {
     type: 'mysql';
 } & ConnectionOptionsMysqlPut | {
     type: 'pinterest_ads';
