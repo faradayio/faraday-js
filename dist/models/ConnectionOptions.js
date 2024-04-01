@@ -35,6 +35,7 @@ const ConnectionOptionsIterable_1 = require("./ConnectionOptionsIterable");
 const ConnectionOptionsKlaviyo_1 = require("./ConnectionOptionsKlaviyo");
 const ConnectionOptionsLinkedinAds_1 = require("./ConnectionOptionsLinkedinAds");
 const ConnectionOptionsLookupApi_1 = require("./ConnectionOptionsLookupApi");
+const ConnectionOptionsMerge_1 = require("./ConnectionOptionsMerge");
 const ConnectionOptionsMysql_1 = require("./ConnectionOptionsMysql");
 const ConnectionOptionsPinterestAds_1 = require("./ConnectionOptionsPinterestAds");
 const ConnectionOptionsPoplar_1 = require("./ConnectionOptionsPoplar");
@@ -103,6 +104,8 @@ function ConnectionOptionsFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, ConnectionOptionsLinkedinAds_1.ConnectionOptionsLinkedinAdsFromJSONTyped(json, true)), { type: 'linkedin_ads' });
         case 'lookup_api':
             return Object.assign(Object.assign({}, ConnectionOptionsLookupApi_1.ConnectionOptionsLookupApiFromJSONTyped(json, true)), { type: 'lookup_api' });
+        case 'merge':
+            return Object.assign(Object.assign({}, ConnectionOptionsMerge_1.ConnectionOptionsMergeFromJSONTyped(json, true)), { type: 'merge' });
         case 'mysql':
             return Object.assign(Object.assign({}, ConnectionOptionsMysql_1.ConnectionOptionsMysqlFromJSONTyped(json, true)), { type: 'mysql' });
         case 'pinterest_ads':
@@ -192,6 +195,8 @@ function ConnectionOptionsToJSON(value) {
             return ConnectionOptionsLinkedinAds_1.ConnectionOptionsLinkedinAdsToJSON(value);
         case 'lookup_api':
             return ConnectionOptionsLookupApi_1.ConnectionOptionsLookupApiToJSON(value);
+        case 'merge':
+            return ConnectionOptionsMerge_1.ConnectionOptionsMergeToJSON(value);
         case 'mysql':
             return ConnectionOptionsMysql_1.ConnectionOptionsMysqlToJSON(value);
         case 'pinterest_ads':

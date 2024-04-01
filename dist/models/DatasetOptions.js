@@ -31,6 +31,7 @@ const DatasetOptionsHostedCsv_1 = require("./DatasetOptionsHostedCsv");
 const DatasetOptionsHubspot_1 = require("./DatasetOptionsHubspot");
 const DatasetOptionsIterable_1 = require("./DatasetOptionsIterable");
 const DatasetOptionsKlaviyo_1 = require("./DatasetOptionsKlaviyo");
+const DatasetOptionsMerge_1 = require("./DatasetOptionsMerge");
 const DatasetOptionsMysql_1 = require("./DatasetOptionsMysql");
 const DatasetOptionsPostgres_1 = require("./DatasetOptionsPostgres");
 const DatasetOptionsRecharge_1 = require("./DatasetOptionsRecharge");
@@ -86,6 +87,8 @@ function DatasetOptionsFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, DatasetOptionsIterable_1.DatasetOptionsIterableFromJSONTyped(json, true)), { type: 'iterable' });
         case 'klaviyo':
             return Object.assign(Object.assign({}, DatasetOptionsKlaviyo_1.DatasetOptionsKlaviyoFromJSONTyped(json, true)), { type: 'klaviyo' });
+        case 'merge':
+            return Object.assign(Object.assign({}, DatasetOptionsMerge_1.DatasetOptionsMergeFromJSONTyped(json, true)), { type: 'merge' });
         case 'mysql':
             return Object.assign(Object.assign({}, DatasetOptionsMysql_1.DatasetOptionsMysqlFromJSONTyped(json, true)), { type: 'mysql' });
         case 'postgres':
@@ -157,6 +160,8 @@ function DatasetOptionsToJSON(value) {
             return DatasetOptionsIterable_1.DatasetOptionsIterableToJSON(value);
         case 'klaviyo':
             return DatasetOptionsKlaviyo_1.DatasetOptionsKlaviyoToJSON(value);
+        case 'merge':
+            return DatasetOptionsMerge_1.DatasetOptionsMergeToJSON(value);
         case 'mysql':
             return DatasetOptionsMysql_1.DatasetOptionsMysqlToJSON(value);
         case 'postgres':

@@ -133,7 +133,11 @@ src/models/ConnectionOptionsLookupApi.ts
 src/models/ConnectionOptionsLookupApiMergePatch.ts
 src/models/ConnectionOptionsLookupApiPost.ts
 src/models/ConnectionOptionsLookupApiPut.ts
+src/models/ConnectionOptionsMerge.ts
+src/models/ConnectionOptionsMergeMergePatch.ts
 src/models/ConnectionOptionsMergePatch.ts
+src/models/ConnectionOptionsMergePost.ts
+src/models/ConnectionOptionsMergePut.ts
 src/models/ConnectionOptionsMysql.ts
 src/models/ConnectionOptionsMysqlMergePatch.ts
 src/models/ConnectionOptionsMysqlPost.ts
@@ -290,7 +294,12 @@ src/models/DatasetOptionsKlaviyo.ts
 src/models/DatasetOptionsKlaviyoMergePatch.ts
 src/models/DatasetOptionsKlaviyoPost.ts
 src/models/DatasetOptionsKlaviyoPut.ts
+src/models/DatasetOptionsMerge.ts
+src/models/DatasetOptionsMergeMerge.ts
+src/models/DatasetOptionsMergeMergePatch.ts
 src/models/DatasetOptionsMergePatch.ts
+src/models/DatasetOptionsMergePost.ts
+src/models/DatasetOptionsMergePut.ts
 src/models/DatasetOptionsMysql.ts
 src/models/DatasetOptionsMysqlMergePatch.ts
 src/models/DatasetOptionsMysqlPost.ts

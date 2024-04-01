@@ -35,6 +35,7 @@ const ConnectionOptionsIterablePost_1 = require("./ConnectionOptionsIterablePost
 const ConnectionOptionsKlaviyoPost_1 = require("./ConnectionOptionsKlaviyoPost");
 const ConnectionOptionsLinkedinAdsPost_1 = require("./ConnectionOptionsLinkedinAdsPost");
 const ConnectionOptionsLookupApiPost_1 = require("./ConnectionOptionsLookupApiPost");
+const ConnectionOptionsMergePost_1 = require("./ConnectionOptionsMergePost");
 const ConnectionOptionsMysqlPost_1 = require("./ConnectionOptionsMysqlPost");
 const ConnectionOptionsPinterestAdsPost_1 = require("./ConnectionOptionsPinterestAdsPost");
 const ConnectionOptionsPoplarPost_1 = require("./ConnectionOptionsPoplarPost");
@@ -103,6 +104,8 @@ function ConnectionOptionsPostFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, ConnectionOptionsLinkedinAdsPost_1.ConnectionOptionsLinkedinAdsPostFromJSONTyped(json, true)), { type: 'linkedin_ads' });
         case 'lookup_api':
             return Object.assign(Object.assign({}, ConnectionOptionsLookupApiPost_1.ConnectionOptionsLookupApiPostFromJSONTyped(json, true)), { type: 'lookup_api' });
+        case 'merge':
+            return Object.assign(Object.assign({}, ConnectionOptionsMergePost_1.ConnectionOptionsMergePostFromJSONTyped(json, true)), { type: 'merge' });
         case 'mysql':
             return Object.assign(Object.assign({}, ConnectionOptionsMysqlPost_1.ConnectionOptionsMysqlPostFromJSONTyped(json, true)), { type: 'mysql' });
         case 'pinterest_ads':
@@ -192,6 +195,8 @@ function ConnectionOptionsPostToJSON(value) {
             return ConnectionOptionsLinkedinAdsPost_1.ConnectionOptionsLinkedinAdsPostToJSON(value);
         case 'lookup_api':
             return ConnectionOptionsLookupApiPost_1.ConnectionOptionsLookupApiPostToJSON(value);
+        case 'merge':
+            return ConnectionOptionsMergePost_1.ConnectionOptionsMergePostToJSON(value);
         case 'mysql':
             return ConnectionOptionsMysqlPost_1.ConnectionOptionsMysqlPostToJSON(value);
         case 'pinterest_ads':

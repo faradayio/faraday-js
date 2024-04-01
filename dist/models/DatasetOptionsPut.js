@@ -31,6 +31,7 @@ const DatasetOptionsHostedCsvPut_1 = require("./DatasetOptionsHostedCsvPut");
 const DatasetOptionsHubspotPut_1 = require("./DatasetOptionsHubspotPut");
 const DatasetOptionsIterablePut_1 = require("./DatasetOptionsIterablePut");
 const DatasetOptionsKlaviyoPut_1 = require("./DatasetOptionsKlaviyoPut");
+const DatasetOptionsMergePut_1 = require("./DatasetOptionsMergePut");
 const DatasetOptionsMysqlPut_1 = require("./DatasetOptionsMysqlPut");
 const DatasetOptionsPostgresPut_1 = require("./DatasetOptionsPostgresPut");
 const DatasetOptionsRechargePut_1 = require("./DatasetOptionsRechargePut");
@@ -86,6 +87,8 @@ function DatasetOptionsPutFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, DatasetOptionsIterablePut_1.DatasetOptionsIterablePutFromJSONTyped(json, true)), { type: 'iterable' });
         case 'klaviyo':
             return Object.assign(Object.assign({}, DatasetOptionsKlaviyoPut_1.DatasetOptionsKlaviyoPutFromJSONTyped(json, true)), { type: 'klaviyo' });
+        case 'merge':
+            return Object.assign(Object.assign({}, DatasetOptionsMergePut_1.DatasetOptionsMergePutFromJSONTyped(json, true)), { type: 'merge' });
         case 'mysql':
             return Object.assign(Object.assign({}, DatasetOptionsMysqlPut_1.DatasetOptionsMysqlPutFromJSONTyped(json, true)), { type: 'mysql' });
         case 'postgres':
@@ -157,6 +160,8 @@ function DatasetOptionsPutToJSON(value) {
             return DatasetOptionsIterablePut_1.DatasetOptionsIterablePutToJSON(value);
         case 'klaviyo':
             return DatasetOptionsKlaviyoPut_1.DatasetOptionsKlaviyoPutToJSON(value);
+        case 'merge':
+            return DatasetOptionsMergePut_1.DatasetOptionsMergePutToJSON(value);
         case 'mysql':
             return DatasetOptionsMysqlPut_1.DatasetOptionsMysqlPutToJSON(value);
         case 'postgres':
