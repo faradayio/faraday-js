@@ -24,6 +24,8 @@ import {
  * A mapping of trait name to trait definition, where the key is what the trait will be called in Faraday's system.
  * 
  * Traits are characteristics about people, that are unrelated to particular events.
+ * 
+ * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
  * @export
  * @interface OutputToTraits
  */

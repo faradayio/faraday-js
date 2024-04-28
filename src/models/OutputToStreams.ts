@@ -73,6 +73,8 @@ import {
  * If no format is provided, the dataset type will be retained (data uploaded through csv are text by default).
  * 
  * For the date formats, time values are ignored. In other words, if you have YYYY-MM-DDTHH:MM:SS, you can pick yyyy_mm_dd_dash.
+ * 
+ * Cannot be set in combination with `output_all_columns_as_traits`.
  * @export
  * @interface OutputToStreams
  */

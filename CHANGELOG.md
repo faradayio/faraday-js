@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.7] - 2024-04-12
+
+### Added
+
+- Added `output_all_columns_as_traits` as an alternative to `output_to_traits` when configuring datasets.
+
 ## [0.10.6] - 2024-03-21
 
 ### Added

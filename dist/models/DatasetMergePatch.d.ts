@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { DatasetMergePatchOutputAllColumnsAsTraits } from './DatasetMergePatchOutputAllColumnsAsTraits';
 import { DatasetOptionsMergePatch } from './DatasetOptionsMergePatch';
 import { IdentitySetsMergePatch } from './IdentitySetsMergePatch';
 import { OutputToStreamsMergePatch } from './OutputToStreamsMergePatch';
@@ -39,6 +40,12 @@ export interface DatasetMergePatch {
      * @memberof DatasetMergePatch
      */
     options?: DatasetOptionsMergePatch;
+    /**
+     *
+     * @type {DatasetMergePatchOutputAllColumnsAsTraits}
+     * @memberof DatasetMergePatch
+     */
+    output_all_columns_as_traits?: DatasetMergePatchOutputAllColumnsAsTraits | null;
     /**
      *
      * @type {OutputToStreamsMergePatch}

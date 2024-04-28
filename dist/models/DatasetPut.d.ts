@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { DatasetOptionsPut } from './DatasetOptionsPut';
+import { DatasetOutputAllColumnsAsTraits } from './DatasetOutputAllColumnsAsTraits';
 import { IdentitySetsPut } from './IdentitySetsPut';
 import { OutputToStreamsPut } from './OutputToStreamsPut';
 import { OutputToTraitsPut } from './OutputToTraitsPut';
@@ -39,6 +40,12 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     options: DatasetOptionsPut;
+    /**
+     *
+     * @type {DatasetOutputAllColumnsAsTraits}
+     * @memberof DatasetPut
+     */
+    output_all_columns_as_traits?: DatasetOutputAllColumnsAsTraits;
     /**
      *
      * @type {OutputToStreamsPut}

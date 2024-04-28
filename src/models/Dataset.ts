@@ -32,6 +32,12 @@ import {
     DatasetOptionsToJSON,
 } from './DatasetOptions';
 import {
+    DatasetOutputAllColumnsAsTraits,
+    DatasetOutputAllColumnsAsTraitsFromJSON,
+    DatasetOutputAllColumnsAsTraitsFromJSONTyped,
+    DatasetOutputAllColumnsAsTraitsToJSON,
+} from './DatasetOutputAllColumnsAsTraits';
+import {
     DatasetUpdateHistory,
     DatasetUpdateHistoryFromJSON,
     DatasetUpdateHistoryFromJSONTyped,
@@ -173,6 +179,12 @@ export interface Dataset {
     options: DatasetOptions;
     /**
      * 
+     * @type {DatasetOutputAllColumnsAsTraits}
+     * @memberof Dataset
+     */
+    output_all_columns_as_traits?: DatasetOutputAllColumnsAsTraits;
+    /**
+     * 
      * @type {OutputToStreams}
      * @memberof Dataset
      */
@@ -290,6 +302,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'matched_count': !exists(json, 'matched_count') ? undefined : json['matched_count'],
         'name': json['name'],
         'options': DatasetOptionsFromJSON(json['options']),
+        'output_all_columns_as_traits': !exists(json, 'output_all_columns_as_traits') ? undefined : DatasetOutputAllColumnsAsTraitsFromJSON(json['output_all_columns_as_traits']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
@@ -330,6 +343,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'matched_count': value.matched_count,
         'name': value.name,
         'options': DatasetOptionsToJSON(value.options),
+        'output_all_columns_as_traits': DatasetOutputAllColumnsAsTraitsToJSON(value.output_all_columns_as_traits),
         'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsToJSON(value.output_to_traits),
         'preview': value.preview,

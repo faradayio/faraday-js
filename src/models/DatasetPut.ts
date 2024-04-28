@@ -20,6 +20,12 @@ import {
     DatasetOptionsPutToJSON,
 } from './DatasetOptionsPut';
 import {
+    DatasetOutputAllColumnsAsTraits,
+    DatasetOutputAllColumnsAsTraitsFromJSON,
+    DatasetOutputAllColumnsAsTraitsFromJSONTyped,
+    DatasetOutputAllColumnsAsTraitsToJSON,
+} from './DatasetOutputAllColumnsAsTraits';
+import {
     IdentitySetsPut,
     IdentitySetsPutFromJSON,
     IdentitySetsPutFromJSONTyped,
@@ -64,6 +70,12 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     options: DatasetOptionsPut;
+    /**
+     * 
+     * @type {DatasetOutputAllColumnsAsTraits}
+     * @memberof DatasetPut
+     */
+    output_all_columns_as_traits?: DatasetOutputAllColumnsAsTraits;
     /**
      * 
      * @type {OutputToStreamsPut}
@@ -120,6 +132,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'identity_sets': IdentitySetsPutFromJSON(json['identity_sets']),
         'name': json['name'],
         'options': DatasetOptionsPutFromJSON(json['options']),
+        'output_all_columns_as_traits': !exists(json, 'output_all_columns_as_traits') ? undefined : DatasetOutputAllColumnsAsTraitsFromJSON(json['output_all_columns_as_traits']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsPutFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
@@ -140,6 +153,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
         'identity_sets': IdentitySetsPutToJSON(value.identity_sets),
         'name': value.name,
         'options': DatasetOptionsPutToJSON(value.options),
+        'output_all_columns_as_traits': DatasetOutputAllColumnsAsTraitsToJSON(value.output_all_columns_as_traits),
         'output_to_streams': OutputToStreamsPutToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
         'preview': value.preview,

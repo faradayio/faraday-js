@@ -12,6 +12,7 @@
 import { DatasetColumn } from './DatasetColumn';
 import { DatasetEnrichments } from './DatasetEnrichments';
 import { DatasetOptions } from './DatasetOptions';
+import { DatasetOutputAllColumnsAsTraits } from './DatasetOutputAllColumnsAsTraits';
 import { DatasetUpdateHistory } from './DatasetUpdateHistory';
 import { IdentitySets } from './IdentitySets';
 import { OutputToStreams } from './OutputToStreams';
@@ -126,6 +127,12 @@ export interface Dataset {
      * @memberof Dataset
      */
     options: DatasetOptions;
+    /**
+     *
+     * @type {DatasetOutputAllColumnsAsTraits}
+     * @memberof Dataset
+     */
+    output_all_columns_as_traits?: DatasetOutputAllColumnsAsTraits;
     /**
      *
      * @type {OutputToStreams}

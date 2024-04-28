@@ -42,6 +42,16 @@ export declare class TraitsApi extends runtime.BaseAPI {
      */
     createTrait(traitFields: TraitPost): Promise<Trait>;
     /**
+     * Delete all traits without a source dataset.
+     * Delete all orphaned traits
+     */
+    private deleteAllOrphanedTraitsRaw;
+    /**
+     * Delete all traits without a source dataset.
+     * Delete all orphaned traits
+     */
+    deleteAllOrphanedTraits(): Promise<void>;
+    /**
      * Delete a trait
      * Delete a trait
      */
