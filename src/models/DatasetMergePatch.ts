@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DatasetMergePatchOutputAllColumnsAsTraits,
+    DatasetMergePatchOutputAllColumnsAsTraitsFromJSON,
+    DatasetMergePatchOutputAllColumnsAsTraitsFromJSONTyped,
+    DatasetMergePatchOutputAllColumnsAsTraitsToJSON,
+} from './DatasetMergePatchOutputAllColumnsAsTraits';
+import {
     DatasetOptionsMergePatch,
     DatasetOptionsMergePatchFromJSON,
     DatasetOptionsMergePatchFromJSONTyped,
@@ -64,6 +70,12 @@ export interface DatasetMergePatch {
      * @memberof DatasetMergePatch
      */
     options?: DatasetOptionsMergePatch;
+    /**
+     * 
+     * @type {DatasetMergePatchOutputAllColumnsAsTraits}
+     * @memberof DatasetMergePatch
+     */
+    output_all_columns_as_traits?: DatasetMergePatchOutputAllColumnsAsTraits | null;
     /**
      * 
      * @type {OutputToStreamsMergePatch}
@@ -120,6 +132,7 @@ export function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
         'identity_sets': !exists(json, 'identity_sets') ? undefined : IdentitySetsMergePatchFromJSON(json['identity_sets']),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'options': !exists(json, 'options') ? undefined : DatasetOptionsMergePatchFromJSON(json['options']),
+        'output_all_columns_as_traits': !exists(json, 'output_all_columns_as_traits') ? undefined : DatasetMergePatchOutputAllColumnsAsTraitsFromJSON(json['output_all_columns_as_traits']),
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsMergePatchFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
@@ -140,6 +153,7 @@ export function DatasetMergePatchToJSON(value?: DatasetMergePatch | null): any {
         'identity_sets': IdentitySetsMergePatchToJSON(value.identity_sets),
         'name': value.name,
         'options': DatasetOptionsMergePatchToJSON(value.options),
+        'output_all_columns_as_traits': DatasetMergePatchOutputAllColumnsAsTraitsToJSON(value.output_all_columns_as_traits),
         'output_to_streams': OutputToStreamsMergePatchToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsMergePatchToJSON(value.output_to_traits),
         'preview': value.preview,

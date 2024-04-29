@@ -69,6 +69,39 @@ class TraitsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Delete all traits without a source dataset.
+     * Delete all orphaned traits
+     */
+    deleteAllOrphanedTraitsRaw() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/traits`,
+                method: 'DELETE',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Delete all traits without a source dataset.
+     * Delete all orphaned traits
+     */
+    deleteAllOrphanedTraits() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.deleteAllOrphanedTraitsRaw();
+        });
+    }
+    /**
      * Delete a trait
      * Delete a trait
      */

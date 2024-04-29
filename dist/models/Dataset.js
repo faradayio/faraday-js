@@ -18,6 +18,7 @@ const runtime_1 = require("../runtime");
 const DatasetColumn_1 = require("./DatasetColumn");
 const DatasetEnrichments_1 = require("./DatasetEnrichments");
 const DatasetOptions_1 = require("./DatasetOptions");
+const DatasetOutputAllColumnsAsTraits_1 = require("./DatasetOutputAllColumnsAsTraits");
 const DatasetUpdateHistory_1 = require("./DatasetUpdateHistory");
 const IdentitySets_1 = require("./IdentitySets");
 const OutputToStreams_1 = require("./OutputToStreams");
@@ -47,6 +48,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         'matched_count': !runtime_1.exists(json, 'matched_count') ? undefined : json['matched_count'],
         'name': json['name'],
         'options': DatasetOptions_1.DatasetOptionsFromJSON(json['options']),
+        'output_all_columns_as_traits': !runtime_1.exists(json, 'output_all_columns_as_traits') ? undefined : DatasetOutputAllColumnsAsTraits_1.DatasetOutputAllColumnsAsTraitsFromJSON(json['output_all_columns_as_traits']),
         'output_to_streams': !runtime_1.exists(json, 'output_to_streams') ? undefined : OutputToStreams_1.OutputToStreamsFromJSON(json['output_to_streams']),
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraits_1.OutputToTraitsFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
@@ -86,6 +88,7 @@ function DatasetToJSON(value) {
         'matched_count': value.matched_count,
         'name': value.name,
         'options': DatasetOptions_1.DatasetOptionsToJSON(value.options),
+        'output_all_columns_as_traits': DatasetOutputAllColumnsAsTraits_1.DatasetOutputAllColumnsAsTraitsToJSON(value.output_all_columns_as_traits),
         'output_to_streams': OutputToStreams_1.OutputToStreamsToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraits_1.OutputToTraitsToJSON(value.output_to_traits),
         'preview': value.preview,

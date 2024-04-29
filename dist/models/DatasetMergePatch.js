@@ -15,6 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetMergePatchToJSON = exports.DatasetMergePatchFromJSONTyped = exports.DatasetMergePatchFromJSON = void 0;
 const runtime_1 = require("../runtime");
+const DatasetMergePatchOutputAllColumnsAsTraits_1 = require("./DatasetMergePatchOutputAllColumnsAsTraits");
 const DatasetOptionsMergePatch_1 = require("./DatasetOptionsMergePatch");
 const IdentitySetsMergePatch_1 = require("./IdentitySetsMergePatch");
 const OutputToStreamsMergePatch_1 = require("./OutputToStreamsMergePatch");
@@ -31,6 +32,7 @@ function DatasetMergePatchFromJSONTyped(json, ignoreDiscriminator) {
         'identity_sets': !runtime_1.exists(json, 'identity_sets') ? undefined : IdentitySetsMergePatch_1.IdentitySetsMergePatchFromJSON(json['identity_sets']),
         'name': !runtime_1.exists(json, 'name') ? undefined : json['name'],
         'options': !runtime_1.exists(json, 'options') ? undefined : DatasetOptionsMergePatch_1.DatasetOptionsMergePatchFromJSON(json['options']),
+        'output_all_columns_as_traits': !runtime_1.exists(json, 'output_all_columns_as_traits') ? undefined : DatasetMergePatchOutputAllColumnsAsTraits_1.DatasetMergePatchOutputAllColumnsAsTraitsFromJSON(json['output_all_columns_as_traits']),
         'output_to_streams': !runtime_1.exists(json, 'output_to_streams') ? undefined : OutputToStreamsMergePatch_1.OutputToStreamsMergePatchFromJSON(json['output_to_streams']),
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatch_1.OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
@@ -50,6 +52,7 @@ function DatasetMergePatchToJSON(value) {
         'identity_sets': IdentitySetsMergePatch_1.IdentitySetsMergePatchToJSON(value.identity_sets),
         'name': value.name,
         'options': DatasetOptionsMergePatch_1.DatasetOptionsMergePatchToJSON(value.options),
+        'output_all_columns_as_traits': DatasetMergePatchOutputAllColumnsAsTraits_1.DatasetMergePatchOutputAllColumnsAsTraitsToJSON(value.output_all_columns_as_traits),
         'output_to_streams': OutputToStreamsMergePatch_1.OutputToStreamsMergePatchToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsMergePatch_1.OutputToTraitsMergePatchToJSON(value.output_to_traits),
         'preview': value.preview,

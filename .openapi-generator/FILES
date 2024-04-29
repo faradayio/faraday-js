@@ -225,6 +225,7 @@ src/models/DatasetColumn.ts
 src/models/DatasetEnrichment.ts
 src/models/DatasetEnrichments.ts
 src/models/DatasetMergePatch.ts
+src/models/DatasetMergePatchOutputAllColumnsAsTraits.ts
 src/models/DatasetOptions.ts
 src/models/DatasetOptionsAwsAuroraMysql.ts
 src/models/DatasetOptionsAwsAuroraMysqlMergePatch.ts
@@ -350,6 +351,7 @@ src/models/DatasetOptionsStripe.ts
 src/models/DatasetOptionsStripeMergePatch.ts
 src/models/DatasetOptionsStripePost.ts
 src/models/DatasetOptionsStripePut.ts
+src/models/DatasetOutputAllColumnsAsTraits.ts
 src/models/DatasetPost.ts
 src/models/DatasetPut.ts
 src/models/DatasetStream.ts

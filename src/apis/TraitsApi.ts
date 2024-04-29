@@ -99,6 +99,41 @@ export class TraitsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Delete all traits without a source dataset.
+     * Delete all orphaned traits
+     */
+    private async deleteAllOrphanedTraitsRaw(): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/traits`,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete all traits without a source dataset.
+     * Delete all orphaned traits
+     */
+    async deleteAllOrphanedTraits(): Promise<void> {
+        await this.deleteAllOrphanedTraitsRaw();
+    }
+
+    /**
      * Delete a trait
      * Delete a trait
      */
