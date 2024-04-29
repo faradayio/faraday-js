@@ -18,13 +18,14 @@
  * @enum {string}
  */
 export enum TraitCategory {
-    FigProperty = 'fig/property',
-    FigIdentity = 'fig/identity',
     FigDemography = 'fig/demography',
-    FigSociety = 'fig/society',
     FigEnvironment = 'fig/environment',
-    FigLifestyle = 'fig/lifestyle',
     FigGeography = 'fig/geography',
+    FigIdentity = 'fig/identity',
+    FigLifestyle = 'fig/lifestyle',
+    FigProperty = 'fig/property',
+    FigReachability = 'fig/reachability',
+    FigSociety = 'fig/society',
     UserDefined = 'user_defined'
 }
 
