@@ -22,6 +22,7 @@ exports.PrimitiveDataTypeToJSON = exports.PrimitiveDataTypeFromJSONTyped = expor
  * - long: A 64-bit integer.
  * - double: A 64-bit float.
  * - string: A Unicode string, possibly representing categorical data.
+ * - date: A date with no reference to time of day.
  * @export
  * @enum {string}
  */
@@ -31,6 +32,7 @@ var PrimitiveDataType;
     PrimitiveDataType["Long"] = "long";
     PrimitiveDataType["Double"] = "double";
     PrimitiveDataType["String"] = "string";
+    PrimitiveDataType["Date"] = "date";
 })(PrimitiveDataType = exports.PrimitiveDataType || (exports.PrimitiveDataType = {}));
 function PrimitiveDataTypeFromJSON(json) {
     return PrimitiveDataTypeFromJSONTyped(json, false);

@@ -20,6 +20,7 @@
  * - long: A 64-bit integer.
  * - double: A 64-bit float.
  * - string: A Unicode string, possibly representing categorical data.
+ * - date: A date with no reference to time of day.
  * @export
  * @enum {string}
  */
@@ -27,7 +28,8 @@ export enum PrimitiveDataType {
     Boolean = 'boolean',
     Long = 'long',
     Double = 'double',
-    String = 'string'
+    String = 'string',
+    Date = 'date'
 }
 
 export function PrimitiveDataTypeFromJSON(json: any): PrimitiveDataType {

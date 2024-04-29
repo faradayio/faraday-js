@@ -21,13 +21,14 @@ exports.TraitCategoryToJSON = exports.TraitCategoryFromJSONTyped = exports.Trait
  */
 var TraitCategory;
 (function (TraitCategory) {
-    TraitCategory["FigProperty"] = "fig/property";
-    TraitCategory["FigIdentity"] = "fig/identity";
     TraitCategory["FigDemography"] = "fig/demography";
-    TraitCategory["FigSociety"] = "fig/society";
     TraitCategory["FigEnvironment"] = "fig/environment";
-    TraitCategory["FigLifestyle"] = "fig/lifestyle";
     TraitCategory["FigGeography"] = "fig/geography";
+    TraitCategory["FigIdentity"] = "fig/identity";
+    TraitCategory["FigLifestyle"] = "fig/lifestyle";
+    TraitCategory["FigProperty"] = "fig/property";
+    TraitCategory["FigReachability"] = "fig/reachability";
+    TraitCategory["FigSociety"] = "fig/society";
     TraitCategory["UserDefined"] = "user_defined";
 })(TraitCategory = exports.TraitCategory || (exports.TraitCategory = {}));
 function TraitCategoryFromJSON(json) {
