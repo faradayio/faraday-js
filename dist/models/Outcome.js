@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OutcomeToJSON = exports.OutcomeFromJSONTyped = exports.OutcomeFromJSON = void 0;
 const runtime_1 = require("../runtime");
 const OutcomeBiasMitigation_1 = require("./OutcomeBiasMitigation");
+const OutcomePredictors_1 = require("./OutcomePredictors");
 const ResourceStatus_1 = require("./ResourceStatus");
 function OutcomeFromJSON(json) {
     return OutcomeFromJSONTyped(json, false);
@@ -41,6 +42,7 @@ function OutcomeFromJSONTyped(json, ignoreDiscriminator) {
         'last_updated_output_at': !runtime_1.exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'lift_value': !runtime_1.exists(json, 'lift_value') ? undefined : json['lift_value'],
         'name': json['name'],
+        'predictors': !runtime_1.exists(json, 'predictors') ? undefined : OutcomePredictors_1.OutcomePredictorsFromJSON(json['predictors']),
         'report_url': !runtime_1.exists(json, 'report_url') ? undefined : json['report_url'],
         'resource_type': json['resource_type'],
         'roc_auc': !runtime_1.exists(json, 'roc_auc') ? undefined : json['roc_auc'],
@@ -74,6 +76,7 @@ function OutcomeToJSON(value) {
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'lift_value': value.lift_value,
         'name': value.name,
+        'predictors': OutcomePredictors_1.OutcomePredictorsToJSON(value.predictors),
         'report_url': value.report_url,
         'resource_type': value.resource_type,
         'roc_auc': value.roc_auc,

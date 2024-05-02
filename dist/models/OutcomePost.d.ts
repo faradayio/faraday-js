@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { OutcomeBiasMitigation } from './OutcomeBiasMitigation';
+import { OutcomePredictorsPost } from './OutcomePredictorsPost';
 /**
  * (Parameters used to POST a new value of the `Outcome` type.)
  *
@@ -55,6 +56,12 @@ export interface OutcomePost {
      * @memberof OutcomePost
      */
     name: string;
+    /**
+     *
+     * @type {OutcomePredictorsPost}
+     * @memberof OutcomePost
+     */
+    predictors?: OutcomePredictorsPost;
 }
 export declare function OutcomePostFromJSON(json: any): OutcomePost;
 export declare function OutcomePostFromJSONTyped(json: any, ignoreDiscriminator: boolean): OutcomePost;

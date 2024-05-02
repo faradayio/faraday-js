@@ -19,6 +19,12 @@ import {
     OutcomeBiasMitigationFromJSONTyped,
     OutcomeBiasMitigationToJSON,
 } from './OutcomeBiasMitigation';
+import {
+    OutcomePredictorsPut,
+    OutcomePredictorsPutFromJSON,
+    OutcomePredictorsPutFromJSONTyped,
+    OutcomePredictorsPutToJSON,
+} from './OutcomePredictorsPut';
 
 /**
  * (Parameters used to PUT a value of the `Outcome` type.)
@@ -65,6 +71,12 @@ export interface OutcomePut {
      * @memberof OutcomePut
      */
     name: string;
+    /**
+     * 
+     * @type {OutcomePredictorsPut}
+     * @memberof OutcomePut
+     */
+    predictors?: OutcomePredictorsPut;
 }
 
 export function OutcomePutFromJSON(json: any): OutcomePut {
@@ -83,6 +95,7 @@ export function OutcomePutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'name': json['name'],
+        'predictors': !exists(json, 'predictors') ? undefined : OutcomePredictorsPutFromJSON(json['predictors']),
     };
 }
 
@@ -101,6 +114,7 @@ export function OutcomePutToJSON(value?: OutcomePut | null): any {
         'eligible_cohort_id': value.eligible_cohort_id,
         'feature_blocklist': value.feature_blocklist,
         'name': value.name,
+        'predictors': OutcomePredictorsPutToJSON(value.predictors),
     };
 }
 

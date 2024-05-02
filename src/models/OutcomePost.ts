@@ -19,6 +19,12 @@ import {
     OutcomeBiasMitigationFromJSONTyped,
     OutcomeBiasMitigationToJSON,
 } from './OutcomeBiasMitigation';
+import {
+    OutcomePredictorsPost,
+    OutcomePredictorsPostFromJSON,
+    OutcomePredictorsPostFromJSONTyped,
+    OutcomePredictorsPostToJSON,
+} from './OutcomePredictorsPost';
 
 /**
  * (Parameters used to POST a new value of the `Outcome` type.)
@@ -65,6 +71,12 @@ export interface OutcomePost {
      * @memberof OutcomePost
      */
     name: string;
+    /**
+     * 
+     * @type {OutcomePredictorsPost}
+     * @memberof OutcomePost
+     */
+    predictors?: OutcomePredictorsPost;
 }
 
 export function OutcomePostFromJSON(json: any): OutcomePost {
@@ -83,6 +95,7 @@ export function OutcomePostFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'name': json['name'],
+        'predictors': !exists(json, 'predictors') ? undefined : OutcomePredictorsPostFromJSON(json['predictors']),
     };
 }
 
@@ -101,6 +114,7 @@ export function OutcomePostToJSON(value?: OutcomePost | null): any {
         'eligible_cohort_id': value.eligible_cohort_id,
         'feature_blocklist': value.feature_blocklist,
         'name': value.name,
+        'predictors': OutcomePredictorsPostToJSON(value.predictors),
     };
 }
 

@@ -19,6 +19,12 @@ import {
     OutcomeMergePatchBiasMitigationFromJSONTyped,
     OutcomeMergePatchBiasMitigationToJSON,
 } from './OutcomeMergePatchBiasMitigation';
+import {
+    OutcomePredictorsMergePatch,
+    OutcomePredictorsMergePatchFromJSON,
+    OutcomePredictorsMergePatchFromJSONTyped,
+    OutcomePredictorsMergePatchToJSON,
+} from './OutcomePredictorsMergePatch';
 
 /**
  * (Parameters used to PATCH the `Outcome` type.)
@@ -65,6 +71,12 @@ export interface OutcomeMergePatch {
      * @memberof OutcomeMergePatch
      */
     name?: string;
+    /**
+     * 
+     * @type {OutcomePredictorsMergePatch}
+     * @memberof OutcomeMergePatch
+     */
+    predictors?: OutcomePredictorsMergePatch | null;
 }
 
 export function OutcomeMergePatchFromJSON(json: any): OutcomeMergePatch {
@@ -83,6 +95,7 @@ export function OutcomeMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
         'eligible_cohort_id': !exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'feature_blocklist': !exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'predictors': !exists(json, 'predictors') ? undefined : OutcomePredictorsMergePatchFromJSON(json['predictors']),
     };
 }
 
@@ -101,6 +114,7 @@ export function OutcomeMergePatchToJSON(value?: OutcomeMergePatch | null): any {
         'eligible_cohort_id': value.eligible_cohort_id,
         'feature_blocklist': value.feature_blocklist,
         'name': value.name,
+        'predictors': OutcomePredictorsMergePatchToJSON(value.predictors),
     };
 }
 

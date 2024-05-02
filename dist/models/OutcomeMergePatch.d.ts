@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { OutcomeMergePatchBiasMitigation } from './OutcomeMergePatchBiasMitigation';
+import { OutcomePredictorsMergePatch } from './OutcomePredictorsMergePatch';
 /**
  * (Parameters used to PATCH the `Outcome` type.)
  *
@@ -55,6 +56,12 @@ export interface OutcomeMergePatch {
      * @memberof OutcomeMergePatch
      */
     name?: string;
+    /**
+     *
+     * @type {OutcomePredictorsMergePatch}
+     * @memberof OutcomeMergePatch
+     */
+    predictors?: OutcomePredictorsMergePatch | null;
 }
 export declare function OutcomeMergePatchFromJSON(json: any): OutcomeMergePatch;
 export declare function OutcomeMergePatchFromJSONTyped(json: any, ignoreDiscriminator: boolean): OutcomeMergePatch;

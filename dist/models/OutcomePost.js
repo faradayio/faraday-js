@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OutcomePostToJSON = exports.OutcomePostFromJSONTyped = exports.OutcomePostFromJSON = void 0;
 const runtime_1 = require("../runtime");
 const OutcomeBiasMitigation_1 = require("./OutcomeBiasMitigation");
+const OutcomePredictorsPost_1 = require("./OutcomePredictorsPost");
 function OutcomePostFromJSON(json) {
     return OutcomePostFromJSONTyped(json, false);
 }
@@ -31,6 +32,7 @@ function OutcomePostFromJSONTyped(json, ignoreDiscriminator) {
         'eligible_cohort_id': !runtime_1.exists(json, 'eligible_cohort_id') ? undefined : json['eligible_cohort_id'],
         'feature_blocklist': !runtime_1.exists(json, 'feature_blocklist') ? undefined : json['feature_blocklist'],
         'name': json['name'],
+        'predictors': !runtime_1.exists(json, 'predictors') ? undefined : OutcomePredictorsPost_1.OutcomePredictorsPostFromJSON(json['predictors']),
     };
 }
 exports.OutcomePostFromJSONTyped = OutcomePostFromJSONTyped;
@@ -48,6 +50,7 @@ function OutcomePostToJSON(value) {
         'eligible_cohort_id': value.eligible_cohort_id,
         'feature_blocklist': value.feature_blocklist,
         'name': value.name,
+        'predictors': OutcomePredictorsPost_1.OutcomePredictorsPostToJSON(value.predictors),
     };
 }
 exports.OutcomePostToJSON = OutcomePostToJSON;
