@@ -20,6 +20,12 @@ import {
     OutcomeBiasMitigationToJSON,
 } from './OutcomeBiasMitigation';
 import {
+    OutcomePredictors,
+    OutcomePredictorsFromJSON,
+    OutcomePredictorsFromJSONTyped,
+    OutcomePredictorsToJSON,
+} from './OutcomePredictors';
+import {
     ResourceStatus,
     ResourceStatusFromJSON,
     ResourceStatusFromJSONTyped,
@@ -124,6 +130,12 @@ export interface Outcome {
      */
     name: string;
     /**
+     * 
+     * @type {OutcomePredictors}
+     * @memberof Outcome
+     */
+    predictors?: OutcomePredictors;
+    /**
      * URL of an HTML report containing information such as the objective of the model, performance, and important features.
      * @type {string}
      * @memberof Outcome
@@ -192,6 +204,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'lift_value': !exists(json, 'lift_value') ? undefined : json['lift_value'],
         'name': json['name'],
+        'predictors': !exists(json, 'predictors') ? undefined : OutcomePredictorsFromJSON(json['predictors']),
         'report_url': !exists(json, 'report_url') ? undefined : json['report_url'],
         'resource_type': json['resource_type'],
         'roc_auc': !exists(json, 'roc_auc') ? undefined : json['roc_auc'],
@@ -226,6 +239,7 @@ export function OutcomeToJSON(value?: Outcome | null): any {
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'lift_value': value.lift_value,
         'name': value.name,
+        'predictors': OutcomePredictorsToJSON(value.predictors),
         'report_url': value.report_url,
         'resource_type': value.resource_type,
         'roc_auc': value.roc_auc,

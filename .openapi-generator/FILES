@@ -402,6 +402,14 @@ src/models/OutcomePerformanceLiftCurvePoint.ts
 src/models/OutcomePerformanceModel.ts
 src/models/OutcomePerformanceRocCurvePoint.ts
 src/models/OutcomePost.ts
+src/models/OutcomePredictors.ts
+src/models/OutcomePredictorsBlocked.ts
+src/models/OutcomePredictorsBlockedMergePatch.ts
+src/models/OutcomePredictorsBlockedPost.ts
+src/models/OutcomePredictorsBlockedPut.ts
+src/models/OutcomePredictorsMergePatch.ts
+src/models/OutcomePredictorsPost.ts
+src/models/OutcomePredictorsPut.ts
 src/models/OutcomePut.ts
 src/models/OutputToStreams.ts
 src/models/OutputToStreamsMergePatch.ts

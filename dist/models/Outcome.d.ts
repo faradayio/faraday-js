@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { OutcomeBiasMitigation } from './OutcomeBiasMitigation';
+import { OutcomePredictors } from './OutcomePredictors';
 import { ResourceStatus } from './ResourceStatus';
 /**
  * A business objective describing how likely a group of people are to transition from one cohort to another (for example, from a prospect to a customer).
@@ -108,6 +109,12 @@ export interface Outcome {
      * @memberof Outcome
      */
     name: string;
+    /**
+     *
+     * @type {OutcomePredictors}
+     * @memberof Outcome
+     */
+    predictors?: OutcomePredictors;
     /**
      * URL of an HTML report containing information such as the objective of the model, performance, and important features.
      * @type {string}

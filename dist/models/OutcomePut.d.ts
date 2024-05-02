@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { OutcomeBiasMitigation } from './OutcomeBiasMitigation';
+import { OutcomePredictorsPut } from './OutcomePredictorsPut';
 /**
  * (Parameters used to PUT a value of the `Outcome` type.)
  *
@@ -55,6 +56,12 @@ export interface OutcomePut {
      * @memberof OutcomePut
      */
     name: string;
+    /**
+     *
+     * @type {OutcomePredictorsPut}
+     * @memberof OutcomePut
+     */
+    predictors?: OutcomePredictorsPut;
 }
 export declare function OutcomePutFromJSON(json: any): OutcomePut;
 export declare function OutcomePutFromJSONTyped(json: any, ignoreDiscriminator: boolean): OutcomePut;
