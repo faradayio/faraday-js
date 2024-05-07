@@ -25,7 +25,7 @@ exports.TargetTransformPresetIdentifiedToJSON = exports.TargetTransformPresetIde
  *   * poplar: Plaintext upload format for Poplar
  *   * salesforce: Plaintext upload format for Salesforce
  *   * hubspot: Plaintext upload format for Hubspot
- *   * address_only: Plaintext upload format for Address Only
+ *   * address_only: Plaintext upload format for address only
  *   * liveramp: Plaintext upload format for LiveRamp
  *
  * If not specified `default` is used.
