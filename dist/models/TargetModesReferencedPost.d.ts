@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { TargetReferencedReference } from './TargetReferencedReference';
 import { TargetTransformPresetReferenced } from './TargetTransformPresetReferenced';
 /**
  * (Parameters used to POST a new value of the `TargetModesReferenced` type.)
@@ -25,11 +26,18 @@ export interface TargetModesReferencedPost {
      */
     mode: string;
     /**
+     *
+     * @type {TargetReferencedReference}
+     * @memberof TargetModesReferencedPost
+     */
+    reference: TargetReferencedReference;
+    /**
+     * **Deprecated:** use reference instead
      * The referenced dataset ID. This dataset must have a `reference_key_column`.
      * @type {string}
      * @memberof TargetModesReferencedPost
      */
-    reference_dataset_id: string;
+    reference_dataset_id?: string;
     /**
      *
      * @type {TargetTransformPresetReferenced}

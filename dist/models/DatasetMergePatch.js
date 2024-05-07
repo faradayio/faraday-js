@@ -37,6 +37,7 @@ function DatasetMergePatchFromJSONTyped(json, ignoreDiscriminator) {
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatch_1.OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !runtime_1.exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'reference_key_columns': !runtime_1.exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'upsert_columns': !runtime_1.exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -57,6 +58,7 @@ function DatasetMergePatchToJSON(value) {
         'output_to_traits': OutputToTraitsMergePatch_1.OutputToTraitsMergePatchToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'reference_key_columns': value.reference_key_columns,
         'upsert_columns': value.upsert_columns,
     };
 }

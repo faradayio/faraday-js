@@ -154,6 +154,7 @@ export interface Dataset {
      */
     preview?: boolean;
     /**
+     * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      *
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
@@ -161,6 +162,14 @@ export interface Dataset {
      * @memberof Dataset
      */
     reference_key_column?: string;
+    /**
+     * The names of columns that reference IDs from an external system.
+     *
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {Array<string>}
+     * @memberof Dataset
+     */
+    reference_key_columns?: Array<string>;
     /**
      * The type of this resource.
      * @type {string}

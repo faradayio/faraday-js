@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { TargetReferencedReference } from './TargetReferencedReference';
 import { TargetTransformPresetReferenced } from './TargetTransformPresetReferenced';
 /**
  * Suitable for data warehouse integrations. Not supported by options.type = "lookup_api"
@@ -23,11 +24,18 @@ export interface TargetModesReferenced {
      */
     mode: string;
     /**
+     *
+     * @type {TargetReferencedReference}
+     * @memberof TargetModesReferenced
+     */
+    reference: TargetReferencedReference;
+    /**
+     * **Deprecated:** use reference instead
      * The referenced dataset ID. This dataset must have a `reference_key_column`.
      * @type {string}
      * @memberof TargetModesReferenced
      */
-    reference_dataset_id: string;
+    reference_dataset_id?: string;
     /**
      *
      * @type {TargetTransformPresetReferenced}

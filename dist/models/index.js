@@ -651,6 +651,7 @@ __exportStar(require("./TargetOptionsTiktokPost"), exports);
 __exportStar(require("./TargetOptionsTiktokPut"), exports);
 __exportStar(require("./TargetPost"), exports);
 __exportStar(require("./TargetPut"), exports);
+__exportStar(require("./TargetReferencedReference"), exports);
 __exportStar(require("./TargetStructureTransformation"), exports);
 __exportStar(require("./TargetTransformPresetAggregated"), exports);
 __exportStar(require("./TargetTransformPresetHashed"), exports);
