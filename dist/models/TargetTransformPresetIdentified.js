@@ -25,6 +25,7 @@ exports.TargetTransformPresetIdentifiedToJSON = exports.TargetTransformPresetIde
  *   * poplar: Plaintext upload format for Poplar
  *   * salesforce: Plaintext upload format for Salesforce
  *   * hubspot: Plaintext upload format for Hubspot
+ *   * address_only: Plaintext upload format for Address Only
  *   * liveramp: Plaintext upload format for LiveRamp
  *
  * If not specified `default` is used.
@@ -42,6 +43,7 @@ var TargetTransformPresetIdentified;
     TargetTransformPresetIdentified["Poplar"] = "poplar";
     TargetTransformPresetIdentified["Salesforce"] = "salesforce";
     TargetTransformPresetIdentified["Hubspot"] = "hubspot";
+    TargetTransformPresetIdentified["AddressOnly"] = "address_only";
     TargetTransformPresetIdentified["Liveramp"] = "liveramp";
 })(TargetTransformPresetIdentified = exports.TargetTransformPresetIdentified || (exports.TargetTransformPresetIdentified = {}));
 function TargetTransformPresetIdentifiedFromJSON(json) {
