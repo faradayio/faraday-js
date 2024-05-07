@@ -23,6 +23,7 @@
  *   * poplar: Plaintext upload format for Poplar
  *   * salesforce: Plaintext upload format for Salesforce
  *   * hubspot: Plaintext upload format for Hubspot
+ *   * address_only: Plaintext upload format for Address Only
  *   * liveramp: Plaintext upload format for LiveRamp
  * 
  * If not specified `default` is used.
@@ -39,6 +40,7 @@ export enum TargetTransformPresetIdentified {
     Poplar = 'poplar',
     Salesforce = 'salesforce',
     Hubspot = 'hubspot',
+    AddressOnly = 'address_only',
     Liveramp = 'liveramp'
 }
 
