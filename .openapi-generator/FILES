@@ -660,6 +660,7 @@ src/models/TargetOptionsTiktokPost.ts
 src/models/TargetOptionsTiktokPut.ts
 src/models/TargetPost.ts
 src/models/TargetPut.ts
+src/models/TargetReferencedReference.ts
 src/models/TargetStructureTransformation.ts
 src/models/TargetTransformPresetAggregated.ts
 src/models/TargetTransformPresetHashed.ts

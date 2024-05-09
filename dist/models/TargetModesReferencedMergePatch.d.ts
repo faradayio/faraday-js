@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { TargetReferencedReference } from './TargetReferencedReference';
 import { TargetTransformPresetReferenced } from './TargetTransformPresetReferenced';
 /**
  * (Parameters used to PATCH the `TargetModesReferenced` type.)
@@ -25,11 +26,18 @@ export interface TargetModesReferencedMergePatch {
      */
     mode: string;
     /**
+     *
+     * @type {TargetReferencedReference}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    reference?: TargetReferencedReference;
+    /**
+     * **Deprecated:** use reference instead
      * The referenced dataset ID. This dataset must have a `reference_key_column`.
      * @type {string}
      * @memberof TargetModesReferencedMergePatch
      */
-    reference_dataset_id?: string;
+    reference_dataset_id?: string | null;
     /**
      *
      * @type {TargetTransformPresetReferenced}

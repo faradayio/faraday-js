@@ -204,6 +204,7 @@ export interface Dataset {
      */
     preview?: boolean;
     /**
+     * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
@@ -211,6 +212,14 @@ export interface Dataset {
      * @memberof Dataset
      */
     reference_key_column?: string;
+    /**
+     * The names of columns that reference IDs from an external system.
+     * 
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {Array<string>}
+     * @memberof Dataset
+     */
+    reference_key_columns?: Array<string>;
     /**
      * The type of this resource.
      * @type {string}
@@ -307,6 +316,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'reference_key_columns': !exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'resource_type': json['resource_type'],
         'row_count': !exists(json, 'row_count') ? undefined : json['row_count'],
         'sample': !exists(json, 'sample') ? undefined : json['sample'],
@@ -348,6 +358,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'output_to_traits': OutputToTraitsToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'reference_key_columns': value.reference_key_columns,
         'resource_type': value.resource_type,
         'row_count': value.row_count,
         'sample': value.sample,

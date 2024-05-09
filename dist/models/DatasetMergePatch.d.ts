@@ -67,6 +67,7 @@ export interface DatasetMergePatch {
      */
     preview?: boolean | null;
     /**
+     * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      *
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
@@ -74,6 +75,14 @@ export interface DatasetMergePatch {
      * @memberof DatasetMergePatch
      */
     reference_key_column?: string | null;
+    /**
+     * The names of columns that reference IDs from an external system.
+     *
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {Array<string>}
+     * @memberof DatasetMergePatch
+     */
+    reference_key_columns?: Array<string> | null;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns

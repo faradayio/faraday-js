@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    TargetReferencedReference,
+    TargetReferencedReferenceFromJSON,
+    TargetReferencedReferenceFromJSONTyped,
+    TargetReferencedReferenceToJSON,
+} from './TargetReferencedReference';
+import {
     TargetTransformPresetReferenced,
     TargetTransformPresetReferencedFromJSON,
     TargetTransformPresetReferencedFromJSONTyped,
@@ -33,11 +39,18 @@ export interface TargetModesReferenced {
      */
     mode: string;
     /**
+     * 
+     * @type {TargetReferencedReference}
+     * @memberof TargetModesReferenced
+     */
+    reference: TargetReferencedReference;
+    /**
+     * **Deprecated:** use reference instead
      * The referenced dataset ID. This dataset must have a `reference_key_column`.
      * @type {string}
      * @memberof TargetModesReferenced
      */
-    reference_dataset_id: string;
+    reference_dataset_id?: string;
     /**
      * 
      * @type {TargetTransformPresetReferenced}
@@ -57,7 +70,8 @@ export function TargetModesReferencedFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'mode': json['mode'],
-        'reference_dataset_id': json['reference_dataset_id'],
+        'reference': TargetReferencedReferenceFromJSON(json['reference']),
+        'reference_dataset_id': !exists(json, 'reference_dataset_id') ? undefined : json['reference_dataset_id'],
         'transform_preset': !exists(json, 'transform_preset') ? undefined : TargetTransformPresetReferencedFromJSON(json['transform_preset']),
     };
 }
@@ -72,6 +86,7 @@ export function TargetModesReferencedToJSON(value?: TargetModesReferenced | null
     return {
         
         'mode': value.mode,
+        'reference': TargetReferencedReferenceToJSON(value.reference),
         'reference_dataset_id': value.reference_dataset_id,
         'transform_preset': TargetTransformPresetReferencedToJSON(value.transform_preset),
     };

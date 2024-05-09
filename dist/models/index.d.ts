@@ -637,6 +637,7 @@ export * from './TargetOptionsTiktokPost';
 export * from './TargetOptionsTiktokPut';
 export * from './TargetPost';
 export * from './TargetPut';
+export * from './TargetReferencedReference';
 export * from './TargetStructureTransformation';
 export * from './TargetTransformPresetAggregated';
 export * from './TargetTransformPresetHashed';

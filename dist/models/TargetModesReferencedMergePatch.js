@@ -15,6 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TargetModesReferencedMergePatchToJSON = exports.TargetModesReferencedMergePatchFromJSONTyped = exports.TargetModesReferencedMergePatchFromJSON = void 0;
 const runtime_1 = require("../runtime");
+const TargetReferencedReference_1 = require("./TargetReferencedReference");
 const TargetTransformPresetReferenced_1 = require("./TargetTransformPresetReferenced");
 function TargetModesReferencedMergePatchFromJSON(json) {
     return TargetModesReferencedMergePatchFromJSONTyped(json, false);
@@ -26,6 +27,7 @@ function TargetModesReferencedMergePatchFromJSONTyped(json, ignoreDiscriminator)
     }
     return {
         'mode': json['mode'],
+        'reference': !runtime_1.exists(json, 'reference') ? undefined : TargetReferencedReference_1.TargetReferencedReferenceFromJSON(json['reference']),
         'reference_dataset_id': !runtime_1.exists(json, 'reference_dataset_id') ? undefined : json['reference_dataset_id'],
         'transform_preset': !runtime_1.exists(json, 'transform_preset') ? undefined : TargetTransformPresetReferenced_1.TargetTransformPresetReferencedFromJSON(json['transform_preset']),
     };
@@ -40,6 +42,7 @@ function TargetModesReferencedMergePatchToJSON(value) {
     }
     return {
         'mode': value.mode,
+        'reference': TargetReferencedReference_1.TargetReferencedReferenceToJSON(value.reference),
         'reference_dataset_id': value.reference_dataset_id,
         'transform_preset': TargetTransformPresetReferenced_1.TargetTransformPresetReferencedToJSON(value.transform_preset),
     };

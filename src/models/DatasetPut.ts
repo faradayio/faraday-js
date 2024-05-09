@@ -97,6 +97,7 @@ export interface DatasetPut {
      */
     preview?: boolean;
     /**
+     * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      * 
      * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
@@ -104,6 +105,14 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     reference_key_column?: string;
+    /**
+     * The names of columns that reference IDs from an external system.
+     * 
+     * Setting this enables export of data via <a href="/reference/createtarget">`/targets`</a> that is keyed on this field.
+     * @type {Array<string>}
+     * @memberof DatasetPut
+     */
+    reference_key_columns?: Array<string>;
     /**
      * A column or set of columns that uniquely identify an input row. If
      * multiple rows are ingested with identical values in the columns
@@ -137,6 +146,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
+        'reference_key_columns': !exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
     };
 }
@@ -158,6 +168,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
         'preview': value.preview,
         'reference_key_column': value.reference_key_column,
+        'reference_key_columns': value.reference_key_columns,
         'upsert_columns': value.upsert_columns,
     };
 }
