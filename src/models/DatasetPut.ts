@@ -97,6 +97,14 @@ export interface DatasetPut {
      */
     preview?: boolean;
     /**
+     * Currently supported:
+     *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
+     *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     * @type {string}
+     * @memberof DatasetPut
+     */
+    privacy?: DatasetPutPrivacyEnum;
+    /**
      * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      * 
@@ -128,6 +136,15 @@ export interface DatasetPut {
     upsert_columns?: Array<string>;
 }
 
+/**
+* @export
+* @enum {string}
+*/
+export enum DatasetPutPrivacyEnum {
+    Suppress = 'suppress',
+    Delete = 'delete'
+}
+
 export function DatasetPutFromJSON(json: any): DatasetPut {
     return DatasetPutFromJSONTyped(json, false);
 }
@@ -145,6 +162,7 @@ export function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsPutFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsPutFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
+        'privacy': !exists(json, 'privacy') ? undefined : json['privacy'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'reference_key_columns': !exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
@@ -167,6 +185,7 @@ export function DatasetPutToJSON(value?: DatasetPut | null): any {
         'output_to_streams': OutputToStreamsPutToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPutToJSON(value.output_to_traits),
         'preview': value.preview,
+        'privacy': value.privacy,
         'reference_key_column': value.reference_key_column,
         'reference_key_columns': value.reference_key_columns,
         'upsert_columns': value.upsert_columns,

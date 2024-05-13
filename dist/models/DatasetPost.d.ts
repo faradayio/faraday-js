@@ -82,6 +82,14 @@ export interface DatasetPost {
      */
     preview?: boolean;
     /**
+     * Currently supported:
+     *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
+     *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     * @type {string}
+     * @memberof DatasetPost
+     */
+    privacy?: DatasetPostPrivacyEnum;
+    /**
      * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      *
@@ -111,6 +119,14 @@ export interface DatasetPost {
      * @memberof DatasetPost
      */
     upsert_columns?: Array<string>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum DatasetPostPrivacyEnum {
+    Suppress = "suppress",
+    Delete = "delete"
 }
 export declare function DatasetPostFromJSON(json: any): DatasetPost;
 export declare function DatasetPostFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetPost;

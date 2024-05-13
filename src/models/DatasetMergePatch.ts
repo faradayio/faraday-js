@@ -97,6 +97,14 @@ export interface DatasetMergePatch {
      */
     preview?: boolean | null;
     /**
+     * Currently supported:
+     *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
+     *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     * @type {string}
+     * @memberof DatasetMergePatch
+     */
+    privacy?: DatasetMergePatchPrivacyEnum;
+    /**
      * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      * 
@@ -128,6 +136,15 @@ export interface DatasetMergePatch {
     upsert_columns?: Array<string> | null;
 }
 
+/**
+* @export
+* @enum {string}
+*/
+export enum DatasetMergePatchPrivacyEnum {
+    Suppress = 'suppress',
+    Delete = 'delete'
+}
+
 export function DatasetMergePatchFromJSON(json: any): DatasetMergePatch {
     return DatasetMergePatchFromJSONTyped(json, false);
 }
@@ -145,6 +162,7 @@ export function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: b
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsMergePatchFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
+        'privacy': !exists(json, 'privacy') ? undefined : json['privacy'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'reference_key_columns': !exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'upsert_columns': !exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
@@ -167,6 +185,7 @@ export function DatasetMergePatchToJSON(value?: DatasetMergePatch | null): any {
         'output_to_streams': OutputToStreamsMergePatchToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsMergePatchToJSON(value.output_to_traits),
         'preview': value.preview,
+        'privacy': value.privacy,
         'reference_key_column': value.reference_key_column,
         'reference_key_columns': value.reference_key_columns,
         'upsert_columns': value.upsert_columns,

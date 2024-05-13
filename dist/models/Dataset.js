@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatasetToJSON = exports.DatasetFromJSONTyped = exports.DatasetFromJSON = void 0;
+exports.DatasetToJSON = exports.DatasetFromJSONTyped = exports.DatasetFromJSON = exports.DatasetPrivacyEnum = void 0;
 const runtime_1 = require("../runtime");
 const DatasetColumn_1 = require("./DatasetColumn");
 const DatasetEnrichments_1 = require("./DatasetEnrichments");
@@ -24,6 +24,15 @@ const IdentitySets_1 = require("./IdentitySets");
 const OutputToStreams_1 = require("./OutputToStreams");
 const OutputToTraits_1 = require("./OutputToTraits");
 const ResourceStatus_1 = require("./ResourceStatus");
+/**
+* @export
+* @enum {string}
+*/
+var DatasetPrivacyEnum;
+(function (DatasetPrivacyEnum) {
+    DatasetPrivacyEnum["Suppress"] = "suppress";
+    DatasetPrivacyEnum["Delete"] = "delete";
+})(DatasetPrivacyEnum = exports.DatasetPrivacyEnum || (exports.DatasetPrivacyEnum = {}));
 function DatasetFromJSON(json) {
     return DatasetFromJSONTyped(json, false);
 }
@@ -52,6 +61,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         'output_to_streams': !runtime_1.exists(json, 'output_to_streams') ? undefined : OutputToStreams_1.OutputToStreamsFromJSON(json['output_to_streams']),
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraits_1.OutputToTraitsFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
+        'privacy': !runtime_1.exists(json, 'privacy') ? undefined : json['privacy'],
         'reference_key_column': !runtime_1.exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'reference_key_columns': !runtime_1.exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'resource_type': json['resource_type'],
@@ -93,6 +103,7 @@ function DatasetToJSON(value) {
         'output_to_streams': OutputToStreams_1.OutputToStreamsToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraits_1.OutputToTraitsToJSON(value.output_to_traits),
         'preview': value.preview,
+        'privacy': value.privacy,
         'reference_key_column': value.reference_key_column,
         'reference_key_columns': value.reference_key_columns,
         'resource_type': value.resource_type,

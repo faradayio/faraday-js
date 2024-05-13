@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.12] - 2024-05-13
+
+### Added
+
+- Added `privacy` option to datasets, giving users the ability to treat a dataset as a do not contact list (`suppress`) or as a `deletion` list (delete and do not contact)
+
 ## [0.10.11] - 2024-05-07
 
 ### Added

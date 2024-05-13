@@ -13,13 +13,22 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatasetPutToJSON = exports.DatasetPutFromJSONTyped = exports.DatasetPutFromJSON = void 0;
+exports.DatasetPutToJSON = exports.DatasetPutFromJSONTyped = exports.DatasetPutFromJSON = exports.DatasetPutPrivacyEnum = void 0;
 const runtime_1 = require("../runtime");
 const DatasetOptionsPut_1 = require("./DatasetOptionsPut");
 const DatasetOutputAllColumnsAsTraits_1 = require("./DatasetOutputAllColumnsAsTraits");
 const IdentitySetsPut_1 = require("./IdentitySetsPut");
 const OutputToStreamsPut_1 = require("./OutputToStreamsPut");
 const OutputToTraitsPut_1 = require("./OutputToTraitsPut");
+/**
+* @export
+* @enum {string}
+*/
+var DatasetPutPrivacyEnum;
+(function (DatasetPutPrivacyEnum) {
+    DatasetPutPrivacyEnum["Suppress"] = "suppress";
+    DatasetPutPrivacyEnum["Delete"] = "delete";
+})(DatasetPutPrivacyEnum = exports.DatasetPutPrivacyEnum || (exports.DatasetPutPrivacyEnum = {}));
 function DatasetPutFromJSON(json) {
     return DatasetPutFromJSONTyped(json, false);
 }
@@ -36,6 +45,7 @@ function DatasetPutFromJSONTyped(json, ignoreDiscriminator) {
         'output_to_streams': !runtime_1.exists(json, 'output_to_streams') ? undefined : OutputToStreamsPut_1.OutputToStreamsPutFromJSON(json['output_to_streams']),
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraitsPut_1.OutputToTraitsPutFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
+        'privacy': !runtime_1.exists(json, 'privacy') ? undefined : json['privacy'],
         'reference_key_column': !runtime_1.exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'reference_key_columns': !runtime_1.exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'upsert_columns': !runtime_1.exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
@@ -57,6 +67,7 @@ function DatasetPutToJSON(value) {
         'output_to_streams': OutputToStreamsPut_1.OutputToStreamsPutToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPut_1.OutputToTraitsPutToJSON(value.output_to_traits),
         'preview': value.preview,
+        'privacy': value.privacy,
         'reference_key_column': value.reference_key_column,
         'reference_key_columns': value.reference_key_columns,
         'upsert_columns': value.upsert_columns,

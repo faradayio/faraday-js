@@ -13,13 +13,22 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatasetMergePatchToJSON = exports.DatasetMergePatchFromJSONTyped = exports.DatasetMergePatchFromJSON = void 0;
+exports.DatasetMergePatchToJSON = exports.DatasetMergePatchFromJSONTyped = exports.DatasetMergePatchFromJSON = exports.DatasetMergePatchPrivacyEnum = void 0;
 const runtime_1 = require("../runtime");
 const DatasetMergePatchOutputAllColumnsAsTraits_1 = require("./DatasetMergePatchOutputAllColumnsAsTraits");
 const DatasetOptionsMergePatch_1 = require("./DatasetOptionsMergePatch");
 const IdentitySetsMergePatch_1 = require("./IdentitySetsMergePatch");
 const OutputToStreamsMergePatch_1 = require("./OutputToStreamsMergePatch");
 const OutputToTraitsMergePatch_1 = require("./OutputToTraitsMergePatch");
+/**
+* @export
+* @enum {string}
+*/
+var DatasetMergePatchPrivacyEnum;
+(function (DatasetMergePatchPrivacyEnum) {
+    DatasetMergePatchPrivacyEnum["Suppress"] = "suppress";
+    DatasetMergePatchPrivacyEnum["Delete"] = "delete";
+})(DatasetMergePatchPrivacyEnum = exports.DatasetMergePatchPrivacyEnum || (exports.DatasetMergePatchPrivacyEnum = {}));
 function DatasetMergePatchFromJSON(json) {
     return DatasetMergePatchFromJSONTyped(json, false);
 }
@@ -36,6 +45,7 @@ function DatasetMergePatchFromJSONTyped(json, ignoreDiscriminator) {
         'output_to_streams': !runtime_1.exists(json, 'output_to_streams') ? undefined : OutputToStreamsMergePatch_1.OutputToStreamsMergePatchFromJSON(json['output_to_streams']),
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraitsMergePatch_1.OutputToTraitsMergePatchFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
+        'privacy': !runtime_1.exists(json, 'privacy') ? undefined : json['privacy'],
         'reference_key_column': !runtime_1.exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'reference_key_columns': !runtime_1.exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'upsert_columns': !runtime_1.exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
@@ -57,6 +67,7 @@ function DatasetMergePatchToJSON(value) {
         'output_to_streams': OutputToStreamsMergePatch_1.OutputToStreamsMergePatchToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsMergePatch_1.OutputToTraitsMergePatchToJSON(value.output_to_traits),
         'preview': value.preview,
+        'privacy': value.privacy,
         'reference_key_column': value.reference_key_column,
         'reference_key_columns': value.reference_key_columns,
         'upsert_columns': value.upsert_columns,
