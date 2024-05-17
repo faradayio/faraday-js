@@ -67,6 +67,14 @@ export interface DatasetPut {
      */
     preview?: boolean;
     /**
+     * Currently supported:
+     *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
+     *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     * @type {string}
+     * @memberof DatasetPut
+     */
+    privacy?: DatasetPutPrivacyEnum;
+    /**
      * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      *
@@ -96,6 +104,14 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     upsert_columns?: Array<string>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum DatasetPutPrivacyEnum {
+    Suppress = "suppress",
+    Delete = "delete"
 }
 export declare function DatasetPutFromJSON(json: any): DatasetPut;
 export declare function DatasetPutFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetPut;

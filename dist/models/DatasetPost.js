@@ -13,12 +13,21 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatasetPostToJSON = exports.DatasetPostFromJSONTyped = exports.DatasetPostFromJSON = void 0;
+exports.DatasetPostToJSON = exports.DatasetPostFromJSONTyped = exports.DatasetPostFromJSON = exports.DatasetPostPrivacyEnum = void 0;
 const runtime_1 = require("../runtime");
 const DatasetOptionsPost_1 = require("./DatasetOptionsPost");
 const IdentitySetsPost_1 = require("./IdentitySetsPost");
 const OutputToStreamsPost_1 = require("./OutputToStreamsPost");
 const OutputToTraitsPost_1 = require("./OutputToTraitsPost");
+/**
+* @export
+* @enum {string}
+*/
+var DatasetPostPrivacyEnum;
+(function (DatasetPostPrivacyEnum) {
+    DatasetPostPrivacyEnum["Suppress"] = "suppress";
+    DatasetPostPrivacyEnum["Delete"] = "delete";
+})(DatasetPostPrivacyEnum = exports.DatasetPostPrivacyEnum || (exports.DatasetPostPrivacyEnum = {}));
 function DatasetPostFromJSON(json) {
     return DatasetPostFromJSONTyped(json, false);
 }
@@ -36,6 +45,7 @@ function DatasetPostFromJSONTyped(json, ignoreDiscriminator) {
         'output_to_streams': !runtime_1.exists(json, 'output_to_streams') ? undefined : OutputToStreamsPost_1.OutputToStreamsPostFromJSON(json['output_to_streams']),
         'output_to_traits': !runtime_1.exists(json, 'output_to_traits') ? undefined : OutputToTraitsPost_1.OutputToTraitsPostFromJSON(json['output_to_traits']),
         'preview': !runtime_1.exists(json, 'preview') ? undefined : json['preview'],
+        'privacy': !runtime_1.exists(json, 'privacy') ? undefined : json['privacy'],
         'reference_key_column': !runtime_1.exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'reference_key_columns': !runtime_1.exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'upsert_columns': !runtime_1.exists(json, 'upsert_columns') ? undefined : json['upsert_columns'],
@@ -58,6 +68,7 @@ function DatasetPostToJSON(value) {
         'output_to_streams': OutputToStreamsPost_1.OutputToStreamsPostToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsPost_1.OutputToTraitsPostToJSON(value.output_to_traits),
         'preview': value.preview,
+        'privacy': value.privacy,
         'reference_key_column': value.reference_key_column,
         'reference_key_columns': value.reference_key_columns,
         'upsert_columns': value.upsert_columns,

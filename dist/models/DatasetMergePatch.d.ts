@@ -67,6 +67,14 @@ export interface DatasetMergePatch {
      */
     preview?: boolean | null;
     /**
+     * Currently supported:
+     *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
+     *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     * @type {string}
+     * @memberof DatasetMergePatch
+     */
+    privacy?: DatasetMergePatchPrivacyEnum;
+    /**
      * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      *
@@ -96,6 +104,14 @@ export interface DatasetMergePatch {
      * @memberof DatasetMergePatch
      */
     upsert_columns?: Array<string> | null;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum DatasetMergePatchPrivacyEnum {
+    Suppress = "suppress",
+    Delete = "delete"
 }
 export declare function DatasetMergePatchFromJSON(json: any): DatasetMergePatch;
 export declare function DatasetMergePatchFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetMergePatch;

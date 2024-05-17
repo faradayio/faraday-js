@@ -204,6 +204,14 @@ export interface Dataset {
      */
     preview?: boolean;
     /**
+     * Currently supported:
+     *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
+     *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     * @type {string}
+     * @memberof Dataset
+     */
+    privacy?: DatasetPrivacyEnum;
+    /**
      * **Deprecated:** use reference_key_columns instead
      * The name of the column that references an ID from an external system.
      * 
@@ -286,6 +294,15 @@ export interface Dataset {
     upsert_columns?: Array<string>;
 }
 
+/**
+* @export
+* @enum {string}
+*/
+export enum DatasetPrivacyEnum {
+    Suppress = 'suppress',
+    Delete = 'delete'
+}
+
 export function DatasetFromJSON(json: any): Dataset {
     return DatasetFromJSONTyped(json, false);
 }
@@ -315,6 +332,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'output_to_streams': !exists(json, 'output_to_streams') ? undefined : OutputToStreamsFromJSON(json['output_to_streams']),
         'output_to_traits': !exists(json, 'output_to_traits') ? undefined : OutputToTraitsFromJSON(json['output_to_traits']),
         'preview': !exists(json, 'preview') ? undefined : json['preview'],
+        'privacy': !exists(json, 'privacy') ? undefined : json['privacy'],
         'reference_key_column': !exists(json, 'reference_key_column') ? undefined : json['reference_key_column'],
         'reference_key_columns': !exists(json, 'reference_key_columns') ? undefined : json['reference_key_columns'],
         'resource_type': json['resource_type'],
@@ -357,6 +375,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'output_to_streams': OutputToStreamsToJSON(value.output_to_streams),
         'output_to_traits': OutputToTraitsToJSON(value.output_to_traits),
         'preview': value.preview,
+        'privacy': value.privacy,
         'reference_key_column': value.reference_key_column,
         'reference_key_columns': value.reference_key_columns,
         'resource_type': value.resource_type,
