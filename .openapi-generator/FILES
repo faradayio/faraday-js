@@ -422,6 +422,9 @@ src/models/OutputToTraitsPut.ts
 src/models/Payment.ts
 src/models/Persona.ts
 src/models/PersonaDetails.ts
+src/models/PersonaMergePatch.ts
+src/models/PersonaPost.ts
+src/models/PersonaPut.ts
 src/models/PersonaSet.ts
 src/models/PersonaSetAnalysisDimensions.ts
 src/models/PersonaSetAnalysisFlow.ts

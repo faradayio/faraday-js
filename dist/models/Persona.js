@@ -29,7 +29,7 @@ function PersonaFromJSONTyped(json, ignoreDiscriminator) {
         'details': !runtime_1.exists(json, 'details') ? undefined : PersonaDetails_1.PersonaDetailsFromJSON(json['details']),
         'id': json['id'],
         'individuals_count': !runtime_1.exists(json, 'individuals_count') ? undefined : json['individuals_count'],
-        'name': !runtime_1.exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'],
     };
 }
 exports.PersonaFromJSONTyped = PersonaFromJSONTyped;

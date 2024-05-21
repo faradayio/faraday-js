@@ -45,7 +45,7 @@ export interface Persona {
      * @type {string}
      * @memberof Persona
      */
-    name?: string;
+    name: string;
 }
 export declare function PersonaFromJSON(json: any): Persona;
 export declare function PersonaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Persona;

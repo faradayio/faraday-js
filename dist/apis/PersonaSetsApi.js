@@ -244,6 +244,51 @@ class PersonaSetsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Edit a persona
+     * Edit a persona
+     */
+    updatePersonaRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+                throw new runtime.RequiredError('personaSetId', 'Required parameter requestParameters.personaSetId was null or undefined when calling updatePersona.');
+            }
+            if (requestParameters.personaId === null || requestParameters.personaId === undefined) {
+                throw new runtime.RequiredError('personaId', 'Required parameter requestParameters.personaId was null or undefined when calling updatePersona.');
+            }
+            if (requestParameters.personaFields === null || requestParameters.personaFields === undefined) {
+                throw new runtime.RequiredError('personaFields', 'Required parameter requestParameters.personaFields was null or undefined when calling updatePersona.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json+merge-patch';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/persona_sets/{persona_set_id}/personas/{persona_id}`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))).replace(`{${"persona_id"}}`, encodeURIComponent(String(requestParameters.personaId))),
+                method: 'PATCH',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.PersonaMergePatchToJSON(requestParameters.personaFields),
+            });
+            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PersonaFromJSON(jsonValue));
+        });
+    }
+    /**
+     * Edit a persona
+     * Edit a persona
+     */
+    updatePersona(personaSetId, personaId, personaFields) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.updatePersonaRaw({ personaSetId: personaSetId, personaId: personaId, personaFields: personaFields });
+            return yield response.value();
+        });
+    }
+    /**
      * Edit a persona set
      * Edit a persona set
      */
