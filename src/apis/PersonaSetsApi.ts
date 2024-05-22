@@ -15,6 +15,12 @@
 
 import * as runtime from '../runtime';
 import {
+    Persona,
+    PersonaFromJSON,
+    PersonaToJSON,
+    PersonaMergePatch,
+    PersonaMergePatchFromJSON,
+    PersonaMergePatchToJSON,
     PersonaSet,
     PersonaSetFromJSON,
     PersonaSetToJSON,
@@ -50,6 +56,12 @@ export interface GetPersonaSetAnalysisDimensionsRequest {
 
 export interface GetPersonaSetAnalysisFlowRequest {
     personaSetId: string;
+}
+
+export interface UpdatePersonaRequest {
+    personaSetId: string;
+    personaId: string;
+    personaFields: PersonaMergePatch;
 }
 
 export interface UpdatePersonaSetRequest {
@@ -291,6 +303,57 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      */
     async getPersonaSets(): Promise<Array<PersonaSet>> {
         const response = await this.getPersonaSetsRaw();
+        return await response.value();
+    }
+
+    /**
+     * Edit a persona
+     * Edit a persona
+     */
+    private async updatePersonaRaw(requestParameters: UpdatePersonaRequest, ): Promise<runtime.ApiResponse<Persona>> {
+        if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+            throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling updatePersona.');
+        }
+
+        if (requestParameters.personaId === null || requestParameters.personaId === undefined) {
+            throw new runtime.RequiredError('personaId','Required parameter requestParameters.personaId was null or undefined when calling updatePersona.');
+        }
+
+        if (requestParameters.personaFields === null || requestParameters.personaFields === undefined) {
+            throw new runtime.RequiredError('personaFields','Required parameter requestParameters.personaFields was null or undefined when calling updatePersona.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json+merge-patch';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/persona_sets/{persona_set_id}/personas/{persona_id}`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))).replace(`{${"persona_id"}}`, encodeURIComponent(String(requestParameters.personaId))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PersonaMergePatchToJSON(requestParameters.personaFields),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PersonaFromJSON(jsonValue));
+    }
+
+    /**
+     * Edit a persona
+     * Edit a persona
+     */
+    async updatePersona(personaSetId: string, personaId: string, personaFields: PersonaMergePatch, ): Promise<Persona> {
+        const response = await this.updatePersonaRaw({ personaSetId: personaSetId, personaId: personaId, personaFields: personaFields }, );
         return await response.value();
     }
 

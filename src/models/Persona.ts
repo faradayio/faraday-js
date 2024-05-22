@@ -55,7 +55,7 @@ export interface Persona {
      * @type {string}
      * @memberof Persona
      */
-    name?: string;
+    name: string;
 }
 
 export function PersonaFromJSON(json: any): Persona {
@@ -72,7 +72,7 @@ export function PersonaFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'details': !exists(json, 'details') ? undefined : PersonaDetailsFromJSON(json['details']),
         'id': json['id'],
         'individuals_count': !exists(json, 'individuals_count') ? undefined : json['individuals_count'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'],
     };
 }
 

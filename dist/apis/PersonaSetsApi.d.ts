@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { PersonaSet, PersonaSetAnalysisDimensions, PersonaSetAnalysisFlow, PersonaSetMergePatch, PersonaSetPost } from '../models';
+import { Persona, PersonaMergePatch, PersonaSet, PersonaSetAnalysisDimensions, PersonaSetAnalysisFlow, PersonaSetMergePatch, PersonaSetPost } from '../models';
 export interface CreatePersonaSetRequest {
     personaSetPost: PersonaSetPost;
 }
@@ -25,6 +25,11 @@ export interface GetPersonaSetAnalysisDimensionsRequest {
 }
 export interface GetPersonaSetAnalysisFlowRequest {
     personaSetId: string;
+}
+export interface UpdatePersonaRequest {
+    personaSetId: string;
+    personaId: string;
+    personaFields: PersonaMergePatch;
 }
 export interface UpdatePersonaSetRequest {
     personaSetId: string;
@@ -88,6 +93,16 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * List persona sets
      */
     getPersonaSets(): Promise<Array<PersonaSet>>;
+    /**
+     * Edit a persona
+     * Edit a persona
+     */
+    private updatePersonaRaw;
+    /**
+     * Edit a persona
+     * Edit a persona
+     */
+    updatePersona(personaSetId: string, personaId: string, personaFields: PersonaMergePatch): Promise<Persona>;
     /**
      * Edit a persona set
      * Edit a persona set
