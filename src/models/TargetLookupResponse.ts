@@ -13,13 +13,84 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    LookupMatchType,
+    LookupMatchTypeFromJSON,
+    LookupMatchTypeFromJSONTyped,
+    LookupMatchTypeToJSON,
+} from './LookupMatchType';
+
 /**
+ * The structure of a lookup response depends on the target and the scope it is attached to. 
  * 
+ * In general, we return all PII which was sent to us. If the PII was matched, then Faraday will also return all of the Scope's defined payload components for the matched person, e.g. outcome percentiles & probability, persona membership, etc.
+ * 
+ * If the PII was not matched, then the response will contain an `error` key, with the message "Could not match an identity with the provided information". See [the Lookup API specification](../../../features/lookup) for more information on what response payloads are available and what their shape is.
  * @export
  * @interface TargetLookupResponse
  */
 export interface TargetLookupResponse {
-    [key: string]: string;
+    [key: string]: string | any;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    error?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    hashed_email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    house_number_and_street?: string;
+    /**
+     * 
+     * @type {LookupMatchType}
+     * @memberof TargetLookupResponse
+     */
+    match_type?: LookupMatchType;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    person_first_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    person_last_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    postcode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    state?: string;
 }
 
 export function TargetLookupResponseFromJSON(json: any): TargetLookupResponse {
@@ -27,10 +98,45 @@ export function TargetLookupResponseFromJSON(json: any): TargetLookupResponse {
 }
 
 export function TargetLookupResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TargetLookupResponse {
-    return json;
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+        
+            ...json,
+        'city': !exists(json, 'city') ? undefined : json['city'],
+        'email': !exists(json, 'email') ? undefined : json['email'],
+        'error': !exists(json, 'error') ? undefined : json['error'],
+        'hashed_email': !exists(json, 'hashed_email') ? undefined : json['hashed_email'],
+        'house_number_and_street': !exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'],
+        'match_type': !exists(json, 'match_type') ? undefined : LookupMatchTypeFromJSON(json['match_type']),
+        'person_first_name': !exists(json, 'person_first_name') ? undefined : json['person_first_name'],
+        'person_last_name': !exists(json, 'person_last_name') ? undefined : json['person_last_name'],
+        'postcode': !exists(json, 'postcode') ? undefined : json['postcode'],
+        'state': !exists(json, 'state') ? undefined : json['state'],
+    };
 }
 
 export function TargetLookupResponseToJSON(value?: TargetLookupResponse | null): any {
-    return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+        
+            ...value,
+        'city': value.city,
+        'email': value.email,
+        'error': value.error,
+        'hashed_email': value.hashed_email,
+        'house_number_and_street': value.house_number_and_street,
+        'match_type': LookupMatchTypeToJSON(value.match_type),
+        'person_first_name': value.person_first_name,
+        'person_last_name': value.person_last_name,
+        'postcode': value.postcode,
+        'state': value.state,
+    };
 }
 

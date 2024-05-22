@@ -14,15 +14,25 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TargetLookupRequestToJSON = exports.TargetLookupRequestFromJSONTyped = exports.TargetLookupRequestFromJSON = void 0;
+const runtime_1 = require("../runtime");
 function TargetLookupRequestFromJSON(json) {
     return TargetLookupRequestFromJSONTyped(json, false);
 }
 exports.TargetLookupRequestFromJSON = TargetLookupRequestFromJSON;
 function TargetLookupRequestFromJSONTyped(json, ignoreDiscriminator) {
-    return json;
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return Object.assign(Object.assign({}, json), { 'city': !runtime_1.exists(json, 'city') ? undefined : json['city'], 'email': !runtime_1.exists(json, 'email') ? undefined : json['email'], 'hashed_email': !runtime_1.exists(json, 'hashed_email') ? undefined : json['hashed_email'], 'house_number_and_street': !runtime_1.exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'], 'person_first_name': !runtime_1.exists(json, 'person_first_name') ? undefined : json['person_first_name'], 'person_last_name': !runtime_1.exists(json, 'person_last_name') ? undefined : json['person_last_name'], 'postcode': !runtime_1.exists(json, 'postcode') ? undefined : json['postcode'], 'state': !runtime_1.exists(json, 'state') ? undefined : json['state'] });
 }
 exports.TargetLookupRequestFromJSONTyped = TargetLookupRequestFromJSONTyped;
 function TargetLookupRequestToJSON(value) {
-    return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return Object.assign(Object.assign({}, value), { 'city': value.city, 'email': value.email, 'hashed_email': value.hashed_email, 'house_number_and_street': value.house_number_and_street, 'person_first_name': value.person_first_name, 'person_last_name': value.person_last_name, 'postcode': value.postcode, 'state': value.state });
 }
 exports.TargetLookupRequestToJSON = TargetLookupRequestToJSON;

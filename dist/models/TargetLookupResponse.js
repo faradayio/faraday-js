@@ -14,15 +14,26 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TargetLookupResponseToJSON = exports.TargetLookupResponseFromJSONTyped = exports.TargetLookupResponseFromJSON = void 0;
+const runtime_1 = require("../runtime");
+const LookupMatchType_1 = require("./LookupMatchType");
 function TargetLookupResponseFromJSON(json) {
     return TargetLookupResponseFromJSONTyped(json, false);
 }
 exports.TargetLookupResponseFromJSON = TargetLookupResponseFromJSON;
 function TargetLookupResponseFromJSONTyped(json, ignoreDiscriminator) {
-    return json;
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return Object.assign(Object.assign({}, json), { 'city': !runtime_1.exists(json, 'city') ? undefined : json['city'], 'email': !runtime_1.exists(json, 'email') ? undefined : json['email'], 'error': !runtime_1.exists(json, 'error') ? undefined : json['error'], 'hashed_email': !runtime_1.exists(json, 'hashed_email') ? undefined : json['hashed_email'], 'house_number_and_street': !runtime_1.exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'], 'match_type': !runtime_1.exists(json, 'match_type') ? undefined : LookupMatchType_1.LookupMatchTypeFromJSON(json['match_type']), 'person_first_name': !runtime_1.exists(json, 'person_first_name') ? undefined : json['person_first_name'], 'person_last_name': !runtime_1.exists(json, 'person_last_name') ? undefined : json['person_last_name'], 'postcode': !runtime_1.exists(json, 'postcode') ? undefined : json['postcode'], 'state': !runtime_1.exists(json, 'state') ? undefined : json['state'] });
 }
 exports.TargetLookupResponseFromJSONTyped = TargetLookupResponseFromJSONTyped;
 function TargetLookupResponseToJSON(value) {
-    return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return Object.assign(Object.assign({}, value), { 'city': value.city, 'email': value.email, 'error': value.error, 'hashed_email': value.hashed_email, 'house_number_and_street': value.house_number_and_street, 'match_type': LookupMatchType_1.LookupMatchTypeToJSON(value.match_type), 'person_first_name': value.person_first_name, 'person_last_name': value.person_last_name, 'postcode': value.postcode, 'state': value.state });
 }
 exports.TargetLookupResponseToJSON = TargetLookupResponseToJSON;

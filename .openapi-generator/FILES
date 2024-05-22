@@ -371,6 +371,7 @@ src/models/IdentitySetsPost.ts
 src/models/IdentitySetsPut.ts
 src/models/InlineResponse200.ts
 src/models/Invoice.ts
+src/models/LookupMatchType.ts
 src/models/ModelError.ts
 src/models/ModelingField.ts
 src/models/Outcome.ts
@@ -422,9 +423,6 @@ src/models/OutputToTraitsPut.ts
 src/models/Payment.ts
 src/models/Persona.ts
 src/models/PersonaDetails.ts
-src/models/PersonaMergePatch.ts
-src/models/PersonaPost.ts
-src/models/PersonaPut.ts
 src/models/PersonaSet.ts
 src/models/PersonaSetAnalysisDimensions.ts
 src/models/PersonaSetAnalysisFlow.ts

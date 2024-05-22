@@ -97,13 +97,13 @@ export declare class TargetsApi extends runtime.BaseAPI {
      */
     getTargets(): Promise<Array<Target>>;
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
-     * Perform a lookup on the target, if its type is Hosted API.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target.
+     * Perform a lookup on the target, if its type is Lookup API.
      */
     private lookupOnTargetRaw;
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
-     * Perform a lookup on the target, if its type is Hosted API.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target.
+     * Perform a lookup on the target, if its type is Lookup API.
      */
     lookupOnTarget(targetId: string, targetLookupRequest: TargetLookupRequest): Promise<TargetLookupResponse>;
     /**

@@ -10,12 +10,76 @@
  * Do not edit the class manually.
  */
 /**
+ * The structure of a lookup request depends on the "mode" of the target.
  *
+ * For an identified target, the payload will contain the PII of an individual for whom Faraday should attempt retrieve a score. The following identifiers are supported:
+ *   - person_first_name
+ *   - person_last_name
+ *   - house_number_and_street
+ *   - city
+ *   - state
+ *   - postcode
+ *   - email
+ *   - hashed_email (must be a standard SHA256 hash)
+ *   - phone
+ *
+ * In order to properly match, certain combinations of PII are required. See [the Lookup API specification](../../../features/lookup)
+ *
+ * For an aggregated target, the payload should contain a single key, which will be the same as the aggregate used in the target configuration. For example, if your target has an aggregate of `county`,
+ * then the target will only accept payloads with the key `county`. You must use standard US Census FIPS codes to lookup results.
  * @export
  * @interface TargetLookupRequest
  */
 export interface TargetLookupRequest {
-    [key: string]: string;
+    [key: string]: string | any;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    city?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    email?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    hashed_email?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    house_number_and_street?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    person_first_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    person_last_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    postcode?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    state?: string;
 }
 export declare function TargetLookupRequestFromJSON(json: any): TargetLookupRequest;
 export declare function TargetLookupRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): TargetLookupRequest;

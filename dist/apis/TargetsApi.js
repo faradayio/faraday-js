@@ -248,8 +248,8 @@ class TargetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
-     * Perform a lookup on the target, if its type is Hosted API.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target.
+     * Perform a lookup on the target, if its type is Lookup API.
      */
     lookupOnTargetRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -280,8 +280,8 @@ class TargetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
-     * Perform a lookup on the target, if its type is Hosted API.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target.
+     * Perform a lookup on the target, if its type is Lookup API.
      */
     lookupOnTarget(targetId, targetLookupRequest) {
         return __awaiter(this, void 0, void 0, function* () {

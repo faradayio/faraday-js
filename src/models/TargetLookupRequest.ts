@@ -14,12 +14,76 @@
 
 import { exists, mapValues } from '../runtime';
 /**
+ * The structure of a lookup request depends on the "mode" of the target. 
  * 
+ * For an identified target, the payload will contain the PII of an individual for whom Faraday should attempt retrieve a score. The following identifiers are supported:
+ *   - person_first_name
+ *   - person_last_name
+ *   - house_number_and_street
+ *   - city
+ *   - state
+ *   - postcode
+ *   - email
+ *   - hashed_email (must be a standard SHA256 hash)
+ *   - phone
+ * 
+ * In order to properly match, certain combinations of PII are required. See [the Lookup API specification](../../../features/lookup)
+ * 
+ * For an aggregated target, the payload should contain a single key, which will be the same as the aggregate used in the target configuration. For example, if your target has an aggregate of `county`, 
+ * then the target will only accept payloads with the key `county`. You must use standard US Census FIPS codes to lookup results.
  * @export
  * @interface TargetLookupRequest
  */
 export interface TargetLookupRequest {
-    [key: string]: string;
+    [key: string]: string | any;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    hashed_email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    house_number_and_street?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    person_first_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    person_last_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    postcode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    state?: string;
 }
 
 export function TargetLookupRequestFromJSON(json: any): TargetLookupRequest {
@@ -27,10 +91,41 @@ export function TargetLookupRequestFromJSON(json: any): TargetLookupRequest {
 }
 
 export function TargetLookupRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): TargetLookupRequest {
-    return json;
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+        
+            ...json,
+        'city': !exists(json, 'city') ? undefined : json['city'],
+        'email': !exists(json, 'email') ? undefined : json['email'],
+        'hashed_email': !exists(json, 'hashed_email') ? undefined : json['hashed_email'],
+        'house_number_and_street': !exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'],
+        'person_first_name': !exists(json, 'person_first_name') ? undefined : json['person_first_name'],
+        'person_last_name': !exists(json, 'person_last_name') ? undefined : json['person_last_name'],
+        'postcode': !exists(json, 'postcode') ? undefined : json['postcode'],
+        'state': !exists(json, 'state') ? undefined : json['state'],
+    };
 }
 
 export function TargetLookupRequestToJSON(value?: TargetLookupRequest | null): any {
-    return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+        
+            ...value,
+        'city': value.city,
+        'email': value.email,
+        'hashed_email': value.hashed_email,
+        'house_number_and_street': value.house_number_and_street,
+        'person_first_name': value.person_first_name,
+        'person_last_name': value.person_last_name,
+        'postcode': value.postcode,
+        'state': value.state,
+    };
 }
 
