@@ -26,6 +26,7 @@ var ComplexDataTypeOneOfLogicalTypeEnum;
     ComplexDataTypeOneOfLogicalTypeEnum["TimestampMillis"] = "timestamp-millis";
     ComplexDataTypeOneOfLogicalTypeEnum["LocalTimestampMillis"] = "local-timestamp-millis";
     ComplexDataTypeOneOfLogicalTypeEnum["Json"] = "json";
+    ComplexDataTypeOneOfLogicalTypeEnum["Uuid"] = "uuid";
 })(ComplexDataTypeOneOfLogicalTypeEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum || (exports.ComplexDataTypeOneOfLogicalTypeEnum = {}));
 function ComplexDataTypeOneOfFromJSON(json) {
     return ComplexDataTypeOneOfFromJSONTyped(json, false);
