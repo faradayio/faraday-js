@@ -10,12 +10,19 @@
  * Do not edit the class manually.
  */
 import { DataMapPut } from './DataMapPut';
+import { DatasetStreamCondition } from './DatasetStreamCondition';
 /**
  *
  * @export
  * @interface DatasetStreamPut
  */
 export interface DatasetStreamPut {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStreamPut
+     */
+    conditions?: Array<DatasetStreamCondition>;
     /**
      *
      * @type {DataMapPut}

@@ -19,6 +19,12 @@ import {
     DataMapPutFromJSONTyped,
     DataMapPutToJSON,
 } from './DataMapPut';
+import {
+    DatasetStreamCondition,
+    DatasetStreamConditionFromJSON,
+    DatasetStreamConditionFromJSONTyped,
+    DatasetStreamConditionToJSON,
+} from './DatasetStreamCondition';
 
 /**
  * 
@@ -26,6 +32,12 @@ import {
  * @interface DatasetStreamPut
  */
 export interface DatasetStreamPut {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStreamPut
+     */
+    conditions?: Array<DatasetStreamCondition>;
     /**
      * 
      * @type {DataMapPut}
@@ -44,6 +56,7 @@ export function DatasetStreamPutFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(DatasetStreamConditionFromJSON)),
         'data_map': DataMapPutFromJSON(json['data_map']),
     };
 }
@@ -57,6 +70,7 @@ export function DatasetStreamPutToJSON(value?: DatasetStreamPut | null): any {
     }
     return {
         
+        'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(DatasetStreamConditionToJSON)),
         'data_map': DataMapPutToJSON(value.data_map),
     };
 }

@@ -19,6 +19,12 @@ import {
     DataMapMergePatchFromJSONTyped,
     DataMapMergePatchToJSON,
 } from './DataMapMergePatch';
+import {
+    DatasetStreamCondition,
+    DatasetStreamConditionFromJSON,
+    DatasetStreamConditionFromJSONTyped,
+    DatasetStreamConditionToJSON,
+} from './DatasetStreamCondition';
 
 /**
  * 
@@ -26,6 +32,12 @@ import {
  * @interface DatasetStreamMergePatch
  */
 export interface DatasetStreamMergePatch {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStreamMergePatch
+     */
+    conditions?: Array<DatasetStreamCondition> | null;
     /**
      * 
      * @type {DataMapMergePatch}
@@ -44,6 +56,7 @@ export function DatasetStreamMergePatchFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
+        'conditions': !exists(json, 'conditions') ? undefined : (json['conditions'] === null ? null : (json['conditions'] as Array<any>).map(DatasetStreamConditionFromJSON)),
         'data_map': !exists(json, 'data_map') ? undefined : DataMapMergePatchFromJSON(json['data_map']),
     };
 }
@@ -57,6 +70,7 @@ export function DatasetStreamMergePatchToJSON(value?: DatasetStreamMergePatch | 
     }
     return {
         
+        'conditions': value.conditions === undefined ? undefined : (value.conditions === null ? null : (value.conditions as Array<any>).map(DatasetStreamConditionToJSON)),
         'data_map': DataMapMergePatchToJSON(value.data_map),
     };
 }

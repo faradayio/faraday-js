@@ -19,6 +19,12 @@ import {
     DataMapPostFromJSONTyped,
     DataMapPostToJSON,
 } from './DataMapPost';
+import {
+    DatasetStreamCondition,
+    DatasetStreamConditionFromJSON,
+    DatasetStreamConditionFromJSONTyped,
+    DatasetStreamConditionToJSON,
+} from './DatasetStreamCondition';
 
 /**
  * 
@@ -26,6 +32,12 @@ import {
  * @interface DatasetStreamPost
  */
 export interface DatasetStreamPost {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStreamPost
+     */
+    conditions?: Array<DatasetStreamCondition>;
     /**
      * 
      * @type {DataMapPost}
@@ -44,6 +56,7 @@ export function DatasetStreamPostFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
+        'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(DatasetStreamConditionFromJSON)),
         'data_map': DataMapPostFromJSON(json['data_map']),
     };
 }
@@ -57,6 +70,7 @@ export function DatasetStreamPostToJSON(value?: DatasetStreamPost | null): any {
     }
     return {
         
+        'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(DatasetStreamConditionToJSON)),
         'data_map': DataMapPostToJSON(value.data_map),
     };
 }

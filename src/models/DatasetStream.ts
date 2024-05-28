@@ -19,6 +19,12 @@ import {
     DataMapFromJSONTyped,
     DataMapToJSON,
 } from './DataMap';
+import {
+    DatasetStreamCondition,
+    DatasetStreamConditionFromJSON,
+    DatasetStreamConditionFromJSONTyped,
+    DatasetStreamConditionToJSON,
+} from './DatasetStreamCondition';
 
 /**
  * 
@@ -32,6 +38,12 @@ export interface DatasetStream {
      * @memberof DatasetStream
      */
     classic?: boolean;
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStream
+     */
+    conditions?: Array<DatasetStreamCondition>;
     /**
      * 
      * @type {DataMap}
@@ -57,6 +69,7 @@ export function DatasetStreamFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'classic': !exists(json, 'classic') ? undefined : json['classic'],
+        'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(DatasetStreamConditionFromJSON)),
         'data_map': DataMapFromJSON(json['data_map']),
         'stream_id': json['stream_id'],
     };
@@ -72,6 +85,7 @@ export function DatasetStreamToJSON(value?: DatasetStream | null): any {
     return {
         
         'classic': value.classic,
+        'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(DatasetStreamConditionToJSON)),
         'data_map': DataMapToJSON(value.data_map),
         'stream_id': value.stream_id,
     };
