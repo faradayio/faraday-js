@@ -37,8 +37,7 @@ export declare enum ComplexDataTypeOneOfLogicalTypeEnum {
     Date = "date",
     TimestampMillis = "timestamp-millis",
     LocalTimestampMillis = "local-timestamp-millis",
-    Json = "json",
-    Uuid = "uuid"
+    Json = "json"
 }
 export declare function ComplexDataTypeOneOfFromJSON(json: any): ComplexDataTypeOneOf;
 export declare function ComplexDataTypeOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): ComplexDataTypeOneOf;

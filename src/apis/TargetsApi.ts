@@ -307,7 +307,7 @@ export class TargetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples. 
      * Perform a lookup on the target, if its type is Hosted API.
      */
     private async lookupOnTargetRaw(requestParameters: LookupOnTargetRequest, ): Promise<runtime.ApiResponse<TargetLookupResponse>> {
@@ -345,7 +345,7 @@ export class TargetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples. 
      * Perform a lookup on the target, if its type is Hosted API.
      */
     async lookupOnTarget(targetId: string, targetLookupRequest: TargetLookupRequest, ): Promise<TargetLookupResponse> {

@@ -97,12 +97,12 @@ export declare class TargetsApi extends runtime.BaseAPI {
      */
     getTargets(): Promise<Array<Target>>;
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples.
      * Perform a lookup on the target, if its type is Hosted API.
      */
     private lookupOnTargetRaw;
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples.
      * Perform a lookup on the target, if its type is Hosted API.
      */
     lookupOnTarget(targetId: string, targetLookupRequest: TargetLookupRequest): Promise<TargetLookupResponse>;
