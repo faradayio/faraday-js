@@ -355,6 +355,7 @@ src/models/DatasetOutputAllColumnsAsTraits.ts
 src/models/DatasetPost.ts
 src/models/DatasetPut.ts
 src/models/DatasetStream.ts
+src/models/DatasetStreamCondition.ts
 src/models/DatasetStreamMergePatch.ts
 src/models/DatasetStreamPost.ts
 src/models/DatasetStreamPut.ts

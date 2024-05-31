@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetStreamToJSON = exports.DatasetStreamFromJSONTyped = exports.DatasetStreamFromJSON = void 0;
 const runtime_1 = require("../runtime");
 const DataMap_1 = require("./DataMap");
+const DatasetStreamCondition_1 = require("./DatasetStreamCondition");
 function DatasetStreamFromJSON(json) {
     return DatasetStreamFromJSONTyped(json, false);
 }
@@ -26,6 +27,7 @@ function DatasetStreamFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'classic': !runtime_1.exists(json, 'classic') ? undefined : json['classic'],
+        'conditions': !runtime_1.exists(json, 'conditions') ? undefined : (json['conditions'].map(DatasetStreamCondition_1.DatasetStreamConditionFromJSON)),
         'data_map': DataMap_1.DataMapFromJSON(json['data_map']),
         'stream_id': json['stream_id'],
     };
@@ -40,6 +42,7 @@ function DatasetStreamToJSON(value) {
     }
     return {
         'classic': value.classic,
+        'conditions': value.conditions === undefined ? undefined : (value.conditions.map(DatasetStreamCondition_1.DatasetStreamConditionToJSON)),
         'data_map': DataMap_1.DataMapToJSON(value.data_map),
         'stream_id': value.stream_id,
     };

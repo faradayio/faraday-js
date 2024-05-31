@@ -346,6 +346,7 @@ __exportStar(require("./DatasetOutputAllColumnsAsTraits"), exports);
 __exportStar(require("./DatasetPost"), exports);
 __exportStar(require("./DatasetPut"), exports);
 __exportStar(require("./DatasetStream"), exports);
+__exportStar(require("./DatasetStreamCondition"), exports);
 __exportStar(require("./DatasetStreamMergePatch"), exports);
 __exportStar(require("./DatasetStreamPost"), exports);
 __exportStar(require("./DatasetStreamPut"), exports);

@@ -10,12 +10,19 @@
  * Do not edit the class manually.
  */
 import { DataMapPost } from './DataMapPost';
+import { DatasetStreamCondition } from './DatasetStreamCondition';
 /**
  *
  * @export
  * @interface DatasetStreamPost
  */
 export interface DatasetStreamPost {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStreamPost
+     */
+    conditions?: Array<DatasetStreamCondition>;
     /**
      *
      * @type {DataMapPost}

@@ -14,7 +14,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetStreamPutToJSON = exports.DatasetStreamPutFromJSONTyped = exports.DatasetStreamPutFromJSON = void 0;
+const runtime_1 = require("../runtime");
 const DataMapPut_1 = require("./DataMapPut");
+const DatasetStreamCondition_1 = require("./DatasetStreamCondition");
 function DatasetStreamPutFromJSON(json) {
     return DatasetStreamPutFromJSONTyped(json, false);
 }
@@ -24,6 +26,7 @@ function DatasetStreamPutFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'conditions': !runtime_1.exists(json, 'conditions') ? undefined : (json['conditions'].map(DatasetStreamCondition_1.DatasetStreamConditionFromJSON)),
         'data_map': DataMapPut_1.DataMapPutFromJSON(json['data_map']),
     };
 }
@@ -36,6 +39,7 @@ function DatasetStreamPutToJSON(value) {
         return null;
     }
     return {
+        'conditions': value.conditions === undefined ? undefined : (value.conditions.map(DatasetStreamCondition_1.DatasetStreamConditionToJSON)),
         'data_map': DataMapPut_1.DataMapPutToJSON(value.data_map),
     };
 }

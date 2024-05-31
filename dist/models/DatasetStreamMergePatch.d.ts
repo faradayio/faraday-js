@@ -10,12 +10,19 @@
  * Do not edit the class manually.
  */
 import { DataMapMergePatch } from './DataMapMergePatch';
+import { DatasetStreamCondition } from './DatasetStreamCondition';
 /**
  *
  * @export
  * @interface DatasetStreamMergePatch
  */
 export interface DatasetStreamMergePatch {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStreamMergePatch
+     */
+    conditions?: Array<DatasetStreamCondition> | null;
     /**
      *
      * @type {DataMapMergePatch}

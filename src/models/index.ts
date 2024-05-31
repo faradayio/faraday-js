@@ -334,6 +334,7 @@ export * from './DatasetOutputAllColumnsAsTraits';
 export * from './DatasetPost';
 export * from './DatasetPut';
 export * from './DatasetStream';
+export * from './DatasetStreamCondition';
 export * from './DatasetStreamMergePatch';
 export * from './DatasetStreamPost';
 export * from './DatasetStreamPut';

@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { DataMap } from './DataMap';
+import { DatasetStreamCondition } from './DatasetStreamCondition';
 /**
  *
  * @export
@@ -22,6 +23,12 @@ export interface DatasetStream {
      * @memberof DatasetStream
      */
     classic?: boolean;
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof DatasetStream
+     */
+    conditions?: Array<DatasetStreamCondition>;
     /**
      *
      * @type {DataMap}
