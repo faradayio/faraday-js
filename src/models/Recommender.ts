@@ -65,6 +65,12 @@ export interface Recommender {
      */
     name: string;
     /**
+     * URL of an HTML report containing information such as the objective of the model, performance, and important features.
+     * @type {string}
+     * @memberof Recommender
+     */
+    report_url?: string;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof Recommender
@@ -124,6 +130,7 @@ export function RecommenderFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'last_updated_config_at': !exists(json, 'last_updated_config_at') ? undefined : (new Date(json['last_updated_config_at'])),
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'name': json['name'],
+        'report_url': !exists(json, 'report_url') ? undefined : json['report_url'],
         'resource_type': json['resource_type'],
         'status': ResourceStatusFromJSON(json['status']),
         'status_changed_at': !exists(json, 'status_changed_at') ? undefined : (new Date(json['status_changed_at'])),
@@ -149,6 +156,7 @@ export function RecommenderToJSON(value?: Recommender | null): any {
         'last_updated_config_at': value.last_updated_config_at === undefined ? undefined : (value.last_updated_config_at.toISOString()),
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'name': value.name,
+        'report_url': value.report_url,
         'resource_type': value.resource_type,
         'status': ResourceStatusToJSON(value.status),
         'status_changed_at': value.status_changed_at === undefined ? undefined : (value.status_changed_at.toISOString()),

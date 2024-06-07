@@ -55,6 +55,12 @@ export interface Recommender {
      */
     name: string;
     /**
+     * URL of an HTML report containing information such as the objective of the model, performance, and important features.
+     * @type {string}
+     * @memberof Recommender
+     */
+    report_url?: string;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof Recommender
