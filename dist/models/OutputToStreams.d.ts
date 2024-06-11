@@ -50,6 +50,10 @@ import { DatasetStream } from './DatasetStream';
  *   * `yy_mm_dd_dash`
  *   * `yyyymmdd`
  *   * `yyyymm`
+ *   * `dd_mm_yyyy_slash`
+ *   * `dd_mm_yy_slash`
+ *   * `dd_mm_yyyy_dash`
+ *   * `dd_mm_yy_dash`
  *   * `list_comma_separated`
  *   * `list_semicolon_separated`
  *   * `list_single_value`
