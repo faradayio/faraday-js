@@ -18,23 +18,17 @@
  */
 export interface ConnectionOptionsTiktokPut {
     /**
-     * Password for the TikTok connection
+     * Account id for the TikTok connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokPut
      */
-    password?: string;
+    tiktok_account_id?: string;
     /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokPut
      */
     type: string;
-    /**
-     * Username for the TikTok connection
-     * @type {string}
-     * @memberof ConnectionOptionsTiktokPut
-     */
-    username?: string;
 }
 export declare function ConnectionOptionsTiktokPutFromJSON(json: any): ConnectionOptionsTiktokPut;
 export declare function ConnectionOptionsTiktokPutFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConnectionOptionsTiktokPut;

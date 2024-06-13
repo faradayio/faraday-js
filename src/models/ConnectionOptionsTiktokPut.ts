@@ -22,23 +22,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsTiktokPut {
     /**
-     * Password for the TikTok connection
+     * Account id for the TikTok connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokPut
      */
-    password?: string;
+    tiktok_account_id?: string;
     /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokPut
      */
     type: string;
-    /**
-     * Username for the TikTok connection
-     * @type {string}
-     * @memberof ConnectionOptionsTiktokPut
-     */
-    username?: string;
 }
 
 export function ConnectionOptionsTiktokPutFromJSON(json: any): ConnectionOptionsTiktokPut {
@@ -51,9 +45,8 @@ export function ConnectionOptionsTiktokPutFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'password': !exists(json, 'password') ? undefined : json['password'],
+        'tiktok_account_id': !exists(json, 'tiktok_account_id') ? undefined : json['tiktok_account_id'],
         'type': json['type'],
-        'username': !exists(json, 'username') ? undefined : json['username'],
     };
 }
 
@@ -66,9 +59,8 @@ export function ConnectionOptionsTiktokPutToJSON(value?: ConnectionOptionsTiktok
     }
     return {
         
-        'password': value.password,
+        'tiktok_account_id': value.tiktok_account_id,
         'type': value.type,
-        'username': value.username,
     };
 }
 

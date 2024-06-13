@@ -22,23 +22,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsTiktokMergePatch {
     /**
-     * Password for the TikTok connection
+     * Account id for the TikTok connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokMergePatch
      */
-    password?: string | null;
+    tiktok_account_id?: string | null;
     /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokMergePatch
      */
     type: string;
-    /**
-     * Username for the TikTok connection
-     * @type {string}
-     * @memberof ConnectionOptionsTiktokMergePatch
-     */
-    username?: string | null;
 }
 
 export function ConnectionOptionsTiktokMergePatchFromJSON(json: any): ConnectionOptionsTiktokMergePatch {
@@ -51,9 +45,8 @@ export function ConnectionOptionsTiktokMergePatchFromJSONTyped(json: any, ignore
     }
     return {
         
-        'password': !exists(json, 'password') ? undefined : json['password'],
+        'tiktok_account_id': !exists(json, 'tiktok_account_id') ? undefined : json['tiktok_account_id'],
         'type': json['type'],
-        'username': !exists(json, 'username') ? undefined : json['username'],
     };
 }
 
@@ -66,9 +59,8 @@ export function ConnectionOptionsTiktokMergePatchToJSON(value?: ConnectionOption
     }
     return {
         
-        'password': value.password,
+        'tiktok_account_id': value.tiktok_account_id,
         'type': value.type,
-        'username': value.username,
     };
 }
 
