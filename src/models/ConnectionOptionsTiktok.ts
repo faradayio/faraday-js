@@ -20,23 +20,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsTiktok {
     /**
-     * Password for the TikTok connection
+     * Account id for the TikTok connection
      * @type {string}
      * @memberof ConnectionOptionsTiktok
      */
-    password?: string;
+    tiktok_account_id?: string;
     /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsTiktok
      */
     type: string;
-    /**
-     * Username for the TikTok connection
-     * @type {string}
-     * @memberof ConnectionOptionsTiktok
-     */
-    username?: string;
 }
 
 export function ConnectionOptionsTiktokFromJSON(json: any): ConnectionOptionsTiktok {
@@ -49,9 +43,8 @@ export function ConnectionOptionsTiktokFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'password': !exists(json, 'password') ? undefined : json['password'],
+        'tiktok_account_id': !exists(json, 'tiktok_account_id') ? undefined : json['tiktok_account_id'],
         'type': json['type'],
-        'username': !exists(json, 'username') ? undefined : json['username'],
     };
 }
 
@@ -64,9 +57,8 @@ export function ConnectionOptionsTiktokToJSON(value?: ConnectionOptionsTiktok | 
     }
     return {
         
-        'password': value.password,
+        'tiktok_account_id': value.tiktok_account_id,
         'type': value.type,
-        'username': value.username,
     };
 }
 

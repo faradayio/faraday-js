@@ -24,9 +24,8 @@ function ConnectionOptionsTiktokPutFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'password': !runtime_1.exists(json, 'password') ? undefined : json['password'],
+        'tiktok_account_id': !runtime_1.exists(json, 'tiktok_account_id') ? undefined : json['tiktok_account_id'],
         'type': json['type'],
-        'username': !runtime_1.exists(json, 'username') ? undefined : json['username'],
     };
 }
 exports.ConnectionOptionsTiktokPutFromJSONTyped = ConnectionOptionsTiktokPutFromJSONTyped;
@@ -38,9 +37,8 @@ function ConnectionOptionsTiktokPutToJSON(value) {
         return null;
     }
     return {
-        'password': value.password,
+        'tiktok_account_id': value.tiktok_account_id,
         'type': value.type,
-        'username': value.username,
     };
 }
 exports.ConnectionOptionsTiktokPutToJSON = ConnectionOptionsTiktokPutToJSON;

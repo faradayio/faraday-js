@@ -18,23 +18,17 @@
  */
 export interface ConnectionOptionsTiktokMergePatch {
     /**
-     * Password for the TikTok connection
+     * Account id for the TikTok connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokMergePatch
      */
-    password?: string | null;
+    tiktok_account_id?: string | null;
     /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsTiktokMergePatch
      */
     type: string;
-    /**
-     * Username for the TikTok connection
-     * @type {string}
-     * @memberof ConnectionOptionsTiktokMergePatch
-     */
-    username?: string | null;
 }
 export declare function ConnectionOptionsTiktokMergePatchFromJSON(json: any): ConnectionOptionsTiktokMergePatch;
 export declare function ConnectionOptionsTiktokMergePatchFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConnectionOptionsTiktokMergePatch;
