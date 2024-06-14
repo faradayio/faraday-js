@@ -18,7 +18,7 @@
  */
 export interface DatasetOptionsSftpPut {
     /**
-     * CSV delimiter
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
      * @type {string}
      * @memberof DatasetOptionsSftpPut
      */
