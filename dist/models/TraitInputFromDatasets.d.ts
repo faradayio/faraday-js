@@ -28,7 +28,7 @@ export interface TraitInputFromDatasets {
      */
     dataset_id: string;
     /**
-     * Transformations that are applied to the source table to unify distinct values for modeling.
+     * Transformations that are applied to the source table, typically to unify distinct values for modeling.
      * @type {object}
      * @memberof TraitInputFromDatasets
      */
