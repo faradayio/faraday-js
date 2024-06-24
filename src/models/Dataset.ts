@@ -160,7 +160,10 @@ export interface Dataset {
      */
     managed?: boolean;
     /**
-     * The number of identified people in this dataset that Faraday found a match for in its data. This will only be displayed if the dataset built successfully.
+     * **Deprecated**: Use `enrichment` instead.
+     * 
+     * The number of identified people in this dataset that Faraday found a match for in its data.
+     * This will only be displayed if the dataset built successfully.
      * @type {number}
      * @memberof Dataset
      */
