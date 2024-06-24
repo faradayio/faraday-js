@@ -10,6 +10,17 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.19] - 2024-06-24
+
+### Fixed
+
+- `GET PATCH POST /connections`: allow slashes in s3 and gcs `bucket_name`
+- `PATCH /user_places`: setting a place's `addresses` = null will now delete addresses
+
+### Deprecated
+
+- `GET /datasets`: deprecate match_count. Use `enrichment` instead
+
 ## [0.10.18] - 2024-06-12
 
 ### Added
