@@ -140,6 +140,43 @@ class RecommendersApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
+     * Retrieve a recommenders\'s analysis
+     */
+    getRecommenderAnalysisRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+                throw new runtime.RequiredError('recommenderId', 'Required parameter requestParameters.recommenderId was null or undefined when calling getRecommenderAnalysis.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/recommenders/{recommender_id}/analysis`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.RecommenderAnalysisFromJSON(jsonValue));
+        });
+    }
+    /**
+     * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
+     * Retrieve a recommenders\'s analysis
+     */
+    getRecommenderAnalysis(recommenderId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getRecommenderAnalysisRaw({ recommenderId: recommenderId });
+            return yield response.value();
+        });
+    }
+    /**
      * Get a list of recommenders defined on the account
      * List recommenders
      */

@@ -13,25 +13,27 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OutcomeAnalysisFeatureToJSON = exports.OutcomeAnalysisFeatureFromJSONTyped = exports.OutcomeAnalysisFeatureFromJSON = void 0;
+exports.RecommenderFeatureDataToJSON = exports.RecommenderFeatureDataFromJSONTyped = exports.RecommenderFeatureDataFromJSON = void 0;
 const AnalysisFeatureDirectionality_1 = require("./AnalysisFeatureDirectionality");
-function OutcomeAnalysisFeatureFromJSON(json) {
-    return OutcomeAnalysisFeatureFromJSONTyped(json, false);
+function RecommenderFeatureDataFromJSON(json) {
+    return RecommenderFeatureDataFromJSONTyped(json, false);
 }
-exports.OutcomeAnalysisFeatureFromJSON = OutcomeAnalysisFeatureFromJSON;
-function OutcomeAnalysisFeatureFromJSONTyped(json, ignoreDiscriminator) {
+exports.RecommenderFeatureDataFromJSON = RecommenderFeatureDataFromJSON;
+function RecommenderFeatureDataFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
+        'category': json['category'],
         'directionality': (json['directionality'].map(AnalysisFeatureDirectionality_1.AnalysisFeatureDirectionalityFromJSON)),
         'importance': json['importance'],
         'literate': json['literate'],
         'name': json['name'],
+        'type': json['type'],
     };
 }
-exports.OutcomeAnalysisFeatureFromJSONTyped = OutcomeAnalysisFeatureFromJSONTyped;
-function OutcomeAnalysisFeatureToJSON(value) {
+exports.RecommenderFeatureDataFromJSONTyped = RecommenderFeatureDataFromJSONTyped;
+function RecommenderFeatureDataToJSON(value) {
     if (value === undefined) {
         return undefined;
     }
@@ -39,10 +41,12 @@ function OutcomeAnalysisFeatureToJSON(value) {
         return null;
     }
     return {
+        'category': value.category,
         'directionality': (value.directionality.map(AnalysisFeatureDirectionality_1.AnalysisFeatureDirectionalityToJSON)),
         'importance': value.importance,
         'literate': value.literate,
         'name': value.name,
+        'type': value.type,
     };
 }
-exports.OutcomeAnalysisFeatureToJSON = OutcomeAnalysisFeatureToJSON;
+exports.RecommenderFeatureDataToJSON = RecommenderFeatureDataToJSON;

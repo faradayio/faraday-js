@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AnalysisRocCurvePoint } from './AnalysisRocCurvePoint';
 import { OutcomePerformanceLiftCurvePoint } from './OutcomePerformanceLiftCurvePoint';
-import { OutcomePerformanceRocCurvePoint } from './OutcomePerformanceRocCurvePoint';
 import { TabularData } from './TabularData';
 /**
  * Performance metrics for a propensity model, optionally over a tenure range.
@@ -50,10 +50,10 @@ export interface OutcomePerformanceModel {
     roc_auc: number;
     /**
      *
-     * @type {Array<OutcomePerformanceRocCurvePoint>}
+     * @type {Array<AnalysisRocCurvePoint>}
      * @memberof OutcomePerformanceModel
      */
-    roc_curve: Array<OutcomePerformanceRocCurvePoint>;
+    roc_curve: Array<AnalysisRocCurvePoint>;
     /**
      * When the tenure range ends measured in days. The value can be null if no tenure range applies to this model. The value can also be null if the range is unbounded.
      * @type {number}
