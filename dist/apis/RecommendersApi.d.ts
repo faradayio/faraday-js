@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Recommender, RecommenderMergePatch, RecommenderPost } from '../models';
+import { Recommender, RecommenderAnalysis, RecommenderMergePatch, RecommenderPost } from '../models';
 export interface CreateRecommenderRequest {
     recommenderFields: RecommenderPost;
 }
@@ -18,6 +18,9 @@ export interface DeleteRecommenderRequest {
     recommenderId: string;
 }
 export interface GetRecommenderRequest {
+    recommenderId: string;
+}
+export interface GetRecommenderAnalysisRequest {
     recommenderId: string;
 }
 export interface UpdateRecommenderRequest {
@@ -56,6 +59,16 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Retrieve a recommender
      */
     getRecommender(recommenderId: string): Promise<Recommender>;
+    /**
+     * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
+     * Retrieve a recommenders\'s analysis
+     */
+    private getRecommenderAnalysisRaw;
+    /**
+     * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
+     * Retrieve a recommenders\'s analysis
+     */
+    getRecommenderAnalysis(recommenderId: string): Promise<RecommenderAnalysis>;
     /**
      * Get a list of recommenders defined on the account
      * List recommenders

@@ -21,55 +21,69 @@ import {
 } from './AnalysisFeatureDirectionality';
 
 /**
- * Importance and directionality of a given feature in an outcome.
+ * 
  * @export
- * @interface OutcomeAnalysisFeature
+ * @interface RecommenderFeatureData
  */
-export interface OutcomeAnalysisFeature {
+export interface RecommenderFeatureData {
+    /**
+     * 
+     * @type {string}
+     * @memberof RecommenderFeatureData
+     */
+    category: string;
     /**
      * 
      * @type {Array<AnalysisFeatureDirectionality>}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     directionality: Array<AnalysisFeatureDirectionality>;
     /**
-     * The importance of the feature
+     * 
      * @type {number}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     importance: number;
     /**
-     * The human-readable name of the feature
+     * 
      * @type {string}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     literate: string;
     /**
-     * The identifier for the feature
+     * 
      * @type {string}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RecommenderFeatureData
+     */
+    type: string;
 }
 
-export function OutcomeAnalysisFeatureFromJSON(json: any): OutcomeAnalysisFeature {
-    return OutcomeAnalysisFeatureFromJSONTyped(json, false);
+export function RecommenderFeatureDataFromJSON(json: any): RecommenderFeatureData {
+    return RecommenderFeatureDataFromJSONTyped(json, false);
 }
 
-export function OutcomeAnalysisFeatureFromJSONTyped(json: any, ignoreDiscriminator: boolean): OutcomeAnalysisFeature {
+export function RecommenderFeatureDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RecommenderFeatureData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
+        'category': json['category'],
         'directionality': ((json['directionality'] as Array<any>).map(AnalysisFeatureDirectionalityFromJSON)),
         'importance': json['importance'],
         'literate': json['literate'],
         'name': json['name'],
+        'type': json['type'],
     };
 }
 
-export function OutcomeAnalysisFeatureToJSON(value?: OutcomeAnalysisFeature | null): any {
+export function RecommenderFeatureDataToJSON(value?: RecommenderFeatureData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -78,10 +92,12 @@ export function OutcomeAnalysisFeatureToJSON(value?: OutcomeAnalysisFeature | nu
     }
     return {
         
+        'category': value.category,
         'directionality': ((value.directionality as Array<any>).map(AnalysisFeatureDirectionalityToJSON)),
         'importance': value.importance,
         'literate': value.literate,
         'name': value.name,
+        'type': value.type,
     };
 }
 

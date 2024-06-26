@@ -14,17 +14,17 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    AnalysisRocCurvePoint,
+    AnalysisRocCurvePointFromJSON,
+    AnalysisRocCurvePointFromJSONTyped,
+    AnalysisRocCurvePointToJSON,
+} from './AnalysisRocCurvePoint';
+import {
     OutcomePerformanceLiftCurvePoint,
     OutcomePerformanceLiftCurvePointFromJSON,
     OutcomePerformanceLiftCurvePointFromJSONTyped,
     OutcomePerformanceLiftCurvePointToJSON,
 } from './OutcomePerformanceLiftCurvePoint';
-import {
-    OutcomePerformanceRocCurvePoint,
-    OutcomePerformanceRocCurvePointFromJSON,
-    OutcomePerformanceRocCurvePointFromJSONTyped,
-    OutcomePerformanceRocCurvePointToJSON,
-} from './OutcomePerformanceRocCurvePoint';
 import {
     TabularData,
     TabularDataFromJSON,
@@ -70,10 +70,10 @@ export interface OutcomePerformanceModel {
     roc_auc: number;
     /**
      * 
-     * @type {Array<OutcomePerformanceRocCurvePoint>}
+     * @type {Array<AnalysisRocCurvePoint>}
      * @memberof OutcomePerformanceModel
      */
-    roc_curve: Array<OutcomePerformanceRocCurvePoint>;
+    roc_curve: Array<AnalysisRocCurvePoint>;
     /**
      * When the tenure range ends measured in days. The value can be null if no tenure range applies to this model. The value can also be null if the range is unbounded.
      * @type {number}
@@ -103,7 +103,7 @@ export function OutcomePerformanceModelFromJSONTyped(json: any, ignoreDiscrimina
         'lift_value': !exists(json, 'lift_value') ? undefined : json['lift_value'],
         'metrics_table': TabularDataFromJSON(json['metrics_table']),
         'roc_auc': json['roc_auc'],
-        'roc_curve': ((json['roc_curve'] as Array<any>).map(OutcomePerformanceRocCurvePointFromJSON)),
+        'roc_curve': ((json['roc_curve'] as Array<any>).map(AnalysisRocCurvePointFromJSON)),
         'tenure_end': !exists(json, 'tenure_end') ? undefined : json['tenure_end'],
         'tenure_start': !exists(json, 'tenure_start') ? undefined : json['tenure_start'],
     };
@@ -123,7 +123,7 @@ export function OutcomePerformanceModelToJSON(value?: OutcomePerformanceModel | 
         'lift_value': value.lift_value,
         'metrics_table': TabularDataToJSON(value.metrics_table),
         'roc_auc': value.roc_auc,
-        'roc_curve': ((value.roc_curve as Array<any>).map(OutcomePerformanceRocCurvePointToJSON)),
+        'roc_curve': ((value.roc_curve as Array<any>).map(AnalysisRocCurvePointToJSON)),
         'tenure_end': value.tenure_end,
         'tenure_start': value.tenure_start,
     };

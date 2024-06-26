@@ -11,36 +11,48 @@
  */
 import { AnalysisFeatureDirectionality } from './AnalysisFeatureDirectionality';
 /**
- * Importance and directionality of a given feature in an outcome.
+ *
  * @export
- * @interface OutcomeAnalysisFeature
+ * @interface RecommenderFeatureData
  */
-export interface OutcomeAnalysisFeature {
+export interface RecommenderFeatureData {
+    /**
+     *
+     * @type {string}
+     * @memberof RecommenderFeatureData
+     */
+    category: string;
     /**
      *
      * @type {Array<AnalysisFeatureDirectionality>}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     directionality: Array<AnalysisFeatureDirectionality>;
     /**
-     * The importance of the feature
+     *
      * @type {number}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     importance: number;
     /**
-     * The human-readable name of the feature
+     *
      * @type {string}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     literate: string;
     /**
-     * The identifier for the feature
+     *
      * @type {string}
-     * @memberof OutcomeAnalysisFeature
+     * @memberof RecommenderFeatureData
      */
     name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof RecommenderFeatureData
+     */
+    type: string;
 }
-export declare function OutcomeAnalysisFeatureFromJSON(json: any): OutcomeAnalysisFeature;
-export declare function OutcomeAnalysisFeatureFromJSONTyped(json: any, ignoreDiscriminator: boolean): OutcomeAnalysisFeature;
-export declare function OutcomeAnalysisFeatureToJSON(value?: OutcomeAnalysisFeature | null): any;
+export declare function RecommenderFeatureDataFromJSON(json: any): RecommenderFeatureData;
+export declare function RecommenderFeatureDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RecommenderFeatureData;
+export declare function RecommenderFeatureDataToJSON(value?: RecommenderFeatureData | null): any;

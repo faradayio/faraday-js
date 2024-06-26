@@ -18,6 +18,9 @@ import {
     Recommender,
     RecommenderFromJSON,
     RecommenderToJSON,
+    RecommenderAnalysis,
+    RecommenderAnalysisFromJSON,
+    RecommenderAnalysisToJSON,
     RecommenderMergePatch,
     RecommenderMergePatchFromJSON,
     RecommenderMergePatchToJSON,
@@ -35,6 +38,10 @@ export interface DeleteRecommenderRequest {
 }
 
 export interface GetRecommenderRequest {
+    recommenderId: string;
+}
+
+export interface GetRecommenderAnalysisRequest {
     recommenderId: string;
 }
 
@@ -165,6 +172,46 @@ export class RecommendersApi extends runtime.BaseAPI {
      */
     async getRecommender(recommenderId: string, ): Promise<Recommender> {
         const response = await this.getRecommenderRaw({ recommenderId: recommenderId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
+     * Retrieve a recommenders\'s analysis
+     */
+    private async getRecommenderAnalysisRaw(requestParameters: GetRecommenderAnalysisRequest, ): Promise<runtime.ApiResponse<RecommenderAnalysis>> {
+        if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+            throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling getRecommenderAnalysis.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/recommenders/{recommender_id}/analysis`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RecommenderAnalysisFromJSON(jsonValue));
+    }
+
+    /**
+     * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
+     * Retrieve a recommenders\'s analysis
+     */
+    async getRecommenderAnalysis(recommenderId: string, ): Promise<RecommenderAnalysis> {
+        const response = await this.getRecommenderAnalysisRaw({ recommenderId: recommenderId }, );
         return await response.value();
     }
 
