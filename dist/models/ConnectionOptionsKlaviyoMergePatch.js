@@ -25,6 +25,7 @@ function ConnectionOptionsKlaviyoMergePatchFromJSONTyped(json, ignoreDiscriminat
     }
     return {
         'api_key': !runtime_1.exists(json, 'api_key') ? undefined : json['api_key'],
+        'private_api_key': !runtime_1.exists(json, 'private_api_key') ? undefined : json['private_api_key'],
         'type': json['type'],
     };
 }
@@ -38,6 +39,7 @@ function ConnectionOptionsKlaviyoMergePatchToJSON(value) {
     }
     return {
         'api_key': value.api_key,
+        'private_api_key': value.private_api_key,
         'type': value.type,
     };
 }

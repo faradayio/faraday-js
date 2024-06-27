@@ -20,11 +20,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsKlaviyo {
     /**
-     * API Key for the Klaviyo connection
+     * The public API key associated with your account. Also referred to as the Site ID.
      * @type {string}
      * @memberof ConnectionOptionsKlaviyo
      */
-    api_key: string;
+    api_key?: string;
+    /**
+     * A private API key associated with your account. These can be generated as needed using Klaviyo's settings pages.
+     * @type {string}
+     * @memberof ConnectionOptionsKlaviyo
+     */
+    private_api_key?: string;
     /**
      * The type of connection
      * @type {string}
@@ -43,7 +49,8 @@ export function ConnectionOptionsKlaviyoFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'api_key': json['api_key'],
+        'api_key': !exists(json, 'api_key') ? undefined : json['api_key'],
+        'private_api_key': !exists(json, 'private_api_key') ? undefined : json['private_api_key'],
         'type': json['type'],
     };
 }
@@ -58,6 +65,7 @@ export function ConnectionOptionsKlaviyoToJSON(value?: ConnectionOptionsKlaviyo 
     return {
         
         'api_key': value.api_key,
+        'private_api_key': value.private_api_key,
         'type': value.type,
     };
 }
