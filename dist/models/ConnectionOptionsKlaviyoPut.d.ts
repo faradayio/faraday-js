@@ -18,11 +18,17 @@
  */
 export interface ConnectionOptionsKlaviyoPut {
     /**
-     * API Key for the Klaviyo connection
+     * The public API key associated with your account. Also referred to as the Site ID.
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoPut
      */
-    api_key: string;
+    api_key?: string;
+    /**
+     * A private API key associated with your account. These can be generated as needed using Klaviyo's settings pages.
+     * @type {string}
+     * @memberof ConnectionOptionsKlaviyoPut
+     */
+    private_api_key?: string;
     /**
      * The type of connection
      * @type {string}

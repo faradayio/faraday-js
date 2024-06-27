@@ -22,11 +22,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConnectionOptionsKlaviyoMergePatch {
     /**
-     * API Key for the Klaviyo connection
+     * The public API key associated with your account. Also referred to as the Site ID.
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoMergePatch
      */
-    api_key?: string;
+    api_key?: string | null;
+    /**
+     * A private API key associated with your account. These can be generated as needed using Klaviyo's settings pages.
+     * @type {string}
+     * @memberof ConnectionOptionsKlaviyoMergePatch
+     */
+    private_api_key?: string | null;
     /**
      * The type of connection
      * @type {string}
@@ -46,6 +52,7 @@ export function ConnectionOptionsKlaviyoMergePatchFromJSONTyped(json: any, ignor
     return {
         
         'api_key': !exists(json, 'api_key') ? undefined : json['api_key'],
+        'private_api_key': !exists(json, 'private_api_key') ? undefined : json['private_api_key'],
         'type': json['type'],
     };
 }
@@ -60,6 +67,7 @@ export function ConnectionOptionsKlaviyoMergePatchToJSON(value?: ConnectionOptio
     return {
         
         'api_key': value.api_key,
+        'private_api_key': value.private_api_key,
         'type': value.type,
     };
 }
