@@ -22,13 +22,13 @@ export interface ConnectionOptionsKlaviyoMergePatch {
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoMergePatch
      */
-    api_key?: string | null;
+    api_key?: string;
     /**
      * A private API key associated with your account. These can be generated as needed using Klaviyo's settings pages.
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoMergePatch
      */
-    private_api_key?: string | null;
+    private_api_key?: string;
     /**
      * The type of connection
      * @type {string}

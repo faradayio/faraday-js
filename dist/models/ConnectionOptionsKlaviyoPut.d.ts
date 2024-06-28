@@ -22,13 +22,13 @@ export interface ConnectionOptionsKlaviyoPut {
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoPut
      */
-    api_key?: string;
+    api_key: string;
     /**
      * A private API key associated with your account. These can be generated as needed using Klaviyo's settings pages.
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoPut
      */
-    private_api_key?: string;
+    private_api_key: string;
     /**
      * The type of connection
      * @type {string}
