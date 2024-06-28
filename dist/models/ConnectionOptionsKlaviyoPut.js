@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConnectionOptionsKlaviyoPutToJSON = exports.ConnectionOptionsKlaviyoPutFromJSONTyped = exports.ConnectionOptionsKlaviyoPutFromJSON = void 0;
-const runtime_1 = require("../runtime");
 function ConnectionOptionsKlaviyoPutFromJSON(json) {
     return ConnectionOptionsKlaviyoPutFromJSONTyped(json, false);
 }
@@ -24,8 +23,8 @@ function ConnectionOptionsKlaviyoPutFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'api_key': !runtime_1.exists(json, 'api_key') ? undefined : json['api_key'],
-        'private_api_key': !runtime_1.exists(json, 'private_api_key') ? undefined : json['private_api_key'],
+        'api_key': json['api_key'],
+        'private_api_key': json['private_api_key'],
         'type': json['type'],
     };
 }

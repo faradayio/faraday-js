@@ -26,13 +26,13 @@ export interface ConnectionOptionsKlaviyoPut {
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoPut
      */
-    api_key?: string;
+    api_key: string;
     /**
      * A private API key associated with your account. These can be generated as needed using Klaviyo's settings pages.
      * @type {string}
      * @memberof ConnectionOptionsKlaviyoPut
      */
-    private_api_key?: string;
+    private_api_key: string;
     /**
      * The type of connection
      * @type {string}
@@ -51,8 +51,8 @@ export function ConnectionOptionsKlaviyoPutFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'api_key': !exists(json, 'api_key') ? undefined : json['api_key'],
-        'private_api_key': !exists(json, 'private_api_key') ? undefined : json['private_api_key'],
+        'api_key': json['api_key'],
+        'private_api_key': json['private_api_key'],
         'type': json['type'],
     };
 }
