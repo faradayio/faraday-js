@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class PlacesApi extends runtime.BaseAPI {
     /**
+     * Archive a place
+     * Archive a place
+     */
+    archivePlaceRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
+                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling archivePlace.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archivePlace.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/places/{place_id}/archive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a place
+     * Archive a place
+     */
+    archivePlace(placeId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Create a new place
      * Create place
      */
@@ -171,6 +212,47 @@ class PlacesApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getPlacesRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a place
+     * Unarchive a place
+     */
+    unarchivePlaceRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
+                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling unarchivePlace.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchivePlace.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/places/{place_id}/unarchive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a place
+     * Unarchive a place
+     */
+    unarchivePlace(placeId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig });
         });
     }
     /**

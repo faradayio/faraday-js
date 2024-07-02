@@ -30,6 +30,7 @@ function TargetFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'connection_id': !runtime_1.exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'custom_structure': !runtime_1.exists(json, 'custom_structure') ? undefined : (json['custom_structure'].map(TargetStructureTransformation_1.TargetStructureTransformationFromJSON)),
@@ -63,6 +64,7 @@ function TargetToJSON(value) {
         return null;
     }
     return {
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'custom_structure': value.custom_structure === undefined ? undefined : (value.custom_structure.map(TargetStructureTransformation_1.TargetStructureTransformationToJSON)),

@@ -28,6 +28,7 @@ function PersonaSetFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'active': !runtime_1.exists(json, 'active') ? undefined : json['active'],
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'cohort_id': json['cohort_id'],
         'created_at': (new Date(json['created_at'])),
         'explore': !runtime_1.exists(json, 'explore') ? undefined : json['explore'],
@@ -56,6 +57,7 @@ function PersonaSetToJSON(value) {
     }
     return {
         'active': value.active,
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'cohort_id': value.cohort_id,
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,

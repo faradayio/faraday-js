@@ -39,6 +39,12 @@ export interface Place {
      */
     addresses?: Array<AddressInfo>;
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Place
+     */
+    archived_at?: Date;
+    /**
      * When this resource was created.
      * @type {Date}
      * @memberof Place
@@ -126,6 +132,7 @@ export function PlaceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pla
     return {
         
         'addresses': !exists(json, 'addresses') ? undefined : ((json['addresses'] as Array<any>).map(AddressInfoFromJSON)),
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'created_at': (new Date(json['created_at'])),
         'geojson': !exists(json, 'geojson') ? undefined : json['geojson'],
         'id': json['id'],
@@ -151,6 +158,7 @@ export function PlaceToJSON(value?: Place | null): any {
     return {
         
         'addresses': value.addresses === undefined ? undefined : ((value.addresses as Array<any>).map(AddressInfoToJSON)),
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'created_at': (value.created_at.toISOString()),
         'geojson': value.geojson,
         'id': value.id,

@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeMergePatch, ScopePost, Target } from '../models';
+import { ArchiveConfig, Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeMergePatch, ScopePost, Target } from '../models';
+export interface ArchiveScopeRequest {
+    scopeId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateScopeRequest {
     scopeFields: ScopePost;
 }
@@ -44,6 +48,10 @@ export interface GetScopePopulationExclusionCohortsRequest {
 export interface GetScopeTargetsRequest {
     scopeId: string;
 }
+export interface UnarchiveScopeRequest {
+    scopeId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateScopeRequest {
     scopeId: string;
     scopeMergePatch: ScopeMergePatch;
@@ -52,6 +60,16 @@ export interface UpdateScopeRequest {
  *
  */
 export declare class ScopesApi extends runtime.BaseAPI {
+    /**
+     * Archive a scope
+     * Archive a scope
+     */
+    private archiveScopeRaw;
+    /**
+     * Archive a scope
+     * Archive a scope
+     */
+    archiveScope(scopeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Add a new scope
      * Create scope
@@ -170,6 +188,16 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * List scopes
      */
     getScopes(): Promise<Array<Scope>>;
+    /**
+     * Unarchive a scope
+     * Unarchive a scope
+     */
+    private unarchiveScopeRaw;
+    /**
+     * Unarchive a scope
+     * Unarchive a scope
+     */
+    unarchiveScope(scopeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Update the configuration of a scope.
      * Update a scope

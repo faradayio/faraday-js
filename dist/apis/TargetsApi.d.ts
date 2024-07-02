@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { InlineResponse200, Target, TargetLookupRequest, TargetLookupResponse, TargetMergePatch, TargetPost } from '../models';
+import { ArchiveConfig, InlineResponse200, Target, TargetLookupRequest, TargetLookupResponse, TargetMergePatch, TargetPost } from '../models';
+export interface ArchiveTargetRequest {
+    targetId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateTargetRequest {
     targetFields: TargetPost;
 }
@@ -30,6 +34,10 @@ export interface LookupOnTargetRequest {
     targetId: string;
     targetLookupRequest: TargetLookupRequest;
 }
+export interface UnarchiveTargetRequest {
+    targetId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateTargetRequest {
     targetId: string;
     targetMergePatch: TargetMergePatch;
@@ -38,6 +46,16 @@ export interface UpdateTargetRequest {
  *
  */
 export declare class TargetsApi extends runtime.BaseAPI {
+    /**
+     * Archive a target
+     * Archive a target
+     */
+    private archiveTargetRaw;
+    /**
+     * Archive a target
+     * Archive a target
+     */
+    archiveTarget(targetId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Add a new target.  Targets are configuration for exporting data from Faraday, possibly to an external environment (with <a href=\"https://faraday.ai/developers/reference/createconnection\">/connections</a>).  There are three types of targets: <table> <thead> <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr> </thead> <tbody> <tr><td><strong>Publication</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr> <tr><td><strong>Replication</strong></td><td>Faraday copies your predictions to systems <em>you</em> control. You may then push them to third parties like Facebook, Google Ads, etc.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> of the connection in <code>options</code>.</td></tr> <tr><td><strong>Managed</strong></td><td>Faraday manages a push to third parties like Facebook, Google Ads, and more.</td><td>Must be on an enterprise plan. Contact Customer Success to set up.</td></tr> </tbody> </table>
      * Create target
@@ -106,6 +124,16 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Perform a lookup on the target, if its type is Hosted API.
      */
     lookupOnTarget(targetId: string, targetLookupRequest: TargetLookupRequest): Promise<TargetLookupResponse>;
+    /**
+     * Unarchive a target
+     * Unarchive a target
+     */
+    private unarchiveTargetRaw;
+    /**
+     * Unarchive a target
+     * Unarchive a target
+     */
+    unarchiveTarget(targetId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Update the configuration of a target.
      * Update a target

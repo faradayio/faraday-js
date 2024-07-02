@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { AnalysisDimensionsTrait, Trait, TraitMergePatch, TraitPost } from '../models';
+import { AnalysisDimensionsTrait, ArchiveConfig, Trait, TraitMergePatch, TraitPost } from '../models';
+export interface ArchiveTraitRequest {
+    traitId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateTraitRequest {
     traitFields: TraitPost;
 }
@@ -23,6 +27,10 @@ export interface GetTraitRequest {
 export interface GetTraitAnalysisDimensionsRequest {
     traitId: string;
 }
+export interface UnarchiveTraitRequest {
+    traitId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateTraitRequest {
     traitId: string;
     traitMergePatch: TraitMergePatch;
@@ -31,6 +39,16 @@ export interface UpdateTraitRequest {
  *
  */
 export declare class TraitsApi extends runtime.BaseAPI {
+    /**
+     * Archive a trait
+     * Archive a trait
+     */
+    private archiveTraitRaw;
+    /**
+     * Archive a trait
+     * Archive a trait
+     */
+    archiveTrait(traitId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Create a new user-defined Trait. You can connect your uploaded data to this trait by sending a PATCH to the relevant dataset with `output_to_traits` defined.
      * Create a Trait
@@ -89,6 +107,16 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * List all user-defined and Faraday-provided traits
      */
     getTraits(): Promise<Array<Trait>>;
+    /**
+     * Unarchive a trait
+     * Unarchive a trait
+     */
+    private unarchiveTraitRaw;
+    /**
+     * Unarchive a trait
+     * Unarchive a trait
+     */
+    unarchiveTrait(traitId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Update the configuration of a trait
      * Update a trait

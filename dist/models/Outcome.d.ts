@@ -19,6 +19,12 @@ import { ResourceStatus } from './ResourceStatus';
  */
 export interface Outcome {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Outcome
+     */
+    archived_at?: Date;
+    /**
      * A cohort of people who have attained the desired outcome (for example, if predicting transition from prospect to customer, the attainment cohort should be existing customers).
      * @type {string}
      * @memberof Outcome

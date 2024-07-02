@@ -45,6 +45,12 @@ import {
  */
 export interface Scope {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Scope
+     */
+    archived_at?: Date;
+    /**
      * 
      * @type {ScopeColumns}
      * @memberof Scope
@@ -153,6 +159,7 @@ export function ScopeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sco
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'columns': !exists(json, 'columns') ? undefined : ScopeColumnsFromJSON(json['columns']),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
@@ -181,6 +188,7 @@ export function ScopeToJSON(value?: Scope | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'columns': ScopeColumnsToJSON(value.columns),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,

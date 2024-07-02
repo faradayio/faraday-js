@@ -20,6 +20,7 @@ export * from './AnalysisFeatureDirectionalityDate';
 export * from './AnalysisFeatureDirectionalityNumber';
 export * from './AnalysisFeatureDirectionalityText';
 export * from './AnalysisRocCurvePoint';
+export * from './ArchiveConfig';
 export * from './Cohort';
 export * from './CohortAnalysisMembership';
 export * from './CohortAnalysisMembershipDatum';

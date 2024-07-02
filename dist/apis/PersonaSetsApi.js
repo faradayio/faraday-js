@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class PersonaSetsApi extends runtime.BaseAPI {
     /**
+     * Archive a persona set
+     * Archive a persona set
+     */
+    archivePersonaSetRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+                throw new runtime.RequiredError('personaSetId', 'Required parameter requestParameters.personaSetId was null or undefined when calling archivePersonaSet.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archivePersonaSet.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/persona_sets/{persona_set_id}/archive`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a persona set
+     * Archive a persona set
+     */
+    archivePersonaSet(personaSetId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archivePersonaSetRaw({ personaSetId: personaSetId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Invoke the build of a new persona set for a given cohort
      * Create persona set
      */
@@ -241,6 +282,47 @@ class PersonaSetsApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getPersonaSetsRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a persona set
+     * Unarchive a persona set
+     */
+    unarchivePersonaSetRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+                throw new runtime.RequiredError('personaSetId', 'Required parameter requestParameters.personaSetId was null or undefined when calling unarchivePersonaSet.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchivePersonaSet.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/persona_sets/{persona_set_id}/unarchive`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a persona set
+     * Unarchive a persona set
+     */
+    unarchivePersonaSet(personaSetId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchivePersonaSetRaw({ personaSetId: personaSetId, archiveConfig: archiveConfig });
         });
     }
     /**

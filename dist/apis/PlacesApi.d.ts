@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Place, PlaceMergePatch, PlacePost } from '../models';
+import { ArchiveConfig, Place, PlaceMergePatch, PlacePost } from '../models';
+export interface ArchivePlaceRequest {
+    placeId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreatePlaceRequest {
     placeFields: PlacePost;
 }
@@ -20,6 +24,10 @@ export interface DeletePlaceRequest {
 export interface GetPlaceRequest {
     placeId: string;
 }
+export interface UnarchivePlaceRequest {
+    placeId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdatePlaceRequest {
     placeId: string;
     placeFields: PlaceMergePatch;
@@ -28,6 +36,16 @@ export interface UpdatePlaceRequest {
  *
  */
 export declare class PlacesApi extends runtime.BaseAPI {
+    /**
+     * Archive a place
+     * Archive a place
+     */
+    private archivePlaceRaw;
+    /**
+     * Archive a place
+     * Archive a place
+     */
+    archivePlace(placeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Create a new place
      * Create place
@@ -66,6 +84,16 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * List places
      */
     getPlaces(): Promise<Array<Place>>;
+    /**
+     * Unarchive a place
+     * Unarchive a place
+     */
+    private unarchivePlaceRaw;
+    /**
+     * Unarchive a place
+     * Unarchive a place
+     */
+    unarchivePlace(placeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Update an existing place
      * Update place

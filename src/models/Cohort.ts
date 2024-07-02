@@ -51,6 +51,12 @@ import {
  */
 export interface Cohort {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Cohort
+     */
+    archived_at?: Date;
+    /**
      * A Managed Cohort.
      * @type {boolean}
      * @memberof Cohort
@@ -204,6 +210,7 @@ export function CohortFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'classic': !exists(json, 'classic') ? undefined : json['classic'],
         'created_at': (new Date(json['created_at'])),
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
@@ -239,6 +246,7 @@ export function CohortToJSON(value?: Cohort | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'classic': value.classic,
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,

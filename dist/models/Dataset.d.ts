@@ -25,6 +25,12 @@ import { ResourceStatus } from './ResourceStatus';
  */
 export interface Dataset {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Dataset
+     */
+    archived_at?: Date;
+    /**
      * If this is a "retrieve" dataset, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail.
      *
      * Only a subset of connection types can be configured for dataset ingestion - see the list available in `options`.

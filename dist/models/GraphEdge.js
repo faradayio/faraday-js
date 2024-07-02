@@ -26,10 +26,12 @@ function GraphEdgeFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'downstream_archived_at': !runtime_1.exists(json, 'downstream_archived_at') ? undefined : (new Date(json['downstream_archived_at'])),
         'downstream_id': !runtime_1.exists(json, 'downstream_id') ? undefined : json['downstream_id'],
         'downstream_literate': !runtime_1.exists(json, 'downstream_literate') ? undefined : json['downstream_literate'],
         'downstream_status': !runtime_1.exists(json, 'downstream_status') ? undefined : ResourceStatus_1.ResourceStatusFromJSON(json['downstream_status']),
         'downstream_type': !runtime_1.exists(json, 'downstream_type') ? undefined : ResourceType_1.ResourceTypeFromJSON(json['downstream_type']),
+        'upstream_archived_at': !runtime_1.exists(json, 'upstream_archived_at') ? undefined : (new Date(json['upstream_archived_at'])),
         'upstream_id': !runtime_1.exists(json, 'upstream_id') ? undefined : json['upstream_id'],
         'upstream_literate': !runtime_1.exists(json, 'upstream_literate') ? undefined : json['upstream_literate'],
         'upstream_status': !runtime_1.exists(json, 'upstream_status') ? undefined : ResourceStatus_1.ResourceStatusFromJSON(json['upstream_status']),
@@ -45,10 +47,12 @@ function GraphEdgeToJSON(value) {
         return null;
     }
     return {
+        'downstream_archived_at': value.downstream_archived_at === undefined ? undefined : (value.downstream_archived_at.toISOString()),
         'downstream_id': value.downstream_id,
         'downstream_literate': value.downstream_literate,
         'downstream_status': ResourceStatus_1.ResourceStatusToJSON(value.downstream_status),
         'downstream_type': ResourceType_1.ResourceTypeToJSON(value.downstream_type),
+        'upstream_archived_at': value.upstream_archived_at === undefined ? undefined : (value.upstream_archived_at.toISOString()),
         'upstream_id': value.upstream_id,
         'upstream_literate': value.upstream_literate,
         'upstream_status': ResourceStatus_1.ResourceStatusToJSON(value.upstream_status),

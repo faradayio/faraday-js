@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Connection,
     ConnectionFromJSON,
     ConnectionToJSON,
@@ -31,6 +34,11 @@ import {
     TargetFromJSON,
     TargetToJSON,
 } from '../models';
+
+export interface ArchiveConnectionRequest {
+    connectionId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateConnectionRequest {
     connectionFields: ConnectionPost;
@@ -52,6 +60,11 @@ export interface GetConnectionTargetsRequest {
     connectionId: string;
 }
 
+export interface UnarchiveConnectionRequest {
+    connectionId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateConnectionRequest {
     connectionId: string;
     connectionMergePatch: ConnectionMergePatch;
@@ -61,6 +74,52 @@ export interface UpdateConnectionRequest {
  * 
  */
 export class ConnectionsApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a connection
+     * Archive a connection
+     */
+    private async archiveConnectionRaw(requestParameters: ArchiveConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling archiveConnection.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveConnection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}/archive`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a connection
+     * Archive a connection
+     */
+    async archiveConnection(connectionId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveConnectionRaw({ connectionId: connectionId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
@@ -298,6 +357,52 @@ export class ConnectionsApi extends runtime.BaseAPI {
     async getConnections(): Promise<Array<Connection>> {
         const response = await this.getConnectionsRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a connection
+     * Unarchive a connection
+     */
+    private async unarchiveConnectionRaw(requestParameters: UnarchiveConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling unarchiveConnection.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveConnection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}/unarchive`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a connection
+     * Unarchive a connection
+     */
+    async unarchiveConnection(connectionId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveConnectionRaw({ connectionId: connectionId, archiveConfig: archiveConfig }, );
     }
 
     /**

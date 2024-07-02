@@ -27,6 +27,7 @@ function PlaceFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'addresses': !runtime_1.exists(json, 'addresses') ? undefined : (json['addresses'].map(AddressInfo_1.AddressInfoFromJSON)),
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'created_at': (new Date(json['created_at'])),
         'geojson': !runtime_1.exists(json, 'geojson') ? undefined : json['geojson'],
         'id': json['id'],
@@ -51,6 +52,7 @@ function PlaceToJSON(value) {
     }
     return {
         'addresses': value.addresses === undefined ? undefined : (value.addresses.map(AddressInfo_1.AddressInfoToJSON)),
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'created_at': (value.created_at.toISOString()),
         'geojson': value.geojson,
         'id': value.id,

@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class ScopesApi extends runtime.BaseAPI {
     /**
+     * Archive a scope
+     * Archive a scope
+     */
+    archiveScopeRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling archiveScope.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveScope.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/scopes/{scope_id}/archive`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a scope
+     * Archive a scope
+     */
+    archiveScope(scopeId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveScopeRaw({ scopeId: scopeId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Add a new scope
      * Create scope
      */
@@ -467,6 +508,47 @@ class ScopesApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getScopesRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a scope
+     * Unarchive a scope
+     */
+    unarchiveScopeRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling unarchiveScope.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveScope.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/scopes/{scope_id}/unarchive`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a scope
+     * Unarchive a scope
+     */
+    unarchiveScope(scopeId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveScopeRaw({ scopeId: scopeId, archiveConfig: archiveConfig });
         });
     }
     /**

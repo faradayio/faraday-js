@@ -37,6 +37,7 @@ function ConnectionFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'contents': !runtime_1.exists(json, 'contents') ? undefined : (json['contents'].map(ContentsRow_1.ContentsRowFromJSON)),
         'contents_error': !runtime_1.exists(json, 'contents_error') ? undefined : json['contents_error'],
         'created_at': (new Date(json['created_at'])),
@@ -64,6 +65,7 @@ function ConnectionToJSON(value) {
         return null;
     }
     return {
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'contents': value.contents === undefined ? undefined : (value.contents.map(ContentsRow_1.ContentsRowToJSON)),
         'contents_error': value.contents_error,
         'created_at': (value.created_at.toISOString()),

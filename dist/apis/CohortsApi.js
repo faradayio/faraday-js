@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class CohortsApi extends runtime.BaseAPI {
     /**
+     * Archive a cohort
+     * Archive a cohort
+     */
+    archiveCohortRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+                throw new runtime.RequiredError('cohortId', 'Required parameter requestParameters.cohortId was null or undefined when calling archiveCohort.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveCohort.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/cohorts/{cohort_id}/archive`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a cohort
+     * Archive a cohort
+     */
+    archiveCohort(cohortId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveCohortRaw({ cohortId: cohortId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Add a new cohort (defined as people who have made qualifying emissions of certain events)
      * Create cohort
      */
@@ -206,6 +247,47 @@ class CohortsApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getCohortsRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a cohort
+     * Unarchive a cohort
+     */
+    unarchiveCohortRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+                throw new runtime.RequiredError('cohortId', 'Required parameter requestParameters.cohortId was null or undefined when calling unarchiveCohort.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveCohort.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/cohorts/{cohort_id}/unarchive`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a cohort
+     * Unarchive a cohort
+     */
+    unarchiveCohort(cohortId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveCohortRaw({ cohortId: cohortId, archiveConfig: archiveConfig });
         });
     }
     /**

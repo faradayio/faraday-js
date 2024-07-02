@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class ConnectionsApi extends runtime.BaseAPI {
     /**
+     * Archive a connection
+     * Archive a connection
+     */
+    archiveConnectionRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+                throw new runtime.RequiredError('connectionId', 'Required parameter requestParameters.connectionId was null or undefined when calling archiveConnection.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveConnection.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/connections/{connection_id}/archive`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a connection
+     * Archive a connection
+     */
+    archiveConnection(connectionId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveConnectionRaw({ connectionId: connectionId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object.
      * Create connection
      */
@@ -247,6 +288,47 @@ class ConnectionsApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getConnectionsRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a connection
+     * Unarchive a connection
+     */
+    unarchiveConnectionRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+                throw new runtime.RequiredError('connectionId', 'Required parameter requestParameters.connectionId was null or undefined when calling unarchiveConnection.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveConnection.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/connections/{connection_id}/unarchive`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a connection
+     * Unarchive a connection
+     */
+    unarchiveConnection(connectionId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveConnectionRaw({ connectionId: connectionId, archiveConfig: archiveConfig });
         });
     }
     /**

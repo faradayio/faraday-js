@@ -40,6 +40,12 @@ export interface Account {
      */
     api_key?: string;
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Account
+     */
+    archived_at?: Date;
+    /**
      * 
      * @type {AccountCommitment}
      * @memberof Account
@@ -136,6 +142,7 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
     return {
         
         'api_key': !exists(json, 'api_key') ? undefined : json['api_key'],
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'commitment': !exists(json, 'commitment') ? undefined : AccountCommitmentFromJSON(json['commitment']),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
@@ -163,6 +170,7 @@ export function AccountToJSON(value?: Account | null): any {
     return {
         
         'api_key': value.api_key,
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'commitment': AccountCommitmentToJSON(value.commitment),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,

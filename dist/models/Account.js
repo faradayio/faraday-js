@@ -27,6 +27,7 @@ function AccountFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'api_key': !runtime_1.exists(json, 'api_key') ? undefined : json['api_key'],
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'commitment': !runtime_1.exists(json, 'commitment') ? undefined : AccountCommitment_1.AccountCommitmentFromJSON(json['commitment']),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
@@ -53,6 +54,7 @@ function AccountToJSON(value) {
     }
     return {
         'api_key': value.api_key,
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'commitment': AccountCommitment_1.AccountCommitmentToJSON(value.commitment),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,

@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Cohort,
     CohortFromJSON,
     CohortToJSON,
@@ -43,6 +46,11 @@ import {
     TargetFromJSON,
     TargetToJSON,
 } from '../models';
+
+export interface ArchiveScopeRequest {
+    scopeId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateScopeRequest {
     scopeFields: ScopePost;
@@ -88,6 +96,11 @@ export interface GetScopeTargetsRequest {
     scopeId: string;
 }
 
+export interface UnarchiveScopeRequest {
+    scopeId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateScopeRequest {
     scopeId: string;
     scopeMergePatch: ScopeMergePatch;
@@ -97,6 +110,52 @@ export interface UpdateScopeRequest {
  * 
  */
 export class ScopesApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a scope
+     * Archive a scope
+     */
+    private async archiveScopeRaw(requestParameters: ArchiveScopeRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling archiveScope.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveScope.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/archive`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a scope
+     * Archive a scope
+     */
+    async archiveScope(scopeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveScopeRaw({ scopeId: scopeId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Add a new scope
@@ -572,6 +631,52 @@ export class ScopesApi extends runtime.BaseAPI {
     async getScopes(): Promise<Array<Scope>> {
         const response = await this.getScopesRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a scope
+     * Unarchive a scope
+     */
+    private async unarchiveScopeRaw(requestParameters: UnarchiveScopeRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling unarchiveScope.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveScope.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/unarchive`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a scope
+     * Unarchive a scope
+     */
+    async unarchiveScope(scopeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveScopeRaw({ scopeId: scopeId, archiveConfig: archiveConfig }, );
     }
 
     /**

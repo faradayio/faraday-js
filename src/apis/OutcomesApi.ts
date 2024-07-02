@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Outcome,
     OutcomeFromJSON,
     OutcomeToJSON,
@@ -28,6 +31,11 @@ import {
     OutcomePostFromJSON,
     OutcomePostToJSON,
 } from '../models';
+
+export interface ArchiveOutcomeRequest {
+    outcomeId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateOutcomeRequest {
     outcomeFields: OutcomePost;
@@ -49,6 +57,11 @@ export interface GetOutcomeDownloadRequest {
     outcomeId: string;
 }
 
+export interface UnarchiveOutcomeRequest {
+    outcomeId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateOutcomeRequest {
     outcomeId: string;
     outcomeFields: OutcomeMergePatch;
@@ -58,6 +71,52 @@ export interface UpdateOutcomeRequest {
  * 
  */
 export class OutcomesApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a outcome
+     * Archive a outcome
+     */
+    private async archiveOutcomeRaw(requestParameters: ArchiveOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+            throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling archiveOutcome.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveOutcome.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/outcomes/{outcome_id}/archive`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a outcome
+     * Archive a outcome
+     */
+    async archiveOutcome(outcomeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveOutcomeRaw({ outcomeId: outcomeId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Add a new outcome (defined as a prediction of how likely individuals are to transition from one cohort to another)
@@ -293,6 +352,52 @@ export class OutcomesApi extends runtime.BaseAPI {
     async getOutcomes(): Promise<Array<Outcome>> {
         const response = await this.getOutcomesRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a outcome
+     * Unarchive a outcome
+     */
+    private async unarchiveOutcomeRaw(requestParameters: UnarchiveOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+            throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling unarchiveOutcome.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveOutcome.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/outcomes/{outcome_id}/unarchive`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a outcome
+     * Unarchive a outcome
+     */
+    async unarchiveOutcome(outcomeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveOutcomeRaw({ outcomeId: outcomeId, archiveConfig: archiveConfig }, );
     }
 
     /**

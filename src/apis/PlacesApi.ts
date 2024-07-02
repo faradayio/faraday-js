@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Place,
     PlaceFromJSON,
     PlaceToJSON,
@@ -25,6 +28,11 @@ import {
     PlacePostFromJSON,
     PlacePostToJSON,
 } from '../models';
+
+export interface ArchivePlaceRequest {
+    placeId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreatePlaceRequest {
     placeFields: PlacePost;
@@ -38,6 +46,11 @@ export interface GetPlaceRequest {
     placeId: string;
 }
 
+export interface UnarchivePlaceRequest {
+    placeId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdatePlaceRequest {
     placeId: string;
     placeFields: PlaceMergePatch;
@@ -47,6 +60,52 @@ export interface UpdatePlaceRequest {
  * 
  */
 export class PlacesApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a place
+     * Archive a place
+     */
+    private async archivePlaceRaw(requestParameters: ArchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
+            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling archivePlace.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archivePlace.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/places/{place_id}/archive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a place
+     * Archive a place
+     */
+    async archivePlace(placeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Create a new place
@@ -202,6 +261,52 @@ export class PlacesApi extends runtime.BaseAPI {
     async getPlaces(): Promise<Array<Place>> {
         const response = await this.getPlacesRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a place
+     * Unarchive a place
+     */
+    private async unarchivePlaceRaw(requestParameters: UnarchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
+            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling unarchivePlace.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchivePlace.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/places/{place_id}/unarchive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a place
+     * Unarchive a place
+     */
+    async unarchivePlace(placeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig }, );
     }
 
     /**

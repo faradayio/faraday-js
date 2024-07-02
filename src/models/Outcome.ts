@@ -39,6 +39,12 @@ import {
  */
 export interface Outcome {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Outcome
+     */
+    archived_at?: Date;
+    /**
      * A cohort of people who have attained the desired outcome (for example, if predicting transition from prospect to customer, the attainment cohort should be existing customers).
      * @type {string}
      * @memberof Outcome
@@ -189,6 +195,7 @@ export function OutcomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'attainment_cohort_id': json['attainment_cohort_id'],
         'attainment_cohort_name': !exists(json, 'attainment_cohort_name') ? undefined : json['attainment_cohort_name'],
         'attrition_cohort_id': !exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
@@ -224,6 +231,7 @@ export function OutcomeToJSON(value?: Outcome | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'attainment_cohort_id': value.attainment_cohort_id,
         'attainment_cohort_name': value.attainment_cohort_name,
         'attrition_cohort_id': value.attrition_cohort_id,

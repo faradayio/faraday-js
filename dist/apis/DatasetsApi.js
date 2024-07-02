@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class DatasetsApi extends runtime.BaseAPI {
     /**
+     * Archive a dataset
+     * Archive a dataset
+     */
+    archiveDatasetRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
+                throw new runtime.RequiredError('datasetId', 'Required parameter requestParameters.datasetId was null or undefined when calling archiveDataset.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveDataset.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/datasets/{dataset_id}/archive`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a dataset
+     * Archive a dataset
+     */
+    archiveDataset(datasetId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveDatasetRaw({ datasetId: datasetId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Create a new dataset
      * Create dataset
      */
@@ -171,6 +212,47 @@ class DatasetsApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getDatasetsRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a dataset
+     * Unarchive a dataset
+     */
+    unarchiveDatasetRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
+                throw new runtime.RequiredError('datasetId', 'Required parameter requestParameters.datasetId was null or undefined when calling unarchiveDataset.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveDataset.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/datasets/{dataset_id}/unarchive`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a dataset
+     * Unarchive a dataset
+     */
+    unarchiveDataset(datasetId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveDatasetRaw({ datasetId: datasetId, archiveConfig: archiveConfig });
         });
     }
     /**

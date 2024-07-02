@@ -32,6 +32,7 @@ __exportStar(require("./AnalysisFeatureDirectionalityDate"), exports);
 __exportStar(require("./AnalysisFeatureDirectionalityNumber"), exports);
 __exportStar(require("./AnalysisFeatureDirectionalityText"), exports);
 __exportStar(require("./AnalysisRocCurvePoint"), exports);
+__exportStar(require("./ArchiveConfig"), exports);
 __exportStar(require("./Cohort"), exports);
 __exportStar(require("./CohortAnalysisMembership"), exports);
 __exportStar(require("./CohortAnalysisMembershipDatum"), exports);

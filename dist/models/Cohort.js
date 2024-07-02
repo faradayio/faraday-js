@@ -29,6 +29,7 @@ function CohortFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'classic': !runtime_1.exists(json, 'classic') ? undefined : json['classic'],
         'created_at': (new Date(json['created_at'])),
         'explore': !runtime_1.exists(json, 'explore') ? undefined : json['explore'],
@@ -63,6 +64,7 @@ function CohortToJSON(value) {
         return null;
     }
     return {
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'classic': value.classic,
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,

@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Outcome, OutcomeAnalysis, OutcomeMergePatch, OutcomePost } from '../models';
+import { ArchiveConfig, Outcome, OutcomeAnalysis, OutcomeMergePatch, OutcomePost } from '../models';
+export interface ArchiveOutcomeRequest {
+    outcomeId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateOutcomeRequest {
     outcomeFields: OutcomePost;
 }
@@ -26,6 +30,10 @@ export interface GetOutcomeAnalysisRequest {
 export interface GetOutcomeDownloadRequest {
     outcomeId: string;
 }
+export interface UnarchiveOutcomeRequest {
+    outcomeId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateOutcomeRequest {
     outcomeId: string;
     outcomeFields: OutcomeMergePatch;
@@ -34,6 +42,16 @@ export interface UpdateOutcomeRequest {
  *
  */
 export declare class OutcomesApi extends runtime.BaseAPI {
+    /**
+     * Archive a outcome
+     * Archive a outcome
+     */
+    private archiveOutcomeRaw;
+    /**
+     * Archive a outcome
+     * Archive a outcome
+     */
+    archiveOutcome(outcomeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Add a new outcome (defined as a prediction of how likely individuals are to transition from one cohort to another)
      * Create outcome
@@ -92,6 +110,16 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * List outcomes
      */
     getOutcomes(): Promise<Array<Outcome>>;
+    /**
+     * Unarchive a outcome
+     * Unarchive a outcome
+     */
+    private unarchiveOutcomeRaw;
+    /**
+     * Unarchive a outcome
+     * Unarchive a outcome
+     */
+    unarchiveOutcome(outcomeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Edit configuration of an existing outcome
      * Edit an outcome

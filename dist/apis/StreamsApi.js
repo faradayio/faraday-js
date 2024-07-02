@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class StreamsApi extends runtime.BaseAPI {
     /**
+     * Archive a stream
+     * Archive a stream
+     */
+    archiveStreamRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+                throw new runtime.RequiredError('streamIdOrName', 'Required parameter requestParameters.streamIdOrName was null or undefined when calling archiveStream.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveStream.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id_or_name}/archive`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a stream
+     * Archive a stream
+     */
+    archiveStream(streamIdOrName, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveStreamRaw({ streamIdOrName: streamIdOrName, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Delete a stream
      */
     deleteStreamRaw(requestParameters) {
@@ -169,6 +210,47 @@ class StreamsApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getStreamsRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a stream
+     * Unarchive a stream
+     */
+    unarchiveStreamRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+                throw new runtime.RequiredError('streamIdOrName', 'Required parameter requestParameters.streamIdOrName was null or undefined when calling unarchiveStream.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveStream.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id_or_name}/unarchive`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a stream
+     * Unarchive a stream
+     */
+    unarchiveStream(streamIdOrName, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveStreamRaw({ streamIdOrName: streamIdOrName, archiveConfig: archiveConfig });
         });
     }
 }

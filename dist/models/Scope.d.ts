@@ -20,6 +20,12 @@ import { ScopePopulation } from './ScopePopulation';
  */
 export interface Scope {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Scope
+     */
+    archived_at?: Date;
+    /**
      *
      * @type {ScopeColumns}
      * @memberof Scope

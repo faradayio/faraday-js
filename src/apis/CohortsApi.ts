@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Cohort,
     CohortFromJSON,
     CohortToJSON,
@@ -28,6 +31,11 @@ import {
     CohortPostFromJSON,
     CohortPostToJSON,
 } from '../models';
+
+export interface ArchiveCohortRequest {
+    cohortId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateCohortRequest {
     cohortFields: CohortPost;
@@ -45,6 +53,11 @@ export interface GetCohortAnalysisMembershipRequest {
     cohortId: string;
 }
 
+export interface UnarchiveCohortRequest {
+    cohortId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateCohortRequest {
     cohortId: string;
     cohortFields: CohortMergePatch;
@@ -54,6 +67,52 @@ export interface UpdateCohortRequest {
  * 
  */
 export class CohortsApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a cohort
+     * Archive a cohort
+     */
+    private async archiveCohortRaw(requestParameters: ArchiveCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling archiveCohort.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveCohort.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/cohorts/{cohort_id}/archive`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a cohort
+     * Archive a cohort
+     */
+    async archiveCohort(cohortId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveCohortRaw({ cohortId: cohortId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Add a new cohort (defined as people who have made qualifying emissions of certain events)
@@ -247,6 +306,52 @@ export class CohortsApi extends runtime.BaseAPI {
     async getCohorts(): Promise<Array<Cohort>> {
         const response = await this.getCohortsRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a cohort
+     * Unarchive a cohort
+     */
+    private async unarchiveCohortRaw(requestParameters: UnarchiveCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling unarchiveCohort.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveCohort.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/cohorts/{cohort_id}/unarchive`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a cohort
+     * Unarchive a cohort
+     */
+    async unarchiveCohort(cohortId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveCohortRaw({ cohortId: cohortId, archiveConfig: archiveConfig }, );
     }
 
     /**

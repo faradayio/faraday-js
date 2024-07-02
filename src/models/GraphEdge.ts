@@ -33,6 +33,12 @@ import {
  */
 export interface GraphEdge {
     /**
+     * 
+     * @type {Date}
+     * @memberof GraphEdge
+     */
+    downstream_archived_at?: Date;
+    /**
      * the id of the resource that depends on the upstream resource
      * @type {string}
      * @memberof GraphEdge
@@ -56,6 +62,12 @@ export interface GraphEdge {
      * @memberof GraphEdge
      */
     downstream_type?: ResourceType;
+    /**
+     * 
+     * @type {Date}
+     * @memberof GraphEdge
+     */
+    upstream_archived_at?: Date;
     /**
      * the id of the resource that is depended on by the downstream resource
      * @type {string}
@@ -92,10 +104,12 @@ export function GraphEdgeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
+        'downstream_archived_at': !exists(json, 'downstream_archived_at') ? undefined : (new Date(json['downstream_archived_at'])),
         'downstream_id': !exists(json, 'downstream_id') ? undefined : json['downstream_id'],
         'downstream_literate': !exists(json, 'downstream_literate') ? undefined : json['downstream_literate'],
         'downstream_status': !exists(json, 'downstream_status') ? undefined : ResourceStatusFromJSON(json['downstream_status']),
         'downstream_type': !exists(json, 'downstream_type') ? undefined : ResourceTypeFromJSON(json['downstream_type']),
+        'upstream_archived_at': !exists(json, 'upstream_archived_at') ? undefined : (new Date(json['upstream_archived_at'])),
         'upstream_id': !exists(json, 'upstream_id') ? undefined : json['upstream_id'],
         'upstream_literate': !exists(json, 'upstream_literate') ? undefined : json['upstream_literate'],
         'upstream_status': !exists(json, 'upstream_status') ? undefined : ResourceStatusFromJSON(json['upstream_status']),
@@ -112,10 +126,12 @@ export function GraphEdgeToJSON(value?: GraphEdge | null): any {
     }
     return {
         
+        'downstream_archived_at': value.downstream_archived_at === undefined ? undefined : (value.downstream_archived_at.toISOString()),
         'downstream_id': value.downstream_id,
         'downstream_literate': value.downstream_literate,
         'downstream_status': ResourceStatusToJSON(value.downstream_status),
         'downstream_type': ResourceTypeToJSON(value.downstream_type),
+        'upstream_archived_at': value.upstream_archived_at === undefined ? undefined : (value.upstream_archived_at.toISOString()),
         'upstream_id': value.upstream_id,
         'upstream_literate': value.upstream_literate,
         'upstream_status': ResourceStatusToJSON(value.upstream_status),

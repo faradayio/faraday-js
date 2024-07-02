@@ -27,6 +27,7 @@ function OutcomeFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'attainment_cohort_id': json['attainment_cohort_id'],
         'attainment_cohort_name': !runtime_1.exists(json, 'attainment_cohort_name') ? undefined : json['attainment_cohort_name'],
         'attrition_cohort_id': !runtime_1.exists(json, 'attrition_cohort_id') ? undefined : json['attrition_cohort_id'],
@@ -61,6 +62,7 @@ function OutcomeToJSON(value) {
         return null;
     }
     return {
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'attainment_cohort_id': value.attainment_cohort_id,
         'attainment_cohort_name': value.attainment_cohort_name,
         'attrition_cohort_id': value.attrition_cohort_id,

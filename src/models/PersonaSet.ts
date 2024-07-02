@@ -45,6 +45,12 @@ export interface PersonaSet {
      */
     active?: boolean;
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof PersonaSet
+     */
+    archived_at?: Date;
+    /**
      * 
      * @type {string}
      * @memberof PersonaSet
@@ -159,6 +165,7 @@ export function PersonaSetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'active': !exists(json, 'active') ? undefined : json['active'],
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'cohort_id': json['cohort_id'],
         'created_at': (new Date(json['created_at'])),
         'explore': !exists(json, 'explore') ? undefined : json['explore'],
@@ -188,6 +195,7 @@ export function PersonaSetToJSON(value?: PersonaSet | null): any {
     return {
         
         'active': value.active,
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'cohort_id': value.cohort_id,
         'created_at': (value.created_at.toISOString()),
         'explore': value.explore,

@@ -27,6 +27,12 @@ import {
  */
 export interface Resource {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Resource
+     */
+    archived_at?: Date;
+    /**
      * When this resource was created.
      * @type {Date}
      * @memberof Resource
@@ -98,6 +104,7 @@ export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'last_read_input_at': !exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
@@ -120,6 +127,7 @@ export function ResourceToJSON(value?: Resource | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),
