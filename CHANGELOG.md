@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.21] - 2024-07-03
+
+### Added
+
+- `GET /graph` returns 4 new status fields for both upstream and downstream resources for a total of 8 fields: xxx_status_changed_at, xxx_last_updated_output_at, xxx_last_updated_config_at, xxx_last_read_input_at (where xxx = downstream or upstream)
+
 ## [0.10.20] - 2024-06-25
 
 ### Added
