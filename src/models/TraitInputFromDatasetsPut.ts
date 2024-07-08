@@ -12,68 +12,60 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
+import { exists } from "../runtime";
 import {
   DataMapColumnFormat,
   DataMapColumnFormatFromJSON,
-  DataMapColumnFormatFromJSONTyped,
   DataMapColumnFormatToJSON,
 } from "./DataMapColumnFormat";
 
 /**
  *
  * @export
- * @interface TraitInputFromDatasets
+ * @interface TraitInputFromDatasetsPut
  */
-export interface TraitInputFromDatasets {
+export interface TraitInputFromDatasetsPut {
   /**
    * The name of a column in the dataset.
    * @type {string}
-   * @memberof TraitInputFromDatasets
+   * @memberof TraitInputFromDatasetsPut
    */
   column_name: string;
   /**
-   * The dataset the column comes from.
-   * @type {string}
-   * @memberof TraitInputFromDatasets
-   */
-  dataset_id: string;
-  /**
    *
    * @type {DataMapColumnFormat}
-   * @memberof TraitInputFromDatasets
+   * @memberof TraitInputFromDatasetsPut
    */
   format?: DataMapColumnFormat;
   /**
    * A list of values that should be treated as null.
    * @type {Array<string>}
-   * @memberof TraitInputFromDatasets
+   * @memberof TraitInputFromDatasetsPut
    */
   null_values?: Array<string>;
   /**
    * A mapping of values as they appear in the dataset to how they should be used in models, where the key is what appears in the dataset and value is how it should be interpretted. This is used when multiple distinct values in the source table functionally represent the sme thing, or when combining traits from multiple datasets. Use '*' as the key to capture all values that have been excluded by all other conditions.
    * @type {{ [key: string]: string | number | boolean; }}
-   * @memberof TraitInputFromDatasets
+   * @memberof TraitInputFromDatasetsPut
    */
   transformation_table?: { [key: string]: string | number | boolean };
 }
 
-export function TraitInputFromDatasetsFromJSON(
+export function TraitInputFromDatasetsPutFromJSON(
   json: any
-): TraitInputFromDatasets {
-  return TraitInputFromDatasetsFromJSONTyped(json, false);
+): TraitInputFromDatasetsPut {
+  return TraitInputFromDatasetsPutFromJSONTyped(json, false);
 }
 
-export function TraitInputFromDatasetsFromJSONTyped(
+export function TraitInputFromDatasetsPutFromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean
-): TraitInputFromDatasets {
+): TraitInputFromDatasetsPut {
   if (json === undefined || json === null) {
     return json;
   }
   return {
     column_name: json["column_name"],
-    dataset_id: json["dataset_id"],
     format: !exists(json, "format")
       ? undefined
       : DataMapColumnFormatFromJSON(json["format"]),
@@ -84,8 +76,8 @@ export function TraitInputFromDatasetsFromJSONTyped(
   };
 }
 
-export function TraitInputFromDatasetsToJSON(
-  value?: TraitInputFromDatasets | null
+export function TraitInputFromDatasetsPutToJSON(
+  value?: TraitInputFromDatasetsPut | null
 ): any {
   if (value === undefined) {
     return undefined;
@@ -95,11 +87,11 @@ export function TraitInputFromDatasetsToJSON(
   }
   return {
     column_name: value.column_name,
-    dataset_id: value.dataset_id,
     format: DataMapColumnFormatToJSON(value.format),
     null_values: value.null_values,
-    transformation_table: value.transformation_table
-      ? undefined
-      : value.transformation_table,
+    transformation_table:
+      value.transformation_table === undefined
+        ? undefined
+        : value.transformation_table,
   };
 }

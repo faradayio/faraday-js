@@ -13,42 +13,36 @@ import { DataMapColumnFormat } from "./DataMapColumnFormat";
 /**
  *
  * @export
- * @interface TraitInputFromDatasets
+ * @interface TraitInputFromDatasetsMergePatch
  */
-export interface TraitInputFromDatasets {
+export interface TraitInputFromDatasetsMergePatch {
     /**
      * The name of a column in the dataset.
      * @type {string}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsMergePatch
      */
-    column_name: string;
-    /**
-     * The dataset the column comes from.
-     * @type {string}
-     * @memberof TraitInputFromDatasets
-     */
-    dataset_id: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsMergePatch
      */
-    format?: DataMapColumnFormat;
+    format?: DataMapColumnFormat | null;
     /**
      * A list of values that should be treated as null.
      * @type {Array<string>}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsMergePatch
      */
-    null_values?: Array<string>;
+    null_values?: Array<string> | null;
     /**
      * A mapping of values as they appear in the dataset to how they should be used in models, where the key is what appears in the dataset and value is how it should be interpretted. This is used when multiple distinct values in the source table functionally represent the sme thing, or when combining traits from multiple datasets. Use '*' as the key to capture all values that have been excluded by all other conditions.
      * @type {{ [key: string]: string | number | boolean; }}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsMergePatch
      */
     transformation_table?: {
         [key: string]: string | number | boolean;
-    };
+    } | null;
 }
-export declare function TraitInputFromDatasetsFromJSON(json: any): TraitInputFromDatasets;
-export declare function TraitInputFromDatasetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TraitInputFromDatasets;
-export declare function TraitInputFromDatasetsToJSON(value?: TraitInputFromDatasets | null): any;
+export declare function TraitInputFromDatasetsMergePatchFromJSON(json: any): TraitInputFromDatasetsMergePatch;
+export declare function TraitInputFromDatasetsMergePatchFromJSONTyped(json: any, ignoreDiscriminator: boolean): TraitInputFromDatasetsMergePatch;
+export declare function TraitInputFromDatasetsMergePatchToJSON(value?: TraitInputFromDatasetsMergePatch | null): any;

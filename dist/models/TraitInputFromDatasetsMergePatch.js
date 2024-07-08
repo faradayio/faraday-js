@@ -13,20 +13,19 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TraitInputFromDatasetsToJSON = exports.TraitInputFromDatasetsFromJSONTyped = exports.TraitInputFromDatasetsFromJSON = void 0;
+exports.TraitInputFromDatasetsMergePatchToJSON = exports.TraitInputFromDatasetsMergePatchFromJSONTyped = exports.TraitInputFromDatasetsMergePatchFromJSON = void 0;
 const runtime_1 = require("../runtime");
 const DataMapColumnFormat_1 = require("./DataMapColumnFormat");
-function TraitInputFromDatasetsFromJSON(json) {
-    return TraitInputFromDatasetsFromJSONTyped(json, false);
+function TraitInputFromDatasetsMergePatchFromJSON(json) {
+    return TraitInputFromDatasetsMergePatchFromJSONTyped(json, false);
 }
-exports.TraitInputFromDatasetsFromJSON = TraitInputFromDatasetsFromJSON;
-function TraitInputFromDatasetsFromJSONTyped(json, ignoreDiscriminator) {
+exports.TraitInputFromDatasetsMergePatchFromJSON = TraitInputFromDatasetsMergePatchFromJSON;
+function TraitInputFromDatasetsMergePatchFromJSONTyped(json, ignoreDiscriminator) {
     if (json === undefined || json === null) {
         return json;
     }
     return {
-        column_name: json["column_name"],
-        dataset_id: json["dataset_id"],
+        column_name: !runtime_1.exists(json, "column_name") ? undefined : json["column_name"],
         format: !runtime_1.exists(json, "format")
             ? undefined
             : DataMapColumnFormat_1.DataMapColumnFormatFromJSON(json["format"]),
@@ -36,8 +35,8 @@ function TraitInputFromDatasetsFromJSONTyped(json, ignoreDiscriminator) {
             : json["transformation_table"],
     };
 }
-exports.TraitInputFromDatasetsFromJSONTyped = TraitInputFromDatasetsFromJSONTyped;
-function TraitInputFromDatasetsToJSON(value) {
+exports.TraitInputFromDatasetsMergePatchFromJSONTyped = TraitInputFromDatasetsMergePatchFromJSONTyped;
+function TraitInputFromDatasetsMergePatchToJSON(value) {
     if (value === undefined) {
         return undefined;
     }
@@ -46,7 +45,6 @@ function TraitInputFromDatasetsToJSON(value) {
     }
     return {
         column_name: value.column_name,
-        dataset_id: value.dataset_id,
         format: DataMapColumnFormat_1.DataMapColumnFormatToJSON(value.format),
         null_values: value.null_values,
         transformation_table: value.transformation_table
@@ -54,4 +52,4 @@ function TraitInputFromDatasetsToJSON(value) {
             : value.transformation_table,
     };
 }
-exports.TraitInputFromDatasetsToJSON = TraitInputFromDatasetsToJSON;
+exports.TraitInputFromDatasetsMergePatchToJSON = TraitInputFromDatasetsMergePatchToJSON;

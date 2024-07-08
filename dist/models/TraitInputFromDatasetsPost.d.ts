@@ -13,42 +13,36 @@ import { DataMapColumnFormat } from "./DataMapColumnFormat";
 /**
  *
  * @export
- * @interface TraitInputFromDatasets
+ * @interface TraitInputFromDatasetsPost
  */
-export interface TraitInputFromDatasets {
+export interface TraitInputFromDatasetsPost {
     /**
      * The name of a column in the dataset.
      * @type {string}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsPost
      */
     column_name: string;
     /**
-     * The dataset the column comes from.
-     * @type {string}
-     * @memberof TraitInputFromDatasets
-     */
-    dataset_id: string;
-    /**
      *
      * @type {DataMapColumnFormat}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsPost
      */
     format?: DataMapColumnFormat;
     /**
      * A list of values that should be treated as null.
      * @type {Array<string>}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsPost
      */
     null_values?: Array<string>;
     /**
      * A mapping of values as they appear in the dataset to how they should be used in models, where the key is what appears in the dataset and value is how it should be interpretted. This is used when multiple distinct values in the source table functionally represent the sme thing, or when combining traits from multiple datasets. Use '*' as the key to capture all values that have been excluded by all other conditions.
      * @type {{ [key: string]: string | number | boolean; }}
-     * @memberof TraitInputFromDatasets
+     * @memberof TraitInputFromDatasetsPost
      */
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
 }
-export declare function TraitInputFromDatasetsFromJSON(json: any): TraitInputFromDatasets;
-export declare function TraitInputFromDatasetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TraitInputFromDatasets;
-export declare function TraitInputFromDatasetsToJSON(value?: TraitInputFromDatasets | null): any;
+export declare function TraitInputFromDatasetsPostFromJSON(json: any): TraitInputFromDatasetsPost;
+export declare function TraitInputFromDatasetsPostFromJSONTyped(json: any, ignoreDiscriminator: boolean): TraitInputFromDatasetsPost;
+export declare function TraitInputFromDatasetsPostToJSON(value?: TraitInputFromDatasetsPost | null): any;
