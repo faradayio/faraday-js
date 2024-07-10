@@ -18,6 +18,12 @@ import { ResourceType } from './ResourceType';
  */
 export interface GraphEdge {
     /**
+     *
+     * @type {Date}
+     * @memberof GraphEdge
+     */
+    downstream_archived_at?: Date;
+    /**
      * the id of the resource that depends on the upstream resource
      * @type {string}
      * @memberof GraphEdge
@@ -65,6 +71,12 @@ export interface GraphEdge {
      * @memberof GraphEdge
      */
     downstream_type?: ResourceType;
+    /**
+     *
+     * @type {Date}
+     * @memberof GraphEdge
+     */
+    upstream_archived_at?: Date;
     /**
      * the id of the resource that is depended on by the downstream resource
      * @type {string}

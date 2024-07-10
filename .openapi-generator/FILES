@@ -41,6 +41,7 @@ src/models/AnalysisFeatureDirectionalityDate.ts
 src/models/AnalysisFeatureDirectionalityNumber.ts
 src/models/AnalysisFeatureDirectionalityText.ts
 src/models/AnalysisRocCurvePoint.ts
+src/models/ArchiveConfig.ts
 src/models/Cohort.ts
 src/models/CohortAnalysisMembership.ts
 src/models/CohortAnalysisMembershipDatum.ts

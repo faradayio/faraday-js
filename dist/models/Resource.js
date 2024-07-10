@@ -25,6 +25,7 @@ function ResourceFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
         'last_read_input_at': !runtime_1.exists(json, 'last_read_input_at') ? undefined : (new Date(json['last_read_input_at'])),
@@ -46,6 +47,7 @@ function ResourceToJSON(value) {
         return null;
     }
     return {
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,
         'last_read_input_at': value.last_read_input_at === undefined ? undefined : (value.last_read_input_at.toISOString()),

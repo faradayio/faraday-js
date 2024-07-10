@@ -19,6 +19,12 @@ import { ResourceStatus } from './ResourceStatus';
  */
 export interface Recommender {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Recommender
+     */
+    archived_at?: Date;
+    /**
      * When this resource was created.
      * @type {Date}
      * @memberof Recommender

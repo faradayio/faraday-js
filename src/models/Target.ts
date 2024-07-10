@@ -69,6 +69,12 @@ import {
  */
 export interface Target {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Target
+     */
+    archived_at?: Date;
+    /**
      * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail. 
      * 
      * If this is not a replication target, omit this parameter.
@@ -233,6 +239,7 @@ export function TargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ta
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'custom_structure': !exists(json, 'custom_structure') ? undefined : ((json['custom_structure'] as Array<any>).map(TargetStructureTransformationFromJSON)),
@@ -267,6 +274,7 @@ export function TargetToJSON(value?: Target | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'custom_structure': value.custom_structure === undefined ? undefined : ((value.custom_structure as Array<any>).map(TargetStructureTransformationToJSON)),

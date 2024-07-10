@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Stream } from '../models';
+import { ArchiveConfig, Stream } from '../models';
+export interface ArchiveStreamRequest {
+    streamIdOrName: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface DeleteStreamRequest {
     streamIdOrName: string;
 }
@@ -20,10 +24,24 @@ export interface FindOrCreateStreamRequest {
 export interface GetStreamRequest {
     streamIdOrName: string;
 }
+export interface UnarchiveStreamRequest {
+    streamIdOrName: string;
+    archiveConfig: ArchiveConfig;
+}
 /**
  *
  */
 export declare class StreamsApi extends runtime.BaseAPI {
+    /**
+     * Archive a stream
+     * Archive a stream
+     */
+    private archiveStreamRaw;
+    /**
+     * Archive a stream
+     * Archive a stream
+     */
+    archiveStream(streamIdOrName: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Delete a stream
      */
@@ -62,4 +80,14 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * List streams
      */
     getStreams(): Promise<Array<Stream>>;
+    /**
+     * Unarchive a stream
+     * Unarchive a stream
+     */
+    private unarchiveStreamRaw;
+    /**
+     * Unarchive a stream
+     * Unarchive a stream
+     */
+    unarchiveStream(streamIdOrName: string, archiveConfig: ArchiveConfig): Promise<void>;
 }

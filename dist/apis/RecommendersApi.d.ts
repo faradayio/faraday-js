@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Recommender, RecommenderAnalysis, RecommenderMergePatch, RecommenderPost } from '../models';
+import { ArchiveConfig, Recommender, RecommenderAnalysis, RecommenderMergePatch, RecommenderPost } from '../models';
+export interface ArchiveRecommenderRequest {
+    recommenderId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateRecommenderRequest {
     recommenderFields: RecommenderPost;
 }
@@ -23,6 +27,10 @@ export interface GetRecommenderRequest {
 export interface GetRecommenderAnalysisRequest {
     recommenderId: string;
 }
+export interface UnarchiveRecommenderRequest {
+    recommenderId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateRecommenderRequest {
     recommenderId: string;
     recommenderFields: RecommenderMergePatch;
@@ -31,6 +39,16 @@ export interface UpdateRecommenderRequest {
  *
  */
 export declare class RecommendersApi extends runtime.BaseAPI {
+    /**
+     * Archive a recommender
+     * Archive a recommender
+     */
+    private archiveRecommenderRaw;
+    /**
+     * Archive a recommender
+     * Archive a recommender
+     */
+    archiveRecommender(recommenderId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager.
      * Create recommender
@@ -79,6 +97,16 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * List recommenders
      */
     getRecommenders(): Promise<Array<Recommender>>;
+    /**
+     * Unarchive a recommender
+     * Unarchive a recommender
+     */
+    private unarchiveRecommenderRaw;
+    /**
+     * Unarchive a recommender
+     * Unarchive a recommender
+     */
+    unarchiveRecommender(recommenderId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Edit configuration of a recommender
      * Edit a recommender

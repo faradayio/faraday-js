@@ -17,6 +17,12 @@ import { ResourceStatus } from './ResourceStatus';
  */
 export interface Resource {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Resource
+     */
+    archived_at?: Date;
+    /**
      * When this resource was created.
      * @type {Date}
      * @memberof Resource

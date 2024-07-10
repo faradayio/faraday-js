@@ -18,6 +18,9 @@ import {
     AnalysisDimensionsTrait,
     AnalysisDimensionsTraitFromJSON,
     AnalysisDimensionsTraitToJSON,
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Trait,
     TraitFromJSON,
     TraitToJSON,
@@ -28,6 +31,11 @@ import {
     TraitPostFromJSON,
     TraitPostToJSON,
 } from '../models';
+
+export interface ArchiveTraitRequest {
+    traitId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateTraitRequest {
     traitFields: TraitPost;
@@ -45,6 +53,11 @@ export interface GetTraitAnalysisDimensionsRequest {
     traitId: string;
 }
 
+export interface UnarchiveTraitRequest {
+    traitId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateTraitRequest {
     traitId: string;
     traitMergePatch: TraitMergePatch;
@@ -54,6 +67,52 @@ export interface UpdateTraitRequest {
  * 
  */
 export class TraitsApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a trait
+     * Archive a trait
+     */
+    private async archiveTraitRaw(requestParameters: ArchiveTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+            throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling archiveTrait.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveTrait.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/traits/{trait_id}/archive`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a trait
+     * Archive a trait
+     */
+    async archiveTrait(traitId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveTraitRaw({ traitId: traitId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Create a new user-defined Trait. You can connect your uploaded data to this trait by sending a PATCH to the relevant dataset with `output_to_traits` defined. 
@@ -284,6 +343,52 @@ export class TraitsApi extends runtime.BaseAPI {
     async getTraits(): Promise<Array<Trait>> {
         const response = await this.getTraitsRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a trait
+     * Unarchive a trait
+     */
+    private async unarchiveTraitRaw(requestParameters: UnarchiveTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+            throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling unarchiveTrait.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveTrait.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/traits/{trait_id}/unarchive`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a trait
+     * Unarchive a trait
+     */
+    async unarchiveTrait(traitId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveTraitRaw({ traitId: traitId, archiveConfig: archiveConfig }, );
     }
 
     /**

@@ -21,6 +21,12 @@ import { ResourceStatus } from './ResourceStatus';
  */
 export interface Connection {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Connection
+     */
+    archived_at?: Date;
+    /**
      *
      * @type {Array<ContentsRow>}
      * @memberof Connection

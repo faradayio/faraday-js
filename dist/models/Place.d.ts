@@ -24,6 +24,12 @@ export interface Place {
      */
     addresses?: Array<AddressInfo>;
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Place
+     */
+    archived_at?: Date;
+    /**
      * When this resource was created.
      * @type {Date}
      * @memberof Place

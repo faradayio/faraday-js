@@ -21,6 +21,12 @@ import { ResourceStatus } from './ResourceStatus';
  */
 export interface Cohort {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Cohort
+     */
+    archived_at?: Date;
+    /**
      * A Managed Cohort.
      * @type {boolean}
      * @memberof Cohort

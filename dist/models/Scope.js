@@ -28,6 +28,7 @@ function ScopeFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'columns': !runtime_1.exists(json, 'columns') ? undefined : ScopeColumns_1.ScopeColumnsFromJSON(json['columns']),
         'created_at': (new Date(json['created_at'])),
         'id': json['id'],
@@ -55,6 +56,7 @@ function ScopeToJSON(value) {
         return null;
     }
     return {
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'columns': ScopeColumns_1.ScopeColumnsToJSON(value.columns),
         'created_at': (value.created_at.toISOString()),
         'id': value.id,

@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     InlineResponse200,
     InlineResponse200FromJSON,
     InlineResponse200ToJSON,
@@ -34,6 +37,11 @@ import {
     TargetPostFromJSON,
     TargetPostToJSON,
 } from '../models';
+
+export interface ArchiveTargetRequest {
+    targetId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateTargetRequest {
     targetFields: TargetPost;
@@ -60,6 +68,11 @@ export interface LookupOnTargetRequest {
     targetLookupRequest: TargetLookupRequest;
 }
 
+export interface UnarchiveTargetRequest {
+    targetId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateTargetRequest {
     targetId: string;
     targetMergePatch: TargetMergePatch;
@@ -69,6 +82,52 @@ export interface UpdateTargetRequest {
  * 
  */
 export class TargetsApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a target
+     * Archive a target
+     */
+    private async archiveTargetRaw(requestParameters: ArchiveTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling archiveTarget.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveTarget.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}/archive`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a target
+     * Archive a target
+     */
+    async archiveTarget(targetId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveTargetRaw({ targetId: targetId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Add a new target.  Targets are configuration for exporting data from Faraday, possibly to an external environment (with <a href=\"https://faraday.ai/developers/reference/createconnection\">/connections</a>).  There are three types of targets: <table> <thead> <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr> </thead> <tbody> <tr><td><strong>Publication</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr> <tr><td><strong>Replication</strong></td><td>Faraday copies your predictions to systems <em>you</em> control. You may then push them to third parties like Facebook, Google Ads, etc.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> of the connection in <code>options</code>.</td></tr> <tr><td><strong>Managed</strong></td><td>Faraday manages a push to third parties like Facebook, Google Ads, and more.</td><td>Must be on an enterprise plan. Contact Customer Success to set up.</td></tr> </tbody> </table> 
@@ -351,6 +410,52 @@ export class TargetsApi extends runtime.BaseAPI {
     async lookupOnTarget(targetId: string, targetLookupRequest: TargetLookupRequest, ): Promise<TargetLookupResponse> {
         const response = await this.lookupOnTargetRaw({ targetId: targetId, targetLookupRequest: targetLookupRequest }, );
         return await response.value();
+    }
+
+    /**
+     * Unarchive a target
+     * Unarchive a target
+     */
+    private async unarchiveTargetRaw(requestParameters: UnarchiveTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling unarchiveTarget.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveTarget.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}/unarchive`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a target
+     * Unarchive a target
+     */
+    async unarchiveTarget(targetId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveTargetRaw({ targetId: targetId, archiveConfig: archiveConfig }, );
     }
 
     /**

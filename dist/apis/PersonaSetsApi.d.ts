@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Persona, PersonaMergePatch, PersonaSet, PersonaSetAnalysisDimensions, PersonaSetAnalysisFlow, PersonaSetMergePatch, PersonaSetPost } from '../models';
+import { ArchiveConfig, Persona, PersonaMergePatch, PersonaSet, PersonaSetAnalysisDimensions, PersonaSetAnalysisFlow, PersonaSetMergePatch, PersonaSetPost } from '../models';
+export interface ArchivePersonaSetRequest {
+    personaSetId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreatePersonaSetRequest {
     personaSetPost: PersonaSetPost;
 }
@@ -26,6 +30,10 @@ export interface GetPersonaSetAnalysisDimensionsRequest {
 export interface GetPersonaSetAnalysisFlowRequest {
     personaSetId: string;
 }
+export interface UnarchivePersonaSetRequest {
+    personaSetId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdatePersonaRequest {
     personaSetId: string;
     personaId: string;
@@ -39,6 +47,16 @@ export interface UpdatePersonaSetRequest {
  *
  */
 export declare class PersonaSetsApi extends runtime.BaseAPI {
+    /**
+     * Archive a persona set
+     * Archive a persona set
+     */
+    private archivePersonaSetRaw;
+    /**
+     * Archive a persona set
+     * Archive a persona set
+     */
+    archivePersonaSet(personaSetId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Invoke the build of a new persona set for a given cohort
      * Create persona set
@@ -93,6 +111,16 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * List persona sets
      */
     getPersonaSets(): Promise<Array<PersonaSet>>;
+    /**
+     * Unarchive a persona set
+     * Unarchive a persona set
+     */
+    private unarchivePersonaSetRaw;
+    /**
+     * Unarchive a persona set
+     * Unarchive a persona set
+     */
+    unarchivePersonaSet(personaSetId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Edit a persona
      * Edit a persona

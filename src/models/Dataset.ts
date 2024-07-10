@@ -75,6 +75,12 @@ import {
  */
 export interface Dataset {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Dataset
+     */
+    archived_at?: Date;
+    /**
      * If this is a "retrieve" dataset, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail. 
      * 
      * Only a subset of connection types can be configured for dataset ingestion - see the list available in `options`.
@@ -316,6 +322,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'connection_id': !exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'detected_columns': !exists(json, 'detected_columns') ? undefined : ((json['detected_columns'] as Array<any>).map(DatasetColumnFromJSON)),
@@ -359,6 +366,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'detected_columns': value.detected_columns === undefined ? undefined : ((value.detected_columns as Array<any>).map(DatasetColumnToJSON)),
