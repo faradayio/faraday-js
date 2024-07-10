@@ -13,20 +13,19 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TraitInputFromDatasetsToJSON = exports.TraitInputFromDatasetsFromJSONTyped = exports.TraitInputFromDatasetsFromJSON = void 0;
+exports.TraitInputFromDatasetsPutToJSON = exports.TraitInputFromDatasetsPutFromJSONTyped = exports.TraitInputFromDatasetsPutFromJSON = void 0;
 const runtime_1 = require("../runtime");
 const DataMapColumnFormat_1 = require("./DataMapColumnFormat");
-function TraitInputFromDatasetsFromJSON(json) {
-    return TraitInputFromDatasetsFromJSONTyped(json, false);
+function TraitInputFromDatasetsPutFromJSON(json) {
+    return TraitInputFromDatasetsPutFromJSONTyped(json, false);
 }
-exports.TraitInputFromDatasetsFromJSON = TraitInputFromDatasetsFromJSON;
-function TraitInputFromDatasetsFromJSONTyped(json, ignoreDiscriminator) {
+exports.TraitInputFromDatasetsPutFromJSON = TraitInputFromDatasetsPutFromJSON;
+function TraitInputFromDatasetsPutFromJSONTyped(json, ignoreDiscriminator) {
     if (json === undefined || json === null) {
         return json;
     }
     return {
         column_name: json["column_name"],
-        dataset_id: json["dataset_id"],
         format: !runtime_1.exists(json, "format")
             ? undefined
             : DataMapColumnFormat_1.DataMapColumnFormatFromJSON(json["format"]),
@@ -36,8 +35,8 @@ function TraitInputFromDatasetsFromJSONTyped(json, ignoreDiscriminator) {
             : json["transformation_table"],
     };
 }
-exports.TraitInputFromDatasetsFromJSONTyped = TraitInputFromDatasetsFromJSONTyped;
-function TraitInputFromDatasetsToJSON(value) {
+exports.TraitInputFromDatasetsPutFromJSONTyped = TraitInputFromDatasetsPutFromJSONTyped;
+function TraitInputFromDatasetsPutToJSON(value) {
     if (value === undefined) {
         return undefined;
     }
@@ -46,12 +45,11 @@ function TraitInputFromDatasetsToJSON(value) {
     }
     return {
         column_name: value.column_name,
-        dataset_id: value.dataset_id,
         format: DataMapColumnFormat_1.DataMapColumnFormatToJSON(value.format),
         null_values: value.null_values,
-        transformation_table: value.transformation_table
+        transformation_table: value.transformation_table === undefined
             ? undefined
             : value.transformation_table,
     };
 }
-exports.TraitInputFromDatasetsToJSON = TraitInputFromDatasetsToJSON;
+exports.TraitInputFromDatasetsPutToJSON = TraitInputFromDatasetsPutToJSON;
