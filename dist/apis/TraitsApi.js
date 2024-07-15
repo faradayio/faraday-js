@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class TraitsApi extends runtime.BaseAPI {
     /**
+     * Archive a trait
+     * Archive a trait
+     */
+    archiveTraitRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+                throw new runtime.RequiredError('traitId', 'Required parameter requestParameters.traitId was null or undefined when calling archiveTrait.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveTrait.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/traits/{trait_id}/archive`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a trait
+     * Archive a trait
+     */
+    archiveTrait(traitId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveTraitRaw({ traitId: traitId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Create a new user-defined Trait. You can connect your uploaded data to this trait by sending a PATCH to the relevant dataset with `output_to_traits` defined.
      * Create a Trait
      */
@@ -241,6 +282,47 @@ class TraitsApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getTraitsRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a trait
+     * Unarchive a trait
+     */
+    unarchiveTraitRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+                throw new runtime.RequiredError('traitId', 'Required parameter requestParameters.traitId was null or undefined when calling unarchiveTrait.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveTrait.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/traits/{trait_id}/unarchive`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a trait
+     * Unarchive a trait
+     */
+    unarchiveTrait(traitId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveTraitRaw({ traitId: traitId, archiveConfig: archiveConfig });
         });
     }
     /**

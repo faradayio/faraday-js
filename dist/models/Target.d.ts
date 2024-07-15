@@ -34,6 +34,12 @@ import { TargetStructureTransformation } from './TargetStructureTransformation';
  */
 export interface Target {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Target
+     */
+    archived_at?: Date;
+    /**
      * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail.
      *
      * If this is not a replication target, omit this parameter.

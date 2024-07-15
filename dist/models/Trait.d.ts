@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { PrimitiveDataType } from './PrimitiveDataType';
+import { ResourceStatus } from './ResourceStatus';
 import { ResourceType } from './ResourceType';
 import { TraitCategory } from './TraitCategory';
 import { TraitInputFromDatasets } from './TraitInputFromDatasets';
@@ -24,6 +25,12 @@ import { TraitStatisticalType } from './TraitStatisticalType';
  * @interface Trait
  */
 export interface Trait {
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Trait
+     */
+    archived_at?: Date;
     /**
      * For continuous data types, list of reasonable cutoff values.
      * @type {Array<number>}
@@ -96,6 +103,12 @@ export interface Trait {
      * @memberof Trait
      */
     statistical_type?: TraitStatisticalType;
+    /**
+     *
+     * @type {ResourceStatus}
+     * @memberof Trait
+     */
+    status: ResourceStatus;
     /**
      *
      * @type {PrimitiveDataType}

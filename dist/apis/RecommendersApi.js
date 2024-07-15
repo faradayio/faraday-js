@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class RecommendersApi extends runtime.BaseAPI {
     /**
+     * Archive a recommender
+     * Archive a recommender
+     */
+    archiveRecommenderRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+                throw new runtime.RequiredError('recommenderId', 'Required parameter requestParameters.recommenderId was null or undefined when calling archiveRecommender.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveRecommender.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/recommenders/{recommender_id}/archive`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a recommender
+     * Archive a recommender
+     */
+    archiveRecommender(recommenderId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveRecommenderRaw({ recommenderId: recommenderId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager.
      * Create recommender
      */
@@ -208,6 +249,47 @@ class RecommendersApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getRecommendersRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a recommender
+     * Unarchive a recommender
+     */
+    unarchiveRecommenderRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+                throw new runtime.RequiredError('recommenderId', 'Required parameter requestParameters.recommenderId was null or undefined when calling unarchiveRecommender.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveRecommender.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/recommenders/{recommender_id}/unarchive`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a recommender
+     * Unarchive a recommender
+     */
+    unarchiveRecommender(recommenderId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveRecommenderRaw({ recommenderId: recommenderId, archiveConfig: archiveConfig });
         });
     }
     /**

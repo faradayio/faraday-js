@@ -20,6 +20,12 @@ import {
     PrimitiveDataTypeToJSON,
 } from './PrimitiveDataType';
 import {
+    ResourceStatus,
+    ResourceStatusFromJSON,
+    ResourceStatusFromJSONTyped,
+    ResourceStatusToJSON,
+} from './ResourceStatus';
+import {
     ResourceType,
     ResourceTypeFromJSON,
     ResourceTypeFromJSONTyped,
@@ -54,6 +60,12 @@ import {
  * @interface Trait
  */
 export interface Trait {
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Trait
+     */
+    archived_at?: Date;
     /**
      * For continuous data types, list of reasonable cutoff values.
      * @type {Array<number>}
@@ -128,6 +140,12 @@ export interface Trait {
     statistical_type?: TraitStatisticalType;
     /**
      * 
+     * @type {ResourceStatus}
+     * @memberof Trait
+     */
+    status: ResourceStatus;
+    /**
+     * 
      * @type {PrimitiveDataType}
      * @memberof Trait
      */
@@ -156,6 +174,7 @@ export function TraitFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tra
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'breaks': !exists(json, 'breaks') ? undefined : json['breaks'],
         'categories': !exists(json, 'categories') ? undefined : json['categories'],
         'category': !exists(json, 'category') ? undefined : TraitCategoryFromJSON(json['category']),
@@ -168,6 +187,7 @@ export function TraitFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tra
         'name': json['name'],
         'resource_type': ResourceTypeFromJSON(json['resource_type']),
         'statistical_type': !exists(json, 'statistical_type') ? undefined : TraitStatisticalTypeFromJSON(json['statistical_type']),
+        'status': ResourceStatusFromJSON(json['status']),
         'type': !exists(json, 'type') ? undefined : PrimitiveDataTypeFromJSON(json['type']),
         'unit': !exists(json, 'unit') ? undefined : json['unit'],
         'updated_at': (new Date(json['updated_at'])),
@@ -183,6 +203,7 @@ export function TraitToJSON(value?: Trait | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'breaks': value.breaks,
         'categories': value.categories,
         'category': TraitCategoryToJSON(value.category),
@@ -195,6 +216,7 @@ export function TraitToJSON(value?: Trait | null): any {
         'name': value.name,
         'resource_type': ResourceTypeToJSON(value.resource_type),
         'statistical_type': TraitStatisticalTypeToJSON(value.statistical_type),
+        'status': ResourceStatusToJSON(value.status),
         'type': PrimitiveDataTypeToJSON(value.type),
         'unit': value.unit,
         'updated_at': (value.updated_at.toISOString()),

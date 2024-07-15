@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Persona,
     PersonaFromJSON,
     PersonaToJSON,
@@ -38,6 +41,11 @@ import {
     PersonaSetPostToJSON,
 } from '../models';
 
+export interface ArchivePersonaSetRequest {
+    personaSetId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface CreatePersonaSetRequest {
     personaSetPost: PersonaSetPost;
 }
@@ -58,6 +66,11 @@ export interface GetPersonaSetAnalysisFlowRequest {
     personaSetId: string;
 }
 
+export interface UnarchivePersonaSetRequest {
+    personaSetId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdatePersonaRequest {
     personaSetId: string;
     personaId: string;
@@ -73,6 +86,52 @@ export interface UpdatePersonaSetRequest {
  * 
  */
 export class PersonaSetsApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a persona set
+     * Archive a persona set
+     */
+    private async archivePersonaSetRaw(requestParameters: ArchivePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+            throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling archivePersonaSet.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archivePersonaSet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/persona_sets/{persona_set_id}/archive`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a persona set
+     * Archive a persona set
+     */
+    async archivePersonaSet(personaSetId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archivePersonaSetRaw({ personaSetId: personaSetId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Invoke the build of a new persona set for a given cohort
@@ -304,6 +363,52 @@ export class PersonaSetsApi extends runtime.BaseAPI {
     async getPersonaSets(): Promise<Array<PersonaSet>> {
         const response = await this.getPersonaSetsRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a persona set
+     * Unarchive a persona set
+     */
+    private async unarchivePersonaSetRaw(requestParameters: UnarchivePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+            throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling unarchivePersonaSet.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchivePersonaSet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/persona_sets/{persona_set_id}/unarchive`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a persona set
+     * Unarchive a persona set
+     */
+    async unarchivePersonaSet(personaSetId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchivePersonaSetRaw({ personaSetId: personaSetId, archiveConfig: archiveConfig }, );
     }
 
     /**

@@ -15,10 +15,18 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Stream,
     StreamFromJSON,
     StreamToJSON,
 } from '../models';
+
+export interface ArchiveStreamRequest {
+    streamIdOrName: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface DeleteStreamRequest {
     streamIdOrName: string;
@@ -32,10 +40,61 @@ export interface GetStreamRequest {
     streamIdOrName: string;
 }
 
+export interface UnarchiveStreamRequest {
+    streamIdOrName: string;
+    archiveConfig: ArchiveConfig;
+}
+
 /**
  * 
  */
 export class StreamsApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a stream
+     * Archive a stream
+     */
+    private async archiveStreamRaw(requestParameters: ArchiveStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+            throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling archiveStream.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveStream.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id_or_name}/archive`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a stream
+     * Archive a stream
+     */
+    async archiveStream(streamIdOrName: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveStreamRaw({ streamIdOrName: streamIdOrName, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Delete a stream
@@ -188,6 +247,52 @@ export class StreamsApi extends runtime.BaseAPI {
     async getStreams(): Promise<Array<Stream>> {
         const response = await this.getStreamsRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a stream
+     * Unarchive a stream
+     */
+    private async unarchiveStreamRaw(requestParameters: UnarchiveStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+            throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling unarchiveStream.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveStream.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id_or_name}/unarchive`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a stream
+     * Unarchive a stream
+     */
+    async unarchiveStream(streamIdOrName: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveStreamRaw({ streamIdOrName: streamIdOrName, archiveConfig: archiveConfig }, );
     }
 
 }

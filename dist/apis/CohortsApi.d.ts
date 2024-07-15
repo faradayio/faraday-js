@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Cohort, CohortAnalysisMembership, CohortMergePatch, CohortPost } from '../models';
+import { ArchiveConfig, Cohort, CohortAnalysisMembership, CohortMergePatch, CohortPost } from '../models';
+export interface ArchiveCohortRequest {
+    cohortId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateCohortRequest {
     cohortFields: CohortPost;
 }
@@ -23,6 +27,10 @@ export interface GetCohortRequest {
 export interface GetCohortAnalysisMembershipRequest {
     cohortId: string;
 }
+export interface UnarchiveCohortRequest {
+    cohortId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateCohortRequest {
     cohortId: string;
     cohortFields: CohortMergePatch;
@@ -31,6 +39,16 @@ export interface UpdateCohortRequest {
  *
  */
 export declare class CohortsApi extends runtime.BaseAPI {
+    /**
+     * Archive a cohort
+     * Archive a cohort
+     */
+    private archiveCohortRaw;
+    /**
+     * Archive a cohort
+     * Archive a cohort
+     */
+    archiveCohort(cohortId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Add a new cohort (defined as people who have made qualifying emissions of certain events)
      * Create cohort
@@ -77,6 +95,16 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * List cohorts
      */
     getCohorts(): Promise<Array<Cohort>>;
+    /**
+     * Unarchive a cohort
+     * Unarchive a cohort
+     */
+    private unarchiveCohortRaw;
+    /**
+     * Unarchive a cohort
+     * Unarchive a cohort
+     */
+    unarchiveCohort(cohortId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Edit configuration of a cohort
      * Edit a cohort

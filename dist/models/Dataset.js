@@ -42,6 +42,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'archived_at': !runtime_1.exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'connection_id': !runtime_1.exists(json, 'connection_id') ? undefined : json['connection_id'],
         'created_at': (new Date(json['created_at'])),
         'detected_columns': !runtime_1.exists(json, 'detected_columns') ? undefined : (json['detected_columns'].map(DatasetColumn_1.DatasetColumnFromJSON)),
@@ -84,6 +85,7 @@ function DatasetToJSON(value) {
         return null;
     }
     return {
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'connection_id': value.connection_id,
         'created_at': (value.created_at.toISOString()),
         'detected_columns': value.detected_columns === undefined ? undefined : (value.detected_columns.map(DatasetColumn_1.DatasetColumnToJSON)),

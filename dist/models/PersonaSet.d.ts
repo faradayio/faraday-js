@@ -25,6 +25,12 @@ export interface PersonaSet {
      */
     active?: boolean;
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof PersonaSet
+     */
+    archived_at?: Date;
+    /**
      *
      * @type {string}
      * @memberof PersonaSet

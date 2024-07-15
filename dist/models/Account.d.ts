@@ -25,6 +25,12 @@ export interface Account {
      */
     api_key?: string;
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Account
+     */
+    archived_at?: Date;
+    /**
      *
      * @type {AccountCommitment}
      * @memberof Account

@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Connection, ConnectionMergePatch, ConnectionPost, Dataset, Target } from '../models';
+import { ArchiveConfig, Connection, ConnectionMergePatch, ConnectionPost, Dataset, Target } from '../models';
+export interface ArchiveConnectionRequest {
+    connectionId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateConnectionRequest {
     connectionFields: ConnectionPost;
 }
@@ -26,6 +30,10 @@ export interface GetConnectionDatasetsRequest {
 export interface GetConnectionTargetsRequest {
     connectionId: string;
 }
+export interface UnarchiveConnectionRequest {
+    connectionId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateConnectionRequest {
     connectionId: string;
     connectionMergePatch: ConnectionMergePatch;
@@ -34,6 +42,16 @@ export interface UpdateConnectionRequest {
  *
  */
 export declare class ConnectionsApi extends runtime.BaseAPI {
+    /**
+     * Archive a connection
+     * Archive a connection
+     */
+    private archiveConnectionRaw;
+    /**
+     * Archive a connection
+     * Archive a connection
+     */
+    archiveConnection(connectionId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object.
      * Create connection
@@ -94,6 +112,16 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * List connections
      */
     getConnections(): Promise<Array<Connection>>;
+    /**
+     * Unarchive a connection
+     * Unarchive a connection
+     */
+    private unarchiveConnectionRaw;
+    /**
+     * Unarchive a connection
+     * Unarchive a connection
+     */
+    unarchiveConnection(connectionId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Update the configuration of a connection.
      * Update a connection

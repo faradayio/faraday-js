@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Dataset, DatasetMergePatch, DatasetPost } from '../models';
+import { ArchiveConfig, Dataset, DatasetMergePatch, DatasetPost } from '../models';
+export interface ArchiveDatasetRequest {
+    datasetId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface CreateDatasetRequest {
     datasetFields: DatasetPost;
 }
@@ -20,6 +24,10 @@ export interface DeleteDatasetRequest {
 export interface GetDatasetRequest {
     datasetId: string;
 }
+export interface UnarchiveDatasetRequest {
+    datasetId: string;
+    archiveConfig: ArchiveConfig;
+}
 export interface UpdateDatasetRequest {
     datasetId: string;
     datasetFields: DatasetMergePatch;
@@ -28,6 +36,16 @@ export interface UpdateDatasetRequest {
  *
  */
 export declare class DatasetsApi extends runtime.BaseAPI {
+    /**
+     * Archive a dataset
+     * Archive a dataset
+     */
+    private archiveDatasetRaw;
+    /**
+     * Archive a dataset
+     * Archive a dataset
+     */
+    archiveDataset(datasetId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Create a new dataset
      * Create dataset
@@ -66,6 +84,16 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * List datasets
      */
     getDatasets(): Promise<Array<Dataset>>;
+    /**
+     * Unarchive a dataset
+     * Unarchive a dataset
+     */
+    private unarchiveDatasetRaw;
+    /**
+     * Unarchive a dataset
+     * Unarchive a dataset
+     */
+    unarchiveDataset(datasetId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
      * Update an existing dataset
      * Update dataset

@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Recommender,
     RecommenderFromJSON,
     RecommenderToJSON,
@@ -28,6 +31,11 @@ import {
     RecommenderPostFromJSON,
     RecommenderPostToJSON,
 } from '../models';
+
+export interface ArchiveRecommenderRequest {
+    recommenderId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateRecommenderRequest {
     recommenderFields: RecommenderPost;
@@ -45,6 +53,11 @@ export interface GetRecommenderAnalysisRequest {
     recommenderId: string;
 }
 
+export interface UnarchiveRecommenderRequest {
+    recommenderId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateRecommenderRequest {
     recommenderId: string;
     recommenderFields: RecommenderMergePatch;
@@ -54,6 +67,52 @@ export interface UpdateRecommenderRequest {
  * 
  */
 export class RecommendersApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a recommender
+     * Archive a recommender
+     */
+    private async archiveRecommenderRaw(requestParameters: ArchiveRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+            throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling archiveRecommender.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveRecommender.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/recommenders/{recommender_id}/archive`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a recommender
+     * Archive a recommender
+     */
+    async archiveRecommender(recommenderId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveRecommenderRaw({ recommenderId: recommenderId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager. 
@@ -249,6 +308,52 @@ export class RecommendersApi extends runtime.BaseAPI {
     async getRecommenders(): Promise<Array<Recommender>> {
         const response = await this.getRecommendersRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a recommender
+     * Unarchive a recommender
+     */
+    private async unarchiveRecommenderRaw(requestParameters: UnarchiveRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+            throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling unarchiveRecommender.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveRecommender.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/recommenders/{recommender_id}/unarchive`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a recommender
+     * Unarchive a recommender
+     */
+    async unarchiveRecommender(recommenderId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveRecommenderRaw({ recommenderId: recommenderId, archiveConfig: archiveConfig }, );
     }
 
     /**

@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ArchiveConfig,
+    ArchiveConfigFromJSON,
+    ArchiveConfigToJSON,
     Dataset,
     DatasetFromJSON,
     DatasetToJSON,
@@ -25,6 +28,11 @@ import {
     DatasetPostFromJSON,
     DatasetPostToJSON,
 } from '../models';
+
+export interface ArchiveDatasetRequest {
+    datasetId: string;
+    archiveConfig: ArchiveConfig;
+}
 
 export interface CreateDatasetRequest {
     datasetFields: DatasetPost;
@@ -38,6 +46,11 @@ export interface GetDatasetRequest {
     datasetId: string;
 }
 
+export interface UnarchiveDatasetRequest {
+    datasetId: string;
+    archiveConfig: ArchiveConfig;
+}
+
 export interface UpdateDatasetRequest {
     datasetId: string;
     datasetFields: DatasetMergePatch;
@@ -47,6 +60,52 @@ export interface UpdateDatasetRequest {
  * 
  */
 export class DatasetsApi extends runtime.BaseAPI {
+
+    /**
+     * Archive a dataset
+     * Archive a dataset
+     */
+    private async archiveDatasetRaw(requestParameters: ArchiveDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
+            throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling archiveDataset.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveDataset.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/datasets/{dataset_id}/archive`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive a dataset
+     * Archive a dataset
+     */
+    async archiveDataset(datasetId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveDatasetRaw({ datasetId: datasetId, archiveConfig: archiveConfig }, );
+    }
 
     /**
      * Create a new dataset
@@ -202,6 +261,52 @@ export class DatasetsApi extends runtime.BaseAPI {
     async getDatasets(): Promise<Array<Dataset>> {
         const response = await this.getDatasetsRaw();
         return await response.value();
+    }
+
+    /**
+     * Unarchive a dataset
+     * Unarchive a dataset
+     */
+    private async unarchiveDatasetRaw(requestParameters: UnarchiveDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
+            throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling unarchiveDataset.');
+        }
+
+        if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveDataset.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/datasets/{dataset_id}/unarchive`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unarchive a dataset
+     * Unarchive a dataset
+     */
+    async unarchiveDataset(datasetId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveDatasetRaw({ datasetId: datasetId, archiveConfig: archiveConfig }, );
     }
 
     /**

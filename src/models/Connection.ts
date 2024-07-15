@@ -41,6 +41,12 @@ import {
  */
 export interface Connection {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Connection
+     */
+    archived_at?: Date;
+    /**
      * 
      * @type {Array<ContentsRow>}
      * @memberof Connection
@@ -158,6 +164,7 @@ export function ConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'archived_at': !exists(json, 'archived_at') ? undefined : (new Date(json['archived_at'])),
         'contents': !exists(json, 'contents') ? undefined : ((json['contents'] as Array<any>).map(ContentsRowFromJSON)),
         'contents_error': !exists(json, 'contents_error') ? undefined : json['contents_error'],
         'created_at': (new Date(json['created_at'])),
@@ -186,6 +193,7 @@ export function ConnectionToJSON(value?: Connection | null): any {
     }
     return {
         
+        'archived_at': value.archived_at === undefined ? undefined : (value.archived_at.toISOString()),
         'contents': value.contents === undefined ? undefined : ((value.contents as Array<any>).map(ContentsRowToJSON)),
         'contents_error': value.contents_error,
         'created_at': (value.created_at.toISOString()),

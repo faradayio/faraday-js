@@ -30,6 +30,47 @@ const models_1 = require("../models");
  */
 class OutcomesApi extends runtime.BaseAPI {
     /**
+     * Archive a outcome
+     * Archive a outcome
+     */
+    archiveOutcomeRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+                throw new runtime.RequiredError('outcomeId', 'Required parameter requestParameters.outcomeId was null or undefined when calling archiveOutcome.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveOutcome.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/outcomes/{outcome_id}/archive`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Archive a outcome
+     * Archive a outcome
+     */
+    archiveOutcome(outcomeId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.archiveOutcomeRaw({ outcomeId: outcomeId, archiveConfig: archiveConfig });
+        });
+    }
+    /**
      * Add a new outcome (defined as a prediction of how likely individuals are to transition from one cohort to another)
      * Create outcome
      */
@@ -245,6 +286,47 @@ class OutcomesApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getOutcomesRaw();
             return yield response.value();
+        });
+    }
+    /**
+     * Unarchive a outcome
+     * Unarchive a outcome
+     */
+    unarchiveOutcomeRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+                throw new runtime.RequiredError('outcomeId', 'Required parameter requestParameters.outcomeId was null or undefined when calling unarchiveOutcome.');
+            }
+            if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveOutcome.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/outcomes/{outcome_id}/unarchive`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Unarchive a outcome
+     * Unarchive a outcome
+     */
+    unarchiveOutcome(outcomeId, archiveConfig) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.unarchiveOutcomeRaw({ outcomeId: outcomeId, archiveConfig: archiveConfig });
         });
     }
     /**

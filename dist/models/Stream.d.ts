@@ -18,6 +18,12 @@ import { StreamProperties } from './StreamProperties';
  */
 export interface Stream {
     /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {Date}
+     * @memberof Stream
+     */
+    archived_at?: Date;
+    /**
      * When this resource was created.
      * @type {Date}
      * @memberof Stream
