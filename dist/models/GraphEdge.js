@@ -27,23 +27,25 @@ function GraphEdgeFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'downstream_archived_at': !runtime_1.exists(json, 'downstream_archived_at') ? undefined : (new Date(json['downstream_archived_at'])),
-        'downstream_id': !runtime_1.exists(json, 'downstream_id') ? undefined : json['downstream_id'],
+        'downstream_id': json['downstream_id'],
         'downstream_last_read_input_at': !runtime_1.exists(json, 'downstream_last_read_input_at') ? undefined : (new Date(json['downstream_last_read_input_at'])),
         'downstream_last_updated_config_at': !runtime_1.exists(json, 'downstream_last_updated_config_at') ? undefined : (new Date(json['downstream_last_updated_config_at'])),
         'downstream_last_updated_output_at': !runtime_1.exists(json, 'downstream_last_updated_output_at') ? undefined : (new Date(json['downstream_last_updated_output_at'])),
-        'downstream_literate': !runtime_1.exists(json, 'downstream_literate') ? undefined : json['downstream_literate'],
-        'downstream_status': !runtime_1.exists(json, 'downstream_status') ? undefined : ResourceStatus_1.ResourceStatusFromJSON(json['downstream_status']),
+        'downstream_literate': json['downstream_literate'],
+        'downstream_status': ResourceStatus_1.ResourceStatusFromJSON(json['downstream_status']),
         'downstream_status_changed_at': !runtime_1.exists(json, 'downstream_status_changed_at') ? undefined : (new Date(json['downstream_status_changed_at'])),
-        'downstream_type': !runtime_1.exists(json, 'downstream_type') ? undefined : ResourceType_1.ResourceTypeFromJSON(json['downstream_type']),
+        'downstream_status_error': !runtime_1.exists(json, 'downstream_status_error') ? undefined : json['downstream_status_error'],
+        'downstream_type': ResourceType_1.ResourceTypeFromJSON(json['downstream_type']),
         'upstream_archived_at': !runtime_1.exists(json, 'upstream_archived_at') ? undefined : (new Date(json['upstream_archived_at'])),
-        'upstream_id': !runtime_1.exists(json, 'upstream_id') ? undefined : json['upstream_id'],
+        'upstream_id': json['upstream_id'],
         'upstream_last_read_input_at': !runtime_1.exists(json, 'upstream_last_read_input_at') ? undefined : (new Date(json['upstream_last_read_input_at'])),
         'upstream_last_updated_config_at': !runtime_1.exists(json, 'upstream_last_updated_config_at') ? undefined : (new Date(json['upstream_last_updated_config_at'])),
         'upstream_last_updated_output_at': !runtime_1.exists(json, 'upstream_last_updated_output_at') ? undefined : (new Date(json['upstream_last_updated_output_at'])),
-        'upstream_literate': !runtime_1.exists(json, 'upstream_literate') ? undefined : json['upstream_literate'],
-        'upstream_status': !runtime_1.exists(json, 'upstream_status') ? undefined : ResourceStatus_1.ResourceStatusFromJSON(json['upstream_status']),
+        'upstream_literate': json['upstream_literate'],
+        'upstream_status': ResourceStatus_1.ResourceStatusFromJSON(json['upstream_status']),
         'upstream_status_changed_at': !runtime_1.exists(json, 'upstream_status_changed_at') ? undefined : (new Date(json['upstream_status_changed_at'])),
-        'upstream_type': !runtime_1.exists(json, 'upstream_type') ? undefined : ResourceType_1.ResourceTypeFromJSON(json['upstream_type']),
+        'upstream_status_error': !runtime_1.exists(json, 'upstream_status_error') ? undefined : json['upstream_status_error'],
+        'upstream_type': ResourceType_1.ResourceTypeFromJSON(json['upstream_type']),
     };
 }
 exports.GraphEdgeFromJSONTyped = GraphEdgeFromJSONTyped;
@@ -63,6 +65,7 @@ function GraphEdgeToJSON(value) {
         'downstream_literate': value.downstream_literate,
         'downstream_status': ResourceStatus_1.ResourceStatusToJSON(value.downstream_status),
         'downstream_status_changed_at': value.downstream_status_changed_at === undefined ? undefined : (value.downstream_status_changed_at.toISOString()),
+        'downstream_status_error': value.downstream_status_error,
         'downstream_type': ResourceType_1.ResourceTypeToJSON(value.downstream_type),
         'upstream_archived_at': value.upstream_archived_at === undefined ? undefined : (value.upstream_archived_at.toISOString()),
         'upstream_id': value.upstream_id,
@@ -72,6 +75,7 @@ function GraphEdgeToJSON(value) {
         'upstream_literate': value.upstream_literate,
         'upstream_status': ResourceStatus_1.ResourceStatusToJSON(value.upstream_status),
         'upstream_status_changed_at': value.upstream_status_changed_at === undefined ? undefined : (value.upstream_status_changed_at.toISOString()),
+        'upstream_status_error': value.upstream_status_error,
         'upstream_type': ResourceType_1.ResourceTypeToJSON(value.upstream_type),
     };
 }

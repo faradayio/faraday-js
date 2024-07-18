@@ -28,7 +28,7 @@ export interface GraphEdge {
      * @type {string}
      * @memberof GraphEdge
      */
-    downstream_id?: string;
+    downstream_id: string;
     /**
      * The last time this resource's input was read.
      * @type {Date}
@@ -52,13 +52,13 @@ export interface GraphEdge {
      * @type {string}
      * @memberof GraphEdge
      */
-    downstream_literate?: string;
+    downstream_literate: string;
     /**
      *
      * @type {ResourceStatus}
      * @memberof GraphEdge
      */
-    downstream_status?: ResourceStatus;
+    downstream_status: ResourceStatus;
     /**
      * When the status of this resource was last updated.
      * @type {Date}
@@ -66,11 +66,17 @@ export interface GraphEdge {
      */
     downstream_status_changed_at?: Date;
     /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof GraphEdge
+     */
+    downstream_status_error?: string;
+    /**
      *
      * @type {ResourceType}
      * @memberof GraphEdge
      */
-    downstream_type?: ResourceType;
+    downstream_type: ResourceType;
     /**
      *
      * @type {Date}
@@ -82,7 +88,7 @@ export interface GraphEdge {
      * @type {string}
      * @memberof GraphEdge
      */
-    upstream_id?: string;
+    upstream_id: string;
     /**
      * The last time this resource's input was read.
      * @type {Date}
@@ -106,13 +112,13 @@ export interface GraphEdge {
      * @type {string}
      * @memberof GraphEdge
      */
-    upstream_literate?: string;
+    upstream_literate: string;
     /**
      *
      * @type {ResourceStatus}
      * @memberof GraphEdge
      */
-    upstream_status?: ResourceStatus;
+    upstream_status: ResourceStatus;
     /**
      * When the status of this resource was last updated.
      * @type {Date}
@@ -120,11 +126,17 @@ export interface GraphEdge {
      */
     upstream_status_changed_at?: Date;
     /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof GraphEdge
+     */
+    upstream_status_error?: string;
+    /**
      *
      * @type {ResourceType}
      * @memberof GraphEdge
      */
-    upstream_type?: ResourceType;
+    upstream_type: ResourceType;
 }
 export declare function GraphEdgeFromJSON(json: any): GraphEdge;
 export declare function GraphEdgeFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphEdge;

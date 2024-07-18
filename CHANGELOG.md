@@ -18,6 +18,12 @@ Until we reach API 1.0, the following special rules apply:
 
 - `POST /{resource_type}/{resource_id}/unarchive` unarchive the specified resource. To unarchive a resource, all upstream resources must also be unarchived.
 
+## [0.10.23] - 2024-07-18
+
+### Added
+
+- `GET /graph` returns 1 new status fields for both upstream and downstream resources for a total of 2 fields: xxx_status_error (where xxx = downstream or upstream)
+
 ## [0.10.22] - 2024-07-10
 
 ### Added
