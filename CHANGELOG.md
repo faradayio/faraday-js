@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.25] - 2024-07-22
+
+### Changed
+
+- `feature_blocklist` pattern changed from `^(fig/)?[a-z][_a-z0-9]*$` to `^(?!\s*$).+`
+
 ## [0.10.24] - 2024-07-18
 
 ### Added
