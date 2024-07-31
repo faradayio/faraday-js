@@ -222,6 +222,7 @@ __exportStar(require("./Dataset"), exports);
 __exportStar(require("./DatasetColumn"), exports);
 __exportStar(require("./DatasetEnrichment"), exports);
 __exportStar(require("./DatasetEnrichments"), exports);
+__exportStar(require("./DatasetMergeDatasets"), exports);
 __exportStar(require("./DatasetMergePatch"), exports);
 __exportStar(require("./DatasetMergePatchOutputAllColumnsAsTraits"), exports);
 __exportStar(require("./DatasetOptions"), exports);

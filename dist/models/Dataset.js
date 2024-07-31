@@ -17,6 +17,7 @@ exports.DatasetToJSON = exports.DatasetFromJSONTyped = exports.DatasetFromJSON =
 const runtime_1 = require("../runtime");
 const DatasetColumn_1 = require("./DatasetColumn");
 const DatasetEnrichments_1 = require("./DatasetEnrichments");
+const DatasetMergeDatasets_1 = require("./DatasetMergeDatasets");
 const DatasetOptions_1 = require("./DatasetOptions");
 const DatasetOutputAllColumnsAsTraits_1 = require("./DatasetOutputAllColumnsAsTraits");
 const DatasetUpdateHistory_1 = require("./DatasetUpdateHistory");
@@ -56,6 +57,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         'last_updated_output_at': !runtime_1.exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'managed': !runtime_1.exists(json, 'managed') ? undefined : json['managed'],
         'matched_count': !runtime_1.exists(json, 'matched_count') ? undefined : json['matched_count'],
+        'merge_datasets': !runtime_1.exists(json, 'merge_datasets') ? undefined : (json['merge_datasets'].map(DatasetMergeDatasets_1.DatasetMergeDatasetsFromJSON)),
         'name': json['name'],
         'options': DatasetOptions_1.DatasetOptionsFromJSON(json['options']),
         'output_all_columns_as_traits': !runtime_1.exists(json, 'output_all_columns_as_traits') ? undefined : DatasetOutputAllColumnsAsTraits_1.DatasetOutputAllColumnsAsTraitsFromJSON(json['output_all_columns_as_traits']),
@@ -99,6 +101,7 @@ function DatasetToJSON(value) {
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'managed': value.managed,
         'matched_count': value.matched_count,
+        'merge_datasets': value.merge_datasets === undefined ? undefined : (value.merge_datasets.map(DatasetMergeDatasets_1.DatasetMergeDatasetsToJSON)),
         'name': value.name,
         'options': DatasetOptions_1.DatasetOptionsToJSON(value.options),
         'output_all_columns_as_traits': DatasetOutputAllColumnsAsTraits_1.DatasetOutputAllColumnsAsTraitsToJSON(value.output_all_columns_as_traits),

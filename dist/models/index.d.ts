@@ -208,6 +208,7 @@ export * from './Dataset';
 export * from './DatasetColumn';
 export * from './DatasetEnrichment';
 export * from './DatasetEnrichments';
+export * from './DatasetMergeDatasets';
 export * from './DatasetMergePatch';
 export * from './DatasetMergePatchOutputAllColumnsAsTraits';
 export * from './DatasetOptions';

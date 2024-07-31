@@ -11,6 +11,7 @@
  */
 import { DatasetColumn } from './DatasetColumn';
 import { DatasetEnrichments } from './DatasetEnrichments';
+import { DatasetMergeDatasets } from './DatasetMergeDatasets';
 import { DatasetOptions } from './DatasetOptions';
 import { DatasetOutputAllColumnsAsTraits } from './DatasetOutputAllColumnsAsTraits';
 import { DatasetUpdateHistory } from './DatasetUpdateHistory';
@@ -124,6 +125,12 @@ export interface Dataset {
      * @memberof Dataset
      */
     matched_count?: number;
+    /**
+     * List of merge datasets using this dataset as a source.
+     * @type {Array<DatasetMergeDatasets>}
+     * @memberof Dataset
+     */
+    merge_datasets?: Array<DatasetMergeDatasets>;
     /**
      * An identifying name for this dataset.
      * @type {string}

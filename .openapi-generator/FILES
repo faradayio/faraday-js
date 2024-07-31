@@ -231,6 +231,7 @@ src/models/Dataset.ts
 src/models/DatasetColumn.ts
 src/models/DatasetEnrichment.ts
 src/models/DatasetEnrichments.ts
+src/models/DatasetMergeDatasets.ts
 src/models/DatasetMergePatch.ts
 src/models/DatasetMergePatchOutputAllColumnsAsTraits.ts
 src/models/DatasetOptions.ts

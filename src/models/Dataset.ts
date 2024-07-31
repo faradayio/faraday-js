@@ -26,6 +26,12 @@ import {
     DatasetEnrichmentsToJSON,
 } from './DatasetEnrichments';
 import {
+    DatasetMergeDatasets,
+    DatasetMergeDatasetsFromJSON,
+    DatasetMergeDatasetsFromJSONTyped,
+    DatasetMergeDatasetsToJSON,
+} from './DatasetMergeDatasets';
+import {
     DatasetOptions,
     DatasetOptionsFromJSON,
     DatasetOptionsFromJSONTyped,
@@ -174,6 +180,12 @@ export interface Dataset {
      * @memberof Dataset
      */
     matched_count?: number;
+    /**
+     * List of merge datasets using this dataset as a source.
+     * @type {Array<DatasetMergeDatasets>}
+     * @memberof Dataset
+     */
+    merge_datasets?: Array<DatasetMergeDatasets>;
     /**
      * An identifying name for this dataset.
      * @type {string}
@@ -336,6 +348,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'last_updated_output_at': !exists(json, 'last_updated_output_at') ? undefined : (new Date(json['last_updated_output_at'])),
         'managed': !exists(json, 'managed') ? undefined : json['managed'],
         'matched_count': !exists(json, 'matched_count') ? undefined : json['matched_count'],
+        'merge_datasets': !exists(json, 'merge_datasets') ? undefined : ((json['merge_datasets'] as Array<any>).map(DatasetMergeDatasetsFromJSON)),
         'name': json['name'],
         'options': DatasetOptionsFromJSON(json['options']),
         'output_all_columns_as_traits': !exists(json, 'output_all_columns_as_traits') ? undefined : DatasetOutputAllColumnsAsTraitsFromJSON(json['output_all_columns_as_traits']),
@@ -380,6 +393,7 @@ export function DatasetToJSON(value?: Dataset | null): any {
         'last_updated_output_at': value.last_updated_output_at === undefined ? undefined : (value.last_updated_output_at.toISOString()),
         'managed': value.managed,
         'matched_count': value.matched_count,
+        'merge_datasets': value.merge_datasets === undefined ? undefined : ((value.merge_datasets as Array<any>).map(DatasetMergeDatasetsToJSON)),
         'name': value.name,
         'options': DatasetOptionsToJSON(value.options),
         'output_all_columns_as_traits': DatasetOutputAllColumnsAsTraitsToJSON(value.output_all_columns_as_traits),
