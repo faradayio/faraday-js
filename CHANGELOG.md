@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.25] - 2024-07-31
+
+### Added
+
+- Added `merge_datasets` to `datasets`. This field contains a list of parent/merge dataset IDs and join columns that use the current dataset as a source.
+
 ## [0.10.24] - 2024-07-18
 
 ### Added
@@ -24,7 +30,6 @@ Until we reach API 1.0, the following special rules apply:
 - `POST /{resource_type}/{resource_id}/archive` archive the specified resource. If a resource is archived, it will no longer appear in the Faraday UI (except in the 'archived' tab), and Faraday will no longer update the resource. To archive a resource, all downstream resources must also be archived.
 
 - `POST /{resource_type}/{resource_id}/unarchive` unarchive the specified resource. To unarchive a resource, all upstream resources must also be unarchived.
-
 
 ## [0.10.22] - 2024-07-10
 
