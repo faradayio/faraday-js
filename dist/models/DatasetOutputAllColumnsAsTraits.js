@@ -14,6 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetOutputAllColumnsAsTraitsToJSON = exports.DatasetOutputAllColumnsAsTraitsFromJSONTyped = exports.DatasetOutputAllColumnsAsTraitsFromJSON = void 0;
+const runtime_1 = require("../runtime");
 function DatasetOutputAllColumnsAsTraitsFromJSON(json) {
     return DatasetOutputAllColumnsAsTraitsFromJSONTyped(json, false);
 }
@@ -24,6 +25,7 @@ function DatasetOutputAllColumnsAsTraitsFromJSONTyped(json, ignoreDiscriminator)
     }
     return {
         'exclude': json['exclude'],
+        'include': !runtime_1.exists(json, 'include') ? undefined : json['include'],
     };
 }
 exports.DatasetOutputAllColumnsAsTraitsFromJSONTyped = DatasetOutputAllColumnsAsTraitsFromJSONTyped;
@@ -36,6 +38,7 @@ function DatasetOutputAllColumnsAsTraitsToJSON(value) {
     }
     return {
         'exclude': value.exclude,
+        'include': value.include,
     };
 }
 exports.DatasetOutputAllColumnsAsTraitsToJSON = DatasetOutputAllColumnsAsTraitsToJSON;
