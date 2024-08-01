@@ -12,7 +12,7 @@
 /**
  * If specified, all columns that are not excluded will be output as traits.
  *
- * `output_to_traits` and `output_to_streams` must be `null` or unspecified when setting this parameter.
+ * `output_to_streams` may not be not be specified when setting this parameter.
  * @export
  * @interface DatasetMergePatchOutputAllColumnsAsTraits
  */
@@ -23,6 +23,18 @@ export interface DatasetMergePatchOutputAllColumnsAsTraits {
      * @memberof DatasetMergePatchOutputAllColumnsAsTraits
      */
     exclude: Array<string>;
+    /**
+     * A list of column names that should only be used to generate traits.\
+     *
+     * If unspecified, all columns will be considered and `output_to_traits`
+     * must be unset. If specified, only these columns will be considered and
+     * `output_to_traits` may be set in conjunction. In this case, any detected
+     * traits may not already be specified by `output_to_traits`; collisions will
+     * result in error.
+     * @type {Array<string>}
+     * @memberof DatasetMergePatchOutputAllColumnsAsTraits
+     */
+    include?: Array<string>;
 }
 export declare function DatasetMergePatchOutputAllColumnsAsTraitsFromJSON(json: any): DatasetMergePatchOutputAllColumnsAsTraits;
 export declare function DatasetMergePatchOutputAllColumnsAsTraitsFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetMergePatchOutputAllColumnsAsTraits;

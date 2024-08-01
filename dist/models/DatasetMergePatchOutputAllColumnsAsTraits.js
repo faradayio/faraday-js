@@ -14,6 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetMergePatchOutputAllColumnsAsTraitsToJSON = exports.DatasetMergePatchOutputAllColumnsAsTraitsFromJSONTyped = exports.DatasetMergePatchOutputAllColumnsAsTraitsFromJSON = void 0;
+const runtime_1 = require("../runtime");
 function DatasetMergePatchOutputAllColumnsAsTraitsFromJSON(json) {
     return DatasetMergePatchOutputAllColumnsAsTraitsFromJSONTyped(json, false);
 }
@@ -24,6 +25,7 @@ function DatasetMergePatchOutputAllColumnsAsTraitsFromJSONTyped(json, ignoreDisc
     }
     return {
         'exclude': json['exclude'],
+        'include': !runtime_1.exists(json, 'include') ? undefined : json['include'],
     };
 }
 exports.DatasetMergePatchOutputAllColumnsAsTraitsFromJSONTyped = DatasetMergePatchOutputAllColumnsAsTraitsFromJSONTyped;
@@ -36,6 +38,7 @@ function DatasetMergePatchOutputAllColumnsAsTraitsToJSON(value) {
     }
     return {
         'exclude': value.exclude,
+        'include': value.include,
     };
 }
 exports.DatasetMergePatchOutputAllColumnsAsTraitsToJSON = DatasetMergePatchOutputAllColumnsAsTraitsToJSON;
