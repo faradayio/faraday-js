@@ -19,126 +19,97 @@ import {
     LookupApiIdentifiersFromJSONTyped,
     LookupApiIdentifiersToJSON,
 } from './LookupApiIdentifiers';
-import {
-    LookupApiIdentitySets,
-    LookupApiIdentitySetsFromJSON,
-    LookupApiIdentitySetsFromJSONTyped,
-    LookupApiIdentitySetsToJSON,
-} from './LookupApiIdentitySets';
 
 /**
- * The structure of a lookup request depends on the "mode" of the target. 
  * 
- * For an identified target, the payload will contain the Personal Identifying Information (PII) of an individual for whom Faraday should attempt to retrieve a score. The following identifiers are supported:
- *   - person_first_name
- *   - person_last_name
- *   - house_number_and_street
- *   - city
- *   - state
- *   - postcode
- *   - email
- *   - email_hash (must be a standard SHA256 hash)
- *   - phone
- * 
- * In order to properly match, certain combinations of PII are required. See [the Lookup API specification](https://faraday.ai/docs/features/lookup-api#constructing-a-request). We encourage the use of the new `identity_sets` field which allows for one or more PII combinations for the same person to be sent in a single request. Providing PII at the top level in the request object is still supported but deprecated. For example, if there are multiple known email or physical addresses for a person, you can send them all in a single request using `identity_sets`.
- * 
- * For an aggregated target, the payload should contain a single key, which will be the same as the aggregate used in the target configuration. For example, if your target has an aggregate of `county`, 
- * then the target will only accept payloads with the key `county`. You must use standard US Census FIPS codes to lookup results.
  * @export
- * @interface TargetLookupRequest
+ * @interface LookupApiIdentitySets
  */
-export interface TargetLookupRequest {
-    /**
-     * 
-     * @type {Array<LookupApiIdentitySets>}
-     * @memberof TargetLookupRequest
-     */
-    identity_sets?: Array<LookupApiIdentitySets>;
+export interface LookupApiIdentitySets {
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     city?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     email?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     email_hash?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     house_number_and_street?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     latitude?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     longitude?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     person_first_name?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     person_last_name?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     phone?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     postcode?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     search_radius?: string;
     /**
      * 
      * @type {string}
-     * @memberof TargetLookupRequest
+     * @memberof LookupApiIdentitySets
      */
     state?: string;
 }
 
-export function TargetLookupRequestFromJSON(json: any): TargetLookupRequest {
-    return TargetLookupRequestFromJSONTyped(json, false);
+export function LookupApiIdentitySetsFromJSON(json: any): LookupApiIdentitySets {
+    return LookupApiIdentitySetsFromJSONTyped(json, false);
 }
 
-export function TargetLookupRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): TargetLookupRequest {
+export function LookupApiIdentitySetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): LookupApiIdentitySets {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'identity_sets': !exists(json, 'identity_sets') ? undefined : ((json['identity_sets'] as Array<any>).map(LookupApiIdentitySetsFromJSON)),
         'city': !exists(json, 'city') ? undefined : json['city'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'email_hash': !exists(json, 'email_hash') ? undefined : json['email_hash'],
@@ -154,7 +125,7 @@ export function TargetLookupRequestFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function TargetLookupRequestToJSON(value?: TargetLookupRequest | null): any {
+export function LookupApiIdentitySetsToJSON(value?: LookupApiIdentitySets | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -163,7 +134,6 @@ export function TargetLookupRequestToJSON(value?: TargetLookupRequest | null): a
     }
     return {
         
-        'identity_sets': value.identity_sets === undefined ? undefined : ((value.identity_sets as Array<any>).map(LookupApiIdentitySetsToJSON)),
         'city': value.city,
         'email': value.email,
         'email_hash': value.email_hash,

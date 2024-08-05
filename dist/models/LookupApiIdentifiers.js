@@ -13,19 +13,17 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TargetLookupRequestToJSON = exports.TargetLookupRequestFromJSONTyped = exports.TargetLookupRequestFromJSON = void 0;
+exports.LookupApiIdentifiersToJSON = exports.LookupApiIdentifiersFromJSONTyped = exports.LookupApiIdentifiersFromJSON = void 0;
 const runtime_1 = require("../runtime");
-const LookupApiIdentitySets_1 = require("./LookupApiIdentitySets");
-function TargetLookupRequestFromJSON(json) {
-    return TargetLookupRequestFromJSONTyped(json, false);
+function LookupApiIdentifiersFromJSON(json) {
+    return LookupApiIdentifiersFromJSONTyped(json, false);
 }
-exports.TargetLookupRequestFromJSON = TargetLookupRequestFromJSON;
-function TargetLookupRequestFromJSONTyped(json, ignoreDiscriminator) {
+exports.LookupApiIdentifiersFromJSON = LookupApiIdentifiersFromJSON;
+function LookupApiIdentifiersFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'identity_sets': !runtime_1.exists(json, 'identity_sets') ? undefined : (json['identity_sets'].map(LookupApiIdentitySets_1.LookupApiIdentitySetsFromJSON)),
         'city': !runtime_1.exists(json, 'city') ? undefined : json['city'],
         'email': !runtime_1.exists(json, 'email') ? undefined : json['email'],
         'email_hash': !runtime_1.exists(json, 'email_hash') ? undefined : json['email_hash'],
@@ -40,8 +38,8 @@ function TargetLookupRequestFromJSONTyped(json, ignoreDiscriminator) {
         'state': !runtime_1.exists(json, 'state') ? undefined : json['state'],
     };
 }
-exports.TargetLookupRequestFromJSONTyped = TargetLookupRequestFromJSONTyped;
-function TargetLookupRequestToJSON(value) {
+exports.LookupApiIdentifiersFromJSONTyped = LookupApiIdentifiersFromJSONTyped;
+function LookupApiIdentifiersToJSON(value) {
     if (value === undefined) {
         return undefined;
     }
@@ -49,7 +47,6 @@ function TargetLookupRequestToJSON(value) {
         return null;
     }
     return {
-        'identity_sets': value.identity_sets === undefined ? undefined : (value.identity_sets.map(LookupApiIdentitySets_1.LookupApiIdentitySetsToJSON)),
         'city': value.city,
         'email': value.email,
         'email_hash': value.email_hash,
@@ -64,4 +61,4 @@ function TargetLookupRequestToJSON(value) {
         'state': value.state,
     };
 }
-exports.TargetLookupRequestToJSON = TargetLookupRequestToJSON;
+exports.LookupApiIdentifiersToJSON = LookupApiIdentifiersToJSON;

@@ -9,13 +9,108 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { LookupApiIdentitySets } from './LookupApiIdentitySets';
+import { LookupMatchType } from './LookupMatchType';
 /**
+ * The structure of a lookup response depends on the target and the scope it is attached to.
  *
+ * In general, we return all personal identifying information (PII) which was sent to us. If the PII was matched, then Faraday will also return all of the Scope's defined payload components for the matched person, e.g. outcome percentiles & probability, persona membership, etc.
+ *
+ * If the PII was not matched, then the response will contain an `error` key, with the message "Could not match an identity with the provided information". See [the Lookup API specification](https://faraday.ai/docs/features/lookup-api#response) for more information on what response payloads are available and what their shape is.
  * @export
  * @interface TargetLookupResponse
  */
 export interface TargetLookupResponse {
-    [key: string]: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    error?: string;
+    /**
+     *
+     * @type {LookupApiIdentitySets}
+     * @memberof TargetLookupResponse
+     */
+    identity_set?: LookupApiIdentitySets;
+    /**
+     *
+     * @type {LookupMatchType}
+     * @memberof TargetLookupResponse
+     */
+    match_type?: LookupMatchType;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    city?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    email?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    email_hash?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    house_number_and_street?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    latitude?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    longitude?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    person_first_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    person_last_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    phone?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    postcode?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    search_radius?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupResponse
+     */
+    state?: string;
 }
 export declare function TargetLookupResponseFromJSON(json: any): TargetLookupResponse;
 export declare function TargetLookupResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TargetLookupResponse;

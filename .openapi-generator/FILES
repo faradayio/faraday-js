@@ -380,6 +380,9 @@ src/models/IdentitySetsPost.ts
 src/models/IdentitySetsPut.ts
 src/models/InlineResponse200.ts
 src/models/Invoice.ts
+src/models/LookupApiIdentifiers.ts
+src/models/LookupApiIdentitySets.ts
+src/models/LookupMatchType.ts
 src/models/ModelError.ts
 src/models/ModelingField.ts
 src/models/Outcome.ts

@@ -366,8 +366,8 @@ export class TargetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples. 
-     * Perform a lookup on the target, if its type is Hosted API.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples. 
+     * Perform a lookup on the target, if its type is Lookup API.
      */
     private async lookupOnTargetRaw(requestParameters: LookupOnTargetRequest, ): Promise<runtime.ApiResponse<TargetLookupResponse>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
@@ -404,8 +404,8 @@ export class TargetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Use either PII or a spatial aggregate to retrieve the payload of a Hosted API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples. 
-     * Perform a lookup on the target, if its type is Hosted API.
+     * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples. 
+     * Perform a lookup on the target, if its type is Lookup API.
      */
     async lookupOnTarget(targetId: string, targetLookupRequest: TargetLookupRequest, ): Promise<TargetLookupResponse> {
         const response = await this.lookupOnTargetRaw({ targetId: targetId, targetLookupRequest: targetLookupRequest }, );
