@@ -9,13 +9,107 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { LookupApiIdentitySets } from './LookupApiIdentitySets';
 /**
+ * The structure of a lookup request depends on the "mode" of the target.
  *
+ * For an identified target, the payload will contain the Personal Identifying Information (PII) of an individual for whom Faraday should attempt to retrieve a score. The following identifiers are supported:
+ *   - person_first_name
+ *   - person_last_name
+ *   - house_number_and_street
+ *   - city
+ *   - state
+ *   - postcode
+ *   - email
+ *   - email_hash (must be a standard SHA256 hash)
+ *   - phone
+ *
+ * In order to properly match, certain combinations of PII are required. See [the Lookup API specification](https://faraday.ai/docs/features/lookup-api#constructing-a-request). We encourage the use of the new `identity_sets` field which allows for one or more PII combinations for the same person to be sent in a single request. Providing PII at the top level in the request object is still supported but deprecated. For example, if there are multiple known email or physical addresses for a person, you can send them all in a single request using `identity_sets`.
+ *
+ * For an aggregated target, the payload should contain a single key, which will be the same as the aggregate used in the target configuration. For example, if your target has an aggregate of `county`,
+ * then the target will only accept payloads with the key `county`. You must use standard US Census FIPS codes to lookup results.
  * @export
  * @interface TargetLookupRequest
  */
 export interface TargetLookupRequest {
-    [key: string]: string;
+    /**
+     *
+     * @type {Array<LookupApiIdentitySets>}
+     * @memberof TargetLookupRequest
+     */
+    identity_sets?: Array<LookupApiIdentitySets>;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    city?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    email?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    email_hash?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    house_number_and_street?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    latitude?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    longitude?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    person_first_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    person_last_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    phone?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    postcode?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    search_radius?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TargetLookupRequest
+     */
+    state?: string;
 }
 export declare function TargetLookupRequestFromJSON(json: any): TargetLookupRequest;
 export declare function TargetLookupRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): TargetLookupRequest;

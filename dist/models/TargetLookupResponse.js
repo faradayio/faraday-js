@@ -14,15 +14,59 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TargetLookupResponseToJSON = exports.TargetLookupResponseFromJSONTyped = exports.TargetLookupResponseFromJSON = void 0;
+const runtime_1 = require("../runtime");
+const LookupApiIdentitySets_1 = require("./LookupApiIdentitySets");
+const LookupMatchType_1 = require("./LookupMatchType");
 function TargetLookupResponseFromJSON(json) {
     return TargetLookupResponseFromJSONTyped(json, false);
 }
 exports.TargetLookupResponseFromJSON = TargetLookupResponseFromJSON;
 function TargetLookupResponseFromJSONTyped(json, ignoreDiscriminator) {
-    return json;
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+        'error': !runtime_1.exists(json, 'error') ? undefined : json['error'],
+        'identity_set': !runtime_1.exists(json, 'identity_set') ? undefined : LookupApiIdentitySets_1.LookupApiIdentitySetsFromJSON(json['identity_set']),
+        'match_type': !runtime_1.exists(json, 'match_type') ? undefined : LookupMatchType_1.LookupMatchTypeFromJSON(json['match_type']),
+        'city': !runtime_1.exists(json, 'city') ? undefined : json['city'],
+        'email': !runtime_1.exists(json, 'email') ? undefined : json['email'],
+        'email_hash': !runtime_1.exists(json, 'email_hash') ? undefined : json['email_hash'],
+        'house_number_and_street': !runtime_1.exists(json, 'house_number_and_street') ? undefined : json['house_number_and_street'],
+        'latitude': !runtime_1.exists(json, 'latitude') ? undefined : json['latitude'],
+        'longitude': !runtime_1.exists(json, 'longitude') ? undefined : json['longitude'],
+        'person_first_name': !runtime_1.exists(json, 'person_first_name') ? undefined : json['person_first_name'],
+        'person_last_name': !runtime_1.exists(json, 'person_last_name') ? undefined : json['person_last_name'],
+        'phone': !runtime_1.exists(json, 'phone') ? undefined : json['phone'],
+        'postcode': !runtime_1.exists(json, 'postcode') ? undefined : json['postcode'],
+        'search_radius': !runtime_1.exists(json, 'search_radius') ? undefined : json['search_radius'],
+        'state': !runtime_1.exists(json, 'state') ? undefined : json['state'],
+    };
 }
 exports.TargetLookupResponseFromJSONTyped = TargetLookupResponseFromJSONTyped;
 function TargetLookupResponseToJSON(value) {
-    return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+        'error': value.error,
+        'identity_set': LookupApiIdentitySets_1.LookupApiIdentitySetsToJSON(value.identity_set),
+        'match_type': LookupMatchType_1.LookupMatchTypeToJSON(value.match_type),
+        'city': value.city,
+        'email': value.email,
+        'email_hash': value.email_hash,
+        'house_number_and_street': value.house_number_and_street,
+        'latitude': value.latitude,
+        'longitude': value.longitude,
+        'person_first_name': value.person_first_name,
+        'person_last_name': value.person_last_name,
+        'phone': value.phone,
+        'postcode': value.postcode,
+        'search_radius': value.search_radius,
+        'state': value.state,
+    };
 }
 exports.TargetLookupResponseToJSON = TargetLookupResponseToJSON;

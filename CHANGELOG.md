@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.27] - 2024-08-05
+
+### Added
+
+- Add `identity_sets` to lookup api to allow for including multiple identifying information for the same individual, i.e. addresses, emails, phone numbers etc...
+
 ## [0.10.26] - 2024-08-01
 
 ### Added
