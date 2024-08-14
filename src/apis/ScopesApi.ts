@@ -16,35 +16,15 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Cohort,
-    CohortFromJSON,
-    CohortToJSON,
     Dataset,
-    DatasetFromJSON,
-    DatasetToJSON,
     Outcome,
-    OutcomeFromJSON,
-    OutcomeToJSON,
     PersonaSet,
-    PersonaSetFromJSON,
-    PersonaSetToJSON,
     Recommender,
-    RecommenderFromJSON,
-    RecommenderToJSON,
     Scope,
-    ScopeFromJSON,
-    ScopeToJSON,
     ScopeMergePatch,
-    ScopeMergePatchFromJSON,
-    ScopeMergePatchToJSON,
     ScopePost,
-    ScopePostFromJSON,
-    ScopePostToJSON,
     Target,
-    TargetFromJSON,
-    TargetToJSON,
 } from '../models';
 
 export interface ArchiveScopeRequest {
@@ -143,7 +123,7 @@ export class ScopesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -185,10 +165,10 @@ export class ScopesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ScopePostToJSON(requestParameters.scopeFields),
+            body: requestParameters.scopeFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ScopeFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -265,7 +245,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ScopeFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -305,7 +285,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -345,7 +325,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CohortFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -385,7 +365,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OutcomeFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -425,7 +405,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PersonaSetFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -465,7 +445,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RecommenderFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -505,7 +485,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CohortFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -545,7 +525,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CohortFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -585,7 +565,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TargetFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -621,7 +601,7 @@ export class ScopesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ScopeFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -665,7 +645,7 @@ export class ScopesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -711,10 +691,10 @@ export class ScopesApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: ScopeMergePatchToJSON(requestParameters.scopeMergePatch),
+            body: requestParameters.scopeMergePatch,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ScopeFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

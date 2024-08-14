@@ -16,8 +16,6 @@
 import * as runtime from '../runtime';
 import {
     AccountBilling,
-    AccountBillingFromJSON,
-    AccountBillingToJSON,
 } from '../models';
 
 export interface GetAccountBillingRequest {
@@ -57,7 +55,7 @@ export class BillingApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AccountBillingFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -93,7 +91,7 @@ export class BillingApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AccountBillingFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

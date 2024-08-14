@@ -16,8 +16,6 @@
 import * as runtime from '../runtime';
 import {
     GraphEdge,
-    GraphEdgeFromJSON,
-    GraphEdgeToJSON,
 } from '../models';
 
 /**
@@ -49,7 +47,7 @@ export class GraphApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GraphEdgeFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

@@ -16,17 +16,9 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Place,
-    PlaceFromJSON,
-    PlaceToJSON,
     PlaceMergePatch,
-    PlaceMergePatchFromJSON,
-    PlaceMergePatchToJSON,
     PlacePost,
-    PlacePostFromJSON,
-    PlacePostToJSON,
 } from '../models';
 
 export interface ArchivePlaceRequest {
@@ -93,7 +85,7 @@ export class PlacesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -135,10 +127,10 @@ export class PlacesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PlacePostToJSON(requestParameters.placeFields),
+            body: requestParameters.placeFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PlaceFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -215,7 +207,7 @@ export class PlacesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PlaceFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -251,7 +243,7 @@ export class PlacesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PlaceFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -295,7 +287,7 @@ export class PlacesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -341,10 +333,10 @@ export class PlacesApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: PlaceMergePatchToJSON(requestParameters.placeFields),
+            body: requestParameters.placeFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PlaceFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

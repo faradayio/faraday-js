@@ -16,20 +16,10 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Outcome,
-    OutcomeFromJSON,
-    OutcomeToJSON,
     OutcomeAnalysis,
-    OutcomeAnalysisFromJSON,
-    OutcomeAnalysisToJSON,
     OutcomeMergePatch,
-    OutcomeMergePatchFromJSON,
-    OutcomeMergePatchToJSON,
     OutcomePost,
-    OutcomePostFromJSON,
-    OutcomePostToJSON,
 } from '../models';
 
 export interface ArchiveOutcomeRequest {
@@ -104,7 +94,7 @@ export class OutcomesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -146,10 +136,10 @@ export class OutcomesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: OutcomePostToJSON(requestParameters.outcomeFields),
+            body: requestParameters.outcomeFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OutcomeFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -226,7 +216,7 @@ export class OutcomesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OutcomeFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -266,7 +256,7 @@ export class OutcomesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OutcomeAnalysisFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -342,7 +332,7 @@ export class OutcomesApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OutcomeFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -386,7 +376,7 @@ export class OutcomesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -432,10 +422,10 @@ export class OutcomesApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: OutcomeMergePatchToJSON(requestParameters.outcomeFields),
+            body: requestParameters.outcomeFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OutcomeFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

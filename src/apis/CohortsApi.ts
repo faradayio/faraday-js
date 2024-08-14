@@ -16,20 +16,10 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Cohort,
-    CohortFromJSON,
-    CohortToJSON,
     CohortAnalysisMembership,
-    CohortAnalysisMembershipFromJSON,
-    CohortAnalysisMembershipToJSON,
     CohortMergePatch,
-    CohortMergePatchFromJSON,
-    CohortMergePatchToJSON,
     CohortPost,
-    CohortPostFromJSON,
-    CohortPostToJSON,
 } from '../models';
 
 export interface ArchiveCohortRequest {
@@ -100,7 +90,7 @@ export class CohortsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -142,10 +132,10 @@ export class CohortsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CohortPostToJSON(requestParameters.cohortFields),
+            body: requestParameters.cohortFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CohortFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -222,7 +212,7 @@ export class CohortsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CohortFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -261,7 +251,7 @@ export class CohortsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CohortAnalysisMembershipFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -296,7 +286,7 @@ export class CohortsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CohortFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -340,7 +330,7 @@ export class CohortsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -386,10 +376,10 @@ export class CohortsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: CohortMergePatchToJSON(requestParameters.cohortFields),
+            body: requestParameters.cohortFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CohortFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

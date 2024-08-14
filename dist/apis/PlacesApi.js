@@ -24,7 +24,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlacesApi = void 0;
 const runtime = require("../runtime");
-const models_1 = require("../models");
 /**
  *
  */
@@ -56,7 +55,7 @@ class PlacesApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -94,9 +93,9 @@ class PlacesApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.PlacePostToJSON(requestParameters.placeFields),
+                body: requestParameters.placeFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PlaceFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -167,7 +166,7 @@ class PlacesApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PlaceFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -201,7 +200,7 @@ class PlacesApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.PlaceFromJSON));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -241,7 +240,7 @@ class PlacesApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -282,9 +281,9 @@ class PlacesApi extends runtime.BaseAPI {
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.PlaceMergePatchToJSON(requestParameters.placeFields),
+                body: requestParameters.placeFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PlaceFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**

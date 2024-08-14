@@ -16,26 +16,12 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     InlineResponse200,
-    InlineResponse200FromJSON,
-    InlineResponse200ToJSON,
     Target,
-    TargetFromJSON,
-    TargetToJSON,
     TargetLookupRequest,
-    TargetLookupRequestFromJSON,
-    TargetLookupRequestToJSON,
     TargetLookupResponse,
-    TargetLookupResponseFromJSON,
-    TargetLookupResponseToJSON,
     TargetMergePatch,
-    TargetMergePatchFromJSON,
-    TargetMergePatchToJSON,
     TargetPost,
-    TargetPostFromJSON,
-    TargetPostToJSON,
 } from '../models';
 
 export interface ArchiveTargetRequest {
@@ -115,7 +101,7 @@ export class TargetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -157,10 +143,10 @@ export class TargetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TargetPostToJSON(requestParameters.targetFields),
+            body: requestParameters.targetFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TargetFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -200,7 +186,7 @@ export class TargetsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse200FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -317,7 +303,7 @@ export class TargetsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TargetFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -353,7 +339,7 @@ export class TargetsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TargetFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -397,10 +383,10 @@ export class TargetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TargetLookupRequestToJSON(requestParameters.targetLookupRequest),
+            body: requestParameters.targetLookupRequest,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TargetLookupResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -444,7 +430,7 @@ export class TargetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -490,10 +476,10 @@ export class TargetsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: TargetMergePatchToJSON(requestParameters.targetMergePatch),
+            body: requestParameters.targetMergePatch,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TargetFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
