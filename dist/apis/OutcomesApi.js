@@ -24,7 +24,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OutcomesApi = void 0;
 const runtime = require("../runtime");
-const models_1 = require("../models");
 /**
  *
  */
@@ -56,7 +55,7 @@ class OutcomesApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -94,9 +93,9 @@ class OutcomesApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.OutcomePostToJSON(requestParameters.outcomeFields),
+                body: requestParameters.outcomeFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.OutcomeFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -167,7 +166,7 @@ class OutcomesApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.OutcomeFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -204,7 +203,7 @@ class OutcomesApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.OutcomeAnalysisFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -275,7 +274,7 @@ class OutcomesApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.OutcomeFromJSON));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -315,7 +314,7 @@ class OutcomesApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -356,9 +355,9 @@ class OutcomesApi extends runtime.BaseAPI {
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.OutcomeMergePatchToJSON(requestParameters.outcomeFields),
+                body: requestParameters.outcomeFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.OutcomeFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**

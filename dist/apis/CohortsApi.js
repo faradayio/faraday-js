@@ -24,7 +24,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CohortsApi = void 0;
 const runtime = require("../runtime");
-const models_1 = require("../models");
 /**
  *
  */
@@ -56,7 +55,7 @@ class CohortsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -94,9 +93,9 @@ class CohortsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.CohortPostToJSON(requestParameters.cohortFields),
+                body: requestParameters.cohortFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.CohortFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -167,7 +166,7 @@ class CohortsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.CohortFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -203,7 +202,7 @@ class CohortsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.CohortAnalysisMembershipFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -236,7 +235,7 @@ class CohortsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.CohortFromJSON));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -276,7 +275,7 @@ class CohortsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -317,9 +316,9 @@ class CohortsApi extends runtime.BaseAPI {
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.CohortMergePatchToJSON(requestParameters.cohortFields),
+                body: requestParameters.cohortFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.CohortFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**

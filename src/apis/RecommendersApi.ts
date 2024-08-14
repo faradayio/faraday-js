@@ -16,20 +16,10 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Recommender,
-    RecommenderFromJSON,
-    RecommenderToJSON,
     RecommenderAnalysis,
-    RecommenderAnalysisFromJSON,
-    RecommenderAnalysisToJSON,
     RecommenderMergePatch,
-    RecommenderMergePatchFromJSON,
-    RecommenderMergePatchToJSON,
     RecommenderPost,
-    RecommenderPostFromJSON,
-    RecommenderPostToJSON,
 } from '../models';
 
 export interface ArchiveRecommenderRequest {
@@ -100,7 +90,7 @@ export class RecommendersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -142,10 +132,10 @@ export class RecommendersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: RecommenderPostToJSON(requestParameters.recommenderFields),
+            body: requestParameters.recommenderFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RecommenderFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -222,7 +212,7 @@ export class RecommendersApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RecommenderFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -262,7 +252,7 @@ export class RecommendersApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RecommenderAnalysisFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -298,7 +288,7 @@ export class RecommendersApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RecommenderFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -342,7 +332,7 @@ export class RecommendersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -388,10 +378,10 @@ export class RecommendersApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: RecommenderMergePatchToJSON(requestParameters.recommenderFields),
+            body: requestParameters.recommenderFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RecommenderFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

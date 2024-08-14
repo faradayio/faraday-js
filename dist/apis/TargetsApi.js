@@ -24,7 +24,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TargetsApi = void 0;
 const runtime = require("../runtime");
-const models_1 = require("../models");
 /**
  *
  */
@@ -56,7 +55,7 @@ class TargetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -94,9 +93,9 @@ class TargetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.TargetPostToJSON(requestParameters.targetFields),
+                body: requestParameters.targetFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.TargetFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -133,7 +132,7 @@ class TargetsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.InlineResponse200FromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -241,7 +240,7 @@ class TargetsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.TargetFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -275,7 +274,7 @@ class TargetsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.TargetFromJSON));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -315,9 +314,9 @@ class TargetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.TargetLookupRequestToJSON(requestParameters.targetLookupRequest),
+                body: requestParameters.targetLookupRequest,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.TargetLookupResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -357,7 +356,7 @@ class TargetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -398,9 +397,9 @@ class TargetsApi extends runtime.BaseAPI {
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.TargetMergePatchToJSON(requestParameters.targetMergePatch),
+                body: requestParameters.targetMergePatch,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.TargetFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**

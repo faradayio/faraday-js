@@ -16,14 +16,8 @@
 import * as runtime from '../runtime';
 import {
     Account,
-    AccountFromJSON,
-    AccountToJSON,
     AccountMergePatch,
-    AccountMergePatchFromJSON,
-    AccountMergePatchToJSON,
     AccountPost,
-    AccountPostFromJSON,
-    AccountPostToJSON,
 } from '../models';
 
 export interface CreateAccountRequest {
@@ -76,10 +70,10 @@ export class AccountsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AccountPostToJSON(requestParameters.accountFields),
+            body: requestParameters.accountFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AccountFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -158,7 +152,7 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AccountFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -194,7 +188,7 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AccountFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -230,7 +224,7 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AccountFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -274,10 +268,10 @@ export class AccountsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: AccountMergePatchToJSON(requestParameters.accountMergePatch),
+            body: requestParameters.accountMergePatch,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AccountFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

@@ -16,20 +16,10 @@
 import * as runtime from '../runtime';
 import {
     AnalysisDimensionsTrait,
-    AnalysisDimensionsTraitFromJSON,
-    AnalysisDimensionsTraitToJSON,
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Trait,
-    TraitFromJSON,
-    TraitToJSON,
     TraitMergePatch,
-    TraitMergePatchFromJSON,
-    TraitMergePatchToJSON,
     TraitPost,
-    TraitPostFromJSON,
-    TraitPostToJSON,
 } from '../models';
 
 export interface ArchiveTraitRequest {
@@ -100,7 +90,7 @@ export class TraitsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -142,10 +132,10 @@ export class TraitsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TraitPostToJSON(requestParameters.traitFields),
+            body: requestParameters.traitFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TraitFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -259,7 +249,7 @@ export class TraitsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TraitFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -298,7 +288,7 @@ export class TraitsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisDimensionsTraitFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -333,7 +323,7 @@ export class TraitsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TraitFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -377,7 +367,7 @@ export class TraitsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -423,10 +413,10 @@ export class TraitsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: TraitMergePatchToJSON(requestParameters.traitMergePatch),
+            body: requestParameters.traitMergePatch,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TraitFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

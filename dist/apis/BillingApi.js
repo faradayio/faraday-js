@@ -24,7 +24,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BillingApi = void 0;
 const runtime = require("../runtime");
-const models_1 = require("../models");
 /**
  *
  */
@@ -53,7 +52,7 @@ class BillingApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.AccountBillingFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -87,7 +86,7 @@ class BillingApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.AccountBillingFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**

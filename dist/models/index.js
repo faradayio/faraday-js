@@ -1,694 +1,516 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-/* tslint:disable */
-/* eslint-disable */
-__exportStar(require("./Account"), exports);
-__exportStar(require("./AccountBilling"), exports);
-__exportStar(require("./AccountCommitment"), exports);
-__exportStar(require("./AccountMergePatch"), exports);
-__exportStar(require("./AccountPost"), exports);
-__exportStar(require("./AccountPut"), exports);
-__exportStar(require("./AccountUsage"), exports);
-__exportStar(require("./AddressInfo"), exports);
-__exportStar(require("./AnalysisDimensionsTrait"), exports);
-__exportStar(require("./AnalysisDimensionsTraitBin"), exports);
-__exportStar(require("./AnalysisDimensionsTraitBinBoolean"), exports);
-__exportStar(require("./AnalysisDimensionsTraitBinDate"), exports);
-__exportStar(require("./AnalysisDimensionsTraitBinNumber"), exports);
-__exportStar(require("./AnalysisDimensionsTraitBinText"), exports);
-__exportStar(require("./AnalysisFeatureDirectionality"), exports);
-__exportStar(require("./AnalysisFeatureDirectionalityBoolean"), exports);
-__exportStar(require("./AnalysisFeatureDirectionalityDate"), exports);
-__exportStar(require("./AnalysisFeatureDirectionalityNumber"), exports);
-__exportStar(require("./AnalysisFeatureDirectionalityText"), exports);
-__exportStar(require("./AnalysisRocCurvePoint"), exports);
-__exportStar(require("./ArchiveConfig"), exports);
-__exportStar(require("./Cohort"), exports);
-__exportStar(require("./CohortAnalysisMembership"), exports);
-__exportStar(require("./CohortAnalysisMembershipDatum"), exports);
-__exportStar(require("./CohortMergePatch"), exports);
-__exportStar(require("./CohortPlaceCondition"), exports);
-__exportStar(require("./CohortPost"), exports);
-__exportStar(require("./CohortPut"), exports);
-__exportStar(require("./CohortStreamCondition"), exports);
-__exportStar(require("./CohortTrait"), exports);
-__exportStar(require("./ComplexDataType"), exports);
-__exportStar(require("./ComplexDataTypeOneOf"), exports);
-__exportStar(require("./Connection"), exports);
-__exportStar(require("./ConnectionMergePatch"), exports);
-__exportStar(require("./ConnectionOptions"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraMysql"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraMysqlMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraMysqlPost"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraMysqlPut"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraPostgres"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraPostgresMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraPostgresPost"), exports);
-__exportStar(require("./ConnectionOptionsAwsAuroraPostgresPut"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsMysql"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsMysqlMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsMysqlPost"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsMysqlPut"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsPostgres"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsPostgresMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsPostgresPost"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsPostgresPut"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsSqlServer"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsSqlServerMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsSqlServerPost"), exports);
-__exportStar(require("./ConnectionOptionsAwsRdsSqlServerPut"), exports);
-__exportStar(require("./ConnectionOptionsAwsRedshiftServerless"), exports);
-__exportStar(require("./ConnectionOptionsAwsRedshiftServerlessMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsAwsRedshiftServerlessPost"), exports);
-__exportStar(require("./ConnectionOptionsAwsRedshiftServerlessPut"), exports);
-__exportStar(require("./ConnectionOptionsAzureSqlServer"), exports);
-__exportStar(require("./ConnectionOptionsAzureSqlServerMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsAzureSqlServerPost"), exports);
-__exportStar(require("./ConnectionOptionsAzureSqlServerPut"), exports);
-__exportStar(require("./ConnectionOptionsBigQuery"), exports);
-__exportStar(require("./ConnectionOptionsBigQueryMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsBigQueryPost"), exports);
-__exportStar(require("./ConnectionOptionsBigQueryPut"), exports);
-__exportStar(require("./ConnectionOptionsClassic"), exports);
-__exportStar(require("./ConnectionOptionsClassicMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsClassicPost"), exports);
-__exportStar(require("./ConnectionOptionsClassicPut"), exports);
-__exportStar(require("./ConnectionOptionsFacebookCustomAudiences"), exports);
-__exportStar(require("./ConnectionOptionsFacebookCustomAudiencesMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsFacebookCustomAudiencesPost"), exports);
-__exportStar(require("./ConnectionOptionsFacebookCustomAudiencesPut"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlMysql"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlMysqlMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlMysqlPost"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlMysqlPut"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlPostgres"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlPostgresMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlPostgresPost"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlPostgresPut"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlSqlServer"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlSqlServerMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlSqlServerPost"), exports);
-__exportStar(require("./ConnectionOptionsGcpCloudSqlSqlServerPut"), exports);
-__exportStar(require("./ConnectionOptionsGcpGcsCsv"), exports);
-__exportStar(require("./ConnectionOptionsGcpGcsCsvMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsGcpGcsCsvPost"), exports);
-__exportStar(require("./ConnectionOptionsGcpGcsCsvPut"), exports);
-__exportStar(require("./ConnectionOptionsGoogleAds"), exports);
-__exportStar(require("./ConnectionOptionsGoogleAdsMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsGoogleAdsPost"), exports);
-__exportStar(require("./ConnectionOptionsGoogleAdsPut"), exports);
-__exportStar(require("./ConnectionOptionsHostedCsv"), exports);
-__exportStar(require("./ConnectionOptionsHostedCsvMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsHostedCsvPost"), exports);
-__exportStar(require("./ConnectionOptionsHostedCsvPut"), exports);
-__exportStar(require("./ConnectionOptionsHubspot"), exports);
-__exportStar(require("./ConnectionOptionsHubspotMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsHubspotPost"), exports);
-__exportStar(require("./ConnectionOptionsHubspotPut"), exports);
-__exportStar(require("./ConnectionOptionsIterable"), exports);
-__exportStar(require("./ConnectionOptionsIterableMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsIterablePost"), exports);
-__exportStar(require("./ConnectionOptionsIterablePut"), exports);
-__exportStar(require("./ConnectionOptionsKlaviyo"), exports);
-__exportStar(require("./ConnectionOptionsKlaviyoMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsKlaviyoPost"), exports);
-__exportStar(require("./ConnectionOptionsKlaviyoPut"), exports);
-__exportStar(require("./ConnectionOptionsLinkedinAds"), exports);
-__exportStar(require("./ConnectionOptionsLinkedinAdsMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsLinkedinAdsPost"), exports);
-__exportStar(require("./ConnectionOptionsLinkedinAdsPut"), exports);
-__exportStar(require("./ConnectionOptionsLookupApi"), exports);
-__exportStar(require("./ConnectionOptionsLookupApiMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsLookupApiPost"), exports);
-__exportStar(require("./ConnectionOptionsLookupApiPut"), exports);
-__exportStar(require("./ConnectionOptionsMerge"), exports);
-__exportStar(require("./ConnectionOptionsMergeMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsMergePost"), exports);
-__exportStar(require("./ConnectionOptionsMergePut"), exports);
-__exportStar(require("./ConnectionOptionsMysql"), exports);
-__exportStar(require("./ConnectionOptionsMysqlMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsMysqlPost"), exports);
-__exportStar(require("./ConnectionOptionsMysqlPut"), exports);
-__exportStar(require("./ConnectionOptionsPinterestAds"), exports);
-__exportStar(require("./ConnectionOptionsPinterestAdsMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsPinterestAdsPost"), exports);
-__exportStar(require("./ConnectionOptionsPinterestAdsPut"), exports);
-__exportStar(require("./ConnectionOptionsPoplar"), exports);
-__exportStar(require("./ConnectionOptionsPoplarMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsPoplarPost"), exports);
-__exportStar(require("./ConnectionOptionsPoplarPut"), exports);
-__exportStar(require("./ConnectionOptionsPost"), exports);
-__exportStar(require("./ConnectionOptionsPostgres"), exports);
-__exportStar(require("./ConnectionOptionsPostgresMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsPostgresPost"), exports);
-__exportStar(require("./ConnectionOptionsPostgresPut"), exports);
-__exportStar(require("./ConnectionOptionsPut"), exports);
-__exportStar(require("./ConnectionOptionsRecharge"), exports);
-__exportStar(require("./ConnectionOptionsRechargeMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsRechargePost"), exports);
-__exportStar(require("./ConnectionOptionsRechargePut"), exports);
-__exportStar(require("./ConnectionOptionsRedshift"), exports);
-__exportStar(require("./ConnectionOptionsRedshiftMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsRedshiftPost"), exports);
-__exportStar(require("./ConnectionOptionsRedshiftPut"), exports);
-__exportStar(require("./ConnectionOptionsS3Csv"), exports);
-__exportStar(require("./ConnectionOptionsS3CsvMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsS3CsvPost"), exports);
-__exportStar(require("./ConnectionOptionsS3CsvPut"), exports);
-__exportStar(require("./ConnectionOptionsSalesforce"), exports);
-__exportStar(require("./ConnectionOptionsSalesforceMarketingCloud"), exports);
-__exportStar(require("./ConnectionOptionsSalesforceMarketingCloudMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsSalesforceMarketingCloudPost"), exports);
-__exportStar(require("./ConnectionOptionsSalesforceMarketingCloudPut"), exports);
-__exportStar(require("./ConnectionOptionsSalesforceMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsSalesforcePost"), exports);
-__exportStar(require("./ConnectionOptionsSalesforcePut"), exports);
-__exportStar(require("./ConnectionOptionsSegment"), exports);
-__exportStar(require("./ConnectionOptionsSegmentMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsSegmentPost"), exports);
-__exportStar(require("./ConnectionOptionsSegmentPut"), exports);
-__exportStar(require("./ConnectionOptionsSftp"), exports);
-__exportStar(require("./ConnectionOptionsSftpMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsSftpPost"), exports);
-__exportStar(require("./ConnectionOptionsSftpPut"), exports);
-__exportStar(require("./ConnectionOptionsShopify"), exports);
-__exportStar(require("./ConnectionOptionsShopifyMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsShopifyPost"), exports);
-__exportStar(require("./ConnectionOptionsShopifyPut"), exports);
-__exportStar(require("./ConnectionOptionsSnowflake"), exports);
-__exportStar(require("./ConnectionOptionsSnowflakeMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsSnowflakePost"), exports);
-__exportStar(require("./ConnectionOptionsSnowflakePut"), exports);
-__exportStar(require("./ConnectionOptionsSqlServer"), exports);
-__exportStar(require("./ConnectionOptionsSqlServerMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsSqlServerPost"), exports);
-__exportStar(require("./ConnectionOptionsSqlServerPut"), exports);
-__exportStar(require("./ConnectionOptionsStripe"), exports);
-__exportStar(require("./ConnectionOptionsStripeMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsStripePost"), exports);
-__exportStar(require("./ConnectionOptionsStripePut"), exports);
-__exportStar(require("./ConnectionOptionsTheTradeDesk"), exports);
-__exportStar(require("./ConnectionOptionsTheTradeDeskMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsTheTradeDeskPost"), exports);
-__exportStar(require("./ConnectionOptionsTheTradeDeskPut"), exports);
-__exportStar(require("./ConnectionOptionsTiktok"), exports);
-__exportStar(require("./ConnectionOptionsTiktokMergePatch"), exports);
-__exportStar(require("./ConnectionOptionsTiktokPost"), exports);
-__exportStar(require("./ConnectionOptionsTiktokPut"), exports);
-__exportStar(require("./ConnectionPost"), exports);
-__exportStar(require("./ConnectionPut"), exports);
-__exportStar(require("./ContentsRow"), exports);
-__exportStar(require("./DataMap"), exports);
-__exportStar(require("./DataMapColumn"), exports);
-__exportStar(require("./DataMapColumnFormat"), exports);
-__exportStar(require("./DataMapColumnMergePatch"), exports);
-__exportStar(require("./DataMapColumnPost"), exports);
-__exportStar(require("./DataMapColumnPut"), exports);
-__exportStar(require("./DataMapMergePatch"), exports);
-__exportStar(require("./DataMapPost"), exports);
-__exportStar(require("./DataMapPut"), exports);
-__exportStar(require("./Dataset"), exports);
-__exportStar(require("./DatasetColumn"), exports);
-__exportStar(require("./DatasetEnrichment"), exports);
-__exportStar(require("./DatasetEnrichments"), exports);
-__exportStar(require("./DatasetMergeDatasets"), exports);
-__exportStar(require("./DatasetMergePatch"), exports);
-__exportStar(require("./DatasetMergePatchOutputAllColumnsAsTraits"), exports);
-__exportStar(require("./DatasetOptions"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraMysql"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraMysqlMergePatch"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraMysqlPost"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraMysqlPut"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraPostgres"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraPostgresMergePatch"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraPostgresPost"), exports);
-__exportStar(require("./DatasetOptionsAwsAuroraPostgresPut"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsMysql"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsMysqlMergePatch"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsMysqlPost"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsMysqlPut"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsPostgres"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsPostgresMergePatch"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsPostgresPost"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsPostgresPut"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsSqlServer"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsSqlServerMergePatch"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsSqlServerPost"), exports);
-__exportStar(require("./DatasetOptionsAwsRdsSqlServerPut"), exports);
-__exportStar(require("./DatasetOptionsAwsRedshiftServerless"), exports);
-__exportStar(require("./DatasetOptionsAwsRedshiftServerlessMergePatch"), exports);
-__exportStar(require("./DatasetOptionsAwsRedshiftServerlessPost"), exports);
-__exportStar(require("./DatasetOptionsAwsRedshiftServerlessPut"), exports);
-__exportStar(require("./DatasetOptionsAzureSqlServer"), exports);
-__exportStar(require("./DatasetOptionsAzureSqlServerMergePatch"), exports);
-__exportStar(require("./DatasetOptionsAzureSqlServerPost"), exports);
-__exportStar(require("./DatasetOptionsAzureSqlServerPut"), exports);
-__exportStar(require("./DatasetOptionsBigQuery"), exports);
-__exportStar(require("./DatasetOptionsBigQueryMergePatch"), exports);
-__exportStar(require("./DatasetOptionsBigQueryPost"), exports);
-__exportStar(require("./DatasetOptionsBigQueryPut"), exports);
-__exportStar(require("./DatasetOptionsClassic"), exports);
-__exportStar(require("./DatasetOptionsClassicMergePatch"), exports);
-__exportStar(require("./DatasetOptionsClassicPost"), exports);
-__exportStar(require("./DatasetOptionsClassicPut"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlMysql"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlMysqlMergePatch"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlMysqlPost"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlMysqlPut"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlPostgres"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlPostgresMergePatch"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlPostgresPost"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlPostgresPut"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlSqlServer"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlSqlServerMergePatch"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlSqlServerPost"), exports);
-__exportStar(require("./DatasetOptionsGcpCloudSqlSqlServerPut"), exports);
-__exportStar(require("./DatasetOptionsGcpGcsCsv"), exports);
-__exportStar(require("./DatasetOptionsGcpGcsCsvMergePatch"), exports);
-__exportStar(require("./DatasetOptionsGcpGcsCsvPost"), exports);
-__exportStar(require("./DatasetOptionsGcpGcsCsvPut"), exports);
-__exportStar(require("./DatasetOptionsHostedCsv"), exports);
-__exportStar(require("./DatasetOptionsHostedCsvMergePatch"), exports);
-__exportStar(require("./DatasetOptionsHostedCsvPost"), exports);
-__exportStar(require("./DatasetOptionsHostedCsvPut"), exports);
-__exportStar(require("./DatasetOptionsHubspot"), exports);
-__exportStar(require("./DatasetOptionsHubspotMergePatch"), exports);
-__exportStar(require("./DatasetOptionsHubspotPost"), exports);
-__exportStar(require("./DatasetOptionsHubspotPut"), exports);
-__exportStar(require("./DatasetOptionsIterable"), exports);
-__exportStar(require("./DatasetOptionsIterableMergePatch"), exports);
-__exportStar(require("./DatasetOptionsIterablePost"), exports);
-__exportStar(require("./DatasetOptionsIterablePut"), exports);
-__exportStar(require("./DatasetOptionsKlaviyo"), exports);
-__exportStar(require("./DatasetOptionsKlaviyoMergePatch"), exports);
-__exportStar(require("./DatasetOptionsKlaviyoPost"), exports);
-__exportStar(require("./DatasetOptionsKlaviyoPut"), exports);
-__exportStar(require("./DatasetOptionsMerge"), exports);
-__exportStar(require("./DatasetOptionsMergeMerge"), exports);
-__exportStar(require("./DatasetOptionsMergeMergePatch"), exports);
-__exportStar(require("./DatasetOptionsMergePatch"), exports);
-__exportStar(require("./DatasetOptionsMergePost"), exports);
-__exportStar(require("./DatasetOptionsMergePut"), exports);
-__exportStar(require("./DatasetOptionsMysql"), exports);
-__exportStar(require("./DatasetOptionsMysqlMergePatch"), exports);
-__exportStar(require("./DatasetOptionsMysqlPost"), exports);
-__exportStar(require("./DatasetOptionsMysqlPut"), exports);
-__exportStar(require("./DatasetOptionsPost"), exports);
-__exportStar(require("./DatasetOptionsPostgres"), exports);
-__exportStar(require("./DatasetOptionsPostgresMergePatch"), exports);
-__exportStar(require("./DatasetOptionsPostgresPost"), exports);
-__exportStar(require("./DatasetOptionsPostgresPut"), exports);
-__exportStar(require("./DatasetOptionsPut"), exports);
-__exportStar(require("./DatasetOptionsRecharge"), exports);
-__exportStar(require("./DatasetOptionsRechargeMergePatch"), exports);
-__exportStar(require("./DatasetOptionsRechargePost"), exports);
-__exportStar(require("./DatasetOptionsRechargePut"), exports);
-__exportStar(require("./DatasetOptionsRedshift"), exports);
-__exportStar(require("./DatasetOptionsRedshiftMergePatch"), exports);
-__exportStar(require("./DatasetOptionsRedshiftPost"), exports);
-__exportStar(require("./DatasetOptionsRedshiftPut"), exports);
-__exportStar(require("./DatasetOptionsS3Csv"), exports);
-__exportStar(require("./DatasetOptionsS3CsvMergePatch"), exports);
-__exportStar(require("./DatasetOptionsS3CsvPost"), exports);
-__exportStar(require("./DatasetOptionsS3CsvPut"), exports);
-__exportStar(require("./DatasetOptionsSalesforce"), exports);
-__exportStar(require("./DatasetOptionsSalesforceMarketingCloud"), exports);
-__exportStar(require("./DatasetOptionsSalesforceMarketingCloudMergePatch"), exports);
-__exportStar(require("./DatasetOptionsSalesforceMarketingCloudPost"), exports);
-__exportStar(require("./DatasetOptionsSalesforceMarketingCloudPut"), exports);
-__exportStar(require("./DatasetOptionsSalesforceMergePatch"), exports);
-__exportStar(require("./DatasetOptionsSalesforcePost"), exports);
-__exportStar(require("./DatasetOptionsSalesforcePut"), exports);
-__exportStar(require("./DatasetOptionsSftp"), exports);
-__exportStar(require("./DatasetOptionsSftpMergePatch"), exports);
-__exportStar(require("./DatasetOptionsSftpPost"), exports);
-__exportStar(require("./DatasetOptionsSftpPut"), exports);
-__exportStar(require("./DatasetOptionsShopify"), exports);
-__exportStar(require("./DatasetOptionsShopifyMergePatch"), exports);
-__exportStar(require("./DatasetOptionsShopifyPost"), exports);
-__exportStar(require("./DatasetOptionsShopifyPut"), exports);
-__exportStar(require("./DatasetOptionsSnowflake"), exports);
-__exportStar(require("./DatasetOptionsSnowflakeMergePatch"), exports);
-__exportStar(require("./DatasetOptionsSnowflakePost"), exports);
-__exportStar(require("./DatasetOptionsSnowflakePut"), exports);
-__exportStar(require("./DatasetOptionsSqlServer"), exports);
-__exportStar(require("./DatasetOptionsSqlServerMergePatch"), exports);
-__exportStar(require("./DatasetOptionsSqlServerPost"), exports);
-__exportStar(require("./DatasetOptionsSqlServerPut"), exports);
-__exportStar(require("./DatasetOptionsStripe"), exports);
-__exportStar(require("./DatasetOptionsStripeMergePatch"), exports);
-__exportStar(require("./DatasetOptionsStripePost"), exports);
-__exportStar(require("./DatasetOptionsStripePut"), exports);
-__exportStar(require("./DatasetOutputAllColumnsAsTraits"), exports);
-__exportStar(require("./DatasetPost"), exports);
-__exportStar(require("./DatasetPut"), exports);
-__exportStar(require("./DatasetStream"), exports);
-__exportStar(require("./DatasetStreamCondition"), exports);
-__exportStar(require("./DatasetStreamMergePatch"), exports);
-__exportStar(require("./DatasetStreamPost"), exports);
-__exportStar(require("./DatasetStreamPut"), exports);
-__exportStar(require("./DatasetUpdateHistory"), exports);
-__exportStar(require("./ErrorCode"), exports);
-__exportStar(require("./GraphEdge"), exports);
-__exportStar(require("./IdentitySet"), exports);
-__exportStar(require("./IdentitySetMergePatch"), exports);
-__exportStar(require("./IdentitySetPost"), exports);
-__exportStar(require("./IdentitySetPut"), exports);
-__exportStar(require("./IdentitySets"), exports);
-__exportStar(require("./IdentitySetsMergePatch"), exports);
-__exportStar(require("./IdentitySetsPost"), exports);
-__exportStar(require("./IdentitySetsPut"), exports);
-__exportStar(require("./InlineResponse200"), exports);
-__exportStar(require("./Invoice"), exports);
-__exportStar(require("./LookupApiIdentifiers"), exports);
-__exportStar(require("./LookupApiIdentitySets"), exports);
-__exportStar(require("./LookupMatchType"), exports);
-__exportStar(require("./ModelError"), exports);
-__exportStar(require("./ModelingField"), exports);
-__exportStar(require("./Outcome"), exports);
-__exportStar(require("./OutcomeAnalysis"), exports);
-__exportStar(require("./OutcomeAnalysisBias"), exports);
-__exportStar(require("./OutcomeAnalysisBiasData"), exports);
-__exportStar(require("./OutcomeAnalysisBiasDataAgeDistribution"), exports);
-__exportStar(require("./OutcomeAnalysisBiasDataAgeDistributionDatum"), exports);
-__exportStar(require("./OutcomeAnalysisBiasDataGenderProportion"), exports);
-__exportStar(require("./OutcomeAnalysisBiasDataGenderProportionDatum"), exports);
-__exportStar(require("./OutcomeAnalysisBiasSubpopulation"), exports);
-__exportStar(require("./OutcomeAnalysisBiasSubpopulationMetric"), exports);
-__exportStar(require("./OutcomeAnalysisBiasSummary"), exports);
-__exportStar(require("./OutcomeAnalysisFeature"), exports);
-__exportStar(require("./OutcomeAnalysisOverallFeatures"), exports);
-__exportStar(require("./OutcomeAnalysisOverallPerformance"), exports);
-__exportStar(require("./OutcomeAnalysisTenureFeatures"), exports);
-__exportStar(require("./OutcomeAnalysisTenurePerformances"), exports);
-__exportStar(require("./OutcomeBiasMitigation"), exports);
-__exportStar(require("./OutcomeBiasMitigationStrategy"), exports);
-__exportStar(require("./OutcomeMergePatch"), exports);
-__exportStar(require("./OutcomeMergePatchBiasMitigation"), exports);
-__exportStar(require("./OutcomePerformanceLiftCurvePoint"), exports);
-__exportStar(require("./OutcomePerformanceModel"), exports);
-__exportStar(require("./OutcomePost"), exports);
-__exportStar(require("./OutcomePredictors"), exports);
-__exportStar(require("./OutcomePredictorsBlocked"), exports);
-__exportStar(require("./OutcomePredictorsBlockedMergePatch"), exports);
-__exportStar(require("./OutcomePredictorsBlockedPost"), exports);
-__exportStar(require("./OutcomePredictorsBlockedPut"), exports);
-__exportStar(require("./OutcomePredictorsMergePatch"), exports);
-__exportStar(require("./OutcomePredictorsPost"), exports);
-__exportStar(require("./OutcomePredictorsPut"), exports);
-__exportStar(require("./OutcomePut"), exports);
-__exportStar(require("./OutputToStreams"), exports);
-__exportStar(require("./OutputToStreamsMergePatch"), exports);
-__exportStar(require("./OutputToStreamsPost"), exports);
-__exportStar(require("./OutputToStreamsPut"), exports);
-__exportStar(require("./OutputToTraits"), exports);
-__exportStar(require("./OutputToTraitsMergePatch"), exports);
-__exportStar(require("./OutputToTraitsPost"), exports);
-__exportStar(require("./OutputToTraitsPut"), exports);
-__exportStar(require("./Payment"), exports);
-__exportStar(require("./Persona"), exports);
-__exportStar(require("./PersonaDetails"), exports);
-__exportStar(require("./PersonaMergePatch"), exports);
-__exportStar(require("./PersonaPost"), exports);
-__exportStar(require("./PersonaPut"), exports);
-__exportStar(require("./PersonaSet"), exports);
-__exportStar(require("./PersonaSetAnalysisDimensions"), exports);
-__exportStar(require("./PersonaSetAnalysisFlow"), exports);
-__exportStar(require("./PersonaSetAnalysisFlowPersona"), exports);
-__exportStar(require("./PersonaSetAnalysisFlowPersonaDate"), exports);
-__exportStar(require("./PersonaSetMergePatch"), exports);
-__exportStar(require("./PersonaSetPost"), exports);
-__exportStar(require("./PersonaSetPut"), exports);
-__exportStar(require("./Place"), exports);
-__exportStar(require("./PlaceMergePatch"), exports);
-__exportStar(require("./PlacePost"), exports);
-__exportStar(require("./PlacePut"), exports);
-__exportStar(require("./PrimitiveDataType"), exports);
-__exportStar(require("./Recency"), exports);
-__exportStar(require("./RecencyMergePatch"), exports);
-__exportStar(require("./RecencyOccurrence"), exports);
-__exportStar(require("./RecencyPost"), exports);
-__exportStar(require("./RecencyPut"), exports);
-__exportStar(require("./Recommender"), exports);
-__exportStar(require("./RecommenderAnalysis"), exports);
-__exportStar(require("./RecommenderAnalysisAccuracyThreshold"), exports);
-__exportStar(require("./RecommenderAnalysisOverallFeatures"), exports);
-__exportStar(require("./RecommenderAnalysisPerformance"), exports);
-__exportStar(require("./RecommenderAnalysisPerformanceMetaModel"), exports);
-__exportStar(require("./RecommenderAnalysisPropertyDistribution"), exports);
-__exportStar(require("./RecommenderAnalysisRocCurvePoint"), exports);
-__exportStar(require("./RecommenderFeatureData"), exports);
-__exportStar(require("./RecommenderMergePatch"), exports);
-__exportStar(require("./RecommenderPerformanceModel"), exports);
-__exportStar(require("./RecommenderPost"), exports);
-__exportStar(require("./RecommenderPut"), exports);
-__exportStar(require("./Resource"), exports);
-__exportStar(require("./ResourceStatus"), exports);
-__exportStar(require("./ResourceType"), exports);
-__exportStar(require("./Scope"), exports);
-__exportStar(require("./ScopeColumns"), exports);
-__exportStar(require("./ScopeColumnsColumnsForMode"), exports);
-__exportStar(require("./ScopeColumnsForMode"), exports);
-__exportStar(require("./ScopeMergePatch"), exports);
-__exportStar(require("./ScopePayload"), exports);
-__exportStar(require("./ScopePayloadColumn"), exports);
-__exportStar(require("./ScopePayloadMergePatch"), exports);
-__exportStar(require("./ScopePayloadPost"), exports);
-__exportStar(require("./ScopePayloadPut"), exports);
-__exportStar(require("./ScopePopulation"), exports);
-__exportStar(require("./ScopePopulationMergePatch"), exports);
-__exportStar(require("./ScopePopulationPost"), exports);
-__exportStar(require("./ScopePopulationPut"), exports);
-__exportStar(require("./ScopePost"), exports);
-__exportStar(require("./ScopePut"), exports);
-__exportStar(require("./Stream"), exports);
-__exportStar(require("./StreamProperties"), exports);
-__exportStar(require("./StreamPropertyDetails"), exports);
-__exportStar(require("./StreamPropertyInputFromDatasets"), exports);
-__exportStar(require("./TabularData"), exports);
-__exportStar(require("./Target"), exports);
-__exportStar(require("./TargetAggregateGeographic"), exports);
-__exportStar(require("./TargetAggregateIdentified"), exports);
-__exportStar(require("./TargetFilter"), exports);
-__exportStar(require("./TargetFilterCohortMembershipConditions"), exports);
-__exportStar(require("./TargetFilterMergePatch"), exports);
-__exportStar(require("./TargetFilterOutcomePercentileConditions"), exports);
-__exportStar(require("./TargetFilterOutcomeProbabilityConditions"), exports);
-__exportStar(require("./TargetFilterOutcomeScoreConditions"), exports);
-__exportStar(require("./TargetFilterPersonaSetPersonaIdConditions"), exports);
-__exportStar(require("./TargetFilterPost"), exports);
-__exportStar(require("./TargetFilterPut"), exports);
-__exportStar(require("./TargetFilterRecommenderRankConditions"), exports);
-__exportStar(require("./TargetFilterRecommenderUncalibratedProbabilityConditions"), exports);
-__exportStar(require("./TargetFilterTraitConditions"), exports);
-__exportStar(require("./TargetLimit"), exports);
-__exportStar(require("./TargetLimitMergePatch"), exports);
-__exportStar(require("./TargetLimitPercentile"), exports);
-__exportStar(require("./TargetLimitPercentileMergePatch"), exports);
-__exportStar(require("./TargetLimitPercentilePost"), exports);
-__exportStar(require("./TargetLimitPercentilePut"), exports);
-__exportStar(require("./TargetLimitPost"), exports);
-__exportStar(require("./TargetLimitPut"), exports);
-__exportStar(require("./TargetLimitRowCount"), exports);
-__exportStar(require("./TargetLimitRowCountMergePatch"), exports);
-__exportStar(require("./TargetLimitRowCountPost"), exports);
-__exportStar(require("./TargetLimitRowCountPut"), exports);
-__exportStar(require("./TargetLookupRequest"), exports);
-__exportStar(require("./TargetLookupResponse"), exports);
-__exportStar(require("./TargetMergePatch"), exports);
-__exportStar(require("./TargetModes"), exports);
-__exportStar(require("./TargetModesAggregated"), exports);
-__exportStar(require("./TargetModesAggregatedMergePatch"), exports);
-__exportStar(require("./TargetModesAggregatedPost"), exports);
-__exportStar(require("./TargetModesAggregatedPut"), exports);
-__exportStar(require("./TargetModesHashed"), exports);
-__exportStar(require("./TargetModesHashedMergePatch"), exports);
-__exportStar(require("./TargetModesHashedPost"), exports);
-__exportStar(require("./TargetModesHashedPut"), exports);
-__exportStar(require("./TargetModesIdentified"), exports);
-__exportStar(require("./TargetModesIdentifiedMergePatch"), exports);
-__exportStar(require("./TargetModesIdentifiedPost"), exports);
-__exportStar(require("./TargetModesIdentifiedPut"), exports);
-__exportStar(require("./TargetModesMergePatch"), exports);
-__exportStar(require("./TargetModesPost"), exports);
-__exportStar(require("./TargetModesPut"), exports);
-__exportStar(require("./TargetModesReferenced"), exports);
-__exportStar(require("./TargetModesReferencedMergePatch"), exports);
-__exportStar(require("./TargetModesReferencedPost"), exports);
-__exportStar(require("./TargetModesReferencedPut"), exports);
-__exportStar(require("./TargetOptions"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraMysql"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraMysqlMergePatch"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraMysqlPost"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraMysqlPut"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraPostgres"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraPostgresMergePatch"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraPostgresPost"), exports);
-__exportStar(require("./TargetOptionsAwsAuroraPostgresPut"), exports);
-__exportStar(require("./TargetOptionsAwsRdsMysql"), exports);
-__exportStar(require("./TargetOptionsAwsRdsMysqlMergePatch"), exports);
-__exportStar(require("./TargetOptionsAwsRdsMysqlPost"), exports);
-__exportStar(require("./TargetOptionsAwsRdsMysqlPut"), exports);
-__exportStar(require("./TargetOptionsAwsRdsPostgres"), exports);
-__exportStar(require("./TargetOptionsAwsRdsPostgresMergePatch"), exports);
-__exportStar(require("./TargetOptionsAwsRdsPostgresPost"), exports);
-__exportStar(require("./TargetOptionsAwsRdsPostgresPut"), exports);
-__exportStar(require("./TargetOptionsAwsRdsSqlServer"), exports);
-__exportStar(require("./TargetOptionsAwsRdsSqlServerMergePatch"), exports);
-__exportStar(require("./TargetOptionsAwsRdsSqlServerPost"), exports);
-__exportStar(require("./TargetOptionsAwsRdsSqlServerPut"), exports);
-__exportStar(require("./TargetOptionsAwsRedshiftServerless"), exports);
-__exportStar(require("./TargetOptionsAwsRedshiftServerlessMergePatch"), exports);
-__exportStar(require("./TargetOptionsAwsRedshiftServerlessPost"), exports);
-__exportStar(require("./TargetOptionsAwsRedshiftServerlessPut"), exports);
-__exportStar(require("./TargetOptionsAzureSqlServer"), exports);
-__exportStar(require("./TargetOptionsAzureSqlServerMergePatch"), exports);
-__exportStar(require("./TargetOptionsAzureSqlServerPost"), exports);
-__exportStar(require("./TargetOptionsAzureSqlServerPut"), exports);
-__exportStar(require("./TargetOptionsBigQuery"), exports);
-__exportStar(require("./TargetOptionsBigQueryMergePatch"), exports);
-__exportStar(require("./TargetOptionsBigQueryPost"), exports);
-__exportStar(require("./TargetOptionsBigQueryPut"), exports);
-__exportStar(require("./TargetOptionsFacebookCustomAudiences"), exports);
-__exportStar(require("./TargetOptionsFacebookCustomAudiencesMergePatch"), exports);
-__exportStar(require("./TargetOptionsFacebookCustomAudiencesPost"), exports);
-__exportStar(require("./TargetOptionsFacebookCustomAudiencesPut"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlMysql"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlMysqlMergePatch"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlMysqlPost"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlMysqlPut"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlPostgres"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlPostgresMergePatch"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlPostgresPost"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlPostgresPut"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlSqlServer"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlSqlServerMergePatch"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlSqlServerPost"), exports);
-__exportStar(require("./TargetOptionsGcpCloudSqlSqlServerPut"), exports);
-__exportStar(require("./TargetOptionsGcpGcsCsv"), exports);
-__exportStar(require("./TargetOptionsGcpGcsCsvMergePatch"), exports);
-__exportStar(require("./TargetOptionsGcpGcsCsvPost"), exports);
-__exportStar(require("./TargetOptionsGcpGcsCsvPut"), exports);
-__exportStar(require("./TargetOptionsGoogleAds"), exports);
-__exportStar(require("./TargetOptionsGoogleAdsMergePatch"), exports);
-__exportStar(require("./TargetOptionsGoogleAdsPost"), exports);
-__exportStar(require("./TargetOptionsGoogleAdsPut"), exports);
-__exportStar(require("./TargetOptionsHostedCsv"), exports);
-__exportStar(require("./TargetOptionsHostedCsvMergePatch"), exports);
-__exportStar(require("./TargetOptionsHostedCsvPost"), exports);
-__exportStar(require("./TargetOptionsHostedCsvPut"), exports);
-__exportStar(require("./TargetOptionsHubspot"), exports);
-__exportStar(require("./TargetOptionsHubspotMergePatch"), exports);
-__exportStar(require("./TargetOptionsHubspotPost"), exports);
-__exportStar(require("./TargetOptionsHubspotPut"), exports);
-__exportStar(require("./TargetOptionsIterable"), exports);
-__exportStar(require("./TargetOptionsIterableMergePatch"), exports);
-__exportStar(require("./TargetOptionsIterablePost"), exports);
-__exportStar(require("./TargetOptionsIterablePut"), exports);
-__exportStar(require("./TargetOptionsKlaviyo"), exports);
-__exportStar(require("./TargetOptionsKlaviyoMergePatch"), exports);
-__exportStar(require("./TargetOptionsKlaviyoPost"), exports);
-__exportStar(require("./TargetOptionsKlaviyoPut"), exports);
-__exportStar(require("./TargetOptionsLinkedinAds"), exports);
-__exportStar(require("./TargetOptionsLinkedinAdsMergePatch"), exports);
-__exportStar(require("./TargetOptionsLinkedinAdsPost"), exports);
-__exportStar(require("./TargetOptionsLinkedinAdsPut"), exports);
-__exportStar(require("./TargetOptionsLookupApi"), exports);
-__exportStar(require("./TargetOptionsLookupApiMergePatch"), exports);
-__exportStar(require("./TargetOptionsLookupApiPost"), exports);
-__exportStar(require("./TargetOptionsLookupApiPut"), exports);
-__exportStar(require("./TargetOptionsMergePatch"), exports);
-__exportStar(require("./TargetOptionsMysql"), exports);
-__exportStar(require("./TargetOptionsMysqlMergePatch"), exports);
-__exportStar(require("./TargetOptionsMysqlPost"), exports);
-__exportStar(require("./TargetOptionsMysqlPut"), exports);
-__exportStar(require("./TargetOptionsPinterestAds"), exports);
-__exportStar(require("./TargetOptionsPinterestAdsMergePatch"), exports);
-__exportStar(require("./TargetOptionsPinterestAdsPost"), exports);
-__exportStar(require("./TargetOptionsPinterestAdsPut"), exports);
-__exportStar(require("./TargetOptionsPoplar"), exports);
-__exportStar(require("./TargetOptionsPoplarMergePatch"), exports);
-__exportStar(require("./TargetOptionsPoplarPost"), exports);
-__exportStar(require("./TargetOptionsPoplarPut"), exports);
-__exportStar(require("./TargetOptionsPost"), exports);
-__exportStar(require("./TargetOptionsPostgres"), exports);
-__exportStar(require("./TargetOptionsPostgresMergePatch"), exports);
-__exportStar(require("./TargetOptionsPostgresPost"), exports);
-__exportStar(require("./TargetOptionsPostgresPut"), exports);
-__exportStar(require("./TargetOptionsPut"), exports);
-__exportStar(require("./TargetOptionsRedshift"), exports);
-__exportStar(require("./TargetOptionsRedshiftMergePatch"), exports);
-__exportStar(require("./TargetOptionsRedshiftPost"), exports);
-__exportStar(require("./TargetOptionsRedshiftPut"), exports);
-__exportStar(require("./TargetOptionsS3Csv"), exports);
-__exportStar(require("./TargetOptionsS3CsvMergePatch"), exports);
-__exportStar(require("./TargetOptionsS3CsvPost"), exports);
-__exportStar(require("./TargetOptionsS3CsvPut"), exports);
-__exportStar(require("./TargetOptionsSalesforce"), exports);
-__exportStar(require("./TargetOptionsSalesforceMarketingCloud"), exports);
-__exportStar(require("./TargetOptionsSalesforceMarketingCloudMergePatch"), exports);
-__exportStar(require("./TargetOptionsSalesforceMarketingCloudPost"), exports);
-__exportStar(require("./TargetOptionsSalesforceMarketingCloudPut"), exports);
-__exportStar(require("./TargetOptionsSalesforceMergePatch"), exports);
-__exportStar(require("./TargetOptionsSalesforcePost"), exports);
-__exportStar(require("./TargetOptionsSalesforcePut"), exports);
-__exportStar(require("./TargetOptionsSegment"), exports);
-__exportStar(require("./TargetOptionsSegmentMergePatch"), exports);
-__exportStar(require("./TargetOptionsSegmentPost"), exports);
-__exportStar(require("./TargetOptionsSegmentPut"), exports);
-__exportStar(require("./TargetOptionsSftp"), exports);
-__exportStar(require("./TargetOptionsSftpMergePatch"), exports);
-__exportStar(require("./TargetOptionsSftpPost"), exports);
-__exportStar(require("./TargetOptionsSftpPut"), exports);
-__exportStar(require("./TargetOptionsSnowflake"), exports);
-__exportStar(require("./TargetOptionsSnowflakeMergePatch"), exports);
-__exportStar(require("./TargetOptionsSnowflakePost"), exports);
-__exportStar(require("./TargetOptionsSnowflakePut"), exports);
-__exportStar(require("./TargetOptionsSqlServer"), exports);
-__exportStar(require("./TargetOptionsSqlServerMergePatch"), exports);
-__exportStar(require("./TargetOptionsSqlServerPost"), exports);
-__exportStar(require("./TargetOptionsSqlServerPut"), exports);
-__exportStar(require("./TargetOptionsTheTradeDesk"), exports);
-__exportStar(require("./TargetOptionsTheTradeDeskMergePatch"), exports);
-__exportStar(require("./TargetOptionsTheTradeDeskPost"), exports);
-__exportStar(require("./TargetOptionsTheTradeDeskPut"), exports);
-__exportStar(require("./TargetOptionsTiktok"), exports);
-__exportStar(require("./TargetOptionsTiktokMergePatch"), exports);
-__exportStar(require("./TargetOptionsTiktokPost"), exports);
-__exportStar(require("./TargetOptionsTiktokPut"), exports);
-__exportStar(require("./TargetPost"), exports);
-__exportStar(require("./TargetPut"), exports);
-__exportStar(require("./TargetReferencedReference"), exports);
-__exportStar(require("./TargetStructureTransformation"), exports);
-__exportStar(require("./TargetTransformPresetAggregated"), exports);
-__exportStar(require("./TargetTransformPresetHashed"), exports);
-__exportStar(require("./TargetTransformPresetIdentified"), exports);
-__exportStar(require("./TargetTransformPresetReferenced"), exports);
-__exportStar(require("./Trait"), exports);
-__exportStar(require("./TraitCategory"), exports);
-__exportStar(require("./TraitDataMapColumn"), exports);
-__exportStar(require("./TraitDataMapColumnMergePatch"), exports);
-__exportStar(require("./TraitDataMapColumnPost"), exports);
-__exportStar(require("./TraitDataMapColumnPut"), exports);
-__exportStar(require("./TraitInputFromDatasets"), exports);
-__exportStar(require("./TraitInputFromDatasetsMergePatch"), exports);
-__exportStar(require("./TraitInputFromDatasetsPost"), exports);
-__exportStar(require("./TraitInputFromDatasetsPut"), exports);
-__exportStar(require("./TraitMergePatch"), exports);
-__exportStar(require("./TraitPost"), exports);
-__exportStar(require("./TraitPut"), exports);
-__exportStar(require("./TraitStatisticalType"), exports);
-__exportStar(require("./Upload"), exports);
-__exportStar(require("./ValidationError"), exports);
-__exportStar(require("./ValidationErrorContext"), exports);
+exports.TraitStatisticalType = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.ModelingField = exports.LookupMatchType = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+/**
+* @export
+* @enum {string}
+*/
+var ComplexDataTypeOneOfLogicalTypeEnum;
+(function (ComplexDataTypeOneOfLogicalTypeEnum) {
+    ComplexDataTypeOneOfLogicalTypeEnum["Date"] = "date";
+    ComplexDataTypeOneOfLogicalTypeEnum["TimestampMillis"] = "timestamp-millis";
+    ComplexDataTypeOneOfLogicalTypeEnum["LocalTimestampMillis"] = "local-timestamp-millis";
+    ComplexDataTypeOneOfLogicalTypeEnum["Json"] = "json";
+    ComplexDataTypeOneOfLogicalTypeEnum["Uuid"] = "uuid";
+})(ComplexDataTypeOneOfLogicalTypeEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum || (exports.ComplexDataTypeOneOfLogicalTypeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ConnectionDirectionalityEnum;
+(function (ConnectionDirectionalityEnum) {
+    ConnectionDirectionalityEnum["Bidirectional"] = "bidirectional";
+    ConnectionDirectionalityEnum["SourceOnly"] = "source_only";
+    ConnectionDirectionalityEnum["DestinationOnly"] = "destination_only";
+})(ConnectionDirectionalityEnum = exports.ConnectionDirectionalityEnum || (exports.ConnectionDirectionalityEnum = {}));
+/**
+ * Additional context for the column's data that isn't captured by its data type. For example, a 'revenue' column's data type would likely be 'int64', but format specifies if this number represents 'dollars' or 'cents'. This can be left blank if no additional context is needed.
+ * @export
+ * @enum {string}
+ */
+var DataMapColumnFormat;
+(function (DataMapColumnFormat) {
+    DataMapColumnFormat["CurrencyCents"] = "currency_cents";
+    DataMapColumnFormat["CurrencyDollars"] = "currency_dollars";
+    DataMapColumnFormat["MmDdYySlash"] = "mm_dd_yy_slash";
+    DataMapColumnFormat["MmDdYyyySlash"] = "mm_dd_yyyy_slash";
+    DataMapColumnFormat["MmDdYyDash"] = "mm_dd_yy_dash";
+    DataMapColumnFormat["MmDdYyyyDash"] = "mm_dd_yyyy_dash";
+    DataMapColumnFormat["YyyyMmDdSlash"] = "yyyy_mm_dd_slash";
+    DataMapColumnFormat["YyMmDdSlash"] = "yy_mm_dd_slash";
+    DataMapColumnFormat["YyyyMmDdDash"] = "yyyy_mm_dd_dash";
+    DataMapColumnFormat["YyMmDdDash"] = "yy_mm_dd_dash";
+    DataMapColumnFormat["Yyyymmdd"] = "yyyymmdd";
+    DataMapColumnFormat["Yyyymm"] = "yyyymm";
+    DataMapColumnFormat["DdMmYyyySlash"] = "dd_mm_yyyy_slash";
+    DataMapColumnFormat["DdMmYySlash"] = "dd_mm_yy_slash";
+    DataMapColumnFormat["DdMmYyyyDash"] = "dd_mm_yyyy_dash";
+    DataMapColumnFormat["DdMmYyDash"] = "dd_mm_yy_dash";
+    DataMapColumnFormat["DateIso8601"] = "date_iso8601";
+    DataMapColumnFormat["DateMonthDayFullyear"] = "date_month_day_fullyear";
+    DataMapColumnFormat["DateMonthDayShortyear"] = "date_month_day_shortyear";
+    DataMapColumnFormat["DateMonthDayFullyearHoursMinutes"] = "date_month_day_fullyear_hours_minutes";
+    DataMapColumnFormat["DateMonthDayFullyearHoursMinutesSeconds"] = "date_month_day_fullyear_hours_minutes_seconds";
+    DataMapColumnFormat["DateSecondsSinceEpochUtc"] = "date_seconds_since_epoch_utc";
+    DataMapColumnFormat["DateMillisecondsSinceEpochUtc"] = "date_milliseconds_since_epoch_utc";
+    DataMapColumnFormat["ListCommaSeparated"] = "list_comma_separated";
+    DataMapColumnFormat["ListSemicolonSeparated"] = "list_semicolon_separated";
+    DataMapColumnFormat["ListSingleValue"] = "list_single_value";
+    DataMapColumnFormat["StaticDateIso8601"] = "static_date_iso8601";
+})(DataMapColumnFormat = exports.DataMapColumnFormat || (exports.DataMapColumnFormat = {}));
+/**
+* @export
+* @enum {string}
+*/
+var DatasetPrivacyEnum;
+(function (DatasetPrivacyEnum) {
+    DatasetPrivacyEnum["Suppress"] = "suppress";
+    DatasetPrivacyEnum["Delete"] = "delete";
+})(DatasetPrivacyEnum = exports.DatasetPrivacyEnum || (exports.DatasetPrivacyEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var DatasetMergePatchPrivacyEnum;
+(function (DatasetMergePatchPrivacyEnum) {
+    DatasetMergePatchPrivacyEnum["Suppress"] = "suppress";
+    DatasetMergePatchPrivacyEnum["Delete"] = "delete";
+})(DatasetMergePatchPrivacyEnum = exports.DatasetMergePatchPrivacyEnum || (exports.DatasetMergePatchPrivacyEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var DatasetPostPrivacyEnum;
+(function (DatasetPostPrivacyEnum) {
+    DatasetPostPrivacyEnum["Suppress"] = "suppress";
+    DatasetPostPrivacyEnum["Delete"] = "delete";
+})(DatasetPostPrivacyEnum = exports.DatasetPostPrivacyEnum || (exports.DatasetPostPrivacyEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var DatasetPutPrivacyEnum;
+(function (DatasetPutPrivacyEnum) {
+    DatasetPutPrivacyEnum["Suppress"] = "suppress";
+    DatasetPutPrivacyEnum["Delete"] = "delete";
+})(DatasetPutPrivacyEnum = exports.DatasetPutPrivacyEnum || (exports.DatasetPutPrivacyEnum = {}));
+/**
+ * A Faraday error code.
+ *
+ * Some possible values include:
+ *
+ * **Generic HTTP Errors**
+ *
+ * - BAD_REQUEST: The request could not be validated.
+ * - FORBIDDEN: You do not have permission to access the specified resource.
+ * - MAX_RESOURCES_REACHED: You have created too many of this resource type on your account. You must delete some before making more.
+ * - INTERNAL_SERVER_ERROR: An internal error of an unknown type occurred.
+ * - INVALID_AUTHORIZATION: The Authorization header could not be parsed.
+ * - NOT_FOUND: The specified resource could not be found.
+ *
+ * **Authentication**
+ *
+ * These are specific to HTTP 401 responses.
+ *
+ * - MALFORMED_API_KEY: Could not parse the supplied API key.
+ * - MISSING_API_KEY: An API key was not supplied.
+ * - EXPIRED_API_KEY: The supplied API key has expired.
+ *
+ * **Application Errors**
+ *
+ * - VALIDATION_FAILED: A parameter or request could not be validated.
+ * - CONFLICT: The request was formatted correctly, but conflicted with an existing resource
+ * @export
+ * @enum {string}
+ */
+var ErrorCode;
+(function (ErrorCode) {
+    ErrorCode["BadRequest"] = "BAD_REQUEST";
+    ErrorCode["Forbidden"] = "FORBIDDEN";
+    ErrorCode["MaxResourcesReached"] = "MAX_RESOURCES_REACHED";
+    ErrorCode["InternalServerError"] = "INTERNAL_SERVER_ERROR";
+    ErrorCode["InvalidAuthorization"] = "INVALID_AUTHORIZATION";
+    ErrorCode["NotFound"] = "NOT_FOUND";
+    ErrorCode["MalformedApiKey"] = "MALFORMED_API_KEY";
+    ErrorCode["MissingApiKey"] = "MISSING_API_KEY";
+    ErrorCode["ExpiredApiKey"] = "EXPIRED_API_KEY";
+    ErrorCode["ValidationFailed"] = "VALIDATION_FAILED";
+    ErrorCode["Conflict"] = "CONFLICT";
+})(ErrorCode = exports.ErrorCode || (exports.ErrorCode = {}));
+/**
+ * The type of match that was found for the lookup request.
+ * @export
+ * @enum {string}
+ */
+var LookupMatchType;
+(function (LookupMatchType) {
+    LookupMatchType["AddressFullName"] = "address_full_name";
+    LookupMatchType["EmailFullName"] = "email_full_name";
+    LookupMatchType["PhoneFullName"] = "phone_full_name";
+    LookupMatchType["AddressLastName"] = "address_last_name";
+    LookupMatchType["EmailLastName"] = "email_last_name";
+    LookupMatchType["PhoneLastName"] = "phone_last_name";
+    LookupMatchType["AddressOnly"] = "address_only";
+    LookupMatchType["EmailOnly"] = "email_only";
+})(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
+/**
+ * Customer attributes available for modeling
+ *
+ * fig/actvty_num_purchase_quintile: Total lifetime number of purchases made, bucketed into 5 quintile groupings
+ * fig/actvty_ttl_dollars_quintile: Total dollars that were spent on purchases within lifetime activity bucketed into 5 quintile groupings
+ * fig/age: The age of the individual
+ * fig/antiques: Interest in antiques
+ * fig/books_magazines: Interest in books and magazines
+ * fig/charitable_donations: Self-reported interest in charitable donations
+ * fig/dieting: Self-reported interest in dieting & weight loss
+ * fig/education: Median attainment completed by adults in household age 18 or older
+ * fig/favm: Faraday's Automated Valuation Model (AVM) is an algorithmic estimate that approximates the true market value of a home as closely as possible.
+ * fig/frequent_remodeler: Interest in home improvement, or recent renovation activity
+ * fig/gardener: Self-reported interest in gardening
+ * fig/gender: Gender of individual
+ * fig/health_conscious: Self-reported interest in health & exercise
+ * fig/homeowner_status: Designation of person-to-property relationship (renter vs. owner), with probability
+ * fig/household_income: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
+ * fig/household_size: The number of people living in the household, including adults and children
+ * fig/housing_density: Number of housing units per square mile
+ * fig/length_of_residence: The number of years the resident has lived at this location
+ * fig/life_sports_sports_all: Self-reported interest in sports - sports participation
+ * fig/living_area: The finished square footage of the house
+ * fig/marital_status: Marital status
+ * fig/music: Self-reported interest in music
+ * fig/net_worth: Value equals household asset minus liabilities.
+ * fig/percent_equity: Loan-to-value percentage, subtracted from 100. Negative values indicate the loan is underwater.
+ * fig/pet_any: Owns a pet of any variety (Turtle? Capybara? The mind boggles . . .)
+ * fig/purch_chan_internet: Likely to make purchases via online channel
+ * fig/shopping_styles: Household's preferred mode of shopping
+ * fig/travel: Self-reported interest in travel
+ * fig/value_score_all: Estimated consumer marketing profitability. This modeled data is derived from credit behavior and leverages demographic and self-reported data.
+ * fig/year_built: The year that the house was originally built (see "Effective year built" for last extensive remodel)
+ * @export
+ * @enum {string}
+ */
+var ModelingField;
+(function (ModelingField) {
+    ModelingField["ActvtyNumPurchaseQuintile"] = "fig/actvty_num_purchase_quintile";
+    ModelingField["ActvtyTtlDollarsQuintile"] = "fig/actvty_ttl_dollars_quintile";
+    ModelingField["Age"] = "fig/age";
+    ModelingField["Antiques"] = "fig/antiques";
+    ModelingField["BooksMagazines"] = "fig/books_magazines";
+    ModelingField["CharitableDonations"] = "fig/charitable_donations";
+    ModelingField["Dieting"] = "fig/dieting";
+    ModelingField["Education"] = "fig/education";
+    ModelingField["Favm"] = "fig/favm";
+    ModelingField["FrequentRemodeler"] = "fig/frequent_remodeler";
+    ModelingField["Gardener"] = "fig/gardener";
+    ModelingField["Gender"] = "fig/gender";
+    ModelingField["HealthConscious"] = "fig/health_conscious";
+    ModelingField["HomeownerStatus"] = "fig/homeowner_status";
+    ModelingField["HouseholdIncome"] = "fig/household_income";
+    ModelingField["HouseholdSize"] = "fig/household_size";
+    ModelingField["LengthOfResidence"] = "fig/length_of_residence";
+    ModelingField["LifeSportsSportsAll"] = "fig/life_sports_sports_all";
+    ModelingField["LivingArea"] = "fig/living_area";
+    ModelingField["MaritalStatus"] = "fig/marital_status";
+    ModelingField["Music"] = "fig/music";
+    ModelingField["NetWorth"] = "fig/net_worth";
+    ModelingField["PercentEquity"] = "fig/percent_equity";
+    ModelingField["PetAny"] = "fig/pet_any";
+    ModelingField["PurchChanInternet"] = "fig/purch_chan_internet";
+    ModelingField["ShoppingStyles"] = "fig/shopping_styles";
+    ModelingField["Travel"] = "fig/travel";
+    ModelingField["HousingDensity"] = "fig/housing_density";
+    ModelingField["ValueScoreAll"] = "fig/value_score_all";
+    ModelingField["YearBuilt"] = "fig/year_built";
+})(ModelingField = exports.ModelingField || (exports.ModelingField = {}));
+/**
+* @export
+* @enum {string}
+*/
+var OutcomeAnalysisBiasDataAgeDistributionLevelEnum;
+(function (OutcomeAnalysisBiasDataAgeDistributionLevelEnum) {
+    OutcomeAnalysisBiasDataAgeDistributionLevelEnum["LowBias"] = "low_bias";
+    OutcomeAnalysisBiasDataAgeDistributionLevelEnum["ModerateBias"] = "moderate_bias";
+    OutcomeAnalysisBiasDataAgeDistributionLevelEnum["StrongBias"] = "strong_bias";
+})(OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum || (exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var OutcomeAnalysisBiasDataGenderProportionLevelEnum;
+(function (OutcomeAnalysisBiasDataGenderProportionLevelEnum) {
+    OutcomeAnalysisBiasDataGenderProportionLevelEnum["LowBias"] = "low_bias";
+    OutcomeAnalysisBiasDataGenderProportionLevelEnum["ModerateBias"] = "moderate_bias";
+    OutcomeAnalysisBiasDataGenderProportionLevelEnum["StrongBias"] = "strong_bias";
+})(OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum || (exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = {}));
+/**
+ * The strategy to use for bias mitigation.
+ *
+ * Currently supported:
+ *   - `none` - ignore bias
+ *   - `equality` - neutralize bias
+ *   - `equity` - invert bias
+ *
+ * Bias mitigation will attempt to match the baseline population rate for the dimension of concern (DOC) (`equality`) or overcorrect for past inequality in the direction of the underprivileged DOC (`equity`).
+ * @export
+ * @enum {string}
+ */
+var OutcomeBiasMitigationStrategy;
+(function (OutcomeBiasMitigationStrategy) {
+    OutcomeBiasMitigationStrategy["None"] = "none";
+    OutcomeBiasMitigationStrategy["Equality"] = "equality";
+    OutcomeBiasMitigationStrategy["Equity"] = "equity";
+})(OutcomeBiasMitigationStrategy = exports.OutcomeBiasMitigationStrategy || (exports.OutcomeBiasMitigationStrategy = {}));
+/**
+ * The data type of a column in table, or of a trait. Types are expressed using a subset of
+ * [Avro](https://avro.apache.org/docs/current/spec.html). Possible values include:
+ *
+ * - boolean: A Boolean value.
+ * - long: A 64-bit integer.
+ * - double: A 64-bit float.
+ * - string: A Unicode string, possibly representing categorical data.
+ * - date: A date with no reference to time of day.
+ * @export
+ * @enum {string}
+ */
+var PrimitiveDataType;
+(function (PrimitiveDataType) {
+    PrimitiveDataType["Boolean"] = "boolean";
+    PrimitiveDataType["Long"] = "long";
+    PrimitiveDataType["Double"] = "double";
+    PrimitiveDataType["String"] = "string";
+    PrimitiveDataType["Date"] = "date";
+})(PrimitiveDataType = exports.PrimitiveDataType || (exports.PrimitiveDataType = {}));
+/**
+ * What event to pay attention to
+ * @export
+ * @enum {string}
+ */
+var RecencyOccurrence;
+(function (RecencyOccurrence) {
+    RecencyOccurrence["First"] = "first";
+    RecencyOccurrence["Last"] = "last";
+})(RecencyOccurrence = exports.RecencyOccurrence || (exports.RecencyOccurrence = {}));
+/**
+ * The current state of this resource and any updates.
+ * @export
+ * @enum {string}
+ */
+var ResourceStatus;
+(function (ResourceStatus) {
+    ResourceStatus["New"] = "new";
+    ResourceStatus["Starting"] = "starting";
+    ResourceStatus["Running"] = "running";
+    ResourceStatus["Ready"] = "ready";
+    ResourceStatus["Error"] = "error";
+})(ResourceStatus = exports.ResourceStatus || (exports.ResourceStatus = {}));
+/**
+ * The type of a resource which is available via the REST SDK.
+ * @export
+ * @enum {string}
+ */
+var ResourceType;
+(function (ResourceType) {
+    ResourceType["Cohorts"] = "cohorts";
+    ResourceType["Connections"] = "connections";
+    ResourceType["Datasets"] = "datasets";
+    ResourceType["Accounts"] = "accounts";
+    ResourceType["Outcomes"] = "outcomes";
+    ResourceType["PersonaSets"] = "persona_sets";
+    ResourceType["Recommenders"] = "recommenders";
+    ResourceType["Scopes"] = "scopes";
+    ResourceType["Streams"] = "streams";
+    ResourceType["Targets"] = "targets";
+    ResourceType["Traits"] = "traits";
+    ResourceType["Places"] = "places";
+})(ResourceType = exports.ResourceType || (exports.ResourceType = {}));
+/**
+ * Available aggregation levels for data exported in `aggregated` targets.
+ * @export
+ * @enum {string}
+ */
+var TargetAggregateGeographic;
+(function (TargetAggregateGeographic) {
+    TargetAggregateGeographic["Postcode"] = "postcode";
+    TargetAggregateGeographic["County"] = "county";
+    TargetAggregateGeographic["Metro"] = "metro";
+    TargetAggregateGeographic["State"] = "state";
+    TargetAggregateGeographic["CensusBlockGroup"] = "census_block_group";
+    TargetAggregateGeographic["CensusTract"] = "census_tract";
+    TargetAggregateGeographic["Dma"] = "dma";
+})(TargetAggregateGeographic = exports.TargetAggregateGeographic || (exports.TargetAggregateGeographic = {}));
+/**
+ * Available aggregation levels for data exported in `identified` targets. Only `person` is supported for targets with options.type = `lookup_api`.
+ * @export
+ * @enum {string}
+ */
+var TargetAggregateIdentified;
+(function (TargetAggregateIdentified) {
+    TargetAggregateIdentified["Person"] = "person";
+    TargetAggregateIdentified["Residence"] = "residence";
+})(TargetAggregateIdentified = exports.TargetAggregateIdentified || (exports.TargetAggregateIdentified = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetLimitRowCountDirectionEnum;
+(function (TargetLimitRowCountDirectionEnum) {
+    TargetLimitRowCountDirectionEnum["Ascending"] = "ascending";
+    TargetLimitRowCountDirectionEnum["Descending"] = "descending";
+})(TargetLimitRowCountDirectionEnum = exports.TargetLimitRowCountDirectionEnum || (exports.TargetLimitRowCountDirectionEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetLimitRowCountMergePatchDirectionEnum;
+(function (TargetLimitRowCountMergePatchDirectionEnum) {
+    TargetLimitRowCountMergePatchDirectionEnum["Ascending"] = "ascending";
+    TargetLimitRowCountMergePatchDirectionEnum["Descending"] = "descending";
+})(TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum || (exports.TargetLimitRowCountMergePatchDirectionEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetLimitRowCountPostDirectionEnum;
+(function (TargetLimitRowCountPostDirectionEnum) {
+    TargetLimitRowCountPostDirectionEnum["Ascending"] = "ascending";
+    TargetLimitRowCountPostDirectionEnum["Descending"] = "descending";
+})(TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum || (exports.TargetLimitRowCountPostDirectionEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetLimitRowCountPutDirectionEnum;
+(function (TargetLimitRowCountPutDirectionEnum) {
+    TargetLimitRowCountPutDirectionEnum["Ascending"] = "ascending";
+    TargetLimitRowCountPutDirectionEnum["Descending"] = "descending";
+})(TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPutDirectionEnum || (exports.TargetLimitRowCountPutDirectionEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetStructureTransformationAggregationEnum;
+(function (TargetStructureTransformationAggregationEnum) {
+    TargetStructureTransformationAggregationEnum["Avg"] = "avg";
+    TargetStructureTransformationAggregationEnum["Count"] = "count";
+    TargetStructureTransformationAggregationEnum["Countif"] = "countif";
+})(TargetStructureTransformationAggregationEnum = exports.TargetStructureTransformationAggregationEnum || (exports.TargetStructureTransformationAggregationEnum = {}));
+/**
+ * One of:
+ *   * default: Faraday default aggregated representation
+ *   * google_ads: Aggregated upload format for Google Ads
+ *
+ * If not specified `default` is used.
+ * @export
+ * @enum {string}
+ */
+var TargetTransformPresetAggregated;
+(function (TargetTransformPresetAggregated) {
+    TargetTransformPresetAggregated["Default"] = "default";
+    TargetTransformPresetAggregated["GoogleAds"] = "google_ads";
+})(TargetTransformPresetAggregated = exports.TargetTransformPresetAggregated || (exports.TargetTransformPresetAggregated = {}));
+/**
+ * One of:
+ *   * default: Faraday default hashed representation
+ *   * linkedin: Hashed upload format for Linkedin
+ *   * taboola: Hashed upload format for Taboola
+ *   * snapchat: Hashed upload format for Snapchat
+ *   * tiktok: Hashed upload format for Tiktok
+ *   * pinterest: Hashed upload format for Pinterest
+ *   * youtube: Hashed upload format for Youtube
+ *   * google_ads: Hashed upload format for Google Ads
+ *   * facebook: Hashed upload format for Facebook
+ *
+ * If not specified `default` is used.
+ * @export
+ * @enum {string}
+ */
+var TargetTransformPresetHashed;
+(function (TargetTransformPresetHashed) {
+    TargetTransformPresetHashed["Default"] = "default";
+    TargetTransformPresetHashed["Linkedin"] = "linkedin";
+    TargetTransformPresetHashed["Taboola"] = "taboola";
+    TargetTransformPresetHashed["Snapchat"] = "snapchat";
+    TargetTransformPresetHashed["Tiktok"] = "tiktok";
+    TargetTransformPresetHashed["Pinterest"] = "pinterest";
+    TargetTransformPresetHashed["Youtube"] = "youtube";
+    TargetTransformPresetHashed["GoogleAds"] = "google_ads";
+    TargetTransformPresetHashed["Facebook"] = "facebook";
+})(TargetTransformPresetHashed = exports.TargetTransformPresetHashed || (exports.TargetTransformPresetHashed = {}));
+/**
+ * One of:
+ *   * default: Faraday default identified representation
+ *   * linkedin: Plaintext upload format for Linkedin
+ *   * youtube: Plaintext upload format for Youtube
+ *   * klaviyo: Plaintext upload format for Klaviyo
+ *   * segment: Plaintext upload format for Segment
+ *   * iterable: Plaintext upload format for Iterable
+ *   * poplar: Plaintext upload format for Poplar
+ *   * salesforce: Plaintext upload format for Salesforce
+ *   * hubspot: Plaintext upload format for Hubspot
+ *   * address_only: Plaintext upload format for address only
+ *   * liveramp: Plaintext upload format for LiveRamp
+ *
+ * If not specified `default` is used.
+ * @export
+ * @enum {string}
+ */
+var TargetTransformPresetIdentified;
+(function (TargetTransformPresetIdentified) {
+    TargetTransformPresetIdentified["Default"] = "default";
+    TargetTransformPresetIdentified["Linkedin"] = "linkedin";
+    TargetTransformPresetIdentified["Youtube"] = "youtube";
+    TargetTransformPresetIdentified["Klaviyo"] = "klaviyo";
+    TargetTransformPresetIdentified["Segment"] = "segment";
+    TargetTransformPresetIdentified["Iterable"] = "iterable";
+    TargetTransformPresetIdentified["Poplar"] = "poplar";
+    TargetTransformPresetIdentified["Salesforce"] = "salesforce";
+    TargetTransformPresetIdentified["Hubspot"] = "hubspot";
+    TargetTransformPresetIdentified["AddressOnly"] = "address_only";
+    TargetTransformPresetIdentified["Liveramp"] = "liveramp";
+})(TargetTransformPresetIdentified = exports.TargetTransformPresetIdentified || (exports.TargetTransformPresetIdentified = {}));
+/**
+ * One of:
+ *   * default: Faraday default referenced representation
+ *
+ * If not specified `default` is used.
+ * @export
+ * @enum {string}
+ */
+var TargetTransformPresetReferenced;
+(function (TargetTransformPresetReferenced) {
+    TargetTransformPresetReferenced["Default"] = "default";
+})(TargetTransformPresetReferenced = exports.TargetTransformPresetReferenced || (exports.TargetTransformPresetReferenced = {}));
+/**
+ * A broad category describing the flavor of a trait.
+ * @export
+ * @enum {string}
+ */
+var TraitCategory;
+(function (TraitCategory) {
+    TraitCategory["FigDemography"] = "fig/demography";
+    TraitCategory["FigEnvironment"] = "fig/environment";
+    TraitCategory["FigGeography"] = "fig/geography";
+    TraitCategory["FigIdentity"] = "fig/identity";
+    TraitCategory["FigLifestyle"] = "fig/lifestyle";
+    TraitCategory["FigProperty"] = "fig/property";
+    TraitCategory["FigReachability"] = "fig/reachability";
+    TraitCategory["FigSociety"] = "fig/society";
+    TraitCategory["UserDefined"] = "user_defined";
+})(TraitCategory = exports.TraitCategory || (exports.TraitCategory = {}));
+/**
+ * A string describing the nature of data represented by the trait.
+ *
+ * categorical: the field contains one value of a bounded set. Example "favorite_color": one of "red", "blue", or "yellow".
+ * multicategorical: the field contains one or more values of a bounded set.
+ * ordinal: the field contains values which have a natural ordering from low to high.
+ * nominal: Anything else. Fields which are boolean in nature (0/1, T/F, true/false) should be set to `nominal`.
+ * @export
+ * @enum {string}
+ */
+var TraitStatisticalType;
+(function (TraitStatisticalType) {
+    TraitStatisticalType["Categorical"] = "categorical";
+    TraitStatisticalType["Multicategorical"] = "multicategorical";
+    TraitStatisticalType["Ordinal"] = "ordinal";
+    TraitStatisticalType["Nominal"] = "nominal";
+})(TraitStatisticalType = exports.TraitStatisticalType || (exports.TraitStatisticalType = {}));

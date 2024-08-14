@@ -16,17 +16,9 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Dataset,
-    DatasetFromJSON,
-    DatasetToJSON,
     DatasetMergePatch,
-    DatasetMergePatchFromJSON,
-    DatasetMergePatchToJSON,
     DatasetPost,
-    DatasetPostFromJSON,
-    DatasetPostToJSON,
 } from '../models';
 
 export interface ArchiveDatasetRequest {
@@ -93,7 +85,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -135,10 +127,10 @@ export class DatasetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: DatasetPostToJSON(requestParameters.datasetFields),
+            body: requestParameters.datasetFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DatasetFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -215,7 +207,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DatasetFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -251,7 +243,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -295,7 +287,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -341,10 +333,10 @@ export class DatasetsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: DatasetMergePatchToJSON(requestParameters.datasetFields),
+            body: requestParameters.datasetFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DatasetFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

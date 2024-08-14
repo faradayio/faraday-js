@@ -16,8 +16,6 @@
 import * as runtime from '../runtime';
 import {
     AccountUsage,
-    AccountUsageFromJSON,
-    AccountUsageToJSON,
 } from '../models';
 
 /**
@@ -49,7 +47,7 @@ export class UsageApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AccountUsageFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

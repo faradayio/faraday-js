@@ -24,7 +24,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PersonaSetsApi = void 0;
 const runtime = require("../runtime");
-const models_1 = require("../models");
 /**
  *
  */
@@ -56,7 +55,7 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -94,9 +93,9 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.PersonaSetPostToJSON(requestParameters.personaSetPost),
+                body: requestParameters.personaSetPost,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PersonaSetFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -167,7 +166,7 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PersonaSetFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -203,7 +202,7 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.PersonaSetAnalysisDimensionsFromJSON));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -238,7 +237,7 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PersonaSetAnalysisFlowFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -271,7 +270,7 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.PersonaSetFromJSON));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -311,7 +310,7 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.ArchiveConfigToJSON(requestParameters.archiveConfig),
+                body: requestParameters.archiveConfig,
             });
             return new runtime.VoidApiResponse(response);
         });
@@ -355,9 +354,9 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.PersonaMergePatchToJSON(requestParameters.personaFields),
+                body: requestParameters.personaFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PersonaFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -397,9 +396,9 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.PersonaSetMergePatchToJSON(requestParameters.personaSetFields),
+                body: requestParameters.personaSetFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.PersonaSetFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**

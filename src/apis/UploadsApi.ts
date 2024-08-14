@@ -16,8 +16,6 @@
 import * as runtime from '../runtime';
 import {
     Upload,
-    UploadFromJSON,
-    UploadToJSON,
 } from '../models';
 
 export interface CreateUploadRequest {
@@ -198,7 +196,7 @@ export class UploadsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(UploadFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

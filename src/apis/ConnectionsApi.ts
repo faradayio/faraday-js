@@ -16,23 +16,11 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    ArchiveConfigFromJSON,
-    ArchiveConfigToJSON,
     Connection,
-    ConnectionFromJSON,
-    ConnectionToJSON,
     ConnectionMergePatch,
-    ConnectionMergePatchFromJSON,
-    ConnectionMergePatchToJSON,
     ConnectionPost,
-    ConnectionPostFromJSON,
-    ConnectionPostToJSON,
     Dataset,
-    DatasetFromJSON,
-    DatasetToJSON,
     Target,
-    TargetFromJSON,
-    TargetToJSON,
 } from '../models';
 
 export interface ArchiveConnectionRequest {
@@ -107,7 +95,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -149,10 +137,10 @@ export class ConnectionsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ConnectionPostToJSON(requestParameters.connectionFields),
+            body: requestParameters.connectionFields,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConnectionFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -231,7 +219,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConnectionFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -271,7 +259,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -311,7 +299,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TargetFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -347,7 +335,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ConnectionFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -391,7 +379,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ArchiveConfigToJSON(requestParameters.archiveConfig),
+            body: requestParameters.archiveConfig,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -437,10 +425,10 @@ export class ConnectionsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: ConnectionMergePatchToJSON(requestParameters.connectionMergePatch),
+            body: requestParameters.connectionMergePatch,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConnectionFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**

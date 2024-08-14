@@ -24,7 +24,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountsApi = void 0;
 const runtime = require("../runtime");
-const models_1 = require("../models");
 /**
  *
  */
@@ -53,9 +52,9 @@ class AccountsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.AccountPostToJSON(requestParameters.accountFields),
+                body: requestParameters.accountFields,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.AccountFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -128,7 +127,7 @@ class AccountsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.AccountFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -162,7 +161,7 @@ class AccountsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(models_1.AccountFromJSON));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -196,7 +195,7 @@ class AccountsApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.AccountFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -236,9 +235,9 @@ class AccountsApi extends runtime.BaseAPI {
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: models_1.AccountMergePatchToJSON(requestParameters.accountMergePatch),
+                body: requestParameters.accountMergePatch,
             });
-            return new runtime.JSONApiResponse(response, (jsonValue) => models_1.AccountFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
