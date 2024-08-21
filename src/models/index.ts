@@ -482,16 +482,16 @@ export interface AnalysisFeatureDirectionalityDate {
     impact: number;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof AnalysisFeatureDirectionalityDate
      */
-    max?: Date;
+    max?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof AnalysisFeatureDirectionalityDate
      */
-    min: Date;
+    min: string;
 }
 /**
  * Directionality of a numeric feature
@@ -796,10 +796,10 @@ export interface CohortAnalysisMembershipDatum {
     count: number;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CohortAnalysisMembershipDatum
      */
-    date: Date;
+    date: string;
 }
 /**
  * (Parameters used to PATCH the `Cohort` type.)
@@ -11863,16 +11863,16 @@ export interface Invoice {
     amount: number;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Invoice
      */
-    due_date: Date;
+    due_date: string;
     /**
      * The date of the invoice
-     * @type {Date}
+     * @type {string}
      * @memberof Invoice
      */
-    effective_date: Date;
+    effective_date: string;
     /**
      * Whether or not the invoice has been paid.
      * @type {boolean}
@@ -13515,10 +13515,10 @@ export interface Payment {
     amount: number;
     /**
      * The date of the payment.
-     * @type {Date}
+     * @type {string}
      * @memberof Payment
      */
-    date: Date;
+    date: string;
 }
 /**
  * A set of people who have more in common with each other than they do with members of other personas in the persona set.
@@ -13803,10 +13803,10 @@ export interface PersonaSetAnalysisFlowPersonaDate {
     count: number;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof PersonaSetAnalysisFlowPersonaDate
      */
-    date: Date;
+    date: string;
 }
 /**
  * (Parameters used to PATCH the `PersonaSet` type.)
