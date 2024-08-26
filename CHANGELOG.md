@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.28] - 2024-08-26
+
+### Added
+
+- Add yyyy_mm_dash and yyyy_mm_slash to data map date formats 
+
 ## [0.10.27] - 2024-08-05
 
 ### Added

@@ -7813,6 +7813,8 @@ export declare enum DataMapColumnFormat {
     YyMmDdDash = "yy_mm_dd_dash",
     Yyyymmdd = "yyyymmdd",
     Yyyymm = "yyyymm",
+    YyyyMmDash = "yyyy_mm_dash",
+    YyyyMmSlash = "yyyy_mm_slash",
     DdMmYyyySlash = "dd_mm_yyyy_slash",
     DdMmYySlash = "dd_mm_yy_slash",
     DdMmYyyyDash = "dd_mm_yyyy_dash",
