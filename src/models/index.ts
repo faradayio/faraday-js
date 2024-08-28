@@ -15375,6 +15375,18 @@ export interface Stream {
      */
     created_at: string;
     /**
+     * Details of events emitted by each dataset into the stream.
+     * @type {Array<StreamEventContributionByDataset>}
+     * @memberof Stream
+     */
+    event_contribution_by_dataset?: Array<StreamEventContributionByDataset>;
+    /**
+     * Number of events in the stream.
+     * @type {number}
+     * @memberof Stream
+     */
+    event_count?: number;
+    /**
      * A unique ID for this resource.
      * @type {string}
      * @memberof Stream
@@ -15404,6 +15416,18 @@ export interface Stream {
      * @memberof Stream
      */
     name: string;
+    /**
+     * Date of the most recent event in the stream.
+     * @type {string}
+     * @memberof Stream
+     */
+    newest_date?: string;
+    /**
+     * Date of the first event in the stream.
+     * @type {string}
+     * @memberof Stream
+     */
+    oldest_date?: string;
     /**
      * 
      * @type {StreamProperties}
@@ -15444,6 +15468,69 @@ export interface Stream {
 /**
  * 
  * @export
+ * @interface StreamAnalysis
+ */
+export interface StreamAnalysis {
+    /**
+     * 
+     * @type {Array<StreamAnalysisTimeSeriesDatum>}
+     * @memberof StreamAnalysis
+     */
+    time_series?: Array<StreamAnalysisTimeSeriesDatum>;
+}
+/**
+ * 
+ * @export
+ * @interface StreamAnalysisTimeSeriesDatum
+ */
+export interface StreamAnalysisTimeSeriesDatum {
+    /**
+     * The total events emitted within the stream for the given date.
+     * @type {number}
+     * @memberof StreamAnalysisTimeSeriesDatum
+     */
+    count: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StreamAnalysisTimeSeriesDatum
+     */
+    date: string;
+}
+/**
+ * 
+ * @export
+ * @interface StreamEventContributionByDataset
+ */
+export interface StreamEventContributionByDataset {
+    /**
+     * The dataset the column comes from
+     * @type {string}
+     * @memberof StreamEventContributionByDataset
+     */
+    dataset_id: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof StreamEventContributionByDataset
+     */
+    event_count: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StreamEventContributionByDataset
+     */
+    newest_date: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StreamEventContributionByDataset
+     */
+    oldest_date: string;
+}
+/**
+ * 
+ * @export
  * @interface StreamProperties
  */
 export interface StreamProperties {
@@ -15468,6 +15555,12 @@ export interface StreamPropertyDetails {
      */
     categories?: Array<string>;
     /**
+     * Counts corresponding to the existing breaks property. Only available when the property is numerical, otherwise empty.
+     * @type {Array<StreamPropertyDistribution>}
+     * @memberof StreamPropertyDetails
+     */
+    distribution?: Array<StreamPropertyDistribution>;
+    /**
      * 
      * @type {Array<StreamPropertyInputFromDatasets>}
      * @memberof StreamPropertyDetails
@@ -15491,6 +15584,37 @@ export interface StreamPropertyDetails {
      * @memberof StreamPropertyDetails
      */
     unit?: string;
+    /**
+     * Top 100 observed values of this property. Only available when the property is categorical or multicategorical, otherwise empty.
+     * @type {Array<StreamPropertyValues>}
+     * @memberof StreamPropertyDetails
+     */
+    values?: Array<StreamPropertyValues>;
+}
+/**
+ * 
+ * @export
+ * @interface StreamPropertyDistribution
+ */
+export interface StreamPropertyDistribution {
+    /**
+     * 
+     * @type {number}
+     * @memberof StreamPropertyDistribution
+     */
+    count: number;
+    /**
+     * Upper range of the bin (exclusive). May be null for the last bin.
+     * @type {number}
+     * @memberof StreamPropertyDistribution
+     */
+    max?: number;
+    /**
+     * Lower range of the bin (inclusive).
+     * @type {number}
+     * @memberof StreamPropertyDistribution
+     */
+    min: number;
 }
 /**
  * 
@@ -15510,6 +15634,25 @@ export interface StreamPropertyInputFromDatasets {
      * @memberof StreamPropertyInputFromDatasets
      */
     dataset_id: string;
+}
+/**
+ * 
+ * @export
+ * @interface StreamPropertyValues
+ */
+export interface StreamPropertyValues {
+    /**
+     * 
+     * @type {number}
+     * @memberof StreamPropertyValues
+     */
+    count: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StreamPropertyValues
+     */
+    value: string;
 }
 /**
  * A table of arbitrary data. Purposefully untyped to allow for flexibility in the data.

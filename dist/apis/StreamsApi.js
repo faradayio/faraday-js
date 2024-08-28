@@ -178,6 +178,41 @@ class StreamsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get the count of stream events emitted over a time period.
+     */
+    getStreamAnalysisRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+                throw new runtime.RequiredError('streamIdOrName', 'Required parameter requestParameters.streamIdOrName was null or undefined when calling getStreamAnalysis.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id_or_name}/analysis`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get the count of stream events emitted over a time period.
+     */
+    getStreamAnalysis(streamIdOrName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getStreamAnalysisRaw({ streamIdOrName: streamIdOrName });
+            return yield response.value();
+        });
+    }
+    /**
      * List all streams present on the account
      * List streams
      */
