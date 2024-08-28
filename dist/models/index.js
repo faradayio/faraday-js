@@ -42,6 +42,8 @@ var DataMapColumnFormat;
     DataMapColumnFormat["YyMmDdDash"] = "yy_mm_dd_dash";
     DataMapColumnFormat["Yyyymmdd"] = "yyyymmdd";
     DataMapColumnFormat["Yyyymm"] = "yyyymm";
+    DataMapColumnFormat["YyyyMmDash"] = "yyyy_mm_dash";
+    DataMapColumnFormat["YyyyMmSlash"] = "yyyy_mm_slash";
     DataMapColumnFormat["DdMmYyyySlash"] = "dd_mm_yyyy_slash";
     DataMapColumnFormat["DdMmYySlash"] = "dd_mm_yy_slash";
     DataMapColumnFormat["DdMmYyyyDash"] = "dd_mm_yyyy_dash";
