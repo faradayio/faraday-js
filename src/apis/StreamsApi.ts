@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import {
     ArchiveConfig,
     Stream,
+    StreamAnalysis,
 } from '../models';
 
 export interface ArchiveStreamRequest {
@@ -33,6 +34,10 @@ export interface FindOrCreateStreamRequest {
 }
 
 export interface GetStreamRequest {
+    streamIdOrName: string;
+}
+
+export interface GetStreamAnalysisRequest {
     streamIdOrName: string;
 }
 
@@ -206,6 +211,44 @@ export class StreamsApi extends runtime.BaseAPI {
      */
     async getStream(streamIdOrName: string, ): Promise<Stream> {
         const response = await this.getStreamRaw({ streamIdOrName: streamIdOrName }, );
+        return await response.value();
+    }
+
+    /**
+     * Get the count of stream events emitted over a time period.
+     */
+    private async getStreamAnalysisRaw(requestParameters: GetStreamAnalysisRequest, ): Promise<runtime.ApiResponse<StreamAnalysis>> {
+        if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+            throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling getStreamAnalysis.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id_or_name}/analysis`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get the count of stream events emitted over a time period.
+     */
+    async getStreamAnalysis(streamIdOrName: string, ): Promise<StreamAnalysis> {
+        const response = await this.getStreamAnalysisRaw({ streamIdOrName: streamIdOrName }, );
         return await response.value();
     }
 

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Stream } from '../models';
+import { ArchiveConfig, Stream, StreamAnalysis } from '../models';
 export interface ArchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
@@ -22,6 +22,9 @@ export interface FindOrCreateStreamRequest {
     streamName: string;
 }
 export interface GetStreamRequest {
+    streamIdOrName: string;
+}
+export interface GetStreamAnalysisRequest {
     streamIdOrName: string;
 }
 export interface UnarchiveStreamRequest {
@@ -70,6 +73,14 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Retrieve a stream
      */
     getStream(streamIdOrName: string): Promise<Stream>;
+    /**
+     * Get the count of stream events emitted over a time period.
+     */
+    private getStreamAnalysisRaw;
+    /**
+     * Get the count of stream events emitted over a time period.
+     */
+    getStreamAnalysis(streamIdOrName: string): Promise<StreamAnalysis>;
     /**
      * List all streams present on the account
      * List streams
