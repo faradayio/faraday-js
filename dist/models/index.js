@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TraitStatisticalType = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.ModelingField = exports.LookupMatchType = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.ModelingField = exports.LookupMatchType = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
 /**
 * @export
 * @enum {string}
@@ -497,8 +497,19 @@ var TraitCategory;
     TraitCategory["FigProperty"] = "fig/property";
     TraitCategory["FigReachability"] = "fig/reachability";
     TraitCategory["FigSociety"] = "fig/society";
+    TraitCategory["FigFinancial"] = "fig/financial";
     TraitCategory["UserDefined"] = "user_defined";
 })(TraitCategory = exports.TraitCategory || (exports.TraitCategory = {}));
+/**
+ * Where the account can use the trait.
+ * @export
+ * @enum {string}
+ */
+var TraitPermission;
+(function (TraitPermission) {
+    TraitPermission["AddToScopePayload"] = "add_to_scope_payload";
+    TraitPermission["DefineCohort"] = "define_cohort";
+})(TraitPermission = exports.TraitPermission || (exports.TraitPermission = {}));
 /**
  * A string describing the nature of data represented by the trait.
  *
@@ -516,3 +527,13 @@ var TraitStatisticalType;
     TraitStatisticalType["Ordinal"] = "ordinal";
     TraitStatisticalType["Nominal"] = "nominal";
 })(TraitStatisticalType = exports.TraitStatisticalType || (exports.TraitStatisticalType = {}));
+/**
+ * A broad category describing the flavor of a trait.
+ * @export
+ * @enum {string}
+ */
+var TraitTier;
+(function (TraitTier) {
+    TraitTier["Standard"] = "standard";
+    TraitTier["Premium"] = "premium";
+})(TraitTier = exports.TraitTier || (exports.TraitTier = {}));

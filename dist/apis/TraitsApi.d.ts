@@ -108,6 +108,16 @@ export declare class TraitsApi extends runtime.BaseAPI {
      */
     getTraits(): Promise<Array<Trait>>;
     /**
+     * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
+     * List all user-defined and Faraday-provided traits, in csv form
+     */
+    private getTraitsCsvRaw;
+    /**
+     * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
+     * List all user-defined and Faraday-provided traits, in csv form
+     */
+    getTraitsCsv(): Promise<string>;
+    /**
      * Unarchive a trait
      * Unarchive a trait
      */

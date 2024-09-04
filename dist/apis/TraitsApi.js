@@ -284,6 +284,40 @@ class TraitsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
+     * List all user-defined and Faraday-provided traits, in csv form
+     */
+    getTraitsCsvRaw() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/traits.csv`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.TextApiResponse(response);
+        });
+    }
+    /**
+     * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
+     * List all user-defined and Faraday-provided traits, in csv form
+     */
+    getTraitsCsv() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getTraitsCsvRaw();
+            return yield response.value();
+        });
+    }
+    /**
      * Unarchive a trait
      * Unarchive a trait
      */
