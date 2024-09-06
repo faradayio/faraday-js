@@ -22003,6 +22003,12 @@ export interface Trait {
      */
     name: string;
     /**
+     * What the account is able to use this trait for. Contact support to change access.
+     * @type {Array<TraitPermission>}
+     * @memberof Trait
+     */
+    permissions?: Array<TraitPermission>;
+    /**
      *
      * @type {ResourceType}
      * @memberof Trait
@@ -22020,6 +22026,12 @@ export interface Trait {
      * @memberof Trait
      */
     status: ResourceStatus;
+    /**
+     *
+     * @type {TraitTier}
+     * @memberof Trait
+     */
+    tier?: TraitTier;
     /**
      *
      * @type {PrimitiveDataType}
@@ -22053,6 +22065,7 @@ export declare enum TraitCategory {
     FigProperty = "fig/property",
     FigReachability = "fig/reachability",
     FigSociety = "fig/society",
+    FigFinancial = "fig/financial",
     UserDefined = "user_defined"
 }
 /**
@@ -22369,6 +22382,15 @@ export interface TraitMergePatch {
     unit?: string | null;
 }
 /**
+ * Where the account can use the trait.
+ * @export
+ * @enum {string}
+ */
+export declare enum TraitPermission {
+    AddToScopePayload = "add_to_scope_payload",
+    DefineCohort = "define_cohort"
+}
+/**
  * (Parameters used to POST a new value of the `Trait` type.)
  *
  * A fact about a person.
@@ -22475,6 +22497,15 @@ export declare enum TraitStatisticalType {
     Multicategorical = "multicategorical",
     Ordinal = "ordinal",
     Nominal = "nominal"
+}
+/**
+ * A broad category describing the flavor of a trait.
+ * @export
+ * @enum {string}
+ */
+export declare enum TraitTier {
+    Standard = "standard",
+    Premium = "premium"
 }
 /**
  * Information about files previously uploaded as Datasets.

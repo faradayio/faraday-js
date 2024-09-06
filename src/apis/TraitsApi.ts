@@ -336,6 +336,42 @@ export class TraitsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
+     * List all user-defined and Faraday-provided traits, in csv form
+     */
+    private async getTraitsCsvRaw(): Promise<runtime.ApiResponse<string>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/traits.csv`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.TextApiResponse(response) as any;
+    }
+
+    /**
+     * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
+     * List all user-defined and Faraday-provided traits, in csv form
+     */
+    async getTraitsCsv(): Promise<string> {
+        const response = await this.getTraitsCsvRaw();
+        return await response.value();
+    }
+
+    /**
      * Unarchive a trait
      * Unarchive a trait
      */
