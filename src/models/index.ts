@@ -21058,7 +21058,7 @@ export enum TargetTransformPresetReferenced {
  */
 export interface Trait {
     /**
-     * If not null, this resource will no longer receive updates, but will still be visable.
+     * (For user traits only) If not null, this resource will no longer receive updates, but will still be visable.
      * @type {string}
      * @memberof Trait
      */
@@ -21087,6 +21087,12 @@ export interface Trait {
      * @memberof Trait
      */
     created_at: string;
+    /**
+     * (For Faraday traits only) This trait will no longer receive updated data. Please use the updated version of the trait instead, if available.
+     * @type {boolean}
+     * @memberof Trait
+     */
+    deprecated?: boolean;
     /**
      * Information about this field.
      * @type {string}
