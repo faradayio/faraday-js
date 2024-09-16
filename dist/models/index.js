@@ -494,6 +494,7 @@ var TraitCategory;
     TraitCategory["FigGeography"] = "fig/geography";
     TraitCategory["FigIdentity"] = "fig/identity";
     TraitCategory["FigLifestyle"] = "fig/lifestyle";
+    TraitCategory["FigLifeEvent"] = "fig/life_event";
     TraitCategory["FigProperty"] = "fig/property";
     TraitCategory["FigReachability"] = "fig/reachability";
     TraitCategory["FigSociety"] = "fig/society";
