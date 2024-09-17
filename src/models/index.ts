@@ -21189,6 +21189,7 @@ export enum TraitCategory {
     FigGeography = 'fig/geography',
     FigIdentity = 'fig/identity',
     FigLifestyle = 'fig/lifestyle',
+    FigLifeEvent = 'fig/life_event',
     FigProperty = 'fig/property',
     FigReachability = 'fig/reachability',
     FigSociety = 'fig/society',
