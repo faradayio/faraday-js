@@ -213,6 +213,12 @@ export interface AccountUsage {
      */
     limit?: number;
     /**
+     * A machine-friendly description of the feature being used by the account
+     * @type {string}
+     * @memberof AccountUsage
+     */
+    name?: string;
+    /**
      * How many instances of this feature that the account uses
      * @type {number}
      * @memberof AccountUsage
