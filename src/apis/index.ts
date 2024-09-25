@@ -49,6 +49,9 @@ import {
 import {
     UsageApi
 } from './UsageApi';
+import {
+    WebhooksApi
+} from './WebhooksApi';
 
 export class FaradayClient {
     configuration: Configuration;
@@ -68,6 +71,7 @@ export class FaradayClient {
     traits: TraitsApi;
     uploads: UploadsApi;
     usage: UsageApi;
+    webhooks: WebhooksApi;
 
     constructor(configuration: Configuration) {
         this.configuration = configuration
@@ -87,5 +91,6 @@ export class FaradayClient {
         this.traits = new TraitsApi(configuration);
         this.uploads = new UploadsApi(configuration);
         this.usage = new UsageApi(configuration);
+        this.webhooks = new WebhooksApi(configuration);
     }
 }

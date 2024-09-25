@@ -17,6 +17,7 @@ const TargetsApi_1 = require("./TargetsApi");
 const TraitsApi_1 = require("./TraitsApi");
 const UploadsApi_1 = require("./UploadsApi");
 const UsageApi_1 = require("./UsageApi");
+const WebhooksApi_1 = require("./WebhooksApi");
 class FaradayClient {
     constructor(configuration) {
         this.configuration = configuration;
@@ -36,6 +37,7 @@ class FaradayClient {
         this.traits = new TraitsApi_1.TraitsApi(configuration);
         this.uploads = new UploadsApi_1.UploadsApi(configuration);
         this.usage = new UsageApi_1.UsageApi(configuration);
+        this.webhooks = new WebhooksApi_1.WebhooksApi(configuration);
     }
 }
 exports.FaradayClient = FaradayClient;

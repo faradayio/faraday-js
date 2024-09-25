@@ -1155,7 +1155,7 @@ export interface CohortStreamCondition {
      */
     _null?: boolean;
     /**
-     * Optional stream conditions are unioned together, when combined they define cohorts that meet either stream condition.
+     * Optional stream conditions are unioned together, when combined they define cohorts that meet either stream condition. At least one optional condition must be satisfied.
      * @type {boolean}
      * @memberof CohortStreamCondition
      */
@@ -1240,7 +1240,7 @@ export interface CohortTrait {
      */
     name: string;
     /**
-     * Optional trait conditions are unioned together, when combined they define cohorts that meet either trait condition - i.e. state = WA OR metro = Portland
+     * Optional trait conditions are unioned together, when combined they define cohorts that meet either trait condition - i.e. state = WA OR metro = Portland. At least one optional condition must be satisfied.
      * @type {boolean}
      * @memberof CohortTrait
      */
@@ -11731,7 +11731,7 @@ export interface DatasetStreamCondition {
      */
     column_name: string;
     /**
-     * Optional conditions are unioned together, when combined they define events that meet either condition.
+     * Optional conditions are unioned together, when combined they define events that meet either condition. At least one optional condition must be satisfied.
      * @type {boolean}
      * @memberof DatasetStreamCondition
      */
@@ -21933,7 +21933,7 @@ export declare enum TargetTransformPresetReferenced {
     Default = "default"
 }
 /**
- * A fact about a person.
+ * A fact about a person or geographic entity.
  *
  * The fact could be provided by Faraday, or alternatively could be defined by the client using data they have uploaded to Faraday.
  *
@@ -22354,7 +22354,7 @@ export interface TraitInputFromDatasetsPut {
 /**
  * (Parameters used to PATCH the `Trait` type.)
  *
- * A fact about a person.
+ * A fact about a person or geographic entity.
  *
  * The fact could be provided by Faraday, or alternatively could be defined by the client using data they have uploaded to Faraday.
  *
@@ -22406,7 +22406,7 @@ export declare enum TraitPermission {
 /**
  * (Parameters used to POST a new value of the `Trait` type.)
  *
- * A fact about a person.
+ * A fact about a person or geographic entity.
  *
  * The fact could be provided by Faraday, or alternatively could be defined by the client using data they have uploaded to Faraday.
  *
@@ -22455,7 +22455,7 @@ export interface TraitPost {
 /**
  * (Parameters used to PUT a value of the `Trait` type.)
  *
- * A fact about a person.
+ * A fact about a person or geographic entity.
  *
  * The fact could be provided by Faraday, or alternatively could be defined by the client using data they have uploaded to Faraday.
  *
@@ -22595,4 +22595,217 @@ export interface ValidationErrorContext {
      * @memberof ValidationErrorContext
      */
     errorType: string;
+}
+/**
+ * A webhook is a way to send notifications from Faraday to another system.
+ *
+ * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
+ * with a JSON payload containing the data you've requested.
+ * @export
+ * @interface WebhookEndpoint
+ */
+export interface WebhookEndpoint {
+    /**
+     * When this webhook endpoint was created.
+     * @type {string}
+     * @memberof WebhookEndpoint
+     */
+    created_at: string;
+    /**
+     * The event types to enable for this endpoint.
+     * @type {Array<WebhookEventType>}
+     * @memberof WebhookEndpoint
+     */
+    enabled_events: Array<WebhookEventType>;
+    /**
+     *
+     * @type {string}
+     * @memberof WebhookEndpoint
+     */
+    id: string;
+    /**
+     * The status of the webhook. It can be either `enabled` or `disabled`.
+     * @type {string}
+     * @memberof WebhookEndpoint
+     */
+    status: WebhookEndpointStatusEnum;
+    /**
+     * When this webhook endpoint was last updated.
+     * @type {string}
+     * @memberof WebhookEndpoint
+     */
+    updated_at: string;
+    /**
+     * The URL of the webhook endpoint.
+     * @type {string}
+     * @memberof WebhookEndpoint
+     */
+    url: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum WebhookEndpointStatusEnum {
+    Enabled = "enabled",
+    Disabled = "disabled"
+}
+/**
+ * (Parameters used to PATCH the `WebhookEndpoint` type.)
+ *
+ * A webhook is a way to send notifications from Faraday to another system.
+ *
+ * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
+ * with a JSON payload containing the data you've requested.
+ * @export
+ * @interface WebhookEndpointMergePatch
+ */
+export interface WebhookEndpointMergePatch {
+    /**
+     * The event types to enable for this endpoint.
+     * @type {Array<WebhookEventType>}
+     * @memberof WebhookEndpointMergePatch
+     */
+    enabled_events?: Array<WebhookEventType>;
+    /**
+     * The status of the webhook. It can be either `enabled` or `disabled`.
+     * @type {string}
+     * @memberof WebhookEndpointMergePatch
+     */
+    status?: WebhookEndpointMergePatchStatusEnum;
+    /**
+     * The URL of the webhook endpoint.
+     * @type {string}
+     * @memberof WebhookEndpointMergePatch
+     */
+    url?: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum WebhookEndpointMergePatchStatusEnum {
+    Enabled = "enabled",
+    Disabled = "disabled"
+}
+/**
+ * (Parameters used to POST a new value of the `WebhookEndpoint` type.)
+ *
+ * A webhook is a way to send notifications from Faraday to another system.
+ *
+ * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
+ * with a JSON payload containing the data you've requested.
+ * @export
+ * @interface WebhookEndpointPost
+ */
+export interface WebhookEndpointPost {
+    /**
+     * The event types to enable for this endpoint.
+     * @type {Array<WebhookEventType>}
+     * @memberof WebhookEndpointPost
+     */
+    enabled_events: Array<WebhookEventType>;
+    /**
+     * The URL of the webhook endpoint.
+     * @type {string}
+     * @memberof WebhookEndpointPost
+     */
+    url: string;
+}
+/**
+ * (Parameters used to PUT a value of the `WebhookEndpoint` type.)
+ *
+ * A webhook is a way to send notifications from Faraday to another system.
+ *
+ * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
+ * with a JSON payload containing the data you've requested.
+ * @export
+ * @interface WebhookEndpointPut
+ */
+export interface WebhookEndpointPut {
+    /**
+     * The event types to enable for this endpoint.
+     * @type {Array<WebhookEventType>}
+     * @memberof WebhookEndpointPut
+     */
+    enabled_events: Array<WebhookEventType>;
+    /**
+     * The status of the webhook. It can be either `enabled` or `disabled`.
+     * @type {string}
+     * @memberof WebhookEndpointPut
+     */
+    status: WebhookEndpointPutStatusEnum;
+    /**
+     * The URL of the webhook endpoint.
+     * @type {string}
+     * @memberof WebhookEndpointPut
+     */
+    url: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum WebhookEndpointPutStatusEnum {
+    Enabled = "enabled",
+    Disabled = "disabled"
+}
+/**
+ * The type of event that triggered the webhook.
+ * @export
+ * @enum {string}
+ */
+export declare enum WebhookEventType {
+    Errored = "resource.errored",
+    ReadyWithUpdate = "resource.ready_with_update"
+}
+/**
+ *
+ * @export
+ * @interface WebhookMessageForResource
+ */
+export interface WebhookMessageForResource {
+    /**
+     *
+     * @type {WebhookMessageForResourceData}
+     * @memberof WebhookMessageForResource
+     */
+    data: WebhookMessageForResourceData;
+    /**
+     *
+     * @type {string}
+     * @memberof WebhookMessageForResource
+     */
+    timestamp: string;
+    /**
+     *
+     * @type {WebhookEventType}
+     * @memberof WebhookMessageForResource
+     */
+    type: WebhookEventType;
+}
+/**
+ * The data associated with the event. The structure of this object will depend on the event type.
+ * @export
+ * @interface WebhookMessageForResourceData
+ */
+export interface WebhookMessageForResourceData {
+    /**
+     * The ID of the account that owns the resource.
+     * @type {string}
+     * @memberof WebhookMessageForResourceData
+     */
+    account_id: string;
+    /**
+     * The ID of the resource that triggered the event.
+     * @type {string}
+     * @memberof WebhookMessageForResourceData
+     */
+    resource_id: string;
+    /**
+     *
+     * @type {ResourceType}
+     * @memberof WebhookMessageForResourceData
+     */
+    resource_type: ResourceType;
 }

@@ -15,6 +15,7 @@ import { TargetsApi } from './TargetsApi';
 import { TraitsApi } from './TraitsApi';
 import { UploadsApi } from './UploadsApi';
 import { UsageApi } from './UsageApi';
+import { WebhooksApi } from './WebhooksApi';
 export declare class FaradayClient {
     configuration: Configuration;
     accounts: AccountsApi;
@@ -33,5 +34,6 @@ export declare class FaradayClient {
     traits: TraitsApi;
     uploads: UploadsApi;
     usage: UsageApi;
+    webhooks: WebhooksApi;
     constructor(configuration: Configuration);
 }

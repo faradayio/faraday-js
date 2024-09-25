@@ -19,6 +19,7 @@ src/apis/TargetsApi.ts
 src/apis/TraitsApi.ts
 src/apis/UploadsApi.ts
 src/apis/UsageApi.ts
+src/apis/WebhooksApi.ts
 src/apis/index.ts
 src/index.ts
 src/models/index.ts
