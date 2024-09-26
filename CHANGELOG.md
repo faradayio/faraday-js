@@ -12,6 +12,12 @@ Until we reach API 1.0, the following special rules apply:
 
 ### Added
 
+## [0.10.35] - 2024-09-26
+
+- Added `secret` (sha256 signing key) to webhook endpoints
+
+### Added
+
 ## [0.10.34] - 2024-09-25
 
 - Webhook endpoints endpoints

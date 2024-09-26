@@ -21704,8 +21704,28 @@ export interface ValidationErrorContext {
 /**
  * A webhook is a way to send notifications from Faraday to another system. 
  * 
+ * Faraday webhooks conform to the [standard webhooks specification](https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md).
+ * 
  * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
- * with a JSON payload containing the data you've requested.
+ * with a thin JSON payload describing which resource has been updated.
+ * 
+ * The structure of the payload is:
+ * ```
+ *   {
+ *     "timestamp": "2024-09-26T14:27:05.944507+00:00",  // iso-formatted string
+ *     "type": "resource.ready_with_update",             // event type
+ *     "data": {
+ *       "account_id": "...",      // uuid of the account
+ *       "resource_id": "...",     // uuid of the resource
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *     }
+ *   }
+ * ```
+ * Refer to the `webhooks` section of [the yml spec](https://github.com/faradayio/sdk_docs/blob/main/static/api.simplified.yml).
+ * 
+ * The headers `svix-id`, `svix-timestamp`, and `svix-signature` contain the unique message id, the timestamp
+ * of the message attempt (seconds since epoch), and the HMAC signature of the message (comma-separated list), 
+ * respectively.
  * @export
  * @interface WebhookEndpoint
  */
@@ -21728,6 +21748,12 @@ export interface WebhookEndpoint {
      * @memberof WebhookEndpoint
      */
     id: string;
+    /**
+     * Symmetric signing key - base64 encoded random bytes prefixed with `whsec_`.
+     * @type {string}
+     * @memberof WebhookEndpoint
+     */
+    secret?: string;
     /**
      * The status of the webhook. It can be either `enabled` or `disabled`.
      * @type {string}
@@ -21761,8 +21787,28 @@ export enum WebhookEndpointStatusEnum {
  * 
  * A webhook is a way to send notifications from Faraday to another system. 
  * 
+ * Faraday webhooks conform to the [standard webhooks specification](https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md).
+ * 
  * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
- * with a JSON payload containing the data you've requested.
+ * with a thin JSON payload describing which resource has been updated.
+ * 
+ * The structure of the payload is:
+ * ```
+ *   {
+ *     "timestamp": "2024-09-26T14:27:05.944507+00:00",  // iso-formatted string
+ *     "type": "resource.ready_with_update",             // event type
+ *     "data": {
+ *       "account_id": "...",      // uuid of the account
+ *       "resource_id": "...",     // uuid of the resource
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *     }
+ *   }
+ * ```
+ * Refer to the `webhooks` section of [the yml spec](https://github.com/faradayio/sdk_docs/blob/main/static/api.simplified.yml).
+ * 
+ * The headers `svix-id`, `svix-timestamp`, and `svix-signature` contain the unique message id, the timestamp
+ * of the message attempt (seconds since epoch), and the HMAC signature of the message (comma-separated list), 
+ * respectively.
  * @export
  * @interface WebhookEndpointMergePatch
  */
@@ -21800,8 +21846,28 @@ export enum WebhookEndpointMergePatchStatusEnum {
  * 
  * A webhook is a way to send notifications from Faraday to another system. 
  * 
+ * Faraday webhooks conform to the [standard webhooks specification](https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md).
+ * 
  * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
- * with a JSON payload containing the data you've requested.
+ * with a thin JSON payload describing which resource has been updated.
+ * 
+ * The structure of the payload is:
+ * ```
+ *   {
+ *     "timestamp": "2024-09-26T14:27:05.944507+00:00",  // iso-formatted string
+ *     "type": "resource.ready_with_update",             // event type
+ *     "data": {
+ *       "account_id": "...",      // uuid of the account
+ *       "resource_id": "...",     // uuid of the resource
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *     }
+ *   }
+ * ```
+ * Refer to the `webhooks` section of [the yml spec](https://github.com/faradayio/sdk_docs/blob/main/static/api.simplified.yml).
+ * 
+ * The headers `svix-id`, `svix-timestamp`, and `svix-signature` contain the unique message id, the timestamp
+ * of the message attempt (seconds since epoch), and the HMAC signature of the message (comma-separated list), 
+ * respectively.
  * @export
  * @interface WebhookEndpointPost
  */
@@ -21812,6 +21878,12 @@ export interface WebhookEndpointPost {
      * @memberof WebhookEndpointPost
      */
     enabled_events: Array<WebhookEventType>;
+    /**
+     * Symmetric signing key - base64 encoded random bytes prefixed with `whsec_`.
+     * @type {string}
+     * @memberof WebhookEndpointPost
+     */
+    secret?: string;
     /**
      * The URL of the webhook endpoint.
      * @type {string}
@@ -21824,8 +21896,28 @@ export interface WebhookEndpointPost {
  * 
  * A webhook is a way to send notifications from Faraday to another system. 
  * 
+ * Faraday webhooks conform to the [standard webhooks specification](https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md).
+ * 
  * When an event triggers a webhook, Faraday sends a POST request to all registered endpoint URLs
- * with a JSON payload containing the data you've requested.
+ * with a thin JSON payload describing which resource has been updated.
+ * 
+ * The structure of the payload is:
+ * ```
+ *   {
+ *     "timestamp": "2024-09-26T14:27:05.944507+00:00",  // iso-formatted string
+ *     "type": "resource.ready_with_update",             // event type
+ *     "data": {
+ *       "account_id": "...",      // uuid of the account
+ *       "resource_id": "...",     // uuid of the resource
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *     }
+ *   }
+ * ```
+ * Refer to the `webhooks` section of [the yml spec](https://github.com/faradayio/sdk_docs/blob/main/static/api.simplified.yml).
+ * 
+ * The headers `svix-id`, `svix-timestamp`, and `svix-signature` contain the unique message id, the timestamp
+ * of the message attempt (seconds since epoch), and the HMAC signature of the message (comma-separated list), 
+ * respectively.
  * @export
  * @interface WebhookEndpointPut
  */
