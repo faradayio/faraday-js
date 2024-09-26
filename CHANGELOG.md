@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+### Added
+
+## [0.10.34] - 2024-09-25
+
+- Webhook endpoints endpoints
+
 ## [0.10.33] - 2024-09-24
 
 ### Added

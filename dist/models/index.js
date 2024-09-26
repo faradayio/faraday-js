@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.ModelingField = exports.LookupMatchType = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.ModelingField = exports.LookupMatchType = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
 /**
 * @export
 * @enum {string}
@@ -538,3 +538,40 @@ var TraitTier;
     TraitTier["Standard"] = "standard";
     TraitTier["Premium"] = "premium";
 })(TraitTier = exports.TraitTier || (exports.TraitTier = {}));
+/**
+* @export
+* @enum {string}
+*/
+var WebhookEndpointStatusEnum;
+(function (WebhookEndpointStatusEnum) {
+    WebhookEndpointStatusEnum["Enabled"] = "enabled";
+    WebhookEndpointStatusEnum["Disabled"] = "disabled";
+})(WebhookEndpointStatusEnum = exports.WebhookEndpointStatusEnum || (exports.WebhookEndpointStatusEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var WebhookEndpointMergePatchStatusEnum;
+(function (WebhookEndpointMergePatchStatusEnum) {
+    WebhookEndpointMergePatchStatusEnum["Enabled"] = "enabled";
+    WebhookEndpointMergePatchStatusEnum["Disabled"] = "disabled";
+})(WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointMergePatchStatusEnum || (exports.WebhookEndpointMergePatchStatusEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var WebhookEndpointPutStatusEnum;
+(function (WebhookEndpointPutStatusEnum) {
+    WebhookEndpointPutStatusEnum["Enabled"] = "enabled";
+    WebhookEndpointPutStatusEnum["Disabled"] = "disabled";
+})(WebhookEndpointPutStatusEnum = exports.WebhookEndpointPutStatusEnum || (exports.WebhookEndpointPutStatusEnum = {}));
+/**
+ * The type of event that triggered the webhook.
+ * @export
+ * @enum {string}
+ */
+var WebhookEventType;
+(function (WebhookEventType) {
+    WebhookEventType["Errored"] = "resource.errored";
+    WebhookEventType["ReadyWithUpdate"] = "resource.ready_with_update";
+})(WebhookEventType = exports.WebhookEventType || (exports.WebhookEventType = {}));
