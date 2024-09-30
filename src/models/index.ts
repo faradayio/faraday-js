@@ -21879,12 +21879,6 @@ export interface WebhookEndpointPost {
      */
     enabled_events: Array<WebhookEventType>;
     /**
-     * Symmetric signing key - base64 encoded random bytes prefixed with `whsec_`.
-     * @type {string}
-     * @memberof WebhookEndpointPost
-     */
-    secret?: string;
-    /**
      * The URL of the webhook endpoint.
      * @type {string}
      * @memberof WebhookEndpointPost
