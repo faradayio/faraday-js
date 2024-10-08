@@ -12,6 +12,12 @@ Until we reach API 1.0, the following special rules apply:
 
 ### Fixed
 
+## [0.10.37] - 2024-10-08
+
+- Enable more permissible glob patterns for `prefix` connection options.
+
+### Fixed
+
 ## [0.10.36] - 2024-09-30
 
 - Make webhook secrets read-only
