@@ -12662,17 +12662,17 @@ export interface ModelError {
  * fig/books_magazines: Interest in books and magazines
  * fig/charitable_donations: Self-reported interest in charitable donations
  * fig/dieting: Self-reported interest in dieting & weight loss
- * fig/education: Median attainment completed by adults in household age 18 or older
+ * fig/education_v2: Median attainment completed by adults in household age 18 or older
  * fig/favm: Faraday's Automated Valuation Model (AVM) is an algorithmic estimate that approximates the true market value of a home as closely as possible.
  * fig/frequent_remodeler: Interest in home improvement, or recent renovation activity
  * fig/gardener: Self-reported interest in gardening
  * fig/gender: Gender of individual
  * fig/health_conscious: Self-reported interest in health & exercise
  * fig/homeowner_status: Designation of person-to-property relationship (renter vs. owner), with probability
- * fig/household_income: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
+ * fig/household_income_v2: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
  * fig/household_size: The number of people living in the household, including adults and children
  * fig/housing_density: Number of housing units per square mile
- * fig/length_of_residence: The number of years the resident has lived at this location
+ * fig/length_of_residence_v2: The number of years the resident has lived at this location
  * fig/life_sports_sports_all: Self-reported interest in sports - sports participation
  * fig/living_area: The finished square footage of the house
  * fig/marital_status: Marital status
@@ -12683,7 +12683,7 @@ export interface ModelError {
  * fig/purch_chan_internet: Likely to make purchases via online channel
  * fig/shopping_styles: Household's preferred mode of shopping
  * fig/travel: Self-reported interest in travel
- * fig/value_score_all: Estimated consumer marketing profitability. This modeled data is derived from credit behavior and leverages demographic and self-reported data.
+ * fig/value_score_all_v2: Estimated consumer marketing profitability. This modeled data is derived from credit behavior and leverages demographic and self-reported data.
  * fig/year_built: The year that the house was originally built (see "Effective year built" for last extensive remodel)
  * @export
  * @enum {string}
@@ -12696,16 +12696,16 @@ export declare enum ModelingField {
     BooksMagazines = "fig/books_magazines",
     CharitableDonations = "fig/charitable_donations",
     Dieting = "fig/dieting",
-    Education = "fig/education",
+    EducationV2 = "fig/education_v2",
     Favm = "fig/favm",
     FrequentRemodeler = "fig/frequent_remodeler",
     Gardener = "fig/gardener",
     Gender = "fig/gender",
     HealthConscious = "fig/health_conscious",
     HomeownerStatus = "fig/homeowner_status",
-    HouseholdIncome = "fig/household_income",
+    HouseholdIncomeV2 = "fig/household_income_v2",
     HouseholdSize = "fig/household_size",
-    LengthOfResidence = "fig/length_of_residence",
+    LengthOfResidenceV2 = "fig/length_of_residence_v2",
     LifeSportsSportsAll = "fig/life_sports_sports_all",
     LivingArea = "fig/living_area",
     MaritalStatus = "fig/marital_status",
@@ -12717,7 +12717,7 @@ export declare enum ModelingField {
     ShoppingStyles = "fig/shopping_styles",
     Travel = "fig/travel",
     HousingDensity = "fig/housing_density",
-    ValueScoreAll = "fig/value_score_all",
+    ValueScoreAllV2 = "fig/value_score_all_v2",
     YearBuilt = "fig/year_built"
 }
 /**

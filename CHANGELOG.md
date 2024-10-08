@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+### Changed
+
+## [0.10.37] - 2024-10-08
+
+- Update persona set modeling fields to newest version
+
 ### Fixed
 
 ## [0.10.36] - 2024-09-30
