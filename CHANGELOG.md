@@ -10,21 +10,27 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.37] - 2024-10-08
+
 ### Fixed
+
+- Enable more permissible glob patterns for `prefix` connection options.
 
 ## [0.10.36] - 2024-09-30
 
-- Make webhook secrets read-only
+### Fixed
 
-### Added
+- Make webhook secrets read-only
 
 ## [0.10.35] - 2024-09-26
 
-- Added `secret` (sha256 signing key) to webhook endpoints
-
 ### Added
 
+- Added `secret` (sha256 signing key) to webhook endpoints
+
 ## [0.10.34] - 2024-09-25
+
+### Added
 
 - Webhook endpoints endpoints
 
