@@ -180,6 +180,43 @@ class ScopesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get analysis for a scope
+     * Get analysis for a scope
+     */
+    getScopeAnalysisRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling getScopeAnalysis.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/scopes/{scope_id}/analysis`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get analysis for a scope
+     * Get analysis for a scope
+     */
+    getScopeAnalysis(scopeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getScopeAnalysisRaw({ scopeId: scopeId });
+            return yield response.value();
+        });
+    }
+    /**
      * Retrieve all datasets associated with a scope. For example, if your scope has population_cohorts, you built those cohorts using data from one of your datasets. This endpoint gets all such datasets. This can be used with referenced targets, to figure out which source tables the target can reference.
      * Retrieve all datasets associated with a scope
      */

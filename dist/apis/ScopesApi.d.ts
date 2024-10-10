@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeMergePatch, ScopePost, Target } from '../models';
+import { ArchiveConfig, Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeAnalysis, ScopeMergePatch, ScopePost, Target } from '../models';
 export interface ArchiveScopeRequest {
     scopeId: string;
     archiveConfig: ArchiveConfig;
@@ -22,6 +22,9 @@ export interface DeleteScopeRequest {
     scopeId: string;
 }
 export interface GetScopeRequest {
+    scopeId: string;
+}
+export interface GetScopeAnalysisRequest {
     scopeId: string;
 }
 export interface GetScopeDatasetsRequest {
@@ -98,6 +101,16 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Retrieve a scope
      */
     getScope(scopeId: string): Promise<Scope>;
+    /**
+     * Get analysis for a scope
+     * Get analysis for a scope
+     */
+    private getScopeAnalysisRaw;
+    /**
+     * Get analysis for a scope
+     * Get analysis for a scope
+     */
+    getScopeAnalysis(scopeId: string): Promise<ScopeAnalysis>;
     /**
      * Retrieve all datasets associated with a scope. For example, if your scope has population_cohorts, you built those cohorts using data from one of your datasets. This endpoint gets all such datasets. This can be used with referenced targets, to figure out which source tables the target can reference.
      * Retrieve all datasets associated with a scope

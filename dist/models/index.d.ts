@@ -15453,6 +15453,75 @@ export interface Scope {
     updated_at: string;
 }
 /**
+ * TODO
+ * @export
+ * @interface ScopeAnalysis
+ */
+export interface ScopeAnalysis {
+    /**
+     *
+     * @type {Array<ScopeAnalysisPayloadResource>}
+     * @memberof ScopeAnalysis
+     */
+    outcomes?: Array<ScopeAnalysisPayloadResource>;
+    /**
+     *
+     * @type {Array<ScopeAnalysisPayloadResource>}
+     * @memberof ScopeAnalysis
+     */
+    recommenders?: Array<ScopeAnalysisPayloadResource>;
+}
+/**
+ *
+ * @export
+ * @interface ScopeAnalysisPayloadResource
+ */
+export interface ScopeAnalysisPayloadResource {
+    /**
+     *
+     * @type {string}
+     * @memberof ScopeAnalysisPayloadResource
+     */
+    id: string;
+    /**
+     *
+     * @type {Array<ScopeAnalysisProbabilityDistributionDatum>}
+     * @memberof ScopeAnalysisPayloadResource
+     */
+    probability_distribution: Array<ScopeAnalysisProbabilityDistributionDatum>;
+}
+/**
+ * Each probability distribution is a 100-element array, with each value representing the number of inividuals (or in the case of recommender, recommendations) falling within that distribution bin, both the scope and the original objective's eligible class.
+ * @export
+ * @interface ScopeAnalysisProbabilityDistributionDatum
+ */
+export interface ScopeAnalysisProbabilityDistributionDatum {
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    bin_index: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    bin_mid_point: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    eligible: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    scope: number;
+}
+/**
  * Metadata about the columns in this scope. Useful for advanced target configuration.
  * @export
  * @interface ScopeColumns
