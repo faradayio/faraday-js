@@ -22,6 +22,7 @@ import {
     PersonaSet,
     Recommender,
     Scope,
+    ScopeAnalysis,
     ScopeMergePatch,
     ScopePost,
     Target,
@@ -41,6 +42,10 @@ export interface DeleteScopeRequest {
 }
 
 export interface GetScopeRequest {
+    scopeId: string;
+}
+
+export interface GetScopeAnalysisRequest {
     scopeId: string;
 }
 
@@ -254,6 +259,46 @@ export class ScopesApi extends runtime.BaseAPI {
      */
     async getScope(scopeId: string, ): Promise<Scope> {
         const response = await this.getScopeRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get analysis for a scope
+     * Get analysis for a scope
+     */
+    private async getScopeAnalysisRaw(requestParameters: GetScopeAnalysisRequest, ): Promise<runtime.ApiResponse<ScopeAnalysis>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeAnalysis.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/analysis`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get analysis for a scope
+     * Get analysis for a scope
+     */
+    async getScopeAnalysis(scopeId: string, ): Promise<ScopeAnalysis> {
+        const response = await this.getScopeAnalysisRaw({ scopeId: scopeId }, );
         return await response.value();
     }
 
