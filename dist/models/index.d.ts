@@ -16153,13 +16153,13 @@ export interface StreamEventContributionByDataset {
      * @type {string}
      * @memberof StreamEventContributionByDataset
      */
-    newest_date: string;
+    newest_date?: string;
     /**
      *
      * @type {string}
      * @memberof StreamEventContributionByDataset
      */
-    oldest_date: string;
+    oldest_date?: string;
 }
 /**
  *
