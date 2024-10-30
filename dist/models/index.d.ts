@@ -715,7 +715,7 @@ export interface Cohort {
      */
     place_conditions?: Array<CohortPlaceCondition>;
     /**
-     * Count of the population.
+     * Count of unique individuals.
      * @type {number}
      * @memberof Cohort
      */
@@ -726,6 +726,12 @@ export interface Cohort {
      * @memberof Cohort
      */
     recency?: Recency;
+    /**
+     * Count of unique residences.
+     * @type {number}
+     * @memberof Cohort
+     */
+    residence_count?: number;
     /**
      * The type of this resource.
      * @type {string}
@@ -795,6 +801,18 @@ export interface CohortAnalysisMembership {
      * @memberof CohortAnalysisMembership
      */
     months: Array<CohortAnalysisMembershipDatum>;
+    /**
+     * The total unique members within the cohort.
+     * @type {number}
+     * @memberof CohortAnalysisMembership
+     */
+    population_count?: number;
+    /**
+     * The total unique residences within the cohort.
+     * @type {number}
+     * @memberof CohortAnalysisMembership
+     */
+    residence_count?: number;
     /**
      *
      * @type {Array<CohortAnalysisMembershipDatum>}
