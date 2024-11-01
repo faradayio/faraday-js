@@ -12065,6 +12065,15 @@ export interface LookupApiIdentitySets {
     state?: string;
 }
 /**
+ * The identity provider used to obtain a match with the requested identity.
+ * @export
+ * @enum {string}
+ */
+export enum LookupIdentityProvider {
+    Fig = 'fig',
+    MatchBoost = 'match_boost'
+}
+/**
  * The type of match that was found for the lookup request.
  * @export
  * @enum {string}
@@ -17120,6 +17129,12 @@ export interface TargetLookupResponse {
      * @memberof TargetLookupResponse
      */
     error?: string;
+    /**
+     * 
+     * @type {LookupIdentityProvider}
+     * @memberof TargetLookupResponse
+     */
+    identity_provider?: LookupIdentityProvider;
     /**
      * 
      * @type {LookupApiIdentitySets}
