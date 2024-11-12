@@ -59,6 +59,7 @@ var DataMapColumnFormat;
     DataMapColumnFormat["ListSemicolonSeparated"] = "list_semicolon_separated";
     DataMapColumnFormat["ListSingleValue"] = "list_single_value";
     DataMapColumnFormat["StaticDateIso8601"] = "static_date_iso8601";
+    DataMapColumnFormat["ZeroPaddedInteger"] = "zero_padded_integer";
 })(DataMapColumnFormat = exports.DataMapColumnFormat || (exports.DataMapColumnFormat = {}));
 /**
 * @export

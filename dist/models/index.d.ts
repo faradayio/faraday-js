@@ -7853,7 +7853,8 @@ export declare enum DataMapColumnFormat {
     ListCommaSeparated = "list_comma_separated",
     ListSemicolonSeparated = "list_semicolon_separated",
     ListSingleValue = "list_single_value",
-    StaticDateIso8601 = "static_date_iso8601"
+    StaticDateIso8601 = "static_date_iso8601",
+    ZeroPaddedInteger = "zero_padded_integer"
 }
 /**
  *
@@ -13801,32 +13802,7 @@ export interface OutcomePut {
  *
  * A `data_map` object can have any keys, but it is recommended to include the reserved `datetime` key as this will improve modeling.
  *
- * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`, which can be one of:
- *   * `currency_cents`
- *   * `currency_dollars`
- *   * `mm_dd_yy_slash`
- *   * `mm_dd_yyyy_slash`
- *   * `mm_dd_yy_dash`
- *   * `mm_dd_yyyy_dash`
- *   * `yyyy_mm_dd_slash`
- *   * `yy_mm_dd_slash`
- *   * `yyyy_mm_dd_dash`
- *   * `yy_mm_dd_dash`
- *   * `yyyymmdd`
- *   * `yyyymm`
- *   * `dd_mm_yyyy_slash`
- *   * `dd_mm_yy_slash`
- *   * `dd_mm_yyyy_dash`
- *   * `dd_mm_yy_dash`
- *   * `list_comma_separated`
- *   * `list_semicolon_separated`
- *   * `list_single_value`
- *   * `static_date_iso8601`
- *   * `date_iso8601` (deprecated)
- *   * `date_month_day_fullyear` (deprecated)
- *   * `date_month_day_shortyear` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes_seconds` (deprecated)
+ * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`.
  *
  * If no format is provided, the dataset type will be retained (data uploaded through csv are text by default).
  *
@@ -13868,32 +13844,7 @@ export interface OutputToStreams {
  *
  * A `data_map` object can have any keys, but it is recommended to include the reserved `datetime` key as this will improve modeling.
  *
- * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`, which can be one of:
- *   * `currency_cents`
- *   * `currency_dollars`
- *   * `mm_dd_yy_slash`
- *   * `mm_dd_yyyy_slash`
- *   * `mm_dd_yy_dash`
- *   * `mm_dd_yyyy_dash`
- *   * `yyyy_mm_dd_slash`
- *   * `yy_mm_dd_slash`
- *   * `yyyy_mm_dd_dash`
- *   * `yy_mm_dd_dash`
- *   * `yyyymmdd`
- *   * `yyyymm`
- *   * `dd_mm_yyyy_slash`
- *   * `dd_mm_yy_slash`
- *   * `dd_mm_yyyy_dash`
- *   * `dd_mm_yy_dash`
- *   * `list_comma_separated`
- *   * `list_semicolon_separated`
- *   * `list_single_value`
- *   * `static_date_iso8601`
- *   * `date_iso8601` (deprecated)
- *   * `date_month_day_fullyear` (deprecated)
- *   * `date_month_day_shortyear` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes_seconds` (deprecated)
+ * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`.
  *
  * If no format is provided, the dataset type will be retained (data uploaded through csv are text by default).
  *
@@ -13935,32 +13886,7 @@ export interface OutputToStreamsMergePatch {
  *
  * A `data_map` object can have any keys, but it is recommended to include the reserved `datetime` key as this will improve modeling.
  *
- * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`, which can be one of:
- *   * `currency_cents`
- *   * `currency_dollars`
- *   * `mm_dd_yy_slash`
- *   * `mm_dd_yyyy_slash`
- *   * `mm_dd_yy_dash`
- *   * `mm_dd_yyyy_dash`
- *   * `yyyy_mm_dd_slash`
- *   * `yy_mm_dd_slash`
- *   * `yyyy_mm_dd_dash`
- *   * `yy_mm_dd_dash`
- *   * `yyyymmdd`
- *   * `yyyymm`
- *   * `dd_mm_yyyy_slash`
- *   * `dd_mm_yy_slash`
- *   * `dd_mm_yyyy_dash`
- *   * `dd_mm_yy_dash`
- *   * `list_comma_separated`
- *   * `list_semicolon_separated`
- *   * `list_single_value`
- *   * `static_date_iso8601`
- *   * `date_iso8601` (deprecated)
- *   * `date_month_day_fullyear` (deprecated)
- *   * `date_month_day_shortyear` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes_seconds` (deprecated)
+ * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`.
  *
  * If no format is provided, the dataset type will be retained (data uploaded through csv are text by default).
  *
@@ -14002,32 +13928,7 @@ export interface OutputToStreamsPost {
  *
  * A `data_map` object can have any keys, but it is recommended to include the reserved `datetime` key as this will improve modeling.
  *
- * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`, which can be one of:
- *   * `currency_cents`
- *   * `currency_dollars`
- *   * `mm_dd_yy_slash`
- *   * `mm_dd_yyyy_slash`
- *   * `mm_dd_yy_dash`
- *   * `mm_dd_yyyy_dash`
- *   * `yyyy_mm_dd_slash`
- *   * `yy_mm_dd_slash`
- *   * `yyyy_mm_dd_dash`
- *   * `yy_mm_dd_dash`
- *   * `yyyymmdd`
- *   * `yyyymm`
- *   * `dd_mm_yyyy_slash`
- *   * `dd_mm_yy_slash`
- *   * `dd_mm_yyyy_dash`
- *   * `dd_mm_yy_dash`
- *   * `list_comma_separated`
- *   * `list_semicolon_separated`
- *   * `list_single_value`
- *   * `static_date_iso8601`
- *   * `date_iso8601` (deprecated)
- *   * `date_month_day_fullyear` (deprecated)
- *   * `date_month_day_shortyear` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes` (deprecated)
- *   * `date_month_day_fullyear_hours_minutes_seconds` (deprecated)
+ * Each key of the `data_map` object must specificy at mimumum a `column_name` (source column) and optionally a `format`.
  *
  * If no format is provided, the dataset type will be retained (data uploaded through csv are text by default).
  *
