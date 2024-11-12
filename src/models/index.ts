@@ -14164,11 +14164,23 @@ export enum PrimitiveDataType {
  */
 export interface Recency {
     /**
+     * Event occurred on or before this date
+     * @type {string}
+     * @memberof Recency
+     */
+    max_date?: string;
+    /**
      * Event must have occurred no more than N days ago
      * @type {number}
      * @memberof Recency
      */
     max_days?: number;
+    /**
+     * Event occurred on or after this date
+     * @type {string}
+     * @memberof Recency
+     */
+    min_date?: string;
     /**
      * Event must have occurred at least N days ago
      * @type {number}
@@ -14191,11 +14203,23 @@ export interface Recency {
  */
 export interface RecencyMergePatch {
     /**
+     * Event occurred on or before this date
+     * @type {string}
+     * @memberof RecencyMergePatch
+     */
+    max_date?: string | null;
+    /**
      * Event must have occurred no more than N days ago
      * @type {number}
      * @memberof RecencyMergePatch
      */
     max_days?: number | null;
+    /**
+     * Event occurred on or after this date
+     * @type {string}
+     * @memberof RecencyMergePatch
+     */
+    min_date?: string | null;
     /**
      * Event must have occurred at least N days ago
      * @type {number}
@@ -14227,11 +14251,23 @@ export enum RecencyOccurrence {
  */
 export interface RecencyPost {
     /**
+     * Event occurred on or before this date
+     * @type {string}
+     * @memberof RecencyPost
+     */
+    max_date?: string;
+    /**
      * Event must have occurred no more than N days ago
      * @type {number}
      * @memberof RecencyPost
      */
     max_days?: number;
+    /**
+     * Event occurred on or after this date
+     * @type {string}
+     * @memberof RecencyPost
+     */
+    min_date?: string;
     /**
      * Event must have occurred at least N days ago
      * @type {number}
@@ -14254,11 +14290,23 @@ export interface RecencyPost {
  */
 export interface RecencyPut {
     /**
+     * Event occurred on or before this date
+     * @type {string}
+     * @memberof RecencyPut
+     */
+    max_date?: string;
+    /**
      * Event must have occurred no more than N days ago
      * @type {number}
      * @memberof RecencyPut
      */
     max_days?: number;
+    /**
+     * Event occurred on or after this date
+     * @type {string}
+     * @memberof RecencyPut
+     */
+    min_date?: string;
     /**
      * Event must have occurred at least N days ago
      * @type {number}
