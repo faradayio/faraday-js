@@ -17729,6 +17729,12 @@ export type TargetModesPut = { mode: 'aggregated' } & TargetModesAggregatedPut |
  */
 export interface TargetModesReferenced {
     /**
+     * 
+     * @type {TargetReferencedIncludeIdentifiers}
+     * @memberof TargetModesReferenced
+     */
+    include_identifiers?: TargetReferencedIncludeIdentifiers;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesReferenced
@@ -17762,6 +17768,12 @@ export interface TargetModesReferenced {
  * @interface TargetModesReferencedMergePatch
  */
 export interface TargetModesReferencedMergePatch {
+    /**
+     * 
+     * @type {TargetReferencedIncludeIdentifiers}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    include_identifiers?: TargetReferencedIncludeIdentifiers | null;
     /**
      * The replication mode
      * @type {string}
@@ -17797,6 +17809,12 @@ export interface TargetModesReferencedMergePatch {
  */
 export interface TargetModesReferencedPost {
     /**
+     * 
+     * @type {TargetReferencedIncludeIdentifiers}
+     * @memberof TargetModesReferencedPost
+     */
+    include_identifiers?: TargetReferencedIncludeIdentifiers;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesReferencedPost
@@ -17830,6 +17848,12 @@ export interface TargetModesReferencedPost {
  * @interface TargetModesReferencedPut
  */
 export interface TargetModesReferencedPut {
+    /**
+     * 
+     * @type {TargetReferencedIncludeIdentifiers}
+     * @memberof TargetModesReferencedPut
+     */
+    include_identifiers?: TargetReferencedIncludeIdentifiers;
     /**
      * The replication mode
      * @type {string}
@@ -21002,6 +21026,16 @@ export interface TargetPut {
      * @memberof TargetPut
      */
     representation: TargetModesPut;
+}
+/**
+ * The identity column to include in this referenced target.
+ * To use this feature, the account must have access to identified targets, and identity completion. 
+ * The faraday person/address ids are unique identifiers for each person/address in the target.
+ * The remaining columns contain the Personal Identifying Information (PII) of the individual or address with that id.
+ * @export
+ * @interface TargetReferencedIncludeIdentifiers
+ */
+export interface TargetReferencedIncludeIdentifiers extends Array<string> {
 }
 /**
  * 
