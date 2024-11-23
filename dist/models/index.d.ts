@@ -6904,7 +6904,7 @@ export interface ConnectionOptionsShopifyPut {
  */
 export interface ConnectionOptionsSnowflake {
     /**
-     * Snowflake account name. If provided, also provide organization name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake account name. If provided, also provide organization name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflake
      */
@@ -6916,13 +6916,13 @@ export interface ConnectionOptionsSnowflake {
      */
     database: string;
     /**
-     * Not needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
+     * NOT needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
      * @type {string}
      * @memberof ConnectionOptionsSnowflake
      */
     legacy_account_locator?: string;
     /**
-     * Snowflake organization name. If provided, also provide account name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake organization name. If provided, also provide account name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflake
      */
@@ -6967,7 +6967,7 @@ export interface ConnectionOptionsSnowflake {
  */
 export interface ConnectionOptionsSnowflakeMergePatch {
     /**
-     * Snowflake account name. If provided, also provide organization name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake account name. If provided, also provide organization name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
@@ -6979,13 +6979,13 @@ export interface ConnectionOptionsSnowflakeMergePatch {
      */
     database?: string;
     /**
-     * Not needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
+     * NOT needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
     legacy_account_locator?: string | null;
     /**
-     * Snowflake organization name. If provided, also provide account name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake organization name. If provided, also provide account name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
@@ -7030,7 +7030,7 @@ export interface ConnectionOptionsSnowflakeMergePatch {
  */
 export interface ConnectionOptionsSnowflakePost {
     /**
-     * Snowflake account name. If provided, also provide organization name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake account name. If provided, also provide organization name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePost
      */
@@ -7042,13 +7042,13 @@ export interface ConnectionOptionsSnowflakePost {
      */
     database: string;
     /**
-     * Not needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
+     * NOT needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePost
      */
     legacy_account_locator?: string;
     /**
-     * Snowflake organization name. If provided, also provide account name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake organization name. If provided, also provide account name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePost
      */
@@ -7093,7 +7093,7 @@ export interface ConnectionOptionsSnowflakePost {
  */
 export interface ConnectionOptionsSnowflakePut {
     /**
-     * Snowflake account name. If provided, also provide organization name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake account name. If provided, also provide organization name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
@@ -7105,13 +7105,13 @@ export interface ConnectionOptionsSnowflakePut {
      */
     database: string;
     /**
-     * Not needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
+     * NOT needed if organization name is provided. If your Snowflake account existed before the Organizations feature was enabled, the Format 2 (Legacy): Account Locator in a Region is used as the account name.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
     legacy_account_locator?: string;
     /**
-     * Snowflake organization name. If provided, also provide account name. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
+     * Snowflake organization name. If provided, also provide account name. ORGNAME-ACCOUNTNAME.snowflakecomputing.com. Preferred over legacy account locator. https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#format-1-preferred-account-name-in-your-organization.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
