@@ -23,6 +23,7 @@ import {
     Recommender,
     Scope,
     ScopeAnalysis,
+    ScopeEfficacy,
     ScopeMergePatch,
     ScopePost,
     Target,
@@ -50,6 +51,10 @@ export interface GetScopeAnalysisRequest {
 }
 
 export interface GetScopeDatasetsRequest {
+    scopeId: string;
+}
+
+export interface GetScopeEfficacyRequest {
     scopeId: string;
 }
 
@@ -339,6 +344,46 @@ export class ScopesApi extends runtime.BaseAPI {
      */
     async getScopeDatasets(scopeId: string, ): Promise<Array<Dataset>> {
         const response = await this.getScopeDatasetsRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get efficacy for a scope
+     * Get efficacy for a scope
+     */
+    private async getScopeEfficacyRaw(requestParameters: GetScopeEfficacyRequest, ): Promise<runtime.ApiResponse<ScopeEfficacy>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeEfficacy.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/efficacy`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get efficacy for a scope
+     * Get efficacy for a scope
+     */
+    async getScopeEfficacy(scopeId: string, ): Promise<ScopeEfficacy> {
+        const response = await this.getScopeEfficacyRaw({ scopeId: scopeId }, );
         return await response.value();
     }
 

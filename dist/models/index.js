@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
 /**
 * @export
 * @enum {string}
@@ -335,6 +335,16 @@ var ResourceType;
     ResourceType["Traits"] = "traits";
     ResourceType["Places"] = "places";
 })(ResourceType = exports.ResourceType || (exports.ResourceType = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ScopeEfficacyOutcomeMonthPerformedEnum;
+(function (ScopeEfficacyOutcomeMonthPerformedEnum) {
+    ScopeEfficacyOutcomeMonthPerformedEnum["Equal"] = "equal";
+    ScopeEfficacyOutcomeMonthPerformedEnum["GreaterThan"] = "greater_than";
+    ScopeEfficacyOutcomeMonthPerformedEnum["LessThan"] = "less_than";
+})(ScopeEfficacyOutcomeMonthPerformedEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum || (exports.ScopeEfficacyOutcomeMonthPerformedEnum = {}));
 /**
  * Available aggregation levels for data exported in `aggregated` targets.
  * @export
