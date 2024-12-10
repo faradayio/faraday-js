@@ -10,6 +10,11 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.41] - 2024-12-09
+
+### Added
+
+- Add `all_individuals` and `unrecognized_individuals` to `GET /outcomes/{outcome_id}/analysis` response
 
 ## [0.10.40] - 2024-10-31
 

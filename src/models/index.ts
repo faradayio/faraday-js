@@ -12752,7 +12752,19 @@ export interface OutcomeAnalysisOverallFeatures {
      * @type {Array<OutcomeAnalysisFeature>}
      * @memberof OutcomeAnalysisOverallFeatures
      */
+    all_individuals?: Array<OutcomeAnalysisFeature>;
+    /**
+     * 
+     * @type {Array<OutcomeAnalysisFeature>}
+     * @memberof OutcomeAnalysisOverallFeatures
+     */
     recognized_individuals: Array<OutcomeAnalysisFeature>;
+    /**
+     * 
+     * @type {Array<OutcomeAnalysisFeature>}
+     * @memberof OutcomeAnalysisOverallFeatures
+     */
+    unrecognized_individuals?: Array<OutcomeAnalysisFeature>;
 }
 /**
  * 
@@ -12765,7 +12777,19 @@ export interface OutcomeAnalysisOverallPerformance {
      * @type {OutcomePerformanceModel}
      * @memberof OutcomeAnalysisOverallPerformance
      */
+    all_individuals?: OutcomePerformanceModel;
+    /**
+     * 
+     * @type {OutcomePerformanceModel}
+     * @memberof OutcomeAnalysisOverallPerformance
+     */
     recognized_individuals: OutcomePerformanceModel;
+    /**
+     * 
+     * @type {OutcomePerformanceModel}
+     * @memberof OutcomeAnalysisOverallPerformance
+     */
+    unrecognized_individuals?: OutcomePerformanceModel;
 }
 /**
  * 
@@ -12778,7 +12802,19 @@ export interface OutcomeAnalysisTenureFeatures {
      * @type {Array<OutcomeAnalysisTenureFeatures>}
      * @memberof OutcomeAnalysisTenureFeatures
      */
+    all_individuals?: Array<OutcomeAnalysisTenureFeatures>;
+    /**
+     * 
+     * @type {Array<OutcomeAnalysisTenureFeatures>}
+     * @memberof OutcomeAnalysisTenureFeatures
+     */
     recognized_individuals: Array<OutcomeAnalysisTenureFeatures>;
+    /**
+     * 
+     * @type {Array<OutcomeAnalysisTenureFeatures>}
+     * @memberof OutcomeAnalysisTenureFeatures
+     */
+    unrecognized_individuals?: Array<OutcomeAnalysisTenureFeatures>;
 }
 /**
  * The performance metrics by data source, broken down further by tenure ranges, for an outcome.
@@ -12791,7 +12827,19 @@ export interface OutcomeAnalysisTenurePerformances {
      * @type {Array<OutcomePerformanceModel>}
      * @memberof OutcomeAnalysisTenurePerformances
      */
+    all_individuals?: Array<OutcomePerformanceModel>;
+    /**
+     * 
+     * @type {Array<OutcomePerformanceModel>}
+     * @memberof OutcomeAnalysisTenurePerformances
+     */
     recognized_individuals: Array<OutcomePerformanceModel>;
+    /**
+     * 
+     * @type {Array<OutcomePerformanceModel>}
+     * @memberof OutcomeAnalysisTenurePerformances
+     */
+    unrecognized_individuals?: Array<OutcomePerformanceModel>;
 }
 /**
  * The strategy to be applied to gender and/or age to mitigate or reverse the bias found in the attainment population.
