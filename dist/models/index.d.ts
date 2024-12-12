@@ -9468,7 +9468,7 @@ export interface DatasetOptionsGcpGcsCsv {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsGcpGcsCsv
      */
@@ -9513,7 +9513,7 @@ export interface DatasetOptionsGcpGcsCsvMergePatch {
      */
     prefix?: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsGcpGcsCsvMergePatch
      */
@@ -9558,7 +9558,7 @@ export interface DatasetOptionsGcpGcsCsvPost {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsGcpGcsCsvPost
      */
@@ -9603,7 +9603,7 @@ export interface DatasetOptionsGcpGcsCsvPut {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsGcpGcsCsvPut
      */
@@ -9640,7 +9640,7 @@ export interface DatasetOptionsHostedCsv {
      */
     header_row?: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsHostedCsv
      */
@@ -9686,7 +9686,7 @@ export interface DatasetOptionsHostedCsvMergePatch {
      */
     header_row?: string | null;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsHostedCsvMergePatch
      */
@@ -9732,7 +9732,7 @@ export interface DatasetOptionsHostedCsvPost {
      */
     header_row?: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsHostedCsvPost
      */
@@ -9778,7 +9778,7 @@ export interface DatasetOptionsHostedCsvPut {
      */
     header_row?: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsHostedCsvPut
      */
@@ -10629,7 +10629,7 @@ export interface DatasetOptionsS3Csv {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsS3Csv
      */
@@ -10674,7 +10674,7 @@ export interface DatasetOptionsS3CsvMergePatch {
      */
     prefix?: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsS3CsvMergePatch
      */
@@ -10719,7 +10719,7 @@ export interface DatasetOptionsS3CsvPost {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsS3CsvPost
      */
@@ -10764,7 +10764,7 @@ export interface DatasetOptionsS3CsvPut {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsS3CsvPut
      */
@@ -10947,7 +10947,7 @@ export interface DatasetOptionsSftp {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsSftp
      */
@@ -10992,7 +10992,7 @@ export interface DatasetOptionsSftpMergePatch {
      */
     prefix?: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsSftpMergePatch
      */
@@ -11037,7 +11037,7 @@ export interface DatasetOptionsSftpPost {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsSftpPost
      */
@@ -11082,7 +11082,7 @@ export interface DatasetOptionsSftpPut {
      */
     prefix: string;
     /**
-     * Whether to replace all data with only the data in the latest file upon every ingestion. If set to false, each successive upload is merged into the dataset - for example, you have files for 'january_orders,' 'february_orders,' etc, and you want them all included in an 'orders' dataset. Setting this option to true allows you to completely replace the existing dataset with the latest file - for example, once a month you copy your 'subscribers' table from your database into your subscribers dataset at Faraday.
+     * Defaults to false, which means all files are merged into the dataset. If set to true, every time the dataset is ingested, delete all previous data and replace it with only the data in the latest file. This setting only guarantees that previous data is deleted and older files are not processed; however this process may run more than once. Therefore you cannot use this functionality to ensure "exactly once' delivery of a downstream target.
      * @type {boolean}
      * @memberof DatasetOptionsSftpPut
      */
@@ -19183,7 +19183,7 @@ export interface TargetOptionsBigQuery {
      */
     type: string;
     /**
-     * Currently only supported on Referenced targets for GCP BigQuery, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
+     * Currently only supported on Referenced targets on GCP BigQuery and Snowflake, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
      * @type {boolean}
      * @memberof TargetOptionsBigQuery
      */
@@ -19216,7 +19216,7 @@ export interface TargetOptionsBigQueryMergePatch {
      */
     type: string;
     /**
-     * Currently only supported on Referenced targets for GCP BigQuery, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
+     * Currently only supported on Referenced targets on GCP BigQuery and Snowflake, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
      * @type {boolean}
      * @memberof TargetOptionsBigQueryMergePatch
      */
@@ -19249,7 +19249,7 @@ export interface TargetOptionsBigQueryPost {
      */
     type: string;
     /**
-     * Currently only supported on Referenced targets for GCP BigQuery, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
+     * Currently only supported on Referenced targets on GCP BigQuery and Snowflake, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
      * @type {boolean}
      * @memberof TargetOptionsBigQueryPost
      */
@@ -19282,7 +19282,7 @@ export interface TargetOptionsBigQueryPut {
      */
     type: string;
     /**
-     * Currently only supported on Referenced targets for GCP BigQuery, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
+     * Currently only supported on Referenced targets on GCP BigQuery and Snowflake, upsert allows Faraday to write multiple times to the same table from different Targets. It will use the reference_key_column on the referenced Dataset.
      * @type {boolean}
      * @memberof TargetOptionsBigQueryPut
      */
