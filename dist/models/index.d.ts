@@ -15528,7 +15528,7 @@ export interface Scope {
     updated_at: string;
 }
 /**
- * TODO
+ *
  * @export
  * @interface ScopeAnalysis
  */
@@ -15658,6 +15658,101 @@ export interface ScopeColumnsColumnsForMode {
  * @interface ScopeColumnsForMode
  */
 export interface ScopeColumnsForMode extends Array<TargetStructureTransformation> {
+}
+/**
+ *
+ * The efficacy report allows you to measure the performance of Faraday’s predictions in comparison with real conversions. This report can help you assess whether our predictions are performing as expected, and if not, can indicate that something should be looked into.
+ *
+ * In order for an efficacy report to be effective, the pipeline and objective you select should be built using data from an active connection to your data source. Without an active connection, Faraday will be unable to communicate with your data to verify outcome attainment or recommender events over time, which will result in an incomplete report.
+ *
+ * This endpoint’s data is available only for scopes with payload outcomes that include date-based eligible and attainment cohorts. The data is generated monthly, starting from the first month after the scope is created, and is rebuilt on the first day of each month.
+ * @export
+ * @interface ScopeEfficacy
+ */
+export interface ScopeEfficacy {
+    /**
+     *
+     * @type {Array<ScopeEfficacyOutcome>}
+     * @memberof ScopeEfficacy
+     */
+    outcomes?: Array<ScopeEfficacyOutcome>;
+}
+/**
+ * The report breaks down the outcome’s attainment by month and limited to the most recent 12 month window.
+ * @export
+ * @interface ScopeEfficacyOutcome
+ */
+export interface ScopeEfficacyOutcome {
+    /**
+     * The ID of the outcome in the scope payload.
+     * @type {string}
+     * @memberof ScopeEfficacyOutcome
+     */
+    id: string;
+    /**
+     *
+     * @type {Array<ScopeEfficacyOutcomeMonth>}
+     * @memberof ScopeEfficacyOutcome
+     */
+    months: Array<ScopeEfficacyOutcomeMonth>;
+}
+/**
+ *
+ * @export
+ * @interface ScopeEfficacyOutcomeMonth
+ */
+export interface ScopeEfficacyOutcomeMonth {
+    /**
+     * Calculated attainment window for a new outcome. This is only possible for outcomes which have a dated attainment & eligible cohort. The attainment window is the 80th percentile of the weighted time between when a person becomes eligible and when they attain. We weight scores by (1 / <num quarters ago attainment occurred>) so that more recent attainments are more heavily weighted.
+     * @type {number}
+     * @memberof ScopeEfficacyOutcomeMonth
+     */
+    attainment_window: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeEfficacyOutcomeMonth
+     */
+    gross_attainments: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeEfficacyOutcomeMonth
+     */
+    month: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeEfficacyOutcomeMonth
+     */
+    net_attainments: number;
+    /**
+     * Breaks down the outcome’s net attainment by decile which represent groups of individuals based on their predicted scores, for example, the top decile are the scorers that fall in the top 10% of scores.
+     * @type {Array<number>}
+     * @memberof ScopeEfficacyOutcomeMonth
+     */
+    net_attainments_by_decile: Array<number>;
+    /**
+     * How the distribution performed against the outcome's performance reporting.
+     * @type {string}
+     * @memberof ScopeEfficacyOutcomeMonth
+     */
+    performed: ScopeEfficacyOutcomeMonthPerformedEnum;
+    /**
+     *
+     * @type {number}
+     * @memberof ScopeEfficacyOutcomeMonth
+     */
+    year: number;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ScopeEfficacyOutcomeMonthPerformedEnum {
+    Equal = "equal",
+    GreaterThan = "greater_than",
+    LessThan = "less_than"
 }
 /**
  * (Parameters used to PATCH the `Scope` type.)
