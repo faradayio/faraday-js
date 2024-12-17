@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeAnalysis, ScopeMergePatch, ScopePost, Target } from '../models';
+import { ArchiveConfig, Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeAnalysis, ScopeEfficacy, ScopeMergePatch, ScopePost, Target } from '../models';
 export interface ArchiveScopeRequest {
     scopeId: string;
     archiveConfig: ArchiveConfig;
@@ -28,6 +28,9 @@ export interface GetScopeAnalysisRequest {
     scopeId: string;
 }
 export interface GetScopeDatasetsRequest {
+    scopeId: string;
+}
+export interface GetScopeEfficacyRequest {
     scopeId: string;
 }
 export interface GetScopePayloadCohortsRequest {
@@ -121,6 +124,16 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Retrieve all datasets associated with a scope
      */
     getScopeDatasets(scopeId: string): Promise<Array<Dataset>>;
+    /**
+     * Get efficacy for a scope
+     * Get efficacy for a scope
+     */
+    private getScopeEfficacyRaw;
+    /**
+     * Get efficacy for a scope
+     * Get efficacy for a scope
+     */
+    getScopeEfficacy(scopeId: string): Promise<ScopeEfficacy>;
     /**
      * Get payload cohorts for a scope
      * Get payload cohorts for a scope
