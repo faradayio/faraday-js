@@ -12857,6 +12857,12 @@ export interface Outcome {
      */
     predictors?: OutcomePredictors;
     /**
+     * An outcome in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof Outcome
+     */
+    preview?: boolean;
+    /**
      * URL of an HTML report containing information such as the objective of the model, performance, and important features.
      * @type {string}
      * @memberof Outcome
@@ -13488,6 +13494,12 @@ export interface OutcomeMergePatch {
      * @memberof OutcomeMergePatch
      */
     predictors?: OutcomePredictorsMergePatch | null;
+    /**
+     * An outcome in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof OutcomeMergePatch
+     */
+    preview?: boolean | null;
 }
 /**
  * The strategy to be applied to gender and/or age to mitigate or reverse the bias found in the attainment population.
@@ -13647,6 +13659,12 @@ export interface OutcomePost {
      * @memberof OutcomePost
      */
     predictors?: OutcomePredictorsPost;
+    /**
+     * An outcome in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof OutcomePost
+     */
+    preview?: boolean;
 }
 /**
  * Provides control over the features used during modeling to predict an outcome.
@@ -13821,6 +13839,12 @@ export interface OutcomePut {
      * @memberof OutcomePut
      */
     predictors?: OutcomePredictorsPut;
+    /**
+     * An outcome in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof OutcomePut
+     */
+    preview?: boolean;
 }
 /**
  * Describes how to transform the dataset into one or more streams.
@@ -14355,6 +14379,12 @@ export interface PersonaSet {
      */
     personas?: Array<Persona>;
     /**
+     * A persona set in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof PersonaSet
+     */
+    preview?: boolean;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof PersonaSet
@@ -14481,6 +14511,12 @@ export interface PersonaSetMergePatch {
      * @memberof PersonaSetMergePatch
      */
     number_of_clusters?: number | null;
+    /**
+     * A persona set in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof PersonaSetMergePatch
+     */
+    preview?: boolean | null;
 }
 /**
  * (Parameters used to POST a new value of the `PersonaSet` type.)
@@ -14526,6 +14562,12 @@ export interface PersonaSetPost {
      * @memberof PersonaSetPost
      */
     number_of_clusters?: number;
+    /**
+     * A persona set in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof PersonaSetPost
+     */
+    preview?: boolean;
 }
 /**
  * (Parameters used to PUT a value of the `PersonaSet` type.)
@@ -14559,6 +14601,12 @@ export interface PersonaSetPut {
      * @memberof PersonaSetPut
      */
     number_of_clusters?: number;
+    /**
+     * A persona set in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof PersonaSetPut
+     */
+    preview?: boolean;
 }
 /**
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
@@ -14929,6 +14977,12 @@ export interface Recommender {
      */
     name: string;
     /**
+     * A recommender in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof Recommender
+     */
+    preview?: boolean;
+    /**
      * URL of an HTML report containing information such as the objective of the model, performance, and important features.
      * @type {string}
      * @memberof Recommender
@@ -15206,6 +15260,12 @@ export interface RecommenderMergePatch {
      */
     name?: string;
     /**
+     * A recommender in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof RecommenderMergePatch
+     */
+    preview?: boolean | null;
+    /**
      * Name of the stream to use for recommendations
      * @type {string}
      * @memberof RecommenderMergePatch
@@ -15272,6 +15332,12 @@ export interface RecommenderPost {
      */
     name: string;
     /**
+     * A recommender in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof RecommenderPost
+     */
+    preview?: boolean;
+    /**
      * Name of the stream to use for recommendations
      * @type {string}
      * @memberof RecommenderPost
@@ -15300,6 +15366,12 @@ export interface RecommenderPut {
      * @memberof RecommenderPut
      */
     name: string;
+    /**
+     * A recommender in preview mode will not build until preview is turned off.
+     * @type {boolean}
+     * @memberof RecommenderPut
+     */
+    preview?: boolean;
     /**
      * Name of the stream to use for recommendations
      * @type {string}
