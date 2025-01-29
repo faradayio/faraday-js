@@ -12089,6 +12089,303 @@ export enum LookupMatchType {
     EmailOnly = 'email_only'
 }
 /**
+ * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
+ * 
+ * Market opportunity analysis reports are for customer acquisition pipelines only. Make sure your pipeline’s population to include represents your market, and that you’re not excluding your existing customers in the population to exclude.
+ * 
+ * This feature may not be available in all plans. Contact your account manager for more information.
+ * @export
+ * @interface MarketOpportunityAnalysis
+ */
+export interface MarketOpportunityAnalysis {
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    archived_at?: string;
+    /**
+     * When this resource was created.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    created_at: string;
+    /**
+     * URL to the Google Sheets spreadsheet of the market opportunity analysis. Available once the market opportunity analysis has been run. Permission to view the spreadsheet is granted to all users on the current account.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    google_sheets_url?: string;
+    /**
+     * URL to the Google Slides presentation of the market opportunity analysis. Available once the market opportunity analysis has been run. Permission to view the presentation is granted to all users on the current account.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    google_slides_url?: string;
+    /**
+     * A unique ID for this resource.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    id: string;
+    /**
+     * The last time this resource's input was read.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    last_read_input_at?: string;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    last_updated_config_at?: string;
+    /**
+     * The last time this resource successfully built.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    last_updated_output_at?: string;
+    /**
+     * Human-readable label for this market opportunity analysis
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    name: string;
+    /**
+     * Outcome must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    outcome_id: string;
+    /**
+     * 
+     * @type {MarketOpportunityAnalysisOverallReport}
+     * @memberof MarketOpportunityAnalysis
+     */
+    overall_report?: MarketOpportunityAnalysisOverallReport;
+    /**
+     * persona_id must belong to the persona_set_id chosen. Providing a persona_id will do further analysis on the persona, but is not required to generate results for the persona set as a whole.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    persona_id?: string;
+    /**
+     * Optionally select a persona set to analyze. Persona set must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    persona_set_id?: string;
+    /**
+     * The type of this resource.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    resource_type: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    scope_id: string;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof MarketOpportunityAnalysis
+     */
+    status: ResourceStatus;
+    /**
+     * When the status of this resource was last updated.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    status_changed_at?: string;
+    /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    status_error?: string;
+    /**
+     * When this resource was last updated.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    updated_at: string;
+}
+/**
+ * (Parameters used to PATCH the `MarketOpportunityAnalysis` type.)
+ * 
+ * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
+ * 
+ * Market opportunity analysis reports are for customer acquisition pipelines only. Make sure your pipeline’s population to include represents your market, and that you’re not excluding your existing customers in the population to exclude.
+ * 
+ * This feature may not be available in all plans. Contact your account manager for more information.
+ * @export
+ * @interface MarketOpportunityAnalysisMergePatch
+ */
+export interface MarketOpportunityAnalysisMergePatch {
+    /**
+     * Human-readable label for this market opportunity analysis
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    name?: string;
+    /**
+     * Outcome must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    outcome_id?: string;
+    /**
+     * persona_id must belong to the persona_set_id chosen. Providing a persona_id will do further analysis on the persona, but is not required to generate results for the persona set as a whole.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    persona_id?: string | null;
+    /**
+     * Optionally select a persona set to analyze. Persona set must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    persona_set_id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    scope_id?: string;
+}
+/**
+ * Summary over the latest report. Available once the market opportunity analysis has been run.
+ * @export
+ * @interface MarketOpportunityAnalysisOverallReport
+ */
+export interface MarketOpportunityAnalysisOverallReport {
+    /**
+     * 
+     * @type {number}
+     * @memberof MarketOpportunityAnalysisOverallReport
+     */
+    adjusted_in_population_attainers: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MarketOpportunityAnalysisOverallReport
+     */
+    average_total_value_per_in_population_attainer: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MarketOpportunityAnalysisOverallReport
+     */
+    average_value_per_in_population_attainment: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MarketOpportunityAnalysisOverallReport
+     */
+    in_population_remaining_attainment_value: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MarketOpportunityAnalysisOverallReport
+     */
+    in_population_remaining_likely_attainers: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MarketOpportunityAnalysisOverallReport
+     */
+    total_value_of_adjusted_in_population_attainment: number;
+}
+/**
+ * (Parameters used to POST a new value of the `MarketOpportunityAnalysis` type.)
+ * 
+ * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
+ * 
+ * Market opportunity analysis reports are for customer acquisition pipelines only. Make sure your pipeline’s population to include represents your market, and that you’re not excluding your existing customers in the population to exclude.
+ * 
+ * This feature may not be available in all plans. Contact your account manager for more information.
+ * @export
+ * @interface MarketOpportunityAnalysisPost
+ */
+export interface MarketOpportunityAnalysisPost {
+    /**
+     * Human-readable label for this market opportunity analysis
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    name: string;
+    /**
+     * Outcome must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    outcome_id: string;
+    /**
+     * persona_id must belong to the persona_set_id chosen. Providing a persona_id will do further analysis on the persona, but is not required to generate results for the persona set as a whole.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    persona_id?: string;
+    /**
+     * Optionally select a persona set to analyze. Persona set must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    persona_set_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    scope_id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `MarketOpportunityAnalysis` type.)
+ * 
+ * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
+ * 
+ * Market opportunity analysis reports are for customer acquisition pipelines only. Make sure your pipeline’s population to include represents your market, and that you’re not excluding your existing customers in the population to exclude.
+ * 
+ * This feature may not be available in all plans. Contact your account manager for more information.
+ * @export
+ * @interface MarketOpportunityAnalysisPut
+ */
+export interface MarketOpportunityAnalysisPut {
+    /**
+     * Human-readable label for this market opportunity analysis
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    name: string;
+    /**
+     * Outcome must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    outcome_id: string;
+    /**
+     * persona_id must belong to the persona_set_id chosen. Providing a persona_id will do further analysis on the persona, but is not required to generate results for the persona set as a whole.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    persona_id?: string;
+    /**
+     * Optionally select a persona set to analyze. Persona set must be in the scope payload.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    persona_set_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    scope_id: string;
+}
+/**
  * Information about an error.
  * @export
  * @interface ModelError
@@ -14918,18 +15215,19 @@ export enum ResourceStatus {
  * @enum {string}
  */
 export enum ResourceType {
+    Accounts = 'accounts',
     Cohorts = 'cohorts',
     Connections = 'connections',
     Datasets = 'datasets',
-    Accounts = 'accounts',
+    MarketOpportunityAnalyses = 'market_opportunity_analyses',
     Outcomes = 'outcomes',
     PersonaSets = 'persona_sets',
+    Places = 'places',
     Recommenders = 'recommenders',
     Scopes = 'scopes',
     Streams = 'streams',
     Targets = 'targets',
-    Traits = 'traits',
-    Places = 'places'
+    Traits = 'traits'
 }
 /**
  * Instructions on how to produce output data.

@@ -5,6 +5,7 @@ import { CohortsApi } from './CohortsApi';
 import { ConnectionsApi } from './ConnectionsApi';
 import { DatasetsApi } from './DatasetsApi';
 import { GraphApi } from './GraphApi';
+import { MarketOpportunityAnalysesApi } from './MarketOpportunityAnalysesApi';
 import { OutcomesApi } from './OutcomesApi';
 import { PersonaSetsApi } from './PersonaSetsApi';
 import { PlacesApi } from './PlacesApi';
@@ -24,6 +25,7 @@ export declare class FaradayClient {
     connections: ConnectionsApi;
     datasets: DatasetsApi;
     graph: GraphApi;
+    marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
     places: PlacesApi;
