@@ -322,18 +322,19 @@ var ResourceStatus;
  */
 var ResourceType;
 (function (ResourceType) {
+    ResourceType["Accounts"] = "accounts";
     ResourceType["Cohorts"] = "cohorts";
     ResourceType["Connections"] = "connections";
     ResourceType["Datasets"] = "datasets";
-    ResourceType["Accounts"] = "accounts";
+    ResourceType["MarketOpportunityAnalyses"] = "market_opportunity_analyses";
     ResourceType["Outcomes"] = "outcomes";
     ResourceType["PersonaSets"] = "persona_sets";
+    ResourceType["Places"] = "places";
     ResourceType["Recommenders"] = "recommenders";
     ResourceType["Scopes"] = "scopes";
     ResourceType["Streams"] = "streams";
     ResourceType["Targets"] = "targets";
     ResourceType["Traits"] = "traits";
-    ResourceType["Places"] = "places";
 })(ResourceType = exports.ResourceType || (exports.ResourceType = {}));
 /**
 * @export

@@ -9,6 +9,7 @@ src/apis/CohortsApi.ts
 src/apis/ConnectionsApi.ts
 src/apis/DatasetsApi.ts
 src/apis/GraphApi.ts
+src/apis/MarketOpportunityAnalysesApi.ts
 src/apis/OutcomesApi.ts
 src/apis/PersonaSetsApi.ts
 src/apis/PlacesApi.ts

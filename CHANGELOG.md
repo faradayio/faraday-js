@@ -10,6 +10,19 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.43] - 2025-01-16
+
+### Added
+
+- Added new endpoints for market opportunity analyses:
+  - `POST /market_opportunity_analyses`: Create a new market opportunity analysis.
+  - `GET /market_opportunity_analyses`: Get all market opportunity analyses.
+  - `GET /market_opportunity_analyses/{market_opportunity_analysis_id}`: Get a specific market opportunity analysis.
+  - `PATCH /market_opportunity_analyses/{market_opportunity_analysis_id}`: Update a specific market opportunity analysis.
+  - `DELETE /market_opportunity_analyses/{market_opportunity_analysis_id}`: Delete a specific market opportunity analysis.
+  - `POST /market_opportunity_analyses/{market_opportunity_analysis_id}/archive`: Archive a specific market opportunity analysis.
+  - `POST /market_opportunity_analyses/{market_opportunity_analysis_id}/unarchive`: Unarchive a specific market opportunity analysis.
+
 ## [0.10.42] - 2024-12-17
 
 ### Added
@@ -482,13 +495,8 @@ Until we reach API 1.0, the following special rules apply:
 ### Added
 
 - Target row_count limits now allow outcome_id to be optional.
-
-## [Unreleased]
-
 - Added secondary connections (e.g. Klaviyo). These are marked as "managed" and therefore do NOT get written into the API spec.
 - Added tags:string[] and blurb:string to ConnectionTypes. This is for the website only.
-
-## [0.4.15] - 2023-04-17
 
 ### Changed
 
