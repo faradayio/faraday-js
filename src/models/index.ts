@@ -12588,6 +12588,12 @@ export interface Outcome {
      */
     name: string;
     /**
+     * Defaults to auto, which enables dynamic modeling if possible. The other option is static, which disables dynamic modeling. Dynamic modeling considers chronology and uses advanced feature engineering whenever possible. You may want to disable dynamic prediction if chronology could confuse your use case, or if advised by Faraday staff.
+     * @type {string}
+     * @memberof Outcome
+     */
+    prediction_mode?: OutcomePredictionModeEnum;
+    /**
      * 
      * @type {OutcomePredictors}
      * @memberof Outcome
@@ -12641,6 +12647,15 @@ export interface Outcome {
      * @memberof Outcome
      */
     updated_at: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum OutcomePredictionModeEnum {
+    Auto = 'auto',
+    Static = 'static'
 }
 /**
  * Analysis metrics for an outcome. Includes model performance, bias, feature importances, etc.

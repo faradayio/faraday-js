@@ -10,6 +10,13 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.44] - 2025-02-03
+
+### Added
+
+- Allow users to create Outcomes, Recommenders, and Persona Sets in `preview` mode, which will cause them not to build immediately.
+- Add Outcomes `prediction_mode: auto | static`, which can be used to disable dynamic modeling. Defaults to true.
+
 ## [0.10.43] - 2025-01-16
 
 ### Added
