@@ -13243,6 +13243,12 @@ export interface OutcomeMergePatch {
      */
     name?: string;
     /**
+     * Defaults to auto, which enables dynamic modeling if possible. The other option is static, which disables dynamic modeling. Dynamic modeling considers chronology and uses advanced feature engineering whenever possible. You may want to disable dynamic prediction if chronology could confuse your use case, or if advised by Faraday staff.
+     * @type {string}
+     * @memberof OutcomeMergePatch
+     */
+    prediction_mode?: OutcomeMergePatchPredictionModeEnum;
+    /**
      * 
      * @type {OutcomePredictorsMergePatch}
      * @memberof OutcomeMergePatch
@@ -13254,6 +13260,15 @@ export interface OutcomeMergePatch {
      * @memberof OutcomeMergePatch
      */
     preview?: boolean | null;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum OutcomeMergePatchPredictionModeEnum {
+    Auto = 'auto',
+    Static = 'static'
 }
 /**
  * The strategy to be applied to gender and/or age to mitigate or reverse the bias found in the attainment population.
@@ -13408,6 +13423,12 @@ export interface OutcomePost {
      */
     name: string;
     /**
+     * Defaults to auto, which enables dynamic modeling if possible. The other option is static, which disables dynamic modeling. Dynamic modeling considers chronology and uses advanced feature engineering whenever possible. You may want to disable dynamic prediction if chronology could confuse your use case, or if advised by Faraday staff.
+     * @type {string}
+     * @memberof OutcomePost
+     */
+    prediction_mode?: OutcomePostPredictionModeEnum;
+    /**
      * 
      * @type {OutcomePredictorsPost}
      * @memberof OutcomePost
@@ -13419,6 +13440,15 @@ export interface OutcomePost {
      * @memberof OutcomePost
      */
     preview?: boolean;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum OutcomePostPredictionModeEnum {
+    Auto = 'auto',
+    Static = 'static'
 }
 /**
  * Provides control over the features used during modeling to predict an outcome.
@@ -13588,6 +13618,12 @@ export interface OutcomePut {
      */
     name: string;
     /**
+     * Defaults to auto, which enables dynamic modeling if possible. The other option is static, which disables dynamic modeling. Dynamic modeling considers chronology and uses advanced feature engineering whenever possible. You may want to disable dynamic prediction if chronology could confuse your use case, or if advised by Faraday staff.
+     * @type {string}
+     * @memberof OutcomePut
+     */
+    prediction_mode?: OutcomePutPredictionModeEnum;
+    /**
      * 
      * @type {OutcomePredictorsPut}
      * @memberof OutcomePut
@@ -13599,6 +13635,15 @@ export interface OutcomePut {
      * @memberof OutcomePut
      */
     preview?: boolean;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum OutcomePutPredictionModeEnum {
+    Auto = 'auto',
+    Static = 'static'
 }
 /**
  * Describes how to transform the dataset into one or more streams. 

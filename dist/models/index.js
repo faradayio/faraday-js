@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
 /**
 * @export
 * @enum {string}
@@ -281,6 +281,33 @@ var OutcomeBiasMitigationStrategy;
     OutcomeBiasMitigationStrategy["Equality"] = "equality";
     OutcomeBiasMitigationStrategy["Equity"] = "equity";
 })(OutcomeBiasMitigationStrategy = exports.OutcomeBiasMitigationStrategy || (exports.OutcomeBiasMitigationStrategy = {}));
+/**
+* @export
+* @enum {string}
+*/
+var OutcomeMergePatchPredictionModeEnum;
+(function (OutcomeMergePatchPredictionModeEnum) {
+    OutcomeMergePatchPredictionModeEnum["Auto"] = "auto";
+    OutcomeMergePatchPredictionModeEnum["Static"] = "static";
+})(OutcomeMergePatchPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum || (exports.OutcomeMergePatchPredictionModeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var OutcomePostPredictionModeEnum;
+(function (OutcomePostPredictionModeEnum) {
+    OutcomePostPredictionModeEnum["Auto"] = "auto";
+    OutcomePostPredictionModeEnum["Static"] = "static";
+})(OutcomePostPredictionModeEnum = exports.OutcomePostPredictionModeEnum || (exports.OutcomePostPredictionModeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var OutcomePutPredictionModeEnum;
+(function (OutcomePutPredictionModeEnum) {
+    OutcomePutPredictionModeEnum["Auto"] = "auto";
+    OutcomePutPredictionModeEnum["Static"] = "static";
+})(OutcomePutPredictionModeEnum = exports.OutcomePutPredictionModeEnum || (exports.OutcomePutPredictionModeEnum = {}));
 /**
  * The data type of a column in table, or of a trait. Types are expressed using a subset of
  * [Avro](https://avro.apache.org/docs/current/spec.html). Possible values include:
