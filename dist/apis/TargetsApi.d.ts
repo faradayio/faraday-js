@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, InlineResponse200, Target, TargetLookupRequest, TargetLookupResponse, TargetMergePatch, TargetPost } from '../models';
+import { ArchiveConfig, InlineResponse200, Target, TargetAnalysis, TargetLookupRequest, TargetLookupResponse, TargetMergePatch, TargetPost } from '../models';
 export interface ArchiveTargetRequest {
     targetId: string;
     archiveConfig: ArchiveConfig;
@@ -28,6 +28,12 @@ export interface DownloadTargetRequest {
     targetId: string;
 }
 export interface GetTargetRequest {
+    targetId: string;
+}
+export interface GetTargetAnalysisRequest {
+    targetId: string;
+}
+export interface GetTargetAnalysisReportRequest {
     targetId: string;
 }
 export interface LookupOnTargetRequest {
@@ -104,6 +110,26 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Retrieve a target
      */
     getTarget(targetId: string): Promise<Target>;
+    /**
+     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Retrieve a target\'s analysis
+     */
+    private getTargetAnalysisRaw;
+    /**
+     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Retrieve a target\'s analysis
+     */
+    getTargetAnalysis(targetId: string): Promise<TargetAnalysis>;
+    /**
+     * Gets a redirect URL to download a PDF report.
+     * Retrieve target analysis report
+     */
+    private getTargetAnalysisReportRaw;
+    /**
+     * Gets a redirect URL to download a PDF report.
+     * Retrieve target analysis report
+     */
+    getTargetAnalysisReport(targetId: string): Promise<void>;
     /**
      * Get a list of targets defined on the account
      * List targets

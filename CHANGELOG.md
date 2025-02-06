@@ -10,6 +10,17 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.45] - 2025-02-05
+
+### Added
+
+- Added new endpoints for target analysis:
+  - `GET /targets/{target_id}/anlaysis`: Get target analysis report.
+  - `GET /targets/{target_id}/pdf`: Get a signed url redirect to target analysis pdf report
+- Added count and analysis_config properties to `POST and PATCH /targets`
+- Added branding property to `POST and PATCH /accounts`
+
+
 ## [0.10.44] - 2025-02-03
 
 ### Added

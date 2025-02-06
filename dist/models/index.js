@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
 /**
 * @export
 * @enum {string}
@@ -411,6 +411,20 @@ var TargetAggregateIdentified;
 * @export
 * @enum {string}
 */
+var TargetAnalysisConfigGeographiesEnum;
+(function (TargetAnalysisConfigGeographiesEnum) {
+    TargetAnalysisConfigGeographiesEnum["Postcode"] = "postcode";
+    TargetAnalysisConfigGeographiesEnum["County"] = "county";
+    TargetAnalysisConfigGeographiesEnum["Metro"] = "metro";
+    TargetAnalysisConfigGeographiesEnum["State"] = "state";
+    TargetAnalysisConfigGeographiesEnum["CensusBlockGroup"] = "census_block_group";
+    TargetAnalysisConfigGeographiesEnum["CensusTract"] = "census_tract";
+    TargetAnalysisConfigGeographiesEnum["Dma"] = "dma";
+})(TargetAnalysisConfigGeographiesEnum = exports.TargetAnalysisConfigGeographiesEnum || (exports.TargetAnalysisConfigGeographiesEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
 var TargetLimitRowCountDirectionEnum;
 (function (TargetLimitRowCountDirectionEnum) {
     TargetLimitRowCountDirectionEnum["Ascending"] = "ascending";
@@ -443,6 +457,30 @@ var TargetLimitRowCountPutDirectionEnum;
     TargetLimitRowCountPutDirectionEnum["Ascending"] = "ascending";
     TargetLimitRowCountPutDirectionEnum["Descending"] = "descending";
 })(TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPutDirectionEnum || (exports.TargetLimitRowCountPutDirectionEnum = {}));
+/**
+ * The mode of the target. This determines the structure of the lookup request and response.
+ * @export
+ * @enum {string}
+ */
+var TargetLookupMode;
+(function (TargetLookupMode) {
+    TargetLookupMode["Identified"] = "identified";
+    TargetLookupMode["Aggregated"] = "aggregated";
+})(TargetLookupMode = exports.TargetLookupMode || (exports.TargetLookupMode = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetMergePatchAnalysisConfigGeographiesEnum;
+(function (TargetMergePatchAnalysisConfigGeographiesEnum) {
+    TargetMergePatchAnalysisConfigGeographiesEnum["Postcode"] = "postcode";
+    TargetMergePatchAnalysisConfigGeographiesEnum["County"] = "county";
+    TargetMergePatchAnalysisConfigGeographiesEnum["Metro"] = "metro";
+    TargetMergePatchAnalysisConfigGeographiesEnum["State"] = "state";
+    TargetMergePatchAnalysisConfigGeographiesEnum["CensusBlockGroup"] = "census_block_group";
+    TargetMergePatchAnalysisConfigGeographiesEnum["CensusTract"] = "census_tract";
+    TargetMergePatchAnalysisConfigGeographiesEnum["Dma"] = "dma";
+})(TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum || (exports.TargetMergePatchAnalysisConfigGeographiesEnum = {}));
 /**
 * @export
 * @enum {string}

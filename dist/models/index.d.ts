@@ -19,6 +19,12 @@ export interface Account {
     archived_at?: string;
     /**
      *
+     * @type {AccountBranding}
+     * @memberof Account
+     */
+    branding?: AccountBranding;
+    /**
+     *
      * @type {AccountCommitment}
      * @memberof Account
      */
@@ -128,6 +134,19 @@ export interface AccountBilling {
     usages?: Array<AccountUsage>;
 }
 /**
+ * Whitelabel branding for the account.
+ * @export
+ * @interface AccountBranding
+ */
+export interface AccountBranding {
+    /**
+     * Suppress all branding from all reports. If not specified, defaults to false.
+     * @type {boolean}
+     * @memberof AccountBranding
+     */
+    suppress_from_reports?: boolean;
+}
+/**
  *
  * @export
  * @interface AccountCommitment
@@ -156,11 +175,30 @@ export interface AccountCommitment {
  */
 export interface AccountMergePatch {
     /**
+     *
+     * @type {AccountMergePatchBranding}
+     * @memberof AccountMergePatch
+     */
+    branding?: AccountMergePatchBranding | null;
+    /**
      * The name of the account.
      * @type {string}
      * @memberof AccountMergePatch
      */
     name?: string;
+}
+/**
+ * Whitelabel branding for the account.
+ * @export
+ * @interface AccountMergePatchBranding
+ */
+export interface AccountMergePatchBranding {
+    /**
+     * Suppress all branding from all reports. If not specified, defaults to false.
+     * @type {boolean}
+     * @memberof AccountMergePatchBranding
+     */
+    suppress_from_reports?: boolean;
 }
 /**
  * (Parameters used to POST a new value of the `Account` type.)
@@ -171,6 +209,12 @@ export interface AccountMergePatch {
  * @interface AccountPost
  */
 export interface AccountPost {
+    /**
+     *
+     * @type {AccountBranding}
+     * @memberof AccountPost
+     */
+    branding?: AccountBranding;
     /**
      * The name of the account.
      * @type {string}
@@ -187,6 +231,12 @@ export interface AccountPost {
  * @interface AccountPut
  */
 export interface AccountPut {
+    /**
+     *
+     * @type {AccountBranding}
+     * @memberof AccountPut
+     */
+    branding?: AccountBranding;
     /**
      * The name of the account.
      * @type {string}
@@ -339,7 +389,7 @@ export interface AnalysisDimensionsTraitBinDate {
      */
     count: number;
     /**
-     * Oridinal dimensions are represented as a list of bins, where each bin is a range from X to Y and a resulting count of individuals that match within that range.
+     * Ordinal dimensions are represented as a list of bins, where each bin is a range from X to Y and a resulting count of individuals that match within that range.
      * @type {string}
      * @memberof AnalysisDimensionsTraitBinDate
      */
@@ -376,7 +426,7 @@ export interface AnalysisDimensionsTraitBinNumber {
      */
     count: number;
     /**
-     * Oridinal dimensions are represented as a list of bins, where each bin is a range from X to Y and a resulting count of individuals that match within that range.
+     * Ordinal dimensions are represented as a list of bins, where each bin is a range from X to Y and a resulting count of individuals that match within that range.
      * @type {string}
      * @memberof AnalysisDimensionsTraitBinNumber
      */
@@ -16921,6 +16971,12 @@ export interface TabularData {
  */
 export interface Target {
     /**
+     *
+     * @type {TargetAnalysisConfig}
+     * @memberof Target
+     */
+    analysis_config?: TargetAnalysisConfig;
+    /**
      * If not null, this resource will no longer receive updates, but will still be visable.
      * @type {string}
      * @memberof Target
@@ -16934,6 +16990,12 @@ export interface Target {
      * @memberof Target
      */
     connection_id?: string;
+    /**
+     * The number of records in the target. This is only included in the response if the target is built.
+     * @type {number}
+     * @memberof Target
+     */
+    count?: number;
     /**
      * When this resource was created.
      * @type {string}
@@ -17104,6 +17166,144 @@ export declare enum TargetAggregateGeographic {
 export declare enum TargetAggregateIdentified {
     Person = "person",
     Residence = "residence"
+}
+/**
+ *
+ * @export
+ * @interface TargetAnalysis
+ */
+export interface TargetAnalysis {
+    /**
+     *
+     * @type {TargetAnalysisGeographies}
+     * @memberof TargetAnalysis
+     */
+    geographies?: TargetAnalysisGeographies;
+    /**
+     *
+     * @type {Array<TargetAnalysisTrait>}
+     * @memberof TargetAnalysis
+     */
+    traits?: Array<TargetAnalysisTrait>;
+}
+/**
+ * Configuration for the analysis of the target.
+ * @export
+ * @interface TargetAnalysisConfig
+ */
+export interface TargetAnalysisConfig {
+    /**
+     * Configuration for the analysis of geographic dimensions
+     * @type {Array<string>}
+     * @memberof TargetAnalysisConfig
+     */
+    geographies?: Array<TargetAnalysisConfigGeographiesEnum>;
+    /**
+     * Configuration for the analysis of traits. For traits created through `output_to_traits` via `/datasets`, specify the trait name. For traits from Faraday's Internal Graph (FIG), specify the name prefixed by `fig/` ex. `fig/age`.
+     * @type {Array<string>}
+     * @memberof TargetAnalysisConfig
+     */
+    traits?: Array<string>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum TargetAnalysisConfigGeographiesEnum {
+    Postcode = "postcode",
+    County = "county",
+    Metro = "metro",
+    State = "state",
+    CensusBlockGroup = "census_block_group",
+    CensusTract = "census_tract",
+    Dma = "dma"
+}
+/**
+ *
+ * @export
+ * @interface TargetAnalysisGeographies
+ */
+export interface TargetAnalysisGeographies {
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    census_block_group?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    census_tract?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    county?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    dma?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    metro?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    postcode?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    state?: Array<TargetAnalysisGeography>;
+}
+/**
+ *
+ * @export
+ * @interface TargetAnalysisGeography
+ */
+export interface TargetAnalysisGeography {
+    /**
+     * The number of individuals in this geography.
+     * @type {number}
+     * @memberof TargetAnalysisGeography
+     */
+    count: number;
+    /**
+     * The ID of the geography, so if postcode, then 05156.
+     * @type {string}
+     * @memberof TargetAnalysisGeography
+     */
+    id: string;
+}
+/**
+ *
+ * @export
+ * @interface TargetAnalysisTrait
+ */
+export interface TargetAnalysisTrait {
+    /**
+     * The list of bins calculated for this target analysis dimension.
+     * @type {Array<AnalysisDimensionsTraitBin>}
+     * @memberof TargetAnalysisTrait
+     */
+    bins: Array<AnalysisDimensionsTraitBin>;
+    /**
+     * The machine name of the trait used to calculate this dimension.
+     * @type {string}
+     * @memberof TargetAnalysisTrait
+     */
+    trait_name: string;
 }
 /**
  * Filter the rows exported in a target using the scope payload elements.
@@ -18154,6 +18354,15 @@ export declare enum TargetLimitRowCountPutDirectionEnum {
     Descending = "descending"
 }
 /**
+ * The mode of the target. This determines the structure of the lookup request and response.
+ * @export
+ * @enum {string}
+ */
+export declare enum TargetLookupMode {
+    Identified = "identified",
+    Aggregated = "aggregated"
+}
+/**
  * The structure of a lookup request depends on the "mode" of the target.
  *
  * For an identified target, the payload will contain the Personal Identifying Information (PII) of an individual for whom Faraday should attempt to retrieve a score. The following identifiers are supported:
@@ -18382,6 +18591,12 @@ export interface TargetLookupResponse {
  */
 export interface TargetMergePatch {
     /**
+     *
+     * @type {TargetMergePatchAnalysisConfig}
+     * @memberof TargetMergePatch
+     */
+    analysis_config?: TargetMergePatchAnalysisConfig | null;
+    /**
      * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail.
      *
      * If this is not a replication target, omit this parameter.
@@ -18458,6 +18673,38 @@ export interface TargetMergePatch {
      * @memberof TargetMergePatch
      */
     representation?: TargetModesMergePatch;
+}
+/**
+ * Configuration for the analysis of the target.
+ * @export
+ * @interface TargetMergePatchAnalysisConfig
+ */
+export interface TargetMergePatchAnalysisConfig {
+    /**
+     * Configuration for the analysis of geographic dimensions
+     * @type {Array<string>}
+     * @memberof TargetMergePatchAnalysisConfig
+     */
+    geographies?: Array<TargetMergePatchAnalysisConfigGeographiesEnum>;
+    /**
+     * Configuration for the analysis of traits. For traits created through `output_to_traits` via `/datasets`, specify the trait name. For traits from Faraday's Internal Graph (FIG), specify the name prefixed by `fig/` ex. `fig/age`.
+     * @type {Array<string>}
+     * @memberof TargetMergePatchAnalysisConfig
+     */
+    traits?: Array<string>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum TargetMergePatchAnalysisConfigGeographiesEnum {
+    Postcode = "postcode",
+    County = "county",
+    Metro = "metro",
+    State = "state",
+    CensusBlockGroup = "census_block_group",
+    CensusTract = "census_tract",
+    Dma = "dma"
 }
 /**
  * @type TargetModes
@@ -22292,6 +22539,12 @@ export interface TargetOptionsTiktokPut {
  */
 export interface TargetPost {
     /**
+     *
+     * @type {TargetAnalysisConfig}
+     * @memberof TargetPost
+     */
+    analysis_config?: TargetAnalysisConfig;
+    /**
      * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail.
      *
      * If this is not a replication target, omit this parameter.
@@ -22374,6 +22627,12 @@ export interface TargetPost {
  * @interface TargetPut
  */
 export interface TargetPut {
+    /**
+     *
+     * @type {TargetAnalysisConfig}
+     * @memberof TargetPut
+     */
+    analysis_config?: TargetAnalysisConfig;
     /**
      * If this is a replication (externally-hosted) target, the UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail.
      *

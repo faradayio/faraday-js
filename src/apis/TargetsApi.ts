@@ -18,6 +18,7 @@ import {
     ArchiveConfig,
     InlineResponse200,
     Target,
+    TargetAnalysis,
     TargetLookupRequest,
     TargetLookupResponse,
     TargetMergePatch,
@@ -46,6 +47,14 @@ export interface DownloadTargetRequest {
 }
 
 export interface GetTargetRequest {
+    targetId: string;
+}
+
+export interface GetTargetAnalysisRequest {
+    targetId: string;
+}
+
+export interface GetTargetAnalysisReportRequest {
     targetId: string;
 }
 
@@ -313,6 +322,85 @@ export class TargetsApi extends runtime.BaseAPI {
     async getTarget(targetId: string, ): Promise<Target> {
         const response = await this.getTargetRaw({ targetId: targetId }, );
         return await response.value();
+    }
+
+    /**
+     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Retrieve a target\'s analysis
+     */
+    private async getTargetAnalysisRaw(requestParameters: GetTargetAnalysisRequest, ): Promise<runtime.ApiResponse<TargetAnalysis>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling getTargetAnalysis.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}/analysis`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Retrieve a target\'s analysis
+     */
+    async getTargetAnalysis(targetId: string, ): Promise<TargetAnalysis> {
+        const response = await this.getTargetAnalysisRaw({ targetId: targetId }, );
+        return await response.value();
+    }
+
+    /**
+     * Gets a redirect URL to download a PDF report.
+     * Retrieve target analysis report
+     */
+    private async getTargetAnalysisReportRaw(requestParameters: GetTargetAnalysisReportRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling getTargetAnalysisReport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}/analysis/pdf`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Gets a redirect URL to download a PDF report.
+     * Retrieve target analysis report
+     */
+    async getTargetAnalysisReport(targetId: string, ): Promise<void> {
+        await this.getTargetAnalysisReportRaw({ targetId: targetId }, );
     }
 
     /**
