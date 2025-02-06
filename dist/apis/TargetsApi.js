@@ -254,6 +254,79 @@ class TargetsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Retrieve a target\'s analysis
+     */
+    getTargetAnalysisRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+                throw new runtime.RequiredError('targetId', 'Required parameter requestParameters.targetId was null or undefined when calling getTargetAnalysis.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/targets/{target_id}/analysis`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Retrieve a target\'s analysis
+     */
+    getTargetAnalysis(targetId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getTargetAnalysisRaw({ targetId: targetId });
+            return yield response.value();
+        });
+    }
+    /**
+     * Gets a redirect URL to download a PDF report.
+     * Retrieve target analysis report
+     */
+    getTargetAnalysisReportRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+                throw new runtime.RequiredError('targetId', 'Required parameter requestParameters.targetId was null or undefined when calling getTargetAnalysisReport.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/targets/{target_id}/analysis/pdf`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Gets a redirect URL to download a PDF report.
+     * Retrieve target analysis report
+     */
+    getTargetAnalysisReport(targetId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.getTargetAnalysisReportRaw({ targetId: targetId });
+        });
+    }
+    /**
      * Get a list of targets defined on the account
      * List targets
      */
