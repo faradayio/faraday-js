@@ -23331,7 +23331,8 @@ export interface TraitMergePatch {
  */
 export declare enum TraitPermission {
     AddToScopePayload = "add_to_scope_payload",
-    DefineCohort = "define_cohort"
+    DefineCohort = "define_cohort",
+    TargetAnalysis = "target_analysis"
 }
 /**
  * (Parameters used to POST a new value of the `Trait` type.)
