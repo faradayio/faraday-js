@@ -605,6 +605,7 @@ var TraitPermission;
 (function (TraitPermission) {
     TraitPermission["AddToScopePayload"] = "add_to_scope_payload";
     TraitPermission["DefineCohort"] = "define_cohort";
+    TraitPermission["TargetAnalysis"] = "target_analysis";
 })(TraitPermission = exports.TraitPermission || (exports.TraitPermission = {}));
 /**
  * A string describing the nature of data represented by the trait.
