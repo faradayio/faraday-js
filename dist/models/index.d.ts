@@ -8066,6 +8066,14 @@ export interface Dataset {
      */
     identified_count?: number;
     /**
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<string>}
+     * @memberof Dataset
+     */
+    identity_providers?: Array<DatasetIdentityProvidersEnum>;
+    /**
      *
      * @type {IdentitySets}
      * @memberof Dataset
@@ -8254,6 +8262,13 @@ export interface Dataset {
 * @export
 * @enum {string}
 */
+export declare enum DatasetIdentityProvidersEnum {
+    Fig = "fig",
+    MatchBoost = "match_boost"
+} /**
+* @export
+* @enum {string}
+*/
 export declare enum DatasetPrivacyEnum {
     Suppress = "suppress",
     Delete = "delete"
@@ -8295,6 +8310,12 @@ export interface DatasetColumn {
  * @interface DatasetEnrichment
  */
 export interface DatasetEnrichment {
+    /**
+     * How many of the identities were enriched with either person-level or residence-level data
+     * @type {number}
+     * @memberof DatasetEnrichment
+     */
+    any: number;
     /**
      * How many of the identities were enriched with person-level data
      * @type {number}
@@ -8343,6 +8364,14 @@ export interface DatasetMergeDatasets {
  * @interface DatasetMergePatch
  */
 export interface DatasetMergePatch {
+    /**
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<string>}
+     * @memberof DatasetMergePatch
+     */
+    identity_providers?: Array<DatasetMergePatchIdentityProvidersEnum>;
     /**
      *
      * @type {IdentitySetsMergePatch}
@@ -8427,6 +8456,13 @@ export interface DatasetMergePatch {
     upsert_columns?: Array<string> | null;
 }
 /**
+* @export
+* @enum {string}
+*/
+export declare enum DatasetMergePatchIdentityProvidersEnum {
+    Fig = "fig",
+    MatchBoost = "match_boost"
+} /**
 * @export
 * @enum {string}
 */
@@ -11494,6 +11530,14 @@ export interface DatasetPost {
      */
     connection_id?: string;
     /**
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<string>}
+     * @memberof DatasetPost
+     */
+    identity_providers?: Array<DatasetPostIdentityProvidersEnum>;
+    /**
      *
      * @type {IdentitySetsPost}
      * @memberof DatasetPost
@@ -11586,6 +11630,13 @@ export interface DatasetPost {
 * @export
 * @enum {string}
 */
+export declare enum DatasetPostIdentityProvidersEnum {
+    Fig = "fig",
+    MatchBoost = "match_boost"
+} /**
+* @export
+* @enum {string}
+*/
 export declare enum DatasetPostPrivacyEnum {
     Suppress = "suppress",
     Delete = "delete"
@@ -11598,6 +11649,14 @@ export declare enum DatasetPostPrivacyEnum {
  * @interface DatasetPut
  */
 export interface DatasetPut {
+    /**
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<string>}
+     * @memberof DatasetPut
+     */
+    identity_providers?: Array<DatasetPutIdentityProvidersEnum>;
     /**
      *
      * @type {IdentitySetsPut}
@@ -11682,6 +11741,13 @@ export interface DatasetPut {
     upsert_columns?: Array<string>;
 }
 /**
+* @export
+* @enum {string}
+*/
+export declare enum DatasetPutIdentityProvidersEnum {
+    Fig = "fig",
+    MatchBoost = "match_boost"
+} /**
 * @export
 * @enum {string}
 */
