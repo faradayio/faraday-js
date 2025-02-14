@@ -15021,7 +15021,7 @@ export interface RecommenderAnalysisPropertyDistribution {
      * @type {number}
      * @memberof RecommenderAnalysisPropertyDistribution
      */
-    avg_rank_true_label: number;
+    avg_rank_true_label?: number;
     /**
      * Name of a property.
      * @type {string}
