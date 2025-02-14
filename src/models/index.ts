@@ -15412,6 +15412,12 @@ export interface Scope {
      */
     population_count?: number;
     /**
+     * Residence count of the population. If a residence appears in multiple cohorts, it is only counted once.
+     * @type {number}
+     * @memberof Scope
+     */
+    population_residence_count?: number;
+    /**
      * A preview scope provides only a limited number of output records, but
      * it is not billed.
      * @type {boolean}
