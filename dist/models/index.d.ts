@@ -15460,13 +15460,18 @@ export interface RecommenderAnalysis {
  */
 export interface RecommenderAnalysisAccuracyThreshold {
     /**
-     *
+     * The cumulative accuracy of the model at the given threshold.
      * @type {number}
      * @memberof RecommenderAnalysisAccuracyThreshold
      */
     accuracy: number;
     /**
+     * The threshold (i.e. top N recommendations to consider) to evaluate the model's accuracy.
      *
+     * For example, if the threshold is 10, the model's accuracy is calculated by considering the top 10 recommendations.
+     * That is what proportion of the top 10 recommendations for each identity contains the true label.
+     *
+     * Note: the threshold is an integer value ranging from 1 to the number of properties.
      * @type {number}
      * @memberof RecommenderAnalysisAccuracyThreshold
      */
@@ -15560,44 +15565,44 @@ export interface RecommenderAnalysisPerformanceMetaModel {
  */
 export interface RecommenderAnalysisPropertyDistribution {
     /**
-     *
+     * Average rank of a given property in the cross-validation dataset.
      * @type {number}
      * @memberof RecommenderAnalysisPropertyDistribution
      */
     avg_rank: number;
     /**
-     *
+     * Average rank of the true label in the cross-validation dataset for a given property.
      * @type {number}
      * @memberof RecommenderAnalysisPropertyDistribution
      */
-    avg_rank_true_label?: number;
+    avg_rank_true_label: number;
     /**
-     *
+     * Name of a property.
      * @type {string}
      * @memberof RecommenderAnalysisPropertyDistribution
      */
     property: string;
     /**
-     *
+     * Fraction of the cross-validation identities assigned a given property as top property.
      * @type {number}
      * @memberof RecommenderAnalysisPropertyDistribution
      */
     proportion: number;
 }
 /**
- *
+ * Data to construct a ROC curve. Each point consists of a false positive rate `x`, an estimated true positive rate `y` corresponding to `x`. Note that y is the mean value of the true positive rate across all cross-validation folds.
  * @export
  * @interface RecommenderAnalysisRocCurvePoint
  */
 export interface RecommenderAnalysisRocCurvePoint {
     /**
-     *
+     * A given false positive rate.
      * @type {number}
      * @memberof RecommenderAnalysisRocCurvePoint
      */
     x: number;
     /**
-     *
+     * The estimated true positive rate corresponding to `x`.
      * @type {number}
      * @memberof RecommenderAnalysisRocCurvePoint
      */
@@ -15610,7 +15615,7 @@ export interface RecommenderAnalysisRocCurvePoint {
  */
 export interface RecommenderFeatureData {
     /**
-     *
+     * The category of the feature.
      * @type {string}
      * @memberof RecommenderFeatureData
      */
@@ -15622,25 +15627,25 @@ export interface RecommenderFeatureData {
      */
     directionality: Array<AnalysisFeatureDirectionality>;
     /**
-     *
+     * The importance of the feature
      * @type {number}
      * @memberof RecommenderFeatureData
      */
     importance: number;
     /**
-     *
+     * The human-readable description of the feature.
      * @type {string}
      * @memberof RecommenderFeatureData
      */
     literate: string;
     /**
-     *
+     * The identifier for the feature.
      * @type {string}
      * @memberof RecommenderFeatureData
      */
     name: string;
     /**
-     *
+     * The human-readable name of the feature.
      * @type {string}
      * @memberof RecommenderFeatureData
      */
@@ -15694,7 +15699,7 @@ export interface RecommenderPerformanceModel {
      */
     accuracy_per_threshold: Array<RecommenderAnalysisAccuracyThreshold>;
     /**
-     *
+     * Average rank of the true label in the cross-validation dataset for a given property.
      * @type {number}
      * @memberof RecommenderPerformanceModel
      */
@@ -15706,7 +15711,7 @@ export interface RecommenderPerformanceModel {
      */
     property_distribution: Array<RecommenderAnalysisPropertyDistribution>;
     /**
-     *
+     * The area under the receiver operating characteristic curve.
      * @type {number}
      * @memberof RecommenderPerformanceModel
      */
