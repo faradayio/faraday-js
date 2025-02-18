@@ -389,13 +389,14 @@ var ScopeEfficacyOutcomeMonthPerformedEnum;
  */
 var TargetAggregateGeographic;
 (function (TargetAggregateGeographic) {
-    TargetAggregateGeographic["Postcode"] = "postcode";
-    TargetAggregateGeographic["County"] = "county";
-    TargetAggregateGeographic["Metro"] = "metro";
-    TargetAggregateGeographic["State"] = "state";
+    TargetAggregateGeographic["CarrierRoute"] = "carrier_route";
     TargetAggregateGeographic["CensusBlockGroup"] = "census_block_group";
     TargetAggregateGeographic["CensusTract"] = "census_tract";
+    TargetAggregateGeographic["County"] = "county";
     TargetAggregateGeographic["Dma"] = "dma";
+    TargetAggregateGeographic["Metro"] = "metro";
+    TargetAggregateGeographic["Postcode"] = "postcode";
+    TargetAggregateGeographic["State"] = "state";
 })(TargetAggregateGeographic = exports.TargetAggregateGeographic || (exports.TargetAggregateGeographic = {}));
 /**
  * Available aggregation levels for data exported in `identified` targets. Only `person` is supported for targets with options.type = `lookup_api`.
