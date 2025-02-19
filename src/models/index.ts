@@ -16606,13 +16606,14 @@ export interface Target {
  * @enum {string}
  */
 export enum TargetAggregateGeographic {
-    Postcode = 'postcode',
-    County = 'county',
-    Metro = 'metro',
-    State = 'state',
+    CarrierRoute = 'carrier_route',
     CensusBlockGroup = 'census_block_group',
     CensusTract = 'census_tract',
-    Dma = 'dma'
+    County = 'county',
+    Dma = 'dma',
+    Metro = 'metro',
+    Postcode = 'postcode',
+    State = 'state'
 }
 /**
  * Available aggregation levels for data exported in `identified` targets. Only `person` is supported for targets with options.type = `lookup_api`.
