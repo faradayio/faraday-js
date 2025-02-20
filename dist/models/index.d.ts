@@ -23030,7 +23030,7 @@ export declare enum TraitCategory {
  */
 export interface TraitDataMapColumn {
     /**
-     * The name of a column in the dataset.
+     *
      * @type {string}
      * @memberof TraitDataMapColumn
      */
