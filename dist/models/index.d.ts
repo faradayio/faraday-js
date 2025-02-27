@@ -8277,6 +8277,12 @@ export interface DatasetColumn {
      */
     fill_rate?: number;
     /**
+     * A list of recommended identity set keys to map this column to. Ordered by relevance.
+     * @type {Array<string>}
+     * @memberof DatasetColumn
+     */
+    identifier_recommendation?: Array<string>;
+    /**
      *
      * @type {boolean}
      * @memberof DatasetColumn

@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.48] - 2025-02-25
+
+### Added
+
+- Added `identifier_recommendation` to `dataset.detected_columns`. Useful when configuring dataset `identity_sets`.
+
 ## [0.10.47] - 2025-02-18
 
 ### Added
