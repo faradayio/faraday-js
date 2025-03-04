@@ -12385,6 +12385,8 @@ export interface IdentitySetPut {
  *   * `freeform_address`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
+ *
+ * Key names can contain letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore.
  * @export
  * @interface IdentitySets
  */
@@ -12412,6 +12414,8 @@ export interface IdentitySets {
  *   * `freeform_address`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
+ *
+ * Key names can contain letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore.
  * @export
  * @interface IdentitySetsMergePatch
  */
@@ -12439,6 +12443,8 @@ export interface IdentitySetsMergePatch {
  *   * `freeform_address`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
+ *
+ * Key names can contain letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore.
  * @export
  * @interface IdentitySetsPost
  */
@@ -12466,6 +12472,8 @@ export interface IdentitySetsPost {
  *   * `freeform_address`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
+ *
+ * Key names can contain letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore.
  * @export
  * @interface IdentitySetsPut
  */
