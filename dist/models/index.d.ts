@@ -22923,6 +22923,12 @@ export interface Trait {
      */
     category?: TraitCategory;
     /**
+     * The percentage (0.1 meaning 10%) of the population for which we know the trait value.
+     * @type {number}
+     * @memberof Trait
+     */
+    coverage?: number;
+    /**
      * When this resource was created.
      * @type {string}
      * @memberof Trait
