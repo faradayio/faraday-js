@@ -150,7 +150,14 @@ var LookupIdentityProvider;
     LookupIdentityProvider["MatchBoost"] = "match_boost";
 })(LookupIdentityProvider = exports.LookupIdentityProvider || (exports.LookupIdentityProvider = {}));
 /**
- * The type of match that was found for the lookup request.
+ * The type of match that was found for the lookup request. This also indicates which fallback strategy
+ * was used, if any:
+ *
+ * - person-level matches: address_full_name, email_full_name, phone_full_name (no fallback needed)
+ * - household level fallback: address_last_name (household level aggregation)
+ * - address level fallback: address_only (address level aggregation)
+ * - zipcode level fallback: postcode_only (zipcode level aggregation)
+ * - email/phone matches: email_only, email_last_name, phone_last_name (no address aggregation)
  * @export
  * @enum {string}
  */
@@ -164,6 +171,7 @@ var LookupMatchType;
     LookupMatchType["PhoneLastName"] = "phone_last_name";
     LookupMatchType["AddressOnly"] = "address_only";
     LookupMatchType["EmailOnly"] = "email_only";
+    LookupMatchType["PostcodeOnly"] = "postcode_only";
 })(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
 /**
  * Customer attributes available for modeling

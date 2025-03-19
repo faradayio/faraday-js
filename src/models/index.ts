@@ -11989,7 +11989,7 @@ export interface LookupApiIdentifiers {
      */
     email?: string;
     /**
-     * 
+     * A SHA-256 hash of the lowercase version of the email, with plus-addressing removed
      * @type {string}
      * @memberof LookupApiIdentifiers
      */
@@ -12001,13 +12001,13 @@ export interface LookupApiIdentifiers {
      */
     house_number_and_street?: string;
     /**
-     * 
+     * Latitude for reverse geocoding. Must be provided with longitude.
      * @type {string}
      * @memberof LookupApiIdentifiers
      */
     latitude?: string;
     /**
-     * 
+     * Longitude for reverse geocoding. Must be provided with latitude.
      * @type {string}
      * @memberof LookupApiIdentifiers
      */
@@ -12025,7 +12025,7 @@ export interface LookupApiIdentifiers {
      */
     person_last_name?: string;
     /**
-     * 
+     * A phone number. Will be normalized by removing non-digit characters.
      * @type {string}
      * @memberof LookupApiIdentifiers
      */
@@ -12037,7 +12037,7 @@ export interface LookupApiIdentifiers {
      */
     postcode?: string;
     /**
-     * 
+     * Optional search radius in meters to use with longitude/latitude.
      * @type {string}
      * @memberof LookupApiIdentifiers
      */
@@ -12050,84 +12050,12 @@ export interface LookupApiIdentifiers {
     state?: string;
 }
 /**
- * 
+ * @type LookupApiIdentitySets
+ * A set of identifying information for a single individual. 
+ * Each set must contain at least one valid combination of PII.
  * @export
- * @interface LookupApiIdentitySets
  */
-export interface LookupApiIdentitySets {
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    city?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    email?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    email_hash?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    house_number_and_street?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    latitude?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    longitude?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    person_first_name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    person_last_name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    phone?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    postcode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    search_radius?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LookupApiIdentitySets
-     */
-    state?: string;
-}
+export type LookupApiIdentitySets = LookupApiIdentifiers;
 /**
  * The identity provider used to obtain a match with the requested identity.
  * @export
@@ -12138,7 +12066,14 @@ export enum LookupIdentityProvider {
     MatchBoost = 'match_boost'
 }
 /**
- * The type of match that was found for the lookup request.
+ * The type of match that was found for the lookup request. This also indicates which fallback strategy 
+ * was used, if any:
+ * 
+ * - person-level matches: address_full_name, email_full_name, phone_full_name (no fallback needed)
+ * - household level fallback: address_last_name (household level aggregation)
+ * - address level fallback: address_only (address level aggregation) 
+ * - zipcode level fallback: postcode_only (zipcode level aggregation)
+ * - email/phone matches: email_only, email_last_name, phone_last_name (no address aggregation)
  * @export
  * @enum {string}
  */
@@ -12150,7 +12085,8 @@ export enum LookupMatchType {
     EmailLastName = 'email_last_name',
     PhoneLastName = 'phone_last_name',
     AddressOnly = 'address_only',
-    EmailOnly = 'email_only'
+    EmailOnly = 'email_only',
+    PostcodeOnly = 'postcode_only'
 }
 /**
  * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
@@ -17823,105 +17759,39 @@ export enum TargetLookupMode {
     Aggregated = 'aggregated'
 }
 /**
+ * @type TargetLookupRequest
  * The structure of a lookup request depends on the "mode" of the target. 
  * 
- * For an identified target, the payload will contain the Personal Identifying Information (PII) of an individual for whom Faraday should attempt to retrieve a score. The following identifiers are supported:
- *   - person_first_name
- *   - person_last_name
- *   - house_number_and_street
- *   - city
- *   - state
- *   - postcode
- *   - email
- *   - email_hash (must be a standard SHA256 hash)
- *   - phone
+ * For an identified target, the payload will contain the Personal Identifying Information (PII) of an individual for whom Faraday should attempt to retrieve a score.
  * 
- * In order to properly match, certain combinations of PII are required. See [the Lookup API specification](https://faraday.ai/docs/features/lookup-api#constructing-a-request). We encourage the use of the new `identity_sets` field which allows for one or more PII combinations for the same person to be sent in a single request. Providing PII at the top level in the request object is still supported but deprecated. For example, if there are multiple known email or physical addresses for a person, you can send them all in a single request using `identity_sets`.
+ * In order to properly match, at least one of these combinations of PII is required:
+ * - [house_number_and_street, city, state]
+ * - [house_number_and_street, postcode]
+ * - [email]
+ * - [email_hash]
+ * - [phone, person_last_name]
+ * - [longitude, latitude]
  * 
- * For an aggregated target, the payload should contain a single key, which will be the same as the aggregate used in the target configuration. For example, if your target has an aggregate of `county`, 
- * then the target will only accept payloads with the key `county`. You must use standard US Census FIPS codes to lookup results.
+ * We encourage the use of the `identity_sets` field which allows for one or more PII combinations for the same person to be sent in a single request.
+ * 
+ * For an aggregated target, the payload should contain a single key, which will be the same as the aggregate used in the target configuration.
  * @export
- * @interface TargetLookupRequest
  */
-export interface TargetLookupRequest {
+export type TargetLookupRequest = LookupApiIdentifiers | TargetLookupRequestAllOf;
+/**
+ * 
+ * @export
+ * @interface TargetLookupRequestAllOf
+ */
+export interface TargetLookupRequestAllOf {
     /**
-     * 
+     * An array of identity sets, each containing PII for the same person. 
+     * This allows you to send multiple possible identifiers for the same person in a single request.
+     * Limited to a maximum of 10 identity sets.
      * @type {Array<LookupApiIdentitySets>}
-     * @memberof TargetLookupRequest
+     * @memberof TargetLookupRequestAllOf
      */
     identity_sets?: Array<LookupApiIdentitySets>;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    city?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    email?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    email_hash?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    house_number_and_street?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    latitude?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    longitude?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    person_first_name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    person_last_name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    phone?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    postcode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    search_radius?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetLookupRequest
-     */
-    state?: string;
 }
 /**
  * The structure of a lookup response depends on the target and the scope it is attached to. 
@@ -17929,10 +17799,20 @@ export interface TargetLookupRequest {
  * In general, we return all personal identifying information (PII) which was sent to us. If the PII was matched, then Faraday will also return all of the Scope's defined payload components for the matched person, e.g. outcome percentiles & probability, persona membership, etc.
  * 
  * If the PII was not matched, then the response will contain an `error` key, with the message "Could not match an identity with the provided information". See [the Lookup API specification](https://faraday.ai/docs/features/lookup-api#response) for more information on what response payloads are available and what their shape is.
+ * 
+ * When using address_last_name or address_only match types, the response will contain a `cohabitants` array with the payload data for other individuals at the same address. This is used for household-level aggregation. Each cohabitant includes all payload properties, plus firstname when household fallback is in effect.
  * @export
  * @interface TargetLookupResponse
  */
 export interface TargetLookupResponse {
+    /**
+     * When Payload Fallbacks are used for address matching (address_last_name or address_only), this array contains 
+     * the payload data for other individuals at the same address. This is used for household-level 
+     * aggregation. Each cohabitant includes all payload properties when fallbacks are in effect.
+     * @type {Array<{ [key: string]: object; }>}
+     * @memberof TargetLookupResponse
+     */
+    cohabitants?: Array<{ [key: string]: object; }>;
     /**
      * 
      * @type {string}
@@ -17970,7 +17850,7 @@ export interface TargetLookupResponse {
      */
     email?: string;
     /**
-     * 
+     * A SHA-256 hash of the lowercase version of the email, with plus-addressing removed
      * @type {string}
      * @memberof TargetLookupResponse
      */
@@ -17982,13 +17862,13 @@ export interface TargetLookupResponse {
      */
     house_number_and_street?: string;
     /**
-     * 
+     * Latitude for reverse geocoding. Must be provided with longitude.
      * @type {string}
      * @memberof TargetLookupResponse
      */
     latitude?: string;
     /**
-     * 
+     * Longitude for reverse geocoding. Must be provided with latitude.
      * @type {string}
      * @memberof TargetLookupResponse
      */
@@ -18006,7 +17886,7 @@ export interface TargetLookupResponse {
      */
     person_last_name?: string;
     /**
-     * 
+     * A phone number. Will be normalized by removing non-digit characters.
      * @type {string}
      * @memberof TargetLookupResponse
      */
@@ -18018,7 +17898,7 @@ export interface TargetLookupResponse {
      */
     postcode?: string;
     /**
-     * 
+     * Optional search radius in meters to use with longitude/latitude.
      * @type {string}
      * @memberof TargetLookupResponse
      */
