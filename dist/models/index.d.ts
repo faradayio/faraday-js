@@ -22983,6 +22983,12 @@ export interface Trait {
      */
     permissions?: Array<TraitPermission>;
     /**
+     * Precision refers to the specificity used to assign a trait. For example, 'person' precision indicates a trait specific to an individual, such as a preference for baseball, while 'address' precision pertains to a characteristic related to a location, such as the number of bedrooms in a house.
+     * @type {string}
+     * @memberof Trait
+     */
+    precision?: TraitPrecisionEnum;
+    /**
      *
      * @type {ResourceType}
      * @memberof Trait
@@ -23024,6 +23030,16 @@ export interface Trait {
      * @memberof Trait
      */
     updated_at: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum TraitPrecisionEnum {
+    Person = "person",
+    Address = "address",
+    Postcode = "postcode",
+    Geom = "geom"
 }
 /**
  * A broad category describing the flavor of a trait.
