@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPutIdentityProvidersEnum = exports.DatasetPostPrivacyEnum = exports.DatasetPostIdentityProvidersEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetMergePatchIdentityProvidersEnum = exports.DatasetPrivacyEnum = exports.DatasetIdentityProvidersEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
 /**
 * @export
 * @enum {string}
@@ -64,12 +64,28 @@ var DataMapColumnFormat;
 * @export
 * @enum {string}
 */
+var DatasetIdentityProvidersEnum;
+(function (DatasetIdentityProvidersEnum) {
+    DatasetIdentityProvidersEnum["Fig"] = "fig";
+    DatasetIdentityProvidersEnum["MatchBoost"] = "match_boost";
+})(DatasetIdentityProvidersEnum = exports.DatasetIdentityProvidersEnum || (exports.DatasetIdentityProvidersEnum = {})); /**
+* @export
+* @enum {string}
+*/
 var DatasetPrivacyEnum;
 (function (DatasetPrivacyEnum) {
     DatasetPrivacyEnum["Suppress"] = "suppress";
     DatasetPrivacyEnum["Delete"] = "delete";
 })(DatasetPrivacyEnum = exports.DatasetPrivacyEnum || (exports.DatasetPrivacyEnum = {}));
 /**
+* @export
+* @enum {string}
+*/
+var DatasetMergePatchIdentityProvidersEnum;
+(function (DatasetMergePatchIdentityProvidersEnum) {
+    DatasetMergePatchIdentityProvidersEnum["Fig"] = "fig";
+    DatasetMergePatchIdentityProvidersEnum["MatchBoost"] = "match_boost";
+})(DatasetMergePatchIdentityProvidersEnum = exports.DatasetMergePatchIdentityProvidersEnum || (exports.DatasetMergePatchIdentityProvidersEnum = {})); /**
 * @export
 * @enum {string}
 */
@@ -82,12 +98,28 @@ var DatasetMergePatchPrivacyEnum;
 * @export
 * @enum {string}
 */
+var DatasetPostIdentityProvidersEnum;
+(function (DatasetPostIdentityProvidersEnum) {
+    DatasetPostIdentityProvidersEnum["Fig"] = "fig";
+    DatasetPostIdentityProvidersEnum["MatchBoost"] = "match_boost";
+})(DatasetPostIdentityProvidersEnum = exports.DatasetPostIdentityProvidersEnum || (exports.DatasetPostIdentityProvidersEnum = {})); /**
+* @export
+* @enum {string}
+*/
 var DatasetPostPrivacyEnum;
 (function (DatasetPostPrivacyEnum) {
     DatasetPostPrivacyEnum["Suppress"] = "suppress";
     DatasetPostPrivacyEnum["Delete"] = "delete";
 })(DatasetPostPrivacyEnum = exports.DatasetPostPrivacyEnum || (exports.DatasetPostPrivacyEnum = {}));
 /**
+* @export
+* @enum {string}
+*/
+var DatasetPutIdentityProvidersEnum;
+(function (DatasetPutIdentityProvidersEnum) {
+    DatasetPutIdentityProvidersEnum["Fig"] = "fig";
+    DatasetPutIdentityProvidersEnum["MatchBoost"] = "match_boost";
+})(DatasetPutIdentityProvidersEnum = exports.DatasetPutIdentityProvidersEnum || (exports.DatasetPutIdentityProvidersEnum = {})); /**
 * @export
 * @enum {string}
 */
