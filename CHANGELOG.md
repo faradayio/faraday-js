@@ -10,11 +10,21 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.52] - 2025-04-08
+
+### Added
+
+- POST /uploads - allow compressed file formats (zip, bz2, gz, tar). The uncompressed file must still be formatted like a csv.
+
 ## [0.10.52] - 2025-03-31
+
+### Changed
 
 - POST /uploads - clarify which file types are allowed.
 
 ## [0.10.51] - 2025-03-18
+
+### Added
 
 - Added `trait.precision`, which refers to the specificity used to assign a trait.
 
