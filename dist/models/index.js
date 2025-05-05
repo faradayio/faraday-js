@@ -165,6 +165,7 @@ var LookupMatchType;
     LookupMatchType["AddressOnly"] = "address_only";
     LookupMatchType["EmailOnly"] = "email_only";
     LookupMatchType["PostcodeOnly"] = "postcode_only";
+    LookupMatchType["PhoneOnly"] = "phone_only";
 })(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
 /**
  * Customer attributes available for modeling

@@ -12151,7 +12151,8 @@ export enum LookupMatchType {
     PhoneLastName = 'phone_last_name',
     AddressOnly = 'address_only',
     EmailOnly = 'email_only',
-    PostcodeOnly = 'postcode_only'
+    PostcodeOnly = 'postcode_only',
+    PhoneOnly = 'phone_only'
 }
 /**
  * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
