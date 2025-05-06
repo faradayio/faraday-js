@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.53] - 2025-05-01
+
+### Changed
+
+- POST & PATCH /datasets - clarify which identity set fields are required for matching, and throw an error if insufficient.
+
 ## [0.10.52] - 2025-04-08
 
 ### Added
