@@ -143,6 +143,42 @@ class CohortsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateCohortRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+                throw new runtime.RequiredError('cohortId', 'Required parameter requestParameters.cohortId was null or undefined when calling forceUpdateCohort.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/cohorts/{cohort_id}/force_update`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateCohort(cohortId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateCohortRaw({ cohortId: cohortId });
+        });
+    }
+    /**
      * Get details on a specific cohort
      * Retrieve a cohort
      */

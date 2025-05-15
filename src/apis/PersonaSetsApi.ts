@@ -38,6 +38,10 @@ export interface DeletePersonaSetRequest {
     personaSetId: string;
 }
 
+export interface ForceUpdatePersonaSetRequest {
+    personaSetId: string;
+}
+
 export interface GetPersonaSetRequest {
     personaSetId: string;
 }
@@ -195,6 +199,45 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      */
     async deletePersonaSet(personaSetId: string, ): Promise<void> {
         await this.deletePersonaSetRaw({ personaSetId: personaSetId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdatePersonaSetRaw(requestParameters: ForceUpdatePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+            throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling forceUpdatePersonaSet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/persona_sets/{persona_set_id}/force_update`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdatePersonaSet(personaSetId: string, ): Promise<void> {
+        await this.forceUpdatePersonaSetRaw({ personaSetId: personaSetId }, );
     }
 
     /**

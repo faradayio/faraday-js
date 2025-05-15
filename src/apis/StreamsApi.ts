@@ -33,6 +33,10 @@ export interface FindOrCreateStreamRequest {
     streamName: string;
 }
 
+export interface ForceUpdateStreamRequest {
+    streamIdOrName: string;
+}
+
 export interface GetStreamRequest {
     streamIdOrName: string;
 }
@@ -172,6 +176,45 @@ export class StreamsApi extends runtime.BaseAPI {
     async findOrCreateStream(streamName: string, ): Promise<Stream> {
         const response = await this.findOrCreateStreamRaw({ streamName: streamName }, );
         return await response.value();
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateStreamRaw(requestParameters: ForceUpdateStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+            throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling forceUpdateStream.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id_or_name}/force_update`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateStream(streamIdOrName: string, ): Promise<void> {
+        await this.forceUpdateStreamRaw({ streamIdOrName: streamIdOrName }, );
     }
 
     /**

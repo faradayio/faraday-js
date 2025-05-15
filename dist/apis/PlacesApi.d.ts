@@ -21,6 +21,9 @@ export interface CreatePlaceRequest {
 export interface DeletePlaceRequest {
     placeId: string;
 }
+export interface ForceUpdatePlaceRequest {
+    placeId: string;
+}
 export interface GetPlaceRequest {
     placeId: string;
 }
@@ -64,6 +67,16 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Delete a place
      */
     deletePlace(placeId: string): Promise<void>;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    private forceUpdatePlaceRaw;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdatePlace(placeId: string): Promise<void>;
     /**
      * Retrieve details on a specific place
      * Retrieve a place

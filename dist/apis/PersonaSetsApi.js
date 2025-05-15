@@ -143,6 +143,42 @@ class PersonaSetsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdatePersonaSetRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
+                throw new runtime.RequiredError('personaSetId', 'Required parameter requestParameters.personaSetId was null or undefined when calling forceUpdatePersonaSet.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/persona_sets/{persona_set_id}/force_update`.replace(`{${"persona_set_id"}}`, encodeURIComponent(String(requestParameters.personaSetId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdatePersonaSet(personaSetId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdatePersonaSetRaw({ personaSetId: personaSetId });
+        });
+    }
+    /**
      * Details on a specific persona set, including details on all of its constituent personas
      * Retrieve a persona set
      */

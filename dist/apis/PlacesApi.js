@@ -143,6 +143,42 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdatePlaceRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
+                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling forceUpdatePlace.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/places/{place_id}/force_update`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdatePlace(placeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdatePlaceRaw({ placeId: placeId });
+        });
+    }
+    /**
      * Retrieve details on a specific place
      * Retrieve a place
      */

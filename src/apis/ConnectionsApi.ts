@@ -36,6 +36,10 @@ export interface DeleteConnectionRequest {
     connectionId: string;
 }
 
+export interface ForceUpdateConnectionRequest {
+    connectionId: string;
+}
+
 export interface GetConnectionRequest {
     connectionId: string;
 }
@@ -189,6 +193,45 @@ export class ConnectionsApi extends runtime.BaseAPI {
      */
     async deleteConnection(connectionId: string, ): Promise<void> {
         await this.deleteConnectionRaw({ connectionId: connectionId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateConnectionRaw(requestParameters: ForceUpdateConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling forceUpdateConnection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}/force_update`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateConnection(connectionId: string, ): Promise<void> {
+        await this.forceUpdateConnectionRaw({ connectionId: connectionId }, );
     }
 
     /**

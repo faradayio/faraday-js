@@ -143,6 +143,42 @@ class OutcomesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateOutcomeRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+                throw new runtime.RequiredError('outcomeId', 'Required parameter requestParameters.outcomeId was null or undefined when calling forceUpdateOutcome.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/outcomes/{outcome_id}/force_update`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateOutcome(outcomeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateOutcomeRaw({ outcomeId: outcomeId });
+        });
+    }
+    /**
      * Get details on a specific outcome
      * Retrieve an outcome
      */

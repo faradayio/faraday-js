@@ -21,6 +21,9 @@ export interface CreateRecommenderRequest {
 export interface DeleteRecommenderRequest {
     recommenderId: string;
 }
+export interface ForceUpdateRecommenderRequest {
+    recommenderId: string;
+}
 export interface GetRecommenderRequest {
     recommenderId: string;
 }
@@ -67,6 +70,16 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Delete a recommender
      */
     deleteRecommender(recommenderId: string): Promise<void>;
+    /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    private forceUpdateRecommenderRaw;
+    /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateRecommender(recommenderId: string): Promise<void>;
     /**
      * Get details on a specific recommender
      * Retrieve a recommender

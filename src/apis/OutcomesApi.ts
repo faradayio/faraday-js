@@ -35,6 +35,10 @@ export interface DeleteOutcomeRequest {
     outcomeId: string;
 }
 
+export interface ForceUpdateOutcomeRequest {
+    outcomeId: string;
+}
+
 export interface GetOutcomeRequest {
     outcomeId: string;
 }
@@ -186,6 +190,45 @@ export class OutcomesApi extends runtime.BaseAPI {
      */
     async deleteOutcome(outcomeId: string, ): Promise<void> {
         await this.deleteOutcomeRaw({ outcomeId: outcomeId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateOutcomeRaw(requestParameters: ForceUpdateOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
+            throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling forceUpdateOutcome.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/outcomes/{outcome_id}/force_update`.replace(`{${"outcome_id"}}`, encodeURIComponent(String(requestParameters.outcomeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateOutcome(outcomeId: string, ): Promise<void> {
+        await this.forceUpdateOutcomeRaw({ outcomeId: outcomeId }, );
     }
 
     /**

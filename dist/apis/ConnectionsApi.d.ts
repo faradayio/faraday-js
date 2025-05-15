@@ -21,6 +21,9 @@ export interface CreateConnectionRequest {
 export interface DeleteConnectionRequest {
     connectionId: string;
 }
+export interface ForceUpdateConnectionRequest {
+    connectionId: string;
+}
 export interface GetConnectionRequest {
     connectionId: string;
 }
@@ -72,6 +75,16 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Delete a connection
      */
     deleteConnection(connectionId: string): Promise<void>;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    private forceUpdateConnectionRaw;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateConnection(connectionId: string): Promise<void>;
     /**
      * Get details on a specific connection
      * Retrieve a connection

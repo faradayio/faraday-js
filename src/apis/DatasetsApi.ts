@@ -34,6 +34,10 @@ export interface DeleteDatasetRequest {
     datasetId: string;
 }
 
+export interface ForceUpdateDatasetRequest {
+    datasetId: string;
+}
+
 export interface GetDatasetRequest {
     datasetId: string;
 }
@@ -177,6 +181,45 @@ export class DatasetsApi extends runtime.BaseAPI {
      */
     async deleteDataset(datasetId: string, ): Promise<void> {
         await this.deleteDatasetRaw({ datasetId: datasetId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateDatasetRaw(requestParameters: ForceUpdateDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
+            throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling forceUpdateDataset.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/datasets/{dataset_id}/force_update`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateDataset(datasetId: string, ): Promise<void> {
+        await this.forceUpdateDatasetRaw({ datasetId: datasetId }, );
     }
 
     /**

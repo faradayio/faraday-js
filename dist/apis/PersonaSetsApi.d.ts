@@ -21,6 +21,9 @@ export interface CreatePersonaSetRequest {
 export interface DeletePersonaSetRequest {
     personaSetId: string;
 }
+export interface ForceUpdatePersonaSetRequest {
+    personaSetId: string;
+}
 export interface GetPersonaSetRequest {
     personaSetId: string;
 }
@@ -75,6 +78,16 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Delete a persona set
      */
     deletePersonaSet(personaSetId: string): Promise<void>;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    private forceUpdatePersonaSetRaw;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdatePersonaSet(personaSetId: string): Promise<void>;
     /**
      * Details on a specific persona set, including details on all of its constituent personas
      * Retrieve a persona set

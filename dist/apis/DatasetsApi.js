@@ -143,6 +143,42 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateDatasetRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
+                throw new runtime.RequiredError('datasetId', 'Required parameter requestParameters.datasetId was null or undefined when calling forceUpdateDataset.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/datasets/{dataset_id}/force_update`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateDataset(datasetId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateDatasetRaw({ datasetId: datasetId });
+        });
+    }
+    /**
      * Retrieve details on a specific dataset
      * Retrieve a dataset
      */
