@@ -141,6 +141,42 @@ class StreamsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateStreamRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+                throw new runtime.RequiredError('streamIdOrName', 'Required parameter requestParameters.streamIdOrName was null or undefined when calling forceUpdateStream.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id_or_name}/force_update`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateStream(streamIdOrName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateStreamRaw({ streamIdOrName: streamIdOrName });
+        });
+    }
+    /**
      * Look up a specific event stream.
      * Retrieve a stream
      */

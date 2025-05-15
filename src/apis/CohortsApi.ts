@@ -35,6 +35,10 @@ export interface DeleteCohortRequest {
     cohortId: string;
 }
 
+export interface ForceUpdateCohortRequest {
+    cohortId: string;
+}
+
 export interface GetCohortRequest {
     cohortId: string;
 }
@@ -182,6 +186,45 @@ export class CohortsApi extends runtime.BaseAPI {
      */
     async deleteCohort(cohortId: string, ): Promise<void> {
         await this.deleteCohortRaw({ cohortId: cohortId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateCohortRaw(requestParameters: ForceUpdateCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
+            throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling forceUpdateCohort.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/cohorts/{cohort_id}/force_update`.replace(`{${"cohort_id"}}`, encodeURIComponent(String(requestParameters.cohortId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateCohort(cohortId: string, ): Promise<void> {
+        await this.forceUpdateCohortRaw({ cohortId: cohortId }, );
     }
 
     /**

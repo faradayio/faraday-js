@@ -143,6 +143,42 @@ class ScopesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateScopeRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling forceUpdateScope.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/scopes/{scope_id}/force_update`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateScope(scopeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateScopeRaw({ scopeId: scopeId });
+        });
+    }
+    /**
      * Get details on a specific scope
      * Retrieve a scope
      */

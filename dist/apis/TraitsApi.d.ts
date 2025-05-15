@@ -21,6 +21,9 @@ export interface CreateTraitRequest {
 export interface DeleteTraitRequest {
     traitId: string;
 }
+export interface ForceUpdateTraitRequest {
+    traitId: string;
+}
 export interface GetTraitRequest {
     traitId: string;
 }
@@ -79,6 +82,16 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Delete a trait
      */
     deleteTrait(traitId: string): Promise<void>;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    private forceUpdateTraitRaw;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateTrait(traitId: string): Promise<void>;
     /**
      * Get a specific trait by ID.
      * Get a specific trait

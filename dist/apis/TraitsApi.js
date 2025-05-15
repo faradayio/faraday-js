@@ -178,6 +178,42 @@ class TraitsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateTraitRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+                throw new runtime.RequiredError('traitId', 'Required parameter requestParameters.traitId was null or undefined when calling forceUpdateTrait.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/traits/{trait_id}/force_update`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateTrait(traitId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateTraitRaw({ traitId: traitId });
+        });
+    }
+    /**
      * Get a specific trait by ID.
      * Get a specific trait
      */

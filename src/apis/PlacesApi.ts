@@ -34,6 +34,10 @@ export interface DeletePlaceRequest {
     placeId: string;
 }
 
+export interface ForceUpdatePlaceRequest {
+    placeId: string;
+}
+
 export interface GetPlaceRequest {
     placeId: string;
 }
@@ -177,6 +181,45 @@ export class PlacesApi extends runtime.BaseAPI {
      */
     async deletePlace(placeId: string, ): Promise<void> {
         await this.deletePlaceRaw({ placeId: placeId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdatePlaceRaw(requestParameters: ForceUpdatePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
+            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling forceUpdatePlace.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/places/{place_id}/force_update`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdatePlace(placeId: string, ): Promise<void> {
+        await this.forceUpdatePlaceRaw({ placeId: placeId }, );
     }
 
     /**

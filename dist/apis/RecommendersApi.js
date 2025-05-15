@@ -143,6 +143,42 @@ class RecommendersApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateRecommenderRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+                throw new runtime.RequiredError('recommenderId', 'Required parameter requestParameters.recommenderId was null or undefined when calling forceUpdateRecommender.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/recommenders/{recommender_id}/force_update`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateRecommender(recommenderId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateRecommenderRaw({ recommenderId: recommenderId });
+        });
+    }
+    /**
      * Get details on a specific recommender
      * Retrieve a recommender
      */

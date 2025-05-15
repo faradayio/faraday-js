@@ -35,6 +35,10 @@ export interface DeleteTraitRequest {
     traitId: string;
 }
 
+export interface ForceUpdateTraitRequest {
+    traitId: string;
+}
+
 export interface GetTraitRequest {
     traitId: string;
 }
@@ -219,6 +223,45 @@ export class TraitsApi extends runtime.BaseAPI {
      */
     async deleteTrait(traitId: string, ): Promise<void> {
         await this.deleteTraitRaw({ traitId: traitId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateTraitRaw(requestParameters: ForceUpdateTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
+            throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling forceUpdateTrait.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/traits/{trait_id}/force_update`.replace(`{${"trait_id"}}`, encodeURIComponent(String(requestParameters.traitId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateTrait(traitId: string, ): Promise<void> {
+        await this.forceUpdateTraitRaw({ traitId: traitId }, );
     }
 
     /**

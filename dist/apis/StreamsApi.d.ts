@@ -21,6 +21,9 @@ export interface DeleteStreamRequest {
 export interface FindOrCreateStreamRequest {
     streamName: string;
 }
+export interface ForceUpdateStreamRequest {
+    streamIdOrName: string;
+}
 export interface GetStreamRequest {
     streamIdOrName: string;
 }
@@ -63,6 +66,16 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Create a stream
      */
     findOrCreateStream(streamName: string): Promise<Stream>;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    private forceUpdateStreamRaw;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateStream(streamIdOrName: string): Promise<void>;
     /**
      * Look up a specific event stream.
      * Retrieve a stream

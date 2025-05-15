@@ -139,6 +139,42 @@ class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateMarketOpportunityAnalysisRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.marketOpportunityAnalysisId === null || requestParameters.marketOpportunityAnalysisId === undefined) {
+                throw new runtime.RequiredError('marketOpportunityAnalysisId', 'Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling forceUpdateMarketOpportunityAnalysis.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/market_opportunity_analyses/{market_opportunity_analysis_id}/force_update`.replace(`{${"market_opportunity_analysis_id"}}`, encodeURIComponent(String(requestParameters.marketOpportunityAnalysisId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateMarketOpportunityAnalysis(marketOpportunityAnalysisId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.forceUpdateMarketOpportunityAnalysisRaw({ marketOpportunityAnalysisId: marketOpportunityAnalysisId });
+        });
+    }
+    /**
      * Get all market opportunity analyses
      */
     getMarketOpportunityAnalysesRaw() {

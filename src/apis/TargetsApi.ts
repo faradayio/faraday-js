@@ -46,6 +46,10 @@ export interface DownloadTargetRequest {
     targetId: string;
 }
 
+export interface ForceUpdateTargetRequest {
+    targetId: string;
+}
+
 export interface GetTargetRequest {
     targetId: string;
 }
@@ -282,6 +286,45 @@ export class TargetsApi extends runtime.BaseAPI {
     async downloadTarget(targetId: string, ): Promise<string> {
         const response = await this.downloadTargetRaw({ targetId: targetId }, );
         return await response.value();
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateTargetRaw(requestParameters: ForceUpdateTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
+            throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling forceUpdateTarget.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/targets/{target_id}/force_update`.replace(`{${"target_id"}}`, encodeURIComponent(String(requestParameters.targetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateTarget(targetId: string, ): Promise<void> {
+        await this.forceUpdateTargetRaw({ targetId: targetId }, );
     }
 
     /**

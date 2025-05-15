@@ -35,6 +35,10 @@ export interface DeleteRecommenderRequest {
     recommenderId: string;
 }
 
+export interface ForceUpdateRecommenderRequest {
+    recommenderId: string;
+}
+
 export interface GetRecommenderRequest {
     recommenderId: string;
 }
@@ -182,6 +186,45 @@ export class RecommendersApi extends runtime.BaseAPI {
      */
     async deleteRecommender(recommenderId: string, ): Promise<void> {
         await this.deleteRecommenderRaw({ recommenderId: recommenderId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateRecommenderRaw(requestParameters: ForceUpdateRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
+            throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling forceUpdateRecommender.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/recommenders/{recommender_id}/force_update`.replace(`{${"recommender_id"}}`, encodeURIComponent(String(requestParameters.recommenderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource.
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateRecommender(recommenderId: string, ): Promise<void> {
+        await this.forceUpdateRecommenderRaw({ recommenderId: recommenderId }, );
     }
 
     /**

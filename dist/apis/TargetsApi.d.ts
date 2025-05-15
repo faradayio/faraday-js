@@ -27,6 +27,9 @@ export interface DeleteTargetRequest {
 export interface DownloadTargetRequest {
     targetId: string;
 }
+export interface ForceUpdateTargetRequest {
+    targetId: string;
+}
 export interface GetTargetRequest {
     targetId: string;
 }
@@ -100,6 +103,16 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Download the default output of a target
      */
     downloadTarget(targetId: string): Promise<string>;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    private forceUpdateTargetRaw;
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource.
+     */
+    forceUpdateTarget(targetId: string): Promise<void>;
     /**
      * Get details on a specific target
      * Retrieve a target

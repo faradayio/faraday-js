@@ -42,6 +42,10 @@ export interface DeleteScopeRequest {
     scopeId: string;
 }
 
+export interface ForceUpdateScopeRequest {
+    scopeId: string;
+}
+
 export interface GetScopeRequest {
     scopeId: string;
 }
@@ -225,6 +229,45 @@ export class ScopesApi extends runtime.BaseAPI {
      */
     async deleteScope(scopeId: string, ): Promise<void> {
         await this.deleteScopeRaw({ scopeId: scopeId }, );
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    private async forceUpdateScopeRaw(requestParameters: ForceUpdateScopeRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling forceUpdateScope.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/force_update`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource.
+     */
+    async forceUpdateScope(scopeId: string, ): Promise<void> {
+        await this.forceUpdateScopeRaw({ scopeId: scopeId }, );
     }
 
     /**
