@@ -13314,6 +13314,12 @@ export interface OutcomeAnalysis {
     overall_performance: OutcomeAnalysisOverallPerformance;
     /**
      *
+     * @type {Array<OutcomeAnalysisStrategy>}
+     * @memberof OutcomeAnalysis
+     */
+    strategies?: Array<OutcomeAnalysisStrategy>;
+    /**
+     *
      * @type {OutcomeAnalysisTenureFeatures}
      * @memberof OutcomeAnalysis
      */
@@ -13731,6 +13737,77 @@ export interface OutcomeAnalysisOverallPerformance {
      * @memberof OutcomeAnalysisOverallPerformance
      */
     unrecognized_individuals?: OutcomePerformanceModel;
+}
+/**
+ * The strategy used to make predictions.
+ * @export
+ * @interface OutcomeAnalysisStrategy
+ */
+export interface OutcomeAnalysisStrategy {
+    /**
+     * A description of the prediction strategy.
+     * @type {string}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    description: string;
+    /**
+     * Whether the prediction strategy is experimental.
+     * @type {boolean}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    experimental?: boolean;
+    /**
+     * The name of the prediction strategy.
+     * @type {string}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    name: string;
+    /**
+     * The data providers used to make predictions.
+     *
+     * - "self" means uses first party data (your account).
+     * - "fig" means uses Faraday's Identity Graph.
+     * @type {Array<string>}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    providers: Array<string>;
+    /**
+     *
+     * @type {Array<OutcomeAnalysisStrategyScenarios>}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    scenarios: Array<OutcomeAnalysisStrategyScenarios>;
+    /**
+     * A unique identifier for the prediction strategy.
+     * @type {string}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    slug?: string;
+}
+/**
+ *
+ * @export
+ * @interface OutcomeAnalysisStrategyScenarios
+ */
+export interface OutcomeAnalysisStrategyScenarios {
+    /**
+     * Whether the strategy applies to recognized or unrecognized people.
+     * @type {boolean}
+     * @memberof OutcomeAnalysisStrategyScenarios
+     */
+    recognized: boolean;
+    /**
+     * The end of the tenure period, if applicable.
+     * @type {number}
+     * @memberof OutcomeAnalysisStrategyScenarios
+     */
+    tenure_end?: number;
+    /**
+     * The start of the tenure period, if applicable.
+     * @type {number}
+     * @memberof OutcomeAnalysisStrategyScenarios
+     */
+    tenure_start?: number;
 }
 /**
  *
