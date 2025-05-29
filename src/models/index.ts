@@ -12754,6 +12754,13 @@ export interface OutcomeAnalysis {
      */
     overall_performance: OutcomeAnalysisOverallPerformance;
     /**
+     * When an Outcome is being built, many "strategies" are employed to produce candidate models. After cross-validation, the best models resulting from, therefore, the best strategies are promoted to production for later use in inference.
+     * You can inspect which strategies are used by referencing the `strategy_id` field in the `OutcomePerformanceModel` in tenure performances.
+     * @type {Array<OutcomeAnalysisStrategy>}
+     * @memberof OutcomeAnalysis
+     */
+    strategies?: Array<OutcomeAnalysisStrategy>;
+    /**
      * 
      * @type {OutcomeAnalysisTenureFeatures}
      * @memberof OutcomeAnalysis
@@ -13176,6 +13183,52 @@ export interface OutcomeAnalysisOverallPerformance {
     unrecognized_individuals?: OutcomePerformanceModel;
 }
 /**
+ * The strategy used to make predictions.
+ * @export
+ * @interface OutcomeAnalysisStrategy
+ */
+export interface OutcomeAnalysisStrategy {
+    /**
+     * A description of the prediction strategy.
+     * @type {string}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    description: string;
+    /**
+     * Whether the prediction strategy is experimental.
+     * @type {boolean}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    experimental?: boolean;
+    /**
+     * A unique identifier for the prediction strategy. Referenced by `strategy_id` in the `OutcomePerformanceModel` in tenure performances.
+     * @type {string}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    id: string;
+    /**
+     * The name of the prediction strategy.
+     * @type {string}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    name: string;
+    /**
+     * The data providers used to make predictions.
+     * 
+     * - "self" means uses first party data (your account).
+     * - "fig" means uses Faraday's Identity Graph.
+     * @type {Array<string>}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    providers: Array<string>;
+    /**
+     * A unique identifier for the prediction strategy.
+     * @type {string}
+     * @memberof OutcomeAnalysisStrategy
+     */
+    slug?: string;
+}
+/**
  * 
  * @export
  * @interface OutcomeAnalysisTenureFeatures
@@ -13430,6 +13483,12 @@ export interface OutcomePerformanceModel {
      * @memberof OutcomePerformanceModel
      */
     roc_curve: Array<AnalysisRocCurvePoint>;
+    /**
+     * The ID of a strategy from the strategies array. If the group is overall, this value is null. To determine which strategies apply in such cases, refer to the strategy IDs defined at the tenure level.
+     * @type {string}
+     * @memberof OutcomePerformanceModel
+     */
+    strategy_id?: string;
     /**
      * When the tenure range ends measured in days. The value can be null if no tenure range applies to this model. The value can also be null if the range is unbounded.
      * @type {number}

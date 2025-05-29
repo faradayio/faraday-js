@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.56] - 2025-05-29
+
+### Added
+
+- Added `strategies` to `GET /outcomes/{outcome_id}/analysis` and `strategy_id` in the tenure objects, which refers to the strategy used to generate the outcome analysis. This is useful for understanding how the outcome was generated and what modeling techniques were applied.
+
 ## [0.10.55] - 2025-05-22
 
 ### Changed
