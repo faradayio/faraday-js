@@ -184,7 +184,8 @@ var LookupMatchType;
  * fig/gender: Gender of individual
  * fig/health_conscious: Self-reported interest in health & exercise
  * fig/homeowner_status: Designation of person-to-property relationship (renter vs. owner), with probability
- * fig/household_income: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
+ * fig/household_income: Deprecated. Use fig/household_income_v2 instead.
+ * fig/household_income_v2: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
  * fig/household_size: The number of people living in the household, including adults and children
  * fig/housing_density: Number of housing units per square mile
  * fig/length_of_residence: The number of years the resident has lived at this location
@@ -220,6 +221,7 @@ var ModelingField;
     ModelingField["HealthConscious"] = "fig/health_conscious";
     ModelingField["HomeownerStatus"] = "fig/homeowner_status";
     ModelingField["HouseholdIncome"] = "fig/household_income";
+    ModelingField["HouseholdIncomeV2"] = "fig/household_income_v2";
     ModelingField["HouseholdSize"] = "fig/household_size";
     ModelingField["LengthOfResidence"] = "fig/length_of_residence";
     ModelingField["LifeSportsSportsAll"] = "fig/life_sports_sports_all";
