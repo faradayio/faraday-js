@@ -7840,6 +7840,7 @@ export interface Dataset {
      * Currently supported:
      *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
      *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     *   Note: While these options are labeled differently, they currently result in the same behavior (including deletion). This may change in the future.
      * @type {string}
      * @memberof Dataset
      */
@@ -8074,6 +8075,7 @@ export interface DatasetMergePatch {
      * Currently supported:
      *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
      *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     *   Note: While these options are labeled differently, they currently result in the same behavior (including deletion). This may change in the future.
      * @type {string}
      * @memberof DatasetMergePatch
      */
@@ -10991,6 +10993,7 @@ export interface DatasetPost {
      * Currently supported:
      *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
      *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     *   Note: While these options are labeled differently, they currently result in the same behavior (including deletion). This may change in the future.
      * @type {string}
      * @memberof DatasetPost
      */
@@ -11091,6 +11094,7 @@ export interface DatasetPut {
      * Currently supported:
      *   - 'suppress' - data can be used for modeling but will be excluded from pipelines and deployments (do not contact)
      *   - 'delete' - data can not be used for modeling and will be excluded from pipelines and deployments (delete and do not contact)
+     *   Note: While these options are labeled differently, they currently result in the same behavior (including deletion). This may change in the future.
      * @type {string}
      * @memberof DatasetPut
      */
