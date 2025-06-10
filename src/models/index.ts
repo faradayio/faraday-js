@@ -12503,7 +12503,8 @@ export interface ModelError {
  * fig/gender: Gender of individual
  * fig/health_conscious: Self-reported interest in health & exercise
  * fig/homeowner_status: Designation of person-to-property relationship (renter vs. owner), with probability
- * fig/household_income: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
+ * fig/household_income: Deprecated. Use fig/household_income_v2 instead.
+ * fig/household_income_v2: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
  * fig/household_size: The number of people living in the household, including adults and children
  * fig/housing_density: Number of housing units per square mile
  * fig/length_of_residence: The number of years the resident has lived at this location
@@ -12538,6 +12539,7 @@ export enum ModelingField {
     HealthConscious = 'fig/health_conscious',
     HomeownerStatus = 'fig/homeowner_status',
     HouseholdIncome = 'fig/household_income',
+    HouseholdIncomeV2 = 'fig/household_income_v2',
     HouseholdSize = 'fig/household_size',
     LengthOfResidence = 'fig/length_of_residence',
     LifeSportsSportsAll = 'fig/life_sports_sports_all',
