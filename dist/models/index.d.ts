@@ -14602,6 +14602,8 @@ export interface OutputToStreamsPut {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other, if both are provided, the request will be rejected.
  * @export
  * @interface OutputToTraits
  */
@@ -14616,6 +14618,8 @@ export interface OutputToTraits {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other, if both are provided, the request will be rejected.
  * @export
  * @interface OutputToTraitsMergePatch
  */
@@ -14630,6 +14634,8 @@ export interface OutputToTraitsMergePatch {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other, if both are provided, the request will be rejected.
  * @export
  * @interface OutputToTraitsPost
  */
@@ -14644,6 +14650,8 @@ export interface OutputToTraitsPost {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other, if both are provided, the request will be rejected.
  * @export
  * @interface OutputToTraitsPut
  */
@@ -23143,7 +23151,7 @@ export interface TraitDataMapColumn {
      * @type {string}
      * @memberof TraitDataMapColumn
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23164,6 +23172,12 @@ export interface TraitDataMapColumn {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumn
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23176,7 +23190,7 @@ export interface TraitDataMapColumnMergePatch {
      * @type {string}
      * @memberof TraitDataMapColumnMergePatch
      */
-    column_name?: string;
+    column_name?: string | null;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23197,6 +23211,12 @@ export interface TraitDataMapColumnMergePatch {
     transformation_table?: {
         [key: string]: string | number | boolean;
     } | null;
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumnMergePatch
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23209,7 +23229,7 @@ export interface TraitDataMapColumnPost {
      * @type {string}
      * @memberof TraitDataMapColumnPost
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23230,6 +23250,12 @@ export interface TraitDataMapColumnPost {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumnPost
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23242,7 +23268,7 @@ export interface TraitDataMapColumnPut {
      * @type {string}
      * @memberof TraitDataMapColumnPut
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23263,6 +23289,12 @@ export interface TraitDataMapColumnPut {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumnPut
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23275,7 +23307,7 @@ export interface TraitInputFromDatasets {
      * @type {string}
      * @memberof TraitInputFromDatasets
      */
-    column_name: string;
+    column_name?: string;
     /**
      * The dataset the column comes from.
      * @type {string}
@@ -23302,6 +23334,12 @@ export interface TraitInputFromDatasets {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasets
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23314,7 +23352,7 @@ export interface TraitInputFromDatasetsMergePatch {
      * @type {string}
      * @memberof TraitInputFromDatasetsMergePatch
      */
-    column_name?: string;
+    column_name?: string | null;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23335,6 +23373,12 @@ export interface TraitInputFromDatasetsMergePatch {
     transformation_table?: {
         [key: string]: string | number | boolean;
     } | null;
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasetsMergePatch
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23347,7 +23391,7 @@ export interface TraitInputFromDatasetsPost {
      * @type {string}
      * @memberof TraitInputFromDatasetsPost
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23368,6 +23412,12 @@ export interface TraitInputFromDatasetsPost {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasetsPost
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23380,7 +23430,7 @@ export interface TraitInputFromDatasetsPut {
      * @type {string}
      * @memberof TraitInputFromDatasetsPut
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23401,6 +23451,12 @@ export interface TraitInputFromDatasetsPut {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasetsPut
+     */
+    value?: boolean | string | number | null;
 }
 /**
  * (Parameters used to PATCH the `Trait` type.)
