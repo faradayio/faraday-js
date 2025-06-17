@@ -7742,6 +7742,15 @@ export interface Dataset {
      */
     identified_count?: number;
     /**
+     * Which identity providers to use for matching, in order of priority.
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<DatasetIdentityProviders>}
+     * @memberof Dataset
+     */
+    identity_providers?: Array<DatasetIdentityProviders>;
+    /**
      * 
      * @type {IdentitySets}
      * @memberof Dataset
@@ -7980,6 +7989,12 @@ export interface DatasetColumn {
  */
 export interface DatasetEnrichment {
     /**
+     * How many of the identities were enriched with either person-level or residence-level data
+     * @type {number}
+     * @memberof DatasetEnrichment
+     */
+    any: number;
+    /**
      * How many of the identities were enriched with person-level data
      * @type {number}
      * @memberof DatasetEnrichment
@@ -7999,6 +8014,37 @@ export interface DatasetEnrichment {
  */
 export interface DatasetEnrichments {
     [key: string]: DatasetEnrichment;
+}
+/**
+ * 
+ * @export
+ * @interface DatasetIdentityProviders
+ */
+export interface DatasetIdentityProviders {
+    /**
+     * If true, then use this identity provider even if a match was found by another, higher priority provider.
+     * Please contact support to gain access to this feature for any provider other than FIG.
+     * @type {boolean}
+     * @memberof DatasetIdentityProviders
+     */
+    force?: boolean;
+    /**
+     * Which data provider to use for matching.
+     * By default, all Faraday accounts can match on the 'Faraday Identity Graph' (FIG) provider.
+     * Please contact support to gain access to additional providers.
+     * @type {string}
+     * @memberof DatasetIdentityProviders
+     */
+    provider: DatasetIdentityProvidersProviderEnum;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum DatasetIdentityProvidersProviderEnum {
+    Fig = 'fig',
+    MatchBoost = 'match_boost'
 }
 /**
  * 
@@ -8027,6 +8073,15 @@ export interface DatasetMergeDatasets {
  * @interface DatasetMergePatch
  */
 export interface DatasetMergePatch {
+    /**
+     * Which identity providers to use for matching, in order of priority.
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<DatasetIdentityProviders>}
+     * @memberof DatasetMergePatch
+     */
+    identity_providers?: Array<DatasetIdentityProviders> | null;
     /**
      * 
      * @type {IdentitySetsMergePatch}
@@ -10940,6 +10995,15 @@ export interface DatasetPost {
      */
     connection_id?: string;
     /**
+     * Which identity providers to use for matching, in order of priority.
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<DatasetIdentityProviders>}
+     * @memberof DatasetPost
+     */
+    identity_providers?: Array<DatasetIdentityProviders>;
+    /**
      * 
      * @type {IdentitySetsPost}
      * @memberof DatasetPost
@@ -11046,6 +11110,15 @@ export enum DatasetPostPrivacyEnum {
  * @interface DatasetPut
  */
 export interface DatasetPut {
+    /**
+     * Which identity providers to use for matching, in order of priority.
+     * By default, all datasets will match on 'fig' data.
+     * The dataset's match-rate can be boosted by adding other identity providers.
+     * Please contact support to get access to this feature.
+     * @type {Array<DatasetIdentityProviders>}
+     * @memberof DatasetPut
+     */
+    identity_providers?: Array<DatasetIdentityProviders>;
     /**
      * 
      * @type {IdentitySetsPut}
