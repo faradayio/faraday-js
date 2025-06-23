@@ -14674,6 +14674,8 @@ export interface OutputToStreamsPut {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other.
  * @export
  * @interface OutputToTraits
  */
@@ -14688,6 +14690,8 @@ export interface OutputToTraits {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other.
  * @export
  * @interface OutputToTraitsMergePatch
  */
@@ -14702,6 +14706,8 @@ export interface OutputToTraitsMergePatch {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other.
  * @export
  * @interface OutputToTraitsPost
  */
@@ -14716,6 +14722,8 @@ export interface OutputToTraitsPost {
  * Traits are characteristics about people, that are unrelated to particular events.
  *
  * When specifying or modifying this parameter, bulk trait declarations specified with `output_all_columns_as_traits` must be null.
+ *
+ * There is an option to provide either a static value or a column name for each trait. Please provide one or the other.
  * @export
  * @interface OutputToTraitsPut
  */
@@ -19138,6 +19146,12 @@ export interface TargetModesIdentified {
      */
     mode: string;
     /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesIdentified
+     */
+    output_multiple_identities?: boolean;
+    /**
      *
      * @type {TargetTransformPresetIdentified}
      * @memberof TargetModesIdentified
@@ -19164,6 +19178,12 @@ export interface TargetModesIdentifiedMergePatch {
      * @memberof TargetModesIdentifiedMergePatch
      */
     mode: string;
+    /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesIdentifiedMergePatch
+     */
+    output_multiple_identities?: boolean | null;
     /**
      *
      * @type {TargetTransformPresetIdentified}
@@ -19192,6 +19212,12 @@ export interface TargetModesIdentifiedPost {
      */
     mode: string;
     /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesIdentifiedPost
+     */
+    output_multiple_identities?: boolean;
+    /**
      *
      * @type {TargetTransformPresetIdentified}
      * @memberof TargetModesIdentifiedPost
@@ -19218,6 +19244,12 @@ export interface TargetModesIdentifiedPut {
      * @memberof TargetModesIdentifiedPut
      */
     mode: string;
+    /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesIdentifiedPut
+     */
+    output_multiple_identities?: boolean;
     /**
      *
      * @type {TargetTransformPresetIdentified}
@@ -19328,6 +19360,12 @@ export interface TargetModesReferenced {
      */
     mode: string;
     /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesReferenced
+     */
+    output_multiple_identities?: boolean;
+    /**
      *
      * @type {TargetReferencedReference}
      * @memberof TargetModesReferenced
@@ -19361,6 +19399,12 @@ export interface TargetModesReferencedMergePatch {
      * @memberof TargetModesReferencedMergePatch
      */
     mode: string;
+    /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    output_multiple_identities?: boolean | null;
     /**
      *
      * @type {TargetReferencedReference}
@@ -19396,6 +19440,12 @@ export interface TargetModesReferencedPost {
      */
     mode: string;
     /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesReferencedPost
+     */
+    output_multiple_identities?: boolean;
+    /**
      *
      * @type {TargetReferencedReference}
      * @memberof TargetModesReferencedPost
@@ -19429,6 +19479,12 @@ export interface TargetModesReferencedPut {
      * @memberof TargetModesReferencedPut
      */
     mode: string;
+    /**
+     * Allows additional historical address, email, and phone per row in json array format. A special plan feature is required for this to work, please contact support.
+     * @type {boolean}
+     * @memberof TargetModesReferencedPut
+     */
+    output_multiple_identities?: boolean;
     /**
      *
      * @type {TargetReferencedReference}
@@ -23211,11 +23267,11 @@ export declare enum TraitCategory {
  */
 export interface TraitDataMapColumn {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitDataMapColumn
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23236,6 +23292,12 @@ export interface TraitDataMapColumn {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumn
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23244,11 +23306,11 @@ export interface TraitDataMapColumn {
  */
 export interface TraitDataMapColumnMergePatch {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitDataMapColumnMergePatch
      */
-    column_name?: string;
+    column_name?: string | null;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23269,6 +23331,12 @@ export interface TraitDataMapColumnMergePatch {
     transformation_table?: {
         [key: string]: string | number | boolean;
     } | null;
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumnMergePatch
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23277,11 +23345,11 @@ export interface TraitDataMapColumnMergePatch {
  */
 export interface TraitDataMapColumnPost {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitDataMapColumnPost
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23302,6 +23370,12 @@ export interface TraitDataMapColumnPost {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumnPost
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23310,11 +23384,11 @@ export interface TraitDataMapColumnPost {
  */
 export interface TraitDataMapColumnPut {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitDataMapColumnPut
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23335,6 +23409,12 @@ export interface TraitDataMapColumnPut {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitDataMapColumnPut
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23343,11 +23423,11 @@ export interface TraitDataMapColumnPut {
  */
 export interface TraitInputFromDatasets {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitInputFromDatasets
      */
-    column_name: string;
+    column_name?: string;
     /**
      * The dataset the column comes from.
      * @type {string}
@@ -23374,6 +23454,12 @@ export interface TraitInputFromDatasets {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasets
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23382,11 +23468,11 @@ export interface TraitInputFromDatasets {
  */
 export interface TraitInputFromDatasetsMergePatch {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitInputFromDatasetsMergePatch
      */
-    column_name?: string;
+    column_name?: string | null;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23407,6 +23493,12 @@ export interface TraitInputFromDatasetsMergePatch {
     transformation_table?: {
         [key: string]: string | number | boolean;
     } | null;
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasetsMergePatch
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23415,11 +23507,11 @@ export interface TraitInputFromDatasetsMergePatch {
  */
 export interface TraitInputFromDatasetsPost {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitInputFromDatasetsPost
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23440,6 +23532,12 @@ export interface TraitInputFromDatasetsPost {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasetsPost
+     */
+    value?: boolean | string | number | null;
 }
 /**
  *
@@ -23448,11 +23546,11 @@ export interface TraitInputFromDatasetsPost {
  */
 export interface TraitInputFromDatasetsPut {
     /**
-     * The name of a column in the dataset.
+     * The name of a column in the dataset. Required if no `value` is used.
      * @type {string}
      * @memberof TraitInputFromDatasetsPut
      */
-    column_name: string;
+    column_name?: string;
     /**
      *
      * @type {DataMapColumnFormat}
@@ -23473,6 +23571,12 @@ export interface TraitInputFromDatasetsPut {
     transformation_table?: {
         [key: string]: string | number | boolean;
     };
+    /**
+     * A static value for this trait. Required if no `column_name` is used.
+     * @type {boolean | string | number}
+     * @memberof TraitInputFromDatasetsPut
+     */
+    value?: boolean | string | number | null;
 }
 /**
  * (Parameters used to PATCH the `Trait` type.)
