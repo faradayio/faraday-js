@@ -18724,6 +18724,12 @@ export type TargetModesPut = { mode: 'aggregated' } & TargetModesAggregatedPut |
  */
 export interface TargetModesReferenced {
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof TargetModesReferenced
+     */
+    include_identifiers?: Array<TargetModesReferencedIncludeIdentifiersEnum>;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesReferenced
@@ -18749,6 +18755,21 @@ export interface TargetModesReferenced {
      */
     transform_preset?: TargetTransformPresetReferenced;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedIncludeIdentifiersEnum {
+    PersonFirstName = 'person_first_name',
+    PersonLastName = 'person_last_name',
+    HouseNumberAndStreet = 'house_number_and_street',
+    City = 'city',
+    State = 'state',
+    Postcode = 'postcode',
+    FaradayPersonIdV1 = 'faraday_person_id_v1',
+    FaradayAddressIdV1 = 'faraday_address_id_v1'
+}
 /**
  * (Parameters used to PATCH the `TargetModesReferenced` type.)
  * 
@@ -18757,6 +18778,12 @@ export interface TargetModesReferenced {
  * @interface TargetModesReferencedMergePatch
  */
 export interface TargetModesReferencedMergePatch {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    include_identifiers?: Array<TargetModesReferencedMergePatchIncludeIdentifiersEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -18783,6 +18810,21 @@ export interface TargetModesReferencedMergePatch {
      */
     transform_preset?: TargetTransformPresetReferenced | null;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedMergePatchIncludeIdentifiersEnum {
+    PersonFirstName = 'person_first_name',
+    PersonLastName = 'person_last_name',
+    HouseNumberAndStreet = 'house_number_and_street',
+    City = 'city',
+    State = 'state',
+    Postcode = 'postcode',
+    FaradayPersonIdV1 = 'faraday_person_id_v1',
+    FaradayAddressIdV1 = 'faraday_address_id_v1'
+}
 /**
  * (Parameters used to POST a new value of the `TargetModesReferenced` type.)
  * 
@@ -18791,6 +18833,12 @@ export interface TargetModesReferencedMergePatch {
  * @interface TargetModesReferencedPost
  */
 export interface TargetModesReferencedPost {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedPost
+     */
+    include_identifiers?: Array<TargetModesReferencedPostIncludeIdentifiersEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -18817,6 +18865,21 @@ export interface TargetModesReferencedPost {
      */
     transform_preset?: TargetTransformPresetReferenced;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedPostIncludeIdentifiersEnum {
+    PersonFirstName = 'person_first_name',
+    PersonLastName = 'person_last_name',
+    HouseNumberAndStreet = 'house_number_and_street',
+    City = 'city',
+    State = 'state',
+    Postcode = 'postcode',
+    FaradayPersonIdV1 = 'faraday_person_id_v1',
+    FaradayAddressIdV1 = 'faraday_address_id_v1'
+}
 /**
  * (Parameters used to PUT a value of the `TargetModesReferenced` type.)
  * 
@@ -18825,6 +18888,12 @@ export interface TargetModesReferencedPost {
  * @interface TargetModesReferencedPut
  */
 export interface TargetModesReferencedPut {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedPut
+     */
+    include_identifiers?: Array<TargetModesReferencedPutIncludeIdentifiersEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -18850,6 +18919,21 @@ export interface TargetModesReferencedPut {
      * @memberof TargetModesReferencedPut
      */
     transform_preset?: TargetTransformPresetReferenced;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedPutIncludeIdentifiersEnum {
+    PersonFirstName = 'person_first_name',
+    PersonLastName = 'person_last_name',
+    HouseNumberAndStreet = 'house_number_and_street',
+    City = 'city',
+    State = 'state',
+    Postcode = 'postcode',
+    FaradayPersonIdV1 = 'faraday_person_id_v1',
+    FaradayAddressIdV1 = 'faraday_address_id_v1'
 }
 /**
  * @type TargetOptions
