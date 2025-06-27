@@ -10,6 +10,18 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.59] - 2025-06-23
+
+### Added
+
+- Added a boolean output_multiple_identities to identified and referenced target.representation config - defaults to false.
+
+## [0.10.58] - 2025-06-13
+
+### Added
+
+- Added optional `value` property to output_to_traits on datasets and changed column_name to optional. One or the other must be included and validation will occur at runtime.
+
 ## [0.10.57] - 2025-06-09
 
 ### Added
