@@ -1350,7 +1350,8 @@ export declare enum ComplexDataTypeOneOfLogicalTypeEnum {
     TimestampMillis = "timestamp-millis",
     LocalTimestampMillis = "local-timestamp-millis",
     Json = "json",
-    Uuid = "uuid"
+    Uuid = "uuid",
+    Unknown = "unknown"
 }
 /**
  * Configuration for connecting data between Faraday and an external location.
