@@ -12147,6 +12147,18 @@ export interface IdentitySet {
      * @type {string}
      * @memberof IdentitySet
      */
+    address_line_1?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySet
+     */
+    address_line_2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySet
+     */
     city?: string;
     /**
      *
@@ -12167,7 +12179,7 @@ export interface IdentitySet {
      */
     freeform_address?: string;
     /**
-     *
+     * Deprecated in favor of `address_line_1` and `address_line_2`.
      * @type {Array<string>}
      * @memberof IdentitySet
      */
@@ -12225,6 +12237,18 @@ export interface IdentitySetMergePatch {
      * @type {string}
      * @memberof IdentitySetMergePatch
      */
+    address_line_1?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySetMergePatch
+     */
+    address_line_2?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySetMergePatch
+     */
     city?: string | null;
     /**
      *
@@ -12245,7 +12269,7 @@ export interface IdentitySetMergePatch {
      */
     freeform_address?: string | null;
     /**
-     *
+     * Deprecated in favor of `address_line_1` and `address_line_2`.
      * @type {Array<string>}
      * @memberof IdentitySetMergePatch
      */
@@ -12303,6 +12327,18 @@ export interface IdentitySetPost {
      * @type {string}
      * @memberof IdentitySetPost
      */
+    address_line_1?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySetPost
+     */
+    address_line_2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySetPost
+     */
     city?: string;
     /**
      *
@@ -12323,7 +12359,7 @@ export interface IdentitySetPost {
      */
     freeform_address?: string;
     /**
-     *
+     * Deprecated in favor of `address_line_1` and `address_line_2`.
      * @type {Array<string>}
      * @memberof IdentitySetPost
      */
@@ -12381,6 +12417,18 @@ export interface IdentitySetPut {
      * @type {string}
      * @memberof IdentitySetPut
      */
+    address_line_1?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySetPut
+     */
+    address_line_2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IdentitySetPut
+     */
     city?: string;
     /**
      *
@@ -12401,7 +12449,7 @@ export interface IdentitySetPut {
      */
     freeform_address?: string;
     /**
-     *
+     * Deprecated in favor of `address_line_1` and `address_line_2`.
      * @type {Array<string>}
      * @memberof IdentitySetPut
      */
