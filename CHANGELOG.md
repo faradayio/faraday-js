@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.60] - 2025-07-02
+
+### Added
+
+- Add `unknown` data type for dataset detected columns when we don't yet support a detected schema type.
+
 ## [0.10.59] - 2025-06-23
 
 ### Added
