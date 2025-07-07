@@ -8067,14 +8067,11 @@ export interface Dataset {
      */
     identified_count?: number;
     /**
-     * Which identity providers to use for matching, in order of priority.
-     * By default, all datasets will match on 'fig' data.
-     * The dataset's match-rate can be boosted by adding other identity providers.
-     * Please contact support to get access to this feature.
-     * @type {Array<DatasetIdentityProviders>}
+     *
+     * @type {IdentityProviderObject | IdentityProviderArray}
      * @memberof Dataset
      */
-    identity_providers?: Array<DatasetIdentityProviders>;
+    identity_providers?: IdentityProviderObject | IdentityProviderArray | null;
     /**
      *
      * @type {IdentitySets}
@@ -8342,36 +8339,6 @@ export interface DatasetEnrichments {
 /**
  *
  * @export
- * @interface DatasetIdentityProviders
- */
-export interface DatasetIdentityProviders {
-    /**
-     * If true, then use this identity provider even if a match was found by another, higher priority provider.
-     * Please contact support to gain access to this feature for any provider other than FIG.
-     * @type {boolean}
-     * @memberof DatasetIdentityProviders
-     */
-    force?: boolean;
-    /**
-     * Which data provider to use for matching.
-     * By default, all Faraday accounts can match on the 'Faraday Identity Graph' (FIG) provider.
-     * Please contact support to gain access to additional providers.
-     * @type {string}
-     * @memberof DatasetIdentityProviders
-     */
-    provider: DatasetIdentityProvidersProviderEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum DatasetIdentityProvidersProviderEnum {
-    Fig = "fig",
-    MatchBoost = "match_boost"
-}
-/**
- *
- * @export
  * @interface DatasetMergeDatasets
  */
 export interface DatasetMergeDatasets {
@@ -8397,14 +8364,11 @@ export interface DatasetMergeDatasets {
  */
 export interface DatasetMergePatch {
     /**
-     * Which identity providers to use for matching, in order of priority.
-     * By default, all datasets will match on 'fig' data.
-     * The dataset's match-rate can be boosted by adding other identity providers.
-     * Please contact support to get access to this feature.
-     * @type {Array<DatasetIdentityProviders>}
+     *
+     * @type {IdentityProviderObject | IdentityProviderArray}
      * @memberof DatasetMergePatch
      */
-    identity_providers?: Array<DatasetIdentityProviders> | null;
+    identity_providers?: IdentityProviderObject | IdentityProviderArray | null;
     /**
      *
      * @type {IdentitySetsMergePatch}
@@ -11557,14 +11521,11 @@ export interface DatasetPost {
      */
     connection_id?: string;
     /**
-     * Which identity providers to use for matching, in order of priority.
-     * By default, all datasets will match on 'fig' data.
-     * The dataset's match-rate can be boosted by adding other identity providers.
-     * Please contact support to get access to this feature.
-     * @type {Array<DatasetIdentityProviders>}
+     *
+     * @type {IdentityProviderObject | IdentityProviderArray}
      * @memberof DatasetPost
      */
-    identity_providers?: Array<DatasetIdentityProviders>;
+    identity_providers?: IdentityProviderObject | IdentityProviderArray | null;
     /**
      *
      * @type {IdentitySetsPost}
@@ -11672,14 +11633,11 @@ export declare enum DatasetPostPrivacyEnum {
  */
 export interface DatasetPut {
     /**
-     * Which identity providers to use for matching, in order of priority.
-     * By default, all datasets will match on 'fig' data.
-     * The dataset's match-rate can be boosted by adding other identity providers.
-     * Please contact support to get access to this feature.
-     * @type {Array<DatasetIdentityProviders>}
+     *
+     * @type {IdentityProviderObject | IdentityProviderArray}
      * @memberof DatasetPut
      */
-    identity_providers?: Array<DatasetIdentityProviders>;
+    identity_providers?: IdentityProviderObject | IdentityProviderArray | null;
     /**
      *
      * @type {IdentitySetsPut}
@@ -12132,6 +12090,26 @@ export interface GraphEdge {
      * @memberof GraphEdge
      */
     upstream_type: ResourceType;
+}
+/**
+ * Which identity providers to use for matching, in order of priority, with default config.
+ * By default, all datasets will match on 'fig' data.
+ * The dataset's match-rate can be boosted by adding other identity providers.
+ * Please contact support to get access to this feature.
+ * @export
+ * @interface IdentityProviderArray
+ */
+export interface IdentityProviderArray extends Array<string> {
+}
+/**
+ * Which identity providers to use for matching, in order of priority, with customizable config.
+ * By default, all datasets will match on 'fig' data.
+ * The dataset's match-rate can be boosted by adding other identity providers.
+ * Please contact support to get access to this feature.
+ * @export
+ * @interface IdentityProviderObject
+ */
+export interface IdentityProviderObject extends Array<object> {
 }
 /**
  * Information about how to extract personally identifiable information (name, contact, address) from the rows
@@ -19355,6 +19333,12 @@ export declare type TargetModesPut = {
  */
 export interface TargetModesReferenced {
     /**
+     *
+     * @type {Array<string>}
+     * @memberof TargetModesReferenced
+     */
+    include_identifiers?: Array<TargetModesReferencedIncludeIdentifiersEnum>;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesReferenced
@@ -19387,6 +19371,20 @@ export interface TargetModesReferenced {
     transform_preset?: TargetTransformPresetReferenced;
 }
 /**
+* @export
+* @enum {string}
+*/
+export declare enum TargetModesReferencedIncludeIdentifiersEnum {
+    PersonFirstName = "person_first_name",
+    PersonLastName = "person_last_name",
+    HouseNumberAndStreet = "house_number_and_street",
+    City = "city",
+    State = "state",
+    Postcode = "postcode",
+    FaradayPersonIdV1 = "faraday_person_id_v1",
+    FaradayAddressIdV1 = "faraday_address_id_v1"
+}
+/**
  * (Parameters used to PATCH the `TargetModesReferenced` type.)
  *
  * Suitable for data warehouse integrations. Not supported by options.type = "lookup_api"
@@ -19394,6 +19392,12 @@ export interface TargetModesReferenced {
  * @interface TargetModesReferencedMergePatch
  */
 export interface TargetModesReferencedMergePatch {
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    include_identifiers?: Array<TargetModesReferencedMergePatchIncludeIdentifiersEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -19427,6 +19431,20 @@ export interface TargetModesReferencedMergePatch {
     transform_preset?: TargetTransformPresetReferenced | null;
 }
 /**
+* @export
+* @enum {string}
+*/
+export declare enum TargetModesReferencedMergePatchIncludeIdentifiersEnum {
+    PersonFirstName = "person_first_name",
+    PersonLastName = "person_last_name",
+    HouseNumberAndStreet = "house_number_and_street",
+    City = "city",
+    State = "state",
+    Postcode = "postcode",
+    FaradayPersonIdV1 = "faraday_person_id_v1",
+    FaradayAddressIdV1 = "faraday_address_id_v1"
+}
+/**
  * (Parameters used to POST a new value of the `TargetModesReferenced` type.)
  *
  * Suitable for data warehouse integrations. Not supported by options.type = "lookup_api"
@@ -19434,6 +19452,12 @@ export interface TargetModesReferencedMergePatch {
  * @interface TargetModesReferencedPost
  */
 export interface TargetModesReferencedPost {
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedPost
+     */
+    include_identifiers?: Array<TargetModesReferencedPostIncludeIdentifiersEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -19467,6 +19491,20 @@ export interface TargetModesReferencedPost {
     transform_preset?: TargetTransformPresetReferenced;
 }
 /**
+* @export
+* @enum {string}
+*/
+export declare enum TargetModesReferencedPostIncludeIdentifiersEnum {
+    PersonFirstName = "person_first_name",
+    PersonLastName = "person_last_name",
+    HouseNumberAndStreet = "house_number_and_street",
+    City = "city",
+    State = "state",
+    Postcode = "postcode",
+    FaradayPersonIdV1 = "faraday_person_id_v1",
+    FaradayAddressIdV1 = "faraday_address_id_v1"
+}
+/**
  * (Parameters used to PUT a value of the `TargetModesReferenced` type.)
  *
  * Suitable for data warehouse integrations. Not supported by options.type = "lookup_api"
@@ -19474,6 +19512,12 @@ export interface TargetModesReferencedPost {
  * @interface TargetModesReferencedPut
  */
 export interface TargetModesReferencedPut {
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedPut
+     */
+    include_identifiers?: Array<TargetModesReferencedPutIncludeIdentifiersEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -19505,6 +19549,20 @@ export interface TargetModesReferencedPut {
      * @memberof TargetModesReferencedPut
      */
     transform_preset?: TargetTransformPresetReferenced;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum TargetModesReferencedPutIncludeIdentifiersEnum {
+    PersonFirstName = "person_first_name",
+    PersonLastName = "person_last_name",
+    HouseNumberAndStreet = "house_number_and_street",
+    City = "city",
+    State = "state",
+    Postcode = "postcode",
+    FaradayPersonIdV1 = "faraday_person_id_v1",
+    FaradayAddressIdV1 = "faraday_address_id_v1"
 }
 /**
  * @type TargetOptions
