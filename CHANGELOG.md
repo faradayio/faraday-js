@@ -10,6 +10,16 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.61] - 2025-07-07
+
+### Added
+
+- Added `address_line_1` and `address_line_2` to `dataset.identity_sets`. This means you may now see a recommended column to use in `identifier_recommendation` for `address_line_2` as well.
+
+### Deprecated
+
+- Array-based `house_number_and_street` field in `dataset.identity_sets`. Use `address_line_1` and `address_line_2` instead. If you use all 3, address lines will be prioritized.
+
 ## [0.10.60] - 2025-07-02
 
 ### Added
