@@ -8037,6 +8037,13 @@ export interface DatasetIdentityProviders {
      * @memberof DatasetIdentityProviders
      */
     provider: DatasetIdentityProvidersProviderEnum;
+    /**
+     * If 'first_recognized', send to match-boost providers one-at-a-time until a match is found. 
+     * If 'all', send to all match-boost vendors. Please access support to gain access to this feature.
+     * @type {string}
+     * @memberof DatasetIdentityProviders
+     */
+    select?: DatasetIdentityProvidersSelectEnum;
 }
 
 /**
@@ -8046,6 +8053,13 @@ export interface DatasetIdentityProviders {
 export enum DatasetIdentityProvidersProviderEnum {
     Fig = 'fig',
     MatchBoost = 'match_boost'
+}/**
+* @export
+* @enum {string}
+*/
+export enum DatasetIdentityProvidersSelectEnum {
+    FirstRecognized = 'first_recognized',
+    All = 'all'
 }
 /**
  * 
