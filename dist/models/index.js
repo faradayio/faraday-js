@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetModesReferencedPutIncludeIdentifiersEnum = exports.TargetModesReferencedPostIncludeIdentifiersEnum = exports.TargetModesReferencedMergePatchIncludeIdentifiersEnum = exports.TargetModesReferencedIncludeIdentifiersEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = void 0;
 /**
 * @export
 * @enum {string}
@@ -70,23 +70,6 @@ var DatasetPrivacyEnum;
     DatasetPrivacyEnum["Suppress"] = "suppress";
     DatasetPrivacyEnum["Delete"] = "delete";
 })(DatasetPrivacyEnum = exports.DatasetPrivacyEnum || (exports.DatasetPrivacyEnum = {}));
-/**
-* @export
-* @enum {string}
-*/
-var DatasetIdentityProvidersProviderEnum;
-(function (DatasetIdentityProvidersProviderEnum) {
-    DatasetIdentityProvidersProviderEnum["Fig"] = "fig";
-    DatasetIdentityProvidersProviderEnum["MatchBoost"] = "match_boost";
-})(DatasetIdentityProvidersProviderEnum = exports.DatasetIdentityProvidersProviderEnum || (exports.DatasetIdentityProvidersProviderEnum = {})); /**
-* @export
-* @enum {string}
-*/
-var DatasetIdentityProvidersSelectEnum;
-(function (DatasetIdentityProvidersSelectEnum) {
-    DatasetIdentityProvidersSelectEnum["FirstRecognized"] = "first_recognized";
-    DatasetIdentityProvidersSelectEnum["All"] = "all";
-})(DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersSelectEnum || (exports.DatasetIdentityProvidersSelectEnum = {}));
 /**
 * @export
 * @enum {string}
@@ -504,6 +487,66 @@ var TargetMergePatchAnalysisConfigGeographiesEnum;
     TargetMergePatchAnalysisConfigGeographiesEnum["CensusTract"] = "census_tract";
     TargetMergePatchAnalysisConfigGeographiesEnum["Dma"] = "dma";
 })(TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum || (exports.TargetMergePatchAnalysisConfigGeographiesEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedIncludeIdentifiersEnum;
+(function (TargetModesReferencedIncludeIdentifiersEnum) {
+    TargetModesReferencedIncludeIdentifiersEnum["PersonFirstName"] = "person_first_name";
+    TargetModesReferencedIncludeIdentifiersEnum["PersonLastName"] = "person_last_name";
+    TargetModesReferencedIncludeIdentifiersEnum["HouseNumberAndStreet"] = "house_number_and_street";
+    TargetModesReferencedIncludeIdentifiersEnum["City"] = "city";
+    TargetModesReferencedIncludeIdentifiersEnum["State"] = "state";
+    TargetModesReferencedIncludeIdentifiersEnum["Postcode"] = "postcode";
+    TargetModesReferencedIncludeIdentifiersEnum["FaradayPersonIdV1"] = "faraday_person_id_v1";
+    TargetModesReferencedIncludeIdentifiersEnum["FaradayAddressIdV1"] = "faraday_address_id_v1";
+})(TargetModesReferencedIncludeIdentifiersEnum = exports.TargetModesReferencedIncludeIdentifiersEnum || (exports.TargetModesReferencedIncludeIdentifiersEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedMergePatchIncludeIdentifiersEnum;
+(function (TargetModesReferencedMergePatchIncludeIdentifiersEnum) {
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["PersonFirstName"] = "person_first_name";
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["PersonLastName"] = "person_last_name";
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["HouseNumberAndStreet"] = "house_number_and_street";
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["City"] = "city";
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["State"] = "state";
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["Postcode"] = "postcode";
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["FaradayPersonIdV1"] = "faraday_person_id_v1";
+    TargetModesReferencedMergePatchIncludeIdentifiersEnum["FaradayAddressIdV1"] = "faraday_address_id_v1";
+})(TargetModesReferencedMergePatchIncludeIdentifiersEnum = exports.TargetModesReferencedMergePatchIncludeIdentifiersEnum || (exports.TargetModesReferencedMergePatchIncludeIdentifiersEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedPostIncludeIdentifiersEnum;
+(function (TargetModesReferencedPostIncludeIdentifiersEnum) {
+    TargetModesReferencedPostIncludeIdentifiersEnum["PersonFirstName"] = "person_first_name";
+    TargetModesReferencedPostIncludeIdentifiersEnum["PersonLastName"] = "person_last_name";
+    TargetModesReferencedPostIncludeIdentifiersEnum["HouseNumberAndStreet"] = "house_number_and_street";
+    TargetModesReferencedPostIncludeIdentifiersEnum["City"] = "city";
+    TargetModesReferencedPostIncludeIdentifiersEnum["State"] = "state";
+    TargetModesReferencedPostIncludeIdentifiersEnum["Postcode"] = "postcode";
+    TargetModesReferencedPostIncludeIdentifiersEnum["FaradayPersonIdV1"] = "faraday_person_id_v1";
+    TargetModesReferencedPostIncludeIdentifiersEnum["FaradayAddressIdV1"] = "faraday_address_id_v1";
+})(TargetModesReferencedPostIncludeIdentifiersEnum = exports.TargetModesReferencedPostIncludeIdentifiersEnum || (exports.TargetModesReferencedPostIncludeIdentifiersEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedPutIncludeIdentifiersEnum;
+(function (TargetModesReferencedPutIncludeIdentifiersEnum) {
+    TargetModesReferencedPutIncludeIdentifiersEnum["PersonFirstName"] = "person_first_name";
+    TargetModesReferencedPutIncludeIdentifiersEnum["PersonLastName"] = "person_last_name";
+    TargetModesReferencedPutIncludeIdentifiersEnum["HouseNumberAndStreet"] = "house_number_and_street";
+    TargetModesReferencedPutIncludeIdentifiersEnum["City"] = "city";
+    TargetModesReferencedPutIncludeIdentifiersEnum["State"] = "state";
+    TargetModesReferencedPutIncludeIdentifiersEnum["Postcode"] = "postcode";
+    TargetModesReferencedPutIncludeIdentifiersEnum["FaradayPersonIdV1"] = "faraday_person_id_v1";
+    TargetModesReferencedPutIncludeIdentifiersEnum["FaradayAddressIdV1"] = "faraday_address_id_v1";
+})(TargetModesReferencedPutIncludeIdentifiersEnum = exports.TargetModesReferencedPutIncludeIdentifiersEnum || (exports.TargetModesReferencedPutIncludeIdentifiersEnum = {}));
 /**
 * @export
 * @enum {string}
