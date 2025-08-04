@@ -513,6 +513,7 @@ var TargetStructureTransformationAggregationEnum;
     TargetStructureTransformationAggregationEnum["Avg"] = "avg";
     TargetStructureTransformationAggregationEnum["Count"] = "count";
     TargetStructureTransformationAggregationEnum["Countif"] = "countif";
+    TargetStructureTransformationAggregationEnum["Mode"] = "mode";
 })(TargetStructureTransformationAggregationEnum = exports.TargetStructureTransformationAggregationEnum || (exports.TargetStructureTransformationAggregationEnum = {}));
 /**
  * One of:

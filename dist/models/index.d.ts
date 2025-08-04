@@ -12193,7 +12193,7 @@ export interface IdentitySet {
      */
     freeform_address?: string;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`.
+     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
      * @type {Array<string>}
      * @memberof IdentitySet
      */
@@ -12283,7 +12283,7 @@ export interface IdentitySetMergePatch {
      */
     freeform_address?: string | null;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`.
+     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
      * @type {Array<string>}
      * @memberof IdentitySetMergePatch
      */
@@ -12373,7 +12373,7 @@ export interface IdentitySetPost {
      */
     freeform_address?: string;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`.
+     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
      * @type {Array<string>}
      * @memberof IdentitySetPost
      */
@@ -12463,7 +12463,7 @@ export interface IdentitySetPut {
      */
     freeform_address?: string;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`.
+     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
      * @type {Array<string>}
      * @memberof IdentitySetPut
      */
@@ -23068,7 +23068,8 @@ export interface TargetStructureTransformation {
 export declare enum TargetStructureTransformationAggregationEnum {
     Avg = "avg",
     Count = "count",
-    Countif = "countif"
+    Countif = "countif",
+    Mode = "mode"
 }
 /**
  * One of:
