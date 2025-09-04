@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.10.62] - 2025-09-04
+
+### Changed
+
+- SFTP connection prefix is no longer required
+
 ## [0.10.61] - 2025-07-07
 
 ### Added
