@@ -6323,7 +6323,7 @@ export interface ConnectionOptionsSftp {
      */
     host_key?: string;
     /**
-     * Optional password to connect. If blank, Faraday's private key will be used instead.
+     * Currently not supported in favor of SSH keypair authentication (if blank Faraday's private key will be used instead)
      * @type {string}
      * @memberof ConnectionOptionsSftp
      */
@@ -6380,7 +6380,7 @@ export interface ConnectionOptionsSftpMergePatch {
      */
     host_key?: string | null;
     /**
-     * Optional password to connect. If blank, Faraday's private key will be used instead.
+     * Currently not supported in favor of SSH keypair authentication (if blank Faraday's private key will be used instead)
      * @type {string}
      * @memberof ConnectionOptionsSftpMergePatch
      */
@@ -6437,7 +6437,7 @@ export interface ConnectionOptionsSftpPost {
      */
     host_key?: string;
     /**
-     * Optional password to connect. If blank, Faraday's private key will be used instead.
+     * Currently not supported in favor of SSH keypair authentication (if blank Faraday's private key will be used instead)
      * @type {string}
      * @memberof ConnectionOptionsSftpPost
      */
@@ -6494,7 +6494,7 @@ export interface ConnectionOptionsSftpPut {
      */
     host_key?: string;
     /**
-     * Optional password to connect. If blank, Faraday's private key will be used instead.
+     * Currently not supported in favor of SSH keypair authentication (if blank Faraday's private key will be used instead)
      * @type {string}
      * @memberof ConnectionOptionsSftpPut
      */
