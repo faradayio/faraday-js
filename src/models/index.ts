@@ -6661,6 +6661,12 @@ export interface ConnectionOptionsSnowflake {
      */
     role: string;
     /**
+     * RSA public key that should be assigned to the Snowflake user. Unique per Faraday Snowflake connection. Set by the Faraday system.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflake
+     */
+    rsa_public_key?: string;
+    /**
      * Schema
      * @type {string}
      * @memberof ConnectionOptionsSnowflake
