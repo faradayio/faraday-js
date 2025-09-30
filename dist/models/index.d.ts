@@ -23069,8 +23069,7 @@ export declare enum TargetStructureTransformationAggregationEnum {
     Avg = "avg",
     Count = "count",
     Countif = "countif",
-    Mode = "mode",
-    Ignore = "ignore"
+    Mode = "mode"
 }
 /**
  * One of:

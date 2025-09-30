@@ -514,7 +514,6 @@ var TargetStructureTransformationAggregationEnum;
     TargetStructureTransformationAggregationEnum["Count"] = "count";
     TargetStructureTransformationAggregationEnum["Countif"] = "countif";
     TargetStructureTransformationAggregationEnum["Mode"] = "mode";
-    TargetStructureTransformationAggregationEnum["Ignore"] = "ignore";
 })(TargetStructureTransformationAggregationEnum = exports.TargetStructureTransformationAggregationEnum || (exports.TargetStructureTransformationAggregationEnum = {}));
 /**
  * One of:
