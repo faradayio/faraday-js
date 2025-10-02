@@ -327,6 +327,12 @@ export interface AnalysisDimensionsTrait {
      */
     bins: Array<AnalysisDimensionsTraitBin>;
     /**
+     * Whether the trait distinguishes the persona from the rest of the persona set.
+     * @type {boolean}
+     * @memberof AnalysisDimensionsTrait
+     */
+    salient?: boolean;
+    /**
      * The machine name of the trait used to calculate this dimension.
      * @type {string}
      * @memberof AnalysisDimensionsTrait
