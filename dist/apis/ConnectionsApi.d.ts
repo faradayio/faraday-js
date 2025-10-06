@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Connection, ConnectionMergePatch, ConnectionPost, Dataset, Target } from '../models';
+import { ArchiveConfig, Connection, ConnectionMergePatch, ConnectionPost, Dataset, RotateCredentialsRequest, Target } from '../models';
 export interface ArchiveConnectionRequest {
     connectionId: string;
     archiveConfig: ArchiveConfig;
@@ -32,6 +32,10 @@ export interface GetConnectionDatasetsRequest {
 }
 export interface GetConnectionTargetsRequest {
     connectionId: string;
+}
+export interface RotateConnectionCredentialsRequest {
+    connectionId: string;
+    rotateCredentialsRequest: RotateCredentialsRequest;
 }
 export interface UnarchiveConnectionRequest {
     connectionId: string;
@@ -125,6 +129,16 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * List connections
      */
     getConnections(): Promise<Array<Connection>>;
+    /**
+     * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection.
+     * Rotate credentials for a connection
+     */
+    private rotateConnectionCredentialsRaw;
+    /**
+     * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection.
+     * Rotate credentials for a connection
+     */
+    rotateConnectionCredentials(connectionId: string, rotateCredentialsRequest: RotateCredentialsRequest): Promise<Connection>;
     /**
      * Unarchive a connection
      * Unarchive a connection

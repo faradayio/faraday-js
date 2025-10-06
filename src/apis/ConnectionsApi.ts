@@ -20,6 +20,7 @@ import {
     ConnectionMergePatch,
     ConnectionPost,
     Dataset,
+    RotateCredentialsRequest,
     Target,
 } from '../models';
 
@@ -50,6 +51,11 @@ export interface GetConnectionDatasetsRequest {
 
 export interface GetConnectionTargetsRequest {
     connectionId: string;
+}
+
+export interface RotateConnectionCredentialsRequest {
+    connectionId: string;
+    rotateCredentialsRequest: RotateCredentialsRequest;
 }
 
 export interface UnarchiveConnectionRequest {
@@ -387,6 +393,53 @@ export class ConnectionsApi extends runtime.BaseAPI {
      */
     async getConnections(): Promise<Array<Connection>> {
         const response = await this.getConnectionsRaw();
+        return await response.value();
+    }
+
+    /**
+     * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection. 
+     * Rotate credentials for a connection
+     */
+    private async rotateConnectionCredentialsRaw(requestParameters: RotateConnectionCredentialsRequest, ): Promise<runtime.ApiResponse<Connection>> {
+        if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
+            throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling rotateConnectionCredentials.');
+        }
+
+        if (requestParameters.rotateCredentialsRequest === null || requestParameters.rotateCredentialsRequest === undefined) {
+            throw new runtime.RequiredError('rotateCredentialsRequest','Required parameter requestParameters.rotateCredentialsRequest was null or undefined when calling rotateConnectionCredentials.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/connections/{connection_id}/rotate_credentials`.replace(`{${"connection_id"}}`, encodeURIComponent(String(requestParameters.connectionId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.rotateCredentialsRequest,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection. 
+     * Rotate credentials for a connection
+     */
+    async rotateConnectionCredentials(connectionId: string, rotateCredentialsRequest: RotateCredentialsRequest, ): Promise<Connection> {
+        const response = await this.rotateConnectionCredentialsRaw({ connectionId: connectionId, rotateCredentialsRequest: rotateCredentialsRequest }, );
         return await response.value();
     }
 
