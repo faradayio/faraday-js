@@ -14278,7 +14278,7 @@ export interface Payment {
  */
 export interface Persona {
     /**
-     * An image used to represent this persona (only available if demographics (age and gender) are included in the model)
+     * **Deprecated**: Value will be null until the key is eventually removed or replaced. Previously, an image used to represent this persona (only available if demographics (age and gender) are included in the model)
      * @type {string}
      * @memberof Persona
      */
