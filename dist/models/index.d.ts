@@ -325,6 +325,12 @@ export interface AnalysisDimensionsTrait {
      */
     bins: Array<AnalysisDimensionsTraitBin>;
     /**
+     * Whether the trait distinguishes the persona from the rest of the persona set.
+     * @type {boolean}
+     * @memberof AnalysisDimensionsTrait
+     */
+    salient?: boolean;
+    /**
      * The machine name of the trait used to calculate this dimension.
      * @type {string}
      * @memberof AnalysisDimensionsTrait
@@ -6984,6 +6990,12 @@ export interface ConnectionOptionsSnowflake {
      * @memberof ConnectionOptionsSnowflake
      */
     role: string;
+    /**
+     * RSA public key that should be assigned to the Snowflake user. Unique per Faraday Snowflake connection. Set by the Faraday system. Use the rotate_credentials endpoint to regenerate.
+     * @type {string}
+     * @memberof ConnectionOptionsSnowflake
+     */
+    rsa_public_key?: string;
     /**
      * Schema
      * @type {string}
@@ -16123,6 +16135,15 @@ export declare enum ResourceType {
     Traits = "traits"
 }
 /**
+ * @type RotateCredentialsRequest
+ * Request to rotate credentials for a connection. Uses a type discriminator to support
+ * different credential rotation options for different connection types.
+ * @export
+ */
+export declare type RotateCredentialsRequest = {
+    type: 'snowflake';
+} & SnowflakeRotateCredentialsRequest;
+/**
  * Instructions on how to produce output data.
  * @export
  * @interface Scope
@@ -16869,6 +16890,27 @@ export interface ScopePut {
      * @memberof ScopePut
      */
     preview: boolean;
+}
+/**
+ * Request to rotate RSA keypair credentials for a Snowflake connection.
+ * Currently no additional options are required beyond the type discriminator.
+ * @export
+ * @interface SnowflakeRotateCredentialsRequest
+ */
+export interface SnowflakeRotateCredentialsRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof SnowflakeRotateCredentialsRequest
+     */
+    type: SnowflakeRotateCredentialsRequestTypeEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum SnowflakeRotateCredentialsRequestTypeEnum {
+    Snowflake = "snowflake"
 }
 /**
  * A stream of events associated with the account.

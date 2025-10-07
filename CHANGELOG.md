@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.11.1] - 2025-10-02
+
+### Added
+
+- Added `salient` to `AnalysisDimensionsTrait` to show whether the trait distinguishes the persona from the rest of the persona set.
+
 ## [0.11.0] - 2025-09-05
 
 ### Breaking
