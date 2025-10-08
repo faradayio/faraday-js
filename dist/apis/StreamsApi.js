@@ -323,5 +323,47 @@ class StreamsApi extends runtime.BaseAPI {
             yield this.unarchiveStreamRaw({ streamIdOrName: streamIdOrName, archiveConfig: archiveConfig });
         });
     }
+    /**
+     * Update the configuration of a stream
+     * Update a stream
+     */
+    updateStreamRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+                throw new runtime.RequiredError('streamIdOrName', 'Required parameter requestParameters.streamIdOrName was null or undefined when calling updateStream.');
+            }
+            if (requestParameters.streamFields === null || requestParameters.streamFields === undefined) {
+                throw new runtime.RequiredError('streamFields', 'Required parameter requestParameters.streamFields was null or undefined when calling updateStream.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json+merge-patch';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id_or_name}`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+                method: 'PATCH',
+                headers: headerParameters,
+                query: queryParameters,
+                body: requestParameters.streamFields,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Update the configuration of a stream
+     * Update a stream
+     */
+    updateStream(streamIdOrName, streamFields) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.updateStreamRaw({ streamIdOrName: streamIdOrName, streamFields: streamFields });
+            return yield response.value();
+        });
+    }
 }
 exports.StreamsApi = StreamsApi;

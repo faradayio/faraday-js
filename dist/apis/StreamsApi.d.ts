@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Stream, StreamAnalysis } from '../models';
+import { ArchiveConfig, Stream, StreamAnalysis, StreamMergePatch } from '../models';
 export interface ArchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
@@ -33,6 +33,10 @@ export interface GetStreamAnalysisRequest {
 export interface UnarchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
+}
+export interface UpdateStreamRequest {
+    streamIdOrName: string;
+    streamFields: StreamMergePatch;
 }
 /**
  *
@@ -114,4 +118,14 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Unarchive a stream
      */
     unarchiveStream(streamIdOrName: string, archiveConfig: ArchiveConfig): Promise<void>;
+    /**
+     * Update the configuration of a stream
+     * Update a stream
+     */
+    private updateStreamRaw;
+    /**
+     * Update the configuration of a stream
+     * Update a stream
+     */
+    updateStream(streamIdOrName: string, streamFields: StreamMergePatch): Promise<Stream>;
 }
