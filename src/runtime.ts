@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Faraday REST API
- * The [Faraday](https://faraday.ai) API makes it easy to predict customer behavior programmatically.
+ * The [Faraday](https://faraday.ai) API makes it easy to predict customer behavior programmatically. See our [API change policy](https://faraday.ai/legal).
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@faraday.ai

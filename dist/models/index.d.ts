@@ -12169,13 +12169,13 @@ export interface GraphEdge {
  */
 export interface IdentitySet {
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySet
      */
     address_line_1?: string;
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySet
      */
@@ -12259,13 +12259,13 @@ export interface IdentitySet {
  */
 export interface IdentitySetMergePatch {
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySetMergePatch
      */
     address_line_1?: string | null;
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySetMergePatch
      */
@@ -12349,13 +12349,13 @@ export interface IdentitySetMergePatch {
  */
 export interface IdentitySetPost {
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySetPost
      */
     address_line_1?: string;
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySetPost
      */
@@ -12439,13 +12439,13 @@ export interface IdentitySetPost {
  */
 export interface IdentitySetPut {
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySetPut
      */
     address_line_1?: string;
     /**
-     *
+     * Deprecated: use `house_number_and_street` instead
      * @type {string}
      * @memberof IdentitySetPut
      */
