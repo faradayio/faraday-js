@@ -6985,11 +6985,11 @@ export interface ConnectionOptionsSnowflake {
      */
     organization_name?: string;
     /**
-     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY)
+     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY).
      * @type {string}
      * @memberof ConnectionOptionsSnowflake
      */
-    role: string;
+    role?: string;
     /**
      * RSA public key that should be assigned to the Snowflake user. Unique per Faraday Snowflake connection. Set by the Faraday system. Use the rotate_credentials endpoint to regenerate.
      * @type {string}
@@ -6997,11 +6997,11 @@ export interface ConnectionOptionsSnowflake {
      */
     rsa_public_key?: string;
     /**
-     * Schema
+     * Snowflake schema name. If not provided, it may be provided at the dataset level, or omitted entirely.
      * @type {string}
      * @memberof ConnectionOptionsSnowflake
      */
-    schema: string;
+    schema?: string;
     /**
      * The type of connection
      * @type {string}
@@ -7054,17 +7054,17 @@ export interface ConnectionOptionsSnowflakeMergePatch {
      */
     organization_name?: string | null;
     /**
-     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY)
+     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY).
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
-    role?: string;
+    role?: string | null;
     /**
-     * Schema
+     * Snowflake schema name. If not provided, it may be provided at the dataset level, or omitted entirely.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakeMergePatch
      */
-    schema?: string;
+    schema?: string | null;
     /**
      * The type of connection
      * @type {string}
@@ -7117,17 +7117,17 @@ export interface ConnectionOptionsSnowflakePost {
      */
     organization_name?: string;
     /**
-     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY)
+     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY).
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePost
      */
-    role: string;
+    role?: string;
     /**
-     * Schema
+     * Snowflake schema name. If not provided, it may be provided at the dataset level, or omitted entirely.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePost
      */
-    schema: string;
+    schema?: string;
     /**
      * The type of connection
      * @type {string}
@@ -7180,17 +7180,17 @@ export interface ConnectionOptionsSnowflakePut {
      */
     organization_name?: string;
     /**
-     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY)
+     * The Snowflake role that will be used by Faraday to connect to the instance (Usually this is FARADAY).
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
-    role: string;
+    role?: string;
     /**
-     * Schema
+     * Snowflake schema name. If not provided, it may be provided at the dataset level, or omitted entirely.
      * @type {string}
      * @memberof ConnectionOptionsSnowflakePut
      */
-    schema: string;
+    schema?: string;
     /**
      * The type of connection
      * @type {string}
@@ -11304,6 +11304,12 @@ export interface DatasetOptionsSnowflake {
      */
     case_sensitive_columns?: boolean;
     /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof DatasetOptionsSnowflake
+     */
+    schema?: string;
+    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsSnowflake
@@ -11330,6 +11336,12 @@ export interface DatasetOptionsSnowflakeMergePatch {
      * @memberof DatasetOptionsSnowflakeMergePatch
      */
     case_sensitive_columns?: boolean | null;
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof DatasetOptionsSnowflakeMergePatch
+     */
+    schema?: string | null;
     /**
      * Table name
      * @type {string}
@@ -11358,6 +11370,12 @@ export interface DatasetOptionsSnowflakePost {
      */
     case_sensitive_columns?: boolean;
     /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof DatasetOptionsSnowflakePost
+     */
+    schema?: string;
+    /**
      * Table name
      * @type {string}
      * @memberof DatasetOptionsSnowflakePost
@@ -11384,6 +11402,12 @@ export interface DatasetOptionsSnowflakePut {
      * @memberof DatasetOptionsSnowflakePut
      */
     case_sensitive_columns?: boolean;
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof DatasetOptionsSnowflakePut
+     */
+    schema?: string;
     /**
      * Table name
      * @type {string}
@@ -22553,6 +22577,12 @@ export interface TargetOptionsSftpPut {
  */
 export interface TargetOptionsSnowflake {
     /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof TargetOptionsSnowflake
+     */
+    schema?: string;
+    /**
      * Table name
      * @type {string}
      * @memberof TargetOptionsSnowflake
@@ -22579,6 +22609,12 @@ export interface TargetOptionsSnowflake {
  * @interface TargetOptionsSnowflakeMergePatch
  */
 export interface TargetOptionsSnowflakeMergePatch {
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof TargetOptionsSnowflakeMergePatch
+     */
+    schema?: string | null;
     /**
      * Table name
      * @type {string}
@@ -22607,6 +22643,12 @@ export interface TargetOptionsSnowflakeMergePatch {
  */
 export interface TargetOptionsSnowflakePost {
     /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof TargetOptionsSnowflakePost
+     */
+    schema?: string;
+    /**
      * Table name
      * @type {string}
      * @memberof TargetOptionsSnowflakePost
@@ -22633,6 +22675,12 @@ export interface TargetOptionsSnowflakePost {
  * @interface TargetOptionsSnowflakePut
  */
 export interface TargetOptionsSnowflakePut {
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof TargetOptionsSnowflakePut
+     */
+    schema?: string;
     /**
      * Table name
      * @type {string}
