@@ -8169,6 +8169,18 @@ export interface Dataset {
      */
     output_to_streams?: OutputToStreams;
     /**
+     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     *
+     * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
+     *
+     * Each array element specifies a stream_name and properties configuration for stream properties including data column, datetime, authority, precision, derivations, and quality.
+     *
+     * Streams named here will be automatically generated if they do not exist.
+     * @type {Array<OutputToStreamArrayItem>}
+     * @memberof Dataset
+     */
+    output_to_streams_array?: Array<OutputToStreamArrayItem>;
+    /**
      *
      * @type {OutputToTraits}
      * @memberof Dataset
@@ -8461,6 +8473,18 @@ export interface DatasetMergePatch {
      * @memberof DatasetMergePatch
      */
     output_to_streams?: OutputToStreamsMergePatch | null;
+    /**
+     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     *
+     * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
+     *
+     * Each array element specifies a stream_name and properties configuration for stream properties including data column, datetime, authority, precision, derivations, and quality.
+     *
+     * Streams named here will be automatically generated if they do not exist.
+     * @type {Array<OutputToStreamArrayItem>}
+     * @memberof DatasetMergePatch
+     */
+    output_to_streams_array?: Array<OutputToStreamArrayItem> | null;
     /**
      *
      * @type {OutputToTraitsMergePatch}
@@ -11652,6 +11676,18 @@ export interface DatasetPost {
      */
     output_to_streams?: OutputToStreamsPost;
     /**
+     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     *
+     * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
+     *
+     * Each array element specifies a stream_name and properties configuration for stream properties including data column, datetime, authority, precision, derivations, and quality.
+     *
+     * Streams named here will be automatically generated if they do not exist.
+     * @type {Array<OutputToStreamArrayItem>}
+     * @memberof DatasetPost
+     */
+    output_to_streams_array?: Array<OutputToStreamArrayItem>;
+    /**
      *
      * @type {OutputToTraitsPost}
      * @memberof DatasetPost
@@ -11760,6 +11796,18 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     output_to_streams?: OutputToStreamsPut;
+    /**
+     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     *
+     * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
+     *
+     * Each array element specifies a stream_name and properties configuration for stream properties including data column, datetime, authority, precision, derivations, and quality.
+     *
+     * Streams named here will be automatically generated if they do not exist.
+     * @type {Array<OutputToStreamArrayItem>}
+     * @memberof DatasetPut
+     */
+    output_to_streams_array?: Array<OutputToStreamArrayItem>;
     /**
      *
      * @type {OutputToTraitsPut}
@@ -12013,6 +12061,31 @@ export interface DatasetUpdateHistory {
      * @memberof DatasetUpdateHistory
      */
     rows_added: number;
+}
+/**
+ * Configuration for decode transformations.
+ * @export
+ * @interface DecodeConfig
+ */
+export interface DecodeConfig {
+    /**
+     *
+     * @type {PrimitiveDataType}
+     * @memberof DecodeConfig
+     */
+    cast?: PrimitiveDataType;
+    /**
+     * A mapping of source values to target values
+     * @type {object}
+     * @memberof DecodeConfig
+     */
+    map?: object;
+    /**
+     * SQL expression for transformation
+     * @type {string}
+     * @memberof DecodeConfig
+     */
+    sql?: string;
 }
 /**
  * A Faraday error code.
@@ -14502,6 +14575,35 @@ export declare enum OutcomePutPredictionModeEnum {
     Static = "static"
 }
 /**
+ * A single mapping of a dataset column to a stream with property configurations.
+ * @export
+ * @interface OutputToStreamArrayItem
+ */
+export interface OutputToStreamArrayItem {
+    /**
+     * A flexible mapping of property names to their configurations. Property names can be any string (e.g., data, datetime, authority, precision, derivations, quality).
+     *
+     * Each property can either reference a column from the dataset or provide a static value.
+     * @type {{ [key: string]: StreamPropertyConfig; }}
+     * @memberof OutputToStreamArrayItem
+     */
+    properties: {
+        [key: string]: StreamPropertyConfig;
+    };
+    /**
+     *
+     * @type {string}
+     * @memberof OutputToStreamArrayItem
+     */
+    stream_id?: string;
+    /**
+     * The name of the stream to populate with this data
+     * @type {string}
+     * @memberof OutputToStreamArrayItem
+     */
+    stream_name: string;
+}
+/**
  * Describes how to transform the dataset into one or more streams.
  *
  * Streams typically represent events. They can have multiple dataset sources and each dataset can be used to populate multiple streams.
@@ -15588,6 +15690,25 @@ export interface RecencyPut {
      * @memberof RecencyPut
      */
     occurrence: RecencyOccurrence;
+}
+/**
+ * Configuration for recode transformations.
+ * @export
+ * @interface RecodeConfig
+ */
+export interface RecodeConfig {
+    /**
+     * A mapping of source values to target values
+     * @type {object}
+     * @memberof RecodeConfig
+     */
+    map?: object;
+    /**
+     * SQL expression for transformation
+     * @type {string}
+     * @memberof RecodeConfig
+     */
+    sql?: string;
 }
 /**
  * Recommender resources are used to predict future associations (e.g. future purchase). They are based on an event stream containing all previous associations such as an order event stream or a product rating event stream
@@ -16949,11 +17070,35 @@ export interface Stream {
      */
     archived_at?: string;
     /**
+     *
+     * @type {StreamPropertyCategory}
+     * @memberof Stream
+     */
+    category?: StreamPropertyCategory;
+    /**
      * When this resource was created.
      * @type {string}
      * @memberof Stream
      */
     created_at: string;
+    /**
+     * Whether the stream is deprecated.
+     * @type {boolean}
+     * @memberof Stream
+     */
+    deprecated?: boolean;
+    /**
+     * Notes about the deprecation of the stream.
+     * @type {string}
+     * @memberof Stream
+     */
+    deprecation_notes?: string;
+    /**
+     * A description of the stream.
+     * @type {string}
+     * @memberof Stream
+     */
+    description?: string;
     /**
      * Details of events emitted by each dataset into the stream.
      * @type {Array<StreamEventContributionByDataset>}
@@ -16990,6 +17135,12 @@ export interface Stream {
      * @memberof Stream
      */
     last_updated_output_at?: string;
+    /**
+     * A human-readable name for the stream.
+     * @type {string}
+     * @memberof Stream
+     */
+    literate?: string;
     /**
      *
      * @type {string}
@@ -17038,6 +17189,12 @@ export interface Stream {
      * @memberof Stream
      */
     status_error?: string;
+    /**
+     *
+     * @type {StreamPropertyTier}
+     * @memberof Stream
+     */
+    tier?: StreamPropertyTier;
     /**
      * When this resource was last updated.
      * @type {string}
@@ -17109,6 +17266,108 @@ export interface StreamEventContributionByDataset {
     oldest_date: string;
 }
 /**
+ * (Parameters used to PATCH the `Stream` type.)
+ *
+ * A stream of events associated with the account.
+ * @export
+ * @interface StreamMergePatch
+ */
+export interface StreamMergePatch {
+    /**
+     *
+     * @type {StreamPropertyCategory}
+     * @memberof StreamMergePatch
+     */
+    category?: StreamPropertyCategory | null;
+    /**
+     * Whether the stream is deprecated.
+     * @type {boolean}
+     * @memberof StreamMergePatch
+     */
+    deprecated?: boolean | null;
+    /**
+     * Notes about the deprecation of the stream.
+     * @type {string}
+     * @memberof StreamMergePatch
+     */
+    deprecation_notes?: string | null;
+    /**
+     * A description of the stream.
+     * @type {string}
+     * @memberof StreamMergePatch
+     */
+    description?: string | null;
+    /**
+     * A human-readable name for the stream.
+     * @type {string}
+     * @memberof StreamMergePatch
+     */
+    literate?: string | null;
+    /**
+     *
+     * @type {StreamPropertiesMergePatch}
+     * @memberof StreamMergePatch
+     */
+    properties?: StreamPropertiesMergePatch | null;
+    /**
+     *
+     * @type {StreamPropertyTier}
+     * @memberof StreamMergePatch
+     */
+    tier?: StreamPropertyTier | null;
+}
+/**
+ * (Parameters used to POST a new value of the `Stream` type.)
+ *
+ * A stream of events associated with the account.
+ * @export
+ * @interface StreamPost
+ */
+export interface StreamPost {
+    /**
+     *
+     * @type {StreamPropertyCategory}
+     * @memberof StreamPost
+     */
+    category?: StreamPropertyCategory;
+    /**
+     * Whether the stream is deprecated.
+     * @type {boolean}
+     * @memberof StreamPost
+     */
+    deprecated?: boolean;
+    /**
+     * Notes about the deprecation of the stream.
+     * @type {string}
+     * @memberof StreamPost
+     */
+    deprecation_notes?: string;
+    /**
+     * A description of the stream.
+     * @type {string}
+     * @memberof StreamPost
+     */
+    description?: string;
+    /**
+     * A human-readable name for the stream.
+     * @type {string}
+     * @memberof StreamPost
+     */
+    literate?: string;
+    /**
+     *
+     * @type {StreamPropertiesPost}
+     * @memberof StreamPost
+     */
+    properties?: StreamPropertiesPost;
+    /**
+     *
+     * @type {StreamPropertyTier}
+     * @memberof StreamPost
+     */
+    tier?: StreamPropertyTier;
+}
+/**
  *
  * @export
  * @interface StreamProperties
@@ -17117,11 +17376,94 @@ export interface StreamProperties {
     [key: string]: StreamPropertyDetails;
 }
 /**
+ * (Parameters used to PATCH the `StreamProperties` type.)
+ *
+ * Columns in your data that you want to associate with this event.
+ * @export
+ * @interface StreamPropertiesMergePatch
+ */
+export interface StreamPropertiesMergePatch {
+    [key: string]: StreamPropertyDetailsMergePatch;
+}
+/**
+ * (Parameters used to POST the `StreamProperties` type.)
+ *
+ * Columns in your data that you want to associate with this event.
+ * @export
+ * @interface StreamPropertiesPost
+ */
+export interface StreamPropertiesPost {
+    [key: string]: StreamPropertyDetailsPost;
+}
+/**
+ * (Parameters used to PUT the `StreamProperties` type.)
+ *
+ * Columns in your data that you want to associate with this event.
+ * @export
+ * @interface StreamPropertiesPut
+ */
+export interface StreamPropertiesPut {
+    [key: string]: StreamPropertyDetailsPut;
+}
+/**
+ * A broad category describing the flavor of a stream property.
+ * @export
+ * @enum {string}
+ */
+export declare enum StreamPropertyCategory {
+    Demography = "demography",
+    Financial = "financial",
+    LifeEvent = "life event",
+    Lifestyle = "lifestyle",
+    Environment = "environment",
+    Property = "property",
+    Society = "society"
+}
+/**
+ * Configuration for a stream property. Can either reference a column from the dataset with optional transformations, or provide a static value.
+ *
+ * Either `column_name` or `value` should be specified, but not both.
+ * @export
+ * @interface StreamPropertyConfig
+ */
+export interface StreamPropertyConfig {
+    /**
+     * The name of the column in the dataset to use for this property
+     * @type {string}
+     * @memberof StreamPropertyConfig
+     */
+    column_name?: string;
+    /**
+     *
+     * @type {DecodeConfig}
+     * @memberof StreamPropertyConfig
+     */
+    decode?: DecodeConfig;
+    /**
+     *
+     * @type {RecodeConfig}
+     * @memberof StreamPropertyConfig
+     */
+    recode?: RecodeConfig;
+    /**
+     * A static value for this property (alternative to column_name)
+     * @type {string | number | boolean}
+     * @memberof StreamPropertyConfig
+     */
+    value?: string | number | boolean | null;
+}
+/**
  *
  * @export
  * @interface StreamPropertyDetails
  */
 export interface StreamPropertyDetails {
+    /**
+     * If values are enumerable, explicitly list allowed values. Values should match the property's type.
+     * @type {Array<boolean | number | string>}
+     * @memberof StreamPropertyDetails
+     */
+    allowed_values?: Array<boolean | number | string>;
     /**
      * For continuous data types, list of reasonable cutoff values.
      * @type {Array<number>}
@@ -17135,6 +17477,12 @@ export interface StreamPropertyDetails {
      */
     categories?: Array<string>;
     /**
+     * If applicable, describe the meaning of any directionality in the values.
+     * @type {string}
+     * @memberof StreamPropertyDetails
+     */
+    directionality_interpretation?: string;
+    /**
      * Counts corresponding to the existing breaks property. Only available when the property is numerical, otherwise empty.
      * @type {Array<StreamPropertyDistribution>}
      * @memberof StreamPropertyDetails
@@ -17146,6 +17494,26 @@ export interface StreamPropertyDetails {
      * @memberof StreamPropertyDetails
      */
     emitted_by_datasets?: Array<StreamPropertyInputFromDatasets>;
+    /**
+     * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
+     * @type {{ [key: string]: string; }}
+     * @memberof StreamPropertyDetails
+     */
+    interpretation_map?: {
+        [key: string]: string;
+    };
+    /**
+     * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
+     * @type {string}
+     * @memberof StreamPropertyDetails
+     */
+    null_value_interpretation?: string;
+    /**
+     * If set, value should be coalesced with this replacement to avoid any NULLs.
+     * @type {boolean | string | number}
+     * @memberof StreamPropertyDetails
+     */
+    null_value_replacement?: boolean | string | number | null;
     /**
      *
      * @type {TraitStatisticalType}
@@ -17170,6 +17538,177 @@ export interface StreamPropertyDetails {
      * @memberof StreamPropertyDetails
      */
     values?: Array<StreamPropertyValues>;
+}
+/**
+ *
+ * @export
+ * @interface StreamPropertyDetailsMergePatch
+ */
+export interface StreamPropertyDetailsMergePatch {
+    /**
+     * If values are enumerable, explicitly list allowed values. Values should match the property's type.
+     * @type {Array<boolean | number | string>}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    allowed_values?: Array<boolean | number | string> | null;
+    /**
+     * If applicable, describe the meaning of any directionality in the values.
+     * @type {string}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    directionality_interpretation?: string | null;
+    /**
+     * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
+     * @type {{ [key: string]: string; }}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    interpretation_map?: {
+        [key: string]: string;
+    } | null;
+    /**
+     * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
+     * @type {string}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    null_value_interpretation?: string | null;
+    /**
+     * If set, value should be coalesced with this replacement to avoid any NULLs.
+     * @type {boolean | string | number}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    null_value_replacement?: boolean | string | number | null;
+    /**
+     *
+     * @type {TraitStatisticalType}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    statistical_type?: TraitStatisticalType | null;
+    /**
+     *
+     * @type {PrimitiveDataType}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    type?: PrimitiveDataType | null;
+    /**
+     * For numeric types, in what units is the data stored.
+     * @type {string}
+     * @memberof StreamPropertyDetailsMergePatch
+     */
+    unit?: string | null;
+}
+/**
+ *
+ * @export
+ * @interface StreamPropertyDetailsPost
+ */
+export interface StreamPropertyDetailsPost {
+    /**
+     * If values are enumerable, explicitly list allowed values. Values should match the property's type.
+     * @type {Array<boolean | number | string>}
+     * @memberof StreamPropertyDetailsPost
+     */
+    allowed_values?: Array<boolean | number | string>;
+    /**
+     * If applicable, describe the meaning of any directionality in the values.
+     * @type {string}
+     * @memberof StreamPropertyDetailsPost
+     */
+    directionality_interpretation?: string;
+    /**
+     * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
+     * @type {{ [key: string]: string; }}
+     * @memberof StreamPropertyDetailsPost
+     */
+    interpretation_map?: {
+        [key: string]: string;
+    };
+    /**
+     * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
+     * @type {string}
+     * @memberof StreamPropertyDetailsPost
+     */
+    null_value_interpretation?: string;
+    /**
+     * If set, value should be coalesced with this replacement to avoid any NULLs.
+     * @type {boolean | string | number}
+     * @memberof StreamPropertyDetailsPost
+     */
+    null_value_replacement?: boolean | string | number | null;
+    /**
+     *
+     * @type {TraitStatisticalType}
+     * @memberof StreamPropertyDetailsPost
+     */
+    statistical_type?: TraitStatisticalType;
+    /**
+     *
+     * @type {PrimitiveDataType}
+     * @memberof StreamPropertyDetailsPost
+     */
+    type?: PrimitiveDataType;
+    /**
+     * For numeric types, in what units is the data stored.
+     * @type {string}
+     * @memberof StreamPropertyDetailsPost
+     */
+    unit?: string;
+}
+/**
+ *
+ * @export
+ * @interface StreamPropertyDetailsPut
+ */
+export interface StreamPropertyDetailsPut {
+    /**
+     * If values are enumerable, explicitly list allowed values. Values should match the property's type.
+     * @type {Array<boolean | number | string>}
+     * @memberof StreamPropertyDetailsPut
+     */
+    allowed_values?: Array<boolean | number | string>;
+    /**
+     * If applicable, describe the meaning of any directionality in the values.
+     * @type {string}
+     * @memberof StreamPropertyDetailsPut
+     */
+    directionality_interpretation?: string;
+    /**
+     * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
+     * @type {{ [key: string]: string; }}
+     * @memberof StreamPropertyDetailsPut
+     */
+    interpretation_map?: {
+        [key: string]: string;
+    };
+    /**
+     * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
+     * @type {string}
+     * @memberof StreamPropertyDetailsPut
+     */
+    null_value_interpretation?: string;
+    /**
+     * If set, value should be coalesced with this replacement to avoid any NULLs.
+     * @type {boolean | string | number}
+     * @memberof StreamPropertyDetailsPut
+     */
+    null_value_replacement?: boolean | string | number | null;
+    /**
+     *
+     * @type {TraitStatisticalType}
+     * @memberof StreamPropertyDetailsPut
+     */
+    statistical_type?: TraitStatisticalType;
+    /**
+     *
+     * @type {PrimitiveDataType}
+     * @memberof StreamPropertyDetailsPut
+     */
+    type?: PrimitiveDataType;
+    /**
+     * For numeric types, in what units is the data stored.
+     * @type {string}
+     * @memberof StreamPropertyDetailsPut
+     */
+    unit?: string;
 }
 /**
  *
@@ -17207,13 +17746,23 @@ export interface StreamPropertyInputFromDatasets {
      * @type {string}
      * @memberof StreamPropertyInputFromDatasets
      */
-    column_name: string;
+    column_name?: string;
     /**
      * the dataset the column comes from
      * @type {string}
      * @memberof StreamPropertyInputFromDatasets
      */
     dataset_id: string;
+}
+/**
+ * A billing tier for a stream property.
+ * @export
+ * @enum {string}
+ */
+export declare enum StreamPropertyTier {
+    Standard = "standard",
+    Premium = "premium",
+    Prohibited = "prohibited"
 }
 /**
  *
@@ -17233,6 +17782,57 @@ export interface StreamPropertyValues {
      * @memberof StreamPropertyValues
      */
     value: string;
+}
+/**
+ * (Parameters used to PUT a value of the `Stream` type.)
+ *
+ * A stream of events associated with the account.
+ * @export
+ * @interface StreamPut
+ */
+export interface StreamPut {
+    /**
+     *
+     * @type {StreamPropertyCategory}
+     * @memberof StreamPut
+     */
+    category?: StreamPropertyCategory;
+    /**
+     * Whether the stream is deprecated.
+     * @type {boolean}
+     * @memberof StreamPut
+     */
+    deprecated?: boolean;
+    /**
+     * Notes about the deprecation of the stream.
+     * @type {string}
+     * @memberof StreamPut
+     */
+    deprecation_notes?: string;
+    /**
+     * A description of the stream.
+     * @type {string}
+     * @memberof StreamPut
+     */
+    description?: string;
+    /**
+     * A human-readable name for the stream.
+     * @type {string}
+     * @memberof StreamPut
+     */
+    literate?: string;
+    /**
+     *
+     * @type {StreamPropertiesPut}
+     * @memberof StreamPut
+     */
+    properties?: StreamPropertiesPut;
+    /**
+     *
+     * @type {StreamPropertyTier}
+     * @memberof StreamPut
+     */
+    tier?: StreamPropertyTier;
 }
 /**
  * A table of arbitrary data. Purposefully untyped to allow for flexibility in the data.
