@@ -18,6 +18,7 @@ import {
     ArchiveConfig,
     Stream,
     StreamAnalysis,
+    StreamMergePatch,
 } from '../models';
 
 export interface ArchiveStreamRequest {
@@ -48,6 +49,11 @@ export interface GetStreamAnalysisRequest {
 export interface UnarchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
+}
+
+export interface UpdateStreamRequest {
+    streamIdOrName: string;
+    streamFields: StreamMergePatch;
 }
 
 /**
@@ -375,6 +381,53 @@ export class StreamsApi extends runtime.BaseAPI {
      */
     async unarchiveStream(streamIdOrName: string, archiveConfig: ArchiveConfig, ): Promise<void> {
         await this.unarchiveStreamRaw({ streamIdOrName: streamIdOrName, archiveConfig: archiveConfig }, );
+    }
+
+    /**
+     * Update the configuration of a stream
+     * Update a stream
+     */
+    private async updateStreamRaw(requestParameters: UpdateStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
+        if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
+            throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling updateStream.');
+        }
+
+        if (requestParameters.streamFields === null || requestParameters.streamFields === undefined) {
+            throw new runtime.RequiredError('streamFields','Required parameter requestParameters.streamFields was null or undefined when calling updateStream.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json+merge-patch';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id_or_name}`.replace(`{${"stream_id_or_name"}}`, encodeURIComponent(String(requestParameters.streamIdOrName))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.streamFields,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Update the configuration of a stream
+     * Update a stream
+     */
+    async updateStream(streamIdOrName: string, streamFields: StreamMergePatch, ): Promise<Stream> {
+        const response = await this.updateStreamRaw({ streamIdOrName: streamIdOrName, streamFields: streamFields }, );
+        return await response.value();
     }
 
 }
