@@ -14426,6 +14426,12 @@ export interface Persona {
      */
     individuals_count?: number;
     /**
+     * 
+     * @type {PersonaInterpretation}
+     * @memberof Persona
+     */
+    interpretation?: PersonaInterpretation;
+    /**
      * A human-readable label for this persona.
      * @type {string}
      * @memberof Persona
@@ -14452,6 +14458,25 @@ export interface PersonaDetails {
      * @memberof PersonaDetails
      */
     center?: object;
+}
+/**
+ * Interpretation data for this persona
+ * @export
+ * @interface PersonaInterpretation
+ */
+export interface PersonaInterpretation {
+    /**
+     * Marketing strategems for this persona
+     * @type {Array<string>}
+     * @memberof PersonaInterpretation
+     */
+    marketing_strategems?: Array<string>;
+    /**
+     * A summary interpretation of this persona
+     * @type {string}
+     * @memberof PersonaInterpretation
+     */
+    summary?: string;
 }
 /**
  * (Parameters used to PATCH the `Persona` type.)
