@@ -8456,6 +8456,21 @@ export interface DatasetMergePatch {
      */
     identity_sets?: IdentitySetsMergePatch;
     /**
+     * A column specifying a date associated with a record.
+     *
+     * Ideally `incremental_column` SHOULD be set to make data loading more efficient.
+     *
+     * Ideally ALSO set `upsert_columns` to ensure that data is not duplicated in the dataset.
+     *
+     * After each
+     * ingestion, the most recent value from `incremental_column` on any
+     * record will be recorded, and during future ingestions, any
+     * records with a value older than `incremental_column` will be ignored.
+     * @type {string}
+     * @memberof DatasetMergePatch
+     */
+    incremental_column?: string | null;
+    /**
      * An identifying name for this dataset.
      * @type {string}
      * @memberof DatasetMergePatch
@@ -11787,6 +11802,21 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     identity_sets: IdentitySetsPut;
+    /**
+     * A column specifying a date associated with a record.
+     *
+     * Ideally `incremental_column` SHOULD be set to make data loading more efficient.
+     *
+     * Ideally ALSO set `upsert_columns` to ensure that data is not duplicated in the dataset.
+     *
+     * After each
+     * ingestion, the most recent value from `incremental_column` on any
+     * record will be recorded, and during future ingestions, any
+     * records with a value older than `incremental_column` will be ignored.
+     * @type {string}
+     * @memberof DatasetPut
+     */
+    incremental_column?: string;
     /**
      * An identifying name for this dataset.
      * @type {string}
