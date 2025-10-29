@@ -8094,13 +8094,16 @@ export interface Dataset {
      */
     identity_sets: IdentitySets;
     /**
-     * A column specifying a date associated with a record. After each
+     * A column specifying a date associated with a record.
+     *
+     * Ideally `incremental_column` SHOULD be set to make data loading more efficient.
+     *
+     * Ideally ALSO set `upsert_columns` to ensure that data is not duplicated in the dataset.
+     *
+     * After each
      * ingestion, the most recent value from `incremental_column` on any
      * record will be recorded, and during future ingestions, any
      * records with a value older than `incremental_column` will be ignored.
-     *
-     * Cannot currently be used with `upsert_columns`. Prefer
-     * `upsert_columns` when possible.
      * @type {string}
      * @memberof Dataset
      */
@@ -8272,11 +8275,14 @@ export interface Dataset {
      */
     updates?: Array<DatasetUpdateHistory>;
     /**
-     * A column or set of columns that uniquely identify an input row. If
-     * multiple rows are ingested with identical values in the columns
-     * specified by `upsert_columns`, the newest will be used.
+     * Also known as the "primary key" of the dataset.  A column or set of columns that uniquely identify an input row.
      *
-     * Cannot currently be used with `incremental_column`.
+     * Ideally `upsert_columns` SHOULD be set so that data is not duplicated in the dataset.
+     *
+     * Ideally ALSO set `incremental_column` to make data loading more efficient.
+     *
+     * If multiple rows are ingested with identical values in the columns
+     * specified by `upsert_columns`, the newest will be used.
      *
      * If neither `upsert_columns` nor `incremental_column` are
      * specified, each unique row will be ingested once.
@@ -8526,11 +8532,14 @@ export interface DatasetMergePatch {
      */
     reference_key_columns?: Array<string> | null;
     /**
-     * A column or set of columns that uniquely identify an input row. If
-     * multiple rows are ingested with identical values in the columns
-     * specified by `upsert_columns`, the newest will be used.
+     * Also known as the "primary key" of the dataset.  A column or set of columns that uniquely identify an input row.
      *
-     * Cannot currently be used with `incremental_column`.
+     * Ideally `upsert_columns` SHOULD be set so that data is not duplicated in the dataset.
+     *
+     * Ideally ALSO set `incremental_column` to make data loading more efficient.
+     *
+     * If multiple rows are ingested with identical values in the columns
+     * specified by `upsert_columns`, the newest will be used.
      *
      * If neither `upsert_columns` nor `incremental_column` are
      * specified, each unique row will be ingested once.
@@ -11646,13 +11655,16 @@ export interface DatasetPost {
      */
     identity_sets: IdentitySetsPost;
     /**
-     * A column specifying a date associated with a record. After each
+     * A column specifying a date associated with a record.
+     *
+     * Ideally `incremental_column` SHOULD be set to make data loading more efficient.
+     *
+     * Ideally ALSO set `upsert_columns` to ensure that data is not duplicated in the dataset.
+     *
+     * After each
      * ingestion, the most recent value from `incremental_column` on any
      * record will be recorded, and during future ingestions, any
      * records with a value older than `incremental_column` will be ignored.
-     *
-     * Cannot currently be used with `upsert_columns`. Prefer
-     * `upsert_columns` when possible.
      * @type {string}
      * @memberof DatasetPost
      */
@@ -11728,11 +11740,14 @@ export interface DatasetPost {
      */
     reference_key_columns?: Array<string>;
     /**
-     * A column or set of columns that uniquely identify an input row. If
-     * multiple rows are ingested with identical values in the columns
-     * specified by `upsert_columns`, the newest will be used.
+     * Also known as the "primary key" of the dataset.  A column or set of columns that uniquely identify an input row.
      *
-     * Cannot currently be used with `incremental_column`.
+     * Ideally `upsert_columns` SHOULD be set so that data is not duplicated in the dataset.
+     *
+     * Ideally ALSO set `incremental_column` to make data loading more efficient.
+     *
+     * If multiple rows are ingested with identical values in the columns
+     * specified by `upsert_columns`, the newest will be used.
      *
      * If neither `upsert_columns` nor `incremental_column` are
      * specified, each unique row will be ingested once.
@@ -11849,11 +11864,14 @@ export interface DatasetPut {
      */
     reference_key_columns?: Array<string>;
     /**
-     * A column or set of columns that uniquely identify an input row. If
-     * multiple rows are ingested with identical values in the columns
-     * specified by `upsert_columns`, the newest will be used.
+     * Also known as the "primary key" of the dataset.  A column or set of columns that uniquely identify an input row.
      *
-     * Cannot currently be used with `incremental_column`.
+     * Ideally `upsert_columns` SHOULD be set so that data is not duplicated in the dataset.
+     *
+     * Ideally ALSO set `incremental_column` to make data loading more efficient.
+     *
+     * If multiple rows are ingested with identical values in the columns
+     * specified by `upsert_columns`, the newest will be used.
      *
      * If neither `upsert_columns` nor `incremental_column` are
      * specified, each unique row will be ingested once.
