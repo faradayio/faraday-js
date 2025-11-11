@@ -419,13 +419,17 @@ var SnowflakeRotateCredentialsRequestTypeEnum;
  */
 var StreamPropertyCategory;
 (function (StreamPropertyCategory) {
-    StreamPropertyCategory["Demography"] = "demography";
-    StreamPropertyCategory["Financial"] = "financial";
-    StreamPropertyCategory["LifeEvent"] = "life event";
-    StreamPropertyCategory["Lifestyle"] = "lifestyle";
-    StreamPropertyCategory["Environment"] = "environment";
-    StreamPropertyCategory["Property"] = "property";
-    StreamPropertyCategory["Society"] = "society";
+    StreamPropertyCategory["FigDemography"] = "fig/demography";
+    StreamPropertyCategory["FigEnvironment"] = "fig/environment";
+    StreamPropertyCategory["FigGeography"] = "fig/geography";
+    StreamPropertyCategory["FigIdentity"] = "fig/identity";
+    StreamPropertyCategory["FigLifestyle"] = "fig/lifestyle";
+    StreamPropertyCategory["FigLifeEvent"] = "fig/life_event";
+    StreamPropertyCategory["FigProperty"] = "fig/property";
+    StreamPropertyCategory["FigReachability"] = "fig/reachability";
+    StreamPropertyCategory["FigSociety"] = "fig/society";
+    StreamPropertyCategory["FigFinancial"] = "fig/financial";
+    StreamPropertyCategory["UserDefined"] = "user_defined";
 })(StreamPropertyCategory = exports.StreamPropertyCategory || (exports.StreamPropertyCategory = {}));
 /**
  * A billing tier for a stream property.
