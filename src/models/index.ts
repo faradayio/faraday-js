@@ -16929,13 +16929,17 @@ export interface StreamPropertiesPut {
  * @enum {string}
  */
 export enum StreamPropertyCategory {
-    Demography = 'demography',
-    Financial = 'financial',
-    LifeEvent = 'life event',
-    Lifestyle = 'lifestyle',
-    Environment = 'environment',
-    Property = 'property',
-    Society = 'society'
+    FigDemography = 'fig/demography',
+    FigEnvironment = 'fig/environment',
+    FigGeography = 'fig/geography',
+    FigIdentity = 'fig/identity',
+    FigLifestyle = 'fig/lifestyle',
+    FigLifeEvent = 'fig/life_event',
+    FigProperty = 'fig/property',
+    FigReachability = 'fig/reachability',
+    FigSociety = 'fig/society',
+    FigFinancial = 'fig/financial',
+    UserDefined = 'user_defined'
 }
 /**
  * Configuration for a stream property. Can either reference a column from the dataset with optional transformations, or provide a static value.
@@ -17014,10 +17018,10 @@ export interface StreamPropertyDetails {
     emitted_by_datasets?: Array<StreamPropertyInputFromDatasets>;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {{ [key: string]: string; }}
+     * @type {object}
      * @memberof StreamPropertyDetails
      */
-    interpretation_map?: { [key: string]: string; };
+    interpretation_map?: object;
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
@@ -17075,10 +17079,10 @@ export interface StreamPropertyDetailsMergePatch {
     directionality_interpretation?: string | null;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {{ [key: string]: string; }}
+     * @type {object}
      * @memberof StreamPropertyDetailsMergePatch
      */
-    interpretation_map?: { [key: string]: string; } | null;
+    interpretation_map?: object | null;
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
@@ -17130,10 +17134,10 @@ export interface StreamPropertyDetailsPost {
     directionality_interpretation?: string;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {{ [key: string]: string; }}
+     * @type {object}
      * @memberof StreamPropertyDetailsPost
      */
-    interpretation_map?: { [key: string]: string; };
+    interpretation_map?: object;
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
@@ -17185,10 +17189,10 @@ export interface StreamPropertyDetailsPut {
     directionality_interpretation?: string;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {{ [key: string]: string; }}
+     * @type {object}
      * @memberof StreamPropertyDetailsPut
      */
-    interpretation_map?: { [key: string]: string; };
+    interpretation_map?: object;
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
