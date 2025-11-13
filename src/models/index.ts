@@ -1495,7 +1495,7 @@ export interface ConnectionMergePatch {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'google_ads' } & ConnectionOptionsGoogleAds | { type: 'hosted_csv' } & ConnectionOptionsHostedCsv | { type: 'hubspot' } & ConnectionOptionsHubspot | { type: 'iterable' } & ConnectionOptionsIterable | { type: 'klaviyo' } & ConnectionOptionsKlaviyo | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAds | { type: 'lookup_api' } & ConnectionOptionsLookupApi | { type: 'merge' } & ConnectionOptionsMerge | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAds | { type: 'poplar' } & ConnectionOptionsPoplar | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'recharge' } & ConnectionOptionsRecharge | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'salesforce' } & ConnectionOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloud | { type: 'segment' } & ConnectionOptionsSegment | { type: 'sftp' } & ConnectionOptionsSftp | { type: 'shopify' } & ConnectionOptionsShopify | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer | { type: 'stripe' } & ConnectionOptionsStripe | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDesk | { type: 'tiktok' } & ConnectionOptionsTiktok;
+export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'google_ads' } & ConnectionOptionsGoogleAds | { type: 'hosted_csv' } & ConnectionOptionsHostedCsv | { type: 'hubspot' } & ConnectionOptionsHubspot | { type: 'iterable' } & ConnectionOptionsIterable | { type: 'klaviyo' } & ConnectionOptionsKlaviyo | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAds | { type: 'lookup_api' } & ConnectionOptionsLookupApi | { type: 'merge' } & ConnectionOptionsMerge | { type: 'motherduck' } & ConnectionOptionsMotherduck | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAds | { type: 'poplar' } & ConnectionOptionsPoplar | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'recharge' } & ConnectionOptionsRecharge | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'salesforce' } & ConnectionOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloud | { type: 'segment' } & ConnectionOptionsSegment | { type: 'sftp' } & ConnectionOptionsSftp | { type: 'shopify' } & ConnectionOptionsShopify | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer | { type: 'stripe' } & ConnectionOptionsStripe | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDesk | { type: 'tiktok' } & ConnectionOptionsTiktok;
 /**
  * Aurora (MySQL) connection options
  * @export
@@ -4835,7 +4835,7 @@ export interface ConnectionOptionsMergeMergePatch {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & ConnectionOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvMergePatch | { type: 'hubspot' } & ConnectionOptionsHubspotMergePatch | { type: 'iterable' } & ConnectionOptionsIterableMergePatch | { type: 'klaviyo' } & ConnectionOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & ConnectionOptionsLookupApiMergePatch | { type: 'merge' } & ConnectionOptionsMergeMergePatch | { type: 'mysql' } & ConnectionOptionsMysqlMergePatch | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsMergePatch | { type: 'poplar' } & ConnectionOptionsPoplarMergePatch | { type: 'postgres' } & ConnectionOptionsPostgresMergePatch | { type: 'recharge' } & ConnectionOptionsRechargeMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'salesforce' } & ConnectionOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & ConnectionOptionsSegmentMergePatch | { type: 'sftp' } & ConnectionOptionsSftpMergePatch | { type: 'shopify' } & ConnectionOptionsShopifyMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch | { type: 'sql_server' } & ConnectionOptionsSqlServerMergePatch | { type: 'stripe' } & ConnectionOptionsStripeMergePatch | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & ConnectionOptionsTiktokMergePatch;
+export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & ConnectionOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvMergePatch | { type: 'hubspot' } & ConnectionOptionsHubspotMergePatch | { type: 'iterable' } & ConnectionOptionsIterableMergePatch | { type: 'klaviyo' } & ConnectionOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & ConnectionOptionsLookupApiMergePatch | { type: 'merge' } & ConnectionOptionsMergeMergePatch | { type: 'motherduck' } & ConnectionOptionsMotherduckMergePatch | { type: 'mysql' } & ConnectionOptionsMysqlMergePatch | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsMergePatch | { type: 'poplar' } & ConnectionOptionsPoplarMergePatch | { type: 'postgres' } & ConnectionOptionsPostgresMergePatch | { type: 'recharge' } & ConnectionOptionsRechargeMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'salesforce' } & ConnectionOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & ConnectionOptionsSegmentMergePatch | { type: 'sftp' } & ConnectionOptionsSftpMergePatch | { type: 'shopify' } & ConnectionOptionsShopifyMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch | { type: 'sql_server' } & ConnectionOptionsSqlServerMergePatch | { type: 'stripe' } & ConnectionOptionsStripeMergePatch | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & ConnectionOptionsTiktokMergePatch;
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsMerge` type.)
  * 
@@ -4863,6 +4863,112 @@ export interface ConnectionOptionsMergePut {
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsMergePut
+     */
+    type: string;
+}
+/**
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduck
+ */
+export interface ConnectionOptionsMotherduck {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduck
+     */
+    database: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduck
+     */
+    token: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduck
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `ConnectionOptionsMotherduck` type.)
+ * 
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduckMergePatch
+ */
+export interface ConnectionOptionsMotherduckMergePatch {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckMergePatch
+     */
+    database?: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckMergePatch
+     */
+    token?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `ConnectionOptionsMotherduck` type.)
+ * 
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduckPost
+ */
+export interface ConnectionOptionsMotherduckPost {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPost
+     */
+    database: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPost
+     */
+    token: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `ConnectionOptionsMotherduck` type.)
+ * 
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduckPut
+ */
+export interface ConnectionOptionsMotherduckPut {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPut
+     */
+    database: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPut
+     */
+    token: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPut
      */
     type: string;
 }
@@ -5285,7 +5391,7 @@ export interface ConnectionOptionsPoplarPut {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPost | { type: 'lookup_api' } & ConnectionOptionsLookupApiPost | { type: 'merge' } & ConnectionOptionsMergePost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'poplar' } & ConnectionOptionsPoplarPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'recharge' } & ConnectionOptionsRechargePost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'sftp' } & ConnectionOptionsSftpPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
+export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPost | { type: 'lookup_api' } & ConnectionOptionsLookupApiPost | { type: 'merge' } & ConnectionOptionsMergePost | { type: 'motherduck' } & ConnectionOptionsMotherduckPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'poplar' } & ConnectionOptionsPoplarPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'recharge' } & ConnectionOptionsRechargePost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'sftp' } & ConnectionOptionsSftpPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
 /**
  * Postgres connection options
  * @export
@@ -5541,7 +5647,7 @@ export interface ConnectionOptionsPostgresPut {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPut = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPut | { type: 'bigquery' } & ConnectionOptionsBigQueryPut | { type: 'classic' } & ConnectionOptionsClassicPut | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPut | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPut | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPut | { type: 'hubspot' } & ConnectionOptionsHubspotPut | { type: 'iterable' } & ConnectionOptionsIterablePut | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPut | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPut | { type: 'lookup_api' } & ConnectionOptionsLookupApiPut | { type: 'merge' } & ConnectionOptionsMergePut | { type: 'mysql' } & ConnectionOptionsMysqlPut | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPut | { type: 'poplar' } & ConnectionOptionsPoplarPut | { type: 'postgres' } & ConnectionOptionsPostgresPut | { type: 'recharge' } & ConnectionOptionsRechargePut | { type: 'redshift' } & ConnectionOptionsRedshiftPut | { type: 's3_csv' } & ConnectionOptionsS3CsvPut | { type: 'salesforce' } & ConnectionOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPut | { type: 'segment' } & ConnectionOptionsSegmentPut | { type: 'sftp' } & ConnectionOptionsSftpPut | { type: 'shopify' } & ConnectionOptionsShopifyPut | { type: 'snowflake' } & ConnectionOptionsSnowflakePut | { type: 'sql_server' } & ConnectionOptionsSqlServerPut | { type: 'stripe' } & ConnectionOptionsStripePut | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPut | { type: 'tiktok' } & ConnectionOptionsTiktokPut;
+export type ConnectionOptionsPut = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPut | { type: 'bigquery' } & ConnectionOptionsBigQueryPut | { type: 'classic' } & ConnectionOptionsClassicPut | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPut | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPut | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPut | { type: 'hubspot' } & ConnectionOptionsHubspotPut | { type: 'iterable' } & ConnectionOptionsIterablePut | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPut | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPut | { type: 'lookup_api' } & ConnectionOptionsLookupApiPut | { type: 'merge' } & ConnectionOptionsMergePut | { type: 'motherduck' } & ConnectionOptionsMotherduckPut | { type: 'mysql' } & ConnectionOptionsMysqlPut | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPut | { type: 'poplar' } & ConnectionOptionsPoplarPut | { type: 'postgres' } & ConnectionOptionsPostgresPut | { type: 'recharge' } & ConnectionOptionsRechargePut | { type: 'redshift' } & ConnectionOptionsRedshiftPut | { type: 's3_csv' } & ConnectionOptionsS3CsvPut | { type: 'salesforce' } & ConnectionOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPut | { type: 'segment' } & ConnectionOptionsSegmentPut | { type: 'sftp' } & ConnectionOptionsSftpPut | { type: 'shopify' } & ConnectionOptionsShopifyPut | { type: 'snowflake' } & ConnectionOptionsSnowflakePut | { type: 'sql_server' } & ConnectionOptionsSqlServerPut | { type: 'stripe' } & ConnectionOptionsStripePut | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPut | { type: 'tiktok' } & ConnectionOptionsTiktokPut;
 /**
  * Recharge connection options
  * @export
@@ -8282,7 +8388,7 @@ export interface DatasetMergePatchOutputAllColumnsAsTraits {
  * Dataset connection options
  * @export
  */
-export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'hubspot' } & DatasetOptionsHubspot | { type: 'iterable' } & DatasetOptionsIterable | { type: 'klaviyo' } & DatasetOptionsKlaviyo | { type: 'merge' } & DatasetOptionsMerge | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'recharge' } & DatasetOptionsRecharge | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'salesforce' } & DatasetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloud | { type: 'sftp' } & DatasetOptionsSftp | { type: 'shopify' } & DatasetOptionsShopify | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer | { type: 'stripe' } & DatasetOptionsStripe;
+export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'hubspot' } & DatasetOptionsHubspot | { type: 'iterable' } & DatasetOptionsIterable | { type: 'klaviyo' } & DatasetOptionsKlaviyo | { type: 'merge' } & DatasetOptionsMerge | { type: 'motherduck' } & DatasetOptionsMotherduck | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'recharge' } & DatasetOptionsRecharge | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'salesforce' } & DatasetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloud | { type: 'sftp' } & DatasetOptionsSftp | { type: 'shopify' } & DatasetOptionsShopify | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer | { type: 'stripe' } & DatasetOptionsStripe;
 /**
  * Aurora (MySQL) dataset options
  * @export
@@ -9853,7 +9959,7 @@ export interface DatasetOptionsMergeMergePatch {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'hubspot' } & DatasetOptionsHubspotMergePatch | { type: 'iterable' } & DatasetOptionsIterableMergePatch | { type: 'klaviyo' } & DatasetOptionsKlaviyoMergePatch | { type: 'merge' } & DatasetOptionsMergeMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'recharge' } & DatasetOptionsRechargeMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'salesforce' } & DatasetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudMergePatch | { type: 'sftp' } & DatasetOptionsSftpMergePatch | { type: 'shopify' } & DatasetOptionsShopifyMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch | { type: 'stripe' } & DatasetOptionsStripeMergePatch;
+export type DatasetOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'hubspot' } & DatasetOptionsHubspotMergePatch | { type: 'iterable' } & DatasetOptionsIterableMergePatch | { type: 'klaviyo' } & DatasetOptionsKlaviyoMergePatch | { type: 'merge' } & DatasetOptionsMergeMergePatch | { type: 'motherduck' } & DatasetOptionsMotherduckMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'recharge' } & DatasetOptionsRechargeMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'salesforce' } & DatasetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudMergePatch | { type: 'sftp' } & DatasetOptionsSftpMergePatch | { type: 'shopify' } & DatasetOptionsShopifyMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch | { type: 'stripe' } & DatasetOptionsStripeMergePatch;
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsMerge` type.)
  * 
@@ -9905,6 +10011,112 @@ export interface DatasetOptionsMergePut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsMergePut
+     */
+    type: string;
+}
+/**
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduck
+ */
+export interface DatasetOptionsMotherduck {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduck
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduck
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduck
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `DatasetOptionsMotherduck` type.)
+ * 
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduckMergePatch
+ */
+export interface DatasetOptionsMotherduckMergePatch {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckMergePatch
+     */
+    schema?: string | null;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `DatasetOptionsMotherduck` type.)
+ * 
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduckPost
+ */
+export interface DatasetOptionsMotherduckPost {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPost
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `DatasetOptionsMotherduck` type.)
+ * 
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduckPut
+ */
+export interface DatasetOptionsMotherduckPut {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPut
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPut
      */
     type: string;
 }
@@ -9995,7 +10207,7 @@ export interface DatasetOptionsMysqlPut {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'merge' } & DatasetOptionsMergePost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'recharge' } & DatasetOptionsRechargePost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
+export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'merge' } & DatasetOptionsMergePost | { type: 'motherduck' } & DatasetOptionsMotherduckPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'recharge' } & DatasetOptionsRechargePost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
 /**
  * Postgres dataset options
  * @export
@@ -10083,7 +10295,7 @@ export interface DatasetOptionsPostgresPut {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'hubspot' } & DatasetOptionsHubspotPut | { type: 'iterable' } & DatasetOptionsIterablePut | { type: 'klaviyo' } & DatasetOptionsKlaviyoPut | { type: 'merge' } & DatasetOptionsMergePut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'recharge' } & DatasetOptionsRechargePut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'salesforce' } & DatasetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'shopify' } & DatasetOptionsShopifyPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut | { type: 'stripe' } & DatasetOptionsStripePut;
+export type DatasetOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'hubspot' } & DatasetOptionsHubspotPut | { type: 'iterable' } & DatasetOptionsIterablePut | { type: 'klaviyo' } & DatasetOptionsKlaviyoPut | { type: 'merge' } & DatasetOptionsMergePut | { type: 'motherduck' } & DatasetOptionsMotherduckPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'recharge' } & DatasetOptionsRechargePut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'salesforce' } & DatasetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'shopify' } & DatasetOptionsShopifyPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut | { type: 'stripe' } & DatasetOptionsStripePut;
 /**
  * Recharge dataset options
  * @export
@@ -19707,7 +19919,7 @@ export interface TargetModesReferencedPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptions = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServer | { type: 'bigquery' } & TargetOptionsBigQuery | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsv | { type: 'google_ads' } & TargetOptionsGoogleAds | { type: 'hosted_csv' } & TargetOptionsHostedCsv | { type: 'hubspot' } & TargetOptionsHubspot | { type: 'iterable' } & TargetOptionsIterable | { type: 'klaviyo' } & TargetOptionsKlaviyo | { type: 'linkedin_ads' } & TargetOptionsLinkedinAds | { type: 'lookup_api' } & TargetOptionsLookupApi | { type: 'mysql' } & TargetOptionsMysql | { type: 'pinterest_ads' } & TargetOptionsPinterestAds | { type: 'poplar' } & TargetOptionsPoplar | { type: 'postgres' } & TargetOptionsPostgres | { type: 'redshift' } & TargetOptionsRedshift | { type: 's3_csv' } & TargetOptionsS3Csv | { type: 'salesforce' } & TargetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloud | { type: 'segment' } & TargetOptionsSegment | { type: 'sftp' } & TargetOptionsSftp | { type: 'snowflake' } & TargetOptionsSnowflake | { type: 'sql_server' } & TargetOptionsSqlServer | { type: 'the_trade_desk' } & TargetOptionsTheTradeDesk | { type: 'tiktok' } & TargetOptionsTiktok;
+export type TargetOptions = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServer | { type: 'bigquery' } & TargetOptionsBigQuery | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsv | { type: 'google_ads' } & TargetOptionsGoogleAds | { type: 'hosted_csv' } & TargetOptionsHostedCsv | { type: 'hubspot' } & TargetOptionsHubspot | { type: 'iterable' } & TargetOptionsIterable | { type: 'klaviyo' } & TargetOptionsKlaviyo | { type: 'linkedin_ads' } & TargetOptionsLinkedinAds | { type: 'lookup_api' } & TargetOptionsLookupApi | { type: 'motherduck' } & TargetOptionsMotherduck | { type: 'mysql' } & TargetOptionsMysql | { type: 'pinterest_ads' } & TargetOptionsPinterestAds | { type: 'poplar' } & TargetOptionsPoplar | { type: 'postgres' } & TargetOptionsPostgres | { type: 'redshift' } & TargetOptionsRedshift | { type: 's3_csv' } & TargetOptionsS3Csv | { type: 'salesforce' } & TargetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloud | { type: 'segment' } & TargetOptionsSegment | { type: 'sftp' } & TargetOptionsSftp | { type: 'snowflake' } & TargetOptionsSnowflake | { type: 'sql_server' } & TargetOptionsSqlServer | { type: 'the_trade_desk' } & TargetOptionsTheTradeDesk | { type: 'tiktok' } & TargetOptionsTiktok;
 /**
  * Aurora (MySQL) target options
  * @export
@@ -21413,7 +21625,113 @@ export interface TargetOptionsLookupApiPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & TargetOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'hubspot' } & TargetOptionsHubspotMergePatch | { type: 'iterable' } & TargetOptionsIterableMergePatch | { type: 'klaviyo' } & TargetOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & TargetOptionsLookupApiMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsMergePatch | { type: 'poplar' } & TargetOptionsPoplarMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'salesforce' } & TargetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & TargetOptionsSegmentMergePatch | { type: 'sftp' } & TargetOptionsSftpMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & TargetOptionsTiktokMergePatch;
+export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & TargetOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'hubspot' } & TargetOptionsHubspotMergePatch | { type: 'iterable' } & TargetOptionsIterableMergePatch | { type: 'klaviyo' } & TargetOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & TargetOptionsLookupApiMergePatch | { type: 'motherduck' } & TargetOptionsMotherduckMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsMergePatch | { type: 'poplar' } & TargetOptionsPoplarMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'salesforce' } & TargetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & TargetOptionsSegmentMergePatch | { type: 'sftp' } & TargetOptionsSftpMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & TargetOptionsTiktokMergePatch;
+/**
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduck
+ */
+export interface TargetOptionsMotherduck {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduck
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduck
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduck
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `TargetOptionsMotherduck` type.)
+ * 
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduckMergePatch
+ */
+export interface TargetOptionsMotherduckMergePatch {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduckMergePatch
+     */
+    schema?: string | null;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduckMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduckMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `TargetOptionsMotherduck` type.)
+ * 
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduckPost
+ */
+export interface TargetOptionsMotherduckPost {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPost
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `TargetOptionsMotherduck` type.)
+ * 
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduckPut
+ */
+export interface TargetOptionsMotherduckPut {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPut
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPut
+     */
+    type: string;
+}
 /**
  * MySQL target options
  * @export
@@ -21617,7 +21935,7 @@ export interface TargetOptionsPoplarPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsPost = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPost | { type: 'bigquery' } & TargetOptionsBigQueryPost | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPost | { type: 'google_ads' } & TargetOptionsGoogleAdsPost | { type: 'hosted_csv' } & TargetOptionsHostedCsvPost | { type: 'hubspot' } & TargetOptionsHubspotPost | { type: 'iterable' } & TargetOptionsIterablePost | { type: 'klaviyo' } & TargetOptionsKlaviyoPost | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPost | { type: 'lookup_api' } & TargetOptionsLookupApiPost | { type: 'mysql' } & TargetOptionsMysqlPost | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPost | { type: 'poplar' } & TargetOptionsPoplarPost | { type: 'postgres' } & TargetOptionsPostgresPost | { type: 'redshift' } & TargetOptionsRedshiftPost | { type: 's3_csv' } & TargetOptionsS3CsvPost | { type: 'salesforce' } & TargetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPost | { type: 'segment' } & TargetOptionsSegmentPost | { type: 'sftp' } & TargetOptionsSftpPost | { type: 'snowflake' } & TargetOptionsSnowflakePost | { type: 'sql_server' } & TargetOptionsSqlServerPost | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPost | { type: 'tiktok' } & TargetOptionsTiktokPost;
+export type TargetOptionsPost = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPost | { type: 'bigquery' } & TargetOptionsBigQueryPost | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPost | { type: 'google_ads' } & TargetOptionsGoogleAdsPost | { type: 'hosted_csv' } & TargetOptionsHostedCsvPost | { type: 'hubspot' } & TargetOptionsHubspotPost | { type: 'iterable' } & TargetOptionsIterablePost | { type: 'klaviyo' } & TargetOptionsKlaviyoPost | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPost | { type: 'lookup_api' } & TargetOptionsLookupApiPost | { type: 'motherduck' } & TargetOptionsMotherduckPost | { type: 'mysql' } & TargetOptionsMysqlPost | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPost | { type: 'poplar' } & TargetOptionsPoplarPost | { type: 'postgres' } & TargetOptionsPostgresPost | { type: 'redshift' } & TargetOptionsRedshiftPost | { type: 's3_csv' } & TargetOptionsS3CsvPost | { type: 'salesforce' } & TargetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPost | { type: 'segment' } & TargetOptionsSegmentPost | { type: 'sftp' } & TargetOptionsSftpPost | { type: 'snowflake' } & TargetOptionsSnowflakePost | { type: 'sql_server' } & TargetOptionsSqlServerPost | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPost | { type: 'tiktok' } & TargetOptionsTiktokPost;
 /**
  * Postgres target options
  * @export
@@ -21705,7 +22023,7 @@ export interface TargetOptionsPostgresPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPut | { type: 'lookup_api' } & TargetOptionsLookupApiPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'poplar' } & TargetOptionsPoplarPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce' } & TargetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'sftp' } & TargetOptionsSftpPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
+export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPut | { type: 'lookup_api' } & TargetOptionsLookupApiPut | { type: 'motherduck' } & TargetOptionsMotherduckPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'poplar' } & TargetOptionsPoplarPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce' } & TargetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'sftp' } & TargetOptionsSftpPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
 /**
  * Redshift target options
  * @export
