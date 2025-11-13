@@ -1552,6 +1552,8 @@ export declare type ConnectionOptions = {
 } & ConnectionOptionsLookupApi | {
     type: 'merge';
 } & ConnectionOptionsMerge | {
+    type: 'motherduck';
+} & ConnectionOptionsMotherduck | {
     type: 'mysql';
 } & ConnectionOptionsMysql | {
     type: 'pinterest_ads';
@@ -4970,6 +4972,8 @@ export declare type ConnectionOptionsMergePatch = {
 } & ConnectionOptionsLookupApiMergePatch | {
     type: 'merge';
 } & ConnectionOptionsMergeMergePatch | {
+    type: 'motherduck';
+} & ConnectionOptionsMotherduckMergePatch | {
     type: 'mysql';
 } & ConnectionOptionsMysqlMergePatch | {
     type: 'pinterest_ads';
@@ -5031,6 +5035,112 @@ export interface ConnectionOptionsMergePut {
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsMergePut
+     */
+    type: string;
+}
+/**
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduck
+ */
+export interface ConnectionOptionsMotherduck {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduck
+     */
+    database: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduck
+     */
+    token: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduck
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `ConnectionOptionsMotherduck` type.)
+ *
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduckMergePatch
+ */
+export interface ConnectionOptionsMotherduckMergePatch {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckMergePatch
+     */
+    database?: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckMergePatch
+     */
+    token?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `ConnectionOptionsMotherduck` type.)
+ *
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduckPost
+ */
+export interface ConnectionOptionsMotherduckPost {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPost
+     */
+    database: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPost
+     */
+    token: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `ConnectionOptionsMotherduck` type.)
+ *
+ * MotherDuck connection options
+ * @export
+ * @interface ConnectionOptionsMotherduckPut
+ */
+export interface ConnectionOptionsMotherduckPut {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPut
+     */
+    database: string;
+    /**
+     * Access token from MotherDuck Settings. Used to authenticate with MotherDuck.
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPut
+     */
+    token: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsMotherduckPut
      */
     type: string;
 }
@@ -5498,6 +5608,8 @@ export declare type ConnectionOptionsPost = {
 } & ConnectionOptionsLookupApiPost | {
     type: 'merge';
 } & ConnectionOptionsMergePost | {
+    type: 'motherduck';
+} & ConnectionOptionsMotherduckPost | {
     type: 'mysql';
 } & ConnectionOptionsMysqlPost | {
     type: 'pinterest_ads';
@@ -5832,6 +5944,8 @@ export declare type ConnectionOptionsPut = {
 } & ConnectionOptionsLookupApiPut | {
     type: 'merge';
 } & ConnectionOptionsMergePut | {
+    type: 'motherduck';
+} & ConnectionOptionsMotherduckPut | {
     type: 'mysql';
 } & ConnectionOptionsMysqlPut | {
     type: 'pinterest_ads';
@@ -8640,6 +8754,8 @@ export declare type DatasetOptions = {
 } & DatasetOptionsKlaviyo | {
     type: 'merge';
 } & DatasetOptionsMerge | {
+    type: 'motherduck';
+} & DatasetOptionsMotherduck | {
     type: 'mysql';
 } & DatasetOptionsMysql | {
     type: 'postgres';
@@ -10271,6 +10387,8 @@ export declare type DatasetOptionsMergePatch = {
 } & DatasetOptionsKlaviyoMergePatch | {
     type: 'merge';
 } & DatasetOptionsMergeMergePatch | {
+    type: 'motherduck';
+} & DatasetOptionsMotherduckMergePatch | {
     type: 'mysql';
 } & DatasetOptionsMysqlMergePatch | {
     type: 'postgres';
@@ -10346,6 +10464,112 @@ export interface DatasetOptionsMergePut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsMergePut
+     */
+    type: string;
+}
+/**
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduck
+ */
+export interface DatasetOptionsMotherduck {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduck
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduck
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduck
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `DatasetOptionsMotherduck` type.)
+ *
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduckMergePatch
+ */
+export interface DatasetOptionsMotherduckMergePatch {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckMergePatch
+     */
+    schema?: string | null;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `DatasetOptionsMotherduck` type.)
+ *
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduckPost
+ */
+export interface DatasetOptionsMotherduckPost {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPost
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `DatasetOptionsMotherduck` type.)
+ *
+ * MotherDuck dataset options
+ * @export
+ * @interface DatasetOptionsMotherduckPut
+ */
+export interface DatasetOptionsMotherduckPut {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPut
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsMotherduckPut
      */
     type: string;
 }
@@ -10473,6 +10697,8 @@ export declare type DatasetOptionsPost = {
 } & DatasetOptionsKlaviyoPost | {
     type: 'merge';
 } & DatasetOptionsMergePost | {
+    type: 'motherduck';
+} & DatasetOptionsMotherduckPost | {
     type: 'mysql';
 } & DatasetOptionsMysqlPost | {
     type: 'postgres';
@@ -10621,6 +10847,8 @@ export declare type DatasetOptionsPut = {
 } & DatasetOptionsKlaviyoPut | {
     type: 'merge';
 } & DatasetOptionsMergePut | {
+    type: 'motherduck';
+} & DatasetOptionsMotherduckPut | {
     type: 'mysql';
 } & DatasetOptionsMysqlPut | {
     type: 'postgres';
@@ -20349,6 +20577,8 @@ export declare type TargetOptions = {
 } & TargetOptionsLinkedinAds | {
     type: 'lookup_api';
 } & TargetOptionsLookupApi | {
+    type: 'motherduck';
+} & TargetOptionsMotherduck | {
     type: 'mysql';
 } & TargetOptionsMysql | {
     type: 'pinterest_ads';
@@ -22123,6 +22353,8 @@ export declare type TargetOptionsMergePatch = {
 } & TargetOptionsLinkedinAdsMergePatch | {
     type: 'lookup_api';
 } & TargetOptionsLookupApiMergePatch | {
+    type: 'motherduck';
+} & TargetOptionsMotherduckMergePatch | {
     type: 'mysql';
 } & TargetOptionsMysqlMergePatch | {
     type: 'pinterest_ads';
@@ -22151,6 +22383,112 @@ export declare type TargetOptionsMergePatch = {
 } & TargetOptionsTheTradeDeskMergePatch | {
     type: 'tiktok';
 } & TargetOptionsTiktokMergePatch;
+/**
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduck
+ */
+export interface TargetOptionsMotherduck {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduck
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduck
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduck
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `TargetOptionsMotherduck` type.)
+ *
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduckMergePatch
+ */
+export interface TargetOptionsMotherduckMergePatch {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduckMergePatch
+     */
+    schema?: string | null;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduckMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduckMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `TargetOptionsMotherduck` type.)
+ *
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduckPost
+ */
+export interface TargetOptionsMotherduckPost {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPost
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `TargetOptionsMotherduck` type.)
+ *
+ * MotherDuck target options
+ * @export
+ * @interface TargetOptionsMotherduckPut
+ */
+export interface TargetOptionsMotherduckPut {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPut
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsMotherduckPut
+     */
+    type: string;
+}
 /**
  * MySQL target options
  * @export
@@ -22395,6 +22733,8 @@ export declare type TargetOptionsPost = {
 } & TargetOptionsLinkedinAdsPost | {
     type: 'lookup_api';
 } & TargetOptionsLookupApiPost | {
+    type: 'motherduck';
+} & TargetOptionsMotherduckPost | {
     type: 'mysql';
 } & TargetOptionsMysqlPost | {
     type: 'pinterest_ads';
@@ -22551,6 +22891,8 @@ export declare type TargetOptionsPut = {
 } & TargetOptionsLinkedinAdsPut | {
     type: 'lookup_api';
 } & TargetOptionsLookupApiPut | {
+    type: 'motherduck';
+} & TargetOptionsMotherduckPut | {
     type: 'mysql';
 } & TargetOptionsMysqlPut | {
     type: 'pinterest_ads';
