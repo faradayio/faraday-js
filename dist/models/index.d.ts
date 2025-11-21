@@ -1526,6 +1526,8 @@ export declare type ConnectionOptions = {
 } & ConnectionOptionsBigQuery | {
     type: 'classic';
 } & ConnectionOptionsClassic | {
+    type: 'databricks_delta_sharing';
+} & ConnectionOptionsDatabricksDeltaSharing | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiences | {
     type: 'gcp_cloud_sql_mysql';
@@ -3479,6 +3481,136 @@ export interface ConnectionOptionsClassicPut {
     type: string;
 }
 /**
+ * Databricks Delta Sharing connection options
+ * @export
+ * @interface ConnectionOptionsDatabricksDeltaSharing
+ */
+export interface ConnectionOptionsDatabricksDeltaSharing {
+    /**
+     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharing
+     */
+    credentials_json: string;
+    /**
+     * The schema name within the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharing
+     */
+    schema_name: string;
+    /**
+     * The name of the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharing
+     */
+    share_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharing
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `ConnectionOptionsDatabricksDeltaSharing` type.)
+ *
+ * Databricks Delta Sharing connection options
+ * @export
+ * @interface ConnectionOptionsDatabricksDeltaSharingMergePatch
+ */
+export interface ConnectionOptionsDatabricksDeltaSharingMergePatch {
+    /**
+     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
+     */
+    credentials_json?: string;
+    /**
+     * The schema name within the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
+     */
+    schema_name?: string;
+    /**
+     * The name of the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
+     */
+    share_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
+ *
+ * Databricks Delta Sharing connection options
+ * @export
+ * @interface ConnectionOptionsDatabricksDeltaSharingPost
+ */
+export interface ConnectionOptionsDatabricksDeltaSharingPost {
+    /**
+     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
+     */
+    credentials_json: string;
+    /**
+     * The schema name within the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
+     */
+    schema_name: string;
+    /**
+     * The name of the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
+     */
+    share_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
+ *
+ * Databricks Delta Sharing connection options
+ * @export
+ * @interface ConnectionOptionsDatabricksDeltaSharingPut
+ */
+export interface ConnectionOptionsDatabricksDeltaSharingPut {
+    /**
+     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
+     */
+    credentials_json: string;
+    /**
+     * The schema name within the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
+     */
+    schema_name: string;
+    /**
+     * The name of the Delta Sharing share.
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
+     */
+    share_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
+     */
+    type: string;
+}
+/**
  * Facebook Custom Audiences connection options
  * @export
  * @interface ConnectionOptionsFacebookCustomAudiences
@@ -4946,6 +5078,8 @@ export declare type ConnectionOptionsMergePatch = {
 } & ConnectionOptionsBigQueryMergePatch | {
     type: 'classic';
 } & ConnectionOptionsClassicMergePatch | {
+    type: 'databricks_delta_sharing';
+} & ConnectionOptionsDatabricksDeltaSharingMergePatch | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesMergePatch | {
     type: 'gcp_cloud_sql_mysql';
@@ -5582,6 +5716,8 @@ export declare type ConnectionOptionsPost = {
 } & ConnectionOptionsBigQueryPost | {
     type: 'classic';
 } & ConnectionOptionsClassicPost | {
+    type: 'databricks_delta_sharing';
+} & ConnectionOptionsDatabricksDeltaSharingPost | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPost | {
     type: 'gcp_cloud_sql_mysql';
@@ -5918,6 +6054,8 @@ export declare type ConnectionOptionsPut = {
 } & ConnectionOptionsBigQueryPut | {
     type: 'classic';
 } & ConnectionOptionsClassicPut | {
+    type: 'databricks_delta_sharing';
+} & ConnectionOptionsDatabricksDeltaSharingPut | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPut | {
     type: 'gcp_cloud_sql_mysql';
@@ -8736,6 +8874,8 @@ export declare type DatasetOptions = {
 } & DatasetOptionsBigQuery | {
     type: 'classic';
 } & DatasetOptionsClassic | {
+    type: 'databricks_delta_sharing';
+} & DatasetOptionsDatabricksDeltaSharing | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -9491,6 +9631,88 @@ export interface DatasetOptionsClassicPut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsClassicPut
+     */
+    type: string;
+}
+/**
+ * Databricks Delta Sharing dataset options
+ * @export
+ * @interface DatasetOptionsDatabricksDeltaSharing
+ */
+export interface DatasetOptionsDatabricksDeltaSharing {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharing
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharing
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `DatasetOptionsDatabricksDeltaSharing` type.)
+ *
+ * Databricks Delta Sharing dataset options
+ * @export
+ * @interface DatasetOptionsDatabricksDeltaSharingMergePatch
+ */
+export interface DatasetOptionsDatabricksDeltaSharingMergePatch {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `DatasetOptionsDatabricksDeltaSharing` type.)
+ *
+ * Databricks Delta Sharing dataset options
+ * @export
+ * @interface DatasetOptionsDatabricksDeltaSharingPost
+ */
+export interface DatasetOptionsDatabricksDeltaSharingPost {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharingPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharingPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `DatasetOptionsDatabricksDeltaSharing` type.)
+ *
+ * Databricks Delta Sharing dataset options
+ * @export
+ * @interface DatasetOptionsDatabricksDeltaSharingPut
+ */
+export interface DatasetOptionsDatabricksDeltaSharingPut {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharingPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsDatabricksDeltaSharingPut
      */
     type: string;
 }
@@ -10369,6 +10591,8 @@ export declare type DatasetOptionsMergePatch = {
 } & DatasetOptionsBigQueryMergePatch | {
     type: 'classic';
 } & DatasetOptionsClassicMergePatch | {
+    type: 'databricks_delta_sharing';
+} & DatasetOptionsDatabricksDeltaSharingMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -10679,6 +10903,8 @@ export declare type DatasetOptionsPost = {
 } & DatasetOptionsBigQueryPost | {
     type: 'classic';
 } & DatasetOptionsClassicPost | {
+    type: 'databricks_delta_sharing';
+} & DatasetOptionsDatabricksDeltaSharingPost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -10829,6 +11055,8 @@ export declare type DatasetOptionsPut = {
 } & DatasetOptionsBigQueryPut | {
     type: 'classic';
 } & DatasetOptionsClassicPut | {
+    type: 'databricks_delta_sharing';
+} & DatasetOptionsDatabricksDeltaSharingPut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
