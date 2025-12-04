@@ -475,12 +475,7 @@ var TargetAggregateIdentified;
 var TargetAnalysisConfigGeographiesEnum;
 (function (TargetAnalysisConfigGeographiesEnum) {
     TargetAnalysisConfigGeographiesEnum["Postcode"] = "postcode";
-    TargetAnalysisConfigGeographiesEnum["County"] = "county";
-    TargetAnalysisConfigGeographiesEnum["Metro"] = "metro";
     TargetAnalysisConfigGeographiesEnum["State"] = "state";
-    TargetAnalysisConfigGeographiesEnum["CensusBlockGroup"] = "census_block_group";
-    TargetAnalysisConfigGeographiesEnum["CensusTract"] = "census_tract";
-    TargetAnalysisConfigGeographiesEnum["Dma"] = "dma";
 })(TargetAnalysisConfigGeographiesEnum = exports.TargetAnalysisConfigGeographiesEnum || (exports.TargetAnalysisConfigGeographiesEnum = {}));
 /**
 * @export
@@ -535,12 +530,7 @@ var TargetLookupMode;
 var TargetMergePatchAnalysisConfigGeographiesEnum;
 (function (TargetMergePatchAnalysisConfigGeographiesEnum) {
     TargetMergePatchAnalysisConfigGeographiesEnum["Postcode"] = "postcode";
-    TargetMergePatchAnalysisConfigGeographiesEnum["County"] = "county";
-    TargetMergePatchAnalysisConfigGeographiesEnum["Metro"] = "metro";
     TargetMergePatchAnalysisConfigGeographiesEnum["State"] = "state";
-    TargetMergePatchAnalysisConfigGeographiesEnum["CensusBlockGroup"] = "census_block_group";
-    TargetMergePatchAnalysisConfigGeographiesEnum["CensusTract"] = "census_tract";
-    TargetMergePatchAnalysisConfigGeographiesEnum["Dma"] = "dma";
 })(TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum || (exports.TargetMergePatchAnalysisConfigGeographiesEnum = {}));
 /**
 * @export
