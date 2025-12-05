@@ -5,6 +5,9 @@ import {
     AccountsApi
 } from './AccountsApi';
 import {
+    AttributesApi
+} from './AttributesApi';
+import {
     BillingApi
 } from './BillingApi';
 import {
@@ -16,6 +19,9 @@ import {
 import {
     DatasetsApi
 } from './DatasetsApi';
+import {
+    FeatureStoresApi
+} from './FeatureStoresApi';
 import {
     GraphApi
 } from './GraphApi';
@@ -59,10 +65,12 @@ import {
 export class FaradayClient {
     configuration: Configuration;
     accounts: AccountsApi;
+    attributes: AttributesApi;
     billing: BillingApi;
     cohorts: CohortsApi;
     connections: ConnectionsApi;
     datasets: DatasetsApi;
+    featureStores: FeatureStoresApi;
     graph: GraphApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
     outcomes: OutcomesApi;
@@ -80,10 +88,12 @@ export class FaradayClient {
     constructor(configuration: Configuration) {
         this.configuration = configuration
         this.accounts = new AccountsApi(configuration);
+        this.attributes = new AttributesApi(configuration);
         this.billing = new BillingApi(configuration);
         this.cohorts = new CohortsApi(configuration);
         this.connections = new ConnectionsApi(configuration);
         this.datasets = new DatasetsApi(configuration);
+        this.featureStores = new FeatureStoresApi(configuration);
         this.graph = new GraphApi(configuration);
         this.marketOpportunityAnalyses = new MarketOpportunityAnalysesApi(configuration);
         this.outcomes = new OutcomesApi(configuration);
