@@ -4,10 +4,12 @@
 README.md
 package.json
 src/apis/AccountsApi.ts
+src/apis/AttributesApi.ts
 src/apis/BillingApi.ts
 src/apis/CohortsApi.ts
 src/apis/ConnectionsApi.ts
 src/apis/DatasetsApi.ts
+src/apis/FeatureStoresApi.ts
 src/apis/GraphApi.ts
 src/apis/MarketOpportunityAnalysesApi.ts
 src/apis/OutcomesApi.ts
