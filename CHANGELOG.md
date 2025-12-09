@@ -10,12 +10,6 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.13.0] - 2025-12-04
-
-### Deprecated
-
-- `/targets` analysis - deprecated all geographies except state and postcode.
-
 ## [0.12.0] - 2025-11-11
 
 ### Changed

@@ -18410,7 +18410,12 @@ export interface TargetAnalysisConfig {
 */
 export declare enum TargetAnalysisConfigGeographiesEnum {
     Postcode = "postcode",
-    State = "state"
+    County = "county",
+    Metro = "metro",
+    State = "state",
+    CensusBlockGroup = "census_block_group",
+    CensusTract = "census_tract",
+    Dma = "dma"
 }
 /**
  *
@@ -18418,6 +18423,36 @@ export declare enum TargetAnalysisConfigGeographiesEnum {
  * @interface TargetAnalysisGeographies
  */
 export interface TargetAnalysisGeographies {
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    census_block_group?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    census_tract?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    county?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    dma?: Array<TargetAnalysisGeography>;
+    /**
+     *
+     * @type {Array<TargetAnalysisGeography>}
+     * @memberof TargetAnalysisGeographies
+     */
+    metro?: Array<TargetAnalysisGeography>;
     /**
      *
      * @type {Array<TargetAnalysisGeography>}
@@ -19869,7 +19904,12 @@ export interface TargetMergePatchAnalysisConfig {
 */
 export declare enum TargetMergePatchAnalysisConfigGeographiesEnum {
     Postcode = "postcode",
-    State = "state"
+    County = "county",
+    Metro = "metro",
+    State = "state",
+    CensusBlockGroup = "census_block_group",
+    CensusTract = "census_tract",
+    Dma = "dma"
 }
 /**
  * @type TargetModes
