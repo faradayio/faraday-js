@@ -10,14 +10,6 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.13.1] - 2025-12-12
-
-### Added
-
-- GET/POST/PATCH/DELETE `/attributes` - wraps multiple event_streams 'assertions' into one 'trait' (similar to FIG) usable in modeling, inference, and appends. When multiple assertions are available for a given person, the attribute specifies how to choose the best assertion for each use case.
-
-- GET/POST/PATCH/DELETE `/feature_stores` - a collection of attributes, similar to Faraday's FIG identity graph.
-
 ## [0.13.0] - 2025-12-04
 
 ### Deprecated

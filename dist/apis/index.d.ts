@@ -1,11 +1,9 @@
 import { Configuration } from '../runtime';
 import { AccountsApi } from './AccountsApi';
-import { AttributesApi } from './AttributesApi';
 import { BillingApi } from './BillingApi';
 import { CohortsApi } from './CohortsApi';
 import { ConnectionsApi } from './ConnectionsApi';
 import { DatasetsApi } from './DatasetsApi';
-import { FeatureStoresApi } from './FeatureStoresApi';
 import { GraphApi } from './GraphApi';
 import { MarketOpportunityAnalysesApi } from './MarketOpportunityAnalysesApi';
 import { OutcomesApi } from './OutcomesApi';
@@ -22,12 +20,10 @@ import { WebhooksApi } from './WebhooksApi';
 export declare class FaradayClient {
     configuration: Configuration;
     accounts: AccountsApi;
-    attributes: AttributesApi;
     billing: BillingApi;
     cohorts: CohortsApi;
     connections: ConnectionsApi;
     datasets: DatasetsApi;
-    featureStores: FeatureStoresApi;
     graph: GraphApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
     outcomes: OutcomesApi;
