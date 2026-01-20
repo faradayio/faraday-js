@@ -43,7 +43,7 @@ export class UploadsApi extends runtime.BaseAPI {
      * Upload a CSV file containing data to process.
      * Add a file
      */
-    private async createUploadRaw(requestParameters: CreateUploadRequest, ): Promise<runtime.ApiResponse<void>> {
+    async createUploadRaw(requestParameters: CreateUploadRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.directory === null || requestParameters.directory === undefined) {
             throw new runtime.RequiredError('directory','Required parameter requestParameters.directory was null or undefined when calling createUpload.');
         }
@@ -89,7 +89,7 @@ export class UploadsApi extends runtime.BaseAPI {
      * Delete a CSV file previously uploaded.
      * Delete a file
      */
-    private async deleteUploadRaw(requestParameters: DeleteUploadRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteUploadRaw(requestParameters: DeleteUploadRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.directory === null || requestParameters.directory === undefined) {
             throw new runtime.RequiredError('directory','Required parameter requestParameters.directory was null or undefined when calling deleteUpload.');
         }
@@ -132,7 +132,7 @@ export class UploadsApi extends runtime.BaseAPI {
      * The file uploaded via /uploads/{directory}/{filename}
      * Download a previously uploaded file
      */
-    private async getUploadRaw(requestParameters: GetUploadRequest, ): Promise<runtime.ApiResponse<Blob>> {
+    async getUploadRaw(requestParameters: GetUploadRequest, ): Promise<runtime.ApiResponse<Blob>> {
         if (requestParameters.directory === null || requestParameters.directory === undefined) {
             throw new runtime.RequiredError('directory','Required parameter requestParameters.directory was null or undefined when calling getUpload.');
         }
@@ -176,7 +176,7 @@ export class UploadsApi extends runtime.BaseAPI {
      * A list of files uploaded via /uploads/{directory}/{filename}, and their metadata
      * Retrieve the list of previously uploaded files
      */
-    private async getUploadsRaw(): Promise<runtime.ApiResponse<Array<Upload>>> {
+    async getUploadsRaw(): Promise<runtime.ApiResponse<Array<Upload>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};

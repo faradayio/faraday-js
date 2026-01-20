@@ -31,7 +31,7 @@ export class BillingApi extends runtime.BaseAPI {
      * Get invoices, payments, and usage stats for your account.
      * Get billing information about your account.
      */
-    private async getAccountBillingRaw(requestParameters: GetAccountBillingRequest, ): Promise<runtime.ApiResponse<AccountBilling>> {
+    async getAccountBillingRaw(requestParameters: GetAccountBillingRequest, ): Promise<runtime.ApiResponse<AccountBilling>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountBilling.');
         }
@@ -71,7 +71,7 @@ export class BillingApi extends runtime.BaseAPI {
      * Get invoices, payments, and usage stats for the current account.
      * Get billing information about the current account.
      */
-    private async getCurrentAccountBillingRaw(): Promise<runtime.ApiResponse<AccountBilling>> {
+    async getCurrentAccountBillingRaw(): Promise<runtime.ApiResponse<AccountBilling>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};

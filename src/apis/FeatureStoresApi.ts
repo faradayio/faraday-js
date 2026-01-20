@@ -50,7 +50,7 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      * Add a new feature store that compiles attributes
      * Create feature store
      */
-    private async createFeatureStoreRaw(requestParameters: CreateFeatureStoreRequest, ): Promise<runtime.ApiResponse<FeatureStore>> {
+    async createFeatureStoreRaw(requestParameters: CreateFeatureStoreRequest, ): Promise<runtime.ApiResponse<FeatureStore>> {
         if (requestParameters.featureStorePost === null || requestParameters.featureStorePost === undefined) {
             throw new runtime.RequiredError('featureStorePost','Required parameter requestParameters.featureStorePost was null or undefined when calling createFeatureStore.');
         }
@@ -92,7 +92,7 @@ export class FeatureStoresApi extends runtime.BaseAPI {
     /**
      * Delete a feature store
      */
-    private async deleteFeatureStoreRaw(requestParameters: DeleteFeatureStoreRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteFeatureStoreRaw(requestParameters: DeleteFeatureStoreRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.featureStoreId === null || requestParameters.featureStoreId === undefined) {
             throw new runtime.RequiredError('featureStoreId','Required parameter requestParameters.featureStoreId was null or undefined when calling deleteFeatureStore.');
         }
@@ -130,7 +130,7 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateFeatureStoreRaw(requestParameters: ForceUpdateFeatureStoreRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateFeatureStoreRaw(requestParameters: ForceUpdateFeatureStoreRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.featureStoreId === null || requestParameters.featureStoreId === undefined) {
             throw new runtime.RequiredError('featureStoreId','Required parameter requestParameters.featureStoreId was null or undefined when calling forceUpdateFeatureStore.');
         }
@@ -169,7 +169,7 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      * Get details on a specific feature store
      * Retrieve a feature store
      */
-    private async getFeatureStoreRaw(requestParameters: GetFeatureStoreRequest, ): Promise<runtime.ApiResponse<FeatureStore>> {
+    async getFeatureStoreRaw(requestParameters: GetFeatureStoreRequest, ): Promise<runtime.ApiResponse<FeatureStore>> {
         if (requestParameters.featureStoreId === null || requestParameters.featureStoreId === undefined) {
             throw new runtime.RequiredError('featureStoreId','Required parameter requestParameters.featureStoreId was null or undefined when calling getFeatureStore.');
         }
@@ -209,7 +209,7 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    private async getFeatureStoresRaw(): Promise<runtime.ApiResponse<Array<FeatureStore>>> {
+    async getFeatureStoresRaw(): Promise<runtime.ApiResponse<Array<FeatureStore>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -245,7 +245,7 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      * Update the configuration of a feature store
      * Update a feature store
      */
-    private async updateFeatureStoreRaw(requestParameters: UpdateFeatureStoreRequest, ): Promise<runtime.ApiResponse<FeatureStore>> {
+    async updateFeatureStoreRaw(requestParameters: UpdateFeatureStoreRequest, ): Promise<runtime.ApiResponse<FeatureStore>> {
         if (requestParameters.featureStoreId === null || requestParameters.featureStoreId === undefined) {
             throw new runtime.RequiredError('featureStoreId','Required parameter requestParameters.featureStoreId was null or undefined when calling updateFeatureStore.');
         }

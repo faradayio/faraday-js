@@ -61,7 +61,7 @@ export class PlacesApi extends runtime.BaseAPI {
      * Archive a place
      * Archive a place
      */
-    private async archivePlaceRaw(requestParameters: ArchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archivePlaceRaw(requestParameters: ArchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
             throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling archivePlace.');
         }
@@ -107,7 +107,7 @@ export class PlacesApi extends runtime.BaseAPI {
      * Create a new place
      * Create place
      */
-    private async createPlaceRaw(requestParameters: CreatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
+    async createPlaceRaw(requestParameters: CreatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
         if (requestParameters.placeFields === null || requestParameters.placeFields === undefined) {
             throw new runtime.RequiredError('placeFields','Required parameter requestParameters.placeFields was null or undefined when calling createPlace.');
         }
@@ -149,7 +149,7 @@ export class PlacesApi extends runtime.BaseAPI {
     /**
      * Delete a place
      */
-    private async deletePlaceRaw(requestParameters: DeletePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deletePlaceRaw(requestParameters: DeletePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
             throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling deletePlace.');
         }
@@ -187,7 +187,7 @@ export class PlacesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdatePlaceRaw(requestParameters: ForceUpdatePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdatePlaceRaw(requestParameters: ForceUpdatePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
             throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling forceUpdatePlace.');
         }
@@ -226,7 +226,7 @@ export class PlacesApi extends runtime.BaseAPI {
      * Retrieve details on a specific place
      * Retrieve a place
      */
-    private async getPlaceRaw(requestParameters: GetPlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
+    async getPlaceRaw(requestParameters: GetPlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
         if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
             throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling getPlace.');
         }
@@ -266,7 +266,7 @@ export class PlacesApi extends runtime.BaseAPI {
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
      * List places
      */
-    private async getPlacesRaw(): Promise<runtime.ApiResponse<Array<Place>>> {
+    async getPlacesRaw(): Promise<runtime.ApiResponse<Array<Place>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -302,7 +302,7 @@ export class PlacesApi extends runtime.BaseAPI {
      * Unarchive a place
      * Unarchive a place
      */
-    private async unarchivePlaceRaw(requestParameters: UnarchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchivePlaceRaw(requestParameters: UnarchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
             throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling unarchivePlace.');
         }
@@ -348,7 +348,7 @@ export class PlacesApi extends runtime.BaseAPI {
      * Update an existing place
      * Update place
      */
-    private async updatePlaceRaw(requestParameters: UpdatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
+    async updatePlaceRaw(requestParameters: UpdatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
         if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
             throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling updatePlace.');
         }

@@ -86,7 +86,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Archive a target
      * Archive a target
      */
-    private async archiveTargetRaw(requestParameters: ArchiveTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveTargetRaw(requestParameters: ArchiveTargetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling archiveTarget.');
         }
@@ -132,7 +132,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Add a new target.  Targets are configuration for exporting data from Faraday, possibly to an external environment (with <a href=\"https://faraday.ai/developers/reference/createconnection\">/connections</a>).  There are three types of targets: <table> <thead> <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr> </thead> <tbody> <tr><td><strong>Publication</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr> <tr><td><strong>Replication</strong></td><td>Faraday copies your predictions to systems <em>you</em> control. You may then push them to third parties like Facebook, Google Ads, etc.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> of the connection in <code>options</code>.</td></tr> <tr><td><strong>Managed</strong></td><td>Faraday manages a push to third parties like Facebook, Google Ads, and more.</td><td>Must be on an enterprise plan. Contact Customer Success to set up.</td></tr> </tbody> </table> 
      * Create target
      */
-    private async createTargetRaw(requestParameters: CreateTargetRequest, ): Promise<runtime.ApiResponse<Target>> {
+    async createTargetRaw(requestParameters: CreateTargetRequest, ): Promise<runtime.ApiResponse<Target>> {
         if (requestParameters.targetFields === null || requestParameters.targetFields === undefined) {
             throw new runtime.RequiredError('targetFields','Required parameter requestParameters.targetFields was null or undefined when calling createTarget.');
         }
@@ -175,7 +175,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Trigger a preview delivery (first 1000 results) of a target
      * Start a preview delivery
      */
-    private async createTargetPreviewRaw(requestParameters: CreateTargetPreviewRequest, ): Promise<runtime.ApiResponse<InlineResponse200>> {
+    async createTargetPreviewRaw(requestParameters: CreateTargetPreviewRequest, ): Promise<runtime.ApiResponse<InlineResponse200>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling createTargetPreview.');
         }
@@ -215,7 +215,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Delete a target
      * Delete a target
      */
-    private async deleteTargetRaw(requestParameters: DeleteTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteTargetRaw(requestParameters: DeleteTargetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling deleteTarget.');
         }
@@ -253,7 +253,7 @@ export class TargetsApi extends runtime.BaseAPI {
     /**
      * Download the default output of a target
      */
-    private async downloadTargetRaw(requestParameters: DownloadTargetRequest, ): Promise<runtime.ApiResponse<string>> {
+    async downloadTargetRaw(requestParameters: DownloadTargetRequest, ): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling downloadTarget.');
         }
@@ -292,7 +292,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateTargetRaw(requestParameters: ForceUpdateTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateTargetRaw(requestParameters: ForceUpdateTargetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling forceUpdateTarget.');
         }
@@ -331,7 +331,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Get details on a specific target
      * Retrieve a target
      */
-    private async getTargetRaw(requestParameters: GetTargetRequest, ): Promise<runtime.ApiResponse<Target>> {
+    async getTargetRaw(requestParameters: GetTargetRequest, ): Promise<runtime.ApiResponse<Target>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling getTarget.');
         }
@@ -371,7 +371,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
      * Retrieve a target\'s analysis
      */
-    private async getTargetAnalysisRaw(requestParameters: GetTargetAnalysisRequest, ): Promise<runtime.ApiResponse<TargetAnalysis>> {
+    async getTargetAnalysisRaw(requestParameters: GetTargetAnalysisRequest, ): Promise<runtime.ApiResponse<TargetAnalysis>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling getTargetAnalysis.');
         }
@@ -411,7 +411,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Gets a redirect URL to download a PDF report.
      * Retrieve target analysis report
      */
-    private async getTargetAnalysisReportRaw(requestParameters: GetTargetAnalysisReportRequest, ): Promise<runtime.ApiResponse<void>> {
+    async getTargetAnalysisReportRaw(requestParameters: GetTargetAnalysisReportRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling getTargetAnalysisReport.');
         }
@@ -450,7 +450,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Get a list of targets defined on the account
      * List targets
      */
-    private async getTargetsRaw(): Promise<runtime.ApiResponse<Array<Target>>> {
+    async getTargetsRaw(): Promise<runtime.ApiResponse<Array<Target>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -486,7 +486,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples. 
      * Perform a lookup on the target, if its type is Lookup API.
      */
-    private async lookupOnTargetRaw(requestParameters: LookupOnTargetRequest, ): Promise<runtime.ApiResponse<TargetLookupResponse>> {
+    async lookupOnTargetRaw(requestParameters: LookupOnTargetRequest, ): Promise<runtime.ApiResponse<TargetLookupResponse>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling lookupOnTarget.');
         }
@@ -533,7 +533,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Unarchive a target
      * Unarchive a target
      */
-    private async unarchiveTargetRaw(requestParameters: UnarchiveTargetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveTargetRaw(requestParameters: UnarchiveTargetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling unarchiveTarget.');
         }
@@ -579,7 +579,7 @@ export class TargetsApi extends runtime.BaseAPI {
      * Update the configuration of a target.
      * Update a target
      */
-    private async updateTargetRaw(requestParameters: UpdateTargetRequest, ): Promise<runtime.ApiResponse<Target>> {
+    async updateTargetRaw(requestParameters: UpdateTargetRequest, ): Promise<runtime.ApiResponse<Target>> {
         if (requestParameters.targetId === null || requestParameters.targetId === undefined) {
             throw new runtime.RequiredError('targetId','Required parameter requestParameters.targetId was null or undefined when calling updateTarget.');
         }

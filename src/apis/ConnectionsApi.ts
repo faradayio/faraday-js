@@ -77,7 +77,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Archive a connection
      * Archive a connection
      */
-    private async archiveConnectionRaw(requestParameters: ArchiveConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveConnectionRaw(requestParameters: ArchiveConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling archiveConnection.');
         }
@@ -123,7 +123,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object. 
      * Create connection
      */
-    private async createConnectionRaw(requestParameters: CreateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
+    async createConnectionRaw(requestParameters: CreateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
         if (requestParameters.connectionFields === null || requestParameters.connectionFields === undefined) {
             throw new runtime.RequiredError('connectionFields','Required parameter requestParameters.connectionFields was null or undefined when calling createConnection.');
         }
@@ -166,7 +166,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Delete a connection
      * Delete a connection
      */
-    private async deleteConnectionRaw(requestParameters: DeleteConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteConnectionRaw(requestParameters: DeleteConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling deleteConnection.');
         }
@@ -205,7 +205,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateConnectionRaw(requestParameters: ForceUpdateConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateConnectionRaw(requestParameters: ForceUpdateConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling forceUpdateConnection.');
         }
@@ -244,7 +244,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Get details on a specific connection
      * Retrieve a connection
      */
-    private async getConnectionRaw(requestParameters: GetConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
+    async getConnectionRaw(requestParameters: GetConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling getConnection.');
         }
@@ -284,7 +284,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Get all datasets that use this connection
      * Retrieve all datasets that use this connection
      */
-    private async getConnectionDatasetsRaw(requestParameters: GetConnectionDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
+    async getConnectionDatasetsRaw(requestParameters: GetConnectionDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling getConnectionDatasets.');
         }
@@ -324,7 +324,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Get all targets that use this connection
      * Retrieve all targets that use this connection
      */
-    private async getConnectionTargetsRaw(requestParameters: GetConnectionTargetsRequest, ): Promise<runtime.ApiResponse<Array<Target>>> {
+    async getConnectionTargetsRaw(requestParameters: GetConnectionTargetsRequest, ): Promise<runtime.ApiResponse<Array<Target>>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling getConnectionTargets.');
         }
@@ -364,7 +364,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Get a list of connections defined on the account
      * List connections
      */
-    private async getConnectionsRaw(): Promise<runtime.ApiResponse<Array<Connection>>> {
+    async getConnectionsRaw(): Promise<runtime.ApiResponse<Array<Connection>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -400,7 +400,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection. 
      * Rotate credentials for a connection
      */
-    private async rotateConnectionCredentialsRaw(requestParameters: RotateConnectionCredentialsRequest, ): Promise<runtime.ApiResponse<Connection>> {
+    async rotateConnectionCredentialsRaw(requestParameters: RotateConnectionCredentialsRequest, ): Promise<runtime.ApiResponse<Connection>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling rotateConnectionCredentials.');
         }
@@ -447,7 +447,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Unarchive a connection
      * Unarchive a connection
      */
-    private async unarchiveConnectionRaw(requestParameters: UnarchiveConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveConnectionRaw(requestParameters: UnarchiveConnectionRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling unarchiveConnection.');
         }
@@ -493,7 +493,7 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Update the configuration of a connection.
      * Update a connection
      */
-    private async updateConnectionRaw(requestParameters: UpdateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
+    async updateConnectionRaw(requestParameters: UpdateConnectionRequest, ): Promise<runtime.ApiResponse<Connection>> {
         if (requestParameters.connectionId === null || requestParameters.connectionId === undefined) {
             throw new runtime.RequiredError('connectionId','Required parameter requestParameters.connectionId was null or undefined when calling updateConnection.');
         }

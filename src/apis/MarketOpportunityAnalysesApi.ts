@@ -60,7 +60,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Archive a specific market opportunity analysis
      */
-    private async archiveMarketOpportunityAnalysisRaw(requestParameters: ArchiveMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveMarketOpportunityAnalysisRaw(requestParameters: ArchiveMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.marketOpportunityAnalysisId === null || requestParameters.marketOpportunityAnalysisId === undefined) {
             throw new runtime.RequiredError('marketOpportunityAnalysisId','Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling archiveMarketOpportunityAnalysis.');
         }
@@ -104,7 +104,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Create a new market opportunity analysis
      */
-    private async createMarketOpportunityAnalysisRaw(requestParameters: CreateMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>> {
+    async createMarketOpportunityAnalysisRaw(requestParameters: CreateMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>> {
         if (requestParameters.marketOpportunityAnalysisFields === null || requestParameters.marketOpportunityAnalysisFields === undefined) {
             throw new runtime.RequiredError('marketOpportunityAnalysisFields','Required parameter requestParameters.marketOpportunityAnalysisFields was null or undefined when calling createMarketOpportunityAnalysis.');
         }
@@ -145,7 +145,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Delete a specific market opportunity analysis
      */
-    private async deleteMarketOpportunityAnalysisRaw(requestParameters: DeleteMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteMarketOpportunityAnalysisRaw(requestParameters: DeleteMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.marketOpportunityAnalysisId === null || requestParameters.marketOpportunityAnalysisId === undefined) {
             throw new runtime.RequiredError('marketOpportunityAnalysisId','Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling deleteMarketOpportunityAnalysis.');
         }
@@ -183,7 +183,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateMarketOpportunityAnalysisRaw(requestParameters: ForceUpdateMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateMarketOpportunityAnalysisRaw(requestParameters: ForceUpdateMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.marketOpportunityAnalysisId === null || requestParameters.marketOpportunityAnalysisId === undefined) {
             throw new runtime.RequiredError('marketOpportunityAnalysisId','Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling forceUpdateMarketOpportunityAnalysis.');
         }
@@ -221,7 +221,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get all market opportunity analyses
      */
-    private async getMarketOpportunityAnalysesRaw(): Promise<runtime.ApiResponse<Array<MarketOpportunityAnalysis>>> {
+    async getMarketOpportunityAnalysesRaw(): Promise<runtime.ApiResponse<Array<MarketOpportunityAnalysis>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -255,7 +255,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get a specific market opportunity analysis
      */
-    private async getMarketOpportunityAnalysisRaw(requestParameters: GetMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>> {
+    async getMarketOpportunityAnalysisRaw(requestParameters: GetMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>> {
         if (requestParameters.marketOpportunityAnalysisId === null || requestParameters.marketOpportunityAnalysisId === undefined) {
             throw new runtime.RequiredError('marketOpportunityAnalysisId','Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling getMarketOpportunityAnalysis.');
         }
@@ -293,7 +293,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Unarchive a specific market opportunity analysis
      */
-    private async unarchiveMarketOpportunityAnalysisRaw(requestParameters: UnarchiveMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveMarketOpportunityAnalysisRaw(requestParameters: UnarchiveMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.marketOpportunityAnalysisId === null || requestParameters.marketOpportunityAnalysisId === undefined) {
             throw new runtime.RequiredError('marketOpportunityAnalysisId','Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling unarchiveMarketOpportunityAnalysis.');
         }
@@ -337,7 +337,7 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Update a specific market opportunity analysis
      */
-    private async updateMarketOpportunityAnalysisRaw(requestParameters: UpdateMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>> {
+    async updateMarketOpportunityAnalysisRaw(requestParameters: UpdateMarketOpportunityAnalysisRequest, ): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>> {
         if (requestParameters.marketOpportunityAnalysisId === null || requestParameters.marketOpportunityAnalysisId === undefined) {
             throw new runtime.RequiredError('marketOpportunityAnalysisId','Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling updateMarketOpportunityAnalysis.');
         }

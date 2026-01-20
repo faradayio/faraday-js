@@ -59,7 +59,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Archive a target
      * Archive a target
      */
-    private archiveTargetRaw;
+    archiveTargetRaw(requestParameters: ArchiveTargetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a target
      * Archive a target
@@ -69,7 +69,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Add a new target.  Targets are configuration for exporting data from Faraday, possibly to an external environment (with <a href=\"https://faraday.ai/developers/reference/createconnection\">/connections</a>).  There are three types of targets: <table> <thead> <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr> </thead> <tbody> <tr><td><strong>Publication</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr> <tr><td><strong>Replication</strong></td><td>Faraday copies your predictions to systems <em>you</em> control. You may then push them to third parties like Facebook, Google Ads, etc.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> of the connection in <code>options</code>.</td></tr> <tr><td><strong>Managed</strong></td><td>Faraday manages a push to third parties like Facebook, Google Ads, and more.</td><td>Must be on an enterprise plan. Contact Customer Success to set up.</td></tr> </tbody> </table>
      * Create target
      */
-    private createTargetRaw;
+    createTargetRaw(requestParameters: CreateTargetRequest): Promise<runtime.ApiResponse<Target>>;
     /**
      * Add a new target.  Targets are configuration for exporting data from Faraday, possibly to an external environment (with <a href=\"https://faraday.ai/developers/reference/createconnection\">/connections</a>).  There are three types of targets: <table> <thead> <tr><th>Target type</th><th>Description</th><th>API requirement</th></tr> </thead> <tbody> <tr><td><strong>Publication</strong></td><td>Faraday <em>hosts</em> your predictions for convenient retrieval as needed.</td><td>Specify a <code>type</code> of <code>hosted_csv</code> in <code>options</code>. Omit <code>connection_id</code>.</td></tr> <tr><td><strong>Replication</strong></td><td>Faraday copies your predictions to systems <em>you</em> control. You may then push them to third parties like Facebook, Google Ads, etc.</td><td>Specify a valid <code>connection_id</code> and the corresponding <code>type</code> of the connection in <code>options</code>.</td></tr> <tr><td><strong>Managed</strong></td><td>Faraday manages a push to third parties like Facebook, Google Ads, and more.</td><td>Must be on an enterprise plan. Contact Customer Success to set up.</td></tr> </tbody> </table>
      * Create target
@@ -79,7 +79,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Trigger a preview delivery (first 1000 results) of a target
      * Start a preview delivery
      */
-    private createTargetPreviewRaw;
+    createTargetPreviewRaw(requestParameters: CreateTargetPreviewRequest): Promise<runtime.ApiResponse<InlineResponse200>>;
     /**
      * Trigger a preview delivery (first 1000 results) of a target
      * Start a preview delivery
@@ -89,7 +89,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Delete a target
      * Delete a target
      */
-    private deleteTargetRaw;
+    deleteTargetRaw(requestParameters: DeleteTargetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a target
      * Delete a target
@@ -98,7 +98,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
     /**
      * Download the default output of a target
      */
-    private downloadTargetRaw;
+    downloadTargetRaw(requestParameters: DownloadTargetRequest): Promise<runtime.ApiResponse<string>>;
     /**
      * Download the default output of a target
      */
@@ -107,7 +107,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateTargetRaw;
+    forceUpdateTargetRaw(requestParameters: ForceUpdateTargetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -117,7 +117,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Get details on a specific target
      * Retrieve a target
      */
-    private getTargetRaw;
+    getTargetRaw(requestParameters: GetTargetRequest): Promise<runtime.ApiResponse<Target>>;
     /**
      * Get details on a specific target
      * Retrieve a target
@@ -127,7 +127,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
      * Retrieve a target\'s analysis
      */
-    private getTargetAnalysisRaw;
+    getTargetAnalysisRaw(requestParameters: GetTargetAnalysisRequest): Promise<runtime.ApiResponse<TargetAnalysis>>;
     /**
      * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
      * Retrieve a target\'s analysis
@@ -137,7 +137,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Gets a redirect URL to download a PDF report.
      * Retrieve target analysis report
      */
-    private getTargetAnalysisReportRaw;
+    getTargetAnalysisReportRaw(requestParameters: GetTargetAnalysisReportRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Gets a redirect URL to download a PDF report.
      * Retrieve target analysis report
@@ -147,7 +147,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Get a list of targets defined on the account
      * List targets
      */
-    private getTargetsRaw;
+    getTargetsRaw(): Promise<runtime.ApiResponse<Array<Target>>>;
     /**
      * Get a list of targets defined on the account
      * List targets
@@ -157,7 +157,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples.
      * Perform a lookup on the target, if its type is Lookup API.
      */
-    private lookupOnTargetRaw;
+    lookupOnTargetRaw(requestParameters: LookupOnTargetRequest): Promise<runtime.ApiResponse<TargetLookupResponse>>;
     /**
      * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples.
      * Perform a lookup on the target, if its type is Lookup API.
@@ -167,7 +167,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Unarchive a target
      * Unarchive a target
      */
-    private unarchiveTargetRaw;
+    unarchiveTargetRaw(requestParameters: UnarchiveTargetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a target
      * Unarchive a target
@@ -177,7 +177,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Update the configuration of a target.
      * Update a target
      */
-    private updateTargetRaw;
+    updateTargetRaw(requestParameters: UpdateTargetRequest): Promise<runtime.ApiResponse<Target>>;
     /**
      * Update the configuration of a target.
      * Update a target

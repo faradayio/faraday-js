@@ -54,7 +54,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Archive a persona set
      * Archive a persona set
      */
-    private archivePersonaSetRaw;
+    archivePersonaSetRaw(requestParameters: ArchivePersonaSetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a persona set
      * Archive a persona set
@@ -64,7 +64,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Invoke the build of a new persona set for a given cohort
      * Create persona set
      */
-    private createPersonaSetRaw;
+    createPersonaSetRaw(requestParameters: CreatePersonaSetRequest): Promise<runtime.ApiResponse<PersonaSet>>;
     /**
      * Invoke the build of a new persona set for a given cohort
      * Create persona set
@@ -73,7 +73,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
     /**
      * Delete a persona set
      */
-    private deletePersonaSetRaw;
+    deletePersonaSetRaw(requestParameters: DeletePersonaSetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a persona set
      */
@@ -82,7 +82,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdatePersonaSetRaw;
+    forceUpdatePersonaSetRaw(requestParameters: ForceUpdatePersonaSetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -92,7 +92,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Details on a specific persona set, including details on all of its constituent personas
      * Retrieve a persona set
      */
-    private getPersonaSetRaw;
+    getPersonaSetRaw(requestParameters: GetPersonaSetRequest): Promise<runtime.ApiResponse<PersonaSet>>;
     /**
      * Details on a specific persona set, including details on all of its constituent personas
      * Retrieve a persona set
@@ -101,7 +101,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
     /**
      * Get various trait breakdown information about a persona set.
      */
-    private getPersonaSetAnalysisDimensionsRaw;
+    getPersonaSetAnalysisDimensionsRaw(requestParameters: GetPersonaSetAnalysisDimensionsRequest): Promise<runtime.ApiResponse<Array<PersonaSetAnalysisDimensions>>>;
     /**
      * Get various trait breakdown information about a persona set.
      */
@@ -109,7 +109,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
     /**
      * Get various flow of persona sets over time.
      */
-    private getPersonaSetAnalysisFlowRaw;
+    getPersonaSetAnalysisFlowRaw(requestParameters: GetPersonaSetAnalysisFlowRequest): Promise<runtime.ApiResponse<PersonaSetAnalysisFlow>>;
     /**
      * Get various flow of persona sets over time.
      */
@@ -118,7 +118,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * A list of available persona sets
      * List persona sets
      */
-    private getPersonaSetsRaw;
+    getPersonaSetsRaw(): Promise<runtime.ApiResponse<Array<PersonaSet>>>;
     /**
      * A list of available persona sets
      * List persona sets
@@ -128,7 +128,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Unarchive a persona set
      * Unarchive a persona set
      */
-    private unarchivePersonaSetRaw;
+    unarchivePersonaSetRaw(requestParameters: UnarchivePersonaSetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a persona set
      * Unarchive a persona set
@@ -138,7 +138,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Edit a persona
      * Edit a persona
      */
-    private updatePersonaRaw;
+    updatePersonaRaw(requestParameters: UpdatePersonaRequest): Promise<runtime.ApiResponse<Persona>>;
     /**
      * Edit a persona
      * Edit a persona
@@ -148,7 +148,7 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * Edit a persona set
      * Edit a persona set
      */
-    private updatePersonaSetRaw;
+    updatePersonaSetRaw(requestParameters: UpdatePersonaSetRequest): Promise<runtime.ApiResponse<PersonaSet>>;
     /**
      * Edit a persona set
      * Edit a persona set

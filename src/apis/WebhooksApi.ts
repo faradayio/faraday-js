@@ -46,7 +46,7 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Add a new webhook endpoint
      * Create webhook endpoint
      */
-    private async createWebhookEndpointRaw(requestParameters: CreateWebhookEndpointRequest, ): Promise<runtime.ApiResponse<WebhookEndpoint>> {
+    async createWebhookEndpointRaw(requestParameters: CreateWebhookEndpointRequest, ): Promise<runtime.ApiResponse<WebhookEndpoint>> {
         if (requestParameters.webhookEndpointFields === null || requestParameters.webhookEndpointFields === undefined) {
             throw new runtime.RequiredError('webhookEndpointFields','Required parameter requestParameters.webhookEndpointFields was null or undefined when calling createWebhookEndpoint.');
         }
@@ -89,7 +89,7 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Delete a webhook endpoint
      * Delete a webhook endpoint
      */
-    private async deleteWebhookEndpointRaw(requestParameters: DeleteWebhookEndpointRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteWebhookEndpointRaw(requestParameters: DeleteWebhookEndpointRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.webhookEndpointId === null || requestParameters.webhookEndpointId === undefined) {
             throw new runtime.RequiredError('webhookEndpointId','Required parameter requestParameters.webhookEndpointId was null or undefined when calling deleteWebhookEndpoint.');
         }
@@ -128,7 +128,7 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Get details on a specific webhook endpoint
      * Retrieve a webhook
      */
-    private async getWebhookEndpointRaw(requestParameters: GetWebhookEndpointRequest, ): Promise<runtime.ApiResponse<WebhookEndpoint>> {
+    async getWebhookEndpointRaw(requestParameters: GetWebhookEndpointRequest, ): Promise<runtime.ApiResponse<WebhookEndpoint>> {
         if (requestParameters.webhookEndpointId === null || requestParameters.webhookEndpointId === undefined) {
             throw new runtime.RequiredError('webhookEndpointId','Required parameter requestParameters.webhookEndpointId was null or undefined when calling getWebhookEndpoint.');
         }
@@ -168,7 +168,7 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    private async getWebhookEndpointsRaw(): Promise<runtime.ApiResponse<Array<WebhookEndpoint>>> {
+    async getWebhookEndpointsRaw(): Promise<runtime.ApiResponse<Array<WebhookEndpoint>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -204,7 +204,7 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Update the configuration of a webhook endpoint
      * Update a webhook endpoint
      */
-    private async updateWebhookEndpointRaw(requestParameters: UpdateWebhookEndpointRequest, ): Promise<runtime.ApiResponse<WebhookEndpoint>> {
+    async updateWebhookEndpointRaw(requestParameters: UpdateWebhookEndpointRequest, ): Promise<runtime.ApiResponse<WebhookEndpoint>> {
         if (requestParameters.webhookEndpointId === null || requestParameters.webhookEndpointId === undefined) {
             throw new runtime.RequiredError('webhookEndpointId','Required parameter requestParameters.webhookEndpointId was null or undefined when calling updateWebhookEndpoint.');
         }

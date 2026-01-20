@@ -79,7 +79,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Archive a persona set
      * Archive a persona set
      */
-    private async archivePersonaSetRaw(requestParameters: ArchivePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archivePersonaSetRaw(requestParameters: ArchivePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling archivePersonaSet.');
         }
@@ -125,7 +125,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Invoke the build of a new persona set for a given cohort
      * Create persona set
      */
-    private async createPersonaSetRaw(requestParameters: CreatePersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
+    async createPersonaSetRaw(requestParameters: CreatePersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
         if (requestParameters.personaSetPost === null || requestParameters.personaSetPost === undefined) {
             throw new runtime.RequiredError('personaSetPost','Required parameter requestParameters.personaSetPost was null or undefined when calling createPersonaSet.');
         }
@@ -167,7 +167,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
     /**
      * Delete a persona set
      */
-    private async deletePersonaSetRaw(requestParameters: DeletePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deletePersonaSetRaw(requestParameters: DeletePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling deletePersonaSet.');
         }
@@ -205,7 +205,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdatePersonaSetRaw(requestParameters: ForceUpdatePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdatePersonaSetRaw(requestParameters: ForceUpdatePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling forceUpdatePersonaSet.');
         }
@@ -244,7 +244,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Details on a specific persona set, including details on all of its constituent personas
      * Retrieve a persona set
      */
-    private async getPersonaSetRaw(requestParameters: GetPersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
+    async getPersonaSetRaw(requestParameters: GetPersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling getPersonaSet.');
         }
@@ -283,7 +283,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
     /**
      * Get various trait breakdown information about a persona set.
      */
-    private async getPersonaSetAnalysisDimensionsRaw(requestParameters: GetPersonaSetAnalysisDimensionsRequest, ): Promise<runtime.ApiResponse<Array<PersonaSetAnalysisDimensions>>> {
+    async getPersonaSetAnalysisDimensionsRaw(requestParameters: GetPersonaSetAnalysisDimensionsRequest, ): Promise<runtime.ApiResponse<Array<PersonaSetAnalysisDimensions>>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling getPersonaSetAnalysisDimensions.');
         }
@@ -321,7 +321,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
     /**
      * Get various flow of persona sets over time.
      */
-    private async getPersonaSetAnalysisFlowRaw(requestParameters: GetPersonaSetAnalysisFlowRequest, ): Promise<runtime.ApiResponse<PersonaSetAnalysisFlow>> {
+    async getPersonaSetAnalysisFlowRaw(requestParameters: GetPersonaSetAnalysisFlowRequest, ): Promise<runtime.ApiResponse<PersonaSetAnalysisFlow>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling getPersonaSetAnalysisFlow.');
         }
@@ -360,7 +360,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * A list of available persona sets
      * List persona sets
      */
-    private async getPersonaSetsRaw(): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
+    async getPersonaSetsRaw(): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -396,7 +396,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Unarchive a persona set
      * Unarchive a persona set
      */
-    private async unarchivePersonaSetRaw(requestParameters: UnarchivePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchivePersonaSetRaw(requestParameters: UnarchivePersonaSetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling unarchivePersonaSet.');
         }
@@ -442,7 +442,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Edit a persona
      * Edit a persona
      */
-    private async updatePersonaRaw(requestParameters: UpdatePersonaRequest, ): Promise<runtime.ApiResponse<Persona>> {
+    async updatePersonaRaw(requestParameters: UpdatePersonaRequest, ): Promise<runtime.ApiResponse<Persona>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling updatePersona.');
         }
@@ -493,7 +493,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * Edit a persona set
      * Edit a persona set
      */
-    private async updatePersonaSetRaw(requestParameters: UpdatePersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
+    async updatePersonaSetRaw(requestParameters: UpdatePersonaSetRequest, ): Promise<runtime.ApiResponse<PersonaSet>> {
         if (requestParameters.personaSetId === null || requestParameters.personaSetId === undefined) {
             throw new runtime.RequiredError('personaSetId','Required parameter requestParameters.personaSetId was null or undefined when calling updatePersonaSet.');
         }

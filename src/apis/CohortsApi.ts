@@ -66,7 +66,7 @@ export class CohortsApi extends runtime.BaseAPI {
      * Archive a cohort
      * Archive a cohort
      */
-    private async archiveCohortRaw(requestParameters: ArchiveCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveCohortRaw(requestParameters: ArchiveCohortRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
             throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling archiveCohort.');
         }
@@ -112,7 +112,7 @@ export class CohortsApi extends runtime.BaseAPI {
      * Add a new cohort (defined as people who have made qualifying emissions of certain events)
      * Create cohort
      */
-    private async createCohortRaw(requestParameters: CreateCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
+    async createCohortRaw(requestParameters: CreateCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
         if (requestParameters.cohortFields === null || requestParameters.cohortFields === undefined) {
             throw new runtime.RequiredError('cohortFields','Required parameter requestParameters.cohortFields was null or undefined when calling createCohort.');
         }
@@ -154,7 +154,7 @@ export class CohortsApi extends runtime.BaseAPI {
     /**
      * Delete a cohort
      */
-    private async deleteCohortRaw(requestParameters: DeleteCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteCohortRaw(requestParameters: DeleteCohortRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
             throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling deleteCohort.');
         }
@@ -192,7 +192,7 @@ export class CohortsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateCohortRaw(requestParameters: ForceUpdateCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateCohortRaw(requestParameters: ForceUpdateCohortRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
             throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling forceUpdateCohort.');
         }
@@ -231,7 +231,7 @@ export class CohortsApi extends runtime.BaseAPI {
      * Get details on a specific cohort
      * Retrieve a cohort
      */
-    private async getCohortRaw(requestParameters: GetCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
+    async getCohortRaw(requestParameters: GetCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
         if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
             throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling getCohort.');
         }
@@ -270,7 +270,7 @@ export class CohortsApi extends runtime.BaseAPI {
     /**
      * Get the cohort membership counts over time.
      */
-    private async getCohortAnalysisMembershipRaw(requestParameters: GetCohortAnalysisMembershipRequest, ): Promise<runtime.ApiResponse<CohortAnalysisMembership>> {
+    async getCohortAnalysisMembershipRaw(requestParameters: GetCohortAnalysisMembershipRequest, ): Promise<runtime.ApiResponse<CohortAnalysisMembership>> {
         if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
             throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling getCohortAnalysisMembership.');
         }
@@ -309,7 +309,7 @@ export class CohortsApi extends runtime.BaseAPI {
      * Get a list of cohorts defined on the account
      * List cohorts
      */
-    private async getCohortsRaw(): Promise<runtime.ApiResponse<Array<Cohort>>> {
+    async getCohortsRaw(): Promise<runtime.ApiResponse<Array<Cohort>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -345,7 +345,7 @@ export class CohortsApi extends runtime.BaseAPI {
      * Unarchive a cohort
      * Unarchive a cohort
      */
-    private async unarchiveCohortRaw(requestParameters: UnarchiveCohortRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveCohortRaw(requestParameters: UnarchiveCohortRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
             throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling unarchiveCohort.');
         }
@@ -391,7 +391,7 @@ export class CohortsApi extends runtime.BaseAPI {
      * Edit configuration of a cohort
      * Edit a cohort
      */
-    private async updateCohortRaw(requestParameters: UpdateCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
+    async updateCohortRaw(requestParameters: UpdateCohortRequest, ): Promise<runtime.ApiResponse<Cohort>> {
         if (requestParameters.cohortId === null || requestParameters.cohortId === undefined) {
             throw new runtime.RequiredError('cohortId','Required parameter requestParameters.cohortId was null or undefined when calling updateCohort.');
         }

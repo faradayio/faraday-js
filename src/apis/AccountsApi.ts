@@ -46,7 +46,7 @@ export class AccountsApi extends runtime.BaseAPI {
      * Create a subaccount. 
      * Create account
      */
-    private async createAccountRaw(requestParameters: CreateAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
+    async createAccountRaw(requestParameters: CreateAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
         if (requestParameters.accountFields === null || requestParameters.accountFields === undefined) {
             throw new runtime.RequiredError('accountFields','Required parameter requestParameters.accountFields was null or undefined when calling createAccount.');
         }
@@ -89,7 +89,7 @@ export class AccountsApi extends runtime.BaseAPI {
      * Request an account deletion. In 24 hours, the account and all resources associated with it will be deleted. Contact support within the 24 hour window if you wish to reverse this.
      * Delete an account
      */
-    private async deleteAccountRaw(requestParameters: DeleteAccountRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteAccountRaw(requestParameters: DeleteAccountRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteAccount.');
         }
@@ -128,7 +128,7 @@ export class AccountsApi extends runtime.BaseAPI {
      * Get details on a specific account. This must be an account controlled by your API key.
      * Retrieve an account
      */
-    private async getAccountRaw(requestParameters: GetAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
+    async getAccountRaw(requestParameters: GetAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccount.');
         }
@@ -168,7 +168,7 @@ export class AccountsApi extends runtime.BaseAPI {
      * Get a list of accounts defined on the account
      * List accounts
      */
-    private async getAccountsRaw(): Promise<runtime.ApiResponse<Array<Account>>> {
+    async getAccountsRaw(): Promise<runtime.ApiResponse<Array<Account>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -204,7 +204,7 @@ export class AccountsApi extends runtime.BaseAPI {
      * Get details on the current account, as identified by the API key
      * Retrieve current account
      */
-    private async getCurrentAccountRaw(): Promise<runtime.ApiResponse<Account>> {
+    async getCurrentAccountRaw(): Promise<runtime.ApiResponse<Account>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -240,7 +240,7 @@ export class AccountsApi extends runtime.BaseAPI {
      * Update the configuration of an account.
      * Update an account
      */
-    private async updateAccountRaw(requestParameters: UpdateAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
+    async updateAccountRaw(requestParameters: UpdateAccountRequest, ): Promise<runtime.ApiResponse<Account>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateAccount.');
         }

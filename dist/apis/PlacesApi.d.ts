@@ -43,7 +43,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Archive a place
      * Archive a place
      */
-    private archivePlaceRaw;
+    archivePlaceRaw(requestParameters: ArchivePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a place
      * Archive a place
@@ -53,7 +53,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Create a new place
      * Create place
      */
-    private createPlaceRaw;
+    createPlaceRaw(requestParameters: CreatePlaceRequest): Promise<runtime.ApiResponse<Place>>;
     /**
      * Create a new place
      * Create place
@@ -62,7 +62,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
     /**
      * Delete a place
      */
-    private deletePlaceRaw;
+    deletePlaceRaw(requestParameters: DeletePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a place
      */
@@ -71,7 +71,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdatePlaceRaw;
+    forceUpdatePlaceRaw(requestParameters: ForceUpdatePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -81,7 +81,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Retrieve details on a specific place
      * Retrieve a place
      */
-    private getPlaceRaw;
+    getPlaceRaw(requestParameters: GetPlaceRequest): Promise<runtime.ApiResponse<Place>>;
     /**
      * Retrieve details on a specific place
      * Retrieve a place
@@ -91,7 +91,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
      */
-    private getPlacesRaw;
+    getPlacesRaw(): Promise<runtime.ApiResponse<Array<Place>>>;
     /**
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
@@ -101,7 +101,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Unarchive a place
      * Unarchive a place
      */
-    private unarchivePlaceRaw;
+    unarchivePlaceRaw(requestParameters: UnarchivePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a place
      * Unarchive a place
@@ -111,7 +111,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Update an existing place
      * Update place
      */
-    private updatePlaceRaw;
+    updatePlaceRaw(requestParameters: UpdatePlaceRequest): Promise<runtime.ApiResponse<Place>>;
     /**
      * Update an existing place
      * Update place

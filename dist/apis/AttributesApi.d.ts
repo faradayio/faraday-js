@@ -35,7 +35,7 @@ export declare class AttributesApi extends runtime.BaseAPI {
      * Add a new attribute that wraps a stream of assertions
      * Create attribute
      */
-    private createAttributeRaw;
+    createAttributeRaw(requestParameters: CreateAttributeRequest): Promise<runtime.ApiResponse<Attribute>>;
     /**
      * Add a new attribute that wraps a stream of assertions
      * Create attribute
@@ -44,7 +44,7 @@ export declare class AttributesApi extends runtime.BaseAPI {
     /**
      * Delete an attribute
      */
-    private deleteAttributeRaw;
+    deleteAttributeRaw(requestParameters: DeleteAttributeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete an attribute
      */
@@ -53,7 +53,7 @@ export declare class AttributesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateAttributeRaw;
+    forceUpdateAttributeRaw(requestParameters: ForceUpdateAttributeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -63,7 +63,7 @@ export declare class AttributesApi extends runtime.BaseAPI {
      * Get details on a specific attribute
      * Retrieve an attribute
      */
-    private getAttributeRaw;
+    getAttributeRaw(requestParameters: GetAttributeRequest): Promise<runtime.ApiResponse<Attribute>>;
     /**
      * Get details on a specific attribute
      * Retrieve an attribute
@@ -73,7 +73,7 @@ export declare class AttributesApi extends runtime.BaseAPI {
      * Get a list of attributes defined on the account
      * List attributes
      */
-    private getAttributesRaw;
+    getAttributesRaw(): Promise<runtime.ApiResponse<Array<Attribute>>>;
     /**
      * Get a list of attributes defined on the account
      * List attributes
@@ -83,7 +83,7 @@ export declare class AttributesApi extends runtime.BaseAPI {
      * Update the configuration of an attribute
      * Update an attribute
      */
-    private updateAttributeRaw;
+    updateAttributeRaw(requestParameters: UpdateAttributeRequest): Promise<runtime.ApiResponse<Attribute>>;
     /**
      * Update the configuration of an attribute
      * Update an attribute

@@ -22,7 +22,7 @@ export declare class BillingApi extends runtime.BaseAPI {
      * Get invoices, payments, and usage stats for your account.
      * Get billing information about your account.
      */
-    private getAccountBillingRaw;
+    getAccountBillingRaw(requestParameters: GetAccountBillingRequest): Promise<runtime.ApiResponse<AccountBilling>>;
     /**
      * Get invoices, payments, and usage stats for your account.
      * Get billing information about your account.
@@ -32,7 +32,7 @@ export declare class BillingApi extends runtime.BaseAPI {
      * Get invoices, payments, and usage stats for the current account.
      * Get billing information about the current account.
      */
-    private getCurrentAccountBillingRaw;
+    getCurrentAccountBillingRaw(): Promise<runtime.ApiResponse<AccountBilling>>;
     /**
      * Get invoices, payments, and usage stats for the current account.
      * Get billing information about the current account.
