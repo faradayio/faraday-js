@@ -42,7 +42,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Archive a specific market opportunity analysis
      */
-    private archiveMarketOpportunityAnalysisRaw;
+    archiveMarketOpportunityAnalysisRaw(requestParameters: ArchiveMarketOpportunityAnalysisRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a specific market opportunity analysis
      */
@@ -50,7 +50,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Create a new market opportunity analysis
      */
-    private createMarketOpportunityAnalysisRaw;
+    createMarketOpportunityAnalysisRaw(requestParameters: CreateMarketOpportunityAnalysisRequest): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>>;
     /**
      * Create a new market opportunity analysis
      */
@@ -58,7 +58,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Delete a specific market opportunity analysis
      */
-    private deleteMarketOpportunityAnalysisRaw;
+    deleteMarketOpportunityAnalysisRaw(requestParameters: DeleteMarketOpportunityAnalysisRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a specific market opportunity analysis
      */
@@ -67,7 +67,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateMarketOpportunityAnalysisRaw;
+    forceUpdateMarketOpportunityAnalysisRaw(requestParameters: ForceUpdateMarketOpportunityAnalysisRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.
@@ -76,7 +76,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get all market opportunity analyses
      */
-    private getMarketOpportunityAnalysesRaw;
+    getMarketOpportunityAnalysesRaw(): Promise<runtime.ApiResponse<Array<MarketOpportunityAnalysis>>>;
     /**
      * Get all market opportunity analyses
      */
@@ -84,7 +84,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get a specific market opportunity analysis
      */
-    private getMarketOpportunityAnalysisRaw;
+    getMarketOpportunityAnalysisRaw(requestParameters: GetMarketOpportunityAnalysisRequest): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>>;
     /**
      * Get a specific market opportunity analysis
      */
@@ -92,7 +92,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Unarchive a specific market opportunity analysis
      */
-    private unarchiveMarketOpportunityAnalysisRaw;
+    unarchiveMarketOpportunityAnalysisRaw(requestParameters: UnarchiveMarketOpportunityAnalysisRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a specific market opportunity analysis
      */
@@ -100,7 +100,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Update a specific market opportunity analysis
      */
-    private updateMarketOpportunityAnalysisRaw;
+    updateMarketOpportunityAnalysisRaw(requestParameters: UpdateMarketOpportunityAnalysisRequest): Promise<runtime.ApiResponse<MarketOpportunityAnalysis>>;
     /**
      * Update a specific market opportunity analysis
      */

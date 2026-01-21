@@ -27,7 +27,7 @@ export class GraphApi extends runtime.BaseAPI {
      * Each object in the list is an edge in the dependency graph.
      * Retrieve a dependency graph for all resources on an account
      */
-    private async getGraphRaw(): Promise<runtime.ApiResponse<Array<GraphEdge>>> {
+    async getGraphRaw(): Promise<runtime.ApiResponse<Array<GraphEdge>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};

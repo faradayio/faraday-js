@@ -32,7 +32,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Create a subaccount.
      * Create account
      */
-    private createAccountRaw;
+    createAccountRaw(requestParameters: CreateAccountRequest): Promise<runtime.ApiResponse<Account>>;
     /**
      * Create a subaccount.
      * Create account
@@ -42,7 +42,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Request an account deletion. In 24 hours, the account and all resources associated with it will be deleted. Contact support within the 24 hour window if you wish to reverse this.
      * Delete an account
      */
-    private deleteAccountRaw;
+    deleteAccountRaw(requestParameters: DeleteAccountRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Request an account deletion. In 24 hours, the account and all resources associated with it will be deleted. Contact support within the 24 hour window if you wish to reverse this.
      * Delete an account
@@ -52,7 +52,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Get details on a specific account. This must be an account controlled by your API key.
      * Retrieve an account
      */
-    private getAccountRaw;
+    getAccountRaw(requestParameters: GetAccountRequest): Promise<runtime.ApiResponse<Account>>;
     /**
      * Get details on a specific account. This must be an account controlled by your API key.
      * Retrieve an account
@@ -62,7 +62,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Get a list of accounts defined on the account
      * List accounts
      */
-    private getAccountsRaw;
+    getAccountsRaw(): Promise<runtime.ApiResponse<Array<Account>>>;
     /**
      * Get a list of accounts defined on the account
      * List accounts
@@ -72,7 +72,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Get details on the current account, as identified by the API key
      * Retrieve current account
      */
-    private getCurrentAccountRaw;
+    getCurrentAccountRaw(): Promise<runtime.ApiResponse<Account>>;
     /**
      * Get details on the current account, as identified by the API key
      * Retrieve current account
@@ -82,7 +82,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Update the configuration of an account.
      * Update an account
      */
-    private updateAccountRaw;
+    updateAccountRaw(requestParameters: UpdateAccountRequest): Promise<runtime.ApiResponse<Account>>;
     /**
      * Update the configuration of an account.
      * Update an account

@@ -19,7 +19,7 @@ export declare class UsageApi extends runtime.BaseAPI {
      * Get usage stats for your account.
      * Get usage stats for your account.
      */
-    private getUsagesRaw;
+    getUsagesRaw(): Promise<runtime.ApiResponse<Array<AccountUsage>>>;
     /**
      * Get usage stats for your account.
      * Get usage stats for your account.

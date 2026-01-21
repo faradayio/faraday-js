@@ -46,7 +46,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Archive a stream
      * Archive a stream
      */
-    private archiveStreamRaw;
+    archiveStreamRaw(requestParameters: ArchiveStreamRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a stream
      * Archive a stream
@@ -55,7 +55,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
     /**
      * Delete a stream
      */
-    private deleteStreamRaw;
+    deleteStreamRaw(requestParameters: DeleteStreamRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a stream
      */
@@ -64,7 +64,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Look up (or create) an event stream by name.
      * Create a stream
      */
-    private findOrCreateStreamRaw;
+    findOrCreateStreamRaw(requestParameters: FindOrCreateStreamRequest): Promise<runtime.ApiResponse<Stream>>;
     /**
      * Look up (or create) an event stream by name.
      * Create a stream
@@ -74,7 +74,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateStreamRaw;
+    forceUpdateStreamRaw(requestParameters: ForceUpdateStreamRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -84,7 +84,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Look up a specific event stream.
      * Retrieve a stream
      */
-    private getStreamRaw;
+    getStreamRaw(requestParameters: GetStreamRequest): Promise<runtime.ApiResponse<Stream>>;
     /**
      * Look up a specific event stream.
      * Retrieve a stream
@@ -93,7 +93,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
     /**
      * Get the count of stream events emitted over a time period.
      */
-    private getStreamAnalysisRaw;
+    getStreamAnalysisRaw(requestParameters: GetStreamAnalysisRequest): Promise<runtime.ApiResponse<StreamAnalysis>>;
     /**
      * Get the count of stream events emitted over a time period.
      */
@@ -102,7 +102,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * List all streams present on the account
      * List streams
      */
-    private getStreamsRaw;
+    getStreamsRaw(): Promise<runtime.ApiResponse<Array<Stream>>>;
     /**
      * List all streams present on the account
      * List streams
@@ -112,7 +112,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Unarchive a stream
      * Unarchive a stream
      */
-    private unarchiveStreamRaw;
+    unarchiveStreamRaw(requestParameters: UnarchiveStreamRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a stream
      * Unarchive a stream
@@ -122,7 +122,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Update the configuration of a stream
      * Update a stream
      */
-    private updateStreamRaw;
+    updateStreamRaw(requestParameters: UpdateStreamRequest): Promise<runtime.ApiResponse<Stream>>;
     /**
      * Update the configuration of a stream
      * Update a stream

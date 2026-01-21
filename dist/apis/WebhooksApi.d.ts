@@ -32,7 +32,7 @@ export declare class WebhooksApi extends runtime.BaseAPI {
      * Add a new webhook endpoint
      * Create webhook endpoint
      */
-    private createWebhookEndpointRaw;
+    createWebhookEndpointRaw(requestParameters: CreateWebhookEndpointRequest): Promise<runtime.ApiResponse<WebhookEndpoint>>;
     /**
      * Add a new webhook endpoint
      * Create webhook endpoint
@@ -42,7 +42,7 @@ export declare class WebhooksApi extends runtime.BaseAPI {
      * Delete a webhook endpoint
      * Delete a webhook endpoint
      */
-    private deleteWebhookEndpointRaw;
+    deleteWebhookEndpointRaw(requestParameters: DeleteWebhookEndpointRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a webhook endpoint
      * Delete a webhook endpoint
@@ -52,7 +52,7 @@ export declare class WebhooksApi extends runtime.BaseAPI {
      * Get details on a specific webhook endpoint
      * Retrieve a webhook
      */
-    private getWebhookEndpointRaw;
+    getWebhookEndpointRaw(requestParameters: GetWebhookEndpointRequest): Promise<runtime.ApiResponse<WebhookEndpoint>>;
     /**
      * Get details on a specific webhook endpoint
      * Retrieve a webhook
@@ -62,7 +62,7 @@ export declare class WebhooksApi extends runtime.BaseAPI {
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    private getWebhookEndpointsRaw;
+    getWebhookEndpointsRaw(): Promise<runtime.ApiResponse<Array<WebhookEndpoint>>>;
     /**
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
@@ -72,7 +72,7 @@ export declare class WebhooksApi extends runtime.BaseAPI {
      * Update the configuration of a webhook endpoint
      * Update a webhook endpoint
      */
-    private updateWebhookEndpointRaw;
+    updateWebhookEndpointRaw(requestParameters: UpdateWebhookEndpointRequest): Promise<runtime.ApiResponse<WebhookEndpoint>>;
     /**
      * Update the configuration of a webhook endpoint
      * Update a webhook endpoint

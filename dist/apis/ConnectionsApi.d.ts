@@ -53,7 +53,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Archive a connection
      * Archive a connection
      */
-    private archiveConnectionRaw;
+    archiveConnectionRaw(requestParameters: ArchiveConnectionRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a connection
      * Archive a connection
@@ -63,7 +63,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object.
      * Create connection
      */
-    private createConnectionRaw;
+    createConnectionRaw(requestParameters: CreateConnectionRequest): Promise<runtime.ApiResponse<Connection>>;
     /**
      * Add a new connection.  Connections are configuration for connecting data between Faraday and an external location. They are required when working with <a href=\"https://faraday.ai/developers/reference/createtarget\">**replication targets**</a>.  All connections have a `type` that determines which options may be specified.  Connection `type` is specified in the `options` object.
      * Create connection
@@ -73,7 +73,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Delete a connection
      * Delete a connection
      */
-    private deleteConnectionRaw;
+    deleteConnectionRaw(requestParameters: DeleteConnectionRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a connection
      * Delete a connection
@@ -83,7 +83,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateConnectionRaw;
+    forceUpdateConnectionRaw(requestParameters: ForceUpdateConnectionRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -93,7 +93,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Get details on a specific connection
      * Retrieve a connection
      */
-    private getConnectionRaw;
+    getConnectionRaw(requestParameters: GetConnectionRequest): Promise<runtime.ApiResponse<Connection>>;
     /**
      * Get details on a specific connection
      * Retrieve a connection
@@ -103,7 +103,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Get all datasets that use this connection
      * Retrieve all datasets that use this connection
      */
-    private getConnectionDatasetsRaw;
+    getConnectionDatasetsRaw(requestParameters: GetConnectionDatasetsRequest): Promise<runtime.ApiResponse<Array<Dataset>>>;
     /**
      * Get all datasets that use this connection
      * Retrieve all datasets that use this connection
@@ -113,7 +113,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Get all targets that use this connection
      * Retrieve all targets that use this connection
      */
-    private getConnectionTargetsRaw;
+    getConnectionTargetsRaw(requestParameters: GetConnectionTargetsRequest): Promise<runtime.ApiResponse<Array<Target>>>;
     /**
      * Get all targets that use this connection
      * Retrieve all targets that use this connection
@@ -123,7 +123,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Get a list of connections defined on the account
      * List connections
      */
-    private getConnectionsRaw;
+    getConnectionsRaw(): Promise<runtime.ApiResponse<Array<Connection>>>;
     /**
      * Get a list of connections defined on the account
      * List connections
@@ -133,7 +133,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection.
      * Rotate credentials for a connection
      */
-    private rotateConnectionCredentialsRaw;
+    rotateConnectionCredentialsRaw(requestParameters: RotateConnectionCredentialsRequest): Promise<runtime.ApiResponse<Connection>>;
     /**
      * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection.
      * Rotate credentials for a connection
@@ -143,7 +143,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Unarchive a connection
      * Unarchive a connection
      */
-    private unarchiveConnectionRaw;
+    unarchiveConnectionRaw(requestParameters: UnarchiveConnectionRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a connection
      * Unarchive a connection
@@ -153,7 +153,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Update the configuration of a connection.
      * Update a connection
      */
-    private updateConnectionRaw;
+    updateConnectionRaw(requestParameters: UpdateConnectionRequest): Promise<runtime.ApiResponse<Connection>>;
     /**
      * Update the configuration of a connection.
      * Update a connection

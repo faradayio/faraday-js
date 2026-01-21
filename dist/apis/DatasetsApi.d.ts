@@ -43,7 +43,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Archive a dataset
      * Archive a dataset
      */
-    private archiveDatasetRaw;
+    archiveDatasetRaw(requestParameters: ArchiveDatasetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a dataset
      * Archive a dataset
@@ -53,7 +53,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Create a new dataset
      * Create dataset
      */
-    private createDatasetRaw;
+    createDatasetRaw(requestParameters: CreateDatasetRequest): Promise<runtime.ApiResponse<Dataset>>;
     /**
      * Create a new dataset
      * Create dataset
@@ -62,7 +62,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
     /**
      * Delete a dataset
      */
-    private deleteDatasetRaw;
+    deleteDatasetRaw(requestParameters: DeleteDatasetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a dataset
      */
@@ -71,7 +71,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateDatasetRaw;
+    forceUpdateDatasetRaw(requestParameters: ForceUpdateDatasetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -81,7 +81,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Retrieve details on a specific dataset
      * Retrieve a dataset
      */
-    private getDatasetRaw;
+    getDatasetRaw(requestParameters: GetDatasetRequest): Promise<runtime.ApiResponse<Dataset>>;
     /**
      * Retrieve details on a specific dataset
      * Retrieve a dataset
@@ -91,7 +91,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Get a list of the datasets available in the developer’s account
      * List datasets
      */
-    private getDatasetsRaw;
+    getDatasetsRaw(): Promise<runtime.ApiResponse<Array<Dataset>>>;
     /**
      * Get a list of the datasets available in the developer’s account
      * List datasets
@@ -101,7 +101,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Unarchive a dataset
      * Unarchive a dataset
      */
-    private unarchiveDatasetRaw;
+    unarchiveDatasetRaw(requestParameters: UnarchiveDatasetRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a dataset
      * Unarchive a dataset
@@ -111,7 +111,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Update an existing dataset
      * Update dataset
      */
-    private updateDatasetRaw;
+    updateDatasetRaw(requestParameters: UpdateDatasetRequest): Promise<runtime.ApiResponse<Dataset>>;
     /**
      * Update an existing dataset
      * Update dataset

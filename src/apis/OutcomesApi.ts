@@ -70,7 +70,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Archive a outcome
      * Archive a outcome
      */
-    private async archiveOutcomeRaw(requestParameters: ArchiveOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveOutcomeRaw(requestParameters: ArchiveOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling archiveOutcome.');
         }
@@ -116,7 +116,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Add a new outcome (defined as a prediction of how likely individuals are to transition from one cohort to another)
      * Create outcome
      */
-    private async createOutcomeRaw(requestParameters: CreateOutcomeRequest, ): Promise<runtime.ApiResponse<Outcome>> {
+    async createOutcomeRaw(requestParameters: CreateOutcomeRequest, ): Promise<runtime.ApiResponse<Outcome>> {
         if (requestParameters.outcomeFields === null || requestParameters.outcomeFields === undefined) {
             throw new runtime.RequiredError('outcomeFields','Required parameter requestParameters.outcomeFields was null or undefined when calling createOutcome.');
         }
@@ -158,7 +158,7 @@ export class OutcomesApi extends runtime.BaseAPI {
     /**
      * Delete an outcome
      */
-    private async deleteOutcomeRaw(requestParameters: DeleteOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteOutcomeRaw(requestParameters: DeleteOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling deleteOutcome.');
         }
@@ -196,7 +196,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateOutcomeRaw(requestParameters: ForceUpdateOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateOutcomeRaw(requestParameters: ForceUpdateOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling forceUpdateOutcome.');
         }
@@ -235,7 +235,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Get details on a specific outcome
      * Retrieve an outcome
      */
-    private async getOutcomeRaw(requestParameters: GetOutcomeRequest, ): Promise<runtime.ApiResponse<Outcome>> {
+    async getOutcomeRaw(requestParameters: GetOutcomeRequest, ): Promise<runtime.ApiResponse<Outcome>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling getOutcome.');
         }
@@ -275,7 +275,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Get details on a specific outcome\'s analysis report on model performance, bias, etc.
      * Retrieve an outcome\'s analysis
      */
-    private async getOutcomeAnalysisRaw(requestParameters: GetOutcomeAnalysisRequest, ): Promise<runtime.ApiResponse<OutcomeAnalysis>> {
+    async getOutcomeAnalysisRaw(requestParameters: GetOutcomeAnalysisRequest, ): Promise<runtime.ApiResponse<OutcomeAnalysis>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling getOutcomeAnalysis.');
         }
@@ -315,7 +315,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Download an HTML report containing information such as the objective of the model, performance, and important features
      * Retrieve outcome report
      */
-    private async getOutcomeDownloadRaw(requestParameters: GetOutcomeDownloadRequest, ): Promise<runtime.ApiResponse<Blob>> {
+    async getOutcomeDownloadRaw(requestParameters: GetOutcomeDownloadRequest, ): Promise<runtime.ApiResponse<Blob>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling getOutcomeDownload.');
         }
@@ -355,7 +355,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    private async getOutcomesRaw(): Promise<runtime.ApiResponse<Array<Outcome>>> {
+    async getOutcomesRaw(): Promise<runtime.ApiResponse<Array<Outcome>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -391,7 +391,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Unarchive a outcome
      * Unarchive a outcome
      */
-    private async unarchiveOutcomeRaw(requestParameters: UnarchiveOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveOutcomeRaw(requestParameters: UnarchiveOutcomeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling unarchiveOutcome.');
         }
@@ -437,7 +437,7 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Edit configuration of an existing outcome
      * Edit an outcome
      */
-    private async updateOutcomeRaw(requestParameters: UpdateOutcomeRequest, ): Promise<runtime.ApiResponse<Outcome>> {
+    async updateOutcomeRaw(requestParameters: UpdateOutcomeRequest, ): Promise<runtime.ApiResponse<Outcome>> {
         if (requestParameters.outcomeId === null || requestParameters.outcomeId === undefined) {
             throw new runtime.RequiredError('outcomeId','Required parameter requestParameters.outcomeId was null or undefined when calling updateOutcome.');
         }

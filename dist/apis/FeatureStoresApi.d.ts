@@ -35,7 +35,7 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
      * Add a new feature store that compiles attributes
      * Create feature store
      */
-    private createFeatureStoreRaw;
+    createFeatureStoreRaw(requestParameters: CreateFeatureStoreRequest): Promise<runtime.ApiResponse<FeatureStore>>;
     /**
      * Add a new feature store that compiles attributes
      * Create feature store
@@ -44,7 +44,7 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
     /**
      * Delete a feature store
      */
-    private deleteFeatureStoreRaw;
+    deleteFeatureStoreRaw(requestParameters: DeleteFeatureStoreRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a feature store
      */
@@ -53,7 +53,7 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateFeatureStoreRaw;
+    forceUpdateFeatureStoreRaw(requestParameters: ForceUpdateFeatureStoreRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -63,7 +63,7 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
      * Get details on a specific feature store
      * Retrieve a feature store
      */
-    private getFeatureStoreRaw;
+    getFeatureStoreRaw(requestParameters: GetFeatureStoreRequest): Promise<runtime.ApiResponse<FeatureStore>>;
     /**
      * Get details on a specific feature store
      * Retrieve a feature store
@@ -73,7 +73,7 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    private getFeatureStoresRaw;
+    getFeatureStoresRaw(): Promise<runtime.ApiResponse<Array<FeatureStore>>>;
     /**
      * Get a list of feature stores defined on the account
      * List feature stores
@@ -83,7 +83,7 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
      * Update the configuration of a feature store
      * Update a feature store
      */
-    private updateFeatureStoreRaw;
+    updateFeatureStoreRaw(requestParameters: UpdateFeatureStoreRequest): Promise<runtime.ApiResponse<FeatureStore>>;
     /**
      * Update the configuration of a feature store
      * Update a feature store

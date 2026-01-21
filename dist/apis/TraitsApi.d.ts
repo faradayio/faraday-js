@@ -46,7 +46,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Archive a trait
      * Archive a trait
      */
-    private archiveTraitRaw;
+    archiveTraitRaw(requestParameters: ArchiveTraitRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a trait
      * Archive a trait
@@ -56,7 +56,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Create a new user-defined Trait. You can connect your uploaded data to this trait by sending a PATCH to the relevant dataset with `output_to_traits` defined.
      * Create a Trait
      */
-    private createTraitRaw;
+    createTraitRaw(requestParameters: CreateTraitRequest): Promise<runtime.ApiResponse<Trait>>;
     /**
      * Create a new user-defined Trait. You can connect your uploaded data to this trait by sending a PATCH to the relevant dataset with `output_to_traits` defined.
      * Create a Trait
@@ -66,7 +66,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Delete all traits without a source dataset.
      * Delete all orphaned traits
      */
-    private deleteAllOrphanedTraitsRaw;
+    deleteAllOrphanedTraitsRaw(): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete all traits without a source dataset.
      * Delete all orphaned traits
@@ -76,7 +76,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Delete a trait
      * Delete a trait
      */
-    private deleteTraitRaw;
+    deleteTraitRaw(requestParameters: DeleteTraitRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a trait
      * Delete a trait
@@ -86,7 +86,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateTraitRaw;
+    forceUpdateTraitRaw(requestParameters: ForceUpdateTraitRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -96,7 +96,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Get a specific trait by ID.
      * Get a specific trait
      */
-    private getTraitRaw;
+    getTraitRaw(requestParameters: GetTraitRequest): Promise<runtime.ApiResponse<Trait>>;
     /**
      * Get a specific trait by ID.
      * Get a specific trait
@@ -105,7 +105,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
     /**
      * The percentage of the US population that falls into each category of this trait.
      */
-    private getTraitAnalysisDimensionsRaw;
+    getTraitAnalysisDimensionsRaw(requestParameters: GetTraitAnalysisDimensionsRequest): Promise<runtime.ApiResponse<AnalysisDimensionsTrait>>;
     /**
      * The percentage of the US population that falls into each category of this trait.
      */
@@ -114,7 +114,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    private getTraitsRaw;
+    getTraitsRaw(): Promise<runtime.ApiResponse<Array<Trait>>>;
     /**
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
@@ -124,7 +124,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits, in csv form
      */
-    private getTraitsCsvRaw;
+    getTraitsCsvRaw(): Promise<runtime.ApiResponse<string>>;
     /**
      * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits, in csv form
@@ -134,7 +134,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Unarchive a trait
      * Unarchive a trait
      */
-    private unarchiveTraitRaw;
+    unarchiveTraitRaw(requestParameters: UnarchiveTraitRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a trait
      * Unarchive a trait
@@ -144,7 +144,7 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Update the configuration of a trait
      * Update a trait
      */
-    private updateTraitRaw;
+    updateTraitRaw(requestParameters: UpdateTraitRequest): Promise<runtime.ApiResponse<Trait>>;
     /**
      * Update the configuration of a trait
      * Update a trait

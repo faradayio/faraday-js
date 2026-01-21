@@ -27,7 +27,7 @@ export class UsageApi extends runtime.BaseAPI {
      * Get usage stats for your account.
      * Get usage stats for your account.
      */
-    private async getUsagesRaw(): Promise<runtime.ApiResponse<Array<AccountUsage>>> {
+    async getUsagesRaw(): Promise<runtime.ApiResponse<Array<AccountUsage>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};

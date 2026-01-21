@@ -13783,7 +13783,7 @@ export interface IdentitySets {
  * @interface IdentitySetsMergePatch
  */
 export interface IdentitySetsMergePatch {
-    [key: string]: IdentitySetMergePatch;
+    [key: string]: IdentitySetMergePatch | null;
 }
 /**
  * (Parameters used to POST a new value of the `IdentitySets` type.)
@@ -15848,7 +15848,7 @@ export interface OutputToStreams {
  * @interface OutputToStreamsMergePatch
  */
 export interface OutputToStreamsMergePatch {
-    [key: string]: DatasetStreamMergePatch;
+    [key: string]: DatasetStreamMergePatch | null;
 }
 /**
  * (Parameters used to POST a new value of the `OutputToStreams` type.)
@@ -16012,7 +16012,7 @@ export interface OutputToTraits {
  * @interface OutputToTraitsMergePatch
  */
 export interface OutputToTraitsMergePatch {
-    [key: string]: TraitDataMapColumnMergePatch;
+    [key: string]: TraitDataMapColumnMergePatch | null;
 }
 /**
  * (Parameters used to POST a new value of the `OutputToTraits` type.)
@@ -18525,7 +18525,7 @@ export interface StreamProperties {
  * @interface StreamPropertiesMergePatch
  */
 export interface StreamPropertiesMergePatch {
-    [key: string]: StreamPropertyDetailsMergePatch;
+    [key: string]: StreamPropertyDetailsMergePatch | null;
 }
 /**
  * (Parameters used to POST the `StreamProperties` type.)

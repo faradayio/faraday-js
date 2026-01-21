@@ -73,7 +73,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Archive a scope
      * Archive a scope
      */
-    private archiveScopeRaw;
+    archiveScopeRaw(requestParameters: ArchiveScopeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a scope
      * Archive a scope
@@ -83,7 +83,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Add a new scope
      * Create scope
      */
-    private createScopeRaw;
+    createScopeRaw(requestParameters: CreateScopeRequest): Promise<runtime.ApiResponse<Scope>>;
     /**
      * Add a new scope
      * Create scope
@@ -92,7 +92,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
     /**
      * Delete a scope
      */
-    private deleteScopeRaw;
+    deleteScopeRaw(requestParameters: DeleteScopeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a scope
      */
@@ -101,7 +101,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateScopeRaw;
+    forceUpdateScopeRaw(requestParameters: ForceUpdateScopeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -111,7 +111,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get details on a specific scope
      * Retrieve a scope
      */
-    private getScopeRaw;
+    getScopeRaw(requestParameters: GetScopeRequest): Promise<runtime.ApiResponse<Scope>>;
     /**
      * Get details on a specific scope
      * Retrieve a scope
@@ -121,7 +121,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get analysis for a scope
      * Get analysis for a scope
      */
-    private getScopeAnalysisRaw;
+    getScopeAnalysisRaw(requestParameters: GetScopeAnalysisRequest): Promise<runtime.ApiResponse<ScopeAnalysis>>;
     /**
      * Get analysis for a scope
      * Get analysis for a scope
@@ -131,7 +131,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Retrieve all datasets associated with a scope. For example, if your scope has population_cohorts, you built those cohorts using data from one of your datasets. This endpoint gets all such datasets. This can be used with referenced targets, to figure out which source tables the target can reference.
      * Retrieve all datasets associated with a scope
      */
-    private getScopeDatasetsRaw;
+    getScopeDatasetsRaw(requestParameters: GetScopeDatasetsRequest): Promise<runtime.ApiResponse<Array<Dataset>>>;
     /**
      * Retrieve all datasets associated with a scope. For example, if your scope has population_cohorts, you built those cohorts using data from one of your datasets. This endpoint gets all such datasets. This can be used with referenced targets, to figure out which source tables the target can reference.
      * Retrieve all datasets associated with a scope
@@ -141,7 +141,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get efficacy for a scope
      * Get efficacy for a scope
      */
-    private getScopeEfficacyRaw;
+    getScopeEfficacyRaw(requestParameters: GetScopeEfficacyRequest): Promise<runtime.ApiResponse<ScopeEfficacy>>;
     /**
      * Get efficacy for a scope
      * Get efficacy for a scope
@@ -151,7 +151,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get payload cohorts for a scope
      * Get payload cohorts for a scope
      */
-    private getScopePayloadCohortsRaw;
+    getScopePayloadCohortsRaw(requestParameters: GetScopePayloadCohortsRequest): Promise<runtime.ApiResponse<Array<Cohort>>>;
     /**
      * Get payload cohorts for a scope
      * Get payload cohorts for a scope
@@ -161,7 +161,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get payload outcomes for a scope
      * Get payload outcomes for a scope
      */
-    private getScopePayloadOutcomesRaw;
+    getScopePayloadOutcomesRaw(requestParameters: GetScopePayloadOutcomesRequest): Promise<runtime.ApiResponse<Array<Outcome>>>;
     /**
      * Get payload outcomes for a scope
      * Get payload outcomes for a scope
@@ -171,7 +171,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get payload persona sets for a scope
      * Get payload persona sets for a scope
      */
-    private getScopePayloadPersonaSetsRaw;
+    getScopePayloadPersonaSetsRaw(requestParameters: GetScopePayloadPersonaSetsRequest): Promise<runtime.ApiResponse<Array<PersonaSet>>>;
     /**
      * Get payload persona sets for a scope
      * Get payload persona sets for a scope
@@ -181,7 +181,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get payload recommenders for a scope
      * Get payload recommenders for a scope
      */
-    private getScopePayloadRecommendersRaw;
+    getScopePayloadRecommendersRaw(requestParameters: GetScopePayloadRecommendersRequest): Promise<runtime.ApiResponse<Array<Recommender>>>;
     /**
      * Get payload recommenders for a scope
      * Get payload recommenders for a scope
@@ -191,7 +191,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get population cohorts for a scope
      * Get population cohorts for a scope
      */
-    private getScopePopulationCohortsRaw;
+    getScopePopulationCohortsRaw(requestParameters: GetScopePopulationCohortsRequest): Promise<runtime.ApiResponse<Array<Cohort>>>;
     /**
      * Get population cohorts for a scope
      * Get population cohorts for a scope
@@ -201,7 +201,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get population exclusion cohorts for a scope
      * Get population exclusion cohorts for a scope
      */
-    private getScopePopulationExclusionCohortsRaw;
+    getScopePopulationExclusionCohortsRaw(requestParameters: GetScopePopulationExclusionCohortsRequest): Promise<runtime.ApiResponse<Array<Cohort>>>;
     /**
      * Get population exclusion cohorts for a scope
      * Get population exclusion cohorts for a scope
@@ -211,7 +211,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get targets for a scope
      * Get targets for a scope
      */
-    private getScopeTargetsRaw;
+    getScopeTargetsRaw(requestParameters: GetScopeTargetsRequest): Promise<runtime.ApiResponse<Array<Target>>>;
     /**
      * Get targets for a scope
      * Get targets for a scope
@@ -221,7 +221,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get a list of scopes defined on the account
      * List scopes
      */
-    private getScopesRaw;
+    getScopesRaw(): Promise<runtime.ApiResponse<Array<Scope>>>;
     /**
      * Get a list of scopes defined on the account
      * List scopes
@@ -231,7 +231,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Unarchive a scope
      * Unarchive a scope
      */
-    private unarchiveScopeRaw;
+    unarchiveScopeRaw(requestParameters: UnarchiveScopeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a scope
      * Unarchive a scope
@@ -241,7 +241,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Update the configuration of a scope.
      * Update a scope
      */
-    private updateScopeRaw;
+    updateScopeRaw(requestParameters: UpdateScopeRequest): Promise<runtime.ApiResponse<Scope>>;
     /**
      * Update the configuration of a scope.
      * Update a scope

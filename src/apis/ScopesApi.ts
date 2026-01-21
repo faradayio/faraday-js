@@ -109,7 +109,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Archive a scope
      * Archive a scope
      */
-    private async archiveScopeRaw(requestParameters: ArchiveScopeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveScopeRaw(requestParameters: ArchiveScopeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling archiveScope.');
         }
@@ -155,7 +155,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Add a new scope
      * Create scope
      */
-    private async createScopeRaw(requestParameters: CreateScopeRequest, ): Promise<runtime.ApiResponse<Scope>> {
+    async createScopeRaw(requestParameters: CreateScopeRequest, ): Promise<runtime.ApiResponse<Scope>> {
         if (requestParameters.scopeFields === null || requestParameters.scopeFields === undefined) {
             throw new runtime.RequiredError('scopeFields','Required parameter requestParameters.scopeFields was null or undefined when calling createScope.');
         }
@@ -197,7 +197,7 @@ export class ScopesApi extends runtime.BaseAPI {
     /**
      * Delete a scope
      */
-    private async deleteScopeRaw(requestParameters: DeleteScopeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteScopeRaw(requestParameters: DeleteScopeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling deleteScope.');
         }
@@ -235,7 +235,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateScopeRaw(requestParameters: ForceUpdateScopeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateScopeRaw(requestParameters: ForceUpdateScopeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling forceUpdateScope.');
         }
@@ -274,7 +274,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get details on a specific scope
      * Retrieve a scope
      */
-    private async getScopeRaw(requestParameters: GetScopeRequest, ): Promise<runtime.ApiResponse<Scope>> {
+    async getScopeRaw(requestParameters: GetScopeRequest, ): Promise<runtime.ApiResponse<Scope>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScope.');
         }
@@ -314,7 +314,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get analysis for a scope
      * Get analysis for a scope
      */
-    private async getScopeAnalysisRaw(requestParameters: GetScopeAnalysisRequest, ): Promise<runtime.ApiResponse<ScopeAnalysis>> {
+    async getScopeAnalysisRaw(requestParameters: GetScopeAnalysisRequest, ): Promise<runtime.ApiResponse<ScopeAnalysis>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeAnalysis.');
         }
@@ -354,7 +354,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Retrieve all datasets associated with a scope. For example, if your scope has population_cohorts, you built those cohorts using data from one of your datasets. This endpoint gets all such datasets. This can be used with referenced targets, to figure out which source tables the target can reference.
      * Retrieve all datasets associated with a scope
      */
-    private async getScopeDatasetsRaw(requestParameters: GetScopeDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
+    async getScopeDatasetsRaw(requestParameters: GetScopeDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeDatasets.');
         }
@@ -394,7 +394,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get efficacy for a scope
      * Get efficacy for a scope
      */
-    private async getScopeEfficacyRaw(requestParameters: GetScopeEfficacyRequest, ): Promise<runtime.ApiResponse<ScopeEfficacy>> {
+    async getScopeEfficacyRaw(requestParameters: GetScopeEfficacyRequest, ): Promise<runtime.ApiResponse<ScopeEfficacy>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeEfficacy.');
         }
@@ -434,7 +434,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get payload cohorts for a scope
      * Get payload cohorts for a scope
      */
-    private async getScopePayloadCohortsRaw(requestParameters: GetScopePayloadCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
+    async getScopePayloadCohortsRaw(requestParameters: GetScopePayloadCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadCohorts.');
         }
@@ -474,7 +474,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get payload outcomes for a scope
      * Get payload outcomes for a scope
      */
-    private async getScopePayloadOutcomesRaw(requestParameters: GetScopePayloadOutcomesRequest, ): Promise<runtime.ApiResponse<Array<Outcome>>> {
+    async getScopePayloadOutcomesRaw(requestParameters: GetScopePayloadOutcomesRequest, ): Promise<runtime.ApiResponse<Array<Outcome>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadOutcomes.');
         }
@@ -514,7 +514,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get payload persona sets for a scope
      * Get payload persona sets for a scope
      */
-    private async getScopePayloadPersonaSetsRaw(requestParameters: GetScopePayloadPersonaSetsRequest, ): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
+    async getScopePayloadPersonaSetsRaw(requestParameters: GetScopePayloadPersonaSetsRequest, ): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadPersonaSets.');
         }
@@ -554,7 +554,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get payload recommenders for a scope
      * Get payload recommenders for a scope
      */
-    private async getScopePayloadRecommendersRaw(requestParameters: GetScopePayloadRecommendersRequest, ): Promise<runtime.ApiResponse<Array<Recommender>>> {
+    async getScopePayloadRecommendersRaw(requestParameters: GetScopePayloadRecommendersRequest, ): Promise<runtime.ApiResponse<Array<Recommender>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePayloadRecommenders.');
         }
@@ -594,7 +594,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get population cohorts for a scope
      * Get population cohorts for a scope
      */
-    private async getScopePopulationCohortsRaw(requestParameters: GetScopePopulationCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
+    async getScopePopulationCohortsRaw(requestParameters: GetScopePopulationCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePopulationCohorts.');
         }
@@ -634,7 +634,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get population exclusion cohorts for a scope
      * Get population exclusion cohorts for a scope
      */
-    private async getScopePopulationExclusionCohortsRaw(requestParameters: GetScopePopulationExclusionCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
+    async getScopePopulationExclusionCohortsRaw(requestParameters: GetScopePopulationExclusionCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePopulationExclusionCohorts.');
         }
@@ -674,7 +674,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get targets for a scope
      * Get targets for a scope
      */
-    private async getScopeTargetsRaw(requestParameters: GetScopeTargetsRequest, ): Promise<runtime.ApiResponse<Array<Target>>> {
+    async getScopeTargetsRaw(requestParameters: GetScopeTargetsRequest, ): Promise<runtime.ApiResponse<Array<Target>>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeTargets.');
         }
@@ -714,7 +714,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get a list of scopes defined on the account
      * List scopes
      */
-    private async getScopesRaw(): Promise<runtime.ApiResponse<Array<Scope>>> {
+    async getScopesRaw(): Promise<runtime.ApiResponse<Array<Scope>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -750,7 +750,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Unarchive a scope
      * Unarchive a scope
      */
-    private async unarchiveScopeRaw(requestParameters: UnarchiveScopeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveScopeRaw(requestParameters: UnarchiveScopeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling unarchiveScope.');
         }
@@ -796,7 +796,7 @@ export class ScopesApi extends runtime.BaseAPI {
      * Update the configuration of a scope.
      * Update a scope
      */
-    private async updateScopeRaw(requestParameters: UpdateScopeRequest, ): Promise<runtime.ApiResponse<Scope>> {
+    async updateScopeRaw(requestParameters: UpdateScopeRequest, ): Promise<runtime.ApiResponse<Scope>> {
         if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
             throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling updateScope.');
         }

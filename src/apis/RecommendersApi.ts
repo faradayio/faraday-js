@@ -66,7 +66,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Archive a recommender
      * Archive a recommender
      */
-    private async archiveRecommenderRaw(requestParameters: ArchiveRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveRecommenderRaw(requestParameters: ArchiveRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
             throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling archiveRecommender.');
         }
@@ -112,7 +112,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager. 
      * Create recommender
      */
-    private async createRecommenderRaw(requestParameters: CreateRecommenderRequest, ): Promise<runtime.ApiResponse<Recommender>> {
+    async createRecommenderRaw(requestParameters: CreateRecommenderRequest, ): Promise<runtime.ApiResponse<Recommender>> {
         if (requestParameters.recommenderFields === null || requestParameters.recommenderFields === undefined) {
             throw new runtime.RequiredError('recommenderFields','Required parameter requestParameters.recommenderFields was null or undefined when calling createRecommender.');
         }
@@ -154,7 +154,7 @@ export class RecommendersApi extends runtime.BaseAPI {
     /**
      * Delete a recommender
      */
-    private async deleteRecommenderRaw(requestParameters: DeleteRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteRecommenderRaw(requestParameters: DeleteRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
             throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling deleteRecommender.');
         }
@@ -192,7 +192,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateRecommenderRaw(requestParameters: ForceUpdateRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateRecommenderRaw(requestParameters: ForceUpdateRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
             throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling forceUpdateRecommender.');
         }
@@ -231,7 +231,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Get details on a specific recommender
      * Retrieve a recommender
      */
-    private async getRecommenderRaw(requestParameters: GetRecommenderRequest, ): Promise<runtime.ApiResponse<Recommender>> {
+    async getRecommenderRaw(requestParameters: GetRecommenderRequest, ): Promise<runtime.ApiResponse<Recommender>> {
         if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
             throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling getRecommender.');
         }
@@ -271,7 +271,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
      * Retrieve a recommenders\'s analysis
      */
-    private async getRecommenderAnalysisRaw(requestParameters: GetRecommenderAnalysisRequest, ): Promise<runtime.ApiResponse<RecommenderAnalysis>> {
+    async getRecommenderAnalysisRaw(requestParameters: GetRecommenderAnalysisRequest, ): Promise<runtime.ApiResponse<RecommenderAnalysis>> {
         if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
             throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling getRecommenderAnalysis.');
         }
@@ -311,7 +311,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    private async getRecommendersRaw(): Promise<runtime.ApiResponse<Array<Recommender>>> {
+    async getRecommendersRaw(): Promise<runtime.ApiResponse<Array<Recommender>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -347,7 +347,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Unarchive a recommender
      * Unarchive a recommender
      */
-    private async unarchiveRecommenderRaw(requestParameters: UnarchiveRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveRecommenderRaw(requestParameters: UnarchiveRecommenderRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
             throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling unarchiveRecommender.');
         }
@@ -393,7 +393,7 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Edit configuration of a recommender
      * Edit a recommender
      */
-    private async updateRecommenderRaw(requestParameters: UpdateRecommenderRequest, ): Promise<runtime.ApiResponse<Recommender>> {
+    async updateRecommenderRaw(requestParameters: UpdateRecommenderRequest, ): Promise<runtime.ApiResponse<Recommender>> {
         if (requestParameters.recommenderId === null || requestParameters.recommenderId === undefined) {
             throw new runtime.RequiredError('recommenderId','Required parameter requestParameters.recommenderId was null or undefined when calling updateRecommender.');
         }

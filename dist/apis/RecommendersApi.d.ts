@@ -46,7 +46,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Archive a recommender
      * Archive a recommender
      */
-    private archiveRecommenderRaw;
+    archiveRecommenderRaw(requestParameters: ArchiveRecommenderRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a recommender
      * Archive a recommender
@@ -56,7 +56,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager.
      * Create recommender
      */
-    private createRecommenderRaw;
+    createRecommenderRaw(requestParameters: CreateRecommenderRequest): Promise<runtime.ApiResponse<Recommender>>;
     /**
      * Add a new recommender.  This feature is experimental and subject to change. To enable this feature, contact your account manager.
      * Create recommender
@@ -65,7 +65,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
     /**
      * Delete a recommender
      */
-    private deleteRecommenderRaw;
+    deleteRecommenderRaw(requestParameters: DeleteRecommenderRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a recommender
      */
@@ -74,7 +74,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateRecommenderRaw;
+    forceUpdateRecommenderRaw(requestParameters: ForceUpdateRecommenderRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.
@@ -84,7 +84,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Get details on a specific recommender
      * Retrieve a recommender
      */
-    private getRecommenderRaw;
+    getRecommenderRaw(requestParameters: GetRecommenderRequest): Promise<runtime.ApiResponse<Recommender>>;
     /**
      * Get details on a specific recommender
      * Retrieve a recommender
@@ -94,7 +94,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
      * Retrieve a recommenders\'s analysis
      */
-    private getRecommenderAnalysisRaw;
+    getRecommenderAnalysisRaw(requestParameters: GetRecommenderAnalysisRequest): Promise<runtime.ApiResponse<RecommenderAnalysis>>;
     /**
      * Get details on a specific recommender\'s analysis report on model performance, bias, etc.
      * Retrieve a recommenders\'s analysis
@@ -104,7 +104,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    private getRecommendersRaw;
+    getRecommendersRaw(): Promise<runtime.ApiResponse<Array<Recommender>>>;
     /**
      * Get a list of recommenders defined on the account
      * List recommenders
@@ -114,7 +114,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Unarchive a recommender
      * Unarchive a recommender
      */
-    private unarchiveRecommenderRaw;
+    unarchiveRecommenderRaw(requestParameters: UnarchiveRecommenderRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a recommender
      * Unarchive a recommender
@@ -124,7 +124,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Edit configuration of a recommender
      * Edit a recommender
      */
-    private updateRecommenderRaw;
+    updateRecommenderRaw(requestParameters: UpdateRecommenderRequest): Promise<runtime.ApiResponse<Recommender>>;
     /**
      * Edit configuration of a recommender
      * Edit a recommender

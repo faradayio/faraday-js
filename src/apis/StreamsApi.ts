@@ -65,7 +65,7 @@ export class StreamsApi extends runtime.BaseAPI {
      * Archive a stream
      * Archive a stream
      */
-    private async archiveStreamRaw(requestParameters: ArchiveStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveStreamRaw(requestParameters: ArchiveStreamRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
             throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling archiveStream.');
         }
@@ -110,7 +110,7 @@ export class StreamsApi extends runtime.BaseAPI {
     /**
      * Delete a stream
      */
-    private async deleteStreamRaw(requestParameters: DeleteStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteStreamRaw(requestParameters: DeleteStreamRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
             throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling deleteStream.');
         }
@@ -148,7 +148,7 @@ export class StreamsApi extends runtime.BaseAPI {
      * Look up (or create) an event stream by name.
      * Create a stream
      */
-    private async findOrCreateStreamRaw(requestParameters: FindOrCreateStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
+    async findOrCreateStreamRaw(requestParameters: FindOrCreateStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
         if (requestParameters.streamName === null || requestParameters.streamName === undefined) {
             throw new runtime.RequiredError('streamName','Required parameter requestParameters.streamName was null or undefined when calling findOrCreateStream.');
         }
@@ -188,7 +188,7 @@ export class StreamsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateStreamRaw(requestParameters: ForceUpdateStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateStreamRaw(requestParameters: ForceUpdateStreamRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
             throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling forceUpdateStream.');
         }
@@ -227,7 +227,7 @@ export class StreamsApi extends runtime.BaseAPI {
      * Look up a specific event stream.
      * Retrieve a stream
      */
-    private async getStreamRaw(requestParameters: GetStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
+    async getStreamRaw(requestParameters: GetStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
         if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
             throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling getStream.');
         }
@@ -266,7 +266,7 @@ export class StreamsApi extends runtime.BaseAPI {
     /**
      * Get the count of stream events emitted over a time period.
      */
-    private async getStreamAnalysisRaw(requestParameters: GetStreamAnalysisRequest, ): Promise<runtime.ApiResponse<StreamAnalysis>> {
+    async getStreamAnalysisRaw(requestParameters: GetStreamAnalysisRequest, ): Promise<runtime.ApiResponse<StreamAnalysis>> {
         if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
             throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling getStreamAnalysis.');
         }
@@ -305,7 +305,7 @@ export class StreamsApi extends runtime.BaseAPI {
      * List all streams present on the account
      * List streams
      */
-    private async getStreamsRaw(): Promise<runtime.ApiResponse<Array<Stream>>> {
+    async getStreamsRaw(): Promise<runtime.ApiResponse<Array<Stream>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -341,7 +341,7 @@ export class StreamsApi extends runtime.BaseAPI {
      * Unarchive a stream
      * Unarchive a stream
      */
-    private async unarchiveStreamRaw(requestParameters: UnarchiveStreamRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveStreamRaw(requestParameters: UnarchiveStreamRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
             throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling unarchiveStream.');
         }
@@ -387,7 +387,7 @@ export class StreamsApi extends runtime.BaseAPI {
      * Update the configuration of a stream
      * Update a stream
      */
-    private async updateStreamRaw(requestParameters: UpdateStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
+    async updateStreamRaw(requestParameters: UpdateStreamRequest, ): Promise<runtime.ApiResponse<Stream>> {
         if (requestParameters.streamIdOrName === null || requestParameters.streamIdOrName === undefined) {
             throw new runtime.RequiredError('streamIdOrName','Required parameter requestParameters.streamIdOrName was null or undefined when calling updateStream.');
         }

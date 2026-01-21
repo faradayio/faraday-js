@@ -66,7 +66,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Archive a trait
      * Archive a trait
      */
-    private async archiveTraitRaw(requestParameters: ArchiveTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveTraitRaw(requestParameters: ArchiveTraitRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
             throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling archiveTrait.');
         }
@@ -112,7 +112,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Create a new user-defined Trait. You can connect your uploaded data to this trait by sending a PATCH to the relevant dataset with `output_to_traits` defined. 
      * Create a Trait
      */
-    private async createTraitRaw(requestParameters: CreateTraitRequest, ): Promise<runtime.ApiResponse<Trait>> {
+    async createTraitRaw(requestParameters: CreateTraitRequest, ): Promise<runtime.ApiResponse<Trait>> {
         if (requestParameters.traitFields === null || requestParameters.traitFields === undefined) {
             throw new runtime.RequiredError('traitFields','Required parameter requestParameters.traitFields was null or undefined when calling createTrait.');
         }
@@ -155,7 +155,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Delete all traits without a source dataset.
      * Delete all orphaned traits
      */
-    private async deleteAllOrphanedTraitsRaw(): Promise<runtime.ApiResponse<void>> {
+    async deleteAllOrphanedTraitsRaw(): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -190,7 +190,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Delete a trait
      * Delete a trait
      */
-    private async deleteTraitRaw(requestParameters: DeleteTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteTraitRaw(requestParameters: DeleteTraitRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
             throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling deleteTrait.');
         }
@@ -229,7 +229,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateTraitRaw(requestParameters: ForceUpdateTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateTraitRaw(requestParameters: ForceUpdateTraitRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
             throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling forceUpdateTrait.');
         }
@@ -268,7 +268,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Get a specific trait by ID.
      * Get a specific trait
      */
-    private async getTraitRaw(requestParameters: GetTraitRequest, ): Promise<runtime.ApiResponse<Trait>> {
+    async getTraitRaw(requestParameters: GetTraitRequest, ): Promise<runtime.ApiResponse<Trait>> {
         if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
             throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling getTrait.');
         }
@@ -307,7 +307,7 @@ export class TraitsApi extends runtime.BaseAPI {
     /**
      * The percentage of the US population that falls into each category of this trait.
      */
-    private async getTraitAnalysisDimensionsRaw(requestParameters: GetTraitAnalysisDimensionsRequest, ): Promise<runtime.ApiResponse<AnalysisDimensionsTrait>> {
+    async getTraitAnalysisDimensionsRaw(requestParameters: GetTraitAnalysisDimensionsRequest, ): Promise<runtime.ApiResponse<AnalysisDimensionsTrait>> {
         if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
             throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling getTraitAnalysisDimensions.');
         }
@@ -346,7 +346,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    private async getTraitsRaw(): Promise<runtime.ApiResponse<Array<Trait>>> {
+    async getTraitsRaw(): Promise<runtime.ApiResponse<Array<Trait>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -382,7 +382,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits, in csv form
      */
-    private async getTraitsCsvRaw(): Promise<runtime.ApiResponse<string>> {
+    async getTraitsCsvRaw(): Promise<runtime.ApiResponse<string>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -418,7 +418,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Unarchive a trait
      * Unarchive a trait
      */
-    private async unarchiveTraitRaw(requestParameters: UnarchiveTraitRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveTraitRaw(requestParameters: UnarchiveTraitRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
             throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling unarchiveTrait.');
         }
@@ -464,7 +464,7 @@ export class TraitsApi extends runtime.BaseAPI {
      * Update the configuration of a trait
      * Update a trait
      */
-    private async updateTraitRaw(requestParameters: UpdateTraitRequest, ): Promise<runtime.ApiResponse<Trait>> {
+    async updateTraitRaw(requestParameters: UpdateTraitRequest, ): Promise<runtime.ApiResponse<Trait>> {
         if (requestParameters.traitId === null || requestParameters.traitId === undefined) {
             throw new runtime.RequiredError('traitId','Required parameter requestParameters.traitId was null or undefined when calling updateTrait.');
         }

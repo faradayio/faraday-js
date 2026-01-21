@@ -46,7 +46,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Archive a cohort
      * Archive a cohort
      */
-    private archiveCohortRaw;
+    archiveCohortRaw(requestParameters: ArchiveCohortRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a cohort
      * Archive a cohort
@@ -56,7 +56,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Add a new cohort (defined as people who have made qualifying emissions of certain events)
      * Create cohort
      */
-    private createCohortRaw;
+    createCohortRaw(requestParameters: CreateCohortRequest): Promise<runtime.ApiResponse<Cohort>>;
     /**
      * Add a new cohort (defined as people who have made qualifying emissions of certain events)
      * Create cohort
@@ -65,7 +65,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
     /**
      * Delete a cohort
      */
-    private deleteCohortRaw;
+    deleteCohortRaw(requestParameters: DeleteCohortRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a cohort
      */
@@ -74,7 +74,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateCohortRaw;
+    forceUpdateCohortRaw(requestParameters: ForceUpdateCohortRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -84,7 +84,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Get details on a specific cohort
      * Retrieve a cohort
      */
-    private getCohortRaw;
+    getCohortRaw(requestParameters: GetCohortRequest): Promise<runtime.ApiResponse<Cohort>>;
     /**
      * Get details on a specific cohort
      * Retrieve a cohort
@@ -93,7 +93,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
     /**
      * Get the cohort membership counts over time.
      */
-    private getCohortAnalysisMembershipRaw;
+    getCohortAnalysisMembershipRaw(requestParameters: GetCohortAnalysisMembershipRequest): Promise<runtime.ApiResponse<CohortAnalysisMembership>>;
     /**
      * Get the cohort membership counts over time.
      */
@@ -102,7 +102,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Get a list of cohorts defined on the account
      * List cohorts
      */
-    private getCohortsRaw;
+    getCohortsRaw(): Promise<runtime.ApiResponse<Array<Cohort>>>;
     /**
      * Get a list of cohorts defined on the account
      * List cohorts
@@ -112,7 +112,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Unarchive a cohort
      * Unarchive a cohort
      */
-    private unarchiveCohortRaw;
+    unarchiveCohortRaw(requestParameters: UnarchiveCohortRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a cohort
      * Unarchive a cohort
@@ -122,7 +122,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Edit configuration of a cohort
      * Edit a cohort
      */
-    private updateCohortRaw;
+    updateCohortRaw(requestParameters: UpdateCohortRequest): Promise<runtime.ApiResponse<Cohort>>;
     /**
      * Edit configuration of a cohort
      * Edit a cohort

@@ -49,7 +49,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Archive a outcome
      * Archive a outcome
      */
-    private archiveOutcomeRaw;
+    archiveOutcomeRaw(requestParameters: ArchiveOutcomeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Archive a outcome
      * Archive a outcome
@@ -59,7 +59,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Add a new outcome (defined as a prediction of how likely individuals are to transition from one cohort to another)
      * Create outcome
      */
-    private createOutcomeRaw;
+    createOutcomeRaw(requestParameters: CreateOutcomeRequest): Promise<runtime.ApiResponse<Outcome>>;
     /**
      * Add a new outcome (defined as a prediction of how likely individuals are to transition from one cohort to another)
      * Create outcome
@@ -68,7 +68,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
     /**
      * Delete an outcome
      */
-    private deleteOutcomeRaw;
+    deleteOutcomeRaw(requestParameters: DeleteOutcomeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete an outcome
      */
@@ -77,7 +77,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    private forceUpdateOutcomeRaw;
+    forceUpdateOutcomeRaw(requestParameters: ForceUpdateOutcomeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
@@ -87,7 +87,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Get details on a specific outcome
      * Retrieve an outcome
      */
-    private getOutcomeRaw;
+    getOutcomeRaw(requestParameters: GetOutcomeRequest): Promise<runtime.ApiResponse<Outcome>>;
     /**
      * Get details on a specific outcome
      * Retrieve an outcome
@@ -97,7 +97,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Get details on a specific outcome\'s analysis report on model performance, bias, etc.
      * Retrieve an outcome\'s analysis
      */
-    private getOutcomeAnalysisRaw;
+    getOutcomeAnalysisRaw(requestParameters: GetOutcomeAnalysisRequest): Promise<runtime.ApiResponse<OutcomeAnalysis>>;
     /**
      * Get details on a specific outcome\'s analysis report on model performance, bias, etc.
      * Retrieve an outcome\'s analysis
@@ -107,7 +107,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Download an HTML report containing information such as the objective of the model, performance, and important features
      * Retrieve outcome report
      */
-    private getOutcomeDownloadRaw;
+    getOutcomeDownloadRaw(requestParameters: GetOutcomeDownloadRequest): Promise<runtime.ApiResponse<Blob>>;
     /**
      * Download an HTML report containing information such as the objective of the model, performance, and important features
      * Retrieve outcome report
@@ -117,7 +117,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    private getOutcomesRaw;
+    getOutcomesRaw(): Promise<runtime.ApiResponse<Array<Outcome>>>;
     /**
      * Get a list of outcomes defined on the account
      * List outcomes
@@ -127,7 +127,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Unarchive a outcome
      * Unarchive a outcome
      */
-    private unarchiveOutcomeRaw;
+    unarchiveOutcomeRaw(requestParameters: UnarchiveOutcomeRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Unarchive a outcome
      * Unarchive a outcome
@@ -137,7 +137,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Edit configuration of an existing outcome
      * Edit an outcome
      */
-    private updateOutcomeRaw;
+    updateOutcomeRaw(requestParameters: UpdateOutcomeRequest): Promise<runtime.ApiResponse<Outcome>>;
     /**
      * Edit configuration of an existing outcome
      * Edit an outcome

@@ -19,7 +19,7 @@ export declare class GraphApi extends runtime.BaseAPI {
      * Each object in the list is an edge in the dependency graph.
      * Retrieve a dependency graph for all resources on an account
      */
-    private getGraphRaw;
+    getGraphRaw(): Promise<runtime.ApiResponse<Array<GraphEdge>>>;
     /**
      * Each object in the list is an edge in the dependency graph.
      * Retrieve a dependency graph for all resources on an account

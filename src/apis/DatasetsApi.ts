@@ -61,7 +61,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Archive a dataset
      * Archive a dataset
      */
-    private async archiveDatasetRaw(requestParameters: ArchiveDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async archiveDatasetRaw(requestParameters: ArchiveDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
             throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling archiveDataset.');
         }
@@ -107,7 +107,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Create a new dataset
      * Create dataset
      */
-    private async createDatasetRaw(requestParameters: CreateDatasetRequest, ): Promise<runtime.ApiResponse<Dataset>> {
+    async createDatasetRaw(requestParameters: CreateDatasetRequest, ): Promise<runtime.ApiResponse<Dataset>> {
         if (requestParameters.datasetFields === null || requestParameters.datasetFields === undefined) {
             throw new runtime.RequiredError('datasetFields','Required parameter requestParameters.datasetFields was null or undefined when calling createDataset.');
         }
@@ -149,7 +149,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     /**
      * Delete a dataset
      */
-    private async deleteDatasetRaw(requestParameters: DeleteDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteDatasetRaw(requestParameters: DeleteDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
             throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling deleteDataset.');
         }
@@ -187,7 +187,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateDatasetRaw(requestParameters: ForceUpdateDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateDatasetRaw(requestParameters: ForceUpdateDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
             throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling forceUpdateDataset.');
         }
@@ -226,7 +226,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Retrieve details on a specific dataset
      * Retrieve a dataset
      */
-    private async getDatasetRaw(requestParameters: GetDatasetRequest, ): Promise<runtime.ApiResponse<Dataset>> {
+    async getDatasetRaw(requestParameters: GetDatasetRequest, ): Promise<runtime.ApiResponse<Dataset>> {
         if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
             throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling getDataset.');
         }
@@ -266,7 +266,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Get a list of the datasets available in the developer’s account
      * List datasets
      */
-    private async getDatasetsRaw(): Promise<runtime.ApiResponse<Array<Dataset>>> {
+    async getDatasetsRaw(): Promise<runtime.ApiResponse<Array<Dataset>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -302,7 +302,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Unarchive a dataset
      * Unarchive a dataset
      */
-    private async unarchiveDatasetRaw(requestParameters: UnarchiveDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
+    async unarchiveDatasetRaw(requestParameters: UnarchiveDatasetRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
             throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling unarchiveDataset.');
         }
@@ -348,7 +348,7 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Update an existing dataset
      * Update dataset
      */
-    private async updateDatasetRaw(requestParameters: UpdateDatasetRequest, ): Promise<runtime.ApiResponse<Dataset>> {
+    async updateDatasetRaw(requestParameters: UpdateDatasetRequest, ): Promise<runtime.ApiResponse<Dataset>> {
         if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
             throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling updateDataset.');
         }

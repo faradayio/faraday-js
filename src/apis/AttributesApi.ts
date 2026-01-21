@@ -50,7 +50,7 @@ export class AttributesApi extends runtime.BaseAPI {
      * Add a new attribute that wraps a stream of assertions
      * Create attribute
      */
-    private async createAttributeRaw(requestParameters: CreateAttributeRequest, ): Promise<runtime.ApiResponse<Attribute>> {
+    async createAttributeRaw(requestParameters: CreateAttributeRequest, ): Promise<runtime.ApiResponse<Attribute>> {
         if (requestParameters.attributePost === null || requestParameters.attributePost === undefined) {
             throw new runtime.RequiredError('attributePost','Required parameter requestParameters.attributePost was null or undefined when calling createAttribute.');
         }
@@ -92,7 +92,7 @@ export class AttributesApi extends runtime.BaseAPI {
     /**
      * Delete an attribute
      */
-    private async deleteAttributeRaw(requestParameters: DeleteAttributeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async deleteAttributeRaw(requestParameters: DeleteAttributeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.attributeId === null || requestParameters.attributeId === undefined) {
             throw new runtime.RequiredError('attributeId','Required parameter requestParameters.attributeId was null or undefined when calling deleteAttribute.');
         }
@@ -130,7 +130,7 @@ export class AttributesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    private async forceUpdateAttributeRaw(requestParameters: ForceUpdateAttributeRequest, ): Promise<runtime.ApiResponse<void>> {
+    async forceUpdateAttributeRaw(requestParameters: ForceUpdateAttributeRequest, ): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.attributeId === null || requestParameters.attributeId === undefined) {
             throw new runtime.RequiredError('attributeId','Required parameter requestParameters.attributeId was null or undefined when calling forceUpdateAttribute.');
         }
@@ -169,7 +169,7 @@ export class AttributesApi extends runtime.BaseAPI {
      * Get details on a specific attribute
      * Retrieve an attribute
      */
-    private async getAttributeRaw(requestParameters: GetAttributeRequest, ): Promise<runtime.ApiResponse<Attribute>> {
+    async getAttributeRaw(requestParameters: GetAttributeRequest, ): Promise<runtime.ApiResponse<Attribute>> {
         if (requestParameters.attributeId === null || requestParameters.attributeId === undefined) {
             throw new runtime.RequiredError('attributeId','Required parameter requestParameters.attributeId was null or undefined when calling getAttribute.');
         }
@@ -209,7 +209,7 @@ export class AttributesApi extends runtime.BaseAPI {
      * Get a list of attributes defined on the account
      * List attributes
      */
-    private async getAttributesRaw(): Promise<runtime.ApiResponse<Array<Attribute>>> {
+    async getAttributesRaw(): Promise<runtime.ApiResponse<Array<Attribute>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -245,7 +245,7 @@ export class AttributesApi extends runtime.BaseAPI {
      * Update the configuration of an attribute
      * Update an attribute
      */
-    private async updateAttributeRaw(requestParameters: UpdateAttributeRequest, ): Promise<runtime.ApiResponse<Attribute>> {
+    async updateAttributeRaw(requestParameters: UpdateAttributeRequest, ): Promise<runtime.ApiResponse<Attribute>> {
         if (requestParameters.attributeId === null || requestParameters.attributeId === undefined) {
             throw new runtime.RequiredError('attributeId','Required parameter requestParameters.attributeId was null or undefined when calling updateAttribute.');
         }

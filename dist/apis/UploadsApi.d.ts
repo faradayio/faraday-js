@@ -32,7 +32,7 @@ export declare class UploadsApi extends runtime.BaseAPI {
      * Upload a CSV file containing data to process.
      * Add a file
      */
-    private createUploadRaw;
+    createUploadRaw(requestParameters: CreateUploadRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Upload a CSV file containing data to process.
      * Add a file
@@ -42,7 +42,7 @@ export declare class UploadsApi extends runtime.BaseAPI {
      * Delete a CSV file previously uploaded.
      * Delete a file
      */
-    private deleteUploadRaw;
+    deleteUploadRaw(requestParameters: DeleteUploadRequest): Promise<runtime.ApiResponse<void>>;
     /**
      * Delete a CSV file previously uploaded.
      * Delete a file
@@ -52,7 +52,7 @@ export declare class UploadsApi extends runtime.BaseAPI {
      * The file uploaded via /uploads/{directory}/{filename}
      * Download a previously uploaded file
      */
-    private getUploadRaw;
+    getUploadRaw(requestParameters: GetUploadRequest): Promise<runtime.ApiResponse<Blob>>;
     /**
      * The file uploaded via /uploads/{directory}/{filename}
      * Download a previously uploaded file
@@ -62,7 +62,7 @@ export declare class UploadsApi extends runtime.BaseAPI {
      * A list of files uploaded via /uploads/{directory}/{filename}, and their metadata
      * Retrieve the list of previously uploaded files
      */
-    private getUploadsRaw;
+    getUploadsRaw(): Promise<runtime.ApiResponse<Array<Upload>>>;
     /**
      * A list of files uploaded via /uploads/{directory}/{filename}, and their metadata
      * Retrieve the list of previously uploaded files
