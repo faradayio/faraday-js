@@ -676,7 +676,7 @@ export interface Attribute {
      * @type {AttributeAggregation}
      * @memberof Attribute
      */
-    aggregation: AttributeAggregation;
+    aggregation?: AttributeAggregation;
     /**
      * If not null, this resource will no longer receive updates, but will still be visable.
      * @type {string}
@@ -700,7 +700,7 @@ export interface Attribute {
      * @type {AttributeSelectorsByPurpose}
      * @memberof Attribute
      */
-    default_selector_by_purpose: AttributeSelectorsByPurpose;
+    default_selector_by_purpose?: AttributeSelectorsByPurpose;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
@@ -906,7 +906,7 @@ export interface AttributeMergePatch {
      * @type {AttributeAggregation}
      * @memberof AttributeMergePatch
      */
-    aggregation?: AttributeAggregation;
+    aggregation?: AttributeAggregation | null;
     /**
      * 
      * @type {StreamPropertyCategory}
@@ -918,7 +918,7 @@ export interface AttributeMergePatch {
      * @type {AttributeSelectorsByPurpose}
      * @memberof AttributeMergePatch
      */
-    default_selector_by_purpose?: AttributeSelectorsByPurpose;
+    default_selector_by_purpose?: AttributeSelectorsByPurpose | null;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
@@ -1012,7 +1012,7 @@ export interface AttributePost {
      * @type {AttributeAggregation}
      * @memberof AttributePost
      */
-    aggregation: AttributeAggregation;
+    aggregation?: AttributeAggregation;
     /**
      * 
      * @type {StreamPropertyCategory}
@@ -1024,7 +1024,7 @@ export interface AttributePost {
      * @type {AttributeSelectorsByPurpose}
      * @memberof AttributePost
      */
-    default_selector_by_purpose: AttributeSelectorsByPurpose;
+    default_selector_by_purpose?: AttributeSelectorsByPurpose;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
@@ -1118,7 +1118,7 @@ export interface AttributePut {
      * @type {AttributeAggregation}
      * @memberof AttributePut
      */
-    aggregation: AttributeAggregation;
+    aggregation?: AttributeAggregation;
     /**
      * 
      * @type {StreamPropertyCategory}
@@ -1130,7 +1130,7 @@ export interface AttributePut {
      * @type {AttributeSelectorsByPurpose}
      * @memberof AttributePut
      */
-    default_selector_by_purpose: AttributeSelectorsByPurpose;
+    default_selector_by_purpose?: AttributeSelectorsByPurpose;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
