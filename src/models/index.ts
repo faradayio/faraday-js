@@ -17736,6 +17736,12 @@ export interface Stream {
     resource_type: string;
     /**
      * 
+     * @type {Array<StreamSources>}
+     * @memberof Stream
+     */
+    sources?: Array<StreamSources>;
+    /**
+     * 
      * @type {ResourceStatus}
      * @memberof Stream
      */
@@ -17874,6 +17880,12 @@ export interface StreamMergePatch {
     properties?: StreamPropertiesMergePatch | null;
     /**
      * 
+     * @type {Array<StreamSources>}
+     * @memberof StreamMergePatch
+     */
+    sources?: Array<StreamSources> | null;
+    /**
+     * 
      * @type {StreamPropertyTier}
      * @memberof StreamMergePatch
      */
@@ -17923,6 +17935,12 @@ export interface StreamPost {
      * @memberof StreamPost
      */
     properties?: StreamPropertiesPost;
+    /**
+     * 
+     * @type {Array<StreamSources>}
+     * @memberof StreamPost
+     */
+    sources?: Array<StreamSources>;
     /**
      * 
      * @type {StreamPropertyTier}
@@ -18388,10 +18406,71 @@ export interface StreamPut {
     properties?: StreamPropertiesPut;
     /**
      * 
+     * @type {Array<StreamSources>}
+     * @memberof StreamPut
+     */
+    sources?: Array<StreamSources>;
+    /**
+     * 
      * @type {StreamPropertyTier}
      * @memberof StreamPut
      */
     tier?: StreamPropertyTier;
+}
+/**
+ * 
+ * @export
+ * @interface StreamSources
+ */
+export interface StreamSources {
+    /**
+     * Which column you are getting the data from
+     * @type {string}
+     * @memberof StreamSources
+     */
+    column_name?: string;
+    /**
+     * Only include certain events from the dataset
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof StreamSources
+     */
+    conditions?: Array<DatasetStreamCondition>;
+    /**
+     * Which dataset is producing the events
+     * @type {string}
+     * @memberof StreamSources
+     */
+    dataset_id: string;
+    /**
+     * 
+     * @type {DecodeConfig}
+     * @memberof StreamSources
+     */
+    decode?: DecodeConfig;
+    /**
+     * 
+     * @type {DataMapColumnFormat}
+     * @memberof StreamSources
+     */
+    format?: DataMapColumnFormat;
+    /**
+     * Which event stream property you are populating
+     * @type {string}
+     * @memberof StreamSources
+     */
+    property_name: string;
+    /**
+     * 
+     * @type {RecodeConfig}
+     * @memberof StreamSources
+     */
+    recode?: RecodeConfig;
+    /**
+     * Alternative to column_name. Static property value for all events from this dataset
+     * @type {string | number | boolean}
+     * @memberof StreamSources
+     */
+    value?: string | number | boolean | null;
 }
 /**
  * A table of arbitrary data. Purposefully untyped to allow for flexibility in the data.
