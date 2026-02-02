@@ -18593,10 +18593,10 @@ export interface StreamPropertyConfig {
     recode?: RecodeConfig;
     /**
      * A static value for this property (alternative to column_name)
-     * @type {string | number | boolean}
+     * @type {string | number | boolean | Array<string>}
      * @memberof StreamPropertyConfig
      */
-    value?: string | number | boolean | null;
+    value?: string | number | boolean | Array<string> | null;
 }
 /**
  *
