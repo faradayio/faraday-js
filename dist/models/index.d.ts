@@ -9147,6 +9147,116 @@ export declare enum DatasetIdentityProvidersSelectEnum {
     All = "all"
 }
 /**
+ * A record of a dataset ingress log with metrics
+ * @export
+ * @interface DatasetIngressLog
+ */
+export interface DatasetIngressLog {
+    /**
+     * When the ingress completed
+     * @type {string}
+     * @memberof DatasetIngressLog
+     */
+    finished_at?: string;
+    /**
+     * UUID of the ingress log
+     * @type {string}
+     * @memberof DatasetIngressLog
+     */
+    id: string;
+    /**
+     *
+     * @type {DatasetIngressLogMetrics}
+     * @memberof DatasetIngressLog
+     */
+    metrics: DatasetIngressLogMetrics;
+    /**
+     * When the ingress started
+     * @type {string}
+     * @memberof DatasetIngressLog
+     */
+    started_at: string;
+    /**
+     *
+     * @type {ResourceStatus}
+     * @memberof DatasetIngressLog
+     */
+    status: ResourceStatus;
+    /**
+     * Error message if status indicates failure
+     * @type {string}
+     * @memberof DatasetIngressLog
+     */
+    status_error?: string;
+}
+/**
+ * Data ingress metrics with customer-friendly field names
+ * @export
+ * @interface DatasetIngressLogMetrics
+ */
+export interface DatasetIngressLogMetrics {
+    /**
+     * Valid rows allowed after CCPA filtering
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    allowed_row_count?: number;
+    /**
+     * Unique people from allowed rows
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    allowed_row_unique_people_count?: number;
+    /**
+     * Records eligible for enrichment at the residence level
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    enrichable_residence_count?: number;
+    /**
+     * Rows eligible for enrichment of, but not limited to, consumer, identity, and prediction data
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    enrichable_row_count?: number;
+    /**
+     * Unique people from enrichable rows
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    enrichable_row_unique_people_count?: number;
+    /**
+     * Rows that could be parsed
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    processable_row_count?: number;
+    /**
+     * Rows matched to known identities
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    recognized_row_count?: number;
+    /**
+     * Unique people from recognized rows
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    recognized_row_unique_people_count?: number;
+    /**
+     * Total rows received
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    total_row_count?: number;
+    /**
+     * Processable rows passing validation that remove addresses and people determined to be from outside the united states
+     * @type {number}
+     * @memberof DatasetIngressLogMetrics
+     */
+    valid_row_count?: number;
+}
+/**
  *
  * @export
  * @interface DatasetMergeDatasets

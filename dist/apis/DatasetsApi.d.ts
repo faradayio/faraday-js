@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Dataset, DatasetMergePatch, DatasetPost } from '../models';
+import { ArchiveConfig, Dataset, DatasetIngressLog, DatasetMergePatch, DatasetPost } from '../models';
 export interface ArchiveDatasetRequest {
     datasetId: string;
     archiveConfig: ArchiveConfig;
@@ -26,6 +26,15 @@ export interface ForceUpdateDatasetRequest {
 }
 export interface GetDatasetRequest {
     datasetId: string;
+}
+export interface GetDatasetIngressLogRequest {
+    datasetId: string;
+    logId: string;
+}
+export interface GetDatasetIngressLogsRequest {
+    datasetId: string;
+    limit?: number;
+    offset?: number;
 }
 export interface UnarchiveDatasetRequest {
     datasetId: string;
@@ -87,6 +96,26 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Retrieve a dataset
      */
     getDataset(datasetId: string): Promise<Dataset>;
+    /**
+     * Retrieves a specific ingress log entry for a dataset
+     * Get a single dataset ingress log by ID
+     */
+    getDatasetIngressLogRaw(requestParameters: GetDatasetIngressLogRequest): Promise<runtime.ApiResponse<DatasetIngressLog>>;
+    /**
+     * Retrieves a specific ingress log entry for a dataset
+     * Get a single dataset ingress log by ID
+     */
+    getDatasetIngressLog(datasetId: string, logId: string): Promise<DatasetIngressLog>;
+    /**
+     * Retrieves ingress metrics for a specific dataset
+     * Get dataset ingress metrics over time
+     */
+    getDatasetIngressLogsRaw(requestParameters: GetDatasetIngressLogsRequest): Promise<runtime.ApiResponse<Array<DatasetIngressLog>>>;
+    /**
+     * Retrieves ingress metrics for a specific dataset
+     * Get dataset ingress metrics over time
+     */
+    getDatasetIngressLogs(datasetId: string, limit?: number, offset?: number): Promise<Array<DatasetIngressLog>>;
     /**
      * Get a list of the datasets available in the developer’s account
      * List datasets
