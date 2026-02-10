@@ -10,6 +10,13 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.1] - 2026-02-01
+
+### Added
+
+- GET `/datasets/{dataset_id}/logs/ingress` - returns paginated ingress logs showing row processing metrics (total, processable, valid, allowed, recognized, enrichable counts).
+- GET `/datasets/{dataset_id}/logs/ingress/{log_id}` - returns a specific ingress log entry.
+
 ## [0.14.0] - 2026-01-29
 
 ### Changed

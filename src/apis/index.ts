@@ -20,6 +20,9 @@ import {
     DatasetsApi
 } from './DatasetsApi';
 import {
+    ExperimentalApi
+} from './ExperimentalApi';
+import {
     FeatureStoresApi
 } from './FeatureStoresApi';
 import {
@@ -70,6 +73,7 @@ export class FaradayClient {
     cohorts: CohortsApi;
     connections: ConnectionsApi;
     datasets: DatasetsApi;
+    experimental: ExperimentalApi;
     featureStores: FeatureStoresApi;
     graph: GraphApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
@@ -93,6 +97,7 @@ export class FaradayClient {
         this.cohorts = new CohortsApi(configuration);
         this.connections = new ConnectionsApi(configuration);
         this.datasets = new DatasetsApi(configuration);
+        this.experimental = new ExperimentalApi(configuration);
         this.featureStores = new FeatureStoresApi(configuration);
         this.graph = new GraphApi(configuration);
         this.marketOpportunityAnalyses = new MarketOpportunityAnalysesApi(configuration);
