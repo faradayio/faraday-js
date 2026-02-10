@@ -144,9 +144,12 @@ class WebhooksApi extends runtime.BaseAPI {
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    getWebhookEndpointsRaw() {
+    getWebhookEndpointsRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -168,9 +171,9 @@ class WebhooksApi extends runtime.BaseAPI {
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    getWebhookEndpoints() {
+    getWebhookEndpoints(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getWebhookEndpointsRaw();
+            const response = yield this.getWebhookEndpointsRaw({ ids: ids });
             return yield response.value();
         });
     }

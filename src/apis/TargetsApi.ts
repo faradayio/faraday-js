@@ -62,6 +62,10 @@ export interface GetTargetAnalysisReportRequest {
     targetId: string;
 }
 
+export interface GetTargetsRequest {
+    ids?: Array<string>;
+}
+
 export interface LookupOnTargetRequest {
     targetId: string;
     targetLookupRequest: TargetLookupRequest;
@@ -450,8 +454,12 @@ export class TargetsApi extends runtime.BaseAPI {
      * Get a list of targets defined on the account
      * List targets
      */
-    async getTargetsRaw(): Promise<runtime.ApiResponse<Array<Target>>> {
+    async getTargetsRaw(requestParameters: GetTargetsRequest, ): Promise<runtime.ApiResponse<Array<Target>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -477,8 +485,8 @@ export class TargetsApi extends runtime.BaseAPI {
      * Get a list of targets defined on the account
      * List targets
      */
-    async getTargets(): Promise<Array<Target>> {
-        const response = await this.getTargetsRaw();
+    async getTargets(ids?: Array<string>, ): Promise<Array<Target>> {
+        const response = await this.getTargetsRaw({ ids: ids }, );
         return await response.value();
     }
 

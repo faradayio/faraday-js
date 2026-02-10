@@ -36,6 +36,10 @@ export interface GetAttributeRequest {
     attributeId: string;
 }
 
+export interface GetAttributesRequest {
+    ids?: Array<string>;
+}
+
 export interface UpdateAttributeRequest {
     attributeId: string;
     attributeFields: AttributeMergePatch;
@@ -209,8 +213,12 @@ export class AttributesApi extends runtime.BaseAPI {
      * Get a list of attributes defined on the account
      * List attributes
      */
-    async getAttributesRaw(): Promise<runtime.ApiResponse<Array<Attribute>>> {
+    async getAttributesRaw(requestParameters: GetAttributesRequest, ): Promise<runtime.ApiResponse<Array<Attribute>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -236,8 +244,8 @@ export class AttributesApi extends runtime.BaseAPI {
      * Get a list of attributes defined on the account
      * List attributes
      */
-    async getAttributes(): Promise<Array<Attribute>> {
-        const response = await this.getAttributesRaw();
+    async getAttributes(ids?: Array<string>, ): Promise<Array<Attribute>> {
+        const response = await this.getAttributesRaw({ ids: ids }, );
         return await response.value();
     }
 

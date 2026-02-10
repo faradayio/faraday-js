@@ -36,6 +36,10 @@ export interface GetFeatureStoreRequest {
     featureStoreId: string;
 }
 
+export interface GetFeatureStoresRequest {
+    ids?: Array<string>;
+}
+
 export interface UpdateFeatureStoreRequest {
     featureStoreId: string;
     featureStoreFields: FeatureStoreMergePatch;
@@ -209,8 +213,12 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    async getFeatureStoresRaw(): Promise<runtime.ApiResponse<Array<FeatureStore>>> {
+    async getFeatureStoresRaw(requestParameters: GetFeatureStoresRequest, ): Promise<runtime.ApiResponse<Array<FeatureStore>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -236,8 +244,8 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    async getFeatureStores(): Promise<Array<FeatureStore>> {
-        const response = await this.getFeatureStoresRaw();
+    async getFeatureStores(ids?: Array<string>, ): Promise<Array<FeatureStore>> {
+        const response = await this.getFeatureStoresRaw({ ids: ids }, );
         return await response.value();
     }
 

@@ -38,6 +38,10 @@ export interface ForceUpdateMarketOpportunityAnalysisRequest {
     marketOpportunityAnalysisId: string;
 }
 
+export interface GetMarketOpportunityAnalysesRequest {
+    ids?: Array<string>;
+}
+
 export interface GetMarketOpportunityAnalysisRequest {
     marketOpportunityAnalysisId: string;
 }
@@ -221,8 +225,12 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get all market opportunity analyses
      */
-    async getMarketOpportunityAnalysesRaw(): Promise<runtime.ApiResponse<Array<MarketOpportunityAnalysis>>> {
+    async getMarketOpportunityAnalysesRaw(requestParameters: GetMarketOpportunityAnalysesRequest, ): Promise<runtime.ApiResponse<Array<MarketOpportunityAnalysis>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -247,8 +255,8 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get all market opportunity analyses
      */
-    async getMarketOpportunityAnalyses(): Promise<Array<MarketOpportunityAnalysis>> {
-        const response = await this.getMarketOpportunityAnalysesRaw();
+    async getMarketOpportunityAnalyses(ids?: Array<string>, ): Promise<Array<MarketOpportunityAnalysis>> {
+        const response = await this.getMarketOpportunityAnalysesRaw({ ids: ids }, );
         return await response.value();
     }
 

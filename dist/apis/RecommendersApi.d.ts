@@ -30,6 +30,9 @@ export interface GetRecommenderRequest {
 export interface GetRecommenderAnalysisRequest {
     recommenderId: string;
 }
+export interface GetRecommendersRequest {
+    ids?: Array<string>;
+}
 export interface UnarchiveRecommenderRequest {
     recommenderId: string;
     archiveConfig: ArchiveConfig;
@@ -104,12 +107,12 @@ export declare class RecommendersApi extends runtime.BaseAPI {
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    getRecommendersRaw(): Promise<runtime.ApiResponse<Array<Recommender>>>;
+    getRecommendersRaw(requestParameters: GetRecommendersRequest): Promise<runtime.ApiResponse<Array<Recommender>>>;
     /**
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    getRecommenders(): Promise<Array<Recommender>>;
+    getRecommenders(ids?: Array<string>): Promise<Array<Recommender>>;
     /**
      * Unarchive a recommender
      * Unarchive a recommender

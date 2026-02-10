@@ -51,6 +51,10 @@ export interface GetOutcomeDownloadRequest {
     outcomeId: string;
 }
 
+export interface GetOutcomesRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchiveOutcomeRequest {
     outcomeId: string;
     archiveConfig: ArchiveConfig;
@@ -355,8 +359,12 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    async getOutcomesRaw(): Promise<runtime.ApiResponse<Array<Outcome>>> {
+    async getOutcomesRaw(requestParameters: GetOutcomesRequest, ): Promise<runtime.ApiResponse<Array<Outcome>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -382,8 +390,8 @@ export class OutcomesApi extends runtime.BaseAPI {
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    async getOutcomes(): Promise<Array<Outcome>> {
-        const response = await this.getOutcomesRaw();
+    async getOutcomes(ids?: Array<string>, ): Promise<Array<Outcome>> {
+        const response = await this.getOutcomesRaw({ ids: ids }, );
         return await response.value();
     }
 

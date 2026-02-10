@@ -30,6 +30,9 @@ export interface GetStreamRequest {
 export interface GetStreamAnalysisRequest {
     streamIdOrName: string;
 }
+export interface GetStreamsRequest {
+    ids?: Array<string>;
+}
 export interface UnarchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
@@ -102,12 +105,12 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * List all streams present on the account
      * List streams
      */
-    getStreamsRaw(): Promise<runtime.ApiResponse<Array<Stream>>>;
+    getStreamsRaw(requestParameters: GetStreamsRequest): Promise<runtime.ApiResponse<Array<Stream>>>;
     /**
      * List all streams present on the account
      * List streams
      */
-    getStreams(): Promise<Array<Stream>>;
+    getStreams(ids?: Array<string>): Promise<Array<Stream>>;
     /**
      * Unarchive a stream
      * Unarchive a stream

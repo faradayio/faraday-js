@@ -252,9 +252,12 @@ class StreamsApi extends runtime.BaseAPI {
      * List all streams present on the account
      * List streams
      */
-    getStreamsRaw() {
+    getStreamsRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -276,9 +279,9 @@ class StreamsApi extends runtime.BaseAPI {
      * List all streams present on the account
      * List streams
      */
-    getStreams() {
+    getStreams(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getStreamsRaw();
+            const response = yield this.getStreamsRaw({ ids: ids });
             return yield response.value();
         });
     }

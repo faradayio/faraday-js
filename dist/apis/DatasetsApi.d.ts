@@ -36,6 +36,9 @@ export interface GetDatasetIngressLogsRequest {
     limit?: number;
     offset?: number;
 }
+export interface GetDatasetsRequest {
+    ids?: Array<string>;
+}
 export interface UnarchiveDatasetRequest {
     datasetId: string;
     archiveConfig: ArchiveConfig;
@@ -120,12 +123,12 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Get a list of the datasets available in the developer’s account
      * List datasets
      */
-    getDatasetsRaw(): Promise<runtime.ApiResponse<Array<Dataset>>>;
+    getDatasetsRaw(requestParameters: GetDatasetsRequest): Promise<runtime.ApiResponse<Array<Dataset>>>;
     /**
      * Get a list of the datasets available in the developer’s account
      * List datasets
      */
-    getDatasets(): Promise<Array<Dataset>>;
+    getDatasets(ids?: Array<string>): Promise<Array<Dataset>>;
     /**
      * Unarchive a dataset
      * Unarchive a dataset

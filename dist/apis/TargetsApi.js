@@ -366,9 +366,12 @@ class TargetsApi extends runtime.BaseAPI {
      * Get a list of targets defined on the account
      * List targets
      */
-    getTargetsRaw() {
+    getTargetsRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -390,9 +393,9 @@ class TargetsApi extends runtime.BaseAPI {
      * Get a list of targets defined on the account
      * List targets
      */
-    getTargets() {
+    getTargets(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getTargetsRaw();
+            const response = yield this.getTargetsRaw({ ids: ids });
             return yield response.value();
         });
     }

@@ -24,6 +24,9 @@ export interface DeleteMarketOpportunityAnalysisRequest {
 export interface ForceUpdateMarketOpportunityAnalysisRequest {
     marketOpportunityAnalysisId: string;
 }
+export interface GetMarketOpportunityAnalysesRequest {
+    ids?: Array<string>;
+}
 export interface GetMarketOpportunityAnalysisRequest {
     marketOpportunityAnalysisId: string;
 }
@@ -76,11 +79,11 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get all market opportunity analyses
      */
-    getMarketOpportunityAnalysesRaw(): Promise<runtime.ApiResponse<Array<MarketOpportunityAnalysis>>>;
+    getMarketOpportunityAnalysesRaw(requestParameters: GetMarketOpportunityAnalysesRequest): Promise<runtime.ApiResponse<Array<MarketOpportunityAnalysis>>>;
     /**
      * Get all market opportunity analyses
      */
-    getMarketOpportunityAnalyses(): Promise<Array<MarketOpportunityAnalysis>>;
+    getMarketOpportunityAnalyses(ids?: Array<string>): Promise<Array<MarketOpportunityAnalysis>>;
     /**
      * Get a specific market opportunity analysis
      */

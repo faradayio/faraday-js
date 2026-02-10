@@ -33,6 +33,9 @@ export interface GetPersonaSetAnalysisDimensionsRequest {
 export interface GetPersonaSetAnalysisFlowRequest {
     personaSetId: string;
 }
+export interface GetPersonaSetsRequest {
+    ids?: Array<string>;
+}
 export interface UnarchivePersonaSetRequest {
     personaSetId: string;
     archiveConfig: ArchiveConfig;
@@ -118,12 +121,12 @@ export declare class PersonaSetsApi extends runtime.BaseAPI {
      * A list of available persona sets
      * List persona sets
      */
-    getPersonaSetsRaw(): Promise<runtime.ApiResponse<Array<PersonaSet>>>;
+    getPersonaSetsRaw(requestParameters: GetPersonaSetsRequest): Promise<runtime.ApiResponse<Array<PersonaSet>>>;
     /**
      * A list of available persona sets
      * List persona sets
      */
-    getPersonaSets(): Promise<Array<PersonaSet>>;
+    getPersonaSets(ids?: Array<string>): Promise<Array<PersonaSet>>;
     /**
      * Unarchive a persona set
      * Unarchive a persona set

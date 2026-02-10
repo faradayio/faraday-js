@@ -27,6 +27,9 @@ export interface ForceUpdatePlaceRequest {
 export interface GetPlaceRequest {
     placeId: string;
 }
+export interface GetPlacesRequest {
+    ids?: Array<string>;
+}
 export interface UnarchivePlaceRequest {
     placeId: string;
     archiveConfig: ArchiveConfig;
@@ -91,12 +94,12 @@ export declare class PlacesApi extends runtime.BaseAPI {
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
      */
-    getPlacesRaw(): Promise<runtime.ApiResponse<Array<Place>>>;
+    getPlacesRaw(requestParameters: GetPlacesRequest): Promise<runtime.ApiResponse<Array<Place>>>;
     /**
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
      */
-    getPlaces(): Promise<Array<Place>>;
+    getPlaces(ids?: Array<string>): Promise<Array<Place>>;
     /**
      * Unarchive a place
      * Unarchive a place

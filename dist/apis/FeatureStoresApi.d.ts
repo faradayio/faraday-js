@@ -23,6 +23,9 @@ export interface ForceUpdateFeatureStoreRequest {
 export interface GetFeatureStoreRequest {
     featureStoreId: string;
 }
+export interface GetFeatureStoresRequest {
+    ids?: Array<string>;
+}
 export interface UpdateFeatureStoreRequest {
     featureStoreId: string;
     featureStoreFields: FeatureStoreMergePatch;
@@ -73,12 +76,12 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    getFeatureStoresRaw(): Promise<runtime.ApiResponse<Array<FeatureStore>>>;
+    getFeatureStoresRaw(requestParameters: GetFeatureStoresRequest): Promise<runtime.ApiResponse<Array<FeatureStore>>>;
     /**
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    getFeatureStores(): Promise<Array<FeatureStore>>;
+    getFeatureStores(ids?: Array<string>): Promise<Array<FeatureStore>>;
     /**
      * Update the configuration of a feature store
      * Update a feature store

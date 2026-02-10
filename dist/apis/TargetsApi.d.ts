@@ -39,6 +39,9 @@ export interface GetTargetAnalysisRequest {
 export interface GetTargetAnalysisReportRequest {
     targetId: string;
 }
+export interface GetTargetsRequest {
+    ids?: Array<string>;
+}
 export interface LookupOnTargetRequest {
     targetId: string;
     targetLookupRequest: TargetLookupRequest;
@@ -147,12 +150,12 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Get a list of targets defined on the account
      * List targets
      */
-    getTargetsRaw(): Promise<runtime.ApiResponse<Array<Target>>>;
+    getTargetsRaw(requestParameters: GetTargetsRequest): Promise<runtime.ApiResponse<Array<Target>>>;
     /**
      * Get a list of targets defined on the account
      * List targets
      */
-    getTargets(): Promise<Array<Target>>;
+    getTargets(ids?: Array<string>): Promise<Array<Target>>;
     /**
      * Use either PII or a spatial aggregate to retrieve the payload of a Lookup API target. See the Lookup API specification\'s [quickstart](https://faraday.ai/docs/features/lookup-api#retrieve-predictions) for more details, including examples.
      * Perform a lookup on the target, if its type is Lookup API.

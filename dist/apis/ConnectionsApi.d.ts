@@ -33,6 +33,9 @@ export interface GetConnectionDatasetsRequest {
 export interface GetConnectionTargetsRequest {
     connectionId: string;
 }
+export interface GetConnectionsRequest {
+    ids?: Array<string>;
+}
 export interface RotateConnectionCredentialsRequest {
     connectionId: string;
     rotateCredentialsRequest: RotateCredentialsRequest;
@@ -123,12 +126,12 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Get a list of connections defined on the account
      * List connections
      */
-    getConnectionsRaw(): Promise<runtime.ApiResponse<Array<Connection>>>;
+    getConnectionsRaw(requestParameters: GetConnectionsRequest): Promise<runtime.ApiResponse<Array<Connection>>>;
     /**
      * Get a list of connections defined on the account
      * List connections
      */
-    getConnections(): Promise<Array<Connection>>;
+    getConnections(ids?: Array<string>): Promise<Array<Connection>>;
     /**
      * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection.
      * Rotate credentials for a connection

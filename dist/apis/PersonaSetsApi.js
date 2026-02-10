@@ -289,9 +289,12 @@ class PersonaSetsApi extends runtime.BaseAPI {
      * A list of available persona sets
      * List persona sets
      */
-    getPersonaSetsRaw() {
+    getPersonaSetsRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -313,9 +316,9 @@ class PersonaSetsApi extends runtime.BaseAPI {
      * A list of available persona sets
      * List persona sets
      */
-    getPersonaSets() {
+    getPersonaSets(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getPersonaSetsRaw();
+            const response = yield this.getPersonaSetsRaw({ ids: ids });
             return yield response.value();
         });
     }

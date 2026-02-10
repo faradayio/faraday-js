@@ -32,6 +32,10 @@ export interface GetWebhookEndpointRequest {
     webhookEndpointId: string;
 }
 
+export interface GetWebhookEndpointsRequest {
+    ids?: Array<string>;
+}
+
 export interface UpdateWebhookEndpointRequest {
     webhookEndpointId: string;
     webhookEndpointMergePatch: WebhookEndpointMergePatch;
@@ -168,8 +172,12 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    async getWebhookEndpointsRaw(): Promise<runtime.ApiResponse<Array<WebhookEndpoint>>> {
+    async getWebhookEndpointsRaw(requestParameters: GetWebhookEndpointsRequest, ): Promise<runtime.ApiResponse<Array<WebhookEndpoint>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -195,8 +203,8 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    async getWebhookEndpoints(): Promise<Array<WebhookEndpoint>> {
-        const response = await this.getWebhookEndpointsRaw();
+    async getWebhookEndpoints(ids?: Array<string>, ): Promise<Array<WebhookEndpoint>> {
+        const response = await this.getWebhookEndpointsRaw({ ids: ids }, );
         return await response.value();
     }
 

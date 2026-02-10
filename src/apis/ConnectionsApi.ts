@@ -53,6 +53,10 @@ export interface GetConnectionTargetsRequest {
     connectionId: string;
 }
 
+export interface GetConnectionsRequest {
+    ids?: Array<string>;
+}
+
 export interface RotateConnectionCredentialsRequest {
     connectionId: string;
     rotateCredentialsRequest: RotateCredentialsRequest;
@@ -364,8 +368,12 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Get a list of connections defined on the account
      * List connections
      */
-    async getConnectionsRaw(): Promise<runtime.ApiResponse<Array<Connection>>> {
+    async getConnectionsRaw(requestParameters: GetConnectionsRequest, ): Promise<runtime.ApiResponse<Array<Connection>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -391,8 +399,8 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Get a list of connections defined on the account
      * List connections
      */
-    async getConnections(): Promise<Array<Connection>> {
-        const response = await this.getConnectionsRaw();
+    async getConnections(ids?: Array<string>, ): Promise<Array<Connection>> {
+        const response = await this.getConnectionsRaw({ ids: ids }, );
         return await response.value();
     }
 

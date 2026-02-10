@@ -256,9 +256,12 @@ class RecommendersApi extends runtime.BaseAPI {
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    getRecommendersRaw() {
+    getRecommendersRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -280,9 +283,9 @@ class RecommendersApi extends runtime.BaseAPI {
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    getRecommenders() {
+    getRecommenders(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getRecommendersRaw();
+            const response = yield this.getRecommendersRaw({ ids: ids });
             return yield response.value();
         });
     }

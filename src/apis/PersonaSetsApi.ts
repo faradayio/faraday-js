@@ -54,6 +54,10 @@ export interface GetPersonaSetAnalysisFlowRequest {
     personaSetId: string;
 }
 
+export interface GetPersonaSetsRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchivePersonaSetRequest {
     personaSetId: string;
     archiveConfig: ArchiveConfig;
@@ -360,8 +364,12 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * A list of available persona sets
      * List persona sets
      */
-    async getPersonaSetsRaw(): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
+    async getPersonaSetsRaw(requestParameters: GetPersonaSetsRequest, ): Promise<runtime.ApiResponse<Array<PersonaSet>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -387,8 +395,8 @@ export class PersonaSetsApi extends runtime.BaseAPI {
      * A list of available persona sets
      * List persona sets
      */
-    async getPersonaSets(): Promise<Array<PersonaSet>> {
-        const response = await this.getPersonaSetsRaw();
+    async getPersonaSets(ids?: Array<string>, ): Promise<Array<PersonaSet>> {
+        const response = await this.getPersonaSetsRaw({ ids: ids }, );
         return await response.value();
     }
 
