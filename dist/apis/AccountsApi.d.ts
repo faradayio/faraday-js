@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Account, AccountMergePatch, AccountPost } from '../models';
+import { Account, AccountMergePatch, AccountPost, AccountUsageSummary } from '../models';
 export interface CreateAccountRequest {
     accountFields: AccountPost;
 }
@@ -58,6 +58,26 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Retrieve an account
      */
     getAccount(accountId: string): Promise<Account>;
+    /**
+     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsageRaw(): Promise<runtime.ApiResponse<AccountUsageSummary>>;
+    /**
+     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsage(): Promise<AccountUsageSummary>;
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAllRaw(): Promise<runtime.ApiResponse<AccountUsageSummary>>;
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAll(): Promise<AccountUsageSummary>;
     /**
      * Get a list of accounts defined on the account
      * List accounts

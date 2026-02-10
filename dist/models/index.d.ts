@@ -30,6 +30,12 @@ export interface Account {
      */
     commitment?: AccountCommitment;
     /**
+     * The start date of the account's contract with Faraday.
+     * @type {string}
+     * @memberof Account
+     */
+    contract_started_at?: string;
+    /**
      * When this resource was created.
      * @type {string}
      * @memberof Account
@@ -274,6 +280,210 @@ export interface AccountUsage {
      * @memberof AccountUsage
      */
     usage?: number;
+}
+/**
+ *
+ * @export
+ * @interface AccountUsageBatchDeployments
+ */
+export interface AccountUsageBatchDeployments {
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    consumer_data_count?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    identity_data_count?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsagePredictiveData}
+     * @memberof AccountUsageBatchDeployments
+     */
+    predictive_data_count?: AccountUsagePredictiveData;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    unknown_contact_addresses_count?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    unknown_contact_email_hashes_count?: AccountUsageTimePeriod;
+}
+/**
+ *
+ * @export
+ * @interface AccountUsageLookupApiRequests
+ */
+export interface AccountUsageLookupApiRequests {
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    requests_count?: AccountUsageTimePeriod;
+    /**
+     * Total successful consumer data requests.
+     * @type {number}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful_consumer_data_count?: number;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful_count?: AccountUsageTimePeriod;
+    /**
+     * Total successful identity data requests.
+     * @type {number}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful_identity_data_count?: number;
+    /**
+     * Total successful prediction data requests.
+     * @type {number}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful_prediction_data_count?: number;
+}
+/**
+ *
+ * @export
+ * @interface AccountUsagePredictiveData
+ */
+export interface AccountUsagePredictiveData {
+    /**
+     * Total predictive data count for the last 12 months.
+     * @type {number}
+     * @memberof AccountUsagePredictiveData
+     */
+    last_12_months?: number;
+    /**
+     * Total predictive data count for the last full month.
+     * @type {number}
+     * @memberof AccountUsagePredictiveData
+     */
+    last_month?: number;
+    /**
+     * Total predictive data count for the current month to date.
+     * @type {number}
+     * @memberof AccountUsagePredictiveData
+     */
+    month_to_date?: number;
+    /**
+     * Per-resource breakdown of predictive data counts.
+     * @type {Array<AccountUsagePredictiveResource>}
+     * @memberof AccountUsagePredictiveData
+     */
+    resources?: Array<AccountUsagePredictiveResource>;
+}
+/**
+ *
+ * @export
+ * @interface AccountUsagePredictiveResource
+ */
+export interface AccountUsagePredictiveResource {
+    /**
+     * Value for the last 12 months.
+     * @type {number}
+     * @memberof AccountUsagePredictiveResource
+     */
+    last_12_months?: number;
+    /**
+     * Value for the last full month.
+     * @type {number}
+     * @memberof AccountUsagePredictiveResource
+     */
+    last_month?: number;
+    /**
+     * Value for the current month to date.
+     * @type {number}
+     * @memberof AccountUsagePredictiveResource
+     */
+    month_to_date?: number;
+    /**
+     * The ID of the predictive resource (e.g. outcome).
+     * @type {string}
+     * @memberof AccountUsagePredictiveResource
+     */
+    resource_id: string;
+    /**
+     * The type of predictive resource.
+     * @type {string}
+     * @memberof AccountUsagePredictiveResource
+     */
+    resource_type: string;
+}
+/**
+ *
+ * @export
+ * @interface AccountUsageSummary
+ */
+export interface AccountUsageSummary {
+    /**
+     *
+     * @type {AccountUsageBatchDeployments}
+     * @memberof AccountUsageSummary
+     */
+    batch_deployments?: AccountUsageBatchDeployments;
+    /**
+     * When the usage measurement period finished.
+     * @type {string}
+     * @memberof AccountUsageSummary
+     */
+    finished_at: string;
+    /**
+     * The ID of the usage event.
+     * @type {string}
+     * @memberof AccountUsageSummary
+     */
+    id: string;
+    /**
+     *
+     * @type {AccountUsageLookupApiRequests}
+     * @memberof AccountUsageSummary
+     */
+    lookup_api_requests?: AccountUsageLookupApiRequests;
+    /**
+     * When the usage measurement period started.
+     * @type {string}
+     * @memberof AccountUsageSummary
+     */
+    started_at: string;
+}
+/**
+ *
+ * @export
+ * @interface AccountUsageTimePeriod
+ */
+export interface AccountUsageTimePeriod {
+    /**
+     * Value for the last 12 months.
+     * @type {number}
+     * @memberof AccountUsageTimePeriod
+     */
+    last_12_months?: number;
+    /**
+     * Value for the last full month.
+     * @type {number}
+     * @memberof AccountUsageTimePeriod
+     */
+    last_month?: number;
+    /**
+     * Value for the current month to date.
+     * @type {number}
+     * @memberof AccountUsageTimePeriod
+     */
+    month_to_date?: number;
 }
 /**
  * An address to be geocoded.

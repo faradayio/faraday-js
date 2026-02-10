@@ -141,6 +141,74 @@ class AccountsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsageRaw() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/accounts/current/usage`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsage() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getAccountCurrentUsageRaw();
+            return yield response.value();
+        });
+    }
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAllRaw() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/accounts/current/usage/all`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getAccountCurrentUsageAllRaw();
+            return yield response.value();
+        });
+    }
+    /**
      * Get a list of accounts defined on the account
      * List accounts
      */
