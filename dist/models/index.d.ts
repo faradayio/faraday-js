@@ -690,7 +690,7 @@ export interface Attribute {
      * @type {AttributeAggregation}
      * @memberof Attribute
      */
-    aggregation?: AttributeAggregation;
+    aggregation: AttributeAggregation;
     /**
      * If not null, this resource will no longer receive updates, but will still be visable.
      * @type {string}
@@ -714,7 +714,7 @@ export interface Attribute {
      * @type {AttributeSelectorsByPurpose}
      * @memberof Attribute
      */
-    default_selector_by_purpose?: AttributeSelectorsByPurpose;
+    default_selector_by_purpose: AttributeSelectorsByPurpose;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
@@ -922,7 +922,7 @@ export interface AttributeMergePatch {
      * @type {AttributeAggregation}
      * @memberof AttributeMergePatch
      */
-    aggregation?: AttributeAggregation | null;
+    aggregation?: AttributeAggregation;
     /**
      *
      * @type {StreamPropertyCategory}
@@ -934,7 +934,7 @@ export interface AttributeMergePatch {
      * @type {AttributeSelectorsByPurpose}
      * @memberof AttributeMergePatch
      */
-    default_selector_by_purpose?: AttributeSelectorsByPurpose | null;
+    default_selector_by_purpose?: AttributeSelectorsByPurpose;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
@@ -1030,7 +1030,7 @@ export interface AttributePost {
      * @type {AttributeAggregation}
      * @memberof AttributePost
      */
-    aggregation?: AttributeAggregation;
+    aggregation: AttributeAggregation;
     /**
      *
      * @type {StreamPropertyCategory}
@@ -1042,7 +1042,7 @@ export interface AttributePost {
      * @type {AttributeSelectorsByPurpose}
      * @memberof AttributePost
      */
-    default_selector_by_purpose?: AttributeSelectorsByPurpose;
+    default_selector_by_purpose: AttributeSelectorsByPurpose;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
@@ -1138,7 +1138,7 @@ export interface AttributePut {
      * @type {AttributeAggregation}
      * @memberof AttributePut
      */
-    aggregation?: AttributeAggregation;
+    aggregation: AttributeAggregation;
     /**
      *
      * @type {StreamPropertyCategory}
@@ -1150,7 +1150,7 @@ export interface AttributePut {
      * @type {AttributeSelectorsByPurpose}
      * @memberof AttributePut
      */
-    default_selector_by_purpose?: AttributeSelectorsByPurpose;
+    default_selector_by_purpose: AttributeSelectorsByPurpose;
     /**
      * Whether this attribute is deprecated.
      * @type {boolean}
@@ -9145,116 +9145,6 @@ export declare enum DatasetIdentityProvidersProviderEnum {
 export declare enum DatasetIdentityProvidersSelectEnum {
     FirstRecognized = "first_recognized",
     All = "all"
-}
-/**
- * A record of a dataset ingress log with metrics
- * @export
- * @interface DatasetIngressLog
- */
-export interface DatasetIngressLog {
-    /**
-     * When the ingress completed
-     * @type {string}
-     * @memberof DatasetIngressLog
-     */
-    finished_at?: string;
-    /**
-     * UUID of the ingress log
-     * @type {string}
-     * @memberof DatasetIngressLog
-     */
-    id: string;
-    /**
-     *
-     * @type {DatasetIngressLogMetrics}
-     * @memberof DatasetIngressLog
-     */
-    metrics: DatasetIngressLogMetrics;
-    /**
-     * When the ingress started
-     * @type {string}
-     * @memberof DatasetIngressLog
-     */
-    started_at: string;
-    /**
-     *
-     * @type {ResourceStatus}
-     * @memberof DatasetIngressLog
-     */
-    status: ResourceStatus;
-    /**
-     * Error message if status indicates failure
-     * @type {string}
-     * @memberof DatasetIngressLog
-     */
-    status_error?: string;
-}
-/**
- * Data ingress metrics with customer-friendly field names
- * @export
- * @interface DatasetIngressLogMetrics
- */
-export interface DatasetIngressLogMetrics {
-    /**
-     * Valid rows allowed after CCPA filtering
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    allowed_row_count?: number;
-    /**
-     * Unique people from allowed rows
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    allowed_row_unique_people_count?: number;
-    /**
-     * Records eligible for enrichment at the residence level
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    enrichable_residence_count?: number;
-    /**
-     * Rows eligible for enrichment of, but not limited to, consumer, identity, and prediction data
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    enrichable_row_count?: number;
-    /**
-     * Unique people from enrichable rows
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    enrichable_row_unique_people_count?: number;
-    /**
-     * Rows that could be parsed
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    processable_row_count?: number;
-    /**
-     * Rows matched to known identities
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    recognized_row_count?: number;
-    /**
-     * Unique people from recognized rows
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    recognized_row_unique_people_count?: number;
-    /**
-     * Total rows received
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    total_row_count?: number;
-    /**
-     * Processable rows passing validation that remove addresses and people determined to be from outside the united states
-     * @type {number}
-     * @memberof DatasetIngressLogMetrics
-     */
-    valid_row_count?: number;
 }
 /**
  *
@@ -18425,6 +18315,12 @@ export interface Stream {
     resource_type: string;
     /**
      *
+     * @type {Array<StreamSources>}
+     * @memberof Stream
+     */
+    sources?: Array<StreamSources>;
+    /**
+     *
      * @type {ResourceStatus}
      * @memberof Stream
      */
@@ -18563,6 +18459,12 @@ export interface StreamMergePatch {
     properties?: StreamPropertiesMergePatch | null;
     /**
      *
+     * @type {Array<StreamSources>}
+     * @memberof StreamMergePatch
+     */
+    sources?: Array<StreamSources> | null;
+    /**
+     *
      * @type {StreamPropertyTier}
      * @memberof StreamMergePatch
      */
@@ -18612,6 +18514,12 @@ export interface StreamPost {
      * @memberof StreamPost
      */
     properties?: StreamPropertiesPost;
+    /**
+     *
+     * @type {Array<StreamSources>}
+     * @memberof StreamPost
+     */
+    sources?: Array<StreamSources>;
     /**
      *
      * @type {StreamPropertyTier}
@@ -19077,10 +18985,71 @@ export interface StreamPut {
     properties?: StreamPropertiesPut;
     /**
      *
+     * @type {Array<StreamSources>}
+     * @memberof StreamPut
+     */
+    sources?: Array<StreamSources>;
+    /**
+     *
      * @type {StreamPropertyTier}
      * @memberof StreamPut
      */
     tier?: StreamPropertyTier;
+}
+/**
+ *
+ * @export
+ * @interface StreamSources
+ */
+export interface StreamSources {
+    /**
+     * which column you are getting the data from
+     * @type {string}
+     * @memberof StreamSources
+     */
+    column_name?: string;
+    /**
+     * only include certain events from the dataset
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof StreamSources
+     */
+    conditions?: Array<DatasetStreamCondition>;
+    /**
+     * which dataset is producing the events
+     * @type {string}
+     * @memberof StreamSources
+     */
+    dataset_id: string;
+    /**
+     *
+     * @type {DecodeConfig}
+     * @memberof StreamSources
+     */
+    decode?: DecodeConfig;
+    /**
+     *
+     * @type {DataMapColumnFormat}
+     * @memberof StreamSources
+     */
+    format?: DataMapColumnFormat;
+    /**
+     * which event stream property you are populating
+     * @type {string}
+     * @memberof StreamSources
+     */
+    property_name: string;
+    /**
+     *
+     * @type {RecodeConfig}
+     * @memberof StreamSources
+     */
+    recode?: RecodeConfig;
+    /**
+     * alternative to column_name. Static property value for all events from this dataset
+     * @type {string | number | boolean}
+     * @memberof StreamSources
+     */
+    value?: string | number | boolean | null;
 }
 /**
  * A table of arbitrary data. Purposefully untyped to allow for flexibility in the data.

@@ -17,7 +17,6 @@ import * as runtime from '../runtime';
 import {
     ArchiveConfig,
     Dataset,
-    DatasetIngressLog,
     DatasetMergePatch,
     DatasetPost,
 } from '../models';
@@ -41,17 +40,6 @@ export interface ForceUpdateDatasetRequest {
 
 export interface GetDatasetRequest {
     datasetId: string;
-}
-
-export interface GetDatasetIngressLogRequest {
-    datasetId: string;
-    logId: string;
-}
-
-export interface GetDatasetIngressLogsRequest {
-    datasetId: string;
-    limit?: number;
-    offset?: number;
 }
 
 export interface UnarchiveDatasetRequest {
@@ -271,98 +259,6 @@ export class DatasetsApi extends runtime.BaseAPI {
      */
     async getDataset(datasetId: string, ): Promise<Dataset> {
         const response = await this.getDatasetRaw({ datasetId: datasetId }, );
-        return await response.value();
-    }
-
-    /**
-     * Retrieves a specific ingress log entry for a dataset
-     * Get a single dataset ingress log by ID
-     */
-    async getDatasetIngressLogRaw(requestParameters: GetDatasetIngressLogRequest, ): Promise<runtime.ApiResponse<DatasetIngressLog>> {
-        if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
-            throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling getDatasetIngressLog.');
-        }
-
-        if (requestParameters.logId === null || requestParameters.logId === undefined) {
-            throw new runtime.RequiredError('logId','Required parameter requestParameters.logId was null or undefined when calling getDatasetIngressLog.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/datasets/{dataset_id}/logs/ingress/{log_id}`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))).replace(`{${"log_id"}}`, encodeURIComponent(String(requestParameters.logId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        });
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * Retrieves a specific ingress log entry for a dataset
-     * Get a single dataset ingress log by ID
-     */
-    async getDatasetIngressLog(datasetId: string, logId: string, ): Promise<DatasetIngressLog> {
-        const response = await this.getDatasetIngressLogRaw({ datasetId: datasetId, logId: logId }, );
-        return await response.value();
-    }
-
-    /**
-     * Retrieves ingress metrics for a specific dataset
-     * Get dataset ingress metrics over time
-     */
-    async getDatasetIngressLogsRaw(requestParameters: GetDatasetIngressLogsRequest, ): Promise<runtime.ApiResponse<Array<DatasetIngressLog>>> {
-        if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
-            throw new runtime.RequiredError('datasetId','Required parameter requestParameters.datasetId was null or undefined when calling getDatasetIngressLogs.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/datasets/{dataset_id}/logs/ingress`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        });
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * Retrieves ingress metrics for a specific dataset
-     * Get dataset ingress metrics over time
-     */
-    async getDatasetIngressLogs(datasetId: string, limit?: number, offset?: number, ): Promise<Array<DatasetIngressLog>> {
-        const response = await this.getDatasetIngressLogsRaw({ datasetId: datasetId, limit: limit, offset: offset }, );
         return await response.value();
     }
 

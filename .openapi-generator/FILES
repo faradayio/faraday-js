@@ -9,7 +9,6 @@ src/apis/BillingApi.ts
 src/apis/CohortsApi.ts
 src/apis/ConnectionsApi.ts
 src/apis/DatasetsApi.ts
-src/apis/ExperimentalApi.ts
 src/apis/FeatureStoresApi.ts
 src/apis/GraphApi.ts
 src/apis/MarketOpportunityAnalysesApi.ts
