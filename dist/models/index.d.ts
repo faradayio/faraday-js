@@ -17958,6 +17958,14 @@ export interface ScopePayload {
      */
     persona_set_ids?: Array<string>;
     /**
+     * Specify one or more place proximity indications. This is useful for "nearest store" style use cases.
+     *
+     * By default, the system will consider all places defined in the account, to restrict to specific places, provide their IDs.
+     * @type {Array<ScopePayloadPlaceProximities>}
+     * @memberof ScopePayload
+     */
+    place_proximities?: Array<ScopePayloadPlaceProximities>;
+    /**
      * Include the recommendation(s) from the specified recommender(s).
      *
      * This feature is experimental and subject to change. To enable this feature, contact your account manager.
@@ -18028,6 +18036,14 @@ export interface ScopePayloadMergePatch {
      */
     persona_set_ids?: Array<string> | null;
     /**
+     * Specify one or more place proximity indications. This is useful for "nearest store" style use cases.
+     *
+     * By default, the system will consider all places defined in the account, to restrict to specific places, provide their IDs.
+     * @type {Array<ScopePayloadPlaceProximities>}
+     * @memberof ScopePayloadMergePatch
+     */
+    place_proximities?: Array<ScopePayloadPlaceProximities> | null;
+    /**
      * Include the recommendation(s) from the specified recommender(s).
      *
      * This feature is experimental and subject to change. To enable this feature, contact your account manager.
@@ -18035,6 +18051,29 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     recommender_ids?: Array<string> | null;
+}
+/**
+ *
+ * @export
+ * @interface ScopePayloadPlaceProximities
+ */
+export interface ScopePayloadPlaceProximities {
+    /**
+     * The name of this place proximity indication, such as "nearest store". This will get used in the resulting column headers
+     * @type {string}
+     * @memberof ScopePayloadPlaceProximities
+     */
+    name: string;
+    /**
+     * Optional list of place IDs to restrict proximity calculations to. If omitted, By default, the system will consider _all_ Places defined in your account.
+     *
+     * If you want to restrict consideration to a subset of your Places, list them here.
+     *
+     * For example, if your account contains Places for each of your store locations as well as authorized resellers, but you only want the nearest bona fide store location in your output, you can list the IDs of your store location Places in this array.
+     * @type {Array<string>}
+     * @memberof ScopePayloadPlaceProximities
+     */
+    place_ids?: Array<string>;
 }
 /**
  * (Parameters used to POST a new value of the `ScopePayload` type.)
@@ -18078,6 +18117,14 @@ export interface ScopePayloadPost {
      * @memberof ScopePayloadPost
      */
     persona_set_ids?: Array<string>;
+    /**
+     * Specify one or more place proximity indications. This is useful for "nearest store" style use cases.
+     *
+     * By default, the system will consider all places defined in the account, to restrict to specific places, provide their IDs.
+     * @type {Array<ScopePayloadPlaceProximities>}
+     * @memberof ScopePayloadPost
+     */
+    place_proximities?: Array<ScopePayloadPlaceProximities>;
     /**
      * Include the recommendation(s) from the specified recommender(s).
      *
@@ -18129,6 +18176,14 @@ export interface ScopePayloadPut {
      * @memberof ScopePayloadPut
      */
     persona_set_ids?: Array<string>;
+    /**
+     * Specify one or more place proximity indications. This is useful for "nearest store" style use cases.
+     *
+     * By default, the system will consider all places defined in the account, to restrict to specific places, provide their IDs.
+     * @type {Array<ScopePayloadPlaceProximities>}
+     * @memberof ScopePayloadPut
+     */
+    place_proximities?: Array<ScopePayloadPlaceProximities>;
     /**
      * Include the recommendation(s) from the specified recommender(s).
      *
