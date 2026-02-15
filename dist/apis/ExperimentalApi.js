@@ -29,6 +29,87 @@ const runtime = require("../runtime");
  */
 class ExperimentalApi extends runtime.BaseAPI {
     /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions.
+     * Create a stream source
+     */
+    createStreamSourceRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+                throw new runtime.RequiredError('streamId', 'Required parameter requestParameters.streamId was null or undefined when calling createStreamSource.');
+            }
+            if (requestParameters.streamSourcePost === null || requestParameters.streamSourcePost === undefined) {
+                throw new runtime.RequiredError('streamSourcePost', 'Required parameter requestParameters.streamSourcePost was null or undefined when calling createStreamSource.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id}/sources`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: requestParameters.streamSourcePost,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions.
+     * Create a stream source
+     */
+    createStreamSource(streamId, streamSourcePost) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.createStreamSourceRaw({ streamId: streamId, streamSourcePost: streamSourcePost });
+            return yield response.value();
+        });
+    }
+    /**
+     * Delete a specific source (docket) for a stream.
+     * Delete a stream source
+     */
+    deleteStreamSourceRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+                throw new runtime.RequiredError('streamId', 'Required parameter requestParameters.streamId was null or undefined when calling deleteStreamSource.');
+            }
+            if (requestParameters.sourceId === null || requestParameters.sourceId === undefined) {
+                throw new runtime.RequiredError('sourceId', 'Required parameter requestParameters.sourceId was null or undefined when calling deleteStreamSource.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id}/sources/{source_id}`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))).replace(`{${"source_id"}}`, encodeURIComponent(String(requestParameters.sourceId))),
+                method: 'DELETE',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Delete a specific source (docket) for a stream.
+     * Delete a stream source
+     */
+    deleteStreamSource(streamId, sourceId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.deleteStreamSourceRaw({ streamId: streamId, sourceId: sourceId });
+        });
+    }
+    /**
      * Retrieves a specific ingress log entry for a dataset
      * Get a single dataset ingress log by ID
      */
@@ -108,6 +189,128 @@ class ExperimentalApi extends runtime.BaseAPI {
     getDatasetIngressLogs(datasetId, limit, offset) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getDatasetIngressLogsRaw({ datasetId: datasetId, limit: limit, offset: offset });
+            return yield response.value();
+        });
+    }
+    /**
+     * Retrieve a specific source (docket) for a stream.
+     * Retrieve a stream source
+     */
+    getStreamSourceRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+                throw new runtime.RequiredError('streamId', 'Required parameter requestParameters.streamId was null or undefined when calling getStreamSource.');
+            }
+            if (requestParameters.sourceId === null || requestParameters.sourceId === undefined) {
+                throw new runtime.RequiredError('sourceId', 'Required parameter requestParameters.sourceId was null or undefined when calling getStreamSource.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id}/sources/{source_id}`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))).replace(`{${"source_id"}}`, encodeURIComponent(String(requestParameters.sourceId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Retrieve a specific source (docket) for a stream.
+     * Retrieve a stream source
+     */
+    getStreamSource(streamId, sourceId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getStreamSourceRaw({ streamId: streamId, sourceId: sourceId });
+            return yield response.value();
+        });
+    }
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream.
+     * List stream sources
+     */
+    getStreamSourcesRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+                throw new runtime.RequiredError('streamId', 'Required parameter requestParameters.streamId was null or undefined when calling getStreamSources.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id}/sources`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream.
+     * List stream sources
+     */
+    getStreamSources(streamId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getStreamSourcesRaw({ streamId: streamId });
+            return yield response.value();
+        });
+    }
+    /**
+     * Update a specific source (docket) for a stream.
+     * Update a stream source
+     */
+    updateStreamSourceRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+                throw new runtime.RequiredError('streamId', 'Required parameter requestParameters.streamId was null or undefined when calling updateStreamSource.');
+            }
+            if (requestParameters.sourceId === null || requestParameters.sourceId === undefined) {
+                throw new runtime.RequiredError('sourceId', 'Required parameter requestParameters.sourceId was null or undefined when calling updateStreamSource.');
+            }
+            if (requestParameters.streamSourceFields === null || requestParameters.streamSourceFields === undefined) {
+                throw new runtime.RequiredError('streamSourceFields', 'Required parameter requestParameters.streamSourceFields was null or undefined when calling updateStreamSource.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json+merge-patch';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/streams/{stream_id}/sources/{source_id}`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))).replace(`{${"source_id"}}`, encodeURIComponent(String(requestParameters.sourceId))),
+                method: 'PATCH',
+                headers: headerParameters,
+                query: queryParameters,
+                body: requestParameters.streamSourceFields,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Update a specific source (docket) for a stream.
+     * Update a stream source
+     */
+    updateStreamSource(streamId, sourceId, streamSourceFields) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.updateStreamSourceRaw({ streamId: streamId, sourceId: sourceId, streamSourceFields: streamSourceFields });
             return yield response.value();
         });
     }

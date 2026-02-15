@@ -8603,17 +8603,35 @@ export interface DataMap {
  */
 export interface DataMapColumn {
     /**
-     * The name of a column in the dataset. If format is "static_date_iso8601", then the value provided in this field is used as a static value.
+     * The name of a column in the dataset to use for this property.
      * @type {string}
      * @memberof DataMapColumn
      */
-    column_name: string;
+    column_name?: string;
+    /**
+     *
+     * @type {DecodeConfig}
+     * @memberof DataMapColumn
+     */
+    decode?: DecodeConfig;
     /**
      *
      * @type {DataMapColumnFormat}
      * @memberof DataMapColumn
      */
     format?: DataMapColumnFormat;
+    /**
+     *
+     * @type {RecodeConfig}
+     * @memberof DataMapColumn
+     */
+    recode?: RecodeConfig;
+    /**
+     * Alternative to column_name. A static value for all events from this dataset.
+     * @type {string | number | boolean}
+     * @memberof DataMapColumn
+     */
+    value?: string | number | boolean | null;
 }
 /**
  * Additional context for the column's data that isn't captured by its data type. For example, a 'revenue' column's data type would likely be 'int64', but format specifies if this number represents 'dollars' or 'cents'. This can be left blank if no additional context is needed.
@@ -8658,17 +8676,35 @@ export declare enum DataMapColumnFormat {
  */
 export interface DataMapColumnMergePatch {
     /**
-     * The name of a column in the dataset. If format is "static_date_iso8601", then the value provided in this field is used as a static value.
+     * The name of a column in the dataset to use for this property.
      * @type {string}
      * @memberof DataMapColumnMergePatch
      */
-    column_name?: string;
+    column_name?: string | null;
+    /**
+     *
+     * @type {DecodeConfig}
+     * @memberof DataMapColumnMergePatch
+     */
+    decode?: DecodeConfig | null;
     /**
      *
      * @type {DataMapColumnFormat}
      * @memberof DataMapColumnMergePatch
      */
     format?: DataMapColumnFormat | null;
+    /**
+     *
+     * @type {RecodeConfig}
+     * @memberof DataMapColumnMergePatch
+     */
+    recode?: RecodeConfig | null;
+    /**
+     * Alternative to column_name. A static value for all events from this dataset.
+     * @type {string | number | boolean}
+     * @memberof DataMapColumnMergePatch
+     */
+    value?: string | number | boolean | null;
 }
 /**
  *
@@ -8677,17 +8713,35 @@ export interface DataMapColumnMergePatch {
  */
 export interface DataMapColumnPost {
     /**
-     * The name of a column in the dataset. If format is "static_date_iso8601", then the value provided in this field is used as a static value.
+     * The name of a column in the dataset to use for this property.
      * @type {string}
      * @memberof DataMapColumnPost
      */
-    column_name: string;
+    column_name?: string;
+    /**
+     *
+     * @type {DecodeConfig}
+     * @memberof DataMapColumnPost
+     */
+    decode?: DecodeConfig;
     /**
      *
      * @type {DataMapColumnFormat}
      * @memberof DataMapColumnPost
      */
     format?: DataMapColumnFormat;
+    /**
+     *
+     * @type {RecodeConfig}
+     * @memberof DataMapColumnPost
+     */
+    recode?: RecodeConfig;
+    /**
+     * Alternative to column_name. A static value for all events from this dataset.
+     * @type {string | number | boolean}
+     * @memberof DataMapColumnPost
+     */
+    value?: string | number | boolean | null;
 }
 /**
  *
@@ -8696,17 +8750,35 @@ export interface DataMapColumnPost {
  */
 export interface DataMapColumnPut {
     /**
-     * The name of a column in the dataset. If format is "static_date_iso8601", then the value provided in this field is used as a static value.
+     * The name of a column in the dataset to use for this property.
      * @type {string}
      * @memberof DataMapColumnPut
      */
-    column_name: string;
+    column_name?: string;
+    /**
+     *
+     * @type {DecodeConfig}
+     * @memberof DataMapColumnPut
+     */
+    decode?: DecodeConfig;
     /**
      *
      * @type {DataMapColumnFormat}
      * @memberof DataMapColumnPut
      */
     format?: DataMapColumnFormat;
+    /**
+     *
+     * @type {RecodeConfig}
+     * @memberof DataMapColumnPut
+     */
+    recode?: RecodeConfig;
+    /**
+     * Alternative to column_name. A static value for all events from this dataset.
+     * @type {string | number | boolean}
+     * @memberof DataMapColumnPut
+     */
+    value?: string | number | boolean | null;
 }
 /**
  * (Parameters used to PATCH the `DataMap` type.)
@@ -8905,7 +8977,7 @@ export interface Dataset {
      */
     output_to_streams?: OutputToStreams;
     /**
-     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     * EXPERIMENTAL: An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
      *
      * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
      *
@@ -9338,7 +9410,7 @@ export interface DatasetMergePatch {
      */
     output_to_streams?: OutputToStreamsMergePatch | null;
     /**
-     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     * EXPERIMENTAL: An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
      *
      * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
      *
@@ -12660,7 +12732,7 @@ export interface DatasetPost {
      */
     output_to_streams?: OutputToStreamsPost;
     /**
-     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     * EXPERIMENTAL: An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
      *
      * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
      *
@@ -12799,7 +12871,7 @@ export interface DatasetPut {
      */
     output_to_streams?: OutputToStreamsPut;
     /**
-     * An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
+     * EXPERIMENTAL: An array-based approach to transforming datasets into streams. This structure allows multiple columns from the same dataset to map to the same stream, each with their own property configurations.
      *
      * Unlike `output_to_streams`, this does not require nested structures and makes it straightforward to handle cases where a vendor provides multiple columns for the same attribute type (e.g., multiple age fields with different quality or derivation levels).
      *
@@ -13080,11 +13152,13 @@ export interface DecodeConfig {
      */
     cast?: PrimitiveDataType;
     /**
-     * A mapping of source values to target values
-     * @type {object}
+     * A mapping of source values to target values. Values must be primitives (string, number, boolean); nested objects or arrays are not allowed.
+     * @type {{ [key: string]: PrimitiveMapValue; }}
      * @memberof DecodeConfig
      */
-    map?: object;
+    map?: {
+        [key: string]: PrimitiveMapValue;
+    };
     /**
      * SQL expression for transformation
      * @type {string}
@@ -16827,6 +16901,12 @@ export declare enum PrimitiveDataType {
     Date = "date"
 }
 /**
+ * @type PrimitiveMapValue
+ * A scalar value for map entries (decode, recode, etc). Prevents nested objects or arrays.
+ * @export
+ */
+export declare type PrimitiveMapValue = boolean | number | string;
+/**
  * Basing cohort on recency of event
  * @export
  * @interface Recency
@@ -16948,11 +17028,13 @@ export interface RecencyPut {
  */
 export interface RecodeConfig {
     /**
-     * A mapping of source values to target values
-     * @type {object}
+     * A mapping of source values to target values. Values must be primitives (string, number, boolean); nested objects or arrays are not allowed.
+     * @type {{ [key: string]: PrimitiveMapValue; }}
      * @memberof RecodeConfig
      */
-    map?: object;
+    map?: {
+        [key: string]: PrimitiveMapValue;
+    };
     /**
      * SQL expression for transformation
      * @type {string}
@@ -18752,10 +18834,12 @@ export interface StreamPropertyDetails {
     emitted_by_datasets?: Array<StreamPropertyInputFromDatasets>;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {object}
+     * @type {{ [key: string]: string; }}
      * @memberof StreamPropertyDetails
      */
-    interpretation_map?: object;
+    interpretation_map?: {
+        [key: string]: string;
+    };
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
@@ -18813,10 +18897,12 @@ export interface StreamPropertyDetailsMergePatch {
     directionality_interpretation?: string | null;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {object}
+     * @type {{ [key: string]: string; }}
      * @memberof StreamPropertyDetailsMergePatch
      */
-    interpretation_map?: object | null;
+    interpretation_map?: {
+        [key: string]: string;
+    } | null;
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
@@ -18868,10 +18954,12 @@ export interface StreamPropertyDetailsPost {
     directionality_interpretation?: string;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {object}
+     * @type {{ [key: string]: string; }}
      * @memberof StreamPropertyDetailsPost
      */
-    interpretation_map?: object;
+    interpretation_map?: {
+        [key: string]: string;
+    };
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
@@ -18923,10 +19011,12 @@ export interface StreamPropertyDetailsPut {
     directionality_interpretation?: string;
     /**
      * For enumerable values, a mapping from value to its interpretation. Key type matches the property type, value is always a string.
-     * @type {object}
+     * @type {{ [key: string]: string; }}
      * @memberof StreamPropertyDetailsPut
      */
-    interpretation_map?: object;
+    interpretation_map?: {
+        [key: string]: string;
+    };
     /**
      * If a unary null replacement is not applicable or viable, describe how NULLs should be interpreted when encountered.
      * @type {string}
@@ -19081,6 +19171,118 @@ export interface StreamPut {
      * @memberof StreamPut
      */
     tier?: StreamPropertyTier;
+}
+/**
+ * EXPERIMENTAL: A stream source represents the linkage between a dataset and a stream. Configuration governing how the dataset contributes data to the stream is stored here.
+ * @export
+ * @interface StreamSource
+ */
+export interface StreamSource {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof StreamSource
+     */
+    conditions?: Array<DatasetStreamCondition>;
+    /**
+     *
+     * @type {DataMap}
+     * @memberof StreamSource
+     */
+    data_map: DataMap;
+    /**
+     * The dataset that contributes to this stream.
+     * @type {string}
+     * @memberof StreamSource
+     */
+    dataset_id: string;
+    /**
+     * A unique ID for this stream source.
+     * @type {string}
+     * @memberof StreamSource
+     */
+    id: string;
+}
+/**
+ * (Parameters used to PATCH the `StreamSource` type.)
+ *
+ * EXPERIMENTAL: A stream source represents the linkage between a dataset and a stream. Configuration governing how the dataset contributes data to the stream is stored here.
+ * @export
+ * @interface StreamSourceMergePatch
+ */
+export interface StreamSourceMergePatch {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof StreamSourceMergePatch
+     */
+    conditions?: Array<DatasetStreamCondition> | null;
+    /**
+     *
+     * @type {DataMapMergePatch}
+     * @memberof StreamSourceMergePatch
+     */
+    data_map?: DataMapMergePatch;
+    /**
+     * The dataset that contributes to this stream.
+     * @type {string}
+     * @memberof StreamSourceMergePatch
+     */
+    dataset_id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `StreamSource` type.)
+ *
+ * EXPERIMENTAL: A stream source represents the linkage between a dataset and a stream. Configuration governing how the dataset contributes data to the stream is stored here.
+ * @export
+ * @interface StreamSourcePost
+ */
+export interface StreamSourcePost {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof StreamSourcePost
+     */
+    conditions?: Array<DatasetStreamCondition>;
+    /**
+     *
+     * @type {DataMapPost}
+     * @memberof StreamSourcePost
+     */
+    data_map: DataMapPost;
+    /**
+     * The dataset that contributes to this stream.
+     * @type {string}
+     * @memberof StreamSourcePost
+     */
+    dataset_id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `StreamSource` type.)
+ *
+ * EXPERIMENTAL: A stream source represents the linkage between a dataset and a stream. Configuration governing how the dataset contributes data to the stream is stored here.
+ * @export
+ * @interface StreamSourcePut
+ */
+export interface StreamSourcePut {
+    /**
+     * List of conditions to use to filter events.
+     * @type {Array<DatasetStreamCondition>}
+     * @memberof StreamSourcePut
+     */
+    conditions?: Array<DatasetStreamCondition>;
+    /**
+     *
+     * @type {DataMapPut}
+     * @memberof StreamSourcePut
+     */
+    data_map: DataMapPut;
+    /**
+     * The dataset that contributes to this stream.
+     * @type {string}
+     * @memberof StreamSourcePut
+     */
+    dataset_id: string;
 }
 /**
  * A table of arbitrary data. Purposefully untyped to allow for flexibility in the data.

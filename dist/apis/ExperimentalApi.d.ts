@@ -10,7 +10,15 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { DatasetIngressLog } from '../models';
+import { DatasetIngressLog, StreamSource, StreamSourceMergePatch, StreamSourcePost } from '../models';
+export interface CreateStreamSourceRequest {
+    streamId: string;
+    streamSourcePost: StreamSourcePost;
+}
+export interface DeleteStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+}
 export interface GetDatasetIngressLogRequest {
     datasetId: string;
     logId: string;
@@ -20,10 +28,42 @@ export interface GetDatasetIngressLogsRequest {
     limit?: number;
     offset?: number;
 }
+export interface GetStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+}
+export interface GetStreamSourcesRequest {
+    streamId: string;
+}
+export interface UpdateStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+    streamSourceFields: StreamSourceMergePatch;
+}
 /**
  *
  */
 export declare class ExperimentalApi extends runtime.BaseAPI {
+    /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions.
+     * Create a stream source
+     */
+    createStreamSourceRaw(requestParameters: CreateStreamSourceRequest): Promise<runtime.ApiResponse<StreamSource>>;
+    /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions.
+     * Create a stream source
+     */
+    createStreamSource(streamId: string, streamSourcePost: StreamSourcePost): Promise<StreamSource>;
+    /**
+     * Delete a specific source (docket) for a stream.
+     * Delete a stream source
+     */
+    deleteStreamSourceRaw(requestParameters: DeleteStreamSourceRequest): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Delete a specific source (docket) for a stream.
+     * Delete a stream source
+     */
+    deleteStreamSource(streamId: string, sourceId: string): Promise<void>;
     /**
      * Retrieves a specific ingress log entry for a dataset
      * Get a single dataset ingress log by ID
@@ -44,4 +84,34 @@ export declare class ExperimentalApi extends runtime.BaseAPI {
      * Get dataset ingress metrics over time
      */
     getDatasetIngressLogs(datasetId: string, limit?: number, offset?: number): Promise<Array<DatasetIngressLog>>;
+    /**
+     * Retrieve a specific source (docket) for a stream.
+     * Retrieve a stream source
+     */
+    getStreamSourceRaw(requestParameters: GetStreamSourceRequest): Promise<runtime.ApiResponse<StreamSource>>;
+    /**
+     * Retrieve a specific source (docket) for a stream.
+     * Retrieve a stream source
+     */
+    getStreamSource(streamId: string, sourceId: string): Promise<StreamSource>;
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream.
+     * List stream sources
+     */
+    getStreamSourcesRaw(requestParameters: GetStreamSourcesRequest): Promise<runtime.ApiResponse<Array<StreamSource>>>;
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream.
+     * List stream sources
+     */
+    getStreamSources(streamId: string): Promise<Array<StreamSource>>;
+    /**
+     * Update a specific source (docket) for a stream.
+     * Update a stream source
+     */
+    updateStreamSourceRaw(requestParameters: UpdateStreamSourceRequest): Promise<runtime.ApiResponse<StreamSource>>;
+    /**
+     * Update a specific source (docket) for a stream.
+     * Update a stream source
+     */
+    updateStreamSource(streamId: string, sourceId: string, streamSourceFields: StreamSourceMergePatch): Promise<StreamSource>;
 }

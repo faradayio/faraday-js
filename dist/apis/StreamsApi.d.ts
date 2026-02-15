@@ -10,13 +10,21 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Stream, StreamAnalysis, StreamMergePatch } from '../models';
+import { ArchiveConfig, Stream, StreamAnalysis, StreamMergePatch, StreamSource, StreamSourceMergePatch, StreamSourcePost } from '../models';
 export interface ArchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
 }
+export interface CreateStreamSourceRequest {
+    streamId: string;
+    streamSourcePost: StreamSourcePost;
+}
 export interface DeleteStreamRequest {
     streamIdOrName: string;
+}
+export interface DeleteStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
 }
 export interface FindOrCreateStreamRequest {
     streamName: string;
@@ -30,6 +38,13 @@ export interface GetStreamRequest {
 export interface GetStreamAnalysisRequest {
     streamIdOrName: string;
 }
+export interface GetStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+}
+export interface GetStreamSourcesRequest {
+    streamId: string;
+}
 export interface UnarchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
@@ -37,6 +52,11 @@ export interface UnarchiveStreamRequest {
 export interface UpdateStreamRequest {
     streamIdOrName: string;
     streamFields: StreamMergePatch;
+}
+export interface UpdateStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+    streamSourceFields: StreamSourceMergePatch;
 }
 /**
  *
@@ -53,6 +73,16 @@ export declare class StreamsApi extends runtime.BaseAPI {
      */
     archiveStream(streamIdOrName: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions.
+     * Create a stream source
+     */
+    createStreamSourceRaw(requestParameters: CreateStreamSourceRequest): Promise<runtime.ApiResponse<StreamSource>>;
+    /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions.
+     * Create a stream source
+     */
+    createStreamSource(streamId: string, streamSourcePost: StreamSourcePost): Promise<StreamSource>;
+    /**
      * Delete a stream
      */
     deleteStreamRaw(requestParameters: DeleteStreamRequest): Promise<runtime.ApiResponse<void>>;
@@ -60,6 +90,16 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Delete a stream
      */
     deleteStream(streamIdOrName: string): Promise<void>;
+    /**
+     * Delete a specific source (docket) for a stream.
+     * Delete a stream source
+     */
+    deleteStreamSourceRaw(requestParameters: DeleteStreamSourceRequest): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Delete a specific source (docket) for a stream.
+     * Delete a stream source
+     */
+    deleteStreamSource(streamId: string, sourceId: string): Promise<void>;
     /**
      * Look up (or create) an event stream by name.
      * Create a stream
@@ -99,6 +139,26 @@ export declare class StreamsApi extends runtime.BaseAPI {
      */
     getStreamAnalysis(streamIdOrName: string): Promise<StreamAnalysis>;
     /**
+     * Retrieve a specific source (docket) for a stream.
+     * Retrieve a stream source
+     */
+    getStreamSourceRaw(requestParameters: GetStreamSourceRequest): Promise<runtime.ApiResponse<StreamSource>>;
+    /**
+     * Retrieve a specific source (docket) for a stream.
+     * Retrieve a stream source
+     */
+    getStreamSource(streamId: string, sourceId: string): Promise<StreamSource>;
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream.
+     * List stream sources
+     */
+    getStreamSourcesRaw(requestParameters: GetStreamSourcesRequest): Promise<runtime.ApiResponse<Array<StreamSource>>>;
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream.
+     * List stream sources
+     */
+    getStreamSources(streamId: string): Promise<Array<StreamSource>>;
+    /**
      * List all streams present on the account
      * List streams
      */
@@ -128,4 +188,14 @@ export declare class StreamsApi extends runtime.BaseAPI {
      * Update a stream
      */
     updateStream(streamIdOrName: string, streamFields: StreamMergePatch): Promise<Stream>;
+    /**
+     * Update a specific source (docket) for a stream.
+     * Update a stream source
+     */
+    updateStreamSourceRaw(requestParameters: UpdateStreamSourceRequest): Promise<runtime.ApiResponse<StreamSource>>;
+    /**
+     * Update a specific source (docket) for a stream.
+     * Update a stream source
+     */
+    updateStreamSource(streamId: string, sourceId: string, streamSourceFields: StreamSourceMergePatch): Promise<StreamSource>;
 }

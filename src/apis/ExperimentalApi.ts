@@ -16,7 +16,20 @@
 import * as runtime from '../runtime';
 import {
     DatasetIngressLog,
+    StreamSource,
+    StreamSourceMergePatch,
+    StreamSourcePost,
 } from '../models';
+
+export interface CreateStreamSourceRequest {
+    streamId: string;
+    streamSourcePost: StreamSourcePost;
+}
+
+export interface DeleteStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+}
 
 export interface GetDatasetIngressLogRequest {
     datasetId: string;
@@ -29,10 +42,115 @@ export interface GetDatasetIngressLogsRequest {
     offset?: number;
 }
 
+export interface GetStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+}
+
+export interface GetStreamSourcesRequest {
+    streamId: string;
+}
+
+export interface UpdateStreamSourceRequest {
+    streamId: string;
+    sourceId: string;
+    streamSourceFields: StreamSourceMergePatch;
+}
+
 /**
  * 
  */
 export class ExperimentalApi extends runtime.BaseAPI {
+
+    /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions. 
+     * Create a stream source
+     */
+    async createStreamSourceRaw(requestParameters: CreateStreamSourceRequest, ): Promise<runtime.ApiResponse<StreamSource>> {
+        if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+            throw new runtime.RequiredError('streamId','Required parameter requestParameters.streamId was null or undefined when calling createStreamSource.');
+        }
+
+        if (requestParameters.streamSourcePost === null || requestParameters.streamSourcePost === undefined) {
+            throw new runtime.RequiredError('streamSourcePost','Required parameter requestParameters.streamSourcePost was null or undefined when calling createStreamSource.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id}/sources`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.streamSourcePost,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Create a new source (docket) linking a dataset to this stream, with the specified data map and optional conditions. 
+     * Create a stream source
+     */
+    async createStreamSource(streamId: string, streamSourcePost: StreamSourcePost, ): Promise<StreamSource> {
+        const response = await this.createStreamSourceRaw({ streamId: streamId, streamSourcePost: streamSourcePost }, );
+        return await response.value();
+    }
+
+    /**
+     * Delete a specific source (docket) for a stream. 
+     * Delete a stream source
+     */
+    async deleteStreamSourceRaw(requestParameters: DeleteStreamSourceRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+            throw new runtime.RequiredError('streamId','Required parameter requestParameters.streamId was null or undefined when calling deleteStreamSource.');
+        }
+
+        if (requestParameters.sourceId === null || requestParameters.sourceId === undefined) {
+            throw new runtime.RequiredError('sourceId','Required parameter requestParameters.sourceId was null or undefined when calling deleteStreamSource.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id}/sources/{source_id}`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))).replace(`{${"source_id"}}`, encodeURIComponent(String(requestParameters.sourceId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a specific source (docket) for a stream. 
+     * Delete a stream source
+     */
+    async deleteStreamSource(streamId: string, sourceId: string, ): Promise<void> {
+        await this.deleteStreamSourceRaw({ streamId: streamId, sourceId: sourceId }, );
+    }
 
     /**
      * Retrieves a specific ingress log entry for a dataset
@@ -123,6 +241,141 @@ export class ExperimentalApi extends runtime.BaseAPI {
      */
     async getDatasetIngressLogs(datasetId: string, limit?: number, offset?: number, ): Promise<Array<DatasetIngressLog>> {
         const response = await this.getDatasetIngressLogsRaw({ datasetId: datasetId, limit: limit, offset: offset }, );
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a specific source (docket) for a stream. 
+     * Retrieve a stream source
+     */
+    async getStreamSourceRaw(requestParameters: GetStreamSourceRequest, ): Promise<runtime.ApiResponse<StreamSource>> {
+        if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+            throw new runtime.RequiredError('streamId','Required parameter requestParameters.streamId was null or undefined when calling getStreamSource.');
+        }
+
+        if (requestParameters.sourceId === null || requestParameters.sourceId === undefined) {
+            throw new runtime.RequiredError('sourceId','Required parameter requestParameters.sourceId was null or undefined when calling getStreamSource.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id}/sources/{source_id}`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))).replace(`{${"source_id"}}`, encodeURIComponent(String(requestParameters.sourceId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Retrieve a specific source (docket) for a stream. 
+     * Retrieve a stream source
+     */
+    async getStreamSource(streamId: string, sourceId: string, ): Promise<StreamSource> {
+        const response = await this.getStreamSourceRaw({ streamId: streamId, sourceId: sourceId }, );
+        return await response.value();
+    }
+
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream. 
+     * List stream sources
+     */
+    async getStreamSourcesRaw(requestParameters: GetStreamSourcesRequest, ): Promise<runtime.ApiResponse<Array<StreamSource>>> {
+        if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+            throw new runtime.RequiredError('streamId','Required parameter requestParameters.streamId was null or undefined when calling getStreamSources.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id}/sources`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * List all sources (dockets) for a stream. Each source represents a dataset\'s contribution to this stream. 
+     * List stream sources
+     */
+    async getStreamSources(streamId: string, ): Promise<Array<StreamSource>> {
+        const response = await this.getStreamSourcesRaw({ streamId: streamId }, );
+        return await response.value();
+    }
+
+    /**
+     * Update a specific source (docket) for a stream. 
+     * Update a stream source
+     */
+    async updateStreamSourceRaw(requestParameters: UpdateStreamSourceRequest, ): Promise<runtime.ApiResponse<StreamSource>> {
+        if (requestParameters.streamId === null || requestParameters.streamId === undefined) {
+            throw new runtime.RequiredError('streamId','Required parameter requestParameters.streamId was null or undefined when calling updateStreamSource.');
+        }
+
+        if (requestParameters.sourceId === null || requestParameters.sourceId === undefined) {
+            throw new runtime.RequiredError('sourceId','Required parameter requestParameters.sourceId was null or undefined when calling updateStreamSource.');
+        }
+
+        if (requestParameters.streamSourceFields === null || requestParameters.streamSourceFields === undefined) {
+            throw new runtime.RequiredError('streamSourceFields','Required parameter requestParameters.streamSourceFields was null or undefined when calling updateStreamSource.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json+merge-patch';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/streams/{stream_id}/sources/{source_id}`.replace(`{${"stream_id"}}`, encodeURIComponent(String(requestParameters.streamId))).replace(`{${"source_id"}}`, encodeURIComponent(String(requestParameters.sourceId))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.streamSourceFields,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Update a specific source (docket) for a stream. 
+     * Update a stream source
+     */
+    async updateStreamSource(streamId: string, sourceId: string, streamSourceFields: StreamSourceMergePatch, ): Promise<StreamSource> {
+        const response = await this.updateStreamSourceRaw({ streamId: streamId, sourceId: sourceId, streamSourceFields: streamSourceFields }, );
         return await response.value();
     }
 
