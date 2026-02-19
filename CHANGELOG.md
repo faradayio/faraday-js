@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.2] - 2026-02-19
+
+### Added
+
+- New `statistical_type` values for streams and traits: `continuous_ordinal`, `categorical_nominal`, `multicategorical_nominal`, `categorical_ordinal`. Legacy values (`categorical`, `multicategorical`, `ordinal`, `nominal`) are still accepted but deprecated.
+
 ## [0.14.1] - 2026-02-01
 
 ### Added
