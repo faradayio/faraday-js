@@ -24882,10 +24882,22 @@ export interface TraitPut {
 /**
  * A string describing the nature of data represented by the trait.
  * 
- * categorical: the field contains one value of a bounded set. Example "favorite_color": one of "red", "blue", or "yellow".
- * multicategorical: the field contains one or more values of a bounded set. 
- * ordinal: the field contains values which have a natural ordering from low to high.  
- * nominal: Anything else. Fields which are boolean in nature (0/1, T/F, true/false) should be set to `nominal`.
+ * categorical_nominal: the field contains one value of an unordered bounded set. Example: "preferred_channel" — one of "email", "sms", "direct_mail".
+ * categorical_ordinal: the field contains one value of an ordered bounded set. Example: "spending_tier" — one of "low", "medium", "high", "premium".
+ * multicategorical_nominal: the field contains one or more values of an unordered bounded set. Example: "interests" — "outdoors", "travel", "fitness".
+ * continuous_ordinal: the field contains numeric values with a natural ordering. Example: "lifetime_value".
+ * 
+ * Type compatibility (new values only):
+ * - continuous_ordinal requires a numeric type (long, float, double).
+ * - categorical_nominal requires string or boolean.
+ * - categorical_ordinal requires string.
+ * - multicategorical_nominal requires array_of_strings.
+ * 
+ * Deprecated values (still accepted, will be removed in a future version):
+ * categorical: equivalent to categorical_nominal.
+ * multicategorical: equivalent to multicategorical_nominal.
+ * ordinal: ambiguous — prefer categorical_ordinal or continuous_ordinal.
+ * nominal: ambiguous — prefer categorical_nominal.
  * @export
  * @enum {string}
  */
@@ -24893,7 +24905,11 @@ export enum TraitStatisticalType {
     Categorical = 'categorical',
     Multicategorical = 'multicategorical',
     Ordinal = 'ordinal',
-    Nominal = 'nominal'
+    Nominal = 'nominal',
+    ContinuousOrdinal = 'continuous_ordinal',
+    CategoricalNominal = 'categorical_nominal',
+    MulticategoricalNominal = 'multicategorical_nominal',
+    CategoricalOrdinal = 'categorical_ordinal'
 }
 /**
  * A broad category describing the flavor of a trait.
