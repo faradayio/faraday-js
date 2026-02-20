@@ -459,7 +459,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json+merge-patch';
+        headerParameters['Content-Type'] = 'application/merge-patch+json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -506,7 +506,7 @@ export class PersonaSetsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json+merge-patch';
+        headerParameters['Content-Type'] = 'application/merge-patch+json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
