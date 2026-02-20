@@ -46,6 +46,10 @@ export interface GetStreamAnalysisRequest {
     streamIdOrName: string;
 }
 
+export interface GetStreamsRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchiveStreamRequest {
     streamIdOrName: string;
     archiveConfig: ArchiveConfig;
@@ -305,8 +309,12 @@ export class StreamsApi extends runtime.BaseAPI {
      * List all streams present on the account
      * List streams
      */
-    async getStreamsRaw(): Promise<runtime.ApiResponse<Array<Stream>>> {
+    async getStreamsRaw(requestParameters: GetStreamsRequest, ): Promise<runtime.ApiResponse<Array<Stream>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -332,8 +340,8 @@ export class StreamsApi extends runtime.BaseAPI {
      * List all streams present on the account
      * List streams
      */
-    async getStreams(): Promise<Array<Stream>> {
-        const response = await this.getStreamsRaw();
+    async getStreams(ids?: Array<string>, ): Promise<Array<Stream>> {
+        const response = await this.getStreamsRaw({ ids: ids }, );
         return await response.value();
     }
 

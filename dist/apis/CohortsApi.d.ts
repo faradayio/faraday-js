@@ -30,6 +30,9 @@ export interface GetCohortRequest {
 export interface GetCohortAnalysisMembershipRequest {
     cohortId: string;
 }
+export interface GetCohortsRequest {
+    ids?: Array<string>;
+}
 export interface UnarchiveCohortRequest {
     cohortId: string;
     archiveConfig: ArchiveConfig;
@@ -102,12 +105,12 @@ export declare class CohortsApi extends runtime.BaseAPI {
      * Get a list of cohorts defined on the account
      * List cohorts
      */
-    getCohortsRaw(): Promise<runtime.ApiResponse<Array<Cohort>>>;
+    getCohortsRaw(requestParameters: GetCohortsRequest): Promise<runtime.ApiResponse<Array<Cohort>>>;
     /**
      * Get a list of cohorts defined on the account
      * List cohorts
      */
-    getCohorts(): Promise<Array<Cohort>>;
+    getCohorts(ids?: Array<string>): Promise<Array<Cohort>>;
     /**
      * Unarchive a cohort
      * Unarchive a cohort

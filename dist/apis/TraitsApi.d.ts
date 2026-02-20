@@ -30,6 +30,9 @@ export interface GetTraitRequest {
 export interface GetTraitAnalysisDimensionsRequest {
     traitId: string;
 }
+export interface GetTraitsRequest {
+    ids?: Array<string>;
+}
 export interface UnarchiveTraitRequest {
     traitId: string;
     archiveConfig: ArchiveConfig;
@@ -114,12 +117,12 @@ export declare class TraitsApi extends runtime.BaseAPI {
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    getTraitsRaw(): Promise<runtime.ApiResponse<Array<Trait>>>;
+    getTraitsRaw(requestParameters: GetTraitsRequest): Promise<runtime.ApiResponse<Array<Trait>>>;
     /**
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    getTraits(): Promise<Array<Trait>>;
+    getTraits(ids?: Array<string>): Promise<Array<Trait>>;
     /**
      * Get a csv of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits, in csv form

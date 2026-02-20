@@ -54,6 +54,10 @@ export interface GetDatasetIngressLogsRequest {
     offset?: number;
 }
 
+export interface GetDatasetsRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchiveDatasetRequest {
     datasetId: string;
     archiveConfig: ArchiveConfig;
@@ -370,8 +374,12 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Get a list of the datasets available in the developer’s account
      * List datasets
      */
-    async getDatasetsRaw(): Promise<runtime.ApiResponse<Array<Dataset>>> {
+    async getDatasetsRaw(requestParameters: GetDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -397,8 +405,8 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Get a list of the datasets available in the developer’s account
      * List datasets
      */
-    async getDatasets(): Promise<Array<Dataset>> {
-        const response = await this.getDatasetsRaw();
+    async getDatasets(ids?: Array<string>, ): Promise<Array<Dataset>> {
+        const response = await this.getDatasetsRaw({ ids: ids }, );
         return await response.value();
     }
 

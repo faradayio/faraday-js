@@ -289,9 +289,12 @@ class TraitsApi extends runtime.BaseAPI {
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    getTraitsRaw() {
+    getTraitsRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -313,9 +316,9 @@ class TraitsApi extends runtime.BaseAPI {
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    getTraits() {
+    getTraits(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getTraitsRaw();
+            const response = yield this.getTraitsRaw({ ids: ids });
             return yield response.value();
         });
     }

@@ -57,6 +57,9 @@ export interface GetScopePopulationExclusionCohortsRequest {
 export interface GetScopeTargetsRequest {
     scopeId: string;
 }
+export interface GetScopesRequest {
+    ids?: Array<string>;
+}
 export interface UnarchiveScopeRequest {
     scopeId: string;
     archiveConfig: ArchiveConfig;
@@ -221,12 +224,12 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get a list of scopes defined on the account
      * List scopes
      */
-    getScopesRaw(): Promise<runtime.ApiResponse<Array<Scope>>>;
+    getScopesRaw(requestParameters: GetScopesRequest): Promise<runtime.ApiResponse<Array<Scope>>>;
     /**
      * Get a list of scopes defined on the account
      * List scopes
      */
-    getScopes(): Promise<Array<Scope>>;
+    getScopes(ids?: Array<string>): Promise<Array<Scope>>;
     /**
      * Unarchive a scope
      * Unarchive a scope

@@ -47,6 +47,10 @@ export interface GetRecommenderAnalysisRequest {
     recommenderId: string;
 }
 
+export interface GetRecommendersRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchiveRecommenderRequest {
     recommenderId: string;
     archiveConfig: ArchiveConfig;
@@ -311,8 +315,12 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    async getRecommendersRaw(): Promise<runtime.ApiResponse<Array<Recommender>>> {
+    async getRecommendersRaw(requestParameters: GetRecommendersRequest, ): Promise<runtime.ApiResponse<Array<Recommender>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -338,8 +346,8 @@ export class RecommendersApi extends runtime.BaseAPI {
      * Get a list of recommenders defined on the account
      * List recommenders
      */
-    async getRecommenders(): Promise<Array<Recommender>> {
-        const response = await this.getRecommendersRaw();
+    async getRecommenders(ids?: Array<string>, ): Promise<Array<Recommender>> {
+        const response = await this.getRecommendersRaw({ ids: ids }, );
         return await response.value();
     }
 

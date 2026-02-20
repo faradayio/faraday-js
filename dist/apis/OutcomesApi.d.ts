@@ -33,6 +33,9 @@ export interface GetOutcomeAnalysisRequest {
 export interface GetOutcomeDownloadRequest {
     outcomeId: string;
 }
+export interface GetOutcomesRequest {
+    ids?: Array<string>;
+}
 export interface UnarchiveOutcomeRequest {
     outcomeId: string;
     archiveConfig: ArchiveConfig;
@@ -117,12 +120,12 @@ export declare class OutcomesApi extends runtime.BaseAPI {
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    getOutcomesRaw(): Promise<runtime.ApiResponse<Array<Outcome>>>;
+    getOutcomesRaw(requestParameters: GetOutcomesRequest): Promise<runtime.ApiResponse<Array<Outcome>>>;
     /**
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    getOutcomes(): Promise<Array<Outcome>>;
+    getOutcomes(ids?: Array<string>): Promise<Array<Outcome>>;
     /**
      * Unarchive a outcome
      * Unarchive a outcome

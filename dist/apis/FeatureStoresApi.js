@@ -178,9 +178,12 @@ class FeatureStoresApi extends runtime.BaseAPI {
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    getFeatureStoresRaw() {
+    getFeatureStoresRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -202,9 +205,9 @@ class FeatureStoresApi extends runtime.BaseAPI {
      * Get a list of feature stores defined on the account
      * List feature stores
      */
-    getFeatureStores() {
+    getFeatureStores(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getFeatureStoresRaw();
+            const response = yield this.getFeatureStoresRaw({ ids: ids });
             return yield response.value();
         });
     }

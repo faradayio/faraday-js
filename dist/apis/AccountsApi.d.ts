@@ -20,6 +20,9 @@ export interface DeleteAccountRequest {
 export interface GetAccountRequest {
     accountId: string;
 }
+export interface GetAccountsRequest {
+    ids?: Array<string>;
+}
 export interface UpdateAccountRequest {
     accountId: string;
     accountMergePatch: AccountMergePatch;
@@ -62,12 +65,12 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Get a list of accounts defined on the account
      * List accounts
      */
-    getAccountsRaw(): Promise<runtime.ApiResponse<Array<Account>>>;
+    getAccountsRaw(requestParameters: GetAccountsRequest): Promise<runtime.ApiResponse<Array<Account>>>;
     /**
      * Get a list of accounts defined on the account
      * List accounts
      */
-    getAccounts(): Promise<Array<Account>>;
+    getAccounts(ids?: Array<string>): Promise<Array<Account>>;
     /**
      * Get details on the current account, as identified by the API key
      * Retrieve current account

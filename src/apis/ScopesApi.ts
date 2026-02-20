@@ -90,6 +90,10 @@ export interface GetScopeTargetsRequest {
     scopeId: string;
 }
 
+export interface GetScopesRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchiveScopeRequest {
     scopeId: string;
     archiveConfig: ArchiveConfig;
@@ -714,8 +718,12 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get a list of scopes defined on the account
      * List scopes
      */
-    async getScopesRaw(): Promise<runtime.ApiResponse<Array<Scope>>> {
+    async getScopesRaw(requestParameters: GetScopesRequest, ): Promise<runtime.ApiResponse<Array<Scope>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -741,8 +749,8 @@ export class ScopesApi extends runtime.BaseAPI {
      * Get a list of scopes defined on the account
      * List scopes
      */
-    async getScopes(): Promise<Array<Scope>> {
-        const response = await this.getScopesRaw();
+    async getScopes(ids?: Array<string>, ): Promise<Array<Scope>> {
+        const response = await this.getScopesRaw({ ids: ids }, );
         return await response.value();
     }
 

@@ -32,6 +32,10 @@ export interface GetAccountRequest {
     accountId: string;
 }
 
+export interface GetAccountsRequest {
+    ids?: Array<string>;
+}
+
 export interface UpdateAccountRequest {
     accountId: string;
     accountMergePatch: AccountMergePatch;
@@ -168,8 +172,12 @@ export class AccountsApi extends runtime.BaseAPI {
      * Get a list of accounts defined on the account
      * List accounts
      */
-    async getAccountsRaw(): Promise<runtime.ApiResponse<Array<Account>>> {
+    async getAccountsRaw(requestParameters: GetAccountsRequest, ): Promise<runtime.ApiResponse<Array<Account>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -195,8 +203,8 @@ export class AccountsApi extends runtime.BaseAPI {
      * Get a list of accounts defined on the account
      * List accounts
      */
-    async getAccounts(): Promise<Array<Account>> {
-        const response = await this.getAccountsRaw();
+    async getAccounts(ids?: Array<string>, ): Promise<Array<Account>> {
+        const response = await this.getAccountsRaw({ ids: ids }, );
         return await response.value();
     }
 
