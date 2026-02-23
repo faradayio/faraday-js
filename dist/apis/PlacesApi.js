@@ -219,9 +219,12 @@ class PlacesApi extends runtime.BaseAPI {
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
      */
-    getPlacesRaw() {
+    getPlacesRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -243,9 +246,9 @@ class PlacesApi extends runtime.BaseAPI {
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
      */
-    getPlaces() {
+    getPlaces(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getPlacesRaw();
+            const response = yield this.getPlacesRaw({ ids: ids });
             return yield response.value();
         });
     }

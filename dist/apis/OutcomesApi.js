@@ -293,9 +293,12 @@ class OutcomesApi extends runtime.BaseAPI {
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    getOutcomesRaw() {
+    getOutcomesRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -317,9 +320,9 @@ class OutcomesApi extends runtime.BaseAPI {
      * Get a list of outcomes defined on the account
      * List outcomes
      */
-    getOutcomes() {
+    getOutcomes(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getOutcomesRaw();
+            const response = yield this.getOutcomesRaw({ ids: ids });
             return yield response.value();
         });
     }

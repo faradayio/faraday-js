@@ -47,6 +47,10 @@ export interface GetCohortAnalysisMembershipRequest {
     cohortId: string;
 }
 
+export interface GetCohortsRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchiveCohortRequest {
     cohortId: string;
     archiveConfig: ArchiveConfig;
@@ -309,8 +313,12 @@ export class CohortsApi extends runtime.BaseAPI {
      * Get a list of cohorts defined on the account
      * List cohorts
      */
-    async getCohortsRaw(): Promise<runtime.ApiResponse<Array<Cohort>>> {
+    async getCohortsRaw(requestParameters: GetCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -336,8 +344,8 @@ export class CohortsApi extends runtime.BaseAPI {
      * Get a list of cohorts defined on the account
      * List cohorts
      */
-    async getCohorts(): Promise<Array<Cohort>> {
-        const response = await this.getCohortsRaw();
+    async getCohorts(ids?: Array<string>, ): Promise<Array<Cohort>> {
+        const response = await this.getCohortsRaw({ ids: ids }, );
         return await response.value();
     }
 

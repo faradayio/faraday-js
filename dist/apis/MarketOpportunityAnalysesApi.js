@@ -177,9 +177,12 @@ class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get all market opportunity analyses
      */
-    getMarketOpportunityAnalysesRaw() {
+    getMarketOpportunityAnalysesRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
+            if (requestParameters.ids) {
+                queryParameters['ids'] = requestParameters.ids;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -200,9 +203,9 @@ class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Get all market opportunity analyses
      */
-    getMarketOpportunityAnalyses() {
+    getMarketOpportunityAnalyses(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getMarketOpportunityAnalysesRaw();
+            const response = yield this.getMarketOpportunityAnalysesRaw({ ids: ids });
             return yield response.value();
         });
     }

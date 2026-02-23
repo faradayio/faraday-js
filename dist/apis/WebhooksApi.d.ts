@@ -20,6 +20,9 @@ export interface DeleteWebhookEndpointRequest {
 export interface GetWebhookEndpointRequest {
     webhookEndpointId: string;
 }
+export interface GetWebhookEndpointsRequest {
+    ids?: Array<string>;
+}
 export interface UpdateWebhookEndpointRequest {
     webhookEndpointId: string;
     webhookEndpointMergePatch: WebhookEndpointMergePatch;
@@ -62,12 +65,12 @@ export declare class WebhooksApi extends runtime.BaseAPI {
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    getWebhookEndpointsRaw(): Promise<runtime.ApiResponse<Array<WebhookEndpoint>>>;
+    getWebhookEndpointsRaw(requestParameters: GetWebhookEndpointsRequest): Promise<runtime.ApiResponse<Array<WebhookEndpoint>>>;
     /**
      * Get a list of webhook endpoints defined on the account
      * List webhook endpoints
      */
-    getWebhookEndpoints(): Promise<Array<WebhookEndpoint>>;
+    getWebhookEndpoints(ids?: Array<string>): Promise<Array<WebhookEndpoint>>;
     /**
      * Update the configuration of a webhook endpoint
      * Update a webhook endpoint

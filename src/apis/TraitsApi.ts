@@ -47,6 +47,10 @@ export interface GetTraitAnalysisDimensionsRequest {
     traitId: string;
 }
 
+export interface GetTraitsRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchiveTraitRequest {
     traitId: string;
     archiveConfig: ArchiveConfig;
@@ -346,8 +350,12 @@ export class TraitsApi extends runtime.BaseAPI {
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    async getTraitsRaw(): Promise<runtime.ApiResponse<Array<Trait>>> {
+    async getTraitsRaw(requestParameters: GetTraitsRequest, ): Promise<runtime.ApiResponse<Array<Trait>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -373,8 +381,8 @@ export class TraitsApi extends runtime.BaseAPI {
      * Get a list of all available traits, including those provided by Faraday and those defined by the user.
      * List all user-defined and Faraday-provided traits
      */
-    async getTraits(): Promise<Array<Trait>> {
-        const response = await this.getTraitsRaw();
+    async getTraits(ids?: Array<string>, ): Promise<Array<Trait>> {
+        const response = await this.getTraitsRaw({ ids: ids }, );
         return await response.value();
     }
 

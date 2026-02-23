@@ -23,6 +23,9 @@ export interface ForceUpdateAttributeRequest {
 export interface GetAttributeRequest {
     attributeId: string;
 }
+export interface GetAttributesRequest {
+    ids?: Array<string>;
+}
 export interface UpdateAttributeRequest {
     attributeId: string;
     attributeFields: AttributeMergePatch;
@@ -73,12 +76,12 @@ export declare class AttributesApi extends runtime.BaseAPI {
      * Get a list of attributes defined on the account
      * List attributes
      */
-    getAttributesRaw(): Promise<runtime.ApiResponse<Array<Attribute>>>;
+    getAttributesRaw(requestParameters: GetAttributesRequest): Promise<runtime.ApiResponse<Array<Attribute>>>;
     /**
      * Get a list of attributes defined on the account
      * List attributes
      */
-    getAttributes(): Promise<Array<Attribute>>;
+    getAttributes(ids?: Array<string>): Promise<Array<Attribute>>;
     /**
      * Update the configuration of an attribute
      * Update an attribute

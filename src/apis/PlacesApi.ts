@@ -42,6 +42,10 @@ export interface GetPlaceRequest {
     placeId: string;
 }
 
+export interface GetPlacesRequest {
+    ids?: Array<string>;
+}
+
 export interface UnarchivePlaceRequest {
     placeId: string;
     archiveConfig: ArchiveConfig;
@@ -266,8 +270,12 @@ export class PlacesApi extends runtime.BaseAPI {
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
      * List places
      */
-    async getPlacesRaw(): Promise<runtime.ApiResponse<Array<Place>>> {
+    async getPlacesRaw(requestParameters: GetPlacesRequest, ): Promise<runtime.ApiResponse<Array<Place>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -293,8 +301,8 @@ export class PlacesApi extends runtime.BaseAPI {
      * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
      * List places
      */
-    async getPlaces(): Promise<Array<Place>> {
-        const response = await this.getPlacesRaw();
+    async getPlaces(ids?: Array<string>, ): Promise<Array<Place>> {
+        const response = await this.getPlacesRaw({ ids: ids }, );
         return await response.value();
     }
 
