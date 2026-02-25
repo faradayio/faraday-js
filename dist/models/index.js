@@ -15,6 +15,10 @@ var AttributeAggregationMethod;
     AttributeAggregationMethod["Median"] = "median";
     AttributeAggregationMethod["Mode"] = "mode";
     AttributeAggregationMethod["Coalesce"] = "coalesce";
+    AttributeAggregationMethod["CrossUnion"] = "cross_union";
+    AttributeAggregationMethod["ConcatenateBreaks"] = "concatenate_breaks";
+    AttributeAggregationMethod["CountNotNull"] = "count_not_null";
+    AttributeAggregationMethod["Sum"] = "sum";
 })(AttributeAggregationMethod = exports.AttributeAggregationMethod || (exports.AttributeAggregationMethod = {}));
 /**
  * Sort direction for attribute aggregation.
