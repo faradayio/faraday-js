@@ -12944,7 +12944,7 @@ export interface IdentitySet {
      */
     freeform_address?: string;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
+     * An array of columns that together contain the house number and street information. The first element should be the main street address column. Additional elements can be secondary address indicators (unit, apt, suite, floor, room, building, etc.). For best geocoding results, secondary address values should include a USPS designator (e.g., "Apt 4B", "Suite 300", "Unit 12"). Bare secondary values without designators (e.g., just "4B") may produce lower geocoding quality when the column name does not clearly indicate the designator type.
      * @type {Array<string>}
      * @memberof IdentitySet
      */
@@ -13034,7 +13034,7 @@ export interface IdentitySetMergePatch {
      */
     freeform_address?: string | null;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
+     * An array of columns that together contain the house number and street information. The first element should be the main street address column. Additional elements can be secondary address indicators (unit, apt, suite, floor, room, building, etc.). For best geocoding results, secondary address values should include a USPS designator (e.g., "Apt 4B", "Suite 300", "Unit 12"). Bare secondary values without designators (e.g., just "4B") may produce lower geocoding quality when the column name does not clearly indicate the designator type.
      * @type {Array<string>}
      * @memberof IdentitySetMergePatch
      */
@@ -13124,7 +13124,7 @@ export interface IdentitySetPost {
      */
     freeform_address?: string;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
+     * An array of columns that together contain the house number and street information. The first element should be the main street address column. Additional elements can be secondary address indicators (unit, apt, suite, floor, room, building, etc.). For best geocoding results, secondary address values should include a USPS designator (e.g., "Apt 4B", "Suite 300", "Unit 12"). Bare secondary values without designators (e.g., just "4B") may produce lower geocoding quality when the column name does not clearly indicate the designator type.
      * @type {Array<string>}
      * @memberof IdentitySetPost
      */
@@ -13214,7 +13214,7 @@ export interface IdentitySetPut {
      */
     freeform_address?: string;
     /**
-     * Deprecated in favor of `address_line_1` and `address_line_2`. If this field and either of those fields are populated, they will override this field's value when saved.
+     * An array of columns that together contain the house number and street information. The first element should be the main street address column. Additional elements can be secondary address indicators (unit, apt, suite, floor, room, building, etc.). For best geocoding results, secondary address values should include a USPS designator (e.g., "Apt 4B", "Suite 300", "Unit 12"). Bare secondary values without designators (e.g., just "4B") may produce lower geocoding quality when the column name does not clearly indicate the designator type.
      * @type {Array<string>}
      * @memberof IdentitySetPut
      */
