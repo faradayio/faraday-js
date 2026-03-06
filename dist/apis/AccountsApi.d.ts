@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { Account, AccountMergePatch, AccountPost } from '../models';
+import { Account, AccountMergePatch, AccountPost, AccountUsageSummary } from '../models';
 export interface CreateAccountRequest {
     accountFields: AccountPost;
 }
@@ -19,6 +19,14 @@ export interface DeleteAccountRequest {
 }
 export interface GetAccountRequest {
     accountId: string;
+}
+export interface GetAccountCurrentUsageRequest {
+    limit?: number;
+    offset?: number;
+}
+export interface GetAccountCurrentUsageAllRequest {
+    limit?: number;
+    offset?: number;
 }
 export interface GetAccountsRequest {
     ids?: Array<string>;
@@ -61,6 +69,26 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Retrieve an account
      */
     getAccount(accountId: string): Promise<Account>;
+    /**
+     * Get historical usage metrics for the current account from metrics dashboard events.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsageRaw(requestParameters: GetAccountCurrentUsageRequest): Promise<runtime.ApiResponse<Array<AccountUsageSummary>>>;
+    /**
+     * Get historical usage metrics for the current account from metrics dashboard events.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsage(limit?: number, offset?: number): Promise<Array<AccountUsageSummary>>;
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAllRaw(requestParameters: GetAccountCurrentUsageAllRequest): Promise<runtime.ApiResponse<Array<AccountUsageSummary>>>;
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAll(limit?: number, offset?: number): Promise<Array<AccountUsageSummary>>;
     /**
      * Get a list of accounts defined on the account
      * List accounts

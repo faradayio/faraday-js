@@ -15,8 +15,19 @@
 
 import * as runtime from '../runtime';
 import {
+    AccountUsageSummary,
     DatasetIngressLog,
 } from '../models';
+
+export interface GetAccountCurrentUsageRequest {
+    limit?: number;
+    offset?: number;
+}
+
+export interface GetAccountCurrentUsageAllRequest {
+    limit?: number;
+    offset?: number;
+}
 
 export interface GetDatasetIngressLogRequest {
     datasetId: string;
@@ -33,6 +44,94 @@ export interface GetDatasetIngressLogsRequest {
  * 
  */
 export class ExperimentalApi extends runtime.BaseAPI {
+
+    /**
+     * Get historical usage metrics for the current account from metrics dashboard events.
+     * Get usage metrics for current account
+     */
+    async getAccountCurrentUsageRaw(requestParameters: GetAccountCurrentUsageRequest, ): Promise<runtime.ApiResponse<Array<AccountUsageSummary>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/accounts/current/usage`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get historical usage metrics for the current account from metrics dashboard events.
+     * Get usage metrics for current account
+     */
+    async getAccountCurrentUsage(limit?: number, offset?: number, ): Promise<Array<AccountUsageSummary>> {
+        const response = await this.getAccountCurrentUsageRaw({ limit: limit, offset: offset }, );
+        return await response.value();
+    }
+
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    async getAccountCurrentUsageAllRaw(requestParameters: GetAccountCurrentUsageAllRequest, ): Promise<runtime.ApiResponse<Array<AccountUsageSummary>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/accounts/current/usage/all`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    async getAccountCurrentUsageAll(limit?: number, offset?: number, ): Promise<Array<AccountUsageSummary>> {
+        const response = await this.getAccountCurrentUsageAllRaw({ limit: limit, offset: offset }, );
+        return await response.value();
+    }
 
     /**
      * Retrieves a specific ingress log entry for a dataset

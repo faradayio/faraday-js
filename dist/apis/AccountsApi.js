@@ -141,6 +141,86 @@ class AccountsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get historical usage metrics for the current account from metrics dashboard events.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsageRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParameters = {};
+            if (requestParameters.limit !== undefined) {
+                queryParameters['limit'] = requestParameters.limit;
+            }
+            if (requestParameters.offset !== undefined) {
+                queryParameters['offset'] = requestParameters.offset;
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/accounts/current/usage`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get historical usage metrics for the current account from metrics dashboard events.
+     * Get usage metrics for current account
+     */
+    getAccountCurrentUsage(limit, offset) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getAccountCurrentUsageRaw({ limit: limit, offset: offset });
+            return yield response.value();
+        });
+    }
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAllRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParameters = {};
+            if (requestParameters.limit !== undefined) {
+                queryParameters['limit'] = requestParameters.limit;
+            }
+            if (requestParameters.offset !== undefined) {
+                queryParameters['offset'] = requestParameters.offset;
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/accounts/current/usage/all`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
+     * Get usage metrics for current and sub accounts
+     */
+    getAccountCurrentUsageAll(limit, offset) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getAccountCurrentUsageAllRaw({ limit: limit, offset: offset });
+            return yield response.value();
+        });
+    }
+    /**
      * Get a list of accounts defined on the account
      * List accounts
      */
