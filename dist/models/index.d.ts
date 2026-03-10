@@ -30,6 +30,12 @@ export interface Account {
      */
     commitment?: AccountCommitment;
     /**
+     * The start date of the account's contract with Faraday.
+     * @type {string}
+     * @memberof Account
+     */
+    contract_started_at?: string;
+    /**
      * When this resource was created.
      * @type {string}
      * @memberof Account
@@ -274,6 +280,223 @@ export interface AccountUsage {
      * @memberof AccountUsage
      */
     usage?: number;
+}
+/**
+ * Usage metrics for batch context deployments.
+ * @export
+ * @interface AccountUsageBatchDeployments
+ */
+export interface AccountUsageBatchDeployments {
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    consumer_data?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    identity_data?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsagePredictiveData}
+     * @memberof AccountUsageBatchDeployments
+     */
+    predictive_data?: AccountUsagePredictiveData;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    unknown_contact_addresses?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageBatchDeployments
+     */
+    unknown_contact_email_hashes?: AccountUsageTimePeriod;
+}
+/**
+ * Usage metrics for Lookup API requests. Usage is not de-duplicated — if the same call is made twice, both count.
+ * @export
+ * @interface AccountUsageLookupApiRequests
+ */
+export interface AccountUsageLookupApiRequests {
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    requests?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful_consumer_data?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful_identity_data?: AccountUsageTimePeriod;
+    /**
+     *
+     * @type {AccountUsageTimePeriod}
+     * @memberof AccountUsageLookupApiRequests
+     */
+    successful_prediction_data?: AccountUsageTimePeriod;
+}
+/**
+ * Predictive data usage counts with per-resource breakdown. Counts distinct person/prediction combinations.
+ * @export
+ * @interface AccountUsagePredictiveData
+ */
+export interface AccountUsagePredictiveData {
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsagePredictiveData
+     */
+    last_12_months?: AccountUsageTimePeriodValue;
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsagePredictiveData
+     */
+    last_month?: AccountUsageTimePeriodValue;
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsagePredictiveData
+     */
+    month_to_date?: AccountUsageTimePeriodValue;
+    /**
+     * Per-resource breakdown of predictive data counts.
+     * @type {Array<AccountUsagePredictiveResource>}
+     * @memberof AccountUsagePredictiveData
+     */
+    resources?: Array<AccountUsagePredictiveResource>;
+}
+/**
+ * Per-resource breakdown of predictive data usage (e.g. per outcome or persona set).
+ * @export
+ * @interface AccountUsagePredictiveResource
+ */
+export interface AccountUsagePredictiveResource {
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsagePredictiveResource
+     */
+    last_12_months?: AccountUsageTimePeriodValue;
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsagePredictiveResource
+     */
+    last_month?: AccountUsageTimePeriodValue;
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsagePredictiveResource
+     */
+    month_to_date?: AccountUsageTimePeriodValue;
+    /**
+     * The ID of the predictive resource (e.g. outcome).
+     * @type {string}
+     * @memberof AccountUsagePredictiveResource
+     */
+    resource_id: string;
+    /**
+     * The type of predictive resource.
+     * @type {string}
+     * @memberof AccountUsagePredictiveResource
+     */
+    resource_type: string;
+}
+/**
+ * A summary of the account's usage metrics across batch deployments and Lookup API requests.
+ * @export
+ * @interface AccountUsageSummary
+ */
+export interface AccountUsageSummary {
+    /**
+     *
+     * @type {AccountUsageBatchDeployments}
+     * @memberof AccountUsageSummary
+     */
+    batch_deployments?: AccountUsageBatchDeployments;
+    /**
+     * When this usage data recording completed. Not a usage period boundary — see inner period fields for specific time ranges.
+     * @type {string}
+     * @memberof AccountUsageSummary
+     */
+    finished_at: string;
+    /**
+     * The ID of the usage event.
+     * @type {string}
+     * @memberof AccountUsageSummary
+     */
+    id: string;
+    /**
+     *
+     * @type {AccountUsageLookupApiRequests}
+     * @memberof AccountUsageSummary
+     */
+    lookup_api_requests?: AccountUsageLookupApiRequests;
+    /**
+     * When this usage data was recorded. Not a usage period boundary — see inner period fields for specific time ranges.
+     * @type {string}
+     * @memberof AccountUsageSummary
+     */
+    started_at: string;
+}
+/**
+ * A set of usage values broken down by time period.
+ * @export
+ * @interface AccountUsageTimePeriod
+ */
+export interface AccountUsageTimePeriod {
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsageTimePeriod
+     */
+    last_month?: AccountUsageTimePeriodValue;
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsageTimePeriod
+     */
+    month_to_date?: AccountUsageTimePeriodValue;
+    /**
+     *
+     * @type {AccountUsageTimePeriodValue}
+     * @memberof AccountUsageTimePeriod
+     */
+    term_period_to_last_month?: AccountUsageTimePeriodValue;
+}
+/**
+ * A usage count for a time period.
+ * @export
+ * @interface AccountUsageTimePeriodValue
+ */
+export interface AccountUsageTimePeriodValue {
+    /**
+     * The usage count for this time period.
+     * @type {number}
+     * @memberof AccountUsageTimePeriodValue
+     */
+    count: number;
 }
 /**
  * An address to be geocoded.
