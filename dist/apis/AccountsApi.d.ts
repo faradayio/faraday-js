@@ -20,6 +20,9 @@ export interface DeleteAccountRequest {
 export interface GetAccountRequest {
     accountId: string;
 }
+export interface GetAccountUsageRequest {
+    accountId: string;
+}
 export interface GetAccountsRequest {
     ids?: Array<string>;
 }
@@ -81,6 +84,14 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Get usage metrics for current and sub accounts
      */
     getAccountCurrentUsageAll(): Promise<AccountUsageSummary>;
+    /**
+     * Get usage metrics for a specific account
+     */
+    getAccountUsageRaw(requestParameters: GetAccountUsageRequest): Promise<runtime.ApiResponse<AccountUsageSummary>>;
+    /**
+     * Get usage metrics for a specific account
+     */
+    getAccountUsage(accountId: string): Promise<AccountUsageSummary>;
     /**
      * Get a list of accounts defined on the account
      * List accounts

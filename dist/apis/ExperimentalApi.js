@@ -97,6 +97,41 @@ class ExperimentalApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get usage metrics for a specific account
+     */
+    getAccountUsageRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
+                throw new runtime.RequiredError('accountId', 'Required parameter requestParameters.accountId was null or undefined when calling getAccountUsage.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/accounts/{account_id}/usage`.replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get usage metrics for a specific account
+     */
+    getAccountUsage(accountId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getAccountUsageRaw({ accountId: accountId });
+            return yield response.value();
+        });
+    }
+    /**
      * Retrieves a specific ingress log entry for a dataset
      * Get a single dataset ingress log by ID
      */

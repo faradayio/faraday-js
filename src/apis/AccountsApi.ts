@@ -33,6 +33,10 @@ export interface GetAccountRequest {
     accountId: string;
 }
 
+export interface GetAccountUsageRequest {
+    accountId: string;
+}
+
 export interface GetAccountsRequest {
     ids?: Array<string>;
 }
@@ -238,6 +242,44 @@ export class AccountsApi extends runtime.BaseAPI {
      */
     async getAccountCurrentUsageAll(): Promise<AccountUsageSummary> {
         const response = await this.getAccountCurrentUsageAllRaw();
+        return await response.value();
+    }
+
+    /**
+     * Get usage metrics for a specific account
+     */
+    async getAccountUsageRaw(requestParameters: GetAccountUsageRequest, ): Promise<runtime.ApiResponse<AccountUsageSummary>> {
+        if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
+            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountUsage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/accounts/{account_id}/usage`.replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get usage metrics for a specific account
+     */
+    async getAccountUsage(accountId: string, ): Promise<AccountUsageSummary> {
+        const response = await this.getAccountUsageRaw({ accountId: accountId }, );
         return await response.value();
     }
 
