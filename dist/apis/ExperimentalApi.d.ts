@@ -11,9 +11,6 @@
  */
 import * as runtime from '../runtime';
 import { AccountUsageSummary, DatasetIngressLog } from '../models';
-export interface GetAccountUsageRequest {
-    accountId: string;
-}
 export interface GetDatasetIngressLogRequest {
     datasetId: string;
     logId: string;
@@ -47,14 +44,6 @@ export declare class ExperimentalApi extends runtime.BaseAPI {
      * Get usage metrics for current and sub accounts
      */
     getAccountCurrentUsageAll(): Promise<AccountUsageSummary>;
-    /**
-     * Get usage metrics for a specific account
-     */
-    getAccountUsageRaw(requestParameters: GetAccountUsageRequest): Promise<runtime.ApiResponse<AccountUsageSummary>>;
-    /**
-     * Get usage metrics for a specific account
-     */
-    getAccountUsage(accountId: string): Promise<AccountUsageSummary>;
     /**
      * Retrieves a specific ingress log entry for a dataset
      * Get a single dataset ingress log by ID

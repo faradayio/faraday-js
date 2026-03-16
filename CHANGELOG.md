@@ -10,12 +10,6 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.14.6] - 2026-03-12
-
-### Added
-
-- GET `/accounts/{account_id}/usage` - returns usage metrics for a specific account. Parent accounts can view sub-account usage; accounts can view their own usage.
-
 ## [0.14.5] - 2026-02-10
 
 ### Added
