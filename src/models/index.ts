@@ -50,6 +50,12 @@ export interface Account {
      */
     id: string;
     /**
+     * 
+     * @type {AccountIdentityGraph}
+     * @memberof Account
+     */
+    identity_graph?: AccountIdentityGraph;
+    /**
      * The last time this resource's input was read.
      * @type {string}
      * @memberof Account
@@ -172,6 +178,19 @@ export interface AccountCommitment {
      * @memberof AccountCommitment
      */
     renewal_date?: string;
+}
+/**
+ * Faraday identity graph configuration. Indicates which feature store this account should use.
+ * @export
+ * @interface AccountIdentityGraph
+ */
+export interface AccountIdentityGraph {
+    /**
+     * The feature store this account uses for identity resolution.
+     * @type {string}
+     * @memberof AccountIdentityGraph
+     */
+    feature_store_id: string;
 }
 /**
  * (Parameters used to PATCH the `Account` type.)
@@ -907,6 +926,12 @@ export interface Attribute {
      */
     archived_at?: string;
     /**
+     * For continuous data types, list of reasonable cutoff values. Derived from the underlying stream property.
+     * @type {Array<number>}
+     * @memberof Attribute
+     */
+    breaks?: Array<number>;
+    /**
      * 
      * @type {StreamPropertyCategory}
      * @memberof Attribute
@@ -1044,6 +1069,12 @@ export interface Attribute {
      * @memberof Attribute
      */
     tier: StreamPropertyTier;
+    /**
+     * 
+     * @type {PrimitiveDataType}
+     * @memberof Attribute
+     */
+    type?: PrimitiveDataType;
     /**
      * When this resource was last updated.
      * @type {string}
@@ -1567,12 +1598,6 @@ export interface Cohort {
      */
     max_value?: number;
     /**
-     * 
-     * @type {CohortMetrics}
-     * @memberof Cohort
-     */
-    metrics?: CohortMetrics;
-    /**
      * Min count for this cohort's config
      * @type {number}
      * @memberof Cohort
@@ -1677,12 +1702,6 @@ export interface CohortAnalysisMembership {
      * @memberof CohortAnalysisMembership
      */
     days: Array<CohortAnalysisMembershipDatum>;
-    /**
-     * 
-     * @type {CohortMetrics}
-     * @memberof CohortAnalysisMembership
-     */
-    metrics?: CohortMetrics;
     /**
      * 
      * @type {Array<CohortAnalysisMembershipDatum>}
@@ -1805,37 +1824,6 @@ export interface CohortMergePatch {
      * @memberof CohortMergePatch
      */
     traits?: Array<CohortTrait> | null;
-}
-/**
- * 
- * @export
- * @interface CohortMetrics
- */
-export interface CohortMetrics {
-    /**
-     * Count of unique individuals in the cohort that are enrichable with Faraday's data.
-     * @type {number}
-     * @memberof CohortMetrics
-     */
-    enrichable_person_count?: number;
-    /**
-     * Count of unique residences in the cohort that are enrichable with Faraday's data.
-     * @type {number}
-     * @memberof CohortMetrics
-     */
-    enrichable_residence_count?: number;
-    /**
-     * Total count of unique individuals in the cohort.
-     * @type {number}
-     * @memberof CohortMetrics
-     */
-    total_person_count?: number;
-    /**
-     * Total count of unique residences in the cohort.
-     * @type {number}
-     * @memberof CohortMetrics
-     */
-    total_residence_count?: number;
 }
 /**
  * 

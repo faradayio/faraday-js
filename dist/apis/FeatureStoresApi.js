@@ -175,6 +175,43 @@ class FeatureStoresApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get all attributes belonging to the given feature store. The feature store must be the FIG v2 feature store designated for this account. Attribute names are returned with the `fig/` prefix.
+     * List attributes for a feature store
+     */
+    getFeatureStoreAttributesRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.featureStoreId === null || requestParameters.featureStoreId === undefined) {
+                throw new runtime.RequiredError('featureStoreId', 'Required parameter requestParameters.featureStoreId was null or undefined when calling getFeatureStoreAttributes.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/feature_stores/{feature_store_id}/attributes`.replace(`{${"feature_store_id"}}`, encodeURIComponent(String(requestParameters.featureStoreId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get all attributes belonging to the given feature store. The feature store must be the FIG v2 feature store designated for this account. Attribute names are returned with the `fig/` prefix.
+     * List attributes for a feature store
+     */
+    getFeatureStoreAttributes(featureStoreId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getFeatureStoreAttributesRaw({ featureStoreId: featureStoreId });
+            return yield response.value();
+        });
+    }
+    /**
      * Get a list of feature stores defined on the account
      * List feature stores
      */

@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import {
+    Attribute,
     FeatureStore,
     FeatureStoreMergePatch,
     FeatureStorePost,
@@ -33,6 +34,10 @@ export interface ForceUpdateFeatureStoreRequest {
 }
 
 export interface GetFeatureStoreRequest {
+    featureStoreId: string;
+}
+
+export interface GetFeatureStoreAttributesRequest {
     featureStoreId: string;
 }
 
@@ -206,6 +211,46 @@ export class FeatureStoresApi extends runtime.BaseAPI {
      */
     async getFeatureStore(featureStoreId: string, ): Promise<FeatureStore> {
         const response = await this.getFeatureStoreRaw({ featureStoreId: featureStoreId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get all attributes belonging to the given feature store. The feature store must be the FIG v2 feature store designated for this account. Attribute names are returned with the `fig/` prefix. 
+     * List attributes for a feature store
+     */
+    async getFeatureStoreAttributesRaw(requestParameters: GetFeatureStoreAttributesRequest, ): Promise<runtime.ApiResponse<Array<Attribute>>> {
+        if (requestParameters.featureStoreId === null || requestParameters.featureStoreId === undefined) {
+            throw new runtime.RequiredError('featureStoreId','Required parameter requestParameters.featureStoreId was null or undefined when calling getFeatureStoreAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/feature_stores/{feature_store_id}/attributes`.replace(`{${"feature_store_id"}}`, encodeURIComponent(String(requestParameters.featureStoreId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get all attributes belonging to the given feature store. The feature store must be the FIG v2 feature store designated for this account. Attribute names are returned with the `fig/` prefix. 
+     * List attributes for a feature store
+     */
+    async getFeatureStoreAttributes(featureStoreId: string, ): Promise<Array<Attribute>> {
+        const response = await this.getFeatureStoreAttributesRaw({ featureStoreId: featureStoreId }, );
         return await response.value();
     }
 
