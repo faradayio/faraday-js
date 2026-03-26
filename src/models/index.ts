@@ -50,6 +50,12 @@ export interface Account {
      */
     id: string;
     /**
+     * 
+     * @type {AccountIdentityGraph}
+     * @memberof Account
+     */
+    identity_graph?: AccountIdentityGraph;
+    /**
      * The last time this resource's input was read.
      * @type {string}
      * @memberof Account
@@ -172,6 +178,19 @@ export interface AccountCommitment {
      * @memberof AccountCommitment
      */
     renewal_date?: string;
+}
+/**
+ * Faraday identity graph configuration.
+ * @export
+ * @interface AccountIdentityGraph
+ */
+export interface AccountIdentityGraph {
+    /**
+     * The feature store this account uses for retrieving metadata such as attributes.
+     * @type {string}
+     * @memberof AccountIdentityGraph
+     */
+    feature_store_id: string;
 }
 /**
  * (Parameters used to PATCH the `Account` type.)
