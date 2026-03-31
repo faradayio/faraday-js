@@ -1028,6 +1028,12 @@ export interface Attribute {
      */
     null_value_replacement?: boolean | number | string | null;
     /**
+     * The set of permissions granted for this attribute for the requesting account. Read-only; managed via the admin interface.
+     * @type {Array<AttributePermission>}
+     * @memberof Attribute
+     */
+    permissions?: Array<AttributePermission>;
+    /**
      * The type of this resource.
      * @type {string}
      * @memberof Attribute
@@ -1239,6 +1245,14 @@ export interface AttributeMergePatch {
      * @memberof AttributeMergePatch
      */
     value_property_name?: string;
+}
+/**
+ * A permission granted for an attribute, indicating how the attribute may be used.
+ * @export
+ * @enum {string}
+ */
+export enum AttributePermission {
+    AddToScopePayload = 'add_to_scope_payload'
 }
 /**
  * (Parameters used to POST a new value of the `Attribute` type.)

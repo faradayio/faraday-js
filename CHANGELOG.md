@@ -10,6 +10,13 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.8] - 2026-03-26
+
+### Added
+
+- `permissions` read-only array field on `GET /attributes` and `GET /attributes/{id}`. Returns the set of permissions granted for the attribute for the requesting account (e.g. `["add_to_scope_payload"]`).
+- `AttributePermission` enum with value `add_to_scope_payload`.
+
 ## [0.14.7] - 2026-03-23
 
 ### Added
