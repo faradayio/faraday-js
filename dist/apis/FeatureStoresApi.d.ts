@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { FeatureStore, FeatureStoreMergePatch, FeatureStorePost } from '../models';
+import { Attribute, FeatureStore, FeatureStoreMergePatch, FeatureStorePost } from '../models';
 export interface CreateFeatureStoreRequest {
     featureStorePost: FeatureStorePost;
 }
@@ -21,6 +21,9 @@ export interface ForceUpdateFeatureStoreRequest {
     featureStoreId: string;
 }
 export interface GetFeatureStoreRequest {
+    featureStoreId: string;
+}
+export interface GetFeatureStoreAttributesRequest {
     featureStoreId: string;
 }
 export interface GetFeatureStoresRequest {
@@ -72,6 +75,16 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
      * Retrieve a feature store
      */
     getFeatureStore(featureStoreId: string): Promise<FeatureStore>;
+    /**
+     * Get all attributes belonging to the given feature store. The feature store must be the FIG v2 feature store designated for this account.
+     * List attributes for a feature store
+     */
+    getFeatureStoreAttributesRaw(requestParameters: GetFeatureStoreAttributesRequest): Promise<runtime.ApiResponse<Array<Attribute>>>;
+    /**
+     * Get all attributes belonging to the given feature store. The feature store must be the FIG v2 feature store designated for this account.
+     * List attributes for a feature store
+     */
+    getFeatureStoreAttributes(featureStoreId: string): Promise<Array<Attribute>>;
     /**
      * Get a list of feature stores defined on the account
      * List feature stores

@@ -940,6 +940,12 @@ export interface Attribute {
      */
     archived_at?: string;
     /**
+     * For continuous data types, list of reasonable cutoff values. Derived from the underlying stream property.
+     * @type {Array<number>}
+     * @memberof Attribute
+     */
+    breaks?: Array<number>;
+    /**
      *
      * @type {StreamPropertyCategory}
      * @memberof Attribute
@@ -1086,6 +1092,12 @@ export interface Attribute {
      */
     tier: StreamPropertyTier;
     /**
+     *
+     * @type {PrimitiveDataType}
+     * @memberof Attribute
+     */
+    type?: PrimitiveDataType;
+    /**
      * When this resource was last updated.
      * @type {string}
      * @memberof Attribute
@@ -1123,15 +1135,15 @@ export interface AttributeAggregation {
  * @enum {string}
  */
 export declare enum AttributeAggregationMethod {
-    Coalesce = "coalesce",
-    CountNotNull = "count_not_null",
+    Or = "or",
+    Min = "min",
     Max = "max",
     Mean = "mean",
     Median = "median",
-    Min = "min",
     Mode = "mode",
-    Or = "or",
-    Sum = "sum"
+    Coalesce = "coalesce",
+    Sum = "sum",
+    CountNotNull = "count_not_null"
 }
 /**
  * Sort configuration for attribute aggregation. Used by the coalesce method to determine which assertion to use when multiple are present.
