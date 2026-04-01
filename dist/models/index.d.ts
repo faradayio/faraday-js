@@ -15918,6 +15918,12 @@ export interface OutcomePredictors {
      * @memberof OutcomePredictors
      */
     blocked?: OutcomePredictorsBlocked;
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof OutcomePredictors
+     */
+    max_observation_date?: string;
 }
 /**
  *
@@ -15997,6 +16003,12 @@ export interface OutcomePredictorsMergePatch {
      * @memberof OutcomePredictorsMergePatch
      */
     blocked?: OutcomePredictorsBlockedMergePatch | null;
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof OutcomePredictorsMergePatch
+     */
+    max_observation_date?: string | null;
 }
 /**
  * (Parameters used to POST a new value of the `OutcomePredictors` type.)
@@ -16012,6 +16024,12 @@ export interface OutcomePredictorsPost {
      * @memberof OutcomePredictorsPost
      */
     blocked?: OutcomePredictorsBlockedPost;
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof OutcomePredictorsPost
+     */
+    max_observation_date?: string;
 }
 /**
  * (Parameters used to PUT a value of the `OutcomePredictors` type.)
@@ -16027,6 +16045,12 @@ export interface OutcomePredictorsPut {
      * @memberof OutcomePredictorsPut
      */
     blocked?: OutcomePredictorsBlockedPut;
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof OutcomePredictorsPut
+     */
+    max_observation_date?: string;
 }
 /**
  * (Parameters used to PUT a value of the `Outcome` type.)
@@ -16667,6 +16691,12 @@ export interface PersonaSet {
      */
     last_updated_output_at?: string;
     /**
+     * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof PersonaSet
+     */
+    modeling_field_max_observation_date?: string;
+    /**
      * Specify customer attributes to use in modeling
      * @type {Array<ModelingField>}
      * @memberof PersonaSet
@@ -16812,6 +16842,12 @@ export interface PersonaSetMergePatch {
      */
     explore?: boolean | null;
     /**
+     * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof PersonaSetMergePatch
+     */
+    modeling_field_max_observation_date?: string | null;
+    /**
      * Human-readable label for this persona set.
      * @type {string}
      * @memberof PersonaSetMergePatch
@@ -16857,6 +16893,12 @@ export interface PersonaSetPost {
      */
     explore?: boolean;
     /**
+     * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof PersonaSetPost
+     */
+    modeling_field_max_observation_date?: string;
+    /**
      * Specify customer attributes to use in modeling
      * @type {Array<ModelingField>}
      * @memberof PersonaSetPost
@@ -16901,6 +16943,12 @@ export interface PersonaSetPut {
      * @memberof PersonaSetPut
      */
     explore?: boolean;
+    /**
+     * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof PersonaSetPut
+     */
+    modeling_field_max_observation_date?: string;
     /**
      * Human-readable label for this persona set.
      * @type {string}
@@ -17312,6 +17360,12 @@ export interface Recommender {
      */
     name: string;
     /**
+     *
+     * @type {RecommenderPredictors}
+     * @memberof Recommender
+     */
+    predictors?: RecommenderPredictors;
+    /**
      * A recommender in preview mode will not build until preview is turned off.
      * @type {boolean}
      * @memberof Recommender
@@ -17600,6 +17654,12 @@ export interface RecommenderMergePatch {
      */
     name?: string;
     /**
+     *
+     * @type {RecommenderPredictorsMergePatch}
+     * @memberof RecommenderMergePatch
+     */
+    predictors?: RecommenderPredictorsMergePatch | null;
+    /**
      * A recommender in preview mode will not build until preview is turned off.
      * @type {boolean}
      * @memberof RecommenderMergePatch
@@ -17672,6 +17732,12 @@ export interface RecommenderPost {
      */
     name: string;
     /**
+     *
+     * @type {RecommenderPredictorsPost}
+     * @memberof RecommenderPost
+     */
+    predictors?: RecommenderPredictorsPost;
+    /**
      * A recommender in preview mode will not build until preview is turned off.
      * @type {boolean}
      * @memberof RecommenderPost
@@ -17691,6 +17757,64 @@ export interface RecommenderPost {
     stream_property_name: string;
 }
 /**
+ * Provides control over the features used during modeling for a recommender.
+ * @export
+ * @interface RecommenderPredictors
+ */
+export interface RecommenderPredictors {
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof RecommenderPredictors
+     */
+    max_observation_date?: string;
+}
+/**
+ * (Parameters used to PATCH the `RecommenderPredictors` type.)
+ *
+ * Provides control over the features used during modeling for a recommender.
+ * @export
+ * @interface RecommenderPredictorsMergePatch
+ */
+export interface RecommenderPredictorsMergePatch {
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof RecommenderPredictorsMergePatch
+     */
+    max_observation_date?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `RecommenderPredictors` type.)
+ *
+ * Provides control over the features used during modeling for a recommender.
+ * @export
+ * @interface RecommenderPredictorsPost
+ */
+export interface RecommenderPredictorsPost {
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof RecommenderPredictorsPost
+     */
+    max_observation_date?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `RecommenderPredictors` type.)
+ *
+ * Provides control over the features used during modeling for a recommender.
+ * @export
+ * @interface RecommenderPredictorsPut
+ */
+export interface RecommenderPredictorsPut {
+    /**
+     * The maximum date for FIG attribute observations used during modeling. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof RecommenderPredictorsPut
+     */
+    max_observation_date?: string;
+}
+/**
  * (Parameters used to PUT a value of the `Recommender` type.)
  *
  * Recommender resources are used to predict future associations (e.g. future purchase). They are based on an event stream containing all previous associations such as an order event stream or a product rating event stream
@@ -17706,6 +17830,12 @@ export interface RecommenderPut {
      * @memberof RecommenderPut
      */
     name: string;
+    /**
+     *
+     * @type {RecommenderPredictorsPut}
+     * @memberof RecommenderPut
+     */
+    predictors?: RecommenderPredictorsPut;
     /**
      * A recommender in preview mode will not build until preview is turned off.
      * @type {boolean}
@@ -18247,6 +18377,12 @@ export interface ScopePayload {
      */
     explainability?: boolean;
     /**
+     * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof ScopePayload
+     */
+    max_attribute_observation_date?: string;
+    /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
      * @memberof ScopePayload
@@ -18317,6 +18453,12 @@ export interface ScopePayloadMergePatch {
      */
     explainability?: boolean | null;
     /**
+     * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof ScopePayloadMergePatch
+     */
+    max_attribute_observation_date?: string | null;
+    /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
      * @memberof ScopePayloadMergePatch
@@ -18368,6 +18510,12 @@ export interface ScopePayloadPost {
      */
     explainability?: boolean;
     /**
+     * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof ScopePayloadPost
+     */
+    max_attribute_observation_date?: string;
+    /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
      * @memberof ScopePayloadPost
@@ -18418,6 +18566,12 @@ export interface ScopePayloadPut {
      * @memberof ScopePayloadPut
      */
     explainability?: boolean;
+    /**
+     * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
+     * @type {string}
+     * @memberof ScopePayloadPut
+     */
+    max_attribute_observation_date?: string;
     /**
      * Include the propensity score(s) from the specified outcome(s).
      * @type {Array<string>}
