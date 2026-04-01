@@ -8,13 +8,15 @@ exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.Webhoo
  */
 var AttributeAggregationMethod;
 (function (AttributeAggregationMethod) {
-    AttributeAggregationMethod["Or"] = "or";
-    AttributeAggregationMethod["Min"] = "min";
+    AttributeAggregationMethod["Coalesce"] = "coalesce";
+    AttributeAggregationMethod["CountNotNull"] = "count_not_null";
     AttributeAggregationMethod["Max"] = "max";
     AttributeAggregationMethod["Mean"] = "mean";
     AttributeAggregationMethod["Median"] = "median";
+    AttributeAggregationMethod["Min"] = "min";
     AttributeAggregationMethod["Mode"] = "mode";
-    AttributeAggregationMethod["Coalesce"] = "coalesce";
+    AttributeAggregationMethod["Or"] = "or";
+    AttributeAggregationMethod["Sum"] = "sum";
 })(AttributeAggregationMethod = exports.AttributeAggregationMethod || (exports.AttributeAggregationMethod = {}));
 /**
  * A permission granted for an attribute, indicating how the attribute may be used.

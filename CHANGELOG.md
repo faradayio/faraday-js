@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.9] - 2026-04-01
+
+### Added
+
+- `sum` and `count_not_null` aggregation methods for `AttributeAggregationMethod`.
+
 ## [0.14.8] - 2026-03-26
 
 ### Added

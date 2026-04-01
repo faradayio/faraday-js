@@ -1107,13 +1107,15 @@ export interface AttributeAggregation {
  * @enum {string}
  */
 export enum AttributeAggregationMethod {
-    Or = 'or',
-    Min = 'min',
+    Coalesce = 'coalesce',
+    CountNotNull = 'count_not_null',
     Max = 'max',
     Mean = 'mean',
     Median = 'median',
+    Min = 'min',
     Mode = 'mode',
-    Coalesce = 'coalesce'
+    Or = 'or',
+    Sum = 'sum'
 }
 /**
  * Sort configuration for attribute aggregation. Used by the coalesce method to determine which assertion to use when multiple are present.
