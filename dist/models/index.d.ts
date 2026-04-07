@@ -940,6 +940,12 @@ export interface Attribute {
      */
     archived_at?: string;
     /**
+     * For continuous data types, list of reasonable cutoff values. Derived from the underlying stream property.
+     * @type {Array<number>}
+     * @memberof Attribute
+     */
+    breaks?: Array<number>;
+    /**
      *
      * @type {StreamPropertyCategory}
      * @memberof Attribute
@@ -1085,6 +1091,12 @@ export interface Attribute {
      * @memberof Attribute
      */
     tier: StreamPropertyTier;
+    /**
+     *
+     * @type {PrimitiveDataType}
+     * @memberof Attribute
+     */
+    type?: PrimitiveDataType;
     /**
      * When this resource was last updated.
      * @type {string}
@@ -1568,6 +1580,12 @@ export interface Cohort {
      */
     archived_at?: string;
     /**
+     * List of attribute conditions to filter cohort membership. Only available for accounts with an identity graph feature store.
+     * @type {Array<CohortAttributeCondition>}
+     * @memberof Cohort
+     */
+    attributes?: Array<CohortAttributeCondition>;
+    /**
      * A Managed Cohort.
      * @type {boolean}
      * @memberof Cohort
@@ -1785,6 +1803,85 @@ export interface CohortAnalysisMembershipDatum {
     date: string;
 }
 /**
+ *
+ * @export
+ * @interface CohortAttributeCondition
+ */
+export interface CohortAttributeCondition {
+    /**
+     * Equal to
+     * @type {string}
+     * @memberof CohortAttributeCondition
+     */
+    _eq?: string;
+    /**
+     * Greater than
+     * @type {number}
+     * @memberof CohortAttributeCondition
+     */
+    _gt?: number;
+    /**
+     * Greater than or equal to
+     * @type {number}
+     * @memberof CohortAttributeCondition
+     */
+    _gte?: number;
+    /**
+     * Value is one of
+     * @type {Array<string>}
+     * @memberof CohortAttributeCondition
+     */
+    _in?: Array<string>;
+    /**
+     * Less than
+     * @type {number}
+     * @memberof CohortAttributeCondition
+     */
+    _lt?: number;
+    /**
+     * Less than or equal to
+     * @type {number}
+     * @memberof CohortAttributeCondition
+     */
+    _lte?: number;
+    /**
+     * Value contains a match to the regex (re2) expression provided. For an exact regex match, use the ^ and $ characters as specified by the (re2 documentation)[https://github.com/google/re2/wiki/Syntax].
+     * @type {string}
+     * @memberof CohortAttributeCondition
+     */
+    _matches?: string;
+    /**
+     * Value is not one of
+     * @type {Array<string>}
+     * @memberof CohortAttributeCondition
+     */
+    _nin?: Array<string>;
+    /**
+     * Value is not null
+     * @type {boolean}
+     * @memberof CohortAttributeCondition
+     */
+    _nnull?: boolean;
+    /**
+     * Value is null (nulls are otherwise excluded)
+     * @type {boolean}
+     * @memberof CohortAttributeCondition
+     */
+    _null?: boolean;
+    /**
+     * The name of the attribute.
+     * @type {string}
+     * @memberof CohortAttributeCondition
+     */
+    name: string;
+    /**
+     * Optional attribute conditions are unioned together, when combined they define cohorts that meet either attribute condition. At least one optional condition must be satisfied.
+     * @type {boolean}
+     * @memberof CohortAttributeCondition
+     */
+    optional?: boolean;
+}
+/**
  * (Parameters used to PATCH the `Cohort` type.)
  *
  * A specific group of people, such as "Customers" or "Subscription customers".
@@ -1792,6 +1889,12 @@ export interface CohortAnalysisMembershipDatum {
  * @interface CohortMergePatch
  */
 export interface CohortMergePatch {
+    /**
+     * List of attribute conditions to filter cohort membership. Only available for accounts with an identity graph feature store.
+     * @type {Array<CohortAttributeCondition>}
+     * @memberof CohortMergePatch
+     */
+    attributes?: Array<CohortAttributeCondition> | null;
     /**
      * Whether to show the Cohort in Explore, the map view on https://app.faraday.ai.
      *
@@ -1933,6 +2036,12 @@ export interface CohortPlaceCondition {
  */
 export interface CohortPost {
     /**
+     * List of attribute conditions to filter cohort membership. Only available for accounts with an identity graph feature store.
+     * @type {Array<CohortAttributeCondition>}
+     * @memberof CohortPost
+     */
+    attributes?: Array<CohortAttributeCondition>;
+    /**
      * Whether to show the Cohort in Explore, the map view on https://app.faraday.ai.
      *
      * This will slow down Cohort builds.
@@ -2011,6 +2120,12 @@ export interface CohortPost {
  * @interface CohortPut
  */
 export interface CohortPut {
+    /**
+     * List of attribute conditions to filter cohort membership. Only available for accounts with an identity graph feature store.
+     * @type {Array<CohortAttributeCondition>}
+     * @memberof CohortPut
+     */
+    attributes?: Array<CohortAttributeCondition>;
     /**
      * Whether to show the Cohort in Explore, the map view on https://app.faraday.ai.
      *
