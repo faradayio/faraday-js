@@ -8542,6 +8542,12 @@ export interface ContentsRow {
      * @memberof ContentsRow
      */
     row_count?: number;
+    /**
+     * Optional schema name for this table or view when listing objects (for example, `SHOW TABLES` / `SHOW VIEWS` in a database).
+     * @type {string}
+     * @memberof ContentsRow
+     */
+    schema?: string;
 }
 /**
  * A mapping from dataset columns to what they mean. It is recommended to include a "datetime" column if possible, as it will improve the accuracy of models.
