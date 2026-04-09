@@ -926,6 +926,12 @@ export interface Attribute {
      */
     archived_at?: string;
     /**
+     * For continuous data types, list of reasonable cutoff values.
+     * @type {Array<number>}
+     * @memberof Attribute
+     */
+    breaks?: Array<number>;
+    /**
      * 
      * @type {StreamPropertyCategory}
      * @memberof Attribute
