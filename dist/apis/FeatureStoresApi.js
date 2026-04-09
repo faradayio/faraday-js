@@ -76,6 +76,9 @@ class FeatureStoresApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('featureStoreId', 'Required parameter requestParameters.featureStoreId was null or undefined when calling deleteFeatureStore.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -96,9 +99,9 @@ class FeatureStoresApi extends runtime.BaseAPI {
     /**
      * Delete a feature store
      */
-    deleteFeatureStore(featureStoreId) {
+    deleteFeatureStore(featureStoreId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteFeatureStoreRaw({ featureStoreId: featureStoreId });
+            yield this.deleteFeatureStoreRaw({ featureStoreId: featureStoreId, cascade: cascade });
         });
     }
     /**

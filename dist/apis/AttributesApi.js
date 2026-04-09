@@ -76,6 +76,9 @@ class AttributesApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('attributeId', 'Required parameter requestParameters.attributeId was null or undefined when calling deleteAttribute.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -96,9 +99,9 @@ class AttributesApi extends runtime.BaseAPI {
     /**
      * Delete an attribute
      */
-    deleteAttribute(attributeId) {
+    deleteAttribute(attributeId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteAttributeRaw({ attributeId: attributeId });
+            yield this.deleteAttributeRaw({ attributeId: attributeId, cascade: cascade });
         });
     }
     /**

@@ -20,6 +20,7 @@ export interface CreateConnectionRequest {
 }
 export interface DeleteConnectionRequest {
     connectionId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateConnectionRequest {
     connectionId: string;
@@ -81,7 +82,7 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      * Delete a connection
      * Delete a connection
      */
-    deleteConnection(connectionId: string): Promise<void>;
+    deleteConnection(connectionId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

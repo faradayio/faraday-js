@@ -33,6 +33,7 @@ export interface CreateRecommenderRequest {
 
 export interface DeleteRecommenderRequest {
     recommenderId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateRecommenderRequest {
@@ -165,6 +166,10 @@ export class RecommendersApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -188,8 +193,8 @@ export class RecommendersApi extends runtime.BaseAPI {
     /**
      * Delete a recommender
      */
-    async deleteRecommender(recommenderId: string, ): Promise<void> {
-        await this.deleteRecommenderRaw({ recommenderId: recommenderId }, );
+    async deleteRecommender(recommenderId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteRecommenderRaw({ recommenderId: recommenderId, cascade: cascade }, );
     }
 
     /**

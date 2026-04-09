@@ -17,6 +17,7 @@ export interface ArchiveStreamRequest {
 }
 export interface DeleteStreamRequest {
     streamIdOrName: string;
+    cascade?: boolean;
 }
 export interface FindOrCreateStreamRequest {
     streamName: string;
@@ -62,7 +63,7 @@ export declare class StreamsApi extends runtime.BaseAPI {
     /**
      * Delete a stream
      */
-    deleteStream(streamIdOrName: string): Promise<void>;
+    deleteStream(streamIdOrName: string, cascade?: boolean): Promise<void>;
     /**
      * Look up (or create) an event stream by name.
      * Create a stream

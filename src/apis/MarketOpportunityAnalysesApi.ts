@@ -32,6 +32,7 @@ export interface CreateMarketOpportunityAnalysisRequest {
 
 export interface DeleteMarketOpportunityAnalysisRequest {
     marketOpportunityAnalysisId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateMarketOpportunityAnalysisRequest {
@@ -156,6 +157,10 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -179,8 +184,8 @@ export class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Delete a specific market opportunity analysis
      */
-    async deleteMarketOpportunityAnalysis(marketOpportunityAnalysisId: string, ): Promise<void> {
-        await this.deleteMarketOpportunityAnalysisRaw({ marketOpportunityAnalysisId: marketOpportunityAnalysisId }, );
+    async deleteMarketOpportunityAnalysis(marketOpportunityAnalysisId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteMarketOpportunityAnalysisRaw({ marketOpportunityAnalysisId: marketOpportunityAnalysisId, cascade: cascade }, );
     }
 
     /**

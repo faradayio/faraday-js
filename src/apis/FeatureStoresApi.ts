@@ -26,6 +26,7 @@ export interface CreateFeatureStoreRequest {
 
 export interface DeleteFeatureStoreRequest {
     featureStoreId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateFeatureStoreRequest {
@@ -103,6 +104,10 @@ export class FeatureStoresApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -126,8 +131,8 @@ export class FeatureStoresApi extends runtime.BaseAPI {
     /**
      * Delete a feature store
      */
-    async deleteFeatureStore(featureStoreId: string, ): Promise<void> {
-        await this.deleteFeatureStoreRaw({ featureStoreId: featureStoreId }, );
+    async deleteFeatureStore(featureStoreId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteFeatureStoreRaw({ featureStoreId: featureStoreId, cascade: cascade }, );
     }
 
     /**

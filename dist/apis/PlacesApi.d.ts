@@ -20,6 +20,7 @@ export interface CreatePlaceRequest {
 }
 export interface DeletePlaceRequest {
     placeId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdatePlaceRequest {
     placeId: string;
@@ -69,7 +70,7 @@ export declare class PlacesApi extends runtime.BaseAPI {
     /**
      * Delete a place
      */
-    deletePlace(placeId: string): Promise<void>;
+    deletePlace(placeId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

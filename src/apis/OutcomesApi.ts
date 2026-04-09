@@ -33,6 +33,7 @@ export interface CreateOutcomeRequest {
 
 export interface DeleteOutcomeRequest {
     outcomeId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateOutcomeRequest {
@@ -169,6 +170,10 @@ export class OutcomesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -192,8 +197,8 @@ export class OutcomesApi extends runtime.BaseAPI {
     /**
      * Delete an outcome
      */
-    async deleteOutcome(outcomeId: string, ): Promise<void> {
-        await this.deleteOutcomeRaw({ outcomeId: outcomeId }, );
+    async deleteOutcome(outcomeId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteOutcomeRaw({ outcomeId: outcomeId, cascade: cascade }, );
     }
 
     /**

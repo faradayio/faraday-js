@@ -33,6 +33,7 @@ export interface CreateCohortRequest {
 
 export interface DeleteCohortRequest {
     cohortId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateCohortRequest {
@@ -165,6 +166,10 @@ export class CohortsApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -188,8 +193,8 @@ export class CohortsApi extends runtime.BaseAPI {
     /**
      * Delete a cohort
      */
-    async deleteCohort(cohortId: string, ): Promise<void> {
-        await this.deleteCohortRaw({ cohortId: cohortId }, );
+    async deleteCohort(cohortId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteCohortRaw({ cohortId: cohortId, cascade: cascade }, );
     }
 
     /**

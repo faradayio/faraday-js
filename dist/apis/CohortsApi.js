@@ -117,6 +117,9 @@ class CohortsApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('cohortId', 'Required parameter requestParameters.cohortId was null or undefined when calling deleteCohort.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -137,9 +140,9 @@ class CohortsApi extends runtime.BaseAPI {
     /**
      * Delete a cohort
      */
-    deleteCohort(cohortId) {
+    deleteCohort(cohortId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteCohortRaw({ cohortId: cohortId });
+            yield this.deleteCohortRaw({ cohortId: cohortId, cascade: cascade });
         });
     }
     /**

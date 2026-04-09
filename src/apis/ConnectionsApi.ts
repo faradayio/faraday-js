@@ -35,6 +35,7 @@ export interface CreateConnectionRequest {
 
 export interface DeleteConnectionRequest {
     connectionId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateConnectionRequest {
@@ -177,6 +178,10 @@ export class ConnectionsApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -201,8 +206,8 @@ export class ConnectionsApi extends runtime.BaseAPI {
      * Delete a connection
      * Delete a connection
      */
-    async deleteConnection(connectionId: string, ): Promise<void> {
-        await this.deleteConnectionRaw({ connectionId: connectionId }, );
+    async deleteConnection(connectionId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteConnectionRaw({ connectionId: connectionId, cascade: cascade }, );
     }
 
     /**

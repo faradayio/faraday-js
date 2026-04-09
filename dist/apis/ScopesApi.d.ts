@@ -20,6 +20,7 @@ export interface CreateScopeRequest {
 }
 export interface DeleteScopeRequest {
     scopeId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateScopeRequest {
     scopeId: string;
@@ -99,7 +100,7 @@ export declare class ScopesApi extends runtime.BaseAPI {
     /**
      * Delete a scope
      */
-    deleteScope(scopeId: string): Promise<void>;
+    deleteScope(scopeId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

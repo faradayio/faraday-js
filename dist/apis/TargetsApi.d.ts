@@ -23,6 +23,7 @@ export interface CreateTargetPreviewRequest {
 }
 export interface DeleteTargetRequest {
     targetId: string;
+    cascade?: boolean;
 }
 export interface DownloadTargetRequest {
     targetId: string;
@@ -97,7 +98,7 @@ export declare class TargetsApi extends runtime.BaseAPI {
      * Delete a target
      * Delete a target
      */
-    deleteTarget(targetId: string): Promise<void>;
+    deleteTarget(targetId: string, cascade?: boolean): Promise<void>;
     /**
      * Download the default output of a target
      */

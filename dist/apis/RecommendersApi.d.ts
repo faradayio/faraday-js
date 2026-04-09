@@ -20,6 +20,7 @@ export interface CreateRecommenderRequest {
 }
 export interface DeleteRecommenderRequest {
     recommenderId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateRecommenderRequest {
     recommenderId: string;
@@ -72,7 +73,7 @@ export declare class RecommendersApi extends runtime.BaseAPI {
     /**
      * Delete a recommender
      */
-    deleteRecommender(recommenderId: string): Promise<void>;
+    deleteRecommender(recommenderId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.

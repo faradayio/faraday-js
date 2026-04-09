@@ -26,6 +26,7 @@ export interface CreateAttributeRequest {
 
 export interface DeleteAttributeRequest {
     attributeId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateAttributeRequest {
@@ -103,6 +104,10 @@ export class AttributesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -126,8 +131,8 @@ export class AttributesApi extends runtime.BaseAPI {
     /**
      * Delete an attribute
      */
-    async deleteAttribute(attributeId: string, ): Promise<void> {
-        await this.deleteAttributeRaw({ attributeId: attributeId }, );
+    async deleteAttribute(attributeId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteAttributeRaw({ attributeId: attributeId, cascade: cascade }, );
     }
 
     /**

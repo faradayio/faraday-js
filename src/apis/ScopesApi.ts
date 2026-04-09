@@ -40,6 +40,7 @@ export interface CreateScopeRequest {
 
 export interface DeleteScopeRequest {
     scopeId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateScopeRequest {
@@ -208,6 +209,10 @@ export class ScopesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -231,8 +236,8 @@ export class ScopesApi extends runtime.BaseAPI {
     /**
      * Delete a scope
      */
-    async deleteScope(scopeId: string, ): Promise<void> {
-        await this.deleteScopeRaw({ scopeId: scopeId }, );
+    async deleteScope(scopeId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteScopeRaw({ scopeId: scopeId, cascade: cascade }, );
     }
 
     /**

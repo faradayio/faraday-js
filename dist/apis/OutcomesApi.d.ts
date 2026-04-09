@@ -20,6 +20,7 @@ export interface CreateOutcomeRequest {
 }
 export interface DeleteOutcomeRequest {
     outcomeId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateOutcomeRequest {
     outcomeId: string;
@@ -75,7 +76,7 @@ export declare class OutcomesApi extends runtime.BaseAPI {
     /**
      * Delete an outcome
      */
-    deleteOutcome(outcomeId: string): Promise<void>;
+    deleteOutcome(outcomeId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

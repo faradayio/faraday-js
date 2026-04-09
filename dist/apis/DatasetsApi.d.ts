@@ -20,6 +20,7 @@ export interface CreateDatasetRequest {
 }
 export interface DeleteDatasetRequest {
     datasetId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateDatasetRequest {
     datasetId: string;
@@ -78,7 +79,7 @@ export declare class DatasetsApi extends runtime.BaseAPI {
     /**
      * Delete a dataset
      */
-    deleteDataset(datasetId: string): Promise<void>;
+    deleteDataset(datasetId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

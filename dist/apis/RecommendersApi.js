@@ -117,6 +117,9 @@ class RecommendersApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('recommenderId', 'Required parameter requestParameters.recommenderId was null or undefined when calling deleteRecommender.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -137,9 +140,9 @@ class RecommendersApi extends runtime.BaseAPI {
     /**
      * Delete a recommender
      */
-    deleteRecommender(recommenderId) {
+    deleteRecommender(recommenderId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteRecommenderRaw({ recommenderId: recommenderId });
+            yield this.deleteRecommenderRaw({ recommenderId: recommenderId, cascade: cascade });
         });
     }
     /**

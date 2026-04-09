@@ -20,6 +20,7 @@ export interface CreateMarketOpportunityAnalysisRequest {
 }
 export interface DeleteMarketOpportunityAnalysisRequest {
     marketOpportunityAnalysisId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateMarketOpportunityAnalysisRequest {
     marketOpportunityAnalysisId: string;
@@ -65,7 +66,7 @@ export declare class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Delete a specific market opportunity analysis
      */
-    deleteMarketOpportunityAnalysis(marketOpportunityAnalysisId: string): Promise<void>;
+    deleteMarketOpportunityAnalysis(marketOpportunityAnalysisId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource.
      * Trigger a rerun for this resource.

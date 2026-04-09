@@ -117,6 +117,9 @@ class ScopesApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling deleteScope.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -137,9 +140,9 @@ class ScopesApi extends runtime.BaseAPI {
     /**
      * Delete a scope
      */
-    deleteScope(scopeId) {
+    deleteScope(scopeId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteScopeRaw({ scopeId: scopeId });
+            yield this.deleteScopeRaw({ scopeId: scopeId, cascade: cascade });
         });
     }
     /**

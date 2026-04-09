@@ -78,6 +78,9 @@ class StreamsApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('streamIdOrName', 'Required parameter requestParameters.streamIdOrName was null or undefined when calling deleteStream.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -98,9 +101,9 @@ class StreamsApi extends runtime.BaseAPI {
     /**
      * Delete a stream
      */
-    deleteStream(streamIdOrName) {
+    deleteStream(streamIdOrName, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteStreamRaw({ streamIdOrName: streamIdOrName });
+            yield this.deleteStreamRaw({ streamIdOrName: streamIdOrName, cascade: cascade });
         });
     }
     /**

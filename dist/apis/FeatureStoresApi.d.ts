@@ -16,6 +16,7 @@ export interface CreateFeatureStoreRequest {
 }
 export interface DeleteFeatureStoreRequest {
     featureStoreId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateFeatureStoreRequest {
     featureStoreId: string;
@@ -51,7 +52,7 @@ export declare class FeatureStoresApi extends runtime.BaseAPI {
     /**
      * Delete a feature store
      */
-    deleteFeatureStore(featureStoreId: string): Promise<void>;
+    deleteFeatureStore(featureStoreId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

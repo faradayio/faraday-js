@@ -118,6 +118,9 @@ class ConnectionsApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('connectionId', 'Required parameter requestParameters.connectionId was null or undefined when calling deleteConnection.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -139,9 +142,9 @@ class ConnectionsApi extends runtime.BaseAPI {
      * Delete a connection
      * Delete a connection
      */
-    deleteConnection(connectionId) {
+    deleteConnection(connectionId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteConnectionRaw({ connectionId: connectionId });
+            yield this.deleteConnectionRaw({ connectionId: connectionId, cascade: cascade });
         });
     }
     /**

@@ -16,6 +16,7 @@ export interface CreateAttributeRequest {
 }
 export interface DeleteAttributeRequest {
     attributeId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateAttributeRequest {
     attributeId: string;
@@ -51,7 +52,7 @@ export declare class AttributesApi extends runtime.BaseAPI {
     /**
      * Delete an attribute
      */
-    deleteAttribute(attributeId: string): Promise<void>;
+    deleteAttribute(attributeId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

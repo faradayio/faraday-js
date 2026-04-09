@@ -151,6 +151,9 @@ class TraitsApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('traitId', 'Required parameter requestParameters.traitId was null or undefined when calling deleteTrait.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -172,9 +175,9 @@ class TraitsApi extends runtime.BaseAPI {
      * Delete a trait
      * Delete a trait
      */
-    deleteTrait(traitId) {
+    deleteTrait(traitId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteTraitRaw({ traitId: traitId });
+            yield this.deleteTraitRaw({ traitId: traitId, cascade: cascade });
         });
     }
     /**

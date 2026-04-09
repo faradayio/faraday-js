@@ -40,6 +40,7 @@ export interface CreateTargetPreviewRequest {
 
 export interface DeleteTargetRequest {
     targetId: string;
+    cascade?: boolean;
 }
 
 export interface DownloadTargetRequest {
@@ -226,6 +227,10 @@ export class TargetsApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -250,8 +255,8 @@ export class TargetsApi extends runtime.BaseAPI {
      * Delete a target
      * Delete a target
      */
-    async deleteTarget(targetId: string, ): Promise<void> {
-        await this.deleteTargetRaw({ targetId: targetId }, );
+    async deleteTarget(targetId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteTargetRaw({ targetId: targetId, cascade: cascade }, );
     }
 
     /**

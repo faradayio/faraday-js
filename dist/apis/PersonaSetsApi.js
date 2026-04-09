@@ -117,6 +117,9 @@ class PersonaSetsApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('personaSetId', 'Required parameter requestParameters.personaSetId was null or undefined when calling deletePersonaSet.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -137,9 +140,9 @@ class PersonaSetsApi extends runtime.BaseAPI {
     /**
      * Delete a persona set
      */
-    deletePersonaSet(personaSetId) {
+    deletePersonaSet(personaSetId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deletePersonaSetRaw({ personaSetId: personaSetId });
+            yield this.deletePersonaSetRaw({ personaSetId: personaSetId, cascade: cascade });
         });
     }
     /**

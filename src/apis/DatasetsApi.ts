@@ -33,6 +33,7 @@ export interface CreateDatasetRequest {
 
 export interface DeleteDatasetRequest {
     datasetId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateDatasetRequest {
@@ -172,6 +173,10 @@ export class DatasetsApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -195,8 +200,8 @@ export class DatasetsApi extends runtime.BaseAPI {
     /**
      * Delete a dataset
      */
-    async deleteDataset(datasetId: string, ): Promise<void> {
-        await this.deleteDatasetRaw({ datasetId: datasetId }, );
+    async deleteDataset(datasetId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteDatasetRaw({ datasetId: datasetId, cascade: cascade }, );
     }
 
     /**

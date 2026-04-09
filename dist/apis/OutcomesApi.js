@@ -117,6 +117,9 @@ class OutcomesApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('outcomeId', 'Required parameter requestParameters.outcomeId was null or undefined when calling deleteOutcome.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -137,9 +140,9 @@ class OutcomesApi extends runtime.BaseAPI {
     /**
      * Delete an outcome
      */
-    deleteOutcome(outcomeId) {
+    deleteOutcome(outcomeId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteOutcomeRaw({ outcomeId: outcomeId });
+            yield this.deleteOutcomeRaw({ outcomeId: outcomeId, cascade: cascade });
         });
     }
     /**

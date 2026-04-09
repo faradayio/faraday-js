@@ -20,6 +20,7 @@ export interface CreateCohortRequest {
 }
 export interface DeleteCohortRequest {
     cohortId: string;
+    cascade?: boolean;
 }
 export interface ForceUpdateCohortRequest {
     cohortId: string;
@@ -72,7 +73,7 @@ export declare class CohortsApi extends runtime.BaseAPI {
     /**
      * Delete a cohort
      */
-    deleteCohort(cohortId: string): Promise<void>;
+    deleteCohort(cohortId: string, cascade?: boolean): Promise<void>;
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.

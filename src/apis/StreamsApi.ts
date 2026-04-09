@@ -28,6 +28,7 @@ export interface ArchiveStreamRequest {
 
 export interface DeleteStreamRequest {
     streamIdOrName: string;
+    cascade?: boolean;
 }
 
 export interface FindOrCreateStreamRequest {
@@ -121,6 +122,10 @@ export class StreamsApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -144,8 +149,8 @@ export class StreamsApi extends runtime.BaseAPI {
     /**
      * Delete a stream
      */
-    async deleteStream(streamIdOrName: string, ): Promise<void> {
-        await this.deleteStreamRaw({ streamIdOrName: streamIdOrName }, );
+    async deleteStream(streamIdOrName: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteStreamRaw({ streamIdOrName: streamIdOrName, cascade: cascade }, );
     }
 
     /**

@@ -113,6 +113,9 @@ class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('marketOpportunityAnalysisId', 'Required parameter requestParameters.marketOpportunityAnalysisId was null or undefined when calling deleteMarketOpportunityAnalysis.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -133,9 +136,9 @@ class MarketOpportunityAnalysesApi extends runtime.BaseAPI {
     /**
      * Delete a specific market opportunity analysis
      */
-    deleteMarketOpportunityAnalysis(marketOpportunityAnalysisId) {
+    deleteMarketOpportunityAnalysis(marketOpportunityAnalysisId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteMarketOpportunityAnalysisRaw({ marketOpportunityAnalysisId: marketOpportunityAnalysisId });
+            yield this.deleteMarketOpportunityAnalysisRaw({ marketOpportunityAnalysisId: marketOpportunityAnalysisId, cascade: cascade });
         });
     }
     /**

@@ -32,6 +32,7 @@ export interface CreatePlaceRequest {
 
 export interface DeletePlaceRequest {
     placeId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdatePlaceRequest {
@@ -160,6 +161,10 @@ export class PlacesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -183,8 +188,8 @@ export class PlacesApi extends runtime.BaseAPI {
     /**
      * Delete a place
      */
-    async deletePlace(placeId: string, ): Promise<void> {
-        await this.deletePlaceRaw({ placeId: placeId }, );
+    async deletePlace(placeId: string, cascade?: boolean, ): Promise<void> {
+        await this.deletePlaceRaw({ placeId: placeId, cascade: cascade }, );
     }
 
     /**

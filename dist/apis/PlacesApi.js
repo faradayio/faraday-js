@@ -117,6 +117,9 @@ class PlacesApi extends runtime.BaseAPI {
                 throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling deletePlace.');
             }
             const queryParameters = {};
+            if (requestParameters.cascade !== undefined) {
+                queryParameters['cascade'] = requestParameters.cascade;
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -137,9 +140,9 @@ class PlacesApi extends runtime.BaseAPI {
     /**
      * Delete a place
      */
-    deletePlace(placeId) {
+    deletePlace(placeId, cascade) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deletePlaceRaw({ placeId: placeId });
+            yield this.deletePlaceRaw({ placeId: placeId, cascade: cascade });
         });
     }
     /**

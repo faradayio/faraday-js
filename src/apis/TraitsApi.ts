@@ -33,6 +33,7 @@ export interface CreateTraitRequest {
 
 export interface DeleteTraitRequest {
     traitId: string;
+    cascade?: boolean;
 }
 
 export interface ForceUpdateTraitRequest {
@@ -201,6 +202,10 @@ export class TraitsApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters.cascade !== undefined) {
+            queryParameters['cascade'] = requestParameters.cascade;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -225,8 +230,8 @@ export class TraitsApi extends runtime.BaseAPI {
      * Delete a trait
      * Delete a trait
      */
-    async deleteTrait(traitId: string, ): Promise<void> {
-        await this.deleteTraitRaw({ traitId: traitId }, );
+    async deleteTrait(traitId: string, cascade?: boolean, ): Promise<void> {
+        await this.deleteTraitRaw({ traitId: traitId, cascade: cascade }, );
     }
 
     /**
