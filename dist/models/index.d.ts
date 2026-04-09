@@ -19128,6 +19128,9 @@ export declare enum StreamPropertyCategory {
     FigReachability = "fig/reachability",
     FigSociety = "fig/society",
     FigFinancial = "fig/financial",
+    FigVehicles = "fig/vehicles",
+    FigCivic = "fig/civic",
+    FigEngagement = "fig/engagement",
     UserDefined = "user_defined"
 }
 /**
@@ -26262,6 +26265,10 @@ export interface TraitPut {
  * categorical_ordinal: the field contains one value of an ordered bounded set. Example: "spending_tier" — one of "low", "medium", "high", "premium".
  * multicategorical_nominal: the field contains one or more values of an unordered bounded set. Example: "interests" — "outdoors", "travel", "fitness".
  * continuous_ordinal: the field contains numeric values with a natural ordering. Example: "lifetime_value".
+ * binary: the field contains boolean-like values representing presence/absence. Example: "has_pool" — true or false.
+ * count: the field contains non-negative integer counts. Example: "children_count" — 0, 1, 2, 3.
+ * interval: the field contains numeric values where differences are meaningful but ratios are not. Example: "date_of_birth" as epoch.
+ * ratio: the field contains numeric values where both differences and ratios are meaningful, with a true zero. Example: "age" — 0, 25, 50.
  *
  * Type compatibility (new values only):
  * - continuous_ordinal requires a numeric type (long, float, double).
@@ -26285,7 +26292,11 @@ export declare enum TraitStatisticalType {
     ContinuousOrdinal = "continuous_ordinal",
     CategoricalNominal = "categorical_nominal",
     MulticategoricalNominal = "multicategorical_nominal",
-    CategoricalOrdinal = "categorical_ordinal"
+    CategoricalOrdinal = "categorical_ordinal",
+    Binary = "binary",
+    Count = "count",
+    Interval = "interval",
+    Ratio = "ratio"
 }
 /**
  * A broad category describing the flavor of a trait.
