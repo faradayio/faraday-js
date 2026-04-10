@@ -1092,6 +1092,12 @@ export interface Attribute {
      */
     tier: StreamPropertyTier;
     /**
+     *
+     * @type {PrimitiveDataType}
+     * @memberof Attribute
+     */
+    type?: PrimitiveDataType;
+    /**
      * When this resource was last updated.
      * @type {string}
      * @memberof Attribute
