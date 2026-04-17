@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.14] - 2026-04-17
+
+### Added
+
+- `fig/length_of_residence_v2` value for persona set `modeling_fields` enum. `fig/length_of_residence` is deprecated; use `_v2` for new persona sets.
+
 ## [0.14.13] - 2026-04-10
 
 ### Added

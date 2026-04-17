@@ -242,7 +242,8 @@ var LookupMatchType;
  * fig/household_income_v2: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
  * fig/household_size: The number of people living in the household, including adults and children
  * fig/housing_density: Number of housing units per square mile
- * fig/length_of_residence: The number of years the resident has lived at this location
+ * fig/length_of_residence: Deprecated. Use fig/length_of_residence_v2 instead.
+ * fig/length_of_residence_v2: The number of years the resident has lived at this location
  * fig/life_sports_sports_all: Self-reported interest in sports - sports participation
  * fig/living_area: The finished square footage of the house
  * fig/marital_status: Marital status
@@ -278,6 +279,7 @@ var ModelingField;
     ModelingField["HouseholdIncomeV2"] = "fig/household_income_v2";
     ModelingField["HouseholdSize"] = "fig/household_size";
     ModelingField["LengthOfResidence"] = "fig/length_of_residence";
+    ModelingField["LengthOfResidenceV2"] = "fig/length_of_residence_v2";
     ModelingField["LifeSportsSportsAll"] = "fig/life_sports_sports_all";
     ModelingField["LivingArea"] = "fig/living_area";
     ModelingField["MaritalStatus"] = "fig/marital_status";
