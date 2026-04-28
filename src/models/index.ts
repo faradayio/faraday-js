@@ -932,6 +932,12 @@ export interface Attribute {
      */
     breaks?: Array<number>;
     /**
+     * For categorical data types, the list of distinct category values observed in the stream.
+     * @type {Array<string>}
+     * @memberof Attribute
+     */
+    categories?: Array<string>;
+    /**
      * 
      * @type {StreamPropertyCategory}
      * @memberof Attribute
