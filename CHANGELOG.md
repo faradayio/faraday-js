@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.15] - 2026-04-28
+
+### Added
+
+- Add read-only `categories` field on `/attributes` endpoint - for categorical data types, the list of distinct category values observed in the stream.
+
 ## [0.14.14] - 2026-04-17
 
 ### Added
