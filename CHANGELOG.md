@@ -16,11 +16,10 @@ Until we reach API 1.0, the following special rules apply:
 
 - Add read-only `categories` field on `/attributes` endpoint - for categorical data types, the list of distinct category values observed in the stream.
 
-## [0.14.14] - 2026-04-20
+## [0.14.14] - 2026-04-17
 
 ### Added
 
-- `attributes` field on cohorts — list of `CohortAttributeCondition` to filter cohort membership by attribute value (supports `_eq`, `_gt`, `_lt`, `_gte`, `_lte`, `_null`, `_nnull`, `_in`, `_nin`, `_matches`, plus `optional` for union semantics).
 - `fig/length_of_residence_v2` value for persona set `modeling_fields` enum. `fig/length_of_residence` is deprecated; use `_v2` for new persona sets.
 
 ## [0.14.13] - 2026-04-10
