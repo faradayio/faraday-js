@@ -290,7 +290,7 @@ class TargetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Get details on a target\'s analysis report for specific trait, attribute, and/or geography dimensions.
      * Retrieve a target\'s analysis
      */
     getTargetAnalysisRaw(requestParameters) {
@@ -317,7 +317,7 @@ class TargetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Get details on a target\'s analysis report for specific trait, attribute, and/or geography dimensions.
      * Retrieve a target\'s analysis
      */
     getTargetAnalysis(targetId) {
