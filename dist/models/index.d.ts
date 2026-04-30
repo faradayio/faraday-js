@@ -393,6 +393,12 @@ export interface AccountUsagePredictiveData {
      */
     last_month?: AccountUsageTimePeriodValue;
     /**
+     * Customer's yearly contractual limit for predictive data. Omitted when no limit is on record. Populated for the `batch_deployments.predictive_data` sub-object. Populated only on /usage/all; omitted from per-account responses since we only emit the total contracted limit currently.
+     * @type {number}
+     * @memberof AccountUsagePredictiveData
+     */
+    limit?: number;
+    /**
      *
      * @type {AccountUsageTimePeriodValue}
      * @memberof AccountUsagePredictiveData
@@ -491,6 +497,12 @@ export interface AccountUsageTimePeriod {
      * @memberof AccountUsageTimePeriod
      */
     last_month?: AccountUsageTimePeriodValue;
+    /**
+     * Customer's yearly contractual limit for this metric. Omitted when no limit is on record. Populated only on /usage/all; omitted from per-account responses since we only emit the total contracted limit currently.
+     * @type {number}
+     * @memberof AccountUsageTimePeriod
+     */
+    limit?: number;
     /**
      *
      * @type {AccountUsageTimePeriodValue}
