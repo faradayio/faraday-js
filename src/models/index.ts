@@ -19345,6 +19345,12 @@ export enum TargetAggregateIdentified {
 export interface TargetAnalysis {
     /**
      * 
+     * @type {Array<TargetAnalysisAttribute>}
+     * @memberof TargetAnalysis
+     */
+    attributes?: Array<TargetAnalysisAttribute>;
+    /**
+     * 
      * @type {TargetAnalysisGeographies}
      * @memberof TargetAnalysis
      */
@@ -19357,11 +19363,38 @@ export interface TargetAnalysis {
     traits?: Array<TargetAnalysisTrait>;
 }
 /**
+ * 
+ * @export
+ * @interface TargetAnalysisAttribute
+ */
+export interface TargetAnalysisAttribute {
+    /**
+     * The name of the attribute used to calculate this dimension.
+     * @type {string}
+     * @memberof TargetAnalysisAttribute
+     */
+    attribute_name: string;
+    /**
+     * The list of bins calculated for this target analysis dimension.
+     * @type {Array<AnalysisDimensionsTraitBin>}
+     * @memberof TargetAnalysisAttribute
+     */
+    bins: Array<AnalysisDimensionsTraitBin>;
+}
+/**
  * Configuration for the analysis of the target.
  * @export
  * @interface TargetAnalysisConfig
  */
 export interface TargetAnalysisConfig {
+    /**
+     * Configuration for the analysis of attributes.
+     * 
+     * Your account must have an identity graph feature store set. Faraday provided attributes must be prefixed with `fig/` ex. `fig/age`.
+     * @type {Array<string>}
+     * @memberof TargetAnalysisConfig
+     */
+    attributes?: Array<string>;
     /**
      * Configuration for the analysis of geographic dimensions
      * @type {Array<string>}
@@ -20808,6 +20841,14 @@ export interface TargetMergePatch {
  * @interface TargetMergePatchAnalysisConfig
  */
 export interface TargetMergePatchAnalysisConfig {
+    /**
+     * Configuration for the analysis of attributes.
+     * 
+     * Your account must have an identity graph feature store set. Faraday provided attributes must be prefixed with `fig/` ex. `fig/age`.
+     * @type {Array<string>}
+     * @memberof TargetMergePatchAnalysisConfig
+     */
+    attributes?: Array<string>;
     /**
      * Configuration for the analysis of geographic dimensions
      * @type {Array<string>}
