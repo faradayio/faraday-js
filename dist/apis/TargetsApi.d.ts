@@ -127,12 +127,12 @@ export declare class TargetsApi extends runtime.BaseAPI {
      */
     getTarget(targetId: string): Promise<Target>;
     /**
-     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Get details on a target\'s analysis report for specific trait, attribute, and/or geography dimensions.
      * Retrieve a target\'s analysis
      */
     getTargetAnalysisRaw(requestParameters: GetTargetAnalysisRequest): Promise<runtime.ApiResponse<TargetAnalysis>>;
     /**
-     * Get details on a target\'s analysis report for specific trait and/or geography dimensions.
+     * Get details on a target\'s analysis report for specific trait, attribute, and/or geography dimensions.
      * Retrieve a target\'s analysis
      */
     getTargetAnalysis(targetId: string): Promise<TargetAnalysis>;
