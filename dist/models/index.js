@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePermission = exports.AttributeAggregationMethod = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePermission = exports.AttributeAggregationMethod = void 0;
 /**
  * Method for aggregating multiple assertions for an attribute.
  * @export
@@ -222,7 +222,46 @@ var LookupMatchType;
     LookupMatchType["PhoneOnly"] = "phone_only";
 })(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
 /**
- * Customer attributes available for modeling
+ * Faraday attributes available for modeling on accounts with an identity graph feature store set.
+ *
+ * Use these in `modeling_attributes` on a persona set instead of `modeling_fields`.
+ * @export
+ * @enum {string}
+ */
+var ModelingAttribute;
+(function (ModelingAttribute) {
+    ModelingAttribute["TotalPurchaseCountObservedQuintile"] = "fig/total_purchase_count_observed_quintile";
+    ModelingAttribute["TotalAmountSpentOnPurchasesQuintile"] = "fig/total_amount_spent_on_purchases_quintile";
+    ModelingAttribute["Age"] = "fig/age";
+    ModelingAttribute["CollectiblesArtAntiquesInterest"] = "fig/collectibles_art_antiques_interest";
+    ModelingAttribute["GeneralBookReadingInterest"] = "fig/general_book_reading_interest";
+    ModelingAttribute["CharitableDonationInterest"] = "fig/charitable_donation_interest";
+    ModelingAttribute["NutritionInterest"] = "fig/nutrition_interest";
+    ModelingAttribute["HouseholdEducation"] = "fig/household_education";
+    ModelingAttribute["TaxAssessedPropertyValue"] = "fig/tax_assessed_property_value";
+    ModelingAttribute["GardeningInterest"] = "fig/gardening_interest";
+    ModelingAttribute["Gender"] = "fig/gender";
+    ModelingAttribute["FitnessInterest"] = "fig/fitness_interest";
+    ModelingAttribute["HomeOwnershipStatus"] = "fig/home_ownership_status";
+    ModelingAttribute["HouseholdIncome"] = "fig/household_income";
+    ModelingAttribute["HouseholdSize"] = "fig/household_size";
+    ModelingAttribute["LengthOfResidence"] = "fig/length_of_residence";
+    ModelingAttribute["InterestInSports"] = "fig/interest_in_sports";
+    ModelingAttribute["PropertyLivingArea"] = "fig/property_living_area";
+    ModelingAttribute["MaritalStatus"] = "fig/marital_status";
+    ModelingAttribute["MusicInterest"] = "fig/music_interest";
+    ModelingAttribute["NetWorth"] = "fig/net_worth";
+    ModelingAttribute["CurrentInstallmentLoanToValue"] = "fig/current_installment_loan_to_value";
+    ModelingAttribute["PetInterest"] = "fig/pet_interest";
+    ModelingAttribute["PurchasedViaInternet"] = "fig/purchased_via_internet";
+    ModelingAttribute["ShoppingStyles"] = "fig/shopping_styles";
+    ModelingAttribute["TravelInterest"] = "fig/travel_interest";
+    ModelingAttribute["HousingDensity"] = "fig/housing_density";
+    ModelingAttribute["MarketingValueOverall"] = "fig/marketing_value_overall";
+    ModelingAttribute["HomeYearBuilt"] = "fig/home_year_built";
+})(ModelingAttribute = exports.ModelingAttribute || (exports.ModelingAttribute = {}));
+/**
+ * Faraday traits available for modeling
  *
  * fig/actvty_num_purchase_quintile: Total lifetime number of purchases made, bucketed into 5 quintile groupings
  * fig/actvty_ttl_dollars_quintile: Total dollars that were spent on purchases within lifetime activity bucketed into 5 quintile groupings
