@@ -14375,7 +14375,45 @@ export interface ModelError {
     validationErrors?: Array<ValidationError>;
 }
 /**
- * Customer attributes available for modeling
+ * Faraday attributes available for modeling on accounts with an identity graph feature store set.
+ * 
+ * Use these in `modeling_attributes` on a persona set instead of `modeling_fields`.
+ * @export
+ * @enum {string}
+ */
+export enum ModelingAttribute {
+    TotalPurchaseCountObservedQuintile = 'fig/total_purchase_count_observed_quintile',
+    TotalAmountSpentOnPurchasesQuintile = 'fig/total_amount_spent_on_purchases_quintile',
+    Age = 'fig/age',
+    CollectiblesArtAntiquesInterest = 'fig/collectibles_art_antiques_interest',
+    GeneralBookReadingInterest = 'fig/general_book_reading_interest',
+    CharitableDonationInterest = 'fig/charitable_donation_interest',
+    NutritionInterest = 'fig/nutrition_interest',
+    HouseholdEducation = 'fig/household_education',
+    TaxAssessedPropertyValue = 'fig/tax_assessed_property_value',
+    GardeningInterest = 'fig/gardening_interest',
+    Gender = 'fig/gender',
+    FitnessInterest = 'fig/fitness_interest',
+    HomeOwnershipStatus = 'fig/home_ownership_status',
+    HouseholdIncome = 'fig/household_income',
+    HouseholdSize = 'fig/household_size',
+    LengthOfResidence = 'fig/length_of_residence',
+    InterestInSports = 'fig/interest_in_sports',
+    PropertyLivingArea = 'fig/property_living_area',
+    MaritalStatus = 'fig/marital_status',
+    MusicInterest = 'fig/music_interest',
+    NetWorth = 'fig/net_worth',
+    CurrentInstallmentLoanToValue = 'fig/current_installment_loan_to_value',
+    PetInterest = 'fig/pet_interest',
+    PurchasedViaInternet = 'fig/purchased_via_internet',
+    ShoppingStyles = 'fig/shopping_styles',
+    TravelInterest = 'fig/travel_interest',
+    HousingDensity = 'fig/housing_density',
+    MarketingValueOverall = 'fig/marketing_value_overall',
+    HomeYearBuilt = 'fig/home_year_built'
+}
+/**
+ * Faraday traits available for modeling
  * 
  * fig/actvty_num_purchase_quintile: Total lifetime number of purchases made, bucketed into 5 quintile groupings
  * fig/actvty_ttl_dollars_quintile: Total dollars that were spent on purchases within lifetime activity bucketed into 5 quintile groupings
@@ -16255,13 +16293,23 @@ export interface PersonaSet {
      */
     last_updated_output_at?: string;
     /**
+     * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
+     * 
+     * Mutually exclusive with `modeling_fields`.
+     * @type {Array<ModelingAttribute>}
+     * @memberof PersonaSet
+     */
+    modeling_attributes?: Array<ModelingAttribute>;
+    /**
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
      * @type {string}
      * @memberof PersonaSet
      */
     modeling_field_max_observation_date?: string;
     /**
-     * Specify customer attributes to use in modeling
+     * Specify Faraday provided traits to use in modeling.
+     * 
+     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
      * @type {Array<ModelingField>}
      * @memberof PersonaSet
      */
@@ -16457,13 +16505,23 @@ export interface PersonaSetPost {
      */
     explore?: boolean;
     /**
+     * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
+     * 
+     * Mutually exclusive with `modeling_fields`.
+     * @type {Array<ModelingAttribute>}
+     * @memberof PersonaSetPost
+     */
+    modeling_attributes?: Array<ModelingAttribute>;
+    /**
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
      * @type {string}
      * @memberof PersonaSetPost
      */
     modeling_field_max_observation_date?: string;
     /**
-     * Specify customer attributes to use in modeling
+     * Specify Faraday provided traits to use in modeling.
+     * 
+     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
      * @type {Array<ModelingField>}
      * @memberof PersonaSetPost
      */
