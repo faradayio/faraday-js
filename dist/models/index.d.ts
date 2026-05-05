@@ -14958,7 +14958,7 @@ export interface ModelError {
     validationErrors?: Array<ValidationError>;
 }
 /**
- * Faraday attributes available for modeling on accounts with an identity graph feature store set.
+ * Attributes available for modeling on accounts with an identity graph feature store.
  *
  * Use these in `modeling_attributes` on a persona set instead of `modeling_fields`.
  * @export
@@ -16888,7 +16888,7 @@ export interface PersonaSet {
     /**
      * Specify Faraday provided traits to use in modeling.
      *
-     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * Only valid on accounts without an identity graph feature store, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
      * @type {Array<ModelingField>}
      * @memberof PersonaSet
      */
@@ -17100,7 +17100,7 @@ export interface PersonaSetPost {
     /**
      * Specify Faraday provided traits to use in modeling.
      *
-     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * Only valid on accounts without an identity graph feature store, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
      * @type {Array<ModelingField>}
      * @memberof PersonaSetPost
      */

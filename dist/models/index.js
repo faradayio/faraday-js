@@ -222,7 +222,7 @@ var LookupMatchType;
     LookupMatchType["PhoneOnly"] = "phone_only";
 })(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
 /**
- * Faraday attributes available for modeling on accounts with an identity graph feature store set.
+ * Attributes available for modeling on accounts with an identity graph feature store.
  *
  * Use these in `modeling_attributes` on a persona set instead of `modeling_fields`.
  * @export

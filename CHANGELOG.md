@@ -10,16 +10,11 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.14.18] - 2026-05-04
-
-### Added
-
-- `modeling_attributes` field on persona sets and new `ModelingAttribute` enum (29 `fig/*` paths) for accounts with an identity graph feature store set (FIG v2). Mutually exclusive with `modeling_fields`: feature-store accounts must use `modeling_attributes`; non-feature-store accounts must continue to use `modeling_fields`.
-
 ## [0.14.17] - 2026-04-30
 
 ### Added
 
+- `modeling_attributes` field on persona sets and new `ModelingAttribute` enum (29 `fig/*` paths) for accounts with a feature store (FIG v2). Mutually exclusive with `modeling_fields`: feature-store accounts must use `modeling_attributes`; non-feature-store accounts must continue to use `modeling_fields`.
 - `Target.analysis_config.attributes` optional array of attribute names to include as dimensions in target analysis. Your account must have an identity graph feature store set. Faraday provided attributes must be prefixed with `fig/` ex. `fig/age` (pattern: `^fig/[a-z][a-z0-9_]+$`).
 - `TargetAnalysisAttribute` response schema (`attribute_name` + `bins`) returned from `GET /targets/{target_id}/analysis` alongside trait and geography dimensions.
 
