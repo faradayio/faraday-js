@@ -21088,6 +21088,16 @@ export interface TargetModesAggregatedPut {
  */
 export interface TargetModesHashed {
     /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesHashed
+     */
+    impute_payload?: Array<TargetModesHashedImputePayloadEnum>;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesHashed
@@ -21100,6 +21110,14 @@ export interface TargetModesHashed {
      */
     transform_preset?: TargetTransformPresetHashed;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesHashedImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to PATCH the `TargetModesHashed` type.)
  * 
@@ -21108,6 +21126,16 @@ export interface TargetModesHashed {
  * @interface TargetModesHashedMergePatch
  */
 export interface TargetModesHashedMergePatch {
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesHashedMergePatch
+     */
+    impute_payload?: Array<TargetModesHashedMergePatchImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21121,6 +21149,14 @@ export interface TargetModesHashedMergePatch {
      */
     transform_preset?: TargetTransformPresetHashed | null;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesHashedMergePatchImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to POST a new value of the `TargetModesHashed` type.)
  * 
@@ -21129,6 +21165,16 @@ export interface TargetModesHashedMergePatch {
  * @interface TargetModesHashedPost
  */
 export interface TargetModesHashedPost {
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesHashedPost
+     */
+    impute_payload?: Array<TargetModesHashedPostImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21142,6 +21188,14 @@ export interface TargetModesHashedPost {
      */
     transform_preset?: TargetTransformPresetHashed;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesHashedPostImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to PUT a value of the `TargetModesHashed` type.)
  * 
@@ -21150,6 +21204,16 @@ export interface TargetModesHashedPost {
  * @interface TargetModesHashedPut
  */
 export interface TargetModesHashedPut {
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesHashedPut
+     */
+    impute_payload?: Array<TargetModesHashedPutImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21162,6 +21226,14 @@ export interface TargetModesHashedPut {
      * @memberof TargetModesHashedPut
      */
     transform_preset?: TargetTransformPresetHashed;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesHashedPutImputePayloadEnum {
+    Attribute = 'attribute'
 }
 /**
  * Suitable for direct mail and canvassing.
@@ -21175,6 +21247,16 @@ export interface TargetModesIdentified {
      * @memberof TargetModesIdentified
      */
     aggregate: TargetAggregateIdentified;
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesIdentified
+     */
+    impute_payload?: Array<TargetModesIdentifiedImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21194,6 +21276,14 @@ export interface TargetModesIdentified {
      */
     transform_preset?: TargetTransformPresetIdentified;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesIdentifiedImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to PATCH the `TargetModesIdentified` type.)
  * 
@@ -21208,6 +21298,16 @@ export interface TargetModesIdentifiedMergePatch {
      * @memberof TargetModesIdentifiedMergePatch
      */
     aggregate?: TargetAggregateIdentified;
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesIdentifiedMergePatch
+     */
+    impute_payload?: Array<TargetModesIdentifiedMergePatchImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21227,6 +21327,14 @@ export interface TargetModesIdentifiedMergePatch {
      */
     transform_preset?: TargetTransformPresetIdentified | null;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesIdentifiedMergePatchImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to POST a new value of the `TargetModesIdentified` type.)
  * 
@@ -21241,6 +21349,16 @@ export interface TargetModesIdentifiedPost {
      * @memberof TargetModesIdentifiedPost
      */
     aggregate: TargetAggregateIdentified;
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesIdentifiedPost
+     */
+    impute_payload?: Array<TargetModesIdentifiedPostImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21260,6 +21378,14 @@ export interface TargetModesIdentifiedPost {
      */
     transform_preset?: TargetTransformPresetIdentified;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesIdentifiedPostImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to PUT a value of the `TargetModesIdentified` type.)
  * 
@@ -21274,6 +21400,16 @@ export interface TargetModesIdentifiedPut {
      * @memberof TargetModesIdentifiedPut
      */
     aggregate: TargetAggregateIdentified;
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesIdentifiedPut
+     */
+    impute_payload?: Array<TargetModesIdentifiedPutImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21292,6 +21428,14 @@ export interface TargetModesIdentifiedPut {
      * @memberof TargetModesIdentifiedPut
      */
     transform_preset?: TargetTransformPresetIdentified;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesIdentifiedPutImputePayloadEnum {
+    Attribute = 'attribute'
 }
 /**
  * @type TargetModesMergePatch
@@ -21366,6 +21510,16 @@ export type TargetModesPut = { mode: 'aggregated' } & TargetModesAggregatedPut |
  */
 export interface TargetModesReferenced {
     /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesReferenced
+     */
+    impute_payload?: Array<TargetModesReferencedImputePayloadEnum>;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesReferenced
@@ -21397,6 +21551,14 @@ export interface TargetModesReferenced {
      */
     transform_preset?: TargetTransformPresetReferenced;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to PATCH the `TargetModesReferenced` type.)
  * 
@@ -21405,6 +21567,16 @@ export interface TargetModesReferenced {
  * @interface TargetModesReferencedMergePatch
  */
 export interface TargetModesReferencedMergePatch {
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    impute_payload?: Array<TargetModesReferencedMergePatchImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21437,6 +21609,14 @@ export interface TargetModesReferencedMergePatch {
      */
     transform_preset?: TargetTransformPresetReferenced | null;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedMergePatchImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to POST a new value of the `TargetModesReferenced` type.)
  * 
@@ -21445,6 +21625,16 @@ export interface TargetModesReferencedMergePatch {
  * @interface TargetModesReferencedPost
  */
 export interface TargetModesReferencedPost {
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedPost
+     */
+    impute_payload?: Array<TargetModesReferencedPostImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21477,6 +21667,14 @@ export interface TargetModesReferencedPost {
      */
     transform_preset?: TargetTransformPresetReferenced;
 }
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedPostImputePayloadEnum {
+    Attribute = 'attribute'
+}
 /**
  * (Parameters used to PUT a value of the `TargetModesReferenced` type.)
  * 
@@ -21485,6 +21683,16 @@ export interface TargetModesReferencedPost {
  * @interface TargetModesReferencedPut
  */
 export interface TargetModesReferencedPut {
+    /**
+     * Which payload categories to include imputed values for.
+     * Imputation uses cohabitants and neighbors to estimate missing
+     * values. Currently only "attribute" is supported. Empty array
+     * means no imputed values appear in the target's payload.
+     * Defaults to ["attribute"] (imputation included).
+     * @type {Array<string>}
+     * @memberof TargetModesReferencedPut
+     */
+    impute_payload?: Array<TargetModesReferencedPutImputePayloadEnum>;
     /**
      * The replication mode
      * @type {string}
@@ -21516,6 +21724,14 @@ export interface TargetModesReferencedPut {
      * @memberof TargetModesReferencedPut
      */
     transform_preset?: TargetTransformPresetReferenced;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TargetModesReferencedPutImputePayloadEnum {
+    Attribute = 'attribute'
 }
 /**
  * @type TargetOptions

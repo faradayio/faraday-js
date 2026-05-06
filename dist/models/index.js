@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePermission = exports.AttributeAggregationMethod = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetModesReferencedPutImputePayloadEnum = exports.TargetModesReferencedPostImputePayloadEnum = exports.TargetModesReferencedMergePatchImputePayloadEnum = exports.TargetModesReferencedImputePayloadEnum = exports.TargetModesIdentifiedPutImputePayloadEnum = exports.TargetModesIdentifiedPostImputePayloadEnum = exports.TargetModesIdentifiedMergePatchImputePayloadEnum = exports.TargetModesIdentifiedImputePayloadEnum = exports.TargetModesHashedPutImputePayloadEnum = exports.TargetModesHashedPostImputePayloadEnum = exports.TargetModesHashedMergePatchImputePayloadEnum = exports.TargetModesHashedImputePayloadEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePermission = exports.AttributeAggregationMethod = void 0;
 /**
  * Method for aggregating multiple assertions for an attribute.
  * @export
@@ -614,6 +614,102 @@ var TargetMergePatchAnalysisConfigGeographiesEnum;
     TargetMergePatchAnalysisConfigGeographiesEnum["Postcode"] = "postcode";
     TargetMergePatchAnalysisConfigGeographiesEnum["State"] = "state";
 })(TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum || (exports.TargetMergePatchAnalysisConfigGeographiesEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesHashedImputePayloadEnum;
+(function (TargetModesHashedImputePayloadEnum) {
+    TargetModesHashedImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesHashedImputePayloadEnum = exports.TargetModesHashedImputePayloadEnum || (exports.TargetModesHashedImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesHashedMergePatchImputePayloadEnum;
+(function (TargetModesHashedMergePatchImputePayloadEnum) {
+    TargetModesHashedMergePatchImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesHashedMergePatchImputePayloadEnum = exports.TargetModesHashedMergePatchImputePayloadEnum || (exports.TargetModesHashedMergePatchImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesHashedPostImputePayloadEnum;
+(function (TargetModesHashedPostImputePayloadEnum) {
+    TargetModesHashedPostImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesHashedPostImputePayloadEnum = exports.TargetModesHashedPostImputePayloadEnum || (exports.TargetModesHashedPostImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesHashedPutImputePayloadEnum;
+(function (TargetModesHashedPutImputePayloadEnum) {
+    TargetModesHashedPutImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesHashedPutImputePayloadEnum = exports.TargetModesHashedPutImputePayloadEnum || (exports.TargetModesHashedPutImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesIdentifiedImputePayloadEnum;
+(function (TargetModesIdentifiedImputePayloadEnum) {
+    TargetModesIdentifiedImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesIdentifiedImputePayloadEnum = exports.TargetModesIdentifiedImputePayloadEnum || (exports.TargetModesIdentifiedImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesIdentifiedMergePatchImputePayloadEnum;
+(function (TargetModesIdentifiedMergePatchImputePayloadEnum) {
+    TargetModesIdentifiedMergePatchImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesIdentifiedMergePatchImputePayloadEnum = exports.TargetModesIdentifiedMergePatchImputePayloadEnum || (exports.TargetModesIdentifiedMergePatchImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesIdentifiedPostImputePayloadEnum;
+(function (TargetModesIdentifiedPostImputePayloadEnum) {
+    TargetModesIdentifiedPostImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesIdentifiedPostImputePayloadEnum = exports.TargetModesIdentifiedPostImputePayloadEnum || (exports.TargetModesIdentifiedPostImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesIdentifiedPutImputePayloadEnum;
+(function (TargetModesIdentifiedPutImputePayloadEnum) {
+    TargetModesIdentifiedPutImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesIdentifiedPutImputePayloadEnum = exports.TargetModesIdentifiedPutImputePayloadEnum || (exports.TargetModesIdentifiedPutImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedImputePayloadEnum;
+(function (TargetModesReferencedImputePayloadEnum) {
+    TargetModesReferencedImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesReferencedImputePayloadEnum = exports.TargetModesReferencedImputePayloadEnum || (exports.TargetModesReferencedImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedMergePatchImputePayloadEnum;
+(function (TargetModesReferencedMergePatchImputePayloadEnum) {
+    TargetModesReferencedMergePatchImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesReferencedMergePatchImputePayloadEnum = exports.TargetModesReferencedMergePatchImputePayloadEnum || (exports.TargetModesReferencedMergePatchImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedPostImputePayloadEnum;
+(function (TargetModesReferencedPostImputePayloadEnum) {
+    TargetModesReferencedPostImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesReferencedPostImputePayloadEnum = exports.TargetModesReferencedPostImputePayloadEnum || (exports.TargetModesReferencedPostImputePayloadEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var TargetModesReferencedPutImputePayloadEnum;
+(function (TargetModesReferencedPutImputePayloadEnum) {
+    TargetModesReferencedPutImputePayloadEnum["Attribute"] = "attribute";
+})(TargetModesReferencedPutImputePayloadEnum = exports.TargetModesReferencedPutImputePayloadEnum || (exports.TargetModesReferencedPutImputePayloadEnum = {}));
 /**
 * @export
 * @enum {string}
