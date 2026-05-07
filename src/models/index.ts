@@ -14413,78 +14413,6 @@ export enum ModelingAttribute {
     HomeYearBuilt = 'fig/home_year_built'
 }
 /**
- * Faraday traits available for modeling
- * 
- * fig/actvty_num_purchase_quintile: Total lifetime number of purchases made, bucketed into 5 quintile groupings
- * fig/actvty_ttl_dollars_quintile: Total dollars that were spent on purchases within lifetime activity bucketed into 5 quintile groupings
- * fig/age: The age of the individual
- * fig/antiques: Interest in antiques
- * fig/books_magazines: Interest in books and magazines
- * fig/charitable_donations: Self-reported interest in charitable donations
- * fig/dieting: Self-reported interest in dieting & weight loss
- * fig/education: Median attainment completed by adults in household age 18 or older
- * fig/favm: Faraday's Automated Valuation Model (AVM) is an algorithmic estimate that approximates the true market value of a home as closely as possible.
- * fig/frequent_remodeler: Interest in home improvement, or recent renovation activity
- * fig/gardener: Self-reported interest in gardening
- * fig/gender: Gender of individual
- * fig/health_conscious: Self-reported interest in health & exercise
- * fig/homeowner_status: Designation of person-to-property relationship (renter vs. owner), with probability
- * fig/household_income: Deprecated. Use fig/household_income_v2 instead.
- * fig/household_income_v2: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
- * fig/household_size: The number of people living in the household, including adults and children
- * fig/housing_density: Number of housing units per square mile
- * fig/length_of_residence: Deprecated. Use fig/length_of_residence_v2 instead.
- * fig/length_of_residence_v2: The number of years the resident has lived at this location
- * fig/life_sports_sports_all: Self-reported interest in sports - sports participation
- * fig/living_area: The finished square footage of the house
- * fig/marital_status: Marital status
- * fig/music: Self-reported interest in music
- * fig/net_worth: Value equals household asset minus liabilities.
- * fig/percent_equity: Loan-to-value percentage, subtracted from 100. Negative values indicate the loan is underwater.
- * fig/pet_any: Owns a pet of any variety (Turtle? Capybara? The mind boggles . . .)
- * fig/purch_chan_internet: Likely to make purchases via online channel
- * fig/shopping_styles: Household's preferred mode of shopping
- * fig/travel: Self-reported interest in travel
- * fig/value_score_all: Estimated consumer marketing profitability. This modeled data is derived from credit behavior and leverages demographic and self-reported data.
- * fig/year_built: The year that the house was originally built (see "Effective year built" for last extensive remodel)
- * @export
- * @enum {string}
- */
-export enum ModelingField {
-    ActvtyNumPurchaseQuintile = 'fig/actvty_num_purchase_quintile',
-    ActvtyTtlDollarsQuintile = 'fig/actvty_ttl_dollars_quintile',
-    Age = 'fig/age',
-    Antiques = 'fig/antiques',
-    BooksMagazines = 'fig/books_magazines',
-    CharitableDonations = 'fig/charitable_donations',
-    Dieting = 'fig/dieting',
-    Education = 'fig/education',
-    Favm = 'fig/favm',
-    FrequentRemodeler = 'fig/frequent_remodeler',
-    Gardener = 'fig/gardener',
-    Gender = 'fig/gender',
-    HealthConscious = 'fig/health_conscious',
-    HomeownerStatus = 'fig/homeowner_status',
-    HouseholdIncome = 'fig/household_income',
-    HouseholdIncomeV2 = 'fig/household_income_v2',
-    HouseholdSize = 'fig/household_size',
-    LengthOfResidence = 'fig/length_of_residence',
-    LengthOfResidenceV2 = 'fig/length_of_residence_v2',
-    LifeSportsSportsAll = 'fig/life_sports_sports_all',
-    LivingArea = 'fig/living_area',
-    MaritalStatus = 'fig/marital_status',
-    Music = 'fig/music',
-    NetWorth = 'fig/net_worth',
-    PercentEquity = 'fig/percent_equity',
-    PetAny = 'fig/pet_any',
-    PurchChanInternet = 'fig/purch_chan_internet',
-    ShoppingStyles = 'fig/shopping_styles',
-    Travel = 'fig/travel',
-    HousingDensity = 'fig/housing_density',
-    ValueScoreAll = 'fig/value_score_all',
-    YearBuilt = 'fig/year_built'
-}
-/**
  * A business objective describing how likely a group of people are to transition from one cohort to another (for example, from a prospect to a customer).
  * @export
  * @interface Outcome
@@ -16310,10 +16238,10 @@ export interface PersonaSet {
      * Specify Faraday provided traits to use in modeling.
      * 
      * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
-     * @type {Array<ModelingField>}
+     * @type {Array<string>}
      * @memberof PersonaSet
      */
-    modeling_fields?: Array<ModelingField>;
+    modeling_fields?: Array<string>;
     /**
      * Human-readable label for this persona set.
      * @type {string}
@@ -16454,6 +16382,24 @@ export interface PersonaSetMergePatch {
      */
     explore?: boolean | null;
     /**
+     * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
+     * 
+     * Mutually exclusive with `modeling_fields`.
+     * @type {Array<ModelingAttribute>}
+     * @memberof PersonaSetMergePatch
+     */
+    modeling_attributes?: Array<ModelingAttribute> | null;
+    /**
+     * Specify modeling fields to use in clustering.
+     * 
+     * Supports `fig/<field>`, `trait/<trait_name>`, and `stream/<stream_name>/<property_name>`.
+     * 
+     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * @type {Array<string>}
+     * @memberof PersonaSetMergePatch
+     */
+    modeling_fields?: Array<string> | null;
+    /**
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
      * @type {string}
      * @memberof PersonaSetMergePatch
@@ -16522,10 +16468,10 @@ export interface PersonaSetPost {
      * Specify Faraday provided traits to use in modeling.
      * 
      * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
-     * @type {Array<ModelingField>}
+     * @type {Array<string>}
      * @memberof PersonaSetPost
      */
-    modeling_fields?: Array<ModelingField>;
+    modeling_fields?: Array<string>;
     /**
      * Human-readable label for this persona set.
      * @type {string}
@@ -16565,6 +16511,24 @@ export interface PersonaSetPut {
      * @memberof PersonaSetPut
      */
     explore?: boolean;
+    /**
+     * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
+     * 
+     * Mutually exclusive with `modeling_fields`.
+     * @type {Array<ModelingAttribute>}
+     * @memberof PersonaSetPut
+     */
+    modeling_attributes?: Array<ModelingAttribute>;
+    /**
+     * Specify modeling fields to use in clustering.
+     * 
+     * Supports `fig/<field>`, `trait/<trait_name>`, and `stream/<stream_name>/<property_name>`.
+     * 
+     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * @type {Array<string>}
+     * @memberof PersonaSetPut
+     */
+    modeling_fields?: Array<string>;
     /**
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
      * @type {string}
