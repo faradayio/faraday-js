@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.19] - 2026-05-07
+
+### Added
+
+- `preview` field on `CohortPost` (boolean, optional). When `true`, `POST /cohorts` evaluates the cohort against BigQuery in real time and returns a transient `Cohort` whose `metrics` (`total_person_count`, `enrichable_person_count`, `total_residence_count`, `enrichable_residence_count`) are populated synchronously. No cohort is persisted. The response shape is the same as a normal create so clients can render previewed and persisted cohorts identically; build-dependent fields (e.g. `last_updated_output_at`) reflect the transient row and should be ignored.
+
 ## [0.14.18] - 2026-05-04
 
 ### Added

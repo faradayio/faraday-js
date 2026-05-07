@@ -1698,6 +1698,17 @@ export interface Cohort {
      */
     population_count?: number;
     /**
+     * When `true`, metrics are calculated in real time and returned, but the Cohort is not persisted.
+     *
+     * Expected response time is 5-30s.
+     *
+     * This field is only meaningful on `POST /cohorts`. It is never present on cohorts
+     * returned from `GET` because preview cohorts are never persisted.
+     * @type {boolean}
+     * @memberof Cohort
+     */
+    preview?: boolean;
+    /**
      *
      * @type {Recency}
      * @memberof Cohort
@@ -2109,6 +2120,17 @@ export interface CohortPost {
      * @memberof CohortPost
      */
     place_conditions?: Array<CohortPlaceCondition>;
+    /**
+     * When `true`, metrics are calculated in real time and returned, but the Cohort is not persisted.
+     *
+     * Expected response time is 5-30s.
+     *
+     * This field is only meaningful on `POST /cohorts`. It is never present on cohorts
+     * returned from `GET` because preview cohorts are never persisted.
+     * @type {boolean}
+     * @memberof CohortPost
+     */
+    preview?: boolean;
     /**
      *
      * @type {RecencyPost}
