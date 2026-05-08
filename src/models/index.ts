@@ -20213,6 +20213,16 @@ export interface TargetFilterTraitConditions {
     name: string;
 }
 /**
+ * Which payload elements to include imputed values for.
+ * Imputation uses cohabitants and neighbors to estimate missing
+ * values. Empty array means no imputed values appear in the
+ * target's payload.
+ * @export
+ * @interface TargetImputePayload
+ */
+export interface TargetImputePayload extends Array<string> {
+}
+/**
  * @type TargetLimit
  * Restrict the number of rows exported in a target.
  * - To apply an absolute row limit, use `row_count`.
@@ -21088,6 +21098,12 @@ export interface TargetModesAggregatedPut {
  */
 export interface TargetModesHashed {
     /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesHashed
+     */
+    impute_payload?: TargetImputePayload;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesHashed
@@ -21108,6 +21124,12 @@ export interface TargetModesHashed {
  * @interface TargetModesHashedMergePatch
  */
 export interface TargetModesHashedMergePatch {
+    /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesHashedMergePatch
+     */
+    impute_payload?: TargetImputePayload | null;
     /**
      * The replication mode
      * @type {string}
@@ -21130,6 +21152,12 @@ export interface TargetModesHashedMergePatch {
  */
 export interface TargetModesHashedPost {
     /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesHashedPost
+     */
+    impute_payload?: TargetImputePayload;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesHashedPost
@@ -21150,6 +21178,12 @@ export interface TargetModesHashedPost {
  * @interface TargetModesHashedPut
  */
 export interface TargetModesHashedPut {
+    /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesHashedPut
+     */
+    impute_payload?: TargetImputePayload;
     /**
      * The replication mode
      * @type {string}
@@ -21175,6 +21209,12 @@ export interface TargetModesIdentified {
      * @memberof TargetModesIdentified
      */
     aggregate: TargetAggregateIdentified;
+    /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesIdentified
+     */
+    impute_payload?: TargetImputePayload;
     /**
      * The replication mode
      * @type {string}
@@ -21209,6 +21249,12 @@ export interface TargetModesIdentifiedMergePatch {
      */
     aggregate?: TargetAggregateIdentified;
     /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesIdentifiedMergePatch
+     */
+    impute_payload?: TargetImputePayload | null;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesIdentifiedMergePatch
@@ -21242,6 +21288,12 @@ export interface TargetModesIdentifiedPost {
      */
     aggregate: TargetAggregateIdentified;
     /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesIdentifiedPost
+     */
+    impute_payload?: TargetImputePayload;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesIdentifiedPost
@@ -21274,6 +21326,12 @@ export interface TargetModesIdentifiedPut {
      * @memberof TargetModesIdentifiedPut
      */
     aggregate: TargetAggregateIdentified;
+    /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesIdentifiedPut
+     */
+    impute_payload?: TargetImputePayload;
     /**
      * The replication mode
      * @type {string}
@@ -21366,6 +21424,12 @@ export type TargetModesPut = { mode: 'aggregated' } & TargetModesAggregatedPut |
  */
 export interface TargetModesReferenced {
     /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesReferenced
+     */
+    impute_payload?: TargetImputePayload;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesReferenced
@@ -21405,6 +21469,12 @@ export interface TargetModesReferenced {
  * @interface TargetModesReferencedMergePatch
  */
 export interface TargetModesReferencedMergePatch {
+    /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesReferencedMergePatch
+     */
+    impute_payload?: TargetImputePayload | null;
     /**
      * The replication mode
      * @type {string}
@@ -21446,6 +21516,12 @@ export interface TargetModesReferencedMergePatch {
  */
 export interface TargetModesReferencedPost {
     /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesReferencedPost
+     */
+    impute_payload?: TargetImputePayload;
+    /**
      * The replication mode
      * @type {string}
      * @memberof TargetModesReferencedPost
@@ -21485,6 +21561,12 @@ export interface TargetModesReferencedPost {
  * @interface TargetModesReferencedPut
  */
 export interface TargetModesReferencedPut {
+    /**
+     * 
+     * @type {TargetImputePayload}
+     * @memberof TargetModesReferencedPut
+     */
+    impute_payload?: TargetImputePayload;
     /**
      * The replication mode
      * @type {string}
