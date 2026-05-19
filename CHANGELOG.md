@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.20] - 2026-05-19
+
+### Added
+
+- `fig/vehicles`, `fig/civic`, `fig/engagement` values for `TraitCategory` enum (already present on `StreamPropertyCategory` since 0.14.11). Fixes prod `GET /v1/streams` 500s on streams in those categories.
+
 ## [0.14.19] - 2026-05-08
 
 ### Added

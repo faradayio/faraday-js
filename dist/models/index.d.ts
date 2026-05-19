@@ -26117,6 +26117,9 @@ export declare enum TraitCategory {
     FigReachability = "fig/reachability",
     FigSociety = "fig/society",
     FigFinancial = "fig/financial",
+    FigVehicles = "fig/vehicles",
+    FigCivic = "fig/civic",
+    FigEngagement = "fig/engagement",
     UserDefined = "user_defined"
 }
 /**
