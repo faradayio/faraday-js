@@ -740,6 +740,9 @@ var TraitCategory;
     TraitCategory["FigReachability"] = "fig/reachability";
     TraitCategory["FigSociety"] = "fig/society";
     TraitCategory["FigFinancial"] = "fig/financial";
+    TraitCategory["FigVehicles"] = "fig/vehicles";
+    TraitCategory["FigCivic"] = "fig/civic";
+    TraitCategory["FigEngagement"] = "fig/engagement";
     TraitCategory["UserDefined"] = "user_defined";
 })(TraitCategory = exports.TraitCategory || (exports.TraitCategory = {}));
 /**
