@@ -571,6 +571,31 @@ export interface AddressInfo {
 /**
  * 
  * @export
+ * @interface AnalysisDimensionsAttribute
+ */
+export interface AnalysisDimensionsAttribute {
+    /**
+     * The name of the attribute used to calculate this dimension.
+     * @type {string}
+     * @memberof AnalysisDimensionsAttribute
+     */
+    attribute_name: string;
+    /**
+     * The list of bins calculated for this persona set dimension.
+     * @type {Array<AnalysisDimensionsTraitBin>}
+     * @memberof AnalysisDimensionsAttribute
+     */
+    bins: Array<AnalysisDimensionsTraitBin>;
+    /**
+     * Whether the attribute distinguishes the persona from the rest of the persona set.
+     * @type {boolean}
+     * @memberof AnalysisDimensionsAttribute
+     */
+    salient?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface AnalysisDimensionsTrait
  */
 export interface AnalysisDimensionsTrait {
@@ -16379,6 +16404,12 @@ export interface PersonaSet {
  * @interface PersonaSetAnalysisDimensions
  */
 export interface PersonaSetAnalysisDimensions {
+    /**
+     * A list of counts and percents about the persona set based on attributes. Present instead of `traits` for accounts with an identity graph feature store set.
+     * @type {Array<AnalysisDimensionsAttribute>}
+     * @memberof PersonaSetAnalysisDimensions
+     */
+    attributes?: Array<AnalysisDimensionsAttribute>;
     /**
      * 
      * @type {string}
