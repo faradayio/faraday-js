@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.21] - 2026-05-20
+
+### Added
+
+- `attributes` array and `AnalysisDimensionsAttribute` schema (`attribute_name` + `bins` + `salient`) on the persona set analysis dimensions response (`GET /persona_sets/{persona_set_id}/analysis/dimensions`). Returned instead of `traits` for accounts with an identity graph feature store set (FIG v2). Attribute names are `fig/` prefixed (pattern: `^fig/[a-z][a-z0-9_]+$`).
+
 ## [0.14.20] - 2026-05-19
 
 ### Added
