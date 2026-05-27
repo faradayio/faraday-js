@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { ArchiveConfig, Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeAnalysis, ScopeEfficacy, ScopeMergePatch, ScopePost, Target } from '../models';
+import { ArchiveConfig, Cohort, Dataset, Outcome, PersonaSet, Recommender, Scope, ScopeAnalysis, ScopeEfficacy, ScopeGeography, ScopeMergePatch, ScopePost, Target } from '../models';
 export interface ArchiveScopeRequest {
     scopeId: string;
     archiveConfig: ArchiveConfig;
@@ -34,6 +34,9 @@ export interface GetScopeDatasetsRequest {
     scopeId: string;
 }
 export interface GetScopeEfficacyRequest {
+    scopeId: string;
+}
+export interface GetScopeGeographyRequest {
     scopeId: string;
 }
 export interface GetScopePayloadCohortsRequest {
@@ -150,6 +153,16 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get efficacy for a scope
      */
     getScopeEfficacy(scopeId: string): Promise<ScopeEfficacy>;
+    /**
+     * Get a postcode- and state-level breakdown of the scope population, including per-payload-cohort counts. `postcodes` may be omitted when the scope spans more than 250 distinct postcodes (the UI distribution table saturates at that point); `states` is always present.
+     * Get geographic breakdown for a scope
+     */
+    getScopeGeographyRaw(requestParameters: GetScopeGeographyRequest): Promise<runtime.ApiResponse<ScopeGeography>>;
+    /**
+     * Get a postcode- and state-level breakdown of the scope population, including per-payload-cohort counts. `postcodes` may be omitted when the scope spans more than 250 distinct postcodes (the UI distribution table saturates at that point); `states` is always present.
+     * Get geographic breakdown for a scope
+     */
+    getScopeGeography(scopeId: string): Promise<ScopeGeography>;
     /**
      * Get payload cohorts for a scope
      * Get payload cohorts for a scope
