@@ -10,12 +10,6 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.14.22] - 2026-05-21
-
-### Added
-
-- `scope_analysis`: residence-level analysis. Six additive, optional fields on `ScopeAnalysisProbabilityDistributionDatum` — `scope_residences`, `eligible_residences` (residence-level proportions) and `scope_individuals_count`, `scope_residences_count`, `eligible_individuals_count`, `eligible_residences_count` (absolute counts) — plus a new `GET /scopes/{scope_id}/analysis/geography` endpoint with `ScopeGeography`, `ScopeGeographyArea`, `ScopeGeographyCohort` schemas returning a postcode- and state-level breakdown with per-payload-cohort counts. `postcodes` is omitted when the scope spans more than 250 distinct postcodes; both geography fields are absent (`{}`) until the analysis has run for the scope.
-
 ## [0.14.21] - 2026-05-20
 
 ### Added

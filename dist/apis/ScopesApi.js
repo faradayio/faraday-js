@@ -327,43 +327,6 @@ class ScopesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get a postcode- and state-level breakdown of the scope population, including per-payload-cohort counts. `postcodes` may be omitted when the scope spans more than 250 distinct postcodes (the UI distribution table saturates at that point); `states` is always present.
-     * Get geographic breakdown for a scope
-     */
-    getScopeGeographyRaw(requestParameters) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
-                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling getScopeGeography.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("bearer", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/scopes/{scope_id}/analysis/geography`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            });
-            return new runtime.JSONApiResponse(response);
-        });
-    }
-    /**
-     * Get a postcode- and state-level breakdown of the scope population, including per-payload-cohort counts. `postcodes` may be omitted when the scope spans more than 250 distinct postcodes (the UI distribution table saturates at that point); `states` is always present.
-     * Get geographic breakdown for a scope
-     */
-    getScopeGeography(scopeId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getScopeGeographyRaw({ scopeId: scopeId });
-            return yield response.value();
-        });
-    }
-    /**
      * Get payload cohorts for a scope
      * Get payload cohorts for a scope
      */
@@ -545,6 +508,43 @@ class ScopesApi extends runtime.BaseAPI {
     getScopePopulationCohorts(scopeId) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getScopePopulationCohortsRaw({ scopeId: scopeId });
+            return yield response.value();
+        });
+    }
+    /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    getScopePopulationExclusionAddressLevelCohortsRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling getScopePopulationExclusionAddressLevelCohorts.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/scopes/{scope_id}/population/exclusion_address_level_cohorts`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    getScopePopulationExclusionAddressLevelCohorts(scopeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getScopePopulationExclusionAddressLevelCohortsRaw({ scopeId: scopeId });
             return yield response.value();
         });
     }
