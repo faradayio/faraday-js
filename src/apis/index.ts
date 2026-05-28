@@ -29,6 +29,9 @@ import {
     GraphApi
 } from './GraphApi';
 import {
+    KnowledgebaseApi
+} from './KnowledgebaseApi';
+import {
     MarketOpportunityAnalysesApi
 } from './MarketOpportunityAnalysesApi';
 import {
@@ -76,6 +79,7 @@ export class FaradayClient {
     experimental: ExperimentalApi;
     featureStores: FeatureStoresApi;
     graph: GraphApi;
+    knowledgebase: KnowledgebaseApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
@@ -100,6 +104,7 @@ export class FaradayClient {
         this.experimental = new ExperimentalApi(configuration);
         this.featureStores = new FeatureStoresApi(configuration);
         this.graph = new GraphApi(configuration);
+        this.knowledgebase = new KnowledgebaseApi(configuration);
         this.marketOpportunityAnalyses = new MarketOpportunityAnalysesApi(configuration);
         this.outcomes = new OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi(configuration);

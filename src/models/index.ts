@@ -13888,6 +13888,76 @@ export interface Invoice {
     paid: boolean;
 }
 /**
+ * The current saved revision of an account's knowledgebase overview, or an
+ * empty stub if no overview has ever been written. `revision_id` and
+ * `created_at` are absent in the empty-stub case; `content` is "".
+ * @export
+ * @interface KnowledgebaseOverview
+ */
+export interface KnowledgebaseOverview {
+    /**
+     * Markdown body of the overview. May be empty if no overview has been written yet.
+     * @type {string}
+     * @memberof KnowledgebaseOverview
+     */
+    content: string;
+    /**
+     * When the current revision was saved. Absent if no overview has been written yet.
+     * @type {string}
+     * @memberof KnowledgebaseOverview
+     */
+    created_at?: string;
+    /**
+     * Identifies the latest saved revision. Pass back to PATCH to detect
+     * concurrent edits — if the server's current revision_id has moved
+     * past this value the PATCH is rejected with 409.
+     * @type {string}
+     * @memberof KnowledgebaseOverview
+     */
+    revision_id?: string;
+}
+/**
+ * New content for the account knowledgebase overview, plus the
+ * `revision_id` the edit was based on.
+ * @export
+ * @interface KnowledgebaseOverviewPatch
+ */
+export interface KnowledgebaseOverviewPatch {
+    /**
+     * New markdown body of the overview.
+     * @type {string}
+     * @memberof KnowledgebaseOverviewPatch
+     */
+    content: string;
+    /**
+     * revision_id of the revision the client based their edit on. Required
+     * unless the overview has never been written before. Server returns
+     * 409 if its current revision_id has moved past this value.
+     * @type {string}
+     * @memberof KnowledgebaseOverviewPatch
+     */
+    revision_id?: string;
+}
+/**
+ * One entry in the list of saved overview revisions.
+ * @export
+ * @interface KnowledgebaseOverviewRevisionSummary
+ */
+export interface KnowledgebaseOverviewRevisionSummary {
+    /**
+     * 
+     * @type {string}
+     * @memberof KnowledgebaseOverviewRevisionSummary
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof KnowledgebaseOverviewRevisionSummary
+     */
+    revision_id: string;
+}
+/**
  * 
  * @export
  * @interface LookupApiIdentifiers
@@ -25874,6 +25944,274 @@ export interface Upload {
      * @memberof Upload
      */
     subpath: string;
+}
+/**
+ * The full current revision of a use case, including the live computed
+ * `resources` list.
+ * @export
+ * @interface UseCase
+ */
+export interface UseCase {
+    /**
+     * Set when this use case has been archived.
+     * @type {string}
+     * @memberof UseCase
+     */
+    archived_at?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCase
+     */
+    created_at: string;
+    /**
+     * Markdown implementation guide. Optional.
+     * @type {string}
+     * @memberof UseCase
+     */
+    guide?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCase
+     */
+    id: string;
+    /**
+     * 
+     * @type {UseCasePreface}
+     * @memberof UseCase
+     */
+    preface: UseCasePreface;
+    /**
+     * Computed property: every resource link declared via the
+     * knowledgebase. Not versioned — reflects the live state of
+     * use_case_resources at read time.
+     * @type {Array<UseCaseResource>}
+     * @memberof UseCase
+     */
+    resources?: Array<UseCaseResource>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCase
+     */
+    revision_id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCase
+     */
+    title: string;
+}
+/**
+ * JSON Merge Patch. Fields not present are left at their current values.
+ * Setting a preface field to null clears it. Optimistic locking: server
+ * returns 409 if its current revision_id has moved past `revision_id`.
+ * @export
+ * @interface UseCasePatch
+ */
+export interface UseCasePatch {
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCasePatch
+     */
+    guide?: string;
+    /**
+     * 
+     * @type {UseCasePreface}
+     * @memberof UseCasePatch
+     */
+    preface?: UseCasePreface;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCasePatch
+     */
+    revision_id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCasePatch
+     */
+    title?: string;
+}
+/**
+ * Fields accepted when creating a new use case.
+ * @export
+ * @interface UseCasePost
+ */
+export interface UseCasePost {
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCasePost
+     */
+    guide?: string;
+    /**
+     * 
+     * @type {UseCasePreface}
+     * @memberof UseCasePost
+     */
+    preface?: UseCasePreface;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCasePost
+     */
+    title: string;
+}
+/**
+ * The narrative framing of a use case. All three fields are optional
+ * markdown blocks; an empty preface means the use case hasn't been written
+ * up beyond its title and guide.
+ * @export
+ * @interface UseCasePreface
+ */
+export interface UseCasePreface {
+    /**
+     * Markdown. The pre-existing situation that motivated this use case.
+     * @type {string}
+     * @memberof UseCasePreface
+     */
+    background?: string;
+    /**
+     * Markdown. The specific problem the client is trying to solve.
+     * @type {string}
+     * @memberof UseCasePreface
+     */
+    problem?: string;
+    /**
+     * Markdown. How Faraday addresses the problem at a conceptual level.
+     * @type {string}
+     * @memberof UseCasePreface
+     */
+    solution?: string;
+}
+/**
+ * A link from a use case to a Faraday resource that supports it (a cohort,
+ * outcome, target, etc). Computed live from the join table — not part of
+ * the versioned use-case content.
+ * @export
+ * @interface UseCaseResource
+ */
+export interface UseCaseResource {
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseResource
+     */
+    resource_id: string;
+    /**
+     * The Postgres table name of the linked resource — `cohorts`,
+     * `new_outcomes`, `targets`, `scopes`, `recommenders`, `rosters`,
+     * `connections`, `source_tables`, etc.
+     * @type {string}
+     * @memberof UseCaseResource
+     */
+    resource_type: string;
+}
+/**
+ * A specific saved revision of a use case. Same shape as `UseCase` except
+ * `resources` is omitted, because resource links are a live property of
+ * the use case as a whole, not of any individual revision.
+ * @export
+ * @interface UseCaseRevision
+ */
+export interface UseCaseRevision {
+    /**
+     * Set when this use case has been archived.
+     * @type {string}
+     * @memberof UseCaseRevision
+     */
+    archived_at?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseRevision
+     */
+    created_at: string;
+    /**
+     * Markdown implementation guide. Optional.
+     * @type {string}
+     * @memberof UseCaseRevision
+     */
+    guide?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseRevision
+     */
+    id: string;
+    /**
+     * 
+     * @type {UseCasePreface}
+     * @memberof UseCaseRevision
+     */
+    preface: UseCasePreface;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseRevision
+     */
+    revision_id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseRevision
+     */
+    title: string;
+}
+/**
+ * One entry in the list of saved use case revisions.
+ * @export
+ * @interface UseCaseRevisionSummary
+ */
+export interface UseCaseRevisionSummary {
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseRevisionSummary
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseRevisionSummary
+     */
+    revision_id: string;
+}
+/**
+ * A use case summary, returned by the listing endpoint. Excludes the
+ * preface, guide, and resources to keep the listing payload small.
+ * @export
+ * @interface UseCaseSummary
+ */
+export interface UseCaseSummary {
+    /**
+     * Set when this use case has been archived.
+     * @type {string}
+     * @memberof UseCaseSummary
+     */
+    archived_at?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseSummary
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseSummary
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UseCaseSummary
+     */
+    title: string;
 }
 /**
  * A JSON Schema validation error.
