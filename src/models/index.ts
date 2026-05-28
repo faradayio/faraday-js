@@ -17777,7 +17777,7 @@ export interface ScopeAnalysisPayloadResource {
     probability_distribution: Array<ScopeAnalysisProbabilityDistributionDatum>;
 }
 /**
- * Each probability distribution is a 100-element array, with each value representing the number of inividuals (or in the case of recommender, recommendations) falling within that distribution bin, both the scope and the original objective's eligible class.
+ * One bin of a 100-element probability distribution.
  * @export
  * @interface ScopeAnalysisProbabilityDistributionDatum
  */
@@ -17795,17 +17795,53 @@ export interface ScopeAnalysisProbabilityDistributionDatum {
      */
     bin_mid_point: number;
     /**
-     * 
+     * Individual-level proportion of the eligible population in this bin.
      * @type {number}
      * @memberof ScopeAnalysisProbabilityDistributionDatum
      */
     eligible: number;
     /**
-     * 
+     * Count of distinct individuals from the eligible population in this bin.
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    eligible_individuals_count?: number;
+    /**
+     * Residence-level proportion of the eligible population in this bin. Absent when residence-level eligible data is not available for the outcome (a real eligible-residence count is never 0, so absence — not 0 — signals "no data").
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    eligible_residences?: number;
+    /**
+     * Count of distinct residences from the eligible population in this bin. Absent when residence-level eligible data is not available for the outcome.
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    eligible_residences_count?: number;
+    /**
+     * Individual-level proportion of the scope population in this bin.
      * @type {number}
      * @memberof ScopeAnalysisProbabilityDistributionDatum
      */
     scope: number;
+    /**
+     * Count of distinct individuals from the scope in this bin.
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    scope_individuals_count?: number;
+    /**
+     * Residence-level proportion of the scope population in this bin. Absent on analyses produced before residence-level data was introduced.
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    scope_residences?: number;
+    /**
+     * Count of distinct residences from the scope in this bin.
+     * @type {number}
+     * @memberof ScopeAnalysisProbabilityDistributionDatum
+     */
+    scope_residences_count?: number;
 }
 /**
  * Metadata about the columns in this scope. Useful for advanced target configuration.
@@ -17965,6 +18001,69 @@ export enum ScopeEfficacyOutcomeMonthPerformedEnum {
     Equal = 'equal',
     GreaterThan = 'greater_than',
     LessThan = 'less_than'
+}
+/**
+ * Geographic breakdown of the scope population by state and postcode. Both fields are absent until the analysis has run for the scope, in which case the response is `{}`.
+ * @export
+ * @interface ScopeGeography
+ */
+export interface ScopeGeography {
+    /**
+     * Per-postcode breakdown, keyed by postcode. Omitted when the scope spans more than 250 distinct postcodes.
+     * @type {{ [key: string]: ScopeGeographyArea; }}
+     * @memberof ScopeGeography
+     */
+    postcodes?: { [key: string]: ScopeGeographyArea; };
+    /**
+     * Per-state breakdown, keyed by state.
+     * @type {{ [key: string]: ScopeGeographyArea; }}
+     * @memberof ScopeGeography
+     */
+    states?: { [key: string]: ScopeGeographyArea; };
+}
+/**
+ * Counts for one geographic bucket (a postcode or state), including a per-payload-cohort breakdown.
+ * @export
+ * @interface ScopeGeographyArea
+ */
+export interface ScopeGeographyArea {
+    /**
+     * 
+     * @type {{ [key: string]: ScopeGeographyCohort; }}
+     * @memberof ScopeGeographyArea
+     */
+    cohorts: { [key: string]: ScopeGeographyCohort; };
+    /**
+     * 
+     * @type {number}
+     * @memberof ScopeGeographyArea
+     */
+    individuals: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScopeGeographyArea
+     */
+    residences: number;
+}
+/**
+ * Per-cohort counts within a geographic bucket.
+ * @export
+ * @interface ScopeGeographyCohort
+ */
+export interface ScopeGeographyCohort {
+    /**
+     * 
+     * @type {number}
+     * @memberof ScopeGeographyCohort
+     */
+    individuals: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScopeGeographyCohort
+     */
+    residences: number;
 }
 /**
  * (Parameters used to PATCH the `Scope` type.)

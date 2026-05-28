@@ -24,6 +24,7 @@ import {
     Scope,
     ScopeAnalysis,
     ScopeEfficacy,
+    ScopeGeography,
     ScopeMergePatch,
     ScopePost,
     Target,
@@ -59,6 +60,10 @@ export interface GetScopeDatasetsRequest {
 }
 
 export interface GetScopeEfficacyRequest {
+    scopeId: string;
+}
+
+export interface GetScopeGeographyRequest {
     scopeId: string;
 }
 
@@ -431,6 +436,46 @@ export class ScopesApi extends runtime.BaseAPI {
      */
     async getScopeEfficacy(scopeId: string, ): Promise<ScopeEfficacy> {
         const response = await this.getScopeEfficacyRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get a postcode- and state-level breakdown of the scope population, including per-payload-cohort counts. `postcodes` may be omitted when the scope spans more than 250 distinct postcodes (the UI distribution table saturates at that point); `states` is always present.
+     * Get geographic breakdown for a scope
+     */
+    async getScopeGeographyRaw(requestParameters: GetScopeGeographyRequest, ): Promise<runtime.ApiResponse<ScopeGeography>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopeGeography.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/analysis/geography`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get a postcode- and state-level breakdown of the scope population, including per-payload-cohort counts. `postcodes` may be omitted when the scope spans more than 250 distinct postcodes (the UI distribution table saturates at that point); `states` is always present.
+     * Get geographic breakdown for a scope
+     */
+    async getScopeGeography(scopeId: string, ): Promise<ScopeGeography> {
+        const response = await this.getScopeGeographyRaw({ scopeId: scopeId }, );
         return await response.value();
     }
 
