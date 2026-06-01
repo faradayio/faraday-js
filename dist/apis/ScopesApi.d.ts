@@ -54,6 +54,9 @@ export interface GetScopePayloadRecommendersRequest {
 export interface GetScopePopulationCohortsRequest {
     scopeId: string;
 }
+export interface GetScopePopulationExclusionAddressLevelCohortsRequest {
+    scopeId: string;
+}
 export interface GetScopePopulationExclusionCohortsRequest {
     scopeId: string;
 }
@@ -213,6 +216,16 @@ export declare class ScopesApi extends runtime.BaseAPI {
      * Get population cohorts for a scope
      */
     getScopePopulationCohorts(scopeId: string): Promise<Array<Cohort>>;
+    /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    getScopePopulationExclusionAddressLevelCohortsRaw(requestParameters: GetScopePopulationExclusionAddressLevelCohortsRequest): Promise<runtime.ApiResponse<Array<Cohort>>>;
+    /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    getScopePopulationExclusionAddressLevelCohorts(scopeId: string): Promise<Array<Cohort>>;
     /**
      * Get population exclusion cohorts for a scope
      * Get population exclusion cohorts for a scope
