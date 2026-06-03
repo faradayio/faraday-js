@@ -87,6 +87,10 @@ export interface GetScopePopulationCohortsRequest {
     scopeId: string;
 }
 
+export interface GetScopePopulationExclusionAddressLevelCohortsRequest {
+    scopeId: string;
+}
+
 export interface GetScopePopulationExclusionCohortsRequest {
     scopeId: string;
 }
@@ -676,6 +680,46 @@ export class ScopesApi extends runtime.BaseAPI {
      */
     async getScopePopulationCohorts(scopeId: string, ): Promise<Array<Cohort>> {
         const response = await this.getScopePopulationCohortsRaw({ scopeId: scopeId }, );
+        return await response.value();
+    }
+
+    /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    async getScopePopulationExclusionAddressLevelCohortsRaw(requestParameters: GetScopePopulationExclusionAddressLevelCohortsRequest, ): Promise<runtime.ApiResponse<Array<Cohort>>> {
+        if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+            throw new runtime.RequiredError('scopeId','Required parameter requestParameters.scopeId was null or undefined when calling getScopePopulationExclusionAddressLevelCohorts.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/scopes/{scope_id}/population/exclusion_address_level_cohorts`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    async getScopePopulationExclusionAddressLevelCohorts(scopeId: string, ): Promise<Array<Cohort>> {
+        const response = await this.getScopePopulationExclusionAddressLevelCohortsRaw({ scopeId: scopeId }, );
         return await response.value();
     }
 

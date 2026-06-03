@@ -549,6 +549,43 @@ class ScopesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    getScopePopulationExclusionAddressLevelCohortsRaw(requestParameters) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.scopeId === null || requestParameters.scopeId === undefined) {
+                throw new runtime.RequiredError('scopeId', 'Required parameter requestParameters.scopeId was null or undefined when calling getScopePopulationExclusionAddressLevelCohorts.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("bearer", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/scopes/{scope_id}/population/exclusion_address_level_cohorts`.replace(`{${"scope_id"}}`, encodeURIComponent(String(requestParameters.scopeId))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            });
+            return new runtime.JSONApiResponse(response);
+        });
+    }
+    /**
+     * Get address-level population exclusion cohorts for a scope
+     * Get address-level population exclusion cohorts for a scope
+     */
+    getScopePopulationExclusionAddressLevelCohorts(scopeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getScopePopulationExclusionAddressLevelCohortsRaw({ scopeId: scopeId });
+            return yield response.value();
+        });
+    }
+    /**
      * Get population exclusion cohorts for a scope
      * Get population exclusion cohorts for a scope
      */

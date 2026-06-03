@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.14.23] - 2026-06-03
+
+### Added
+
+- `ScopePopulation.exclusion_address_level_cohort_ids`: optional array of cohort UUIDs whose addresses are suppressed from the scope. Useful for direct-mail and other household-level suppression. A new `GET /scopes/{scope_id}/population/exclusion_address_level_cohorts` endpoint returns the resolved `Cohort[]` for a scope.
+
 ## [0.14.22] - 2026-05-21
 
 ### Added

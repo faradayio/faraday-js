@@ -19013,6 +19013,12 @@ export interface ScopePopulation {
      */
     cohort_ids: Array<string>;
     /**
+     * Exclude every individual who shares an address with any individual in the specified cohorts.
+     * @type {Array<string>}
+     * @memberof ScopePopulation
+     */
+    exclusion_address_level_cohort_ids?: Array<string>;
+    /**
      * Exclude people from the specified cohorts in this scope.
      * @type {Array<string>}
      * @memberof ScopePopulation
@@ -19033,6 +19039,12 @@ export interface ScopePopulationMergePatch {
      * @memberof ScopePopulationMergePatch
      */
     cohort_ids?: Array<string>;
+    /**
+     * Exclude every individual who shares an address with any individual in the specified cohorts.
+     * @type {Array<string>}
+     * @memberof ScopePopulationMergePatch
+     */
+    exclusion_address_level_cohort_ids?: Array<string> | null;
     /**
      * Exclude people from the specified cohorts in this scope.
      * @type {Array<string>}
@@ -19055,6 +19067,12 @@ export interface ScopePopulationPost {
      */
     cohort_ids: Array<string>;
     /**
+     * Exclude every individual who shares an address with any individual in the specified cohorts.
+     * @type {Array<string>}
+     * @memberof ScopePopulationPost
+     */
+    exclusion_address_level_cohort_ids?: Array<string>;
+    /**
      * Exclude people from the specified cohorts in this scope.
      * @type {Array<string>}
      * @memberof ScopePopulationPost
@@ -19075,6 +19093,12 @@ export interface ScopePopulationPut {
      * @memberof ScopePopulationPut
      */
     cohort_ids: Array<string>;
+    /**
+     * Exclude every individual who shares an address with any individual in the specified cohorts.
+     * @type {Array<string>}
+     * @memberof ScopePopulationPut
+     */
+    exclusion_address_level_cohort_ids?: Array<string>;
     /**
      * Exclude people from the specified cohorts in this scope.
      * @type {Array<string>}
