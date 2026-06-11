@@ -10,6 +10,14 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+
+## [0.15.0] - 2026-05-09
+
+### Changed
+
+- `ModelingField` schema is now a free-form string with pattern `^(fig|trait|stream)/.+`, replacing the closed FIG enum. Persona-set `modeling_fields` accepts `fig/<field>`, `trait/<trait_name>`, and `stream/<stream_name>/<property_name>`. Existing `fig/*` values continue to validate.
+- `modeling_fields` and `modeling_attributes` are now mutable on persona sets — they appear in `PUT /persona_sets/{id}` and `PATCH /persona_sets/{id}` request bodies in addition to `POST /persona_sets`.
+
 ## [0.14.23] - 2026-06-03
 
 ### Added
