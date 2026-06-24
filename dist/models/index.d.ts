@@ -686,11 +686,11 @@ export interface AnalysisDimensionsTraitBinDate {
      */
     max?: string;
     /**
-     * The starting numeric value this bin is counted by.
+     * The lower range of the bin for this dimension. Min can be null, meaning it is all values below the max range for this bin.
      * @type {string}
      * @memberof AnalysisDimensionsTraitBinDate
      */
-    min: string;
+    min?: string;
     /**
      * The count represented as a percentage based on the sum of counts.
      * @type {number}
@@ -723,11 +723,11 @@ export interface AnalysisDimensionsTraitBinNumber {
      */
     max?: number;
     /**
-     * The starting numeric value this bin is counted by.
+     * The lower range of the bin for this dimension. Min can be null, meaning it is all values below the max range for this bin.
      * @type {number}
      * @memberof AnalysisDimensionsTraitBinNumber
      */
-    min: number;
+    min?: number;
     /**
      * The count represented as a percentage based on the sum of counts.
      * @type {number}
