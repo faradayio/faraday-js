@@ -2797,6 +2797,8 @@ export declare type ConnectionOptions = {
 } & ConnectionOptionsClassic | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiences | {
+    type: 'faraday_pixel';
+} & ConnectionOptionsFaradayPixel | {
     type: 'gcp_cloud_sql_mysql';
 } & ConnectionOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -4854,6 +4856,64 @@ export interface ConnectionOptionsFacebookCustomAudiencesPut {
     type: string;
 }
 /**
+ * Faraday Pixel connection options
+ * @export
+ * @interface ConnectionOptionsFaradayPixel
+ */
+export interface ConnectionOptionsFaradayPixel {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsFaradayPixel
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `ConnectionOptionsFaradayPixel` type.)
+ *
+ * Faraday Pixel connection options
+ * @export
+ * @interface ConnectionOptionsFaradayPixelMergePatch
+ */
+export interface ConnectionOptionsFaradayPixelMergePatch {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsFaradayPixelMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `ConnectionOptionsFaradayPixel` type.)
+ *
+ * Faraday Pixel connection options
+ * @export
+ * @interface ConnectionOptionsFaradayPixelPost
+ */
+export interface ConnectionOptionsFaradayPixelPost {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsFaradayPixelPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `ConnectionOptionsFaradayPixel` type.)
+ *
+ * Faraday Pixel connection options
+ * @export
+ * @interface ConnectionOptionsFaradayPixelPut
+ */
+export interface ConnectionOptionsFaradayPixelPut {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsFaradayPixelPut
+     */
+    type: string;
+}
+/**
  * Google Cloud SQL (MySQL) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlMysql
@@ -6217,6 +6277,8 @@ export declare type ConnectionOptionsMergePatch = {
 } & ConnectionOptionsClassicMergePatch | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesMergePatch | {
+    type: 'faraday_pixel';
+} & ConnectionOptionsFaradayPixelMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -6853,6 +6915,8 @@ export declare type ConnectionOptionsPost = {
 } & ConnectionOptionsClassicPost | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPost | {
+    type: 'faraday_pixel';
+} & ConnectionOptionsFaradayPixelPost | {
     type: 'gcp_cloud_sql_mysql';
 } & ConnectionOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -7189,6 +7253,8 @@ export declare type ConnectionOptionsPut = {
 } & ConnectionOptionsClassicPut | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPut | {
+    type: 'faraday_pixel';
+} & ConnectionOptionsFaradayPixelPut | {
     type: 'gcp_cloud_sql_mysql';
 } & ConnectionOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
@@ -10149,6 +10215,8 @@ export declare type DatasetOptions = {
 } & DatasetOptionsBigQuery | {
     type: 'classic';
 } & DatasetOptionsClassic | {
+    type: 'faraday_pixel';
+} & DatasetOptionsFaradayPixel | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -10904,6 +10972,64 @@ export interface DatasetOptionsClassicPut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsClassicPut
+     */
+    type: string;
+}
+/**
+ * Faraday Pixel dataset options
+ * @export
+ * @interface DatasetOptionsFaradayPixel
+ */
+export interface DatasetOptionsFaradayPixel {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsFaradayPixel
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `DatasetOptionsFaradayPixel` type.)
+ *
+ * Faraday Pixel dataset options
+ * @export
+ * @interface DatasetOptionsFaradayPixelMergePatch
+ */
+export interface DatasetOptionsFaradayPixelMergePatch {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsFaradayPixelMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `DatasetOptionsFaradayPixel` type.)
+ *
+ * Faraday Pixel dataset options
+ * @export
+ * @interface DatasetOptionsFaradayPixelPost
+ */
+export interface DatasetOptionsFaradayPixelPost {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsFaradayPixelPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `DatasetOptionsFaradayPixel` type.)
+ *
+ * Faraday Pixel dataset options
+ * @export
+ * @interface DatasetOptionsFaradayPixelPut
+ */
+export interface DatasetOptionsFaradayPixelPut {
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsFaradayPixelPut
      */
     type: string;
 }
@@ -11782,6 +11908,8 @@ export declare type DatasetOptionsMergePatch = {
 } & DatasetOptionsBigQueryMergePatch | {
     type: 'classic';
 } & DatasetOptionsClassicMergePatch | {
+    type: 'faraday_pixel';
+} & DatasetOptionsFaradayPixelMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -12092,6 +12220,8 @@ export declare type DatasetOptionsPost = {
 } & DatasetOptionsBigQueryPost | {
     type: 'classic';
 } & DatasetOptionsClassicPost | {
+    type: 'faraday_pixel';
+} & DatasetOptionsFaradayPixelPost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -12242,6 +12372,8 @@ export declare type DatasetOptionsPut = {
 } & DatasetOptionsBigQueryPut | {
     type: 'classic';
 } & DatasetOptionsClassicPut | {
+    type: 'faraday_pixel';
+} & DatasetOptionsFaradayPixelPut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
