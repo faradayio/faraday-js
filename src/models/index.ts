@@ -680,11 +680,11 @@ export interface AnalysisDimensionsTraitBinDate {
      */
     max?: string;
     /**
-     * The lower range of the bin for this dimension. Min can be null, meaning it is all values below the max range for this bin.
+     * The starting numeric value this bin is counted by.
      * @type {string}
      * @memberof AnalysisDimensionsTraitBinDate
      */
-    min?: string;
+    min: string;
     /**
      * The count represented as a percentage based on the sum of counts.
      * @type {number}
@@ -717,11 +717,11 @@ export interface AnalysisDimensionsTraitBinNumber {
      */
     max?: number;
     /**
-     * The lower range of the bin for this dimension. Min can be null, meaning it is all values below the max range for this bin.
+     * The starting numeric value this bin is counted by.
      * @type {number}
      * @memberof AnalysisDimensionsTraitBinNumber
      */
-    min?: number;
+    min: number;
     /**
      * The count represented as a percentage based on the sum of counts.
      * @type {number}
@@ -1090,18 +1090,6 @@ export interface Attribute {
     resource_type: string;
     /**
      * 
-     * @type {AttributeSources}
-     * @memberof Attribute
-     */
-    sources?: AttributeSources;
-    /**
-     * 
-     * @type {TraitStatisticalType}
-     * @memberof Attribute
-     */
-    statistical_type?: TraitStatisticalType;
-    /**
-     * 
      * @type {ResourceStatus}
      * @memberof Attribute
      */
@@ -1136,12 +1124,6 @@ export interface Attribute {
      * @memberof Attribute
      */
     type?: PrimitiveDataType;
-    /**
-     * For numeric types, in what units the data is stored.
-     * @type {string}
-     * @memberof Attribute
-     */
-    unit?: string;
     /**
      * When this resource was last updated.
      * @type {string}
@@ -1303,18 +1285,6 @@ export interface AttributeMergePatch {
      */
     null_value_replacement?: boolean | number | string | null;
     /**
-     * 
-     * @type {AttributeSources}
-     * @memberof AttributeMergePatch
-     */
-    sources?: AttributeSources | null;
-    /**
-     * 
-     * @type {TraitStatisticalType}
-     * @memberof AttributeMergePatch
-     */
-    statistical_type?: TraitStatisticalType | null;
-    /**
      * The name of the stream containing the assertions for this attribute.
      * @type {string}
      * @memberof AttributeMergePatch
@@ -1326,18 +1296,6 @@ export interface AttributeMergePatch {
      * @memberof AttributeMergePatch
      */
     tier?: StreamPropertyTier;
-    /**
-     * 
-     * @type {PrimitiveDataType}
-     * @memberof AttributeMergePatch
-     */
-    type?: PrimitiveDataType | null;
-    /**
-     * For numeric types, in what units the data is stored.
-     * @type {string}
-     * @memberof AttributeMergePatch
-     */
-    unit?: string | null;
     /**
      * The name of the property in the stream that contains the assertion value. This indicates which property is special and represents the attribute's value.
      * @type {string}
@@ -1441,18 +1399,6 @@ export interface AttributePost {
      */
     null_value_replacement?: boolean | number | string | null;
     /**
-     * 
-     * @type {AttributeSources}
-     * @memberof AttributePost
-     */
-    sources?: AttributeSources;
-    /**
-     * 
-     * @type {TraitStatisticalType}
-     * @memberof AttributePost
-     */
-    statistical_type?: TraitStatisticalType;
-    /**
      * The name of the stream containing the assertions for this attribute.
      * @type {string}
      * @memberof AttributePost
@@ -1465,34 +1411,11 @@ export interface AttributePost {
      */
     tier: StreamPropertyTier;
     /**
-     * 
-     * @type {PrimitiveDataType}
-     * @memberof AttributePost
-     */
-    type?: PrimitiveDataType;
-    /**
-     * For numeric types, in what units the data is stored.
-     * @type {string}
-     * @memberof AttributePost
-     */
-    unit?: string;
-    /**
      * The name of the property in the stream that contains the assertion value. This indicates which property is special and represents the attribute's value.
      * @type {string}
      * @memberof AttributePost
      */
     value_property_name: string;
-}
-/**
- * The level at which a source asserts values for an attribute: an individual (person), a physical
- * address, or a postcode.
- * @export
- * @enum {string}
- */
-export enum AttributePrecision {
-    Person = 'person',
-    Address = 'address',
-    Postcode = 'postcode'
 }
 /**
  * (Parameters used to PUT a value of the `Attribute` type.)
@@ -1582,18 +1505,6 @@ export interface AttributePut {
      */
     null_value_replacement?: boolean | number | string | null;
     /**
-     * 
-     * @type {AttributeSources}
-     * @memberof AttributePut
-     */
-    sources?: AttributeSources;
-    /**
-     * 
-     * @type {TraitStatisticalType}
-     * @memberof AttributePut
-     */
-    statistical_type?: TraitStatisticalType;
-    /**
      * The name of the stream containing the assertions for this attribute.
      * @type {string}
      * @memberof AttributePut
@@ -1605,18 +1516,6 @@ export interface AttributePut {
      * @memberof AttributePut
      */
     tier: StreamPropertyTier;
-    /**
-     * 
-     * @type {PrimitiveDataType}
-     * @memberof AttributePut
-     */
-    type?: PrimitiveDataType;
-    /**
-     * For numeric types, in what units the data is stored.
-     * @type {string}
-     * @memberof AttributePut
-     */
-    unit?: string;
     /**
      * The name of the property in the stream that contains the assertion value. This indicates which property is special and represents the attribute's value.
      * @type {string}
@@ -1688,84 +1587,6 @@ export interface AttributeSelectorsByPurpose {
 export enum AttributeSortDirection {
     Asc = 'asc',
     Desc = 'desc'
-}
-/**
- * How one authority + column provides values for the attribute over an effective date range.
- * @export
- * @interface AttributeSourceConfig
- */
-export interface AttributeSourceConfig {
-    /**
-     * Optional derivations applied to the source value.
-     * @type {string}
-     * @memberof AttributeSourceConfig
-     */
-    derivations?: string;
-    /**
-     * Exclusive end of the effective range (YYYY-MM-DD). Omit while the source is still live. A
-     * supersession sets this on the prior configuration and adds a new one starting on the same date.
-     * @type {string}
-     * @memberof AttributeSourceConfig
-     */
-    effective_until?: string;
-    /**
-     * 
-     * @type {AttributePrecision}
-     * @memberof AttributeSourceConfig
-     */
-    precision: AttributePrecision;
-    /**
-     * Quality ranking for this source. When more than one source qualifies, the highest quality wins.
-     * @type {number}
-     * @memberof AttributeSourceConfig
-     */
-    quality?: number;
-    /**
-     * 
-     * @type {AttributeSourceTransform}
-     * @memberof AttributeSourceConfig
-     */
-    transform?: AttributeSourceTransform;
-}
-/**
- * How to derive an attribute value from a source column. `selector` and `decode` are mutually exclusive.
- * @export
- * @interface AttributeSourceTransform
- */
-export interface AttributeSourceTransform {
-    /**
-     * 
-     * @type {PrimitiveDataType}
-     * @memberof AttributeSourceTransform
-     */
-    cast?: PrimitiveDataType;
-    /**
-     * A mapping from raw source values to decoded values.
-     * @type {object}
-     * @memberof AttributeSourceTransform
-     */
-    decode?: object;
-    /**
-     * A mapping that rewrites values after decoding.
-     * @type {object}
-     * @memberof AttributeSourceTransform
-     */
-    recode?: object;
-    /**
-     * A selector expression that derives the value from the source column.
-     * @type {string}
-     * @memberof AttributeSourceTransform
-     */
-    selector?: string;
-}
-/**
- * Source configuration for an attribute, keyed by authority, then by source column, then by the inclusive
- * effective-from date (YYYY-MM-DD).
- * @export
- * @interface AttributeSources
- */
-export interface AttributeSources {
-    [key: string]: { [key: string]: { [key: string]: AttributeSourceConfig; }; };
 }
 /**
  * A specific group of people, such as "Customers" or "Subscription customers".
@@ -9206,12 +9027,6 @@ export interface Dataset {
     output_all_columns_as_traits?: DatasetOutputAllColumnsAsTraits;
     /**
      * 
-     * @type {DatasetOutputToAuthority}
-     * @memberof Dataset
-     */
-    output_to_authority?: DatasetOutputToAuthority;
-    /**
-     * 
      * @type {OutputToStreams}
      * @memberof Dataset
      */
@@ -9647,12 +9462,6 @@ export interface DatasetMergePatch {
     output_all_columns_as_traits?: DatasetMergePatchOutputAllColumnsAsTraits | null;
     /**
      * 
-     * @type {DatasetMergePatchOutputToAuthority}
-     * @memberof DatasetMergePatch
-     */
-    output_to_authority?: DatasetMergePatchOutputToAuthority | null;
-    /**
-     * 
      * @type {OutputToStreamsMergePatch}
      * @memberof DatasetMergePatch
      */
@@ -9761,28 +9570,6 @@ export interface DatasetMergePatchOutputAllColumnsAsTraits {
      * @memberof DatasetMergePatchOutputAllColumnsAsTraits
      */
     include?: Array<string>;
-}
-/**
- * Tags this dataset's contents as a dated assertion from a named authority. Attributes that
- * consume that authority resolve their values against this date.
- * 
- * Available only for vendor accounts.
- * @export
- * @interface DatasetMergePatchOutputToAuthority
- */
-export interface DatasetMergePatchOutputToAuthority {
-    /**
-     * The observation date the dataset's contents are asserted as of.
-     * @type {string}
-     * @memberof DatasetMergePatchOutputToAuthority
-     */
-    date: string;
-    /**
-     * The authority this dataset's contents are published under.
-     * @type {string}
-     * @memberof DatasetMergePatchOutputToAuthority
-     */
-    name: string;
 }
 /**
  * @type DatasetOptions
@@ -12689,28 +12476,6 @@ export interface DatasetOutputAllColumnsAsTraits {
     include?: Array<string>;
 }
 /**
- * Tags this dataset's contents as a dated assertion from a named authority. Attributes that
- * consume that authority resolve their values against this date.
- * 
- * Available only for vendor accounts.
- * @export
- * @interface DatasetOutputToAuthority
- */
-export interface DatasetOutputToAuthority {
-    /**
-     * The observation date the dataset's contents are asserted as of.
-     * @type {string}
-     * @memberof DatasetOutputToAuthority
-     */
-    date: string;
-    /**
-     * The authority this dataset's contents are published under.
-     * @type {string}
-     * @memberof DatasetOutputToAuthority
-     */
-    name: string;
-}
-/**
  * (Parameters used to POST a new value of the `Dataset` type.)
  * 
  * Tabular data describing orders, customers, leads, etc.
@@ -12770,12 +12535,6 @@ export interface DatasetPost {
      * @memberof DatasetPost
      */
     options: DatasetOptionsPost;
-    /**
-     * 
-     * @type {DatasetOutputToAuthority}
-     * @memberof DatasetPost
-     */
-    output_to_authority?: DatasetOutputToAuthority;
     /**
      * 
      * @type {OutputToStreamsPost}
@@ -12916,12 +12675,6 @@ export interface DatasetPut {
      * @memberof DatasetPut
      */
     output_all_columns_as_traits?: DatasetOutputAllColumnsAsTraits;
-    /**
-     * 
-     * @type {DatasetOutputToAuthority}
-     * @memberof DatasetPut
-     */
-    output_to_authority?: DatasetOutputToAuthority;
     /**
      * 
      * @type {OutputToStreamsPut}
