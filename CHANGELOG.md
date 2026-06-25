@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.15.1] - 2026-06-25
+
+### Changed
+
+- `OutcomeAnalysisBias.summary`, `.power`, `.predictions`, and `.fairness` are now optional. They are omitted when the analysis collapses age or gender to a single subpopulation, in which case these comparative bias metrics cannot be computed. Only `OutcomeAnalysisBias.data` remains required.
+
 ## [0.15.0] - 2026-06-24
 
 ### Changed

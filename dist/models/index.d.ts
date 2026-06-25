@@ -15680,25 +15680,25 @@ export interface OutcomeAnalysisBias {
      * @type {OutcomeAnalysisBiasSubpopulation}
      * @memberof OutcomeAnalysisBias
      */
-    fairness: OutcomeAnalysisBiasSubpopulation;
+    fairness?: OutcomeAnalysisBiasSubpopulation;
     /**
      *
      * @type {OutcomeAnalysisBiasSubpopulation}
      * @memberof OutcomeAnalysisBias
      */
-    power: OutcomeAnalysisBiasSubpopulation;
+    power?: OutcomeAnalysisBiasSubpopulation;
     /**
      *
      * @type {OutcomeAnalysisBiasSubpopulation}
      * @memberof OutcomeAnalysisBias
      */
-    predictions: OutcomeAnalysisBiasSubpopulation;
+    predictions?: OutcomeAnalysisBiasSubpopulation;
     /**
      *
      * @type {OutcomeAnalysisBiasSummary}
      * @memberof OutcomeAnalysisBias
      */
-    summary: OutcomeAnalysisBiasSummary;
+    summary?: OutcomeAnalysisBiasSummary;
 }
 /**
  * The underlying data used to build an outcome can introduce bias by unevenly representing subpopulations.
