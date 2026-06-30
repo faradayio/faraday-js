@@ -612,6 +612,18 @@ export interface AnalysisDimensionsTrait {
      */
     salient?: boolean;
     /**
+     * Central-tendency summary of the trait computed over the persona's
+     * current membership. For numeric traits this is the mean as a
+     * `number`; for date traits this is the mean as an ISO
+     * date/datetime string; for categorical and boolean traits this is
+     * the modal value. Absent on personas whose membership is empty for
+     * this trait and on calculations produced before this field
+     * existed.
+     * @type {number | string | boolean}
+     * @memberof AnalysisDimensionsTrait
+     */
+    summary_stat?: number | string | boolean | null;
+    /**
      * The machine name of the trait used to calculate this dimension.
      * @type {string}
      * @memberof AnalysisDimensionsTrait
@@ -1766,6 +1778,39 @@ export interface AttributeSourceTransform {
  */
 export interface AttributeSources {
     [key: string]: { [key: string]: { [key: string]: AttributeSourceConfig; }; };
+}
+/**
+ * The dimensions the clustering system should consider when building a persona set.
+ * 
+ * Each group is independent and any combination may be provided. The groups available to an account depend on whether it has an identity graph feature store set.
+ * @export
+ * @interface ClusteringDimensions
+ */
+export interface ClusteringDimensions {
+    /**
+     * Faraday-provided attributes to consider for clustering.
+     * 
+     * Only available on accounts with an identity graph feature store set.
+     * @type {Array<ModelingAttribute>}
+     * @memberof ClusteringDimensions
+     */
+    attributes?: Array<ModelingAttribute>;
+    /**
+     * Event stream properties to consider for clustering, keyed by the name of an event stream used by this persona set's cohort. Each value is the list of property names on that stream to consider.
+     * 
+     * Clustering on traits or stream properties makes the resulting persona set inapplicable to individuals for whom those values are unknown.
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof ClusteringDimensions
+     */
+    streams?: { [key: string]: Array<string>; };
+    /**
+     * First-party traits defined on your account to consider for clustering.
+     * 
+     * On accounts without an identity graph feature store set, Faraday-provided FIG traits may also be included here by prefixing the trait name with `fig/`.
+     * @type {Array<string>}
+     * @memberof ClusteringDimensions
+     */
+    traits?: Array<string>;
 }
 /**
  * A specific group of people, such as "Customers" or "Subscription customers".
@@ -14755,78 +14800,6 @@ export enum ModelingAttribute {
     HomeYearBuilt = 'fig/home_year_built'
 }
 /**
- * Faraday traits available for modeling
- * 
- * fig/actvty_num_purchase_quintile: Total lifetime number of purchases made, bucketed into 5 quintile groupings
- * fig/actvty_ttl_dollars_quintile: Total dollars that were spent on purchases within lifetime activity bucketed into 5 quintile groupings
- * fig/age: The age of the individual
- * fig/antiques: Interest in antiques
- * fig/books_magazines: Interest in books and magazines
- * fig/charitable_donations: Self-reported interest in charitable donations
- * fig/dieting: Self-reported interest in dieting & weight loss
- * fig/education: Median attainment completed by adults in household age 18 or older
- * fig/favm: Faraday's Automated Valuation Model (AVM) is an algorithmic estimate that approximates the true market value of a home as closely as possible.
- * fig/frequent_remodeler: Interest in home improvement, or recent renovation activity
- * fig/gardener: Self-reported interest in gardening
- * fig/gender: Gender of individual
- * fig/health_conscious: Self-reported interest in health & exercise
- * fig/homeowner_status: Designation of person-to-property relationship (renter vs. owner), with probability
- * fig/household_income: Deprecated. Use fig/household_income_v2 instead.
- * fig/household_income_v2: Median numeric value of narrow-band income; computed based on highly accurate multi-sourced models which take into account modeled self-reported incomes, property values and other proprietary sources; calibrated to and validated against truth sets prior to release every six weeks
- * fig/household_size: The number of people living in the household, including adults and children
- * fig/housing_density: Number of housing units per square mile
- * fig/length_of_residence: Deprecated. Use fig/length_of_residence_v2 instead.
- * fig/length_of_residence_v2: The number of years the resident has lived at this location
- * fig/life_sports_sports_all: Self-reported interest in sports - sports participation
- * fig/living_area: The finished square footage of the house
- * fig/marital_status: Marital status
- * fig/music: Self-reported interest in music
- * fig/net_worth: Value equals household asset minus liabilities.
- * fig/percent_equity: Loan-to-value percentage, subtracted from 100. Negative values indicate the loan is underwater.
- * fig/pet_any: Owns a pet of any variety (Turtle? Capybara? The mind boggles . . .)
- * fig/purch_chan_internet: Likely to make purchases via online channel
- * fig/shopping_styles: Household's preferred mode of shopping
- * fig/travel: Self-reported interest in travel
- * fig/value_score_all: Estimated consumer marketing profitability. This modeled data is derived from credit behavior and leverages demographic and self-reported data.
- * fig/year_built: The year that the house was originally built (see "Effective year built" for last extensive remodel)
- * @export
- * @enum {string}
- */
-export enum ModelingField {
-    ActvtyNumPurchaseQuintile = 'fig/actvty_num_purchase_quintile',
-    ActvtyTtlDollarsQuintile = 'fig/actvty_ttl_dollars_quintile',
-    Age = 'fig/age',
-    Antiques = 'fig/antiques',
-    BooksMagazines = 'fig/books_magazines',
-    CharitableDonations = 'fig/charitable_donations',
-    Dieting = 'fig/dieting',
-    Education = 'fig/education',
-    Favm = 'fig/favm',
-    FrequentRemodeler = 'fig/frequent_remodeler',
-    Gardener = 'fig/gardener',
-    Gender = 'fig/gender',
-    HealthConscious = 'fig/health_conscious',
-    HomeownerStatus = 'fig/homeowner_status',
-    HouseholdIncome = 'fig/household_income',
-    HouseholdIncomeV2 = 'fig/household_income_v2',
-    HouseholdSize = 'fig/household_size',
-    LengthOfResidence = 'fig/length_of_residence',
-    LengthOfResidenceV2 = 'fig/length_of_residence_v2',
-    LifeSportsSportsAll = 'fig/life_sports_sports_all',
-    LivingArea = 'fig/living_area',
-    MaritalStatus = 'fig/marital_status',
-    Music = 'fig/music',
-    NetWorth = 'fig/net_worth',
-    PercentEquity = 'fig/percent_equity',
-    PetAny = 'fig/pet_any',
-    PurchChanInternet = 'fig/purch_chan_internet',
-    ShoppingStyles = 'fig/shopping_styles',
-    Travel = 'fig/travel',
-    HousingDensity = 'fig/housing_density',
-    ValueScoreAll = 'fig/value_score_all',
-    YearBuilt = 'fig/year_built'
-}
-/**
  * A business objective describing how likely a group of people are to transition from one cohort to another (for example, from a prospect to a customer).
  * @export
  * @interface Outcome
@@ -16592,6 +16565,18 @@ export interface PersonaSet {
     archived_at?: string;
     /**
      * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSet
+     */
+    clustering_dimensions?: ClusteringDimensions;
+    /**
+     * A read-only description of the effective clustering inputs used to build this persona set.
+     * @type {Array<PersonaSetClusteringInput>}
+     * @memberof PersonaSet
+     */
+    clustering_inputs?: Array<PersonaSetClusteringInput>;
+    /**
+     * 
      * @type {string}
      * @memberof PersonaSet
      */
@@ -16635,6 +16620,8 @@ export interface PersonaSet {
      */
     last_updated_output_at?: string;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
      * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
      * 
      * Mutually exclusive with `modeling_fields`.
@@ -16649,13 +16636,17 @@ export interface PersonaSet {
      */
     modeling_field_max_observation_date?: string;
     /**
-     * Specify Faraday provided traits to use in modeling.
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
+     * Specify modeling fields to use in clustering.
+     * 
+     * Supports `fig/<field>`, `trait/<trait_name>`, and `stream/<stream_name>/<property_name>`.
      * 
      * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
-     * @type {Array<ModelingField>}
+     * @type {Array<string>}
      * @memberof PersonaSet
      */
-    modeling_fields?: Array<ModelingField>;
+    modeling_fields?: Array<string>;
     /**
      * Human-readable label for this persona set.
      * @type {string}
@@ -16786,6 +16777,99 @@ export interface PersonaSetAnalysisFlowPersonaDate {
     date: string;
 }
 /**
+ * A read-only description of one effective clustering input used to build a persona set.
+ * @export
+ * @interface PersonaSetClusteringInput
+ */
+export interface PersonaSetClusteringInput {
+    /**
+     * The backend training or scoring column name for this clustering input when it is derived from the original field.
+     * @type {string}
+     * @memberof PersonaSetClusteringInput
+     */
+    derived_field_name?: string;
+    /**
+     * The induced family labels and metadata for a family-induction clustering input.
+     * @type {Array<PersonaSetClusteringInputFamily>}
+     * @memberof PersonaSetClusteringInput
+     */
+    induced_families?: Array<PersonaSetClusteringInputFamily>;
+    /**
+     * Whether this clustering input is backed by a legacy field or a feature-store attribute.
+     * @type {string}
+     * @memberof PersonaSetClusteringInput
+     */
+    kind: PersonaSetClusteringInputKindEnum;
+    /**
+     * A human-readable label for this clustering input.
+     * @type {string}
+     * @memberof PersonaSetClusteringInput
+     */
+    literate: string;
+    /**
+     * The wire-format field or attribute name used by the app.
+     * @type {string}
+     * @memberof PersonaSetClusteringInput
+     */
+    name: string;
+    /**
+     * The reduction or derivation applied before clustering.
+     * @type {string}
+     * @memberof PersonaSetClusteringInput
+     */
+    reduction_type: PersonaSetClusteringInputReductionTypeEnum;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum PersonaSetClusteringInputKindEnum {
+    Field = 'field',
+    Attribute = 'attribute'
+}/**
+* @export
+* @enum {string}
+*/
+export enum PersonaSetClusteringInputReductionTypeEnum {
+    Identity = 'identity',
+    Mode = 'mode',
+    Avg = 'avg',
+    AvgDate = 'avg_date',
+    FamilyInduction = 'family_induction'
+}
+/**
+ * Metadata about an induced family used by a family-induction clustering input.
+ * @export
+ * @interface PersonaSetClusteringInputFamily
+ */
+export interface PersonaSetClusteringInputFamily {
+    /**
+     * Stable identifier for an induced family.
+     * @type {string}
+     * @memberof PersonaSetClusteringInputFamily
+     */
+    family_id: string;
+    /**
+     * Human-readable label for the induced family.
+     * @type {string}
+     * @memberof PersonaSetClusteringInputFamily
+     */
+    label: string;
+    /**
+     * Optional number of products or tokens represented by this family.
+     * @type {number}
+     * @memberof PersonaSetClusteringInputFamily
+     */
+    size?: number;
+    /**
+     * Optional top tokens used to name or summarize this induced family.
+     * @type {Array<string>}
+     * @memberof PersonaSetClusteringInputFamily
+     */
+    top_tokens?: Array<string>;
+}
+/**
  * (Parameters used to PATCH the `PersonaSet` type.)
  * 
  * A set of customer personas.
@@ -16793,6 +16877,12 @@ export interface PersonaSetAnalysisFlowPersonaDate {
  * @interface PersonaSetMergePatch
  */
 export interface PersonaSetMergePatch {
+    /**
+     * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSetMergePatch
+     */
+    clustering_dimensions?: ClusteringDimensions | null;
     /**
      * Whether to show the persona set in Explore, the map view on https://app.faraday.ai.
      * 
@@ -16802,11 +16892,33 @@ export interface PersonaSetMergePatch {
      */
     explore?: boolean | null;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
+     * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
+     * 
+     * Mutually exclusive with `modeling_fields`.
+     * @type {Array<ModelingAttribute>}
+     * @memberof PersonaSetMergePatch
+     */
+    modeling_attributes?: Array<ModelingAttribute> | null;
+    /**
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
      * @type {string}
      * @memberof PersonaSetMergePatch
      */
     modeling_field_max_observation_date?: string | null;
+    /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
+     * Specify modeling fields to use in clustering.
+     * 
+     * Supports `fig/<field>`, `trait/<trait_name>`, and `stream/<stream_name>/<property_name>`.
+     * 
+     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * @type {Array<string>}
+     * @memberof PersonaSetMergePatch
+     */
+    modeling_fields?: Array<string> | null;
     /**
      * Human-readable label for this persona set.
      * @type {string}
@@ -16840,6 +16952,12 @@ export interface PersonaSetMergePatch {
 export interface PersonaSetPost {
     /**
      * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSetPost
+     */
+    clustering_dimensions?: ClusteringDimensions;
+    /**
+     * 
      * @type {string}
      * @memberof PersonaSetPost
      */
@@ -16853,6 +16971,8 @@ export interface PersonaSetPost {
      */
     explore?: boolean;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
      * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
      * 
      * Mutually exclusive with `modeling_fields`.
@@ -16867,13 +16987,17 @@ export interface PersonaSetPost {
      */
     modeling_field_max_observation_date?: string;
     /**
-     * Specify Faraday provided traits to use in modeling.
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
+     * Specify modeling fields to use in clustering.
+     * 
+     * Supports `fig/<field>`, `trait/<trait_name>`, and `stream/<stream_name>/<property_name>`.
      * 
      * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
-     * @type {Array<ModelingField>}
+     * @type {Array<string>}
      * @memberof PersonaSetPost
      */
-    modeling_fields?: Array<ModelingField>;
+    modeling_fields?: Array<string>;
     /**
      * Human-readable label for this persona set.
      * @type {string}
@@ -16906,6 +17030,12 @@ export interface PersonaSetPost {
  */
 export interface PersonaSetPut {
     /**
+     * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSetPut
+     */
+    clustering_dimensions?: ClusteringDimensions;
+    /**
      * Whether to show the persona set in Explore, the map view on https://app.faraday.ai.
      * 
      * This will slow down persona set builds.
@@ -16914,11 +17044,33 @@ export interface PersonaSetPut {
      */
     explore?: boolean;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
+     * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
+     * 
+     * Mutually exclusive with `modeling_fields`.
+     * @type {Array<ModelingAttribute>}
+     * @memberof PersonaSetPut
+     */
+    modeling_attributes?: Array<ModelingAttribute>;
+    /**
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
      * @type {string}
      * @memberof PersonaSetPut
      */
     modeling_field_max_observation_date?: string;
+    /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
+     * Specify modeling fields to use in clustering.
+     * 
+     * Supports `fig/<field>`, `trait/<trait_name>`, and `stream/<stream_name>/<property_name>`.
+     * 
+     * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * @type {Array<string>}
+     * @memberof PersonaSetPut
+     */
+    modeling_fields?: Array<string>;
     /**
      * Human-readable label for this persona set.
      * @type {string}

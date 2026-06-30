@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.15.1] - 2026-06-29
+
+### Changed
+
+- `modeling_fields` and `modeling_attributes` are now mutable on persona sets — they appear in `PUT /persona_sets/{id}` and `PATCH /persona_sets/{id}` request bodies in addition to `POST /persona_sets`.
+
 ## [0.15.0] - 2026-06-24
 
 ### Changed
