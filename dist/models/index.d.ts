@@ -20599,7 +20599,7 @@ export interface TargetAnalysisTrait {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`.
+ * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
  * - To filter by trait, use `trait`.
  * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
@@ -20775,7 +20775,7 @@ export interface TargetFilterCohortMembershipConditions {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`.
+ * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
  * - To filter by trait, use `trait`.
  * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
@@ -21043,7 +21043,7 @@ export interface TargetFilterPersonaSetPersonaIdConditions {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`.
+ * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
  * - To filter by trait, use `trait`.
  * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
@@ -21121,7 +21121,7 @@ export interface TargetFilterPost {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`.
+ * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
  * - To filter by trait, use `trait`.
  * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
