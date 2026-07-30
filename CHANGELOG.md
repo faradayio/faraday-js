@@ -10,6 +10,18 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.15.2] - 2026-07-16
+
+### Added
+
+- `PersonaSet.clustering_dimensions`: specify the dimensions to consider when clustering a persona set — first-party `traits` (with `fig/`-prefixed FIG traits on accounts without an identity graph feature store set), Faraday-provided `attributes` (accounts with one; a closed `AllowedClusteringAttributes` enum), `attribute_max_observation_date` to pin the FIG attribute release used for clustering, and event stream `streams` properties keyed by stream name. Accepted on create and update; changing it on an existing persona set triggers a complete rebuild. When supplied alongside the deprecated `modeling_*` inputs on the same request, `clustering_dimensions` takes precedence and the deprecated inputs are ignored.
+- `AllowedClusteringAttributes`: the closed set of Faraday-provided attributes allowed for clustering on accounts with an identity graph feature store set.
+
+### Deprecated
+
+- `PersonaSet.modeling_fields` and `PersonaSet.modeling_attributes`: use `clustering_dimensions` instead.
+- `PersonaSet.modeling_field_max_observation_date`: use `clustering_dimensions.attribute_max_observation_date` instead.
+
 ## [0.15.1] - 2026-07-08
 
 ### Added
