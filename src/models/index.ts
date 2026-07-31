@@ -20009,9 +20009,8 @@ export interface TargetAnalysisTrait {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
+ * - To filter by cohort membership, use `cohort_membership`.
  * - To filter by trait, use `trait`.
- * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
  * - To filter by recommender rank, use `recommender_rank`.
  * 
@@ -20024,12 +20023,6 @@ export interface TargetAnalysisTrait {
  * @interface TargetFilter
  */
 export interface TargetFilter {
-    /**
-     * List of conditions to filter attributes. Your account must have an identity graph set.
-     * @type {Array<TargetFilterAttributeConditions>}
-     * @memberof TargetFilter
-     */
-    attribute?: Array<TargetFilterAttributeConditions>;
     /**
      * List of conditions to filter cohort membership on.
      * @type {Array<TargetFilterCohortMembershipConditions>}
@@ -20082,85 +20075,6 @@ export interface TargetFilter {
 /**
  * 
  * @export
- * @interface TargetFilterAttributeConditions
- */
-export interface TargetFilterAttributeConditions {
-    /**
-     * Equal to
-     * @type {string}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _eq?: string;
-    /**
-     * Greater than
-     * @type {number}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _gt?: number;
-    /**
-     * Greater than or equal to
-     * @type {number}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _gte?: number;
-    /**
-     * Value is one of
-     * @type {Array<string>}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _in?: Array<string>;
-    /**
-     * Less than
-     * @type {number}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _lt?: number;
-    /**
-     * Less than or equal to
-     * @type {number}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _lte?: number;
-    /**
-     * Value contains a match to the regex (re2) expression provided. For an exact regex match, use the ^ and $ characters as specified by the (re2 documentation)[https://github.com/google/re2/wiki/Syntax].
-     * @type {string}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _matches?: string;
-    /**
-     * Not equal to
-     * @type {string}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _neq?: string;
-    /**
-     * Value is not one of
-     * @type {Array<string>}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _nin?: Array<string>;
-    /**
-     * Value is not null
-     * @type {boolean}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _nnull?: boolean;
-    /**
-     * Value is null (nulls are otherwise excluded)
-     * @type {boolean}
-     * @memberof TargetFilterAttributeConditions
-     */
-    _null?: boolean;
-    /**
-     * The name of the attribute.
-     * @type {string}
-     * @memberof TargetFilterAttributeConditions
-     */
-    name: string;
-}
-/**
- * 
- * @export
  * @interface TargetFilterCohortMembershipConditions
  */
 export interface TargetFilterCohortMembershipConditions {
@@ -20185,9 +20099,8 @@ export interface TargetFilterCohortMembershipConditions {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
+ * - To filter by cohort membership, use `cohort_membership`.
  * - To filter by trait, use `trait`.
- * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
  * - To filter by recommender rank, use `recommender_rank`.
  * 
@@ -20200,12 +20113,6 @@ export interface TargetFilterCohortMembershipConditions {
  * @interface TargetFilterMergePatch
  */
 export interface TargetFilterMergePatch {
-    /**
-     * List of conditions to filter attributes. Your account must have an identity graph set.
-     * @type {Array<TargetFilterAttributeConditions>}
-     * @memberof TargetFilterMergePatch
-     */
-    attribute?: Array<TargetFilterAttributeConditions> | null;
     /**
      * List of conditions to filter cohort membership on.
      * @type {Array<TargetFilterCohortMembershipConditions>}
@@ -20453,9 +20360,8 @@ export interface TargetFilterPersonaSetPersonaIdConditions {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
+ * - To filter by cohort membership, use `cohort_membership`.
  * - To filter by trait, use `trait`.
- * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
  * - To filter by recommender rank, use `recommender_rank`.
  * 
@@ -20468,12 +20374,6 @@ export interface TargetFilterPersonaSetPersonaIdConditions {
  * @interface TargetFilterPost
  */
 export interface TargetFilterPost {
-    /**
-     * List of conditions to filter attributes. Your account must have an identity graph set.
-     * @type {Array<TargetFilterAttributeConditions>}
-     * @memberof TargetFilterPost
-     */
-    attribute?: Array<TargetFilterAttributeConditions>;
     /**
      * List of conditions to filter cohort membership on.
      * @type {Array<TargetFilterCohortMembershipConditions>}
@@ -20531,9 +20431,8 @@ export interface TargetFilterPost {
  * - To filter by outcome probability, use `outcome_probability`.
  * - To filter by outcome percentile, use `outcome_percentile`.
  * - To filter by persona set persona id, use `persona`.
- * - To filter by cohort membership, use `cohort_membership`. The cohort does not need to be in the scope payload.
+ * - To filter by cohort membership, use `cohort_membership`.
  * - To filter by trait, use `trait`.
- * - To filter by attribute, use `attribute`.
  * - To filter by recommender uncalibrated probability, use `recommender_uncalibrated_probability`.
  * - To filter by recommender rank, use `recommender_rank`.
  * 
@@ -20546,12 +20445,6 @@ export interface TargetFilterPost {
  * @interface TargetFilterPut
  */
 export interface TargetFilterPut {
-    /**
-     * List of conditions to filter attributes. Your account must have an identity graph set.
-     * @type {Array<TargetFilterAttributeConditions>}
-     * @memberof TargetFilterPut
-     */
-    attribute?: Array<TargetFilterAttributeConditions>;
     /**
      * List of conditions to filter cohort membership on.
      * @type {Array<TargetFilterCohortMembershipConditions>}

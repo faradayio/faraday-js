@@ -10,12 +10,6 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.15.1] - 2026-07-08
-
-### Added
-
-- `TargetFilter.attribute`: optional list of `TargetFilterAttributeConditions` for filtering a target's exported rows by scope payload attribute columns. Your account must have an identity graph set.
-
 ## [0.15.0] - 2026-06-24
 
 ### Changed
