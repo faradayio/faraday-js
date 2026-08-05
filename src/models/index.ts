@@ -569,6 +569,44 @@ export interface AddressInfo {
     unit_number?: string;
 }
 /**
+ * The set of Faraday-provided attributes allowed for clustering, on accounts with an identity graph feature store set.
+ * 
+ * By default, Faraday considers a fixed subset of these broadly effective attributes when discovering your personas; advanced users may override that recommendation with any members of this set.
+ * @export
+ * @enum {string}
+ */
+export enum AllowedClusteringAttributes {
+    TotalPurchaseCountObservedQuintile = 'fig/total_purchase_count_observed_quintile',
+    TotalAmountSpentOnPurchasesQuintile = 'fig/total_amount_spent_on_purchases_quintile',
+    Age = 'fig/age',
+    CollectiblesArtAntiquesInterest = 'fig/collectibles_art_antiques_interest',
+    GeneralBookReadingInterest = 'fig/general_book_reading_interest',
+    CharitableDonationInterest = 'fig/charitable_donation_interest',
+    NutritionInterest = 'fig/nutrition_interest',
+    HouseholdEducation = 'fig/household_education',
+    TaxAssessedPropertyValue = 'fig/tax_assessed_property_value',
+    GardeningInterest = 'fig/gardening_interest',
+    Gender = 'fig/gender',
+    FitnessInterest = 'fig/fitness_interest',
+    HomeOwnershipStatus = 'fig/home_ownership_status',
+    HouseholdIncome = 'fig/household_income',
+    HouseholdSize = 'fig/household_size',
+    LengthOfResidence = 'fig/length_of_residence',
+    InterestInSports = 'fig/interest_in_sports',
+    PropertyLivingArea = 'fig/property_living_area',
+    MaritalStatus = 'fig/marital_status',
+    MusicInterest = 'fig/music_interest',
+    NetWorth = 'fig/net_worth',
+    CurrentInstallmentLoanToValue = 'fig/current_installment_loan_to_value',
+    PetInterest = 'fig/pet_interest',
+    PurchasedViaInternet = 'fig/purchased_via_internet',
+    ShoppingStyles = 'fig/shopping_styles',
+    TravelInterest = 'fig/travel_interest',
+    HousingDensity = 'fig/housing_density',
+    MarketingValueOverall = 'fig/marketing_value_overall',
+    HomeYearBuilt = 'fig/home_year_built'
+}
+/**
  * 
  * @export
  * @interface AnalysisDimensionsAttribute
@@ -1766,6 +1804,55 @@ export interface AttributeSourceTransform {
  */
 export interface AttributeSources {
     [key: string]: { [key: string]: { [key: string]: AttributeSourceConfig; }; };
+}
+/**
+ * The dimensions the clustering system should consider when discovering the personas in a persona set.
+ * 
+ * By default, Faraday will consider a fixed set of broadly effective dimensions when discovering your personas. Advanced users can override our recommendation and specify their own. Note that the system may consider additional dimensions you do not list in order to improve performance.
+ * 
+ * Each group is independent and any combination may be provided. The groups available to an account depend on whether it has an identity graph feature store set.
+ * 
+ * This supersedes the deprecated `modeling_fields`, `modeling_attributes`, and `modeling_field_max_observation_date` inputs. If both `clustering_dimensions` and any of those deprecated inputs are supplied on the same request, `clustering_dimensions` takes precedence and the deprecated inputs are ignored.
+ * 
+ * Changing this on an existing persona set triggers a complete rebuild of the persona set.
+ * @export
+ * @interface ClusteringDimensions
+ */
+export interface ClusteringDimensions {
+    /**
+     * Pin the FIG attribute release used for clustering: only attribute data observed on or before this date is considered. If not set, the freshest available data is used.
+     * 
+     * Only available on accounts with an identity graph feature store set. Supersedes the deprecated top-level `modeling_field_max_observation_date`.
+     * @type {string}
+     * @memberof ClusteringDimensions
+     */
+    attribute_max_observation_date?: string;
+    /**
+     * Faraday-provided attributes to consider for clustering, drawn from the allowed set of broadly effective attributes.
+     * 
+     * Only available on accounts with an identity graph feature store set.
+     * @type {Array<AllowedClusteringAttributes>}
+     * @memberof ClusteringDimensions
+     */
+    attributes?: Array<AllowedClusteringAttributes>;
+    /**
+     * Event stream properties to consider for clustering, keyed by the name of an event stream used by this persona set's cohort. Each value is the list of property names on that stream to consider.
+     * 
+     * If you do so, the resulting persona set will be inapplicable to individuals who have not experienced these events yet.
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof ClusteringDimensions
+     */
+    streams?: { [key: string]: Array<string>; };
+    /**
+     * First-party traits defined on your account to consider for clustering.
+     * 
+     * On accounts without an identity graph feature store set, Faraday-provided FIG traits may also be included here by prefixing the trait name with `fig/`.
+     * 
+     * If you do so, the resulting persona set will be inapplicable to individuals for whom these traits are unknown.
+     * @type {Array<string>}
+     * @memberof ClusteringDimensions
+     */
+    traits?: Array<string>;
 }
 /**
  * A specific group of people, such as "Customers" or "Subscription customers".
@@ -16592,6 +16679,12 @@ export interface PersonaSet {
     archived_at?: string;
     /**
      * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSet
+     */
+    clustering_dimensions?: ClusteringDimensions;
+    /**
+     * 
      * @type {string}
      * @memberof PersonaSet
      */
@@ -16635,23 +16728,35 @@ export interface PersonaSet {
      */
     last_updated_output_at?: string;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
      * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
      * 
      * Mutually exclusive with `modeling_fields`.
+     * 
+     * Changing this on an existing persona set triggers a complete rebuild of the persona set.
      * @type {Array<ModelingAttribute>}
      * @memberof PersonaSet
      */
     modeling_attributes?: Array<ModelingAttribute>;
     /**
+     * Deprecated. Use `clustering_dimensions.attribute_max_observation_date` instead.
+     * 
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * 
+     * If `clustering_dimensions.attribute_max_observation_date` is also supplied, it takes precedence over this field.
      * @type {string}
      * @memberof PersonaSet
      */
     modeling_field_max_observation_date?: string;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
      * Specify Faraday provided traits to use in modeling.
      * 
      * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * 
+     * Changing this on an existing persona set triggers a complete rebuild of the persona set.
      * @type {Array<ModelingField>}
      * @memberof PersonaSet
      */
@@ -16794,6 +16899,12 @@ export interface PersonaSetAnalysisFlowPersonaDate {
  */
 export interface PersonaSetMergePatch {
     /**
+     * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSetMergePatch
+     */
+    clustering_dimensions?: ClusteringDimensions | null;
+    /**
      * Whether to show the persona set in Explore, the map view on https://app.faraday.ai.
      * 
      * This will slow down persona set builds.
@@ -16802,7 +16913,11 @@ export interface PersonaSetMergePatch {
      */
     explore?: boolean | null;
     /**
+     * Deprecated. Use `clustering_dimensions.attribute_max_observation_date` instead.
+     * 
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * 
+     * If `clustering_dimensions.attribute_max_observation_date` is also supplied, it takes precedence over this field.
      * @type {string}
      * @memberof PersonaSetMergePatch
      */
@@ -16840,6 +16955,12 @@ export interface PersonaSetMergePatch {
 export interface PersonaSetPost {
     /**
      * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSetPost
+     */
+    clustering_dimensions?: ClusteringDimensions;
+    /**
+     * 
      * @type {string}
      * @memberof PersonaSetPost
      */
@@ -16853,23 +16974,35 @@ export interface PersonaSetPost {
      */
     explore?: boolean;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
      * Specify Faraday provided attributes to use in modeling. Only available to accounts with an identity graph feature store set.
      * 
      * Mutually exclusive with `modeling_fields`.
+     * 
+     * Changing this on an existing persona set triggers a complete rebuild of the persona set.
      * @type {Array<ModelingAttribute>}
      * @memberof PersonaSetPost
      */
     modeling_attributes?: Array<ModelingAttribute>;
     /**
+     * Deprecated. Use `clustering_dimensions.attribute_max_observation_date` instead.
+     * 
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * 
+     * If `clustering_dimensions.attribute_max_observation_date` is also supplied, it takes precedence over this field.
      * @type {string}
      * @memberof PersonaSetPost
      */
     modeling_field_max_observation_date?: string;
     /**
+     * Deprecated. Use `clustering_dimensions` instead.
+     * 
      * Specify Faraday provided traits to use in modeling.
      * 
      * Only valid on accounts that do not have an identity graph feature store set, which must use modeling_attributes instead. Mutually exclusive with `modeling_attributes`.
+     * 
+     * Changing this on an existing persona set triggers a complete rebuild of the persona set.
      * @type {Array<ModelingField>}
      * @memberof PersonaSetPost
      */
@@ -16906,6 +17039,12 @@ export interface PersonaSetPost {
  */
 export interface PersonaSetPut {
     /**
+     * 
+     * @type {ClusteringDimensions}
+     * @memberof PersonaSetPut
+     */
+    clustering_dimensions?: ClusteringDimensions;
+    /**
      * Whether to show the persona set in Explore, the map view on https://app.faraday.ai.
      * 
      * This will slow down persona set builds.
@@ -16914,7 +17053,11 @@ export interface PersonaSetPut {
      */
     explore?: boolean;
     /**
+     * Deprecated. Use `clustering_dimensions.attribute_max_observation_date` instead.
+     * 
      * The maximum date for FIG attribute observations used in modeling fields. When set, only attribute data observed on or before this date will be used. If not set, the freshest available data is used.
+     * 
+     * If `clustering_dimensions.attribute_max_observation_date` is also supplied, it takes precedence over this field.
      * @type {string}
      * @memberof PersonaSetPut
      */
