@@ -34,6 +34,10 @@ export interface CreateUseCaseRequest {
     useCaseFields: UseCasePost;
 }
 
+export interface DeleteUseCaseRequest {
+    useCaseId: string;
+}
+
 export interface GetKnowledgebaseOverviewRevisionRequest {
     revisionId: string;
 }
@@ -153,6 +157,45 @@ export class KnowledgebaseApi extends runtime.BaseAPI {
     async createUseCase(useCaseFields: UseCasePost, ): Promise<UseCase> {
         const response = await this.createUseCaseRaw({ useCaseFields: useCaseFields }, );
         return await response.value();
+    }
+
+    /**
+     * Permanently remove a use case from every view. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases. 
+     * Delete a use case
+     */
+    async deleteUseCaseRaw(requestParameters: DeleteUseCaseRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.useCaseId === null || requestParameters.useCaseId === undefined) {
+            throw new runtime.RequiredError('useCaseId','Required parameter requestParameters.useCaseId was null or undefined when calling deleteUseCase.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/knowledgebase/use_cases/{use_case_id}`.replace(`{${"use_case_id"}}`, encodeURIComponent(String(requestParameters.useCaseId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Permanently remove a use case from every view. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases. 
+     * Delete a use case
+     */
+    async deleteUseCase(useCaseId: string, ): Promise<void> {
+        await this.deleteUseCaseRaw({ useCaseId: useCaseId }, );
     }
 
     /**

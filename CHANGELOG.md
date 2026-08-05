@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.15.3] - 2026-08-04
+
+### Added
+
+- `DELETE /knowledgebase/use_cases/{use_case_id}`: permanently remove a use case from every view. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
+
 ## [0.15.2] - 2026-07-16
 
 ### Added
