@@ -10,54 +10,38 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.15.3] - 2026-07-17
+## [0.15.4] - 2026-08-07
 
 ### Added
 
-- `Atlas`: a new resource that imports a collection of geographic locations from a connection,
-  configured with `options` (`AtlasOptions`, per connection type) and
-  `output_to_locations`, which maps source columns to each location's name, reference key,
-  geometry, and properties. An atlas reads from a file-based or client-hosted warehouse
-  connection; the classic, managed integration, and merge connection types have no `AtlasOptions`
-  variant. Each location is placed by exactly one of a geometry column, a coordinate pair, or
-  address columns; naming columns from more than one group is rejected, and naming none is allowed,
-  so an atlas can be created before the columns of its source data are known and configured once
-  they are. Atlases report `detected_columns` and `counts` — the source rows, how many produced a
-  location, and how many placed none because their geometry could not be read, encloses nowhere, or
-  describes too large an outline — and support archive,
-  unarchive, and force-update like other resources. An atlas' `name` and every column it names in
-  `output_to_locations` must be non-blank.
-- `GET /locations` and `GET /atlases/{atlas_id}/locations`: paginated listings of the locations an
-  atlas produced, with `limit`/`offset` parameters and `X-Total-Count` and `Link` response headers.
-- `Location.atlas_id`: the UUID of the atlas a location belongs to, which identifies its owner in
-  the account-wide listing.
-- `Location.latitude` and `Location.longitude`: the coordinates a location was placed from, in
-  decimal degrees, EPSG 4326 (WGS 84); present only for locations placed from latitude and
-  longitude columns.
-- `Cohort.location_conditions`: spatially filter cohort membership on the locations of one or more
-  atlases, selecting people who intersect (or, with `invert`, do not intersect) a location's
-  geometry expanded by `distance`. A cohort may not set both `location_conditions` and
-  `place_conditions`.
-- `ScopePayload.location`: include each person's proximity to an atlas' locations, choosing the
-  `nearest` matching location or `all` of them, bounded by `max_distance` and `min_distance`. The
-  choice sets the shape of the three location columns: a single scalar each under `nearest`, an
-  index-aligned JSON array each under `all`. `fdy_location_distance` is therefore a number under
-  `nearest` and text under `all`, so any target already receiving these columns must be rebuilt
-  after the choice changes. A person matching no location has no location data under either
-  choice, rather than an empty array.
-- `MarketOpportunityAnalysis.locations`: the atlas locations an analysis covers.
-- `LocationPropertyCondition`: narrow location conditions to the locations whose properties satisfy
-  them. A condition reads its property either as a number or as text, so `_matches` cannot be
-  combined with `_gt`, `_gte`, `_lt`, or `_lte`; give each comparison its own condition.
-- `location_reference_keys`, on cohort location conditions, `ScopePayload.location` and
-  `MarketOpportunityAnalysis.locations`: a reference key is unique only within one atlas, so these
-  keys are matched in every atlas the reference selects; select a single atlas to restrict them to
-  that atlas' keys. Every atlas the reference selects must map a reference key column in its
-  `output_to_locations`, since an atlas whose locations carry no key can match none of them.
+- `ProjectFrameOfReference` on Outcome, Persona Set, Recommender, and Cohort elements. The Project rejects a frame when that source does not keep the history needed to answer it.
+- `ProjectTimestampFormat`, the timestamp formats a Dataset-backed frame accepts. Timestamps without a time zone use UTC.
+
+## [0.15.3] - 2026-08-06
+
+### Added
+
+- `Project`: the exact set of output columns you want, in the exact order you want them. Its `payload` names each source and the columns drawn from it, `column_order` fixes output order, and `preview` reports the resolved schema, the maximum lookup usage, and each element's readiness without reading any person data. `POST /projects`, `GET /projects`, `GET /projects/{project_id}`, `PATCH /projects/{project_id}`, `DELETE /projects/{project_id}`, `POST /projects/{project_id}/archive`, and `POST /projects/{project_id}/unarchive`.
+- `POST /projects/{project_id}/sample`: fill `Project.preview.sample` with a few blurred rows. Creating or editing a Project never samples data on its own.
+- `POST /projects/{project_id}/lookup`: read a Project's columns for up to 100 subjects in one request, with results aligned to the request by index and each result reporting which identity set resolved and on what.
+- `ProjectPayloadElement`: a discriminated union over `dataset`, `outcome`, `persona_set`, `recommender`, `attribute`, `trait`, `cohort`, `stream`, `identifier`, `geometry`, and `match_metadata`, each with its own column type and component enum.
+- `ProjectColumnDataType`: the resolved output types a Project column may report, including timestamps and structured JSON values.
+- `ProjectFrameOfReference` on Attribute and Stream elements: read a value as of a fixed instant, as of each person's entrance to a cohort, or as of an instant carried in one of your own datasets. A source answers with the latest value at or before that instant and never a later one, and a source that cannot honor a frame is rejected when the Project is saved.
+- `ProjectColumnAggregation`: what to do when several values must become one, applied to several source values for one person, several people in one group row, and several donors at an imputation level.
+- `Enrichment`: a delivery of one Project's columns, for a population you choose, to a destination you choose. Its preview reports the maximum usage, the population bound and basis, whether that bound is exact, and the remaining contract quota. `POST /enrichments`, `GET /enrichments`, `GET /projects/{project_id}/enrichments`, `GET /enrichments/{enrichment_id}`, `PATCH /enrichments/{enrichment_id}`, `DELETE /enrichments/{enrichment_id}`, `POST /enrichments/{enrichment_id}/archive`, and `POST /enrichments/{enrichment_id}/unarchive`.
+- `EnrichmentPopulation`: a boolean expression over cohort, dataset, prior-job, trait, attribute, stream, place, and identity-graph conditions. Trait, attribute, stream, and place conditions reuse the existing Cohort condition components, so one request shape has one meaning.
+- `EnrichmentDestination`: Faraday-hosted CSV, Amazon S3, Google Cloud Storage, SFTP, Snowflake, BigQuery, and SQL databases, with explicit `create` and `upsert` write modes.
+- `EnrichmentIncrementality`, required on every enrichment: `full`, `new_rows`, or `changed` with an optional watch list.
+- `EnrichmentSchedule`, with a required `paused` and hourly, daily, weekly, or monthly cadences.
+- `POST /enrichments/{enrichment_id}/run`: returns `202 Accepted` and the new `EnrichmentJob`. The body may override incrementality for one run and may acknowledge a usage ceiling larger than the remaining quota.
+- `EnrichmentJob`: one immutable record per attempted run, carrying the configuration snapshot, the run instant, the correction epoch, the table generation, row counts, usage, the 72-hour deadline, and a permanent output link. `GET /enrichment_jobs`, `GET /enrichments/{enrichment_id}/enrichment_jobs`, and `GET /enrichment_jobs/{enrichment_job_id}`.
+- `GET /enrichments/{enrichment_id}/download.csv` for the latest successful hosted CSV output, and `GET /enrichment_jobs/{enrichment_job_id}/download.csv` for one run's output.
+- `Idempotency-Key` request header on create, run, archive, and unarchive. Keys are scoped to your account, the HTTP method, and the route. Repeating a request with the same key and body returns the first result; reusing a key with a different body is rejected with `409 Conflict`.
+- `USAGE_QUOTA_EXCEEDED` error code and `UsageQuotaError`, which names the usage ceiling, the remaining quota, and the basis of the ceiling.
 
 ### Deprecated
 
-- `Cohort.place_conditions`: superseded by `location_conditions`.
+- `Scope` and `Target`, and every operation on them. Use `Project` and `Enrichment` instead. Nothing is removed, and existing scopes and targets keep working.
 
 ## [0.15.2] - 2026-07-16
 

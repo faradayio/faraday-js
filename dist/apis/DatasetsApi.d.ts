@@ -120,12 +120,12 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     getDatasetIngressLogs(datasetId: string, limit?: number, offset?: number): Promise<Array<DatasetIngressLog>>;
     /**
-     * Get a list of the datasets defined on the account
+     * Get a list of the datasets available in the developer’s account
      * List datasets
      */
     getDatasetsRaw(requestParameters: GetDatasetsRequest): Promise<runtime.ApiResponse<Array<Dataset>>>;
     /**
-     * Get a list of the datasets defined on the account
+     * Get a list of the datasets available in the developer’s account
      * List datasets
      */
     getDatasets(ids?: Array<string>): Promise<Array<Dataset>>;

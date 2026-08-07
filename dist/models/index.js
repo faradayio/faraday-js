@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.ProjectTraitColumnComponentEnum = exports.ProjectTimestampFormat = exports.ProjectStreamColumnComponentEnum = exports.ProjectResolvedColumnSnapshotGranularityEnum = exports.ProjectResolvedColumnAsOfBasisEnum = exports.ProjectRecommenderColumnComponentEnum = exports.ProjectPersonaSetColumnComponentEnum = exports.ProjectOutcomeColumnComponentEnum = exports.ProjectMatchMetadataColumnComponentEnum = exports.ProjectLookupWarningCodeEnum = exports.ProjectLookupResultStatusEnum = exports.ProjectLookupMatchProviderEnum = exports.ProjectLookupMatchMatchedOnEnum = exports.ProjectImputationLevel = exports.ProjectIdentifierElementProvidersEnum = exports.ProjectIdentifierElementHashEnum = exports.ProjectIdentifierElementClassEnum = exports.ProjectIdentifierColumnComponentEnum = exports.ProjectGeometryColumnComponentEnum = exports.ProjectDatasetColumnComponentEnum = exports.ProjectColumnDataType = exports.ProjectColumnAggregation = exports.ProjectCohortColumnComponentEnum = exports.ProjectAttributeColumnComponentEnum = exports.PrimitiveDataType = exports.PopulationExpansion = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.EnrichmentSortOrderEnum = exports.EnrichmentJobStatusEnum = exports.EnrichmentJobInvocationEnum = exports.EnrichmentDatabaseDestinationTypeEnum = exports.EnrichmentColumnConditionApplyEnum = exports.EnrichmentCadenceWeeklyDayOfWeekEnum = exports.EnrichmentAggregationOrderDirectionEnum = exports.EnrichmentAggregationLevelEnum = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
 /**
  * The set of Faraday-provided attributes allowed for clustering, on accounts with an identity graph feature store set.
  *
@@ -202,6 +202,97 @@ var DatasetPutPrivacyEnum;
     DatasetPutPrivacyEnum["Delete"] = "delete";
 })(DatasetPutPrivacyEnum = exports.DatasetPutPrivacyEnum || (exports.DatasetPutPrivacyEnum = {}));
 /**
+* @export
+* @enum {string}
+*/
+var EnrichmentAggregationLevelEnum;
+(function (EnrichmentAggregationLevelEnum) {
+    EnrichmentAggregationLevelEnum["Person"] = "person";
+    EnrichmentAggregationLevelEnum["Address"] = "address";
+    EnrichmentAggregationLevelEnum["CarrierRoute"] = "carrier_route";
+    EnrichmentAggregationLevelEnum["CensusBlockGroup"] = "census_block_group";
+    EnrichmentAggregationLevelEnum["CensusTract"] = "census_tract";
+    EnrichmentAggregationLevelEnum["County"] = "county";
+    EnrichmentAggregationLevelEnum["Dma"] = "dma";
+    EnrichmentAggregationLevelEnum["Metro"] = "metro";
+    EnrichmentAggregationLevelEnum["Postcode"] = "postcode";
+    EnrichmentAggregationLevelEnum["State"] = "state";
+    EnrichmentAggregationLevelEnum["Column"] = "column";
+})(EnrichmentAggregationLevelEnum = exports.EnrichmentAggregationLevelEnum || (exports.EnrichmentAggregationLevelEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var EnrichmentAggregationOrderDirectionEnum;
+(function (EnrichmentAggregationOrderDirectionEnum) {
+    EnrichmentAggregationOrderDirectionEnum["Asc"] = "asc";
+    EnrichmentAggregationOrderDirectionEnum["Desc"] = "desc";
+})(EnrichmentAggregationOrderDirectionEnum = exports.EnrichmentAggregationOrderDirectionEnum || (exports.EnrichmentAggregationOrderDirectionEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var EnrichmentCadenceWeeklyDayOfWeekEnum;
+(function (EnrichmentCadenceWeeklyDayOfWeekEnum) {
+    EnrichmentCadenceWeeklyDayOfWeekEnum["Monday"] = "monday";
+    EnrichmentCadenceWeeklyDayOfWeekEnum["Tuesday"] = "tuesday";
+    EnrichmentCadenceWeeklyDayOfWeekEnum["Wednesday"] = "wednesday";
+    EnrichmentCadenceWeeklyDayOfWeekEnum["Thursday"] = "thursday";
+    EnrichmentCadenceWeeklyDayOfWeekEnum["Friday"] = "friday";
+    EnrichmentCadenceWeeklyDayOfWeekEnum["Saturday"] = "saturday";
+    EnrichmentCadenceWeeklyDayOfWeekEnum["Sunday"] = "sunday";
+})(EnrichmentCadenceWeeklyDayOfWeekEnum = exports.EnrichmentCadenceWeeklyDayOfWeekEnum || (exports.EnrichmentCadenceWeeklyDayOfWeekEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var EnrichmentColumnConditionApplyEnum;
+(function (EnrichmentColumnConditionApplyEnum) {
+    EnrichmentColumnConditionApplyEnum["BeforeAggregation"] = "before_aggregation";
+    EnrichmentColumnConditionApplyEnum["AfterAggregation"] = "after_aggregation";
+})(EnrichmentColumnConditionApplyEnum = exports.EnrichmentColumnConditionApplyEnum || (exports.EnrichmentColumnConditionApplyEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var EnrichmentDatabaseDestinationTypeEnum;
+(function (EnrichmentDatabaseDestinationTypeEnum) {
+    EnrichmentDatabaseDestinationTypeEnum["Postgres"] = "postgres";
+    EnrichmentDatabaseDestinationTypeEnum["Redshift"] = "redshift";
+    EnrichmentDatabaseDestinationTypeEnum["Mysql"] = "mysql";
+    EnrichmentDatabaseDestinationTypeEnum["SqlServer"] = "sql_server";
+    EnrichmentDatabaseDestinationTypeEnum["Motherduck"] = "motherduck";
+})(EnrichmentDatabaseDestinationTypeEnum = exports.EnrichmentDatabaseDestinationTypeEnum || (exports.EnrichmentDatabaseDestinationTypeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var EnrichmentJobInvocationEnum;
+(function (EnrichmentJobInvocationEnum) {
+    EnrichmentJobInvocationEnum["Manual"] = "manual";
+    EnrichmentJobInvocationEnum["Schedule"] = "schedule";
+})(EnrichmentJobInvocationEnum = exports.EnrichmentJobInvocationEnum || (exports.EnrichmentJobInvocationEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var EnrichmentJobStatusEnum;
+(function (EnrichmentJobStatusEnum) {
+    EnrichmentJobStatusEnum["Pending"] = "pending";
+    EnrichmentJobStatusEnum["Running"] = "running";
+    EnrichmentJobStatusEnum["Succeeded"] = "succeeded";
+    EnrichmentJobStatusEnum["Failed"] = "failed";
+    EnrichmentJobStatusEnum["Skipped"] = "skipped";
+})(EnrichmentJobStatusEnum = exports.EnrichmentJobStatusEnum || (exports.EnrichmentJobStatusEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var EnrichmentSortOrderEnum;
+(function (EnrichmentSortOrderEnum) {
+    EnrichmentSortOrderEnum["Asc"] = "asc";
+    EnrichmentSortOrderEnum["Desc"] = "desc";
+})(EnrichmentSortOrderEnum = exports.EnrichmentSortOrderEnum || (exports.EnrichmentSortOrderEnum = {}));
+/**
  * A Faraday error code.
  *
  * Some possible values include:
@@ -211,6 +302,7 @@ var DatasetPutPrivacyEnum;
  * - BAD_REQUEST: The request could not be validated.
  * - FORBIDDEN: You do not have permission to access the specified resource.
  * - MAX_RESOURCES_REACHED: You have created too many of this resource type on your account. You must delete some before making more.
+ * - USAGE_QUOTA_EXCEEDED: The request would use more than the usage left on your contract.
  * - INTERNAL_SERVER_ERROR: An internal error of an unknown type occurred.
  * - INVALID_AUTHORIZATION: The Authorization header could not be parsed.
  * - NOT_FOUND: The specified resource could not be found.
@@ -235,6 +327,7 @@ var ErrorCode;
     ErrorCode["BadRequest"] = "BAD_REQUEST";
     ErrorCode["Forbidden"] = "FORBIDDEN";
     ErrorCode["MaxResourcesReached"] = "MAX_RESOURCES_REACHED";
+    ErrorCode["UsageQuotaExceeded"] = "USAGE_QUOTA_EXCEEDED";
     ErrorCode["InternalServerError"] = "INTERNAL_SERVER_ERROR";
     ErrorCode["InvalidAuthorization"] = "INVALID_AUTHORIZATION";
     ErrorCode["NotFound"] = "NOT_FOUND";
@@ -459,6 +552,16 @@ var OutcomePutPredictionModeEnum;
     OutcomePutPredictionModeEnum["Static"] = "static";
 })(OutcomePutPredictionModeEnum = exports.OutcomePutPredictionModeEnum || (exports.OutcomePutPredictionModeEnum = {}));
 /**
+ * Widen a condition to everyone who shares an address with someone it already covers. The
+ * expansion includes the original people.
+ * @export
+ * @enum {string}
+ */
+var PopulationExpansion;
+(function (PopulationExpansion) {
+    PopulationExpansion["Address"] = "address";
+})(PopulationExpansion = exports.PopulationExpansion || (exports.PopulationExpansion = {}));
+/**
  * The data type of a column in table, or of a trait. Types are expressed using a subset of
  * [Avro](https://avro.apache.org/docs/current/spec.html). Possible values include:
  *
@@ -478,6 +581,352 @@ var PrimitiveDataType;
     PrimitiveDataType["String"] = "string";
     PrimitiveDataType["Date"] = "date";
 })(PrimitiveDataType = exports.PrimitiveDataType || (exports.PrimitiveDataType = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectAttributeColumnComponentEnum;
+(function (ProjectAttributeColumnComponentEnum) {
+    ProjectAttributeColumnComponentEnum["Value"] = "value";
+    ProjectAttributeColumnComponentEnum["PreviousValue"] = "previous_value";
+    ProjectAttributeColumnComponentEnum["ValueDelta"] = "value_delta";
+    ProjectAttributeColumnComponentEnum["InterpretedValue"] = "interpreted_value";
+    ProjectAttributeColumnComponentEnum["PreviousInterpretedValue"] = "previous_interpreted_value";
+    ProjectAttributeColumnComponentEnum["InterpretedValueDelta"] = "interpreted_value_delta";
+})(ProjectAttributeColumnComponentEnum = exports.ProjectAttributeColumnComponentEnum || (exports.ProjectAttributeColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectCohortColumnComponentEnum;
+(function (ProjectCohortColumnComponentEnum) {
+    ProjectCohortColumnComponentEnum["Membership"] = "membership";
+    ProjectCohortColumnComponentEnum["PreviousMembership"] = "previous_membership";
+    ProjectCohortColumnComponentEnum["MembershipDelta"] = "membership_delta";
+})(ProjectCohortColumnComponentEnum = exports.ProjectCohortColumnComponentEnum || (exports.ProjectCohortColumnComponentEnum = {}));
+/**
+ * What to do when several values must become one value for this column.
+ *
+ * The same strategy is applied at each point where that happens:
+ *
+ * - Several source values for one person, whether or not the output is grouped.
+ * - Several people in one group row, when the output is grouped.
+ * - Several donors at an imputation level.
+ *
+ * A strategy is required whenever any of those can happen, including on a lookup, where
+ * one person's several source values are still collapsed. Grouping never applies to a
+ * lookup, because a lookup has no group.
+ *
+ * `first` and `last` rank people within a group using `Enrichment.aggregation.order`, so
+ * they are unavailable to a column whose source can yield several values for one person:
+ * no order over one person's source rows exists.
+ *
+ * Strategies by resolved data type:
+ *
+ * - Any type: `nullify`, `count`, `count_distinct`, `first`, `last`.
+ * - Numeric: `mean`, `median`, `mode`, `min`, `max`, `sum`.
+ * - Date and datetime: `min`, `max`, `median` (the earlier of the two middle values).
+ * - Boolean: `and`, `or`, `xor`.
+ * - String and categorical: `mode` (ties broken alphabetically) and the `concatenate_*`
+ *   strategies, which order values alphabetically.
+ *
+ * `count` and `count_distinct` resolve the column to `long` and ignore nulls.
+ * @export
+ * @enum {string}
+ */
+var ProjectColumnAggregation;
+(function (ProjectColumnAggregation) {
+    ProjectColumnAggregation["Nullify"] = "nullify";
+    ProjectColumnAggregation["First"] = "first";
+    ProjectColumnAggregation["Last"] = "last";
+    ProjectColumnAggregation["Count"] = "count";
+    ProjectColumnAggregation["CountDistinct"] = "count_distinct";
+    ProjectColumnAggregation["Mean"] = "mean";
+    ProjectColumnAggregation["Median"] = "median";
+    ProjectColumnAggregation["Mode"] = "mode";
+    ProjectColumnAggregation["Min"] = "min";
+    ProjectColumnAggregation["Max"] = "max";
+    ProjectColumnAggregation["Sum"] = "sum";
+    ProjectColumnAggregation["And"] = "and";
+    ProjectColumnAggregation["Or"] = "or";
+    ProjectColumnAggregation["Xor"] = "xor";
+    ProjectColumnAggregation["ConcatenateComma"] = "concatenate_comma";
+    ProjectColumnAggregation["ConcatenatePipe"] = "concatenate_pipe";
+    ProjectColumnAggregation["ConcatenateSpace"] = "concatenate_space";
+    ProjectColumnAggregation["ConcatenateUniqueComma"] = "concatenate_unique_comma";
+    ProjectColumnAggregation["ConcatenateUniquePipe"] = "concatenate_unique_pipe";
+    ProjectColumnAggregation["ConcatenateUniqueSpace"] = "concatenate_unique_space";
+})(ProjectColumnAggregation = exports.ProjectColumnAggregation || (exports.ProjectColumnAggregation = {}));
+/**
+ * The data type a Project column emits. `datetime` is an instant with a time of day, and
+ * `json` is a structured JSON value.
+ * @export
+ * @enum {string}
+ */
+var ProjectColumnDataType;
+(function (ProjectColumnDataType) {
+    ProjectColumnDataType["Boolean"] = "boolean";
+    ProjectColumnDataType["Long"] = "long";
+    ProjectColumnDataType["Double"] = "double";
+    ProjectColumnDataType["String"] = "string";
+    ProjectColumnDataType["Date"] = "date";
+    ProjectColumnDataType["Datetime"] = "datetime";
+    ProjectColumnDataType["Json"] = "json";
+})(ProjectColumnDataType = exports.ProjectColumnDataType || (exports.ProjectColumnDataType = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectDatasetColumnComponentEnum;
+(function (ProjectDatasetColumnComponentEnum) {
+    ProjectDatasetColumnComponentEnum["Value"] = "value";
+    ProjectDatasetColumnComponentEnum["PreviousValue"] = "previous_value";
+    ProjectDatasetColumnComponentEnum["ValueDelta"] = "value_delta";
+})(ProjectDatasetColumnComponentEnum = exports.ProjectDatasetColumnComponentEnum || (exports.ProjectDatasetColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectGeometryColumnComponentEnum;
+(function (ProjectGeometryColumnComponentEnum) {
+    ProjectGeometryColumnComponentEnum["Id"] = "id";
+    ProjectGeometryColumnComponentEnum["Name"] = "name";
+    ProjectGeometryColumnComponentEnum["Wkt"] = "wkt";
+    ProjectGeometryColumnComponentEnum["Population"] = "population";
+})(ProjectGeometryColumnComponentEnum = exports.ProjectGeometryColumnComponentEnum || (exports.ProjectGeometryColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectIdentifierColumnComponentEnum;
+(function (ProjectIdentifierColumnComponentEnum) {
+    ProjectIdentifierColumnComponentEnum["Phone"] = "phone";
+    ProjectIdentifierColumnComponentEnum["FullAddress"] = "full_address";
+    ProjectIdentifierColumnComponentEnum["FirstName"] = "first_name";
+    ProjectIdentifierColumnComponentEnum["LastName"] = "last_name";
+    ProjectIdentifierColumnComponentEnum["HouseNumberAndStreet"] = "house_number_and_street";
+    ProjectIdentifierColumnComponentEnum["Unit"] = "unit";
+    ProjectIdentifierColumnComponentEnum["City"] = "city";
+    ProjectIdentifierColumnComponentEnum["State"] = "state";
+    ProjectIdentifierColumnComponentEnum["Postcode"] = "postcode";
+    ProjectIdentifierColumnComponentEnum["Email"] = "email";
+    ProjectIdentifierColumnComponentEnum["FaradayPersonIdV1"] = "faraday_person_id_v1";
+    ProjectIdentifierColumnComponentEnum["Latitude"] = "latitude";
+    ProjectIdentifierColumnComponentEnum["Longitude"] = "longitude";
+})(ProjectIdentifierColumnComponentEnum = exports.ProjectIdentifierColumnComponentEnum || (exports.ProjectIdentifierColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectIdentifierElementClassEnum;
+(function (ProjectIdentifierElementClassEnum) {
+    ProjectIdentifierElementClassEnum["Phone"] = "phone";
+    ProjectIdentifierElementClassEnum["Mail"] = "mail";
+    ProjectIdentifierElementClassEnum["Email"] = "email";
+    ProjectIdentifierElementClassEnum["GraphId"] = "graph_id";
+    ProjectIdentifierElementClassEnum["Location"] = "location";
+})(ProjectIdentifierElementClassEnum = exports.ProjectIdentifierElementClassEnum || (exports.ProjectIdentifierElementClassEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var ProjectIdentifierElementHashEnum;
+(function (ProjectIdentifierElementHashEnum) {
+    ProjectIdentifierElementHashEnum["Sha256"] = "sha256";
+})(ProjectIdentifierElementHashEnum = exports.ProjectIdentifierElementHashEnum || (exports.ProjectIdentifierElementHashEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var ProjectIdentifierElementProvidersEnum;
+(function (ProjectIdentifierElementProvidersEnum) {
+    ProjectIdentifierElementProvidersEnum["Fig"] = "fig";
+    ProjectIdentifierElementProvidersEnum["MatchBoost"] = "match_boost";
+})(ProjectIdentifierElementProvidersEnum = exports.ProjectIdentifierElementProvidersEnum || (exports.ProjectIdentifierElementProvidersEnum = {}));
+/**
+ * A level at which a missing value may be borrowed from other people.
+ *
+ * Levels are tried in the order given, and the first level that yields a value wins.
+ * @export
+ * @enum {string}
+ */
+var ProjectImputationLevel;
+(function (ProjectImputationLevel) {
+    ProjectImputationLevel["Address"] = "address";
+    ProjectImputationLevel["Postcode"] = "postcode";
+})(ProjectImputationLevel = exports.ProjectImputationLevel || (exports.ProjectImputationLevel = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectLookupMatchMatchedOnEnum;
+(function (ProjectLookupMatchMatchedOnEnum) {
+    ProjectLookupMatchMatchedOnEnum["GraphId"] = "graph_id";
+    ProjectLookupMatchMatchedOnEnum["Email"] = "email";
+    ProjectLookupMatchMatchedOnEnum["Phone"] = "phone";
+    ProjectLookupMatchMatchedOnEnum["Mail"] = "mail";
+    ProjectLookupMatchMatchedOnEnum["Name"] = "name";
+    ProjectLookupMatchMatchedOnEnum["Location"] = "location";
+})(ProjectLookupMatchMatchedOnEnum = exports.ProjectLookupMatchMatchedOnEnum || (exports.ProjectLookupMatchMatchedOnEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var ProjectLookupMatchProviderEnum;
+(function (ProjectLookupMatchProviderEnum) {
+    ProjectLookupMatchProviderEnum["Fig"] = "fig";
+    ProjectLookupMatchProviderEnum["MatchBoost"] = "match_boost";
+})(ProjectLookupMatchProviderEnum = exports.ProjectLookupMatchProviderEnum || (exports.ProjectLookupMatchProviderEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectLookupResultStatusEnum;
+(function (ProjectLookupResultStatusEnum) {
+    ProjectLookupResultStatusEnum["Matched"] = "matched";
+    ProjectLookupResultStatusEnum["NoMatch"] = "no_match";
+    ProjectLookupResultStatusEnum["Ambiguous"] = "ambiguous";
+})(ProjectLookupResultStatusEnum = exports.ProjectLookupResultStatusEnum || (exports.ProjectLookupResultStatusEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectLookupWarningCodeEnum;
+(function (ProjectLookupWarningCodeEnum) {
+    ProjectLookupWarningCodeEnum["DeliveryHistoryUnavailable"] = "delivery_history_unavailable";
+    ProjectLookupWarningCodeEnum["ElementNotReady"] = "element_not_ready";
+    ProjectLookupWarningCodeEnum["SourceNotAvailableForLookup"] = "source_not_available_for_lookup";
+    ProjectLookupWarningCodeEnum["FrameNotAvailableForLookup"] = "frame_not_available_for_lookup";
+    ProjectLookupWarningCodeEnum["HistoricalValueUnavailable"] = "historical_value_unavailable";
+})(ProjectLookupWarningCodeEnum = exports.ProjectLookupWarningCodeEnum || (exports.ProjectLookupWarningCodeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectMatchMetadataColumnComponentEnum;
+(function (ProjectMatchMetadataColumnComponentEnum) {
+    ProjectMatchMetadataColumnComponentEnum["Provider"] = "provider";
+    ProjectMatchMetadataColumnComponentEnum["MatchedOn"] = "matched_on";
+})(ProjectMatchMetadataColumnComponentEnum = exports.ProjectMatchMetadataColumnComponentEnum || (exports.ProjectMatchMetadataColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectOutcomeColumnComponentEnum;
+(function (ProjectOutcomeColumnComponentEnum) {
+    ProjectOutcomeColumnComponentEnum["CalibratedProbability"] = "calibrated_probability";
+    ProjectOutcomeColumnComponentEnum["PreviousCalibratedProbability"] = "previous_calibrated_probability";
+    ProjectOutcomeColumnComponentEnum["CalibratedProbabilityDelta"] = "calibrated_probability_delta";
+    ProjectOutcomeColumnComponentEnum["ProbabilityPercentile"] = "probability_percentile";
+    ProjectOutcomeColumnComponentEnum["PreviousProbabilityPercentile"] = "previous_probability_percentile";
+    ProjectOutcomeColumnComponentEnum["ProbabilityPercentileDelta"] = "probability_percentile_delta";
+    ProjectOutcomeColumnComponentEnum["CalibratedProbabilityPriorToAttainment"] = "calibrated_probability_prior_to_attainment";
+    ProjectOutcomeColumnComponentEnum["ProbabilityPercentilePriorToAttainment"] = "probability_percentile_prior_to_attainment";
+    ProjectOutcomeColumnComponentEnum["ImportantPredictor"] = "important_predictor";
+    ProjectOutcomeColumnComponentEnum["PreviousImportantPredictor"] = "previous_important_predictor";
+})(ProjectOutcomeColumnComponentEnum = exports.ProjectOutcomeColumnComponentEnum || (exports.ProjectOutcomeColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectPersonaSetColumnComponentEnum;
+(function (ProjectPersonaSetColumnComponentEnum) {
+    ProjectPersonaSetColumnComponentEnum["Id"] = "id";
+    ProjectPersonaSetColumnComponentEnum["PreviousId"] = "previous_id";
+    ProjectPersonaSetColumnComponentEnum["Name"] = "name";
+    ProjectPersonaSetColumnComponentEnum["PreviousName"] = "previous_name";
+    ProjectPersonaSetColumnComponentEnum["DistanceToCentroid"] = "distance_to_centroid";
+    ProjectPersonaSetColumnComponentEnum["PreviousDistanceToCentroid"] = "previous_distance_to_centroid";
+    ProjectPersonaSetColumnComponentEnum["DistanceToCentroidDelta"] = "distance_to_centroid_delta";
+})(ProjectPersonaSetColumnComponentEnum = exports.ProjectPersonaSetColumnComponentEnum || (exports.ProjectPersonaSetColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectRecommenderColumnComponentEnum;
+(function (ProjectRecommenderColumnComponentEnum) {
+    ProjectRecommenderColumnComponentEnum["Value"] = "value";
+    ProjectRecommenderColumnComponentEnum["PreviousValue"] = "previous_value";
+})(ProjectRecommenderColumnComponentEnum = exports.ProjectRecommenderColumnComponentEnum || (exports.ProjectRecommenderColumnComponentEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectResolvedColumnAsOfBasisEnum;
+(function (ProjectResolvedColumnAsOfBasisEnum) {
+    ProjectResolvedColumnAsOfBasisEnum["Current"] = "current";
+    ProjectResolvedColumnAsOfBasisEnum["FixedTimestamp"] = "fixed_timestamp";
+    ProjectResolvedColumnAsOfBasisEnum["CohortEntrance"] = "cohort_entrance";
+    ProjectResolvedColumnAsOfBasisEnum["DatasetTimestamp"] = "dataset_timestamp";
+})(ProjectResolvedColumnAsOfBasisEnum = exports.ProjectResolvedColumnAsOfBasisEnum || (exports.ProjectResolvedColumnAsOfBasisEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var ProjectResolvedColumnSnapshotGranularityEnum;
+(function (ProjectResolvedColumnSnapshotGranularityEnum) {
+    ProjectResolvedColumnSnapshotGranularityEnum["Day"] = "day";
+    ProjectResolvedColumnSnapshotGranularityEnum["EventTimestamp"] = "event_timestamp";
+})(ProjectResolvedColumnSnapshotGranularityEnum = exports.ProjectResolvedColumnSnapshotGranularityEnum || (exports.ProjectResolvedColumnSnapshotGranularityEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectStreamColumnComponentEnum;
+(function (ProjectStreamColumnComponentEnum) {
+    ProjectStreamColumnComponentEnum["Count"] = "count";
+    ProjectStreamColumnComponentEnum["PreviousCount"] = "previous_count";
+    ProjectStreamColumnComponentEnum["CountDelta"] = "count_delta";
+    ProjectStreamColumnComponentEnum["Value"] = "value";
+    ProjectStreamColumnComponentEnum["PreviousValue"] = "previous_value";
+    ProjectStreamColumnComponentEnum["ValueDelta"] = "value_delta";
+    ProjectStreamColumnComponentEnum["TotalValue"] = "total_value";
+    ProjectStreamColumnComponentEnum["PreviousTotalValue"] = "previous_total_value";
+    ProjectStreamColumnComponentEnum["TotalValueDelta"] = "total_value_delta";
+    ProjectStreamColumnComponentEnum["MeanValue"] = "mean_value";
+    ProjectStreamColumnComponentEnum["PreviousMeanValue"] = "previous_mean_value";
+    ProjectStreamColumnComponentEnum["MeanValueDelta"] = "mean_value_delta";
+    ProjectStreamColumnComponentEnum["Datetime"] = "datetime";
+    ProjectStreamColumnComponentEnum["PreviousDatetime"] = "previous_datetime";
+})(ProjectStreamColumnComponentEnum = exports.ProjectStreamColumnComponentEnum || (exports.ProjectStreamColumnComponentEnum = {}));
+/**
+ * How to parse a timestamp read from a Dataset column. A timestamp with no time zone is read
+ * as UTC.
+ * @export
+ * @enum {string}
+ */
+var ProjectTimestampFormat;
+(function (ProjectTimestampFormat) {
+    ProjectTimestampFormat["MmDdYySlash"] = "mm_dd_yy_slash";
+    ProjectTimestampFormat["MmDdYyyySlash"] = "mm_dd_yyyy_slash";
+    ProjectTimestampFormat["MmDdYyDash"] = "mm_dd_yy_dash";
+    ProjectTimestampFormat["MmDdYyyyDash"] = "mm_dd_yyyy_dash";
+    ProjectTimestampFormat["YyyyMmDdSlash"] = "yyyy_mm_dd_slash";
+    ProjectTimestampFormat["YyMmDdSlash"] = "yy_mm_dd_slash";
+    ProjectTimestampFormat["YyyyMmDdDash"] = "yyyy_mm_dd_dash";
+    ProjectTimestampFormat["YyMmDdDash"] = "yy_mm_dd_dash";
+    ProjectTimestampFormat["Yyyymmdd"] = "yyyymmdd";
+    ProjectTimestampFormat["Yyyymm"] = "yyyymm";
+    ProjectTimestampFormat["YyyyMmDash"] = "yyyy_mm_dash";
+    ProjectTimestampFormat["YyyyMmSlash"] = "yyyy_mm_slash";
+    ProjectTimestampFormat["DdMmYyyySlash"] = "dd_mm_yyyy_slash";
+    ProjectTimestampFormat["DdMmYySlash"] = "dd_mm_yy_slash";
+    ProjectTimestampFormat["DdMmYyyyDash"] = "dd_mm_yyyy_dash";
+    ProjectTimestampFormat["DdMmYyDash"] = "dd_mm_yy_dash";
+    ProjectTimestampFormat["DateIso8601"] = "date_iso8601";
+    ProjectTimestampFormat["DateMonthDayFullyear"] = "date_month_day_fullyear";
+    ProjectTimestampFormat["DateMonthDayShortyear"] = "date_month_day_shortyear";
+    ProjectTimestampFormat["DateMonthDayFullyearHoursMinutes"] = "date_month_day_fullyear_hours_minutes";
+    ProjectTimestampFormat["DateMonthDayFullyearHoursMinutesSeconds"] = "date_month_day_fullyear_hours_minutes_seconds";
+    ProjectTimestampFormat["DateSecondsSinceEpochUtc"] = "date_seconds_since_epoch_utc";
+    ProjectTimestampFormat["DateMillisecondsSinceEpochUtc"] = "date_milliseconds_since_epoch_utc";
+})(ProjectTimestampFormat = exports.ProjectTimestampFormat || (exports.ProjectTimestampFormat = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ProjectTraitColumnComponentEnum;
+(function (ProjectTraitColumnComponentEnum) {
+    ProjectTraitColumnComponentEnum["Value"] = "value";
+    ProjectTraitColumnComponentEnum["PreviousValue"] = "previous_value";
+    ProjectTraitColumnComponentEnum["ValueDelta"] = "value_delta";
+})(ProjectTraitColumnComponentEnum = exports.ProjectTraitColumnComponentEnum || (exports.ProjectTraitColumnComponentEnum = {}));
 /**
  * What event to pay attention to
  * @export
@@ -509,16 +958,17 @@ var ResourceStatus;
 var ResourceType;
 (function (ResourceType) {
     ResourceType["Accounts"] = "accounts";
-    ResourceType["Atlases"] = "atlases";
     ResourceType["Attributes"] = "attributes";
     ResourceType["Cohorts"] = "cohorts";
     ResourceType["Connections"] = "connections";
     ResourceType["Datasets"] = "datasets";
+    ResourceType["Enrichments"] = "enrichments";
     ResourceType["FeatureStores"] = "feature_stores";
     ResourceType["MarketOpportunityAnalyses"] = "market_opportunity_analyses";
     ResourceType["Outcomes"] = "outcomes";
     ResourceType["PersonaSets"] = "persona_sets";
     ResourceType["Places"] = "places";
+    ResourceType["Projects"] = "projects";
     ResourceType["Recommenders"] = "recommenders";
     ResourceType["Scopes"] = "scopes";
     ResourceType["Streams"] = "streams";
@@ -535,24 +985,6 @@ var ScopeEfficacyOutcomeMonthPerformedEnum;
     ScopeEfficacyOutcomeMonthPerformedEnum["GreaterThan"] = "greater_than";
     ScopeEfficacyOutcomeMonthPerformedEnum["LessThan"] = "less_than";
 })(ScopeEfficacyOutcomeMonthPerformedEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum || (exports.ScopeEfficacyOutcomeMonthPerformedEnum = {}));
-/**
-* @export
-* @enum {string}
-*/
-var ScopePayloadLocationSelectEnum;
-(function (ScopePayloadLocationSelectEnum) {
-    ScopePayloadLocationSelectEnum["Nearest"] = "nearest";
-    ScopePayloadLocationSelectEnum["All"] = "all";
-})(ScopePayloadLocationSelectEnum = exports.ScopePayloadLocationSelectEnum || (exports.ScopePayloadLocationSelectEnum = {}));
-/**
-* @export
-* @enum {string}
-*/
-var ScopePayloadMergePatchLocationSelectEnum;
-(function (ScopePayloadMergePatchLocationSelectEnum) {
-    ScopePayloadMergePatchLocationSelectEnum["Nearest"] = "nearest";
-    ScopePayloadMergePatchLocationSelectEnum["All"] = "all";
-})(ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadMergePatchLocationSelectEnum || (exports.ScopePayloadMergePatchLocationSelectEnum = {}));
 /**
 * @export
 * @enum {string}

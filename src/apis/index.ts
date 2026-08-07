@@ -5,9 +5,6 @@ import {
     AccountsApi
 } from './AccountsApi';
 import {
-    AtlasesApi
-} from './AtlasesApi';
-import {
     AttributesApi
 } from './AttributesApi';
 import {
@@ -23,6 +20,12 @@ import {
     DatasetsApi
 } from './DatasetsApi';
 import {
+    EnrichmentJobsApi
+} from './EnrichmentJobsApi';
+import {
+    EnrichmentsApi
+} from './EnrichmentsApi';
+import {
     ExperimentalApi
 } from './ExperimentalApi';
 import {
@@ -35,9 +38,6 @@ import {
     KnowledgebaseApi
 } from './KnowledgebaseApi';
 import {
-    LocationsApi
-} from './LocationsApi';
-import {
     MarketOpportunityAnalysesApi
 } from './MarketOpportunityAnalysesApi';
 import {
@@ -49,6 +49,9 @@ import {
 import {
     PlacesApi
 } from './PlacesApi';
+import {
+    ProjectsApi
+} from './ProjectsApi';
 import {
     RecommendersApi
 } from './RecommendersApi';
@@ -77,21 +80,22 @@ import {
 export class FaradayClient {
     configuration: Configuration;
     accounts: AccountsApi;
-    atlases: AtlasesApi;
     attributes: AttributesApi;
     billing: BillingApi;
     cohorts: CohortsApi;
     connections: ConnectionsApi;
     datasets: DatasetsApi;
+    enrichmentJobs: EnrichmentJobsApi;
+    enrichments: EnrichmentsApi;
     experimental: ExperimentalApi;
     featureStores: FeatureStoresApi;
     graph: GraphApi;
     knowledgebase: KnowledgebaseApi;
-    locations: LocationsApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
     places: PlacesApi;
+    projects: ProjectsApi;
     recommenders: RecommendersApi;
     scopes: ScopesApi;
     streams: StreamsApi;
@@ -104,21 +108,22 @@ export class FaradayClient {
     constructor(configuration: Configuration) {
         this.configuration = configuration
         this.accounts = new AccountsApi(configuration);
-        this.atlases = new AtlasesApi(configuration);
         this.attributes = new AttributesApi(configuration);
         this.billing = new BillingApi(configuration);
         this.cohorts = new CohortsApi(configuration);
         this.connections = new ConnectionsApi(configuration);
         this.datasets = new DatasetsApi(configuration);
+        this.enrichmentJobs = new EnrichmentJobsApi(configuration);
+        this.enrichments = new EnrichmentsApi(configuration);
         this.experimental = new ExperimentalApi(configuration);
         this.featureStores = new FeatureStoresApi(configuration);
         this.graph = new GraphApi(configuration);
         this.knowledgebase = new KnowledgebaseApi(configuration);
-        this.locations = new LocationsApi(configuration);
         this.marketOpportunityAnalyses = new MarketOpportunityAnalysesApi(configuration);
         this.outcomes = new OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi(configuration);
         this.places = new PlacesApi(configuration);
+        this.projects = new ProjectsApi(configuration);
         this.recommenders = new RecommendersApi(configuration);
         this.scopes = new ScopesApi(configuration);
         this.streams = new StreamsApi(configuration);

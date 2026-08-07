@@ -371,7 +371,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the datasets defined on the account
+     * Get a list of the datasets available in the developer’s account
      * List datasets
      */
     async getDatasetsRaw(requestParameters: GetDatasetsRequest, ): Promise<runtime.ApiResponse<Array<Dataset>>> {
@@ -402,7 +402,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the datasets defined on the account
+     * Get a list of the datasets available in the developer’s account
      * List datasets
      */
     async getDatasets(ids?: Array<string>, ): Promise<Array<Dataset>> {

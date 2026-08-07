@@ -982,377 +982,6 @@ export interface ArchiveConfig {
     cascade_to_all?: boolean;
 }
 /**
- * A collection of geographic locations, such as stores, branches, or service areas.
- * 
- * An atlas imports location data from a connection the same way a dataset imports tabular data. Its locations can be used to filter cohorts spatially, to include the nearest location in a scope payload, and to scope a market opportunity analysis.
- * @export
- * @interface Atlas
- */
-export interface Atlas {
-    /**
-     * If not null, this resource will no longer receive updates, but will still be visable.
-     * @type {string}
-     * @memberof Atlas
-     */
-    archived_at?: string;
-    /**
-     * The UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail.
-     * 
-     * Only a subset of connection types can be configured for atlas ingestion - see the list available in `options`.
-     * 
-     * If this is null, the account's hosted CSV connection is used, and is provisioned if it does not exist yet.
-     * @type {string}
-     * @memberof Atlas
-     */
-    connection_id?: string;
-    /**
-     * 
-     * @type {AtlasCounts}
-     * @memberof Atlas
-     */
-    counts?: AtlasCounts;
-    /**
-     * When this resource was created.
-     * @type {string}
-     * @memberof Atlas
-     */
-    created_at: string;
-    /**
-     * An array of columns
-     * @type {Array<DatasetColumn>}
-     * @memberof Atlas
-     */
-    detected_columns?: Array<DatasetColumn>;
-    /**
-     * A unique ID for this resource.
-     * @type {string}
-     * @memberof Atlas
-     */
-    id: string;
-    /**
-     * The last time this resource's input was read.
-     * @type {string}
-     * @memberof Atlas
-     */
-    last_read_input_at?: string;
-    /**
-     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
-     * @type {string}
-     * @memberof Atlas
-     */
-    last_updated_config_at?: string;
-    /**
-     * The last time this resource successfully built.
-     * @type {string}
-     * @memberof Atlas
-     */
-    last_updated_output_at?: string;
-    /**
-     * An identifying name for this atlas.
-     * @type {string}
-     * @memberof Atlas
-     */
-    name: string;
-    /**
-     * 
-     * @type {AtlasOptions}
-     * @memberof Atlas
-     */
-    options: AtlasOptions;
-    /**
-     * 
-     * @type {AtlasOutputToLocations}
-     * @memberof Atlas
-     */
-    output_to_locations: AtlasOutputToLocations;
-    /**
-     * The type of this resource.
-     * @type {string}
-     * @memberof Atlas
-     */
-    resource_type: string;
-    /**
-     * 
-     * @type {ResourceStatus}
-     * @memberof Atlas
-     */
-    status: ResourceStatus;
-    /**
-     * When the status of this resource was last updated.
-     * @type {string}
-     * @memberof Atlas
-     */
-    status_changed_at?: string;
-    /**
-     * If this resource has `status == "error"`, this will contain an error message.
-     * @type {string}
-     * @memberof Atlas
-     */
-    status_error?: string;
-    /**
-     * When this resource was last updated.
-     * @type {string}
-     * @memberof Atlas
-     */
-    updated_at: string;
-}
-/**
- * Location counts for this atlas. These will only be displayed if the atlas built successfully.
- * @export
- * @interface AtlasCounts
- */
-export interface AtlasCounts {
-    /**
-     * The number of rows whose geometry was read but encloses nowhere, such as an empty point. There is no place for such a row to put a location.
-     * @type {number}
-     * @memberof AtlasCounts
-     */
-    empty_geometry?: number;
-    /**
-     * The number of rows that produced a location. Rows that could not be located are not included in the atlas.
-     * @type {number}
-     * @memberof AtlasCounts
-     */
-    locatable?: number;
-    /**
-     * The number of rows whose geometry describes too large an outline to hold on a location.
-     * @type {number}
-     * @memberof AtlasCounts
-     */
-    oversized_geometry?: number;
-    /**
-     * The total number of rows in the source data.
-     * @type {number}
-     * @memberof AtlasCounts
-     */
-    rows?: number;
-    /**
-     * The number of rows whose geometry could not be read. The value was missing, was not a geometry, or gave coordinates outside the range of longitude and latitude — including coordinates in a projection other than WGS 84.
-     * @type {number}
-     * @memberof AtlasCounts
-     */
-    unreadable_geometry?: number;
-}
-/**
- * (Parameters used to PATCH the `Atlas` type.)
- * 
- * A collection of geographic locations, such as stores, branches, or service areas.
- * 
- * An atlas imports location data from a connection the same way a dataset imports tabular data. Its locations can be used to filter cohorts spatially, to include the nearest location in a scope payload, and to scope a market opportunity analysis.
- * @export
- * @interface AtlasMergePatch
- */
-export interface AtlasMergePatch {
-    /**
-     * An identifying name for this atlas.
-     * @type {string}
-     * @memberof AtlasMergePatch
-     */
-    name?: string;
-    /**
-     * 
-     * @type {AtlasOptionsMergePatch}
-     * @memberof AtlasMergePatch
-     */
-    options?: AtlasOptionsMergePatch;
-    /**
-     * 
-     * @type {AtlasOutputToLocations}
-     * @memberof AtlasMergePatch
-     */
-    output_to_locations?: AtlasOutputToLocations;
-}
-/**
- * @type AtlasOptions
- * Atlas connection options
- * @export
- */
-export type AtlasOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'motherduck' } & DatasetOptionsMotherduck | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'sftp' } & DatasetOptionsSftp | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer;
-/**
- * @type AtlasOptionsMergePatch
- * Atlas connection options
- * @export
- */
-export type AtlasOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'motherduck' } & DatasetOptionsMotherduckMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'sftp' } & DatasetOptionsSftpMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch;
-/**
- * @type AtlasOptionsPost
- * Atlas connection options
- * @export
- */
-export type AtlasOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'motherduck' } & DatasetOptionsMotherduckPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost;
-/**
- * @type AtlasOptionsPut
- * Atlas connection options
- * @export
- */
-export type AtlasOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'motherduck' } & DatasetOptionsMotherduckPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut;
-/**
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * 
- * Each location is placed by exactly one of three groups of columns: a geometry column (`geometry`), a coordinate pair (`latitude` and `longitude`), or address columns (`house_number_and_street`, `city`, `state` and `postcode`). Naming columns from more than one group is rejected. Naming none is allowed: an atlas can be created before the columns of its source data are known, and configured once they are. Addresses are geocoded to a point during ingestion.
- * @export
- * @interface AtlasOutputToLocations
- */
-export interface AtlasOutputToLocations {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     * 
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof AtlasOutputToLocations
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<AtlasOutputToLocationsProperties>}
-     * @memberof AtlasOutputToLocations
-     */
-    properties?: Array<AtlasOutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     * 
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    state?: string;
-}
-/**
- * 
- * @export
- * @interface AtlasOutputToLocationsProperties
- */
-export interface AtlasOutputToLocationsProperties {
-    /**
-     * The source column this property's value is read from. Mutually exclusive with `value`.
-     * @type {string}
-     * @memberof AtlasOutputToLocationsProperties
-     */
-    column?: string;
-    /**
-     * The name this property is given on each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocationsProperties
-     */
-    name: string;
-    /**
-     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
-     * @type {string}
-     * @memberof AtlasOutputToLocationsProperties
-     */
-    value?: string;
-}
-/**
- * (Parameters used to POST a new value of the `Atlas` type.)
- * 
- * A collection of geographic locations, such as stores, branches, or service areas.
- * 
- * An atlas imports location data from a connection the same way a dataset imports tabular data. Its locations can be used to filter cohorts spatially, to include the nearest location in a scope payload, and to scope a market opportunity analysis.
- * @export
- * @interface AtlasPost
- */
-export interface AtlasPost {
-    /**
-     * The UUID of a connection - see <a href="https://faraday.ai/developers/reference/createconnection">/connections</a> for more detail.
-     * 
-     * Only a subset of connection types can be configured for atlas ingestion - see the list available in `options`.
-     * 
-     * If this is null, the account's hosted CSV connection is used, and is provisioned if it does not exist yet.
-     * @type {string}
-     * @memberof AtlasPost
-     */
-    connection_id?: string;
-    /**
-     * An identifying name for this atlas.
-     * @type {string}
-     * @memberof AtlasPost
-     */
-    name: string;
-    /**
-     * 
-     * @type {AtlasOptionsPost}
-     * @memberof AtlasPost
-     */
-    options: AtlasOptionsPost;
-    /**
-     * 
-     * @type {AtlasOutputToLocations}
-     * @memberof AtlasPost
-     */
-    output_to_locations: AtlasOutputToLocations;
-}
-/**
- * (Parameters used to PUT a value of the `Atlas` type.)
- * 
- * A collection of geographic locations, such as stores, branches, or service areas.
- * 
- * An atlas imports location data from a connection the same way a dataset imports tabular data. Its locations can be used to filter cohorts spatially, to include the nearest location in a scope payload, and to scope a market opportunity analysis.
- * @export
- * @interface AtlasPut
- */
-export interface AtlasPut {
-    /**
-     * An identifying name for this atlas.
-     * @type {string}
-     * @memberof AtlasPut
-     */
-    name: string;
-    /**
-     * 
-     * @type {AtlasOptionsPut}
-     * @memberof AtlasPut
-     */
-    options: AtlasOptionsPut;
-    /**
-     * 
-     * @type {AtlasOutputToLocations}
-     * @memberof AtlasPut
-     */
-    output_to_locations: AtlasOutputToLocations;
-}
-/**
  * An attribute wraps a stream of assertions with configuration for aggregation and selection. 
  * Attributes specify how to handle multiple qualifying assertions and provide hints for consumers.
  * @export
@@ -2290,14 +1919,6 @@ export interface Cohort {
      */
     last_updated_output_at?: string;
     /**
-     * List of atlas locations to use to spatially filter Cohort membership.
-     * 
-     * A cohort may not set both `location_conditions` and `place_conditions`.
-     * @type {Array<CohortLocationCondition>}
-     * @memberof Cohort
-     */
-    location_conditions?: Array<CohortLocationCondition>;
-    /**
      * Max count for this cohort's config
      * @type {number}
      * @memberof Cohort
@@ -2335,8 +1956,6 @@ export interface Cohort {
     name: string;
     /**
      * List of places to use to spatially filter Cohort membership.
-     * 
-     * Superseded by `location_conditions`, which filters on the locations of an atlas. A cohort may not set both.
      * @type {Array<CohortPlaceCondition>}
      * @memberof Cohort
      */
@@ -2552,62 +2171,6 @@ export interface CohortAttributeCondition {
     optional?: boolean;
 }
 /**
- * 
- * @export
- * @interface CohortLocationCondition
- */
-export interface CohortLocationCondition {
-    /**
-     * A distance in meters which will be used to expand each location's geometry. By default, the distance is set to 0, which means using the geometry itself; explicitly set your own value to override this. Points are buffered into a circle of this radius, and areas are expanded outward from their edges by this amount.
-     * 
-     * See the [PostGIS documentation](https://postgis.net/docs/ST_Buffer.html) for visual descriptions of how this expansion, called buffering, works.
-     * @type {number}
-     * @memberof CohortLocationCondition
-     */
-    distance?: number;
-    /**
-     * By default, location conditions will select people who intersect a location's geometry. If `invert` is set to `true`, then instead, select people who *do not* intersect any of the locations' geometries.
-     * @type {boolean}
-     * @memberof CohortLocationCondition
-     */
-    invert?: boolean;
-    /**
-     * 
-     * @type {CohortLocationConditionLocations}
-     * @memberof CohortLocationCondition
-     */
-    locations?: CohortLocationConditionLocations;
-}
-/**
- * The atlas locations this condition selects people against. If absent, every location in the account's atlases is used.
- * @export
- * @interface CohortLocationConditionLocations
- */
-export interface CohortLocationConditionLocations {
-    /**
-     * The atlases whose locations are used to filter this cohort's membership spatially.
-     * 
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof CohortLocationConditionLocations
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Restrict this condition to the locations carrying these reference keys.
-     * 
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas this condition selects. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof CohortLocationConditionLocations
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * Restrict this condition to the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof CohortLocationConditionLocations
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
  * (Parameters used to PATCH the `Cohort` type.)
  * 
  * A specific group of people, such as "Customers" or "Subscription customers".
@@ -2631,14 +2194,6 @@ export interface CohortMergePatch {
      * @memberof CohortMergePatch
      */
     explore?: boolean | null;
-    /**
-     * List of atlas locations to use to spatially filter Cohort membership.
-     * 
-     * A cohort may not set both `location_conditions` and `place_conditions`.
-     * @type {Array<CohortLocationCondition>}
-     * @memberof CohortMergePatch
-     */
-    location_conditions?: Array<CohortLocationCondition> | null;
     /**
      * Max count for this cohort's config
      * @type {number}
@@ -2671,8 +2226,6 @@ export interface CohortMergePatch {
     name?: string;
     /**
      * List of places to use to spatially filter Cohort membership.
-     * 
-     * Superseded by `location_conditions`, which filters on the locations of an atlas. A cohort may not set both.
      * @type {Array<CohortPlaceCondition>}
      * @memberof CohortMergePatch
      */
@@ -2790,14 +2343,6 @@ export interface CohortPost {
      */
     explore?: boolean;
     /**
-     * List of atlas locations to use to spatially filter Cohort membership.
-     * 
-     * A cohort may not set both `location_conditions` and `place_conditions`.
-     * @type {Array<CohortLocationCondition>}
-     * @memberof CohortPost
-     */
-    location_conditions?: Array<CohortLocationCondition>;
-    /**
      * Max count for this cohort's config
      * @type {number}
      * @memberof CohortPost
@@ -2829,8 +2374,6 @@ export interface CohortPost {
     name: string;
     /**
      * List of places to use to spatially filter Cohort membership.
-     * 
-     * Superseded by `location_conditions`, which filters on the locations of an atlas. A cohort may not set both.
      * @type {Array<CohortPlaceCondition>}
      * @memberof CohortPost
      */
@@ -2887,14 +2430,6 @@ export interface CohortPut {
      */
     explore?: boolean;
     /**
-     * List of atlas locations to use to spatially filter Cohort membership.
-     * 
-     * A cohort may not set both `location_conditions` and `place_conditions`.
-     * @type {Array<CohortLocationCondition>}
-     * @memberof CohortPut
-     */
-    location_conditions?: Array<CohortLocationCondition>;
-    /**
      * Max count for this cohort's config
      * @type {number}
      * @memberof CohortPut
@@ -2926,8 +2461,6 @@ export interface CohortPut {
     name: string;
     /**
      * List of places to use to spatially filter Cohort membership.
-     * 
-     * Superseded by `location_conditions`, which filters on the locations of an atlas. A cohort may not set both.
      * @type {Array<CohortPlaceCondition>}
      * @memberof CohortPut
      */
@@ -3308,7 +2841,7 @@ export interface ConnectionMergePatch {
  */
 export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'google_ads' } & ConnectionOptionsGoogleAds | { type: 'hosted_csv' } & ConnectionOptionsHostedCsv | { type: 'hubspot' } & ConnectionOptionsHubspot | { type: 'iterable' } & ConnectionOptionsIterable | { type: 'klaviyo' } & ConnectionOptionsKlaviyo | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAds | { type: 'lookup_api' } & ConnectionOptionsLookupApi | { type: 'merge' } & ConnectionOptionsMerge | { type: 'motherduck' } & ConnectionOptionsMotherduck | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAds | { type: 'poplar' } & ConnectionOptionsPoplar | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'recharge' } & ConnectionOptionsRecharge | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'salesforce' } & ConnectionOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloud | { type: 'segment' } & ConnectionOptionsSegment | { type: 'sftp' } & ConnectionOptionsSftp | { type: 'shopify' } & ConnectionOptionsShopify | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer | { type: 'stripe' } & ConnectionOptionsStripe | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDesk | { type: 'tiktok' } & ConnectionOptionsTiktok;
 /**
- * Aurora (MySQL) options
+ * Aurora (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraMysql
  */
@@ -3365,7 +2898,7 @@ export interface ConnectionOptionsAwsAuroraMysql {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraMysqlMergePatch
  */
@@ -3422,7 +2955,7 @@ export interface ConnectionOptionsAwsAuroraMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraMysqlPost
  */
@@ -3479,7 +3012,7 @@ export interface ConnectionOptionsAwsAuroraMysqlPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraMysqlPut
  */
@@ -3534,7 +3067,7 @@ export interface ConnectionOptionsAwsAuroraMysqlPut {
     user: string;
 }
 /**
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraPostgres
  */
@@ -3597,7 +3130,7 @@ export interface ConnectionOptionsAwsAuroraPostgres {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraPostgresMergePatch
  */
@@ -3660,7 +3193,7 @@ export interface ConnectionOptionsAwsAuroraPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraPostgresPost
  */
@@ -3723,7 +3256,7 @@ export interface ConnectionOptionsAwsAuroraPostgresPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres connection options
  * @export
  * @interface ConnectionOptionsAwsAuroraPostgresPut
  */
@@ -3784,7 +3317,7 @@ export interface ConnectionOptionsAwsAuroraPostgresPut {
     user: string;
 }
 /**
- * RDS (MySQL) options
+ * RDS (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsMysql
  */
@@ -3841,7 +3374,7 @@ export interface ConnectionOptionsAwsRdsMysql {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsMysqlMergePatch
  */
@@ -3898,7 +3431,7 @@ export interface ConnectionOptionsAwsRdsMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsMysqlPost
  */
@@ -3955,7 +3488,7 @@ export interface ConnectionOptionsAwsRdsMysqlPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsMysqlPut
  */
@@ -4010,7 +3543,7 @@ export interface ConnectionOptionsAwsRdsMysqlPut {
     user: string;
 }
 /**
- * RDS (Postgres) options
+ * RDS (Postgres) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsPostgres
  */
@@ -4073,7 +3606,7 @@ export interface ConnectionOptionsAwsRdsPostgres {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsPostgresMergePatch
  */
@@ -4136,7 +3669,7 @@ export interface ConnectionOptionsAwsRdsPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsPostgresPost
  */
@@ -4199,7 +3732,7 @@ export interface ConnectionOptionsAwsRdsPostgresPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsPostgresPut
  */
@@ -4260,7 +3793,7 @@ export interface ConnectionOptionsAwsRdsPostgresPut {
     user: string;
 }
 /**
- * RDS (SQL Server) options
+ * RDS (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsSqlServer
  */
@@ -4323,7 +3856,7 @@ export interface ConnectionOptionsAwsRdsSqlServer {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsSqlServerMergePatch
  */
@@ -4386,7 +3919,7 @@ export interface ConnectionOptionsAwsRdsSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsSqlServerPost
  */
@@ -4449,7 +3982,7 @@ export interface ConnectionOptionsAwsRdsSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsAwsRdsSqlServerPut
  */
@@ -4510,7 +4043,7 @@ export interface ConnectionOptionsAwsRdsSqlServerPut {
     user: string;
 }
 /**
- * Redshift Serverless options
+ * Redshift Serverless connection options
  * @export
  * @interface ConnectionOptionsAwsRedshiftServerless
  */
@@ -4579,7 +4112,7 @@ export interface ConnectionOptionsAwsRedshiftServerless {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless connection options
  * @export
  * @interface ConnectionOptionsAwsRedshiftServerlessMergePatch
  */
@@ -4648,7 +4181,7 @@ export interface ConnectionOptionsAwsRedshiftServerlessMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless connection options
  * @export
  * @interface ConnectionOptionsAwsRedshiftServerlessPost
  */
@@ -4717,7 +4250,7 @@ export interface ConnectionOptionsAwsRedshiftServerlessPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless connection options
  * @export
  * @interface ConnectionOptionsAwsRedshiftServerlessPut
  */
@@ -4784,7 +4317,7 @@ export interface ConnectionOptionsAwsRedshiftServerlessPut {
     user: string;
 }
 /**
- * Azure SQL options
+ * Azure SQL connection options
  * @export
  * @interface ConnectionOptionsAzureSqlServer
  */
@@ -4847,7 +4380,7 @@ export interface ConnectionOptionsAzureSqlServer {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL connection options
  * @export
  * @interface ConnectionOptionsAzureSqlServerMergePatch
  */
@@ -4910,7 +4443,7 @@ export interface ConnectionOptionsAzureSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL connection options
  * @export
  * @interface ConnectionOptionsAzureSqlServerPost
  */
@@ -4973,7 +4506,7 @@ export interface ConnectionOptionsAzureSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL connection options
  * @export
  * @interface ConnectionOptionsAzureSqlServerPut
  */
@@ -5034,7 +4567,7 @@ export interface ConnectionOptionsAzureSqlServerPut {
     user: string;
 }
 /**
- * BigQuery options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQuery
  */
@@ -5061,7 +4594,7 @@ export interface ConnectionOptionsBigQuery {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQueryMergePatch
  */
@@ -5088,7 +4621,7 @@ export interface ConnectionOptionsBigQueryMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQueryPost
  */
@@ -5115,7 +4648,7 @@ export interface ConnectionOptionsBigQueryPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery connection options
  * @export
  * @interface ConnectionOptionsBigQueryPut
  */
@@ -5140,7 +4673,7 @@ export interface ConnectionOptionsBigQueryPut {
     type: string;
 }
 /**
- * Classic Faraday Sources options
+ * Classic Faraday Sources connection options
  * @export
  * @interface ConnectionOptionsClassic
  */
@@ -5155,7 +4688,7 @@ export interface ConnectionOptionsClassic {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsClassic` type.)
  * 
- * Classic Faraday Sources options
+ * Classic Faraday Sources connection options
  * @export
  * @interface ConnectionOptionsClassicMergePatch
  */
@@ -5170,7 +4703,7 @@ export interface ConnectionOptionsClassicMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsClassic` type.)
  * 
- * Classic Faraday Sources options
+ * Classic Faraday Sources connection options
  * @export
  * @interface ConnectionOptionsClassicPost
  */
@@ -5185,7 +4718,7 @@ export interface ConnectionOptionsClassicPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsClassic` type.)
  * 
- * Classic Faraday Sources options
+ * Classic Faraday Sources connection options
  * @export
  * @interface ConnectionOptionsClassicPut
  */
@@ -5198,7 +4731,7 @@ export interface ConnectionOptionsClassicPut {
     type: string;
 }
 /**
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences connection options
  * @export
  * @interface ConnectionOptionsFacebookCustomAudiences
  */
@@ -5225,7 +4758,7 @@ export interface ConnectionOptionsFacebookCustomAudiences {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsFacebookCustomAudiences` type.)
  * 
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences connection options
  * @export
  * @interface ConnectionOptionsFacebookCustomAudiencesMergePatch
  */
@@ -5252,7 +4785,7 @@ export interface ConnectionOptionsFacebookCustomAudiencesMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsFacebookCustomAudiences` type.)
  * 
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences connection options
  * @export
  * @interface ConnectionOptionsFacebookCustomAudiencesPost
  */
@@ -5279,7 +4812,7 @@ export interface ConnectionOptionsFacebookCustomAudiencesPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsFacebookCustomAudiences` type.)
  * 
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences connection options
  * @export
  * @interface ConnectionOptionsFacebookCustomAudiencesPut
  */
@@ -5304,7 +4837,7 @@ export interface ConnectionOptionsFacebookCustomAudiencesPut {
     type: string;
 }
 /**
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlMysql
  */
@@ -5343,7 +4876,7 @@ export interface ConnectionOptionsGcpCloudSqlMysql {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlMysqlMergePatch
  */
@@ -5382,7 +4915,7 @@ export interface ConnectionOptionsGcpCloudSqlMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlMysqlPost
  */
@@ -5421,7 +4954,7 @@ export interface ConnectionOptionsGcpCloudSqlMysqlPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlMysqlPut
  */
@@ -5458,7 +4991,7 @@ export interface ConnectionOptionsGcpCloudSqlMysqlPut {
     user: string;
 }
 /**
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlPostgres
  */
@@ -5503,7 +5036,7 @@ export interface ConnectionOptionsGcpCloudSqlPostgres {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlPostgresMergePatch
  */
@@ -5548,7 +5081,7 @@ export interface ConnectionOptionsGcpCloudSqlPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlPostgresPost
  */
@@ -5593,7 +5126,7 @@ export interface ConnectionOptionsGcpCloudSqlPostgresPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlPostgresPut
  */
@@ -5636,7 +5169,7 @@ export interface ConnectionOptionsGcpCloudSqlPostgresPut {
     user: string;
 }
 /**
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlSqlServer
  */
@@ -5693,7 +5226,7 @@ export interface ConnectionOptionsGcpCloudSqlSqlServer {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlSqlServerMergePatch
  */
@@ -5750,7 +5283,7 @@ export interface ConnectionOptionsGcpCloudSqlSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlSqlServerPost
  */
@@ -5807,7 +5340,7 @@ export interface ConnectionOptionsGcpCloudSqlSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) connection options
  * @export
  * @interface ConnectionOptionsGcpCloudSqlSqlServerPut
  */
@@ -5862,7 +5395,7 @@ export interface ConnectionOptionsGcpCloudSqlSqlServerPut {
     user: string;
 }
 /**
- * GCS options
+ * GCS connection options
  * @export
  * @interface ConnectionOptionsGcpGcsCsv
  */
@@ -5889,7 +5422,7 @@ export interface ConnectionOptionsGcpGcsCsv {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS connection options
  * @export
  * @interface ConnectionOptionsGcpGcsCsvMergePatch
  */
@@ -5916,7 +5449,7 @@ export interface ConnectionOptionsGcpGcsCsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS connection options
  * @export
  * @interface ConnectionOptionsGcpGcsCsvPost
  */
@@ -5943,7 +5476,7 @@ export interface ConnectionOptionsGcpGcsCsvPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS connection options
  * @export
  * @interface ConnectionOptionsGcpGcsCsvPut
  */
@@ -5968,7 +5501,7 @@ export interface ConnectionOptionsGcpGcsCsvPut {
     type: string;
 }
 /**
- * Google Ads options
+ * Google Ads connection options
  * @export
  * @interface ConnectionOptionsGoogleAds
  */
@@ -6001,7 +5534,7 @@ export interface ConnectionOptionsGoogleAds {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsGoogleAds` type.)
  * 
- * Google Ads options
+ * Google Ads connection options
  * @export
  * @interface ConnectionOptionsGoogleAdsMergePatch
  */
@@ -6034,7 +5567,7 @@ export interface ConnectionOptionsGoogleAdsMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsGoogleAds` type.)
  * 
- * Google Ads options
+ * Google Ads connection options
  * @export
  * @interface ConnectionOptionsGoogleAdsPost
  */
@@ -6067,7 +5600,7 @@ export interface ConnectionOptionsGoogleAdsPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsGoogleAds` type.)
  * 
- * Google Ads options
+ * Google Ads connection options
  * @export
  * @interface ConnectionOptionsGoogleAdsPut
  */
@@ -6098,7 +5631,7 @@ export interface ConnectionOptionsGoogleAdsPut {
     username?: string;
 }
 /**
- * CSV options
+ * CSV connection options
  * @export
  * @interface ConnectionOptionsHostedCsv
  */
@@ -6113,7 +5646,7 @@ export interface ConnectionOptionsHostedCsv {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV connection options
  * @export
  * @interface ConnectionOptionsHostedCsvMergePatch
  */
@@ -6128,7 +5661,7 @@ export interface ConnectionOptionsHostedCsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV connection options
  * @export
  * @interface ConnectionOptionsHostedCsvPost
  */
@@ -6143,7 +5676,7 @@ export interface ConnectionOptionsHostedCsvPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV connection options
  * @export
  * @interface ConnectionOptionsHostedCsvPut
  */
@@ -6156,7 +5689,7 @@ export interface ConnectionOptionsHostedCsvPut {
     type: string;
 }
 /**
- * HubSpot options
+ * HubSpot connection options
  * @export
  * @interface ConnectionOptionsHubspot
  */
@@ -6183,7 +5716,7 @@ export interface ConnectionOptionsHubspot {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot connection options
  * @export
  * @interface ConnectionOptionsHubspotMergePatch
  */
@@ -6210,7 +5743,7 @@ export interface ConnectionOptionsHubspotMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot connection options
  * @export
  * @interface ConnectionOptionsHubspotPost
  */
@@ -6237,7 +5770,7 @@ export interface ConnectionOptionsHubspotPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot connection options
  * @export
  * @interface ConnectionOptionsHubspotPut
  */
@@ -6262,7 +5795,7 @@ export interface ConnectionOptionsHubspotPut {
     username?: string;
 }
 /**
- * Iterable options
+ * Iterable connection options
  * @export
  * @interface ConnectionOptionsIterable
  */
@@ -6283,7 +5816,7 @@ export interface ConnectionOptionsIterable {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable connection options
  * @export
  * @interface ConnectionOptionsIterableMergePatch
  */
@@ -6304,7 +5837,7 @@ export interface ConnectionOptionsIterableMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable connection options
  * @export
  * @interface ConnectionOptionsIterablePost
  */
@@ -6325,7 +5858,7 @@ export interface ConnectionOptionsIterablePost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable connection options
  * @export
  * @interface ConnectionOptionsIterablePut
  */
@@ -6344,7 +5877,7 @@ export interface ConnectionOptionsIterablePut {
     webhook_url?: string;
 }
 /**
- * Klaviyo options
+ * Klaviyo connection options
  * @export
  * @interface ConnectionOptionsKlaviyo
  */
@@ -6371,7 +5904,7 @@ export interface ConnectionOptionsKlaviyo {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo connection options
  * @export
  * @interface ConnectionOptionsKlaviyoMergePatch
  */
@@ -6398,7 +5931,7 @@ export interface ConnectionOptionsKlaviyoMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo connection options
  * @export
  * @interface ConnectionOptionsKlaviyoPost
  */
@@ -6425,7 +5958,7 @@ export interface ConnectionOptionsKlaviyoPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo connection options
  * @export
  * @interface ConnectionOptionsKlaviyoPut
  */
@@ -6450,7 +5983,7 @@ export interface ConnectionOptionsKlaviyoPut {
     type: string;
 }
 /**
- * LinkedIn Ads options
+ * LinkedIn Ads connection options
  * @export
  * @interface ConnectionOptionsLinkedinAds
  */
@@ -6477,7 +6010,7 @@ export interface ConnectionOptionsLinkedinAds {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsLinkedinAds` type.)
  * 
- * LinkedIn Ads options
+ * LinkedIn Ads connection options
  * @export
  * @interface ConnectionOptionsLinkedinAdsMergePatch
  */
@@ -6504,7 +6037,7 @@ export interface ConnectionOptionsLinkedinAdsMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsLinkedinAds` type.)
  * 
- * LinkedIn Ads options
+ * LinkedIn Ads connection options
  * @export
  * @interface ConnectionOptionsLinkedinAdsPost
  */
@@ -6531,7 +6064,7 @@ export interface ConnectionOptionsLinkedinAdsPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsLinkedinAds` type.)
  * 
- * LinkedIn Ads options
+ * LinkedIn Ads connection options
  * @export
  * @interface ConnectionOptionsLinkedinAdsPut
  */
@@ -6556,7 +6089,7 @@ export interface ConnectionOptionsLinkedinAdsPut {
     username?: string;
 }
 /**
- * Lookup API options
+ * Lookup API connection options
  * @export
  * @interface ConnectionOptionsLookupApi
  */
@@ -6571,7 +6104,7 @@ export interface ConnectionOptionsLookupApi {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsLookupApi` type.)
  * 
- * Lookup API options
+ * Lookup API connection options
  * @export
  * @interface ConnectionOptionsLookupApiMergePatch
  */
@@ -6586,7 +6119,7 @@ export interface ConnectionOptionsLookupApiMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsLookupApi` type.)
  * 
- * Lookup API options
+ * Lookup API connection options
  * @export
  * @interface ConnectionOptionsLookupApiPost
  */
@@ -6601,7 +6134,7 @@ export interface ConnectionOptionsLookupApiPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsLookupApi` type.)
  * 
- * Lookup API options
+ * Lookup API connection options
  * @export
  * @interface ConnectionOptionsLookupApiPut
  */
@@ -6614,7 +6147,7 @@ export interface ConnectionOptionsLookupApiPut {
     type: string;
 }
 /**
- * Merge Dataset options
+ * Merge Dataset connection options
  * @export
  * @interface ConnectionOptionsMerge
  */
@@ -6629,7 +6162,7 @@ export interface ConnectionOptionsMerge {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsMerge` type.)
  * 
- * Merge Dataset options
+ * Merge Dataset connection options
  * @export
  * @interface ConnectionOptionsMergeMergePatch
  */
@@ -6650,7 +6183,7 @@ export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & Connect
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsMerge` type.)
  * 
- * Merge Dataset options
+ * Merge Dataset connection options
  * @export
  * @interface ConnectionOptionsMergePost
  */
@@ -6665,7 +6198,7 @@ export interface ConnectionOptionsMergePost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsMerge` type.)
  * 
- * Merge Dataset options
+ * Merge Dataset connection options
  * @export
  * @interface ConnectionOptionsMergePut
  */
@@ -6678,7 +6211,7 @@ export interface ConnectionOptionsMergePut {
     type: string;
 }
 /**
- * MotherDuck options
+ * MotherDuck connection options
  * @export
  * @interface ConnectionOptionsMotherduck
  */
@@ -6705,7 +6238,7 @@ export interface ConnectionOptionsMotherduck {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck connection options
  * @export
  * @interface ConnectionOptionsMotherduckMergePatch
  */
@@ -6732,7 +6265,7 @@ export interface ConnectionOptionsMotherduckMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck connection options
  * @export
  * @interface ConnectionOptionsMotherduckPost
  */
@@ -6759,7 +6292,7 @@ export interface ConnectionOptionsMotherduckPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck connection options
  * @export
  * @interface ConnectionOptionsMotherduckPut
  */
@@ -6784,7 +6317,7 @@ export interface ConnectionOptionsMotherduckPut {
     type: string;
 }
 /**
- * MySQL options
+ * MySQL connection options
  * @export
  * @interface ConnectionOptionsMysql
  */
@@ -6841,7 +6374,7 @@ export interface ConnectionOptionsMysql {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL connection options
  * @export
  * @interface ConnectionOptionsMysqlMergePatch
  */
@@ -6898,7 +6431,7 @@ export interface ConnectionOptionsMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL connection options
  * @export
  * @interface ConnectionOptionsMysqlPost
  */
@@ -6955,7 +6488,7 @@ export interface ConnectionOptionsMysqlPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL connection options
  * @export
  * @interface ConnectionOptionsMysqlPut
  */
@@ -7010,7 +6543,7 @@ export interface ConnectionOptionsMysqlPut {
     user: string;
 }
 /**
- * Pinterest Ads options
+ * Pinterest Ads connection options
  * @export
  * @interface ConnectionOptionsPinterestAds
  */
@@ -7043,7 +6576,7 @@ export interface ConnectionOptionsPinterestAds {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsPinterestAds` type.)
  * 
- * Pinterest Ads options
+ * Pinterest Ads connection options
  * @export
  * @interface ConnectionOptionsPinterestAdsMergePatch
  */
@@ -7076,7 +6609,7 @@ export interface ConnectionOptionsPinterestAdsMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsPinterestAds` type.)
  * 
- * Pinterest Ads options
+ * Pinterest Ads connection options
  * @export
  * @interface ConnectionOptionsPinterestAdsPost
  */
@@ -7109,7 +6642,7 @@ export interface ConnectionOptionsPinterestAdsPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsPinterestAds` type.)
  * 
- * Pinterest Ads options
+ * Pinterest Ads connection options
  * @export
  * @interface ConnectionOptionsPinterestAdsPut
  */
@@ -7140,7 +6673,7 @@ export interface ConnectionOptionsPinterestAdsPut {
     username?: string;
 }
 /**
- * Poplar options
+ * Poplar connection options
  * @export
  * @interface ConnectionOptionsPoplar
  */
@@ -7155,7 +6688,7 @@ export interface ConnectionOptionsPoplar {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsPoplar` type.)
  * 
- * Poplar options
+ * Poplar connection options
  * @export
  * @interface ConnectionOptionsPoplarMergePatch
  */
@@ -7170,7 +6703,7 @@ export interface ConnectionOptionsPoplarMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsPoplar` type.)
  * 
- * Poplar options
+ * Poplar connection options
  * @export
  * @interface ConnectionOptionsPoplarPost
  */
@@ -7185,7 +6718,7 @@ export interface ConnectionOptionsPoplarPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsPoplar` type.)
  * 
- * Poplar options
+ * Poplar connection options
  * @export
  * @interface ConnectionOptionsPoplarPut
  */
@@ -7204,7 +6737,7 @@ export interface ConnectionOptionsPoplarPut {
  */
 export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPost | { type: 'lookup_api' } & ConnectionOptionsLookupApiPost | { type: 'merge' } & ConnectionOptionsMergePost | { type: 'motherduck' } & ConnectionOptionsMotherduckPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'poplar' } & ConnectionOptionsPoplarPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'recharge' } & ConnectionOptionsRechargePost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'sftp' } & ConnectionOptionsSftpPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
 /**
- * Postgres options
+ * Postgres connection options
  * @export
  * @interface ConnectionOptionsPostgres
  */
@@ -7267,7 +6800,7 @@ export interface ConnectionOptionsPostgres {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres connection options
  * @export
  * @interface ConnectionOptionsPostgresMergePatch
  */
@@ -7330,7 +6863,7 @@ export interface ConnectionOptionsPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres connection options
  * @export
  * @interface ConnectionOptionsPostgresPost
  */
@@ -7393,7 +6926,7 @@ export interface ConnectionOptionsPostgresPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres connection options
  * @export
  * @interface ConnectionOptionsPostgresPut
  */
@@ -7460,7 +6993,7 @@ export interface ConnectionOptionsPostgresPut {
  */
 export type ConnectionOptionsPut = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPut | { type: 'bigquery' } & ConnectionOptionsBigQueryPut | { type: 'classic' } & ConnectionOptionsClassicPut | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPut | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPut | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPut | { type: 'hubspot' } & ConnectionOptionsHubspotPut | { type: 'iterable' } & ConnectionOptionsIterablePut | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPut | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPut | { type: 'lookup_api' } & ConnectionOptionsLookupApiPut | { type: 'merge' } & ConnectionOptionsMergePut | { type: 'motherduck' } & ConnectionOptionsMotherduckPut | { type: 'mysql' } & ConnectionOptionsMysqlPut | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPut | { type: 'poplar' } & ConnectionOptionsPoplarPut | { type: 'postgres' } & ConnectionOptionsPostgresPut | { type: 'recharge' } & ConnectionOptionsRechargePut | { type: 'redshift' } & ConnectionOptionsRedshiftPut | { type: 's3_csv' } & ConnectionOptionsS3CsvPut | { type: 'salesforce' } & ConnectionOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPut | { type: 'segment' } & ConnectionOptionsSegmentPut | { type: 'sftp' } & ConnectionOptionsSftpPut | { type: 'shopify' } & ConnectionOptionsShopifyPut | { type: 'snowflake' } & ConnectionOptionsSnowflakePut | { type: 'sql_server' } & ConnectionOptionsSqlServerPut | { type: 'stripe' } & ConnectionOptionsStripePut | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPut | { type: 'tiktok' } & ConnectionOptionsTiktokPut;
 /**
- * Recharge options
+ * Recharge connection options
  * @export
  * @interface ConnectionOptionsRecharge
  */
@@ -7481,7 +7014,7 @@ export interface ConnectionOptionsRecharge {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsRecharge` type.)
  * 
- * Recharge options
+ * Recharge connection options
  * @export
  * @interface ConnectionOptionsRechargeMergePatch
  */
@@ -7502,7 +7035,7 @@ export interface ConnectionOptionsRechargeMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsRecharge` type.)
  * 
- * Recharge options
+ * Recharge connection options
  * @export
  * @interface ConnectionOptionsRechargePost
  */
@@ -7523,7 +7056,7 @@ export interface ConnectionOptionsRechargePost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsRecharge` type.)
  * 
- * Recharge options
+ * Recharge connection options
  * @export
  * @interface ConnectionOptionsRechargePut
  */
@@ -7542,7 +7075,7 @@ export interface ConnectionOptionsRechargePut {
     type: string;
 }
 /**
- * Redshift options
+ * Redshift connection options
  * @export
  * @interface ConnectionOptionsRedshift
  */
@@ -7611,7 +7144,7 @@ export interface ConnectionOptionsRedshift {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift connection options
  * @export
  * @interface ConnectionOptionsRedshiftMergePatch
  */
@@ -7680,7 +7213,7 @@ export interface ConnectionOptionsRedshiftMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift connection options
  * @export
  * @interface ConnectionOptionsRedshiftPost
  */
@@ -7749,7 +7282,7 @@ export interface ConnectionOptionsRedshiftPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift connection options
  * @export
  * @interface ConnectionOptionsRedshiftPut
  */
@@ -7816,7 +7349,7 @@ export interface ConnectionOptionsRedshiftPut {
     user: string;
 }
 /**
- * S3 options
+ * S3 connection options
  * @export
  * @interface ConnectionOptionsS3Csv
  */
@@ -7843,7 +7376,7 @@ export interface ConnectionOptionsS3Csv {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 connection options
  * @export
  * @interface ConnectionOptionsS3CsvMergePatch
  */
@@ -7870,7 +7403,7 @@ export interface ConnectionOptionsS3CsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 connection options
  * @export
  * @interface ConnectionOptionsS3CsvPost
  */
@@ -7897,7 +7430,7 @@ export interface ConnectionOptionsS3CsvPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 connection options
  * @export
  * @interface ConnectionOptionsS3CsvPut
  */
@@ -7922,7 +7455,7 @@ export interface ConnectionOptionsS3CsvPut {
     type: string;
 }
 /**
- * Salesforce options
+ * Salesforce connection options
  * @export
  * @interface ConnectionOptionsSalesforce
  */
@@ -7947,7 +7480,7 @@ export interface ConnectionOptionsSalesforce {
     username?: string;
 }
 /**
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud connection options
  * @export
  * @interface ConnectionOptionsSalesforceMarketingCloud
  */
@@ -7974,7 +7507,7 @@ export interface ConnectionOptionsSalesforceMarketingCloud {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud connection options
  * @export
  * @interface ConnectionOptionsSalesforceMarketingCloudMergePatch
  */
@@ -8001,7 +7534,7 @@ export interface ConnectionOptionsSalesforceMarketingCloudMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud connection options
  * @export
  * @interface ConnectionOptionsSalesforceMarketingCloudPost
  */
@@ -8028,7 +7561,7 @@ export interface ConnectionOptionsSalesforceMarketingCloudPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud connection options
  * @export
  * @interface ConnectionOptionsSalesforceMarketingCloudPut
  */
@@ -8055,7 +7588,7 @@ export interface ConnectionOptionsSalesforceMarketingCloudPut {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce connection options
  * @export
  * @interface ConnectionOptionsSalesforceMergePatch
  */
@@ -8082,7 +7615,7 @@ export interface ConnectionOptionsSalesforceMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce connection options
  * @export
  * @interface ConnectionOptionsSalesforcePost
  */
@@ -8109,7 +7642,7 @@ export interface ConnectionOptionsSalesforcePost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce connection options
  * @export
  * @interface ConnectionOptionsSalesforcePut
  */
@@ -8134,7 +7667,7 @@ export interface ConnectionOptionsSalesforcePut {
     username?: string;
 }
 /**
- * Segment options
+ * Segment connection options
  * @export
  * @interface ConnectionOptionsSegment
  */
@@ -8155,7 +7688,7 @@ export interface ConnectionOptionsSegment {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsSegment` type.)
  * 
- * Segment options
+ * Segment connection options
  * @export
  * @interface ConnectionOptionsSegmentMergePatch
  */
@@ -8176,7 +7709,7 @@ export interface ConnectionOptionsSegmentMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsSegment` type.)
  * 
- * Segment options
+ * Segment connection options
  * @export
  * @interface ConnectionOptionsSegmentPost
  */
@@ -8197,7 +7730,7 @@ export interface ConnectionOptionsSegmentPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsSegment` type.)
  * 
- * Segment options
+ * Segment connection options
  * @export
  * @interface ConnectionOptionsSegmentPut
  */
@@ -8216,7 +7749,7 @@ export interface ConnectionOptionsSegmentPut {
     type: string;
 }
 /**
- * SFTP options
+ * SFTP connection options
  * @export
  * @interface ConnectionOptionsSftp
  */
@@ -8273,7 +7806,7 @@ export interface ConnectionOptionsSftp {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP connection options
  * @export
  * @interface ConnectionOptionsSftpMergePatch
  */
@@ -8330,7 +7863,7 @@ export interface ConnectionOptionsSftpMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP connection options
  * @export
  * @interface ConnectionOptionsSftpPost
  */
@@ -8387,7 +7920,7 @@ export interface ConnectionOptionsSftpPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP connection options
  * @export
  * @interface ConnectionOptionsSftpPut
  */
@@ -8442,7 +7975,7 @@ export interface ConnectionOptionsSftpPut {
     user: string;
 }
 /**
- * Shopify options
+ * Shopify connection options
  * @export
  * @interface ConnectionOptionsShopify
  */
@@ -8469,7 +8002,7 @@ export interface ConnectionOptionsShopify {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsShopify` type.)
  * 
- * Shopify options
+ * Shopify connection options
  * @export
  * @interface ConnectionOptionsShopifyMergePatch
  */
@@ -8496,7 +8029,7 @@ export interface ConnectionOptionsShopifyMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsShopify` type.)
  * 
- * Shopify options
+ * Shopify connection options
  * @export
  * @interface ConnectionOptionsShopifyPost
  */
@@ -8523,7 +8056,7 @@ export interface ConnectionOptionsShopifyPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsShopify` type.)
  * 
- * Shopify options
+ * Shopify connection options
  * @export
  * @interface ConnectionOptionsShopifyPut
  */
@@ -8548,7 +8081,7 @@ export interface ConnectionOptionsShopifyPut {
     username?: string;
 }
 /**
- * Snowflake options
+ * Snowflake connection options
  * @export
  * @interface ConnectionOptionsSnowflake
  */
@@ -8617,7 +8150,7 @@ export interface ConnectionOptionsSnowflake {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake connection options
  * @export
  * @interface ConnectionOptionsSnowflakeMergePatch
  */
@@ -8680,7 +8213,7 @@ export interface ConnectionOptionsSnowflakeMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake connection options
  * @export
  * @interface ConnectionOptionsSnowflakePost
  */
@@ -8743,7 +8276,7 @@ export interface ConnectionOptionsSnowflakePost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake connection options
  * @export
  * @interface ConnectionOptionsSnowflakePut
  */
@@ -8804,7 +8337,7 @@ export interface ConnectionOptionsSnowflakePut {
     warehouse: string;
 }
 /**
- * SQL Server options
+ * SQL Server connection options
  * @export
  * @interface ConnectionOptionsSqlServer
  */
@@ -8867,7 +8400,7 @@ export interface ConnectionOptionsSqlServer {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server connection options
  * @export
  * @interface ConnectionOptionsSqlServerMergePatch
  */
@@ -8930,7 +8463,7 @@ export interface ConnectionOptionsSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server connection options
  * @export
  * @interface ConnectionOptionsSqlServerPost
  */
@@ -8993,7 +8526,7 @@ export interface ConnectionOptionsSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server connection options
  * @export
  * @interface ConnectionOptionsSqlServerPut
  */
@@ -9054,7 +8587,7 @@ export interface ConnectionOptionsSqlServerPut {
     user: string;
 }
 /**
- * Stripe options
+ * Stripe connection options
  * @export
  * @interface ConnectionOptionsStripe
  */
@@ -9081,7 +8614,7 @@ export interface ConnectionOptionsStripe {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsStripe` type.)
  * 
- * Stripe options
+ * Stripe connection options
  * @export
  * @interface ConnectionOptionsStripeMergePatch
  */
@@ -9108,7 +8641,7 @@ export interface ConnectionOptionsStripeMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsStripe` type.)
  * 
- * Stripe options
+ * Stripe connection options
  * @export
  * @interface ConnectionOptionsStripePost
  */
@@ -9135,7 +8668,7 @@ export interface ConnectionOptionsStripePost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsStripe` type.)
  * 
- * Stripe options
+ * Stripe connection options
  * @export
  * @interface ConnectionOptionsStripePut
  */
@@ -9160,7 +8693,7 @@ export interface ConnectionOptionsStripePut {
     username?: string;
 }
 /**
- * The Trade Desk options
+ * The Trade Desk connection options
  * @export
  * @interface ConnectionOptionsTheTradeDesk
  */
@@ -9193,7 +8726,7 @@ export interface ConnectionOptionsTheTradeDesk {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsTheTradeDesk` type.)
  * 
- * The Trade Desk options
+ * The Trade Desk connection options
  * @export
  * @interface ConnectionOptionsTheTradeDeskMergePatch
  */
@@ -9226,7 +8759,7 @@ export interface ConnectionOptionsTheTradeDeskMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsTheTradeDesk` type.)
  * 
- * The Trade Desk options
+ * The Trade Desk connection options
  * @export
  * @interface ConnectionOptionsTheTradeDeskPost
  */
@@ -9259,7 +8792,7 @@ export interface ConnectionOptionsTheTradeDeskPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsTheTradeDesk` type.)
  * 
- * The Trade Desk options
+ * The Trade Desk connection options
  * @export
  * @interface ConnectionOptionsTheTradeDeskPut
  */
@@ -9290,7 +8823,7 @@ export interface ConnectionOptionsTheTradeDeskPut {
     type: string;
 }
 /**
- * TikTok options
+ * TikTok connection options
  * @export
  * @interface ConnectionOptionsTiktok
  */
@@ -9311,7 +8844,7 @@ export interface ConnectionOptionsTiktok {
 /**
  * (Parameters used to PATCH the `ConnectionOptionsTiktok` type.)
  * 
- * TikTok options
+ * TikTok connection options
  * @export
  * @interface ConnectionOptionsTiktokMergePatch
  */
@@ -9332,7 +8865,7 @@ export interface ConnectionOptionsTiktokMergePatch {
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsTiktok` type.)
  * 
- * TikTok options
+ * TikTok connection options
  * @export
  * @interface ConnectionOptionsTiktokPost
  */
@@ -9353,7 +8886,7 @@ export interface ConnectionOptionsTiktokPost {
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsTiktok` type.)
  * 
- * TikTok options
+ * TikTok connection options
  * @export
  * @interface ConnectionOptionsTiktokPut
  */
@@ -10345,7 +9878,7 @@ export interface DatasetMergePatchOutputToAuthority {
  */
 export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'hubspot' } & DatasetOptionsHubspot | { type: 'iterable' } & DatasetOptionsIterable | { type: 'klaviyo' } & DatasetOptionsKlaviyo | { type: 'merge' } & DatasetOptionsMerge | { type: 'motherduck' } & DatasetOptionsMotherduck | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'recharge' } & DatasetOptionsRecharge | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'salesforce' } & DatasetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloud | { type: 'sftp' } & DatasetOptionsSftp | { type: 'shopify' } & DatasetOptionsShopify | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer | { type: 'stripe' } & DatasetOptionsStripe;
 /**
- * Aurora (MySQL) options
+ * Aurora (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraMysql
  */
@@ -10366,7 +9899,7 @@ export interface DatasetOptionsAwsAuroraMysql {
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraMysqlMergePatch
  */
@@ -10387,7 +9920,7 @@ export interface DatasetOptionsAwsAuroraMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraMysqlPost
  */
@@ -10408,7 +9941,7 @@ export interface DatasetOptionsAwsAuroraMysqlPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraMysqlPut
  */
@@ -10427,7 +9960,7 @@ export interface DatasetOptionsAwsAuroraMysqlPut {
     type: string;
 }
 /**
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraPostgres
  */
@@ -10448,7 +9981,7 @@ export interface DatasetOptionsAwsAuroraPostgres {
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraPostgresMergePatch
  */
@@ -10469,7 +10002,7 @@ export interface DatasetOptionsAwsAuroraPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraPostgresPost
  */
@@ -10490,7 +10023,7 @@ export interface DatasetOptionsAwsAuroraPostgresPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres dataset options
  * @export
  * @interface DatasetOptionsAwsAuroraPostgresPut
  */
@@ -10509,7 +10042,7 @@ export interface DatasetOptionsAwsAuroraPostgresPut {
     type: string;
 }
 /**
- * RDS (MySQL) options
+ * RDS (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsMysql
  */
@@ -10530,7 +10063,7 @@ export interface DatasetOptionsAwsRdsMysql {
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsMysqlMergePatch
  */
@@ -10551,7 +10084,7 @@ export interface DatasetOptionsAwsRdsMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsMysqlPost
  */
@@ -10572,7 +10105,7 @@ export interface DatasetOptionsAwsRdsMysqlPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsMysqlPut
  */
@@ -10591,7 +10124,7 @@ export interface DatasetOptionsAwsRdsMysqlPut {
     type: string;
 }
 /**
- * RDS (Postgres) options
+ * RDS (Postgres) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsPostgres
  */
@@ -10612,7 +10145,7 @@ export interface DatasetOptionsAwsRdsPostgres {
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsPostgresMergePatch
  */
@@ -10633,7 +10166,7 @@ export interface DatasetOptionsAwsRdsPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsPostgresPost
  */
@@ -10654,7 +10187,7 @@ export interface DatasetOptionsAwsRdsPostgresPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsPostgresPut
  */
@@ -10673,7 +10206,7 @@ export interface DatasetOptionsAwsRdsPostgresPut {
     type: string;
 }
 /**
- * RDS (SQL Server) options
+ * RDS (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsSqlServer
  */
@@ -10694,7 +10227,7 @@ export interface DatasetOptionsAwsRdsSqlServer {
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsSqlServerMergePatch
  */
@@ -10715,7 +10248,7 @@ export interface DatasetOptionsAwsRdsSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsSqlServerPost
  */
@@ -10736,7 +10269,7 @@ export interface DatasetOptionsAwsRdsSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsAwsRdsSqlServerPut
  */
@@ -10755,7 +10288,7 @@ export interface DatasetOptionsAwsRdsSqlServerPut {
     type: string;
 }
 /**
- * Redshift Serverless options
+ * Redshift Serverless dataset options
  * @export
  * @interface DatasetOptionsAwsRedshiftServerless
  */
@@ -10776,7 +10309,7 @@ export interface DatasetOptionsAwsRedshiftServerless {
 /**
  * (Parameters used to PATCH the `DatasetOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless dataset options
  * @export
  * @interface DatasetOptionsAwsRedshiftServerlessMergePatch
  */
@@ -10797,7 +10330,7 @@ export interface DatasetOptionsAwsRedshiftServerlessMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless dataset options
  * @export
  * @interface DatasetOptionsAwsRedshiftServerlessPost
  */
@@ -10818,7 +10351,7 @@ export interface DatasetOptionsAwsRedshiftServerlessPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless dataset options
  * @export
  * @interface DatasetOptionsAwsRedshiftServerlessPut
  */
@@ -10837,7 +10370,7 @@ export interface DatasetOptionsAwsRedshiftServerlessPut {
     type: string;
 }
 /**
- * Azure SQL options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServer
  */
@@ -10858,7 +10391,7 @@ export interface DatasetOptionsAzureSqlServer {
 /**
  * (Parameters used to PATCH the `DatasetOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServerMergePatch
  */
@@ -10879,7 +10412,7 @@ export interface DatasetOptionsAzureSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServerPost
  */
@@ -10900,7 +10433,7 @@ export interface DatasetOptionsAzureSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL dataset options
  * @export
  * @interface DatasetOptionsAzureSqlServerPut
  */
@@ -10919,7 +10452,7 @@ export interface DatasetOptionsAzureSqlServerPut {
     type: string;
 }
 /**
- * BigQuery options
+ * BigQuery dataset options
  * @export
  * @interface DatasetOptionsBigQuery
  */
@@ -10940,7 +10473,7 @@ export interface DatasetOptionsBigQuery {
 /**
  * (Parameters used to PATCH the `DatasetOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery dataset options
  * @export
  * @interface DatasetOptionsBigQueryMergePatch
  */
@@ -10961,7 +10494,7 @@ export interface DatasetOptionsBigQueryMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery dataset options
  * @export
  * @interface DatasetOptionsBigQueryPost
  */
@@ -10982,7 +10515,7 @@ export interface DatasetOptionsBigQueryPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery dataset options
  * @export
  * @interface DatasetOptionsBigQueryPut
  */
@@ -11001,7 +10534,7 @@ export interface DatasetOptionsBigQueryPut {
     type: string;
 }
 /**
- * Classic Faraday Sources options
+ * Classic Faraday Sources dataset options
  * @export
  * @interface DatasetOptionsClassic
  */
@@ -11016,7 +10549,7 @@ export interface DatasetOptionsClassic {
 /**
  * (Parameters used to PATCH the `DatasetOptionsClassic` type.)
  * 
- * Classic Faraday Sources options
+ * Classic Faraday Sources dataset options
  * @export
  * @interface DatasetOptionsClassicMergePatch
  */
@@ -11031,7 +10564,7 @@ export interface DatasetOptionsClassicMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsClassic` type.)
  * 
- * Classic Faraday Sources options
+ * Classic Faraday Sources dataset options
  * @export
  * @interface DatasetOptionsClassicPost
  */
@@ -11046,7 +10579,7 @@ export interface DatasetOptionsClassicPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsClassic` type.)
  * 
- * Classic Faraday Sources options
+ * Classic Faraday Sources dataset options
  * @export
  * @interface DatasetOptionsClassicPut
  */
@@ -11059,7 +10592,7 @@ export interface DatasetOptionsClassicPut {
     type: string;
 }
 /**
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlMysql
  */
@@ -11080,7 +10613,7 @@ export interface DatasetOptionsGcpCloudSqlMysql {
 /**
  * (Parameters used to PATCH the `DatasetOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlMysqlMergePatch
  */
@@ -11101,7 +10634,7 @@ export interface DatasetOptionsGcpCloudSqlMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlMysqlPost
  */
@@ -11122,7 +10655,7 @@ export interface DatasetOptionsGcpCloudSqlMysqlPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlMysqlPut
  */
@@ -11141,7 +10674,7 @@ export interface DatasetOptionsGcpCloudSqlMysqlPut {
     type: string;
 }
 /**
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlPostgres
  */
@@ -11162,7 +10695,7 @@ export interface DatasetOptionsGcpCloudSqlPostgres {
 /**
  * (Parameters used to PATCH the `DatasetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlPostgresMergePatch
  */
@@ -11183,7 +10716,7 @@ export interface DatasetOptionsGcpCloudSqlPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlPostgresPost
  */
@@ -11204,7 +10737,7 @@ export interface DatasetOptionsGcpCloudSqlPostgresPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlPostgresPut
  */
@@ -11223,7 +10756,7 @@ export interface DatasetOptionsGcpCloudSqlPostgresPut {
     type: string;
 }
 /**
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlSqlServer
  */
@@ -11244,7 +10777,7 @@ export interface DatasetOptionsGcpCloudSqlSqlServer {
 /**
  * (Parameters used to PATCH the `DatasetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlSqlServerMergePatch
  */
@@ -11265,7 +10798,7 @@ export interface DatasetOptionsGcpCloudSqlSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlSqlServerPost
  */
@@ -11286,7 +10819,7 @@ export interface DatasetOptionsGcpCloudSqlSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) dataset options
  * @export
  * @interface DatasetOptionsGcpCloudSqlSqlServerPut
  */
@@ -11305,7 +10838,7 @@ export interface DatasetOptionsGcpCloudSqlSqlServerPut {
     type: string;
 }
 /**
- * GCS options
+ * GCS dataset options
  * @export
  * @interface DatasetOptionsGcpGcsCsv
  */
@@ -11350,7 +10883,7 @@ export interface DatasetOptionsGcpGcsCsv {
 /**
  * (Parameters used to PATCH the `DatasetOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS dataset options
  * @export
  * @interface DatasetOptionsGcpGcsCsvMergePatch
  */
@@ -11395,7 +10928,7 @@ export interface DatasetOptionsGcpGcsCsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS dataset options
  * @export
  * @interface DatasetOptionsGcpGcsCsvPost
  */
@@ -11440,7 +10973,7 @@ export interface DatasetOptionsGcpGcsCsvPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS dataset options
  * @export
  * @interface DatasetOptionsGcpGcsCsvPut
  */
@@ -11483,7 +11016,7 @@ export interface DatasetOptionsGcpGcsCsvPut {
     type: string;
 }
 /**
- * CSV options
+ * CSV dataset options
  * @export
  * @interface DatasetOptionsHostedCsv
  */
@@ -11529,7 +11062,7 @@ export interface DatasetOptionsHostedCsv {
 /**
  * (Parameters used to PATCH the `DatasetOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV dataset options
  * @export
  * @interface DatasetOptionsHostedCsvMergePatch
  */
@@ -11575,7 +11108,7 @@ export interface DatasetOptionsHostedCsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV dataset options
  * @export
  * @interface DatasetOptionsHostedCsvPost
  */
@@ -11621,7 +11154,7 @@ export interface DatasetOptionsHostedCsvPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV dataset options
  * @export
  * @interface DatasetOptionsHostedCsvPut
  */
@@ -11665,7 +11198,7 @@ export interface DatasetOptionsHostedCsvPut {
     upload_directory: string;
 }
 /**
- * HubSpot options
+ * HubSpot dataset options
  * @export
  * @interface DatasetOptionsHubspot
  */
@@ -11680,7 +11213,7 @@ export interface DatasetOptionsHubspot {
 /**
  * (Parameters used to PATCH the `DatasetOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot dataset options
  * @export
  * @interface DatasetOptionsHubspotMergePatch
  */
@@ -11695,7 +11228,7 @@ export interface DatasetOptionsHubspotMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot dataset options
  * @export
  * @interface DatasetOptionsHubspotPost
  */
@@ -11710,7 +11243,7 @@ export interface DatasetOptionsHubspotPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot dataset options
  * @export
  * @interface DatasetOptionsHubspotPut
  */
@@ -11723,7 +11256,7 @@ export interface DatasetOptionsHubspotPut {
     type: string;
 }
 /**
- * Iterable options
+ * Iterable dataset options
  * @export
  * @interface DatasetOptionsIterable
  */
@@ -11738,7 +11271,7 @@ export interface DatasetOptionsIterable {
 /**
  * (Parameters used to PATCH the `DatasetOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable dataset options
  * @export
  * @interface DatasetOptionsIterableMergePatch
  */
@@ -11753,7 +11286,7 @@ export interface DatasetOptionsIterableMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable dataset options
  * @export
  * @interface DatasetOptionsIterablePost
  */
@@ -11768,7 +11301,7 @@ export interface DatasetOptionsIterablePost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable dataset options
  * @export
  * @interface DatasetOptionsIterablePut
  */
@@ -11781,7 +11314,7 @@ export interface DatasetOptionsIterablePut {
     type: string;
 }
 /**
- * Klaviyo options
+ * Klaviyo dataset options
  * @export
  * @interface DatasetOptionsKlaviyo
  */
@@ -11796,7 +11329,7 @@ export interface DatasetOptionsKlaviyo {
 /**
  * (Parameters used to PATCH the `DatasetOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo dataset options
  * @export
  * @interface DatasetOptionsKlaviyoMergePatch
  */
@@ -11811,7 +11344,7 @@ export interface DatasetOptionsKlaviyoMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo dataset options
  * @export
  * @interface DatasetOptionsKlaviyoPost
  */
@@ -11826,7 +11359,7 @@ export interface DatasetOptionsKlaviyoPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo dataset options
  * @export
  * @interface DatasetOptionsKlaviyoPut
  */
@@ -11839,7 +11372,7 @@ export interface DatasetOptionsKlaviyoPut {
     type: string;
 }
 /**
- * Merge Dataset options
+ * Merge Dataset dataset options
  * @export
  * @interface DatasetOptionsMerge
  */
@@ -11885,7 +11418,7 @@ export interface DatasetOptionsMergeMerge {
 /**
  * (Parameters used to PATCH the `DatasetOptionsMerge` type.)
  * 
- * Merge Dataset options
+ * Merge Dataset dataset options
  * @export
  * @interface DatasetOptionsMergeMergePatch
  */
@@ -11918,7 +11451,7 @@ export type DatasetOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOpt
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsMerge` type.)
  * 
- * Merge Dataset options
+ * Merge Dataset dataset options
  * @export
  * @interface DatasetOptionsMergePost
  */
@@ -11945,7 +11478,7 @@ export interface DatasetOptionsMergePost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsMerge` type.)
  * 
- * Merge Dataset options
+ * Merge Dataset dataset options
  * @export
  * @interface DatasetOptionsMergePut
  */
@@ -11970,7 +11503,7 @@ export interface DatasetOptionsMergePut {
     type: string;
 }
 /**
- * MotherDuck options
+ * MotherDuck dataset options
  * @export
  * @interface DatasetOptionsMotherduck
  */
@@ -11997,7 +11530,7 @@ export interface DatasetOptionsMotherduck {
 /**
  * (Parameters used to PATCH the `DatasetOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck dataset options
  * @export
  * @interface DatasetOptionsMotherduckMergePatch
  */
@@ -12024,7 +11557,7 @@ export interface DatasetOptionsMotherduckMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck dataset options
  * @export
  * @interface DatasetOptionsMotherduckPost
  */
@@ -12051,7 +11584,7 @@ export interface DatasetOptionsMotherduckPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck dataset options
  * @export
  * @interface DatasetOptionsMotherduckPut
  */
@@ -12076,7 +11609,7 @@ export interface DatasetOptionsMotherduckPut {
     type: string;
 }
 /**
- * MySQL options
+ * MySQL dataset options
  * @export
  * @interface DatasetOptionsMysql
  */
@@ -12097,7 +11630,7 @@ export interface DatasetOptionsMysql {
 /**
  * (Parameters used to PATCH the `DatasetOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL dataset options
  * @export
  * @interface DatasetOptionsMysqlMergePatch
  */
@@ -12118,7 +11651,7 @@ export interface DatasetOptionsMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL dataset options
  * @export
  * @interface DatasetOptionsMysqlPost
  */
@@ -12139,7 +11672,7 @@ export interface DatasetOptionsMysqlPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL dataset options
  * @export
  * @interface DatasetOptionsMysqlPut
  */
@@ -12164,7 +11697,7 @@ export interface DatasetOptionsMysqlPut {
  */
 export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'merge' } & DatasetOptionsMergePost | { type: 'motherduck' } & DatasetOptionsMotherduckPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'recharge' } & DatasetOptionsRechargePost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
 /**
- * Postgres options
+ * Postgres dataset options
  * @export
  * @interface DatasetOptionsPostgres
  */
@@ -12185,7 +11718,7 @@ export interface DatasetOptionsPostgres {
 /**
  * (Parameters used to PATCH the `DatasetOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres dataset options
  * @export
  * @interface DatasetOptionsPostgresMergePatch
  */
@@ -12206,7 +11739,7 @@ export interface DatasetOptionsPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres dataset options
  * @export
  * @interface DatasetOptionsPostgresPost
  */
@@ -12227,7 +11760,7 @@ export interface DatasetOptionsPostgresPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres dataset options
  * @export
  * @interface DatasetOptionsPostgresPut
  */
@@ -12252,7 +11785,7 @@ export interface DatasetOptionsPostgresPut {
  */
 export type DatasetOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'hubspot' } & DatasetOptionsHubspotPut | { type: 'iterable' } & DatasetOptionsIterablePut | { type: 'klaviyo' } & DatasetOptionsKlaviyoPut | { type: 'merge' } & DatasetOptionsMergePut | { type: 'motherduck' } & DatasetOptionsMotherduckPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'recharge' } & DatasetOptionsRechargePut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'salesforce' } & DatasetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'shopify' } & DatasetOptionsShopifyPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut | { type: 'stripe' } & DatasetOptionsStripePut;
 /**
- * Recharge options
+ * Recharge dataset options
  * @export
  * @interface DatasetOptionsRecharge
  */
@@ -12267,7 +11800,7 @@ export interface DatasetOptionsRecharge {
 /**
  * (Parameters used to PATCH the `DatasetOptionsRecharge` type.)
  * 
- * Recharge options
+ * Recharge dataset options
  * @export
  * @interface DatasetOptionsRechargeMergePatch
  */
@@ -12282,7 +11815,7 @@ export interface DatasetOptionsRechargeMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsRecharge` type.)
  * 
- * Recharge options
+ * Recharge dataset options
  * @export
  * @interface DatasetOptionsRechargePost
  */
@@ -12297,7 +11830,7 @@ export interface DatasetOptionsRechargePost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsRecharge` type.)
  * 
- * Recharge options
+ * Recharge dataset options
  * @export
  * @interface DatasetOptionsRechargePut
  */
@@ -12310,7 +11843,7 @@ export interface DatasetOptionsRechargePut {
     type: string;
 }
 /**
- * Redshift options
+ * Redshift dataset options
  * @export
  * @interface DatasetOptionsRedshift
  */
@@ -12331,7 +11864,7 @@ export interface DatasetOptionsRedshift {
 /**
  * (Parameters used to PATCH the `DatasetOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift dataset options
  * @export
  * @interface DatasetOptionsRedshiftMergePatch
  */
@@ -12352,7 +11885,7 @@ export interface DatasetOptionsRedshiftMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift dataset options
  * @export
  * @interface DatasetOptionsRedshiftPost
  */
@@ -12373,7 +11906,7 @@ export interface DatasetOptionsRedshiftPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift dataset options
  * @export
  * @interface DatasetOptionsRedshiftPut
  */
@@ -12392,7 +11925,7 @@ export interface DatasetOptionsRedshiftPut {
     type: string;
 }
 /**
- * S3 options
+ * S3 dataset options
  * @export
  * @interface DatasetOptionsS3Csv
  */
@@ -12437,7 +11970,7 @@ export interface DatasetOptionsS3Csv {
 /**
  * (Parameters used to PATCH the `DatasetOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 dataset options
  * @export
  * @interface DatasetOptionsS3CsvMergePatch
  */
@@ -12482,7 +12015,7 @@ export interface DatasetOptionsS3CsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 dataset options
  * @export
  * @interface DatasetOptionsS3CsvPost
  */
@@ -12527,7 +12060,7 @@ export interface DatasetOptionsS3CsvPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 dataset options
  * @export
  * @interface DatasetOptionsS3CsvPut
  */
@@ -12570,7 +12103,7 @@ export interface DatasetOptionsS3CsvPut {
     type: string;
 }
 /**
- * Salesforce options
+ * Salesforce dataset options
  * @export
  * @interface DatasetOptionsSalesforce
  */
@@ -12583,7 +12116,7 @@ export interface DatasetOptionsSalesforce {
     type: string;
 }
 /**
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud dataset options
  * @export
  * @interface DatasetOptionsSalesforceMarketingCloud
  */
@@ -12604,7 +12137,7 @@ export interface DatasetOptionsSalesforceMarketingCloud {
 /**
  * (Parameters used to PATCH the `DatasetOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud dataset options
  * @export
  * @interface DatasetOptionsSalesforceMarketingCloudMergePatch
  */
@@ -12625,7 +12158,7 @@ export interface DatasetOptionsSalesforceMarketingCloudMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud dataset options
  * @export
  * @interface DatasetOptionsSalesforceMarketingCloudPost
  */
@@ -12646,7 +12179,7 @@ export interface DatasetOptionsSalesforceMarketingCloudPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud dataset options
  * @export
  * @interface DatasetOptionsSalesforceMarketingCloudPut
  */
@@ -12667,7 +12200,7 @@ export interface DatasetOptionsSalesforceMarketingCloudPut {
 /**
  * (Parameters used to PATCH the `DatasetOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce dataset options
  * @export
  * @interface DatasetOptionsSalesforceMergePatch
  */
@@ -12682,7 +12215,7 @@ export interface DatasetOptionsSalesforceMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce dataset options
  * @export
  * @interface DatasetOptionsSalesforcePost
  */
@@ -12697,7 +12230,7 @@ export interface DatasetOptionsSalesforcePost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce dataset options
  * @export
  * @interface DatasetOptionsSalesforcePut
  */
@@ -12710,7 +12243,7 @@ export interface DatasetOptionsSalesforcePut {
     type: string;
 }
 /**
- * SFTP options
+ * SFTP dataset options
  * @export
  * @interface DatasetOptionsSftp
  */
@@ -12755,7 +12288,7 @@ export interface DatasetOptionsSftp {
 /**
  * (Parameters used to PATCH the `DatasetOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP dataset options
  * @export
  * @interface DatasetOptionsSftpMergePatch
  */
@@ -12800,7 +12333,7 @@ export interface DatasetOptionsSftpMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP dataset options
  * @export
  * @interface DatasetOptionsSftpPost
  */
@@ -12845,7 +12378,7 @@ export interface DatasetOptionsSftpPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP dataset options
  * @export
  * @interface DatasetOptionsSftpPut
  */
@@ -12888,7 +12421,7 @@ export interface DatasetOptionsSftpPut {
     type: string;
 }
 /**
- * Shopify options
+ * Shopify dataset options
  * @export
  * @interface DatasetOptionsShopify
  */
@@ -12903,7 +12436,7 @@ export interface DatasetOptionsShopify {
 /**
  * (Parameters used to PATCH the `DatasetOptionsShopify` type.)
  * 
- * Shopify options
+ * Shopify dataset options
  * @export
  * @interface DatasetOptionsShopifyMergePatch
  */
@@ -12918,7 +12451,7 @@ export interface DatasetOptionsShopifyMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsShopify` type.)
  * 
- * Shopify options
+ * Shopify dataset options
  * @export
  * @interface DatasetOptionsShopifyPost
  */
@@ -12933,7 +12466,7 @@ export interface DatasetOptionsShopifyPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsShopify` type.)
  * 
- * Shopify options
+ * Shopify dataset options
  * @export
  * @interface DatasetOptionsShopifyPut
  */
@@ -12946,7 +12479,7 @@ export interface DatasetOptionsShopifyPut {
     type: string;
 }
 /**
- * Snowflake options
+ * Snowflake dataset options
  * @export
  * @interface DatasetOptionsSnowflake
  */
@@ -12979,7 +12512,7 @@ export interface DatasetOptionsSnowflake {
 /**
  * (Parameters used to PATCH the `DatasetOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake dataset options
  * @export
  * @interface DatasetOptionsSnowflakeMergePatch
  */
@@ -13012,7 +12545,7 @@ export interface DatasetOptionsSnowflakeMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake dataset options
  * @export
  * @interface DatasetOptionsSnowflakePost
  */
@@ -13045,7 +12578,7 @@ export interface DatasetOptionsSnowflakePost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake dataset options
  * @export
  * @interface DatasetOptionsSnowflakePut
  */
@@ -13076,7 +12609,7 @@ export interface DatasetOptionsSnowflakePut {
     type: string;
 }
 /**
- * SQL Server options
+ * SQL Server dataset options
  * @export
  * @interface DatasetOptionsSqlServer
  */
@@ -13097,7 +12630,7 @@ export interface DatasetOptionsSqlServer {
 /**
  * (Parameters used to PATCH the `DatasetOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server dataset options
  * @export
  * @interface DatasetOptionsSqlServerMergePatch
  */
@@ -13118,7 +12651,7 @@ export interface DatasetOptionsSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server dataset options
  * @export
  * @interface DatasetOptionsSqlServerPost
  */
@@ -13139,7 +12672,7 @@ export interface DatasetOptionsSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server dataset options
  * @export
  * @interface DatasetOptionsSqlServerPut
  */
@@ -13158,7 +12691,7 @@ export interface DatasetOptionsSqlServerPut {
     type: string;
 }
 /**
- * Stripe options
+ * Stripe dataset options
  * @export
  * @interface DatasetOptionsStripe
  */
@@ -13173,7 +12706,7 @@ export interface DatasetOptionsStripe {
 /**
  * (Parameters used to PATCH the `DatasetOptionsStripe` type.)
  * 
- * Stripe options
+ * Stripe dataset options
  * @export
  * @interface DatasetOptionsStripeMergePatch
  */
@@ -13188,7 +12721,7 @@ export interface DatasetOptionsStripeMergePatch {
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsStripe` type.)
  * 
- * Stripe options
+ * Stripe dataset options
  * @export
  * @interface DatasetOptionsStripePost
  */
@@ -13203,7 +12736,7 @@ export interface DatasetOptionsStripePost {
 /**
  * (Parameters used to PUT a value of the `DatasetOptionsStripe` type.)
  * 
- * Stripe options
+ * Stripe dataset options
  * @export
  * @interface DatasetOptionsStripePut
  */
@@ -13778,6 +13311,1778 @@ export interface DecodeConfig {
     sql?: string;
 }
 /**
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ * 
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface Enrichment
+ */
+export interface Enrichment {
+    /**
+     * 
+     * @type {EnrichmentAggregation}
+     * @memberof Enrichment
+     */
+    aggregation: EnrichmentAggregation;
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    archived_at?: string;
+    /**
+     * When this resource was created.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {EnrichmentDestination}
+     * @memberof Enrichment
+     */
+    destination: EnrichmentDestination;
+    /**
+     * A unique ID for this resource.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    id: string;
+    /**
+     * 
+     * @type {EnrichmentIncrementality}
+     * @memberof Enrichment
+     */
+    incrementality: EnrichmentIncrementality;
+    /**
+     * The last time this resource's input was read.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    last_read_input_at?: string;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    last_updated_config_at?: string;
+    /**
+     * The last time this resource successfully built.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    last_updated_output_at?: string;
+    /**
+     * 
+     * @type {EnrichmentJob}
+     * @memberof Enrichment
+     */
+    latest_job?: EnrichmentJob;
+    /**
+     * The most rows this run may emit, applied after sorting. Under `new_rows`, this caps
+     * the newly added rows rather than the whole population.
+     * @type {number}
+     * @memberof Enrichment
+     */
+    limit?: number;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    name: string;
+    /**
+     * When this enrichment will next run without being asked. This is absent when there is
+     * no schedule, when the schedule is paused, and once the schedule has passed its end.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    next_run_at?: string;
+    /**
+     * 
+     * @type {EnrichmentPopulation}
+     * @memberof Enrichment
+     */
+    population: EnrichmentPopulation;
+    /**
+     * 
+     * @type {EnrichmentPreview}
+     * @memberof Enrichment
+     */
+    preview: EnrichmentPreview;
+    /**
+     * The Project whose payload defines the output columns.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    project_id: string;
+    /**
+     * The type of this resource.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    resource_type: string;
+    /**
+     * 
+     * @type {EnrichmentSchedule}
+     * @memberof Enrichment
+     */
+    schedule?: EnrichmentSchedule;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     * 
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof Enrichment
+     */
+    select?: Array<EnrichmentColumnCondition>;
+    /**
+     * How to order the output rows. Ordering is required so that a run is repeatable, and
+     * so that a limit takes a meaningful slice. Include a column with unique values.
+     * @type {Array<EnrichmentSort>}
+     * @memberof Enrichment
+     */
+    sorts: Array<EnrichmentSort>;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof Enrichment
+     */
+    status: ResourceStatus;
+    /**
+     * When the status of this resource was last updated.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    status_changed_at?: string;
+    /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    status_error?: string;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     * 
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     * 
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof Enrichment
+     */
+    suppress_unchanged?: Set<string>;
+    /**
+     * When this resource was last updated.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    updated_at: string;
+}
+/**
+ * How to collapse people into output rows.
+ * @export
+ * @interface EnrichmentAggregation
+ */
+export interface EnrichmentAggregation {
+    /**
+     * The name of one output column.
+     * 
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof EnrichmentAggregation
+     */
+    column?: string;
+    /**
+     * What each output row stands for. `person` emits one row per person and does no
+     * grouping. `column` emits one row per distinct value of one output column, such as
+     * your own customer id. Every other level groups people geographically.
+     * @type {string}
+     * @memberof EnrichmentAggregation
+     */
+    level: EnrichmentAggregationLevelEnum;
+    /**
+     * How to rank the people inside one group. Every `first` and `last` column resolves
+     * against this one ordering, so they all draw from the same representative person.
+     * 
+     * The level's own identifier is appended ascending as a final tiebreak, so the choice
+     * is deterministic.
+     * @type {Array<EnrichmentAggregationOrder>}
+     * @memberof EnrichmentAggregation
+     */
+    order?: Array<EnrichmentAggregationOrder>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentAggregationLevelEnum {
+    Person = 'person',
+    Address = 'address',
+    CarrierRoute = 'carrier_route',
+    CensusBlockGroup = 'census_block_group',
+    CensusTract = 'census_tract',
+    County = 'county',
+    Dma = 'dma',
+    Metro = 'metro',
+    Postcode = 'postcode',
+    State = 'state',
+    Column = 'column'
+}
+/**
+ * One ranking rule over the people inside a group.
+ * @export
+ * @interface EnrichmentAggregationOrder
+ */
+export interface EnrichmentAggregationOrder {
+    /**
+     * A component of that element to rank by. The element must be in the Project's payload,
+     * but the component need not be emitted as a column, so you can rank by household
+     * income without adding an income column.
+     * @type {string}
+     * @memberof EnrichmentAggregationOrder
+     */
+    component: string;
+    /**
+     * Which direction to rank in.
+     * @type {string}
+     * @memberof EnrichmentAggregationOrder
+     */
+    direction: EnrichmentAggregationOrderDirectionEnum;
+    /**
+     * Your own name for one element of a payload. It labels the source, not an output column,
+     * and it appears in `Project.preview.element_status` and in
+     * `Enrichment.aggregation.order`.
+     * @type {string}
+     * @memberof EnrichmentAggregationOrder
+     */
+    element: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentAggregationOrderDirectionEnum {
+    Asc = 'asc',
+    Desc = 'desc'
+}
+/**
+ * A table in BigQuery.
+ * @export
+ * @interface EnrichmentBigQueryDestination
+ */
+export interface EnrichmentBigQueryDestination {
+    /**
+     * Partition the table by day. Omit it to leave the table unpartitioned.
+     * @type {boolean}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    day_partitioned?: boolean;
+    /**
+     * The table to write.
+     * @type {string}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    table_name: string;
+    /**
+     * Marks this destination as BigQuery.
+     * @type {string}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    type: string;
+    /**
+     * 
+     * @type {EnrichmentWriteMode}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    write: EnrichmentWriteMode;
+}
+/**
+ * @type EnrichmentCadence
+ * How often a schedule fires.
+ * @export
+ */
+export type EnrichmentCadence = { frequency: 'daily' } & EnrichmentCadenceDaily | { frequency: 'hourly' } & EnrichmentCadenceHourly | { frequency: 'monthly' } & EnrichmentCadenceMonthly | { frequency: 'weekly' } & EnrichmentCadenceWeekly;
+/**
+ * Fire once a day.
+ * @export
+ * @interface EnrichmentCadenceDaily
+ */
+export interface EnrichmentCadenceDaily {
+    /**
+     * The time of day to fire at, as `HH:MM`.
+     * @type {string}
+     * @memberof EnrichmentCadenceDaily
+     */
+    at: string;
+    /**
+     * Marks this cadence as daily.
+     * @type {string}
+     * @memberof EnrichmentCadenceDaily
+     */
+    frequency: string;
+}
+/**
+ * Fire once an hour.
+ * @export
+ * @interface EnrichmentCadenceHourly
+ */
+export interface EnrichmentCadenceHourly {
+    /**
+     * Marks this cadence as hourly.
+     * @type {string}
+     * @memberof EnrichmentCadenceHourly
+     */
+    frequency: string;
+    /**
+     * The minute past the hour to fire at.
+     * @type {number}
+     * @memberof EnrichmentCadenceHourly
+     */
+    minute: number;
+}
+/**
+ * Fire once a month.
+ * @export
+ * @interface EnrichmentCadenceMonthly
+ */
+export interface EnrichmentCadenceMonthly {
+    /**
+     * The time of day to fire at, as `HH:MM`.
+     * @type {string}
+     * @memberof EnrichmentCadenceMonthly
+     */
+    at: string;
+    /**
+     * The day of the month to fire on. The range stops at 28 so that every month has the
+     * day.
+     * @type {number}
+     * @memberof EnrichmentCadenceMonthly
+     */
+    day_of_month: number;
+    /**
+     * Marks this cadence as monthly.
+     * @type {string}
+     * @memberof EnrichmentCadenceMonthly
+     */
+    frequency: string;
+}
+/**
+ * Fire once a week.
+ * @export
+ * @interface EnrichmentCadenceWeekly
+ */
+export interface EnrichmentCadenceWeekly {
+    /**
+     * The time of day to fire at, as `HH:MM`.
+     * @type {string}
+     * @memberof EnrichmentCadenceWeekly
+     */
+    at: string;
+    /**
+     * The day of the week to fire on.
+     * @type {string}
+     * @memberof EnrichmentCadenceWeekly
+     */
+    day_of_week: EnrichmentCadenceWeeklyDayOfWeekEnum;
+    /**
+     * Marks this cadence as weekly.
+     * @type {string}
+     * @memberof EnrichmentCadenceWeekly
+     */
+    frequency: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentCadenceWeeklyDayOfWeekEnum {
+    Monday = 'monday',
+    Tuesday = 'tuesday',
+    Wednesday = 'wednesday',
+    Thursday = 'thursday',
+    Friday = 'friday',
+    Saturday = 'saturday',
+    Sunday = 'sunday'
+}
+/**
+ * One test on an output column's value. Conditions are AND-ed together.
+ * @export
+ * @interface EnrichmentColumnCondition
+ */
+export interface EnrichmentColumnCondition {
+    /**
+     * 
+     * @type {EnrichmentColumnValue}
+     * @memberof EnrichmentColumnCondition
+     */
+    _eq?: EnrichmentColumnValue;
+    /**
+     * Greater than.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _gt?: number;
+    /**
+     * Greater than or equal to.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _gte?: number;
+    /**
+     * One of these values.
+     * @type {Array<EnrichmentColumnValue>}
+     * @memberof EnrichmentColumnCondition
+     */
+    _in?: Array<EnrichmentColumnValue>;
+    /**
+     * Less than.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _lt?: number;
+    /**
+     * Less than or equal to.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _lte?: number;
+    /**
+     * Matches this RE2 regular expression.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    _matches?: string;
+    /**
+     * 
+     * @type {EnrichmentColumnValue}
+     * @memberof EnrichmentColumnCondition
+     */
+    _neq?: EnrichmentColumnValue;
+    /**
+     * None of these values.
+     * @type {Array<EnrichmentColumnValue>}
+     * @memberof EnrichmentColumnCondition
+     */
+    _nin?: Array<EnrichmentColumnValue>;
+    /**
+     * Does not match this RE2 regular expression.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    _nmatches?: string;
+    /**
+     * Value is not null.
+     * @type {boolean}
+     * @memberof EnrichmentColumnCondition
+     */
+    _nnull?: boolean;
+    /**
+     * Value is null. Nulls are otherwise excluded.
+     * @type {boolean}
+     * @memberof EnrichmentColumnCondition
+     */
+    _null?: boolean;
+    /**
+     * Whether to apply this before or after grouping. Before grouping, the test drops
+     * individual people; after grouping, it drops whole group rows. This is required
+     * whenever the enrichment groups, and ignored when it groups by person.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    apply?: EnrichmentColumnConditionApplyEnum;
+    /**
+     * The name of one output column.
+     * 
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    header: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentColumnConditionApplyEnum {
+    BeforeAggregation = 'before_aggregation',
+    AfterAggregation = 'after_aggregation'
+}
+/**
+ * @type EnrichmentColumnValue
+ * One output column value to compare against.
+ * @export
+ */
+export type EnrichmentColumnValue = boolean | number | string;
+/**
+ * A table in a SQL database.
+ * @export
+ * @interface EnrichmentDatabaseDestination
+ */
+export interface EnrichmentDatabaseDestination {
+    /**
+     * The schema holding the table. Omit it to use the connection's default schema.
+     * @type {string}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    schema?: string;
+    /**
+     * The table to write.
+     * @type {string}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    table_name: string;
+    /**
+     * Which database to write to.
+     * @type {string}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    type: EnrichmentDatabaseDestinationTypeEnum;
+    /**
+     * 
+     * @type {EnrichmentWriteMode}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    write: EnrichmentWriteMode;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentDatabaseDestinationTypeEnum {
+    Postgres = 'postgres',
+    Redshift = 'redshift',
+    Mysql = 'mysql',
+    SqlServer = 'sql_server',
+    Motherduck = 'motherduck'
+}
+/**
+ * Where the output goes.
+ * @export
+ * @interface EnrichmentDestination
+ */
+export interface EnrichmentDestination {
+    /**
+     * The connection holding the credentials for this destination. Omit it for a
+     * Faraday-hosted download.
+     * @type {string}
+     * @memberof EnrichmentDestination
+     */
+    connection_id?: string;
+    /**
+     * 
+     * @type {EnrichmentDestinationOptions}
+     * @memberof EnrichmentDestination
+     */
+    options: EnrichmentDestinationOptions;
+    /**
+     * A stable link to the most recent successful run's output, for a Faraday-hosted
+     * download. The link does not change between runs. Each individual run also has its own
+     * permanent link on its `EnrichmentJob`.
+     * @type {string}
+     * @memberof EnrichmentDestination
+     */
+    readonly output_url?: string;
+}
+/**
+ * @type EnrichmentDestinationOptions
+ * The destination, and the settings that belong to it.
+ * @export
+ */
+export type EnrichmentDestinationOptions = { type: 'bigquery' } & EnrichmentBigQueryDestination | { type: 'gcp_gcs_csv' } & EnrichmentGcsCsvDestination | { type: 'hosted_csv' } & EnrichmentHostedCsvDestination | { type: 'motherduck' } & EnrichmentDatabaseDestination | { type: 'mysql' } & EnrichmentDatabaseDestination | { type: 'postgres' } & EnrichmentDatabaseDestination | { type: 'redshift' } & EnrichmentDatabaseDestination | { type: 's3_csv' } & EnrichmentS3CsvDestination | { type: 'sftp' } & EnrichmentSftpDestination | { type: 'snowflake' } & EnrichmentSnowflakeDestination | { type: 'sql_server' } & EnrichmentDatabaseDestination;
+/**
+ * A CSV file written to Google Cloud Storage.
+ * @export
+ * @interface EnrichmentGcsCsvDestination
+ */
+export interface EnrichmentGcsCsvDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    delimiter?: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    gzip?: boolean;
+    /**
+     * The exact object key to write. A later run writes the same key and replaces the
+     * object.
+     * @type {string}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    object_key: string;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as Google Cloud Storage.
+     * @type {string}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    type: string;
+}
+/**
+ * A CSV file you download from Faraday.
+ * @export
+ * @interface EnrichmentHostedCsvDestination
+ */
+export interface EnrichmentHostedCsvDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    delimiter?: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    gzip?: boolean;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as a Faraday-hosted CSV.
+     * @type {string}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    type: string;
+}
+/**
+ * @type EnrichmentIncrementality
+ * Which rows a run emits. Every enrichment states this, so no run silently redelivers a
+ * whole population.
+ * @export
+ */
+export type EnrichmentIncrementality = { strategy: 'changed' } & EnrichmentIncrementalityChanged | { strategy: 'full' } & EnrichmentIncrementalityFull | { strategy: 'new_rows' } & EnrichmentIncrementalityNewRows;
+/**
+ * Recompute every row, then emit only the rows whose watched values moved.
+ * @export
+ * @interface EnrichmentIncrementalityChanged
+ */
+export interface EnrichmentIncrementalityChanged {
+    /**
+     * Marks this as a changed-rows run.
+     * @type {string}
+     * @memberof EnrichmentIncrementalityChanged
+     */
+    strategy: string;
+    /**
+     * The output columns whose movement makes a row worth emitting. Omit it to watch every
+     * column.
+     * @type {Set<string>}
+     * @memberof EnrichmentIncrementalityChanged
+     */
+    watch?: Set<string>;
+}
+/**
+ * Recompute and emit every row. Geographic grouping requires this, because a group row has
+ * no meaning unless every member of the group is recomputed.
+ * @export
+ * @interface EnrichmentIncrementalityFull
+ */
+export interface EnrichmentIncrementalityFull {
+    /**
+     * Marks this as a full run.
+     * @type {string}
+     * @memberof EnrichmentIncrementalityFull
+     */
+    strategy: string;
+}
+/**
+ * Emit only the rows added to the population since the last successful run.
+ * @export
+ * @interface EnrichmentIncrementalityNewRows
+ */
+export interface EnrichmentIncrementalityNewRows {
+    /**
+     * Marks this as a new-rows run.
+     * @type {string}
+     * @memberof EnrichmentIncrementalityNewRows
+     */
+    strategy: string;
+}
+/**
+ * One attempted run of an enrichment, including runs that were skipped or failed. A run
+ * record never changes after the run ends.
+ * @export
+ * @interface EnrichmentJob
+ */
+export interface EnrichmentJob {
+    /**
+     * Whether the caller acknowledged that the usage ceiling was larger than the remaining
+     * quota when asking for this run.
+     * @type {boolean}
+     * @memberof EnrichmentJob
+     */
+    acknowledged_usage_ceiling?: boolean;
+    /**
+     * 
+     * @type {EnrichmentPost}
+     * @memberof EnrichmentJob
+     */
+    config?: EnrichmentPost;
+    /**
+     * The correction epoch this run reads at. Together with the run instant and the table
+     * generation it pins exactly which data the run saw.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    correction_epoch?: string;
+    /**
+     * 
+     * @type {EnrichmentJobCounts}
+     * @memberof EnrichmentJob
+     */
+    counts?: EnrichmentJobCounts;
+    /**
+     * When this run record was created.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    created_at?: string;
+    /**
+     * When this run gives up. A run that reaches its deadline fails; it does not cause later
+     * scheduled runs to be skipped.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    deadline_at: string;
+    /**
+     * The enrichment that was run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    enrichment_id: string;
+    /**
+     * When this run ended.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    finished_at?: string;
+    /**
+     * A unique ID for this run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    id: string;
+    /**
+     * What asked for this run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    invocation: EnrichmentJobInvocationEnum;
+    /**
+     * A permanent link to this run's output, for a Faraday-hosted download. It always
+     * returns the output of this run, unlike the enrichment's own link, which follows the
+     * latest successful run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    output_url?: string;
+    /**
+     * The exact columns this run produced, in output order, as they resolved when the run
+     * started.
+     * @type {Array<ProjectResolvedColumn>}
+     * @memberof EnrichmentJob
+     */
+    resolved_schema?: Array<ProjectResolvedColumn>;
+    /**
+     * The instant this run reads everything as of. Every source read in the run uses it, so
+     * that the run is repeatable.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    run_instant?: string;
+    /**
+     * Why this run was skipped. Present only when the status is `skipped`.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    skip_note?: string;
+    /**
+     * When this run started.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    started_at?: string;
+    /**
+     * How this run ended. `skipped` means another run for the same enrichment was still
+     * going, so this one stood down rather than piling on.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    status: EnrichmentJobStatusEnum;
+    /**
+     * Why this run failed. Present only when the status is `failed`.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    status_error?: string;
+    /**
+     * The generation of the underlying data this run read.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    table_generation?: string;
+    /**
+     * The usage this run created, by billable element category. An element counts once for
+     * an emitted row where at least one of its declared columns is non-null after collapse,
+     * imputation, grouping, incrementality, and suppression. Null values create no usage.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentJob
+     */
+    usage?: { [key: string]: number; };
+    /**
+     * The usage ceiling shown to the caller when this run was requested.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentJob
+     */
+    usage_ceiling?: { [key: string]: number; };
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentJobInvocationEnum {
+    Manual = 'manual',
+    Schedule = 'schedule'
+}/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentJobStatusEnum {
+    Pending = 'pending',
+    Running = 'running',
+    Succeeded = 'succeeded',
+    Failed = 'failed',
+    Skipped = 'skipped'
+}
+/**
+ * How each row's read instant was decided, for the columns that read as of an instant. This
+ * separates rows answered on their own basis from rows that fell back.
+ * @export
+ * @interface EnrichmentJobAsOfResolutions
+ */
+export interface EnrichmentJobAsOfResolutions {
+    /**
+     * Rows read as of the person's own entrance to the cohort.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    cohort_entrance?: number;
+    /**
+     * Rows whose own instant was unavailable and whose frame stated no fallback, so the
+     * current value was read.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    current?: number;
+    /**
+     * Rows read as of the person's own instant from the dataset.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    dataset_timestamp?: number;
+    /**
+     * Rows whose own instant was absent, so the frame's fallback instant was used.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    fallback_timestamp?: number;
+    /**
+     * Rows read as of the one instant stated on the element.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    fixed_timestamp?: number;
+    /**
+     * Rows whose own instant could not be parsed, so the frame's fallback instant was used.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    unparseable_fallback_timestamp?: number;
+}
+/**
+ * How many rows and values this run handled at each stage.
+ * @export
+ * @interface EnrichmentJobCounts
+ */
+export interface EnrichmentJobCounts {
+    /**
+     * 
+     * @type {EnrichmentJobAsOfResolutions}
+     * @memberof EnrichmentJobCounts
+     */
+    as_of_resolutions?: EnrichmentJobAsOfResolutions;
+    /**
+     * How many rows survived filtering and grouping.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    kept: number;
+    /**
+     * How many of those rows resolved to a person Faraday recognizes.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    matched: number;
+    /**
+     * How many rows were delivered. A run may emit at most 10,000,000 output rows.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    output_rows: number;
+    /**
+     * How many rows the population resolved to. A run may resolve at most 300,000,000
+     * population rows.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    population_rows: number;
+    /**
+     * How many values a source could not answer at the instant they were asked for, and so
+     * came back null.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    unanswerable_values?: number;
+}
+/**
+ * (Parameters used to PATCH the `Enrichment` type.)
+ * 
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ * 
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface EnrichmentMergePatch
+ */
+export interface EnrichmentMergePatch {
+    /**
+     * 
+     * @type {EnrichmentAggregation}
+     * @memberof EnrichmentMergePatch
+     */
+    aggregation?: EnrichmentAggregation;
+    /**
+     * 
+     * @type {EnrichmentDestination}
+     * @memberof EnrichmentMergePatch
+     */
+    destination?: EnrichmentDestination;
+    /**
+     * 
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentMergePatch
+     */
+    incrementality?: EnrichmentIncrementality;
+    /**
+     * The most rows this run may emit, applied after sorting. Under `new_rows`, this caps
+     * the newly added rows rather than the whole population.
+     * @type {number}
+     * @memberof EnrichmentMergePatch
+     */
+    limit?: number | null;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof EnrichmentMergePatch
+     */
+    name?: string;
+    /**
+     * 
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentMergePatch
+     */
+    population?: EnrichmentPopulation;
+    /**
+     * 
+     * @type {EnrichmentSchedule}
+     * @memberof EnrichmentMergePatch
+     */
+    schedule?: EnrichmentSchedule | null;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     * 
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof EnrichmentMergePatch
+     */
+    select?: Array<EnrichmentColumnCondition> | null;
+    /**
+     * How to order the output rows. Ordering is required so that a run is repeatable, and
+     * so that a limit takes a meaningful slice. Include a column with unique values.
+     * @type {Array<EnrichmentSort>}
+     * @memberof EnrichmentMergePatch
+     */
+    sorts?: Array<EnrichmentSort>;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     * 
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     * 
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof EnrichmentMergePatch
+     */
+    suppress_unchanged?: Set<string> | null;
+}
+/**
+ * @type EnrichmentPopulation
+ * Who to enrich.
+ * 
+ * Conditions apply to the union of your account's identity graph and the people referenced
+ * by your own datasets, so that people your datasets name but Faraday does not recognize
+ * are still available. Use an `identity_graph` condition to restrict to the identity graph
+ * alone.
+ * @export
+ */
+export type EnrichmentPopulation = EnrichmentPopulationAll | EnrichmentPopulationAny | EnrichmentPopulationCondition | EnrichmentPopulationNot;
+/**
+ * People who satisfy every one of these.
+ * @export
+ * @interface EnrichmentPopulationAll
+ */
+export interface EnrichmentPopulationAll {
+    /**
+     * The parts that must all hold.
+     * @type {Array<EnrichmentPopulation>}
+     * @memberof EnrichmentPopulationAll
+     */
+    and: Array<EnrichmentPopulation>;
+}
+/**
+ * People who satisfy at least one of these.
+ * @export
+ * @interface EnrichmentPopulationAny
+ */
+export interface EnrichmentPopulationAny {
+    /**
+     * The parts, at least one of which must hold.
+     * @type {Array<EnrichmentPopulation>}
+     * @memberof EnrichmentPopulationAny
+     */
+    or: Array<EnrichmentPopulation>;
+}
+/**
+ * People whose Faraday attributes satisfy these conditions.
+ * @export
+ * @interface EnrichmentPopulationAttribute
+ */
+export interface EnrichmentPopulationAttribute {
+    /**
+     * Required conditions are AND-ed. Optional conditions are OR-ed as a group, and the two
+     * groups are AND-ed. Nulls are excluded unless `_null` asks for them.
+     * @type {Array<CohortAttributeCondition>}
+     * @memberof EnrichmentPopulationAttribute
+     */
+    conditions: Array<CohortAttributeCondition>;
+    /**
+     * Marks this condition as an attribute test.
+     * @type {string}
+     * @memberof EnrichmentPopulationAttribute
+     */
+    type: string;
+}
+/**
+ * People in a cohort.
+ * @export
+ * @interface EnrichmentPopulationCohort
+ */
+export interface EnrichmentPopulationCohort {
+    /**
+     * The cohort to test membership in.
+     * @type {string}
+     * @memberof EnrichmentPopulationCohort
+     */
+    cohort_id: string;
+    /**
+     * 
+     * @type {PopulationExpansion}
+     * @memberof EnrichmentPopulationCohort
+     */
+    expand?: PopulationExpansion;
+    /**
+     * Marks this condition as a cohort test.
+     * @type {string}
+     * @memberof EnrichmentPopulationCohort
+     */
+    type: string;
+}
+/**
+ * @type EnrichmentPopulationCondition
+ * One test a person either passes or fails.
+ * @export
+ */
+export type EnrichmentPopulationCondition = { type: 'attribute' } & EnrichmentPopulationAttribute | { type: 'cohort' } & EnrichmentPopulationCohort | { type: 'dataset' } & EnrichmentPopulationDataset | { type: 'enrichment_job' } & EnrichmentPopulationEnrichmentJob | { type: 'identity_graph' } & EnrichmentPopulationIdentityGraph | { type: 'place' } & EnrichmentPopulationPlace | { type: 'stream' } & EnrichmentPopulationStream | { type: 'trait' } & EnrichmentPopulationTrait;
+/**
+ * People your dataset refers to, whether or not Faraday recognizes them.
+ * @export
+ * @interface EnrichmentPopulationDataset
+ */
+export interface EnrichmentPopulationDataset {
+    /**
+     * The dataset to draw people from.
+     * @type {string}
+     * @memberof EnrichmentPopulationDataset
+     */
+    dataset_id: string;
+    /**
+     * 
+     * @type {PopulationExpansion}
+     * @memberof EnrichmentPopulationDataset
+     */
+    expand?: PopulationExpansion;
+    /**
+     * Marks this condition as a dataset test.
+     * @type {string}
+     * @memberof EnrichmentPopulationDataset
+     */
+    type: string;
+}
+/**
+ * People who appeared in the output of one previous run.
+ * @export
+ * @interface EnrichmentPopulationEnrichmentJob
+ */
+export interface EnrichmentPopulationEnrichmentJob {
+    /**
+     * The run whose output supplies the people.
+     * @type {string}
+     * @memberof EnrichmentPopulationEnrichmentJob
+     */
+    enrichment_job_id: string;
+    /**
+     * Marks this condition as a previous run test.
+     * @type {string}
+     * @memberof EnrichmentPopulationEnrichmentJob
+     */
+    type: string;
+}
+/**
+ * People in an identity graph. Use this to exclude people that only your own datasets refer
+ * to.
+ * @export
+ * @interface EnrichmentPopulationIdentityGraph
+ */
+export interface EnrichmentPopulationIdentityGraph {
+    /**
+     * The identity graph to test. Omit it to use your account's current one.
+     * @type {string}
+     * @memberof EnrichmentPopulationIdentityGraph
+     */
+    identity_graph_id?: string;
+    /**
+     * Marks this condition as an identity graph test.
+     * @type {string}
+     * @memberof EnrichmentPopulationIdentityGraph
+     */
+    type: string;
+}
+/**
+ * People who do not satisfy this.
+ * @export
+ * @interface EnrichmentPopulationNot
+ */
+export interface EnrichmentPopulationNot {
+    /**
+     * 
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentPopulationNot
+     */
+    not: EnrichmentPopulation;
+}
+/**
+ * People whose location satisfies these place conditions.
+ * @export
+ * @interface EnrichmentPopulationPlace
+ */
+export interface EnrichmentPopulationPlace {
+    /**
+     * Place conditions, all of which must hold.
+     * @type {Array<CohortPlaceCondition>}
+     * @memberof EnrichmentPopulationPlace
+     */
+    conditions: Array<CohortPlaceCondition>;
+    /**
+     * Marks this condition as a place test.
+     * @type {string}
+     * @memberof EnrichmentPopulationPlace
+     */
+    type: string;
+}
+/**
+ * People whose events in one stream satisfy these constraints.
+ * @export
+ * @interface EnrichmentPopulationStream
+ */
+export interface EnrichmentPopulationStream {
+    /**
+     * Event property conditions. Required conditions are AND-ed. Optional conditions are
+     * OR-ed as a group, and the two groups are AND-ed. Nulls are excluded unless `_null`
+     * asks for them.
+     * @type {Array<CohortStreamCondition>}
+     * @memberof EnrichmentPopulationStream
+     */
+    conditions?: Array<CohortStreamCondition>;
+    /**
+     * Most qualifying events a person may have emitted.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    max_count?: number;
+    /**
+     * Largest total value a person's qualifying events may carry.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    max_value?: number;
+    /**
+     * Fewest qualifying events a person must have emitted.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    min_count?: number;
+    /**
+     * Smallest total value a person's qualifying events may carry.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    min_value?: number;
+    /**
+     * 
+     * @type {Recency}
+     * @memberof EnrichmentPopulationStream
+     */
+    recency?: Recency;
+    /**
+     * The stream whose events are tested.
+     * @type {string}
+     * @memberof EnrichmentPopulationStream
+     */
+    stream_name: string;
+    /**
+     * Marks this condition as a stream test.
+     * @type {string}
+     * @memberof EnrichmentPopulationStream
+     */
+    type: string;
+}
+/**
+ * People whose traits satisfy these conditions.
+ * @export
+ * @interface EnrichmentPopulationTrait
+ */
+export interface EnrichmentPopulationTrait {
+    /**
+     * Required conditions are AND-ed. Optional conditions are OR-ed as a group, and the two
+     * groups are AND-ed. Nulls are excluded unless `_null` asks for them.
+     * @type {Array<CohortTrait>}
+     * @memberof EnrichmentPopulationTrait
+     */
+    conditions: Array<CohortTrait>;
+    /**
+     * Marks this condition as a trait test.
+     * @type {string}
+     * @memberof EnrichmentPopulationTrait
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `Enrichment` type.)
+ * 
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ * 
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface EnrichmentPost
+ */
+export interface EnrichmentPost {
+    /**
+     * 
+     * @type {EnrichmentAggregation}
+     * @memberof EnrichmentPost
+     */
+    aggregation: EnrichmentAggregation;
+    /**
+     * 
+     * @type {EnrichmentDestination}
+     * @memberof EnrichmentPost
+     */
+    destination: EnrichmentDestination;
+    /**
+     * 
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentPost
+     */
+    incrementality: EnrichmentIncrementality;
+    /**
+     * The most rows this run may emit, applied after sorting. Under `new_rows`, this caps
+     * the newly added rows rather than the whole population.
+     * @type {number}
+     * @memberof EnrichmentPost
+     */
+    limit?: number;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof EnrichmentPost
+     */
+    name: string;
+    /**
+     * 
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentPost
+     */
+    population: EnrichmentPopulation;
+    /**
+     * The Project whose payload defines the output columns.
+     * @type {string}
+     * @memberof EnrichmentPost
+     */
+    project_id: string;
+    /**
+     * 
+     * @type {EnrichmentSchedule}
+     * @memberof EnrichmentPost
+     */
+    schedule?: EnrichmentSchedule;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     * 
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof EnrichmentPost
+     */
+    select?: Array<EnrichmentColumnCondition>;
+    /**
+     * How to order the output rows. Ordering is required so that a run is repeatable, and
+     * so that a limit takes a meaningful slice. Include a column with unique values.
+     * @type {Array<EnrichmentSort>}
+     * @memberof EnrichmentPost
+     */
+    sorts: Array<EnrichmentSort>;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     * 
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     * 
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof EnrichmentPost
+     */
+    suppress_unchanged?: Set<string>;
+}
+/**
+ * What one run of this enrichment could cost, worked out from its configuration.
+ * @export
+ * @interface EnrichmentPreview
+ */
+export interface EnrichmentPreview {
+    /**
+     * The most usage one run could create, by billable element category. This is an upper
+     * bound rather than a forecast: filtering, limits, incrementality, and null values all
+     * reduce it.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentPreview
+     */
+    max_usage_per_run: { [key: string]: number; };
+    /**
+     * The most population rows one run may have to resolve before output filters. This is
+     * exact only when `population_upper_bound_exact` is true.
+     * @type {number}
+     * @memberof EnrichmentPreview
+     */
+    population_upper_bound: number;
+    /**
+     * How the population bound was worked out.
+     * @type {string}
+     * @memberof EnrichmentPreview
+     */
+    population_upper_bound_basis: string;
+    /**
+     * Whether `population_upper_bound` is an exact count rather than a ceiling.
+     * @type {boolean}
+     * @memberof EnrichmentPreview
+     */
+    population_upper_bound_exact: boolean;
+    /**
+     * The usage left on your contract for each billable element category in this
+     * Enrichment. An absent category has no contract limit on record.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentPreview
+     */
+    remaining_quota: { [key: string]: number; };
+}
+/**
+ * (Parameters used to PUT a value of the `Enrichment` type.)
+ * 
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ * 
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface EnrichmentPut
+ */
+export interface EnrichmentPut {
+    /**
+     * 
+     * @type {EnrichmentAggregation}
+     * @memberof EnrichmentPut
+     */
+    aggregation: EnrichmentAggregation;
+    /**
+     * 
+     * @type {EnrichmentDestination}
+     * @memberof EnrichmentPut
+     */
+    destination: EnrichmentDestination;
+    /**
+     * 
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentPut
+     */
+    incrementality: EnrichmentIncrementality;
+    /**
+     * The most rows this run may emit, applied after sorting. Under `new_rows`, this caps
+     * the newly added rows rather than the whole population.
+     * @type {number}
+     * @memberof EnrichmentPut
+     */
+    limit?: number;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof EnrichmentPut
+     */
+    name: string;
+    /**
+     * 
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentPut
+     */
+    population: EnrichmentPopulation;
+    /**
+     * 
+     * @type {EnrichmentSchedule}
+     * @memberof EnrichmentPut
+     */
+    schedule?: EnrichmentSchedule;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     * 
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof EnrichmentPut
+     */
+    select?: Array<EnrichmentColumnCondition>;
+    /**
+     * How to order the output rows. Ordering is required so that a run is repeatable, and
+     * so that a limit takes a meaningful slice. Include a column with unique values.
+     * @type {Array<EnrichmentSort>}
+     * @memberof EnrichmentPut
+     */
+    sorts: Array<EnrichmentSort>;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     * 
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     * 
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof EnrichmentPut
+     */
+    suppress_unchanged?: Set<string>;
+}
+/**
+ * Settings that apply to this run alone.
+ * @export
+ * @interface EnrichmentRunRequest
+ */
+export interface EnrichmentRunRequest {
+    /**
+     * Proceed even though this enrichment's usage ceiling is larger than your remaining
+     * quota. The ceiling is an upper bound, not a forecast, so a run that exceeds it is
+     * often still within quota.
+     * 
+     * This acknowledges only that comparison. It does not lift the platform row limits, your
+     * account's entitlements, or the quota check against the usage a run actually creates.
+     * The acknowledgement and the ceiling you were shown are both recorded on the run.
+     * @type {boolean}
+     * @memberof EnrichmentRunRequest
+     */
+    acknowledge_usage_ceiling?: boolean;
+    /**
+     * 
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentRunRequest
+     */
+    incrementality?: EnrichmentIncrementality;
+}
+/**
+ * A CSV file written to Amazon S3.
+ * @export
+ * @interface EnrichmentS3CsvDestination
+ */
+export interface EnrichmentS3CsvDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    delimiter?: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    gzip?: boolean;
+    /**
+     * The exact object key to write. A later run writes the same key and replaces the
+     * object.
+     * @type {string}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    object_key: string;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as Amazon S3.
+     * @type {string}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    type: string;
+}
+/**
+ * When to run this enrichment without being asked.
+ * @export
+ * @interface EnrichmentSchedule
+ */
+export interface EnrichmentSchedule {
+    /**
+     * 
+     * @type {EnrichmentCadence}
+     * @memberof EnrichmentSchedule
+     */
+    cadence: EnrichmentCadence;
+    /**
+     * The instant after which the schedule stops firing. Omit it to run indefinitely. A bare
+     * timestamp is read in `timezone`.
+     * @type {string}
+     * @memberof EnrichmentSchedule
+     */
+    ends_at?: string;
+    /**
+     * Whether the schedule is currently stood down. A paused schedule has no next run and
+     * keeps its settings.
+     * @type {boolean}
+     * @memberof EnrichmentSchedule
+     */
+    paused: boolean;
+    /**
+     * The first instant the schedule may fire. Omit it to start immediately. A bare
+     * timestamp is read in `timezone`.
+     * @type {string}
+     * @memberof EnrichmentSchedule
+     */
+    starts_at?: string;
+    /**
+     * The IANA timezone the cadence is read in.
+     * @type {string}
+     * @memberof EnrichmentSchedule
+     */
+    timezone: string;
+}
+/**
+ * A CSV file written over SFTP.
+ * @export
+ * @interface EnrichmentSftpDestination
+ */
+export interface EnrichmentSftpDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentSftpDestination
+     */
+    delimiter?: string;
+    /**
+     * The exact remote file name to write. A later run writes the same name and replaces
+     * the file.
+     * @type {string}
+     * @memberof EnrichmentSftpDestination
+     */
+    file_name: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentSftpDestination
+     */
+    gzip?: boolean;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentSftpDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as SFTP.
+     * @type {string}
+     * @memberof EnrichmentSftpDestination
+     */
+    type: string;
+}
+/**
+ * A table in Snowflake.
+ * @export
+ * @interface EnrichmentSnowflakeDestination
+ */
+export interface EnrichmentSnowflakeDestination {
+    /**
+     * The schema holding the table.
+     * @type {string}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    schema: string;
+    /**
+     * The table to write.
+     * @type {string}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    table_name: string;
+    /**
+     * Marks this destination as Snowflake.
+     * @type {string}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    type: string;
+    /**
+     * 
+     * @type {EnrichmentWriteMode}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    write: EnrichmentWriteMode;
+}
+/**
+ * One ordering rule over the output rows.
+ * @export
+ * @interface EnrichmentSort
+ */
+export interface EnrichmentSort {
+    /**
+     * The name of one output column.
+     * 
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof EnrichmentSort
+     */
+    header: string;
+    /**
+     * Which direction to sort in.
+     * @type {string}
+     * @memberof EnrichmentSort
+     */
+    order: EnrichmentSortOrderEnum;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum EnrichmentSortOrderEnum {
+    Asc = 'asc',
+    Desc = 'desc'
+}
+/**
+ * Create the table, replacing it if it already exists.
+ * @export
+ * @interface EnrichmentWriteCreate
+ */
+export interface EnrichmentWriteCreate {
+    /**
+     * Marks this write as a create.
+     * @type {string}
+     * @memberof EnrichmentWriteCreate
+     */
+    mode: string;
+}
+/**
+ * @type EnrichmentWriteMode
+ * How to write the output into an existing table.
+ * @export
+ */
+export type EnrichmentWriteMode = { mode: 'create' } & EnrichmentWriteCreate | { mode: 'upsert' } & EnrichmentWriteUpsert;
+/**
+ * Merge the output into the existing table.
+ * @export
+ * @interface EnrichmentWriteUpsert
+ */
+export interface EnrichmentWriteUpsert {
+    /**
+     * The output columns to merge on. They must be able to identify a row, so a column your
+     * own data supplies is usually the right choice. A suppressed value never overwrites an
+     * existing value.
+     * @type {Set<string>}
+     * @memberof EnrichmentWriteUpsert
+     */
+    join_on: Set<string>;
+    /**
+     * Marks this write as an upsert.
+     * @type {string}
+     * @memberof EnrichmentWriteUpsert
+     */
+    mode: string;
+}
+/**
  * A Faraday error code.
  * 
  * Some possible values include:
@@ -13787,6 +15092,7 @@ export interface DecodeConfig {
  * - BAD_REQUEST: The request could not be validated.
  * - FORBIDDEN: You do not have permission to access the specified resource.
  * - MAX_RESOURCES_REACHED: You have created too many of this resource type on your account. You must delete some before making more.
+ * - USAGE_QUOTA_EXCEEDED: The request would use more than the usage left on your contract.
  * - INTERNAL_SERVER_ERROR: An internal error of an unknown type occurred.
  * - INVALID_AUTHORIZATION: The Authorization header could not be parsed.
  * - NOT_FOUND: The specified resource could not be found.
@@ -13810,6 +15116,7 @@ export enum ErrorCode {
     BadRequest = 'BAD_REQUEST',
     Forbidden = 'FORBIDDEN',
     MaxResourcesReached = 'MAX_RESOURCES_REACHED',
+    UsageQuotaExceeded = 'USAGE_QUOTA_EXCEEDED',
     InternalServerError = 'INTERNAL_SERVER_ERROR',
     InvalidAuthorization = 'INVALID_AUTHORIZATION',
     NotFound = 'NOT_FOUND',
@@ -14759,166 +16066,6 @@ export interface KnowledgebaseOverviewRevisionSummary {
     revision_id: string;
 }
 /**
- * A geographic location belonging to an atlas.
- * @export
- * @interface Location
- */
-export interface Location {
-    /**
-     * The UUID of the atlas this location belongs to - see <a href="https://faraday.ai/developers/reference/createatlas">/atlases</a> for more detail.
-     * @type {string}
-     * @memberof Location
-     */
-    atlas_id: string;
-    /**
-     * The city this location was geocoded from.
-     * @type {string}
-     * @memberof Location
-     */
-    city?: string;
-    /**
-     * A GeoJSON Geometry, as defined in the [GeoJSON specification](https://www.rfc-editor.org/rfc/rfc7946#section-3.1)
-     * 
-     * The longitude and latitude units of this geometry are in decimal degrees, using the WGS84 coordinate reference system, also known by the SRID 4326. https://www.rfc-editor.org/rfc/rfc7946#section-4
-     * @type {object}
-     * @memberof Location
-     */
-    geometry?: object;
-    /**
-     * The street address lines this location was geocoded from.
-     * @type {Array<string>}
-     * @memberof Location
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude this location was placed from, in decimal degrees, EPSG 4326 (WGS 84). Present only for locations placed from latitude and longitude columns; null otherwise, including addresses, whose coordinates come from geocoding rather than input.
-     * @type {number}
-     * @memberof Location
-     */
-    latitude?: number;
-    /**
-     * The longitude this location was placed from, in decimal degrees, EPSG 4326 (WGS 84). Present only for locations placed from latitude and longitude columns; null otherwise, including addresses, whose coordinates come from geocoding rather than input.
-     * @type {number}
-     * @memberof Location
-     */
-    longitude?: number;
-    /**
-     * A human-readable label for this location.
-     * @type {string}
-     * @memberof Location
-     */
-    name?: string;
-    /**
-     * The postcode this location was geocoded from.
-     * @type {string}
-     * @memberof Location
-     */
-    postcode?: string;
-    /**
-     * The values of the properties defined by this location's atlas.
-     * @type {object}
-     * @memberof Location
-     */
-    properties?: object;
-    /**
-     * This location's identifier from an external system.
-     * @type {string}
-     * @memberof Location
-     */
-    reference_key?: string;
-    /**
-     * The state this location was geocoded from.
-     * @type {string}
-     * @memberof Location
-     */
-    state?: string;
-}
-/**
- * 
- * @export
- * @interface LocationPropertyCondition
- */
-export interface LocationPropertyCondition {
-    /**
-     * Equal to
-     * @type {string}
-     * @memberof LocationPropertyCondition
-     */
-    _eq?: string;
-    /**
-     * Greater than
-     * @type {number}
-     * @memberof LocationPropertyCondition
-     */
-    _gt?: number;
-    /**
-     * Greater than or equal to
-     * @type {number}
-     * @memberof LocationPropertyCondition
-     */
-    _gte?: number;
-    /**
-     * Value is one of
-     * @type {Array<string>}
-     * @memberof LocationPropertyCondition
-     */
-    _in?: Array<string>;
-    /**
-     * Less than
-     * @type {number}
-     * @memberof LocationPropertyCondition
-     */
-    _lt?: number;
-    /**
-     * Less than or equal to
-     * @type {number}
-     * @memberof LocationPropertyCondition
-     */
-    _lte?: number;
-    /**
-     * Value contains a match to the regex (re2) expression provided. For an exact regex match, use the ^ and $ characters as specified by the (re2 documentation)[https://github.com/google/re2/wiki/Syntax].
-     * @type {string}
-     * @memberof LocationPropertyCondition
-     */
-    _matches?: string;
-    /**
-     * Not equal to
-     * @type {string}
-     * @memberof LocationPropertyCondition
-     */
-    _neq?: string;
-    /**
-     * Value is not one of
-     * @type {Array<string>}
-     * @memberof LocationPropertyCondition
-     */
-    _nin?: Array<string>;
-    /**
-     * Value is not null
-     * @type {boolean}
-     * @memberof LocationPropertyCondition
-     */
-    _nnull?: boolean;
-    /**
-     * Value is null (nulls are otherwise excluded)
-     * @type {boolean}
-     * @memberof LocationPropertyCondition
-     */
-    _null?: boolean;
-    /**
-     * Optional property conditions are unioned together, when combined they select locations that meet either property condition. At least one optional condition must be satisfied.
-     * @type {boolean}
-     * @memberof LocationPropertyCondition
-     */
-    optional?: boolean;
-    /**
-     * The name of the location property, as defined by its atlas' `output_to_locations`.
-     * @type {string}
-     * @memberof LocationPropertyCondition
-     */
-    property: string;
-}
-/**
  * 
  * @export
  * @interface LookupApiIdentifiers
@@ -15161,12 +16308,6 @@ export interface MarketOpportunityAnalysis {
      */
     last_updated_output_at?: string;
     /**
-     * 
-     * @type {MarketOpportunityAnalysisLocations}
-     * @memberof MarketOpportunityAnalysis
-     */
-    locations?: MarketOpportunityAnalysisLocations;
-    /**
      * Human-readable label for this market opportunity analysis
      * @type {string}
      * @memberof MarketOpportunityAnalysis
@@ -15234,35 +16375,6 @@ export interface MarketOpportunityAnalysis {
     updated_at: string;
 }
 /**
- * The atlas locations this analysis covers. If absent, the analysis is not based on locations.
- * @export
- * @interface MarketOpportunityAnalysisLocations
- */
-export interface MarketOpportunityAnalysisLocations {
-    /**
-     * The atlases whose locations this analysis covers.
-     * 
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof MarketOpportunityAnalysisLocations
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Cover only the locations carrying these reference keys.
-     * 
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas this analysis covers. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof MarketOpportunityAnalysisLocations
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * Cover only the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof MarketOpportunityAnalysisLocations
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
  * (Parameters used to PATCH the `MarketOpportunityAnalysis` type.)
  * 
  * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
@@ -15274,12 +16386,6 @@ export interface MarketOpportunityAnalysisLocations {
  * @interface MarketOpportunityAnalysisMergePatch
  */
 export interface MarketOpportunityAnalysisMergePatch {
-    /**
-     * 
-     * @type {MarketOpportunityAnalysisMergePatchLocations}
-     * @memberof MarketOpportunityAnalysisMergePatch
-     */
-    locations?: MarketOpportunityAnalysisMergePatchLocations | null;
     /**
      * Human-readable label for this market opportunity analysis
      * @type {string}
@@ -15310,35 +16416,6 @@ export interface MarketOpportunityAnalysisMergePatch {
      * @memberof MarketOpportunityAnalysisMergePatch
      */
     scope_id?: string;
-}
-/**
- * The atlas locations this analysis covers. If absent, the analysis is not based on locations.
- * @export
- * @interface MarketOpportunityAnalysisMergePatchLocations
- */
-export interface MarketOpportunityAnalysisMergePatchLocations {
-    /**
-     * The atlases whose locations this analysis covers.
-     * 
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof MarketOpportunityAnalysisMergePatchLocations
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Cover only the locations carrying these reference keys.
-     * 
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas this analysis covers. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof MarketOpportunityAnalysisMergePatchLocations
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * Cover only the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof MarketOpportunityAnalysisMergePatchLocations
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
 }
 /**
  * Summary over the latest report. Available once the market opportunity analysis has been run.
@@ -15396,12 +16473,6 @@ export interface MarketOpportunityAnalysisOverallReport {
  */
 export interface MarketOpportunityAnalysisPost {
     /**
-     * 
-     * @type {MarketOpportunityAnalysisLocations}
-     * @memberof MarketOpportunityAnalysisPost
-     */
-    locations?: MarketOpportunityAnalysisLocations;
-    /**
      * Human-readable label for this market opportunity analysis
      * @type {string}
      * @memberof MarketOpportunityAnalysisPost
@@ -15444,12 +16515,6 @@ export interface MarketOpportunityAnalysisPost {
  * @interface MarketOpportunityAnalysisPut
  */
 export interface MarketOpportunityAnalysisPut {
-    /**
-     * 
-     * @type {MarketOpportunityAnalysisLocations}
-     * @memberof MarketOpportunityAnalysisPut
-     */
-    locations?: MarketOpportunityAnalysisLocations;
     /**
      * Human-readable label for this market opportunity analysis
      * @type {string}
@@ -17979,6 +19044,15 @@ export interface PlacePut {
     name: string;
 }
 /**
+ * Widen a condition to everyone who shares an address with someone it already covers. The
+ * expansion includes the original people.
+ * @export
+ * @enum {string}
+ */
+export enum PopulationExpansion {
+    Address = 'address'
+}
+/**
  * The data type of a column in table, or of a trait. Types are expressed using a subset of
  * [Avro](https://avro.apache.org/docs/current/spec.html). Possible values include:
  * 
@@ -17996,6 +19070,1816 @@ export enum PrimitiveDataType {
     Double = 'double',
     String = 'string',
     Date = 'date'
+}
+/**
+ * The exact set of output columns you want, in the exact order you want them.
+ * 
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ * 
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface Project
+ */
+export interface Project {
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {string}
+     * @memberof Project
+     */
+    archived_at?: string;
+    /**
+     * The output columns, in output order, by header.
+     * 
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof Project
+     */
+    column_order: Set<string>;
+    /**
+     * When this resource was created.
+     * @type {string}
+     * @memberof Project
+     */
+    created_at: string;
+    /**
+     * A unique ID for this resource.
+     * @type {string}
+     * @memberof Project
+     */
+    id: string;
+    /**
+     * The last time this resource's input was read.
+     * @type {string}
+     * @memberof Project
+     */
+    last_read_input_at?: string;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {string}
+     * @memberof Project
+     */
+    last_updated_config_at?: string;
+    /**
+     * The last time this resource successfully built.
+     * @type {string}
+     * @memberof Project
+     */
+    last_updated_output_at?: string;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof Project
+     */
+    name: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     * 
+     * The order of this map means nothing. `column_order` alone decides output order.
+     * 
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof Project
+     */
+    payload: { [key: string]: ProjectPayloadElement; };
+    /**
+     * 
+     * @type {ProjectPreview}
+     * @memberof Project
+     */
+    preview: ProjectPreview;
+    /**
+     * The type of this resource.
+     * @type {string}
+     * @memberof Project
+     */
+    resource_type: string;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof Project
+     */
+    status: ResourceStatus;
+    /**
+     * When the status of this resource was last updated.
+     * @type {string}
+     * @memberof Project
+     */
+    status_changed_at?: string;
+    /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof Project
+     */
+    status_error?: string;
+    /**
+     * When this resource was last updated.
+     * @type {string}
+     * @memberof Project
+     */
+    updated_at: string;
+}
+/**
+ * One output column drawn from an attribute.
+ * @export
+ * @interface ProjectAttributeColumn
+ */
+export interface ProjectAttributeColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectAttributeColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. The `interpreted_*` components apply the attribute's
+     * interpretation map.
+     * @type {string}
+     * @memberof ProjectAttributeColumn
+     */
+    component: ProjectAttributeColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectAttributeColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectAttributeColumnComponentEnum {
+    Value = 'value',
+    PreviousValue = 'previous_value',
+    ValueDelta = 'value_delta',
+    InterpretedValue = 'interpreted_value',
+    PreviousInterpretedValue = 'previous_interpreted_value',
+    InterpretedValueDelta = 'interpreted_value_delta'
+}
+/**
+ * Values of one Faraday attribute.
+ * @export
+ * @interface ProjectAttributeElement
+ */
+export interface ProjectAttributeElement {
+    /**
+     * The output columns drawn from this attribute, keyed by output column header.
+     * @type {{ [key: string]: ProjectAttributeColumn; }}
+     * @memberof ProjectAttributeElement
+     */
+    columns: { [key: string]: ProjectAttributeColumn; };
+    /**
+     * 
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectAttributeElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The attribute to read. Your account must be entitled to append it, and a Project that
+     * names an attribute your account cannot use is rejected.
+     * @type {string}
+     * @memberof ProjectAttributeElement
+     */
+    name: string;
+    /**
+     * Marks this element as an attribute.
+     * @type {string}
+     * @memberof ProjectAttributeElement
+     */
+    type: string;
+}
+/**
+ * One output column drawn from a cohort.
+ * @export
+ * @interface ProjectCohortColumn
+ */
+export interface ProjectCohortColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectCohortColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectCohortColumn
+     */
+    component: ProjectCohortColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectCohortColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectCohortColumnComponentEnum {
+    Membership = 'membership',
+    PreviousMembership = 'previous_membership',
+    MembershipDelta = 'membership_delta'
+}
+/**
+ * Membership in one cohort.
+ * @export
+ * @interface ProjectCohortElement
+ */
+export interface ProjectCohortElement {
+    /**
+     * The cohort to read membership from.
+     * @type {string}
+     * @memberof ProjectCohortElement
+     */
+    cohort_id: string;
+    /**
+     * The output columns drawn from this cohort, keyed by output column header.
+     * @type {{ [key: string]: ProjectCohortColumn; }}
+     * @memberof ProjectCohortElement
+     */
+    columns: { [key: string]: ProjectCohortColumn; };
+    /**
+     * 
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectCohortElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * Marks this element as a cohort.
+     * @type {string}
+     * @memberof ProjectCohortElement
+     */
+    type: string;
+}
+/**
+ * Read each person's value as of the moment they entered a cohort.
+ * @export
+ * @interface ProjectCohortEntranceFrame
+ */
+export interface ProjectCohortEntranceFrame {
+    /**
+     * 
+     * @type {ProjectCohortEntranceFrameEntranceToCohort}
+     * @memberof ProjectCohortEntranceFrame
+     */
+    entrance_to_cohort: ProjectCohortEntranceFrameEntranceToCohort;
+    /**
+     * The instant to use for a person who never entered the cohort. Omit it to read that
+     * person's current value. `EnrichmentJob.counts.as_of_resolutions` reports how many rows
+     * fell back.
+     * @type {string}
+     * @memberof ProjectCohortEntranceFrame
+     */
+    fallback_timestamp?: string;
+}
+/**
+ * The cohort whose entrance supplies each person's instant.
+ * @export
+ * @interface ProjectCohortEntranceFrameEntranceToCohort
+ */
+export interface ProjectCohortEntranceFrameEntranceToCohort {
+    /**
+     * The cohort to take the entrance instant from.
+     * @type {string}
+     * @memberof ProjectCohortEntranceFrameEntranceToCohort
+     */
+    cohort_id: string;
+}
+/**
+ * What to do when several values must become one value for this column.
+ * 
+ * The same strategy is applied at each point where that happens:
+ * 
+ * - Several source values for one person, whether or not the output is grouped.
+ * - Several people in one group row, when the output is grouped.
+ * - Several donors at an imputation level.
+ * 
+ * A strategy is required whenever any of those can happen, including on a lookup, where
+ * one person's several source values are still collapsed. Grouping never applies to a
+ * lookup, because a lookup has no group.
+ * 
+ * `first` and `last` rank people within a group using `Enrichment.aggregation.order`, so
+ * they are unavailable to a column whose source can yield several values for one person:
+ * no order over one person's source rows exists.
+ * 
+ * Strategies by resolved data type:
+ * 
+ * - Any type: `nullify`, `count`, `count_distinct`, `first`, `last`.
+ * - Numeric: `mean`, `median`, `mode`, `min`, `max`, `sum`.
+ * - Date and datetime: `min`, `max`, `median` (the earlier of the two middle values).
+ * - Boolean: `and`, `or`, `xor`.
+ * - String and categorical: `mode` (ties broken alphabetically) and the `concatenate_*`
+ *   strategies, which order values alphabetically.
+ * 
+ * `count` and `count_distinct` resolve the column to `long` and ignore nulls.
+ * @export
+ * @enum {string}
+ */
+export enum ProjectColumnAggregation {
+    Nullify = 'nullify',
+    First = 'first',
+    Last = 'last',
+    Count = 'count',
+    CountDistinct = 'count_distinct',
+    Mean = 'mean',
+    Median = 'median',
+    Mode = 'mode',
+    Min = 'min',
+    Max = 'max',
+    Sum = 'sum',
+    And = 'and',
+    Or = 'or',
+    Xor = 'xor',
+    ConcatenateComma = 'concatenate_comma',
+    ConcatenatePipe = 'concatenate_pipe',
+    ConcatenateSpace = 'concatenate_space',
+    ConcatenateUniqueComma = 'concatenate_unique_comma',
+    ConcatenateUniquePipe = 'concatenate_unique_pipe',
+    ConcatenateUniqueSpace = 'concatenate_unique_space'
+}
+/**
+ * The data type a Project column emits. `datetime` is an instant with a time of day, and
+ * `json` is a structured JSON value.
+ * @export
+ * @enum {string}
+ */
+export enum ProjectColumnDataType {
+    Boolean = 'boolean',
+    Long = 'long',
+    Double = 'double',
+    String = 'string',
+    Date = 'date',
+    Datetime = 'datetime',
+    Json = 'json'
+}
+/**
+ * One output column read back from a dataset.
+ * @export
+ * @interface ProjectDatasetColumn
+ */
+export interface ProjectDatasetColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectDatasetColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * The dataset column to read.
+     * @type {string}
+     * @memberof ProjectDatasetColumn
+     */
+    column_name: string;
+    /**
+     * Which value to emit.
+     * 
+     * A `*_delta` component is null unless both values are numeric or both are boolean.
+     * @type {string}
+     * @memberof ProjectDatasetColumn
+     */
+    component: ProjectDatasetColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectDatasetColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectDatasetColumnComponentEnum {
+    Value = 'value',
+    PreviousValue = 'previous_value',
+    ValueDelta = 'value_delta'
+}
+/**
+ * Values read back from one of your own datasets.
+ * @export
+ * @interface ProjectDatasetElement
+ */
+export interface ProjectDatasetElement {
+    /**
+     * The output columns drawn from this dataset, keyed by output column header.
+     * 
+     * A dataset keeps your source rows, so several rows can resolve to one person. Each
+     * column therefore declares `aggregation` whenever its dataset can yield more than one
+     * row for a person.
+     * @type {{ [key: string]: ProjectDatasetColumn; }}
+     * @memberof ProjectDatasetElement
+     */
+    columns: { [key: string]: ProjectDatasetColumn; };
+    /**
+     * The dataset to read.
+     * @type {string}
+     * @memberof ProjectDatasetElement
+     */
+    dataset_id: string;
+    /**
+     * Marks this element as a dataset.
+     * @type {string}
+     * @memberof ProjectDatasetElement
+     */
+    type: string;
+}
+/**
+ * Read each person's value as of an instant carried in one of your own datasets.
+ * @export
+ * @interface ProjectDatasetTimestampFrame
+ */
+export interface ProjectDatasetTimestampFrame {
+    /**
+     * The instant to use for a person whose dataset value is absent or unparseable. Omit it
+     * to read that person's current value. `EnrichmentJob.counts.as_of_resolutions` reports
+     * how many rows fell back.
+     * @type {string}
+     * @memberof ProjectDatasetTimestampFrame
+     */
+    fallback_timestamp?: string;
+    /**
+     * 
+     * @type {ProjectDatasetTimestampFrameTimestampFromDataset}
+     * @memberof ProjectDatasetTimestampFrame
+     */
+    timestamp_from_dataset: ProjectDatasetTimestampFrameTimestampFromDataset;
+}
+/**
+ * The dataset column supplying each person's instant.
+ * @export
+ * @interface ProjectDatasetTimestampFrameTimestampFromDataset
+ */
+export interface ProjectDatasetTimestampFrameTimestampFromDataset {
+    /**
+     * The column holding the instant.
+     * @type {string}
+     * @memberof ProjectDatasetTimestampFrameTimestampFromDataset
+     */
+    column_name: string;
+    /**
+     * The dataset holding the instant.
+     * @type {string}
+     * @memberof ProjectDatasetTimestampFrameTimestampFromDataset
+     */
+    dataset_id: string;
+    /**
+     * 
+     * @type {ProjectTimestampFormat}
+     * @memberof ProjectDatasetTimestampFrameTimestampFromDataset
+     */
+    format: ProjectTimestampFormat;
+}
+/**
+ * Read every person's value as of one instant.
+ * @export
+ * @interface ProjectFixedTimestampFrame
+ */
+export interface ProjectFixedTimestampFrame {
+    /**
+     * The instant to read as of.
+     * @type {string}
+     * @memberof ProjectFixedTimestampFrame
+     */
+    timestamp: string;
+}
+/**
+ * @type ProjectFrameOfReference
+ * The instant a value is read as of. Omit it to read the current value.
+ * 
+ * A source answers with the latest value at or before the resolved instant, never a later
+ * one. Where a source cannot answer at all, the value is null and the result carries a
+ * warning. Where a source answers at day grain, the instant is floored to a UTC date;
+ * `ProjectResolvedColumn.snapshot_granularity` reports the grain that was used.
+ * 
+ * A source that cannot honor a frame at all is rejected when the Project is saved. A frame
+ * is never quietly replaced with a current value.
+ * @export
+ */
+export type ProjectFrameOfReference = ProjectCohortEntranceFrame | ProjectDatasetTimestampFrame | ProjectFixedTimestampFrame;
+/**
+ * One output column describing an output row's area.
+ * 
+ * A geometry column takes no `aggregation`: it already describes one group rather than a
+ * set of people.
+ * @export
+ * @interface ProjectGeometryColumn
+ */
+export interface ProjectGeometryColumn {
+    /**
+     * Which value to emit: `id` is the area's canonical identifier, such as a FIPS code;
+     * `name` is its conventional name; `wkt` is its geometry in well-known text; and
+     * `population` is the known adult population of the area.
+     * @type {string}
+     * @memberof ProjectGeometryColumn
+     */
+    component: ProjectGeometryColumnComponentEnum;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectGeometryColumnComponentEnum {
+    Id = 'id',
+    Name = 'name',
+    Wkt = 'wkt',
+    Population = 'population'
+}
+/**
+ * The geography of each output row's group.
+ * 
+ * These columns describe a group, so they are valid only when an enrichment groups
+ * geographically. A Project carrying them is rejected by an enrichment that groups by
+ * person, address, or column.
+ * @export
+ * @interface ProjectGeometryElement
+ */
+export interface ProjectGeometryElement {
+    /**
+     * The output columns describing each group's area, keyed by output column header.
+     * @type {{ [key: string]: ProjectGeometryColumn; }}
+     * @memberof ProjectGeometryElement
+     */
+    columns: { [key: string]: ProjectGeometryColumn; };
+    /**
+     * Marks this element as a geometry.
+     * @type {string}
+     * @memberof ProjectGeometryElement
+     */
+    type: string;
+}
+/**
+ * One output column drawn from an identity class.
+ * @export
+ * @interface ProjectIdentifierColumn
+ */
+export interface ProjectIdentifierColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectIdentifierColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. Each component belongs to one identity class: `phone` to
+     * `phone`; `full_address`, `first_name`, `last_name`, `house_number_and_street`,
+     * `unit`, `city`, `state`, and `postcode` to `mail`; `email` to `email`;
+     * `faraday_person_id_v1` to `graph_id`; and `latitude` and `longitude` to `location`.
+     * @type {string}
+     * @memberof ProjectIdentifierColumn
+     */
+    component: ProjectIdentifierColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectIdentifierColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which of the person's values to emit, under the ordering rule stated on the element.
+     * `0` is the first value. Negative indexes are invalid.
+     * @type {number}
+     * @memberof ProjectIdentifierColumn
+     */
+    index: number;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectIdentifierColumnComponentEnum {
+    Phone = 'phone',
+    FullAddress = 'full_address',
+    FirstName = 'first_name',
+    LastName = 'last_name',
+    HouseNumberAndStreet = 'house_number_and_street',
+    Unit = 'unit',
+    City = 'city',
+    State = 'state',
+    Postcode = 'postcode',
+    Email = 'email',
+    FaradayPersonIdV1 = 'faraday_person_id_v1',
+    Latitude = 'latitude',
+    Longitude = 'longitude'
+}
+/**
+ * Identifiers of one identity class for the resolved person.
+ * 
+ * One person can hold several identifiers in a class, so a column picks one with `index`.
+ * Values are ordered as follows before an index is applied, and the ordering is stable for
+ * the life of one lookup or job:
+ * 
+ * 1. Values supplied by `fig`.
+ * 2. Values supplied only by `match_boost`.
+ * 3. Within one provider rank, by the identity class key, ascending, using Unicode code
+ *    point order on canonical stored values. That key is the canonical graph id for
+ *    `graph_id`, the canonical email for `email`, the canonical phone for `phone`, latitude
+ *    then longitude for `location`, and postcode, state, city, house number and street,
+ *    unit, last name, then first name for `mail`.
+ * 
+ * Values are normalized and deduplicated first, using the same normalization as matching.
+ * Where both providers supply the same normalized value, it is kept once, at the `fig`
+ * rank. Every `mail` component at one index comes from the same mail record.
+ * @export
+ * @interface ProjectIdentifierElement
+ */
+export interface ProjectIdentifierElement {
+    /**
+     * The identity class to read.
+     * @type {string}
+     * @memberof ProjectIdentifierElement
+     */
+    _class: ProjectIdentifierElementClassEnum;
+    /**
+     * The output columns drawn from this identity class, keyed by output column header.
+     * @type {{ [key: string]: ProjectIdentifierColumn; }}
+     * @memberof ProjectIdentifierElement
+     */
+    columns: { [key: string]: ProjectIdentifierColumn; };
+    /**
+     * Hash the emitted value with this algorithm. Omit it for cleartext.
+     * @type {string}
+     * @memberof ProjectIdentifierElement
+     */
+    hash?: ProjectIdentifierElementHashEnum;
+    /**
+     * Which resolution providers may supply the emitted value. Omit it to permit every
+     * provider your account is entitled to use. A provider your account cannot use is
+     * rejected.
+     * 
+     * This restricts the value that is emitted. It does not affect matching, and it does
+     * not change which person resolved. It does not set the order of values either; the
+     * ordering rule above does that.
+     * @type {Set<string>}
+     * @memberof ProjectIdentifierElement
+     */
+    providers?: Set<ProjectIdentifierElementProvidersEnum>;
+    /**
+     * Marks this element as an identifier.
+     * @type {string}
+     * @memberof ProjectIdentifierElement
+     */
+    type: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectIdentifierElementClassEnum {
+    Phone = 'phone',
+    Mail = 'mail',
+    Email = 'email',
+    GraphId = 'graph_id',
+    Location = 'location'
+}/**
+* @export
+* @enum {string}
+*/
+export enum ProjectIdentifierElementHashEnum {
+    Sha256 = 'sha256'
+}/**
+* @export
+* @enum {string}
+*/
+export enum ProjectIdentifierElementProvidersEnum {
+    Fig = 'fig',
+    MatchBoost = 'match_boost'
+}
+/**
+ * A level at which a missing value may be borrowed from other people.
+ * 
+ * Levels are tried in the order given, and the first level that yields a value wins.
+ * @export
+ * @enum {string}
+ */
+export enum ProjectImputationLevel {
+    Address = 'address',
+    Postcode = 'postcode'
+}
+/**
+ * One coherent description of a person.
+ * @export
+ * @interface ProjectLookupIdentitySet
+ */
+export interface ProjectLookupIdentitySet {
+    /**
+     * The person's email address.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySet
+     */
+    email?: string;
+    /**
+     * 
+     * @type {ProjectLookupIdentitySetGraphId}
+     * @memberof ProjectLookupIdentitySet
+     */
+    graph_id?: ProjectLookupIdentitySetGraphId;
+    /**
+     * 
+     * @type {ProjectLookupIdentitySetLocation}
+     * @memberof ProjectLookupIdentitySet
+     */
+    location?: ProjectLookupIdentitySetLocation;
+    /**
+     * 
+     * @type {ProjectLookupIdentitySetMail}
+     * @memberof ProjectLookupIdentitySet
+     */
+    mail?: ProjectLookupIdentitySetMail;
+    /**
+     * 
+     * @type {ProjectLookupIdentitySetName}
+     * @memberof ProjectLookupIdentitySet
+     */
+    name?: ProjectLookupIdentitySetName;
+    /**
+     * The person's phone number.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySet
+     */
+    phone?: string;
+}
+/**
+ * A Faraday person id. Supplying it names the person outright, so no matching is needed,
+ * but it still counts towards ambiguity: if another of the subject's identity sets
+ * resolves to a different person, the subject is ambiguous.
+ * @export
+ * @interface ProjectLookupIdentitySetGraphId
+ */
+export interface ProjectLookupIdentitySetGraphId {
+    /**
+     * The person's Faraday id.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetGraphId
+     */
+    faraday_person_id_v1: string;
+}
+/**
+ * A point the person is at.
+ * @export
+ * @interface ProjectLookupIdentitySetLocation
+ */
+export interface ProjectLookupIdentitySetLocation {
+    /**
+     * Latitude in degrees.
+     * @type {number}
+     * @memberof ProjectLookupIdentitySetLocation
+     */
+    latitude: number;
+    /**
+     * Longitude in degrees.
+     * @type {number}
+     * @memberof ProjectLookupIdentitySetLocation
+     */
+    longitude: number;
+    /**
+     * How far from the point to search, in meters.
+     * @type {number}
+     * @memberof ProjectLookupIdentitySetLocation
+     */
+    search_radius?: number;
+}
+/**
+ * The person's postal address. Give it in parts, with either city and state or a
+ * postcode alongside the street address. Otherwise give `full_address` on one line.
+ * Either way the address is standardised before matching, the same way an address
+ * column is standardised at ingest, so both routes reach the same person.
+ * @export
+ * @interface ProjectLookupIdentitySetMail
+ */
+export interface ProjectLookupIdentitySetMail {
+    /**
+     * City.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    city?: string;
+    /**
+     * The whole address on one line, including city and state or postcode. Only supply
+     * this if you do not hold the parts separately; supplying them is more reliable.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    full_address?: string;
+    /**
+     * House number and street.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    house_number_and_street?: string;
+    /**
+     * Postcode.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    postcode?: string;
+    /**
+     * State.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    state?: string;
+    /**
+     * Apartment, suite, or unit.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    unit?: string;
+}
+/**
+ * The person's name. Give `first` and `last` when you hold them separately. Otherwise
+ * give `full`, which is split into a given and a family name the same way a dataset's
+ * full-name column is split at ingest, so both routes reach the same person.
+ * @export
+ * @interface ProjectLookupIdentitySetName
+ */
+export interface ProjectLookupIdentitySetName {
+    /**
+     * Given name.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetName
+     */
+    first?: string;
+    /**
+     * The whole name, either "Jo Smith" or "Smith, Jo". Only supply this if you do not
+     * hold the given and family names separately; supplying them is more reliable.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetName
+     */
+    full?: string;
+    /**
+     * Family name.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetName
+     */
+    last?: string;
+}
+/**
+ * Which of a subject's identity sets resolved, and on what. This is absent unless the
+ * subject's status is `matched`.
+ * @export
+ * @interface ProjectLookupMatch
+ */
+export interface ProjectLookupMatch {
+    /**
+     * The person this subject resolved to.
+     * @type {string}
+     * @memberof ProjectLookupMatch
+     */
+    faraday_person_id_v1: string;
+    /**
+     * Which of the subject's `identity_sets` resolved, by index, so you can tell which of
+     * your alternatives worked.
+     * @type {number}
+     * @memberof ProjectLookupMatch
+     */
+    identity_set_index: number;
+    /**
+     * Which identity classes drove the match.
+     * @type {Array<string>}
+     * @memberof ProjectLookupMatch
+     */
+    matched_on: Array<ProjectLookupMatchMatchedOnEnum>;
+    /**
+     * Which resolution provider resolved the subject.
+     * @type {string}
+     * @memberof ProjectLookupMatch
+     */
+    provider: ProjectLookupMatchProviderEnum;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectLookupMatchMatchedOnEnum {
+    GraphId = 'graph_id',
+    Email = 'email',
+    Phone = 'phone',
+    Mail = 'mail',
+    Name = 'name',
+    Location = 'location'
+}/**
+* @export
+* @enum {string}
+*/
+export enum ProjectLookupMatchProviderEnum {
+    Fig = 'fig',
+    MatchBoost = 'match_boost'
+}
+/**
+ * The people to look up. The Project supplies the columns; this request supplies the rows.
+ * @export
+ * @interface ProjectLookupRequest
+ */
+export interface ProjectLookupRequest {
+    /**
+     * One entry per person. Results come back aligned to this array by index.
+     * @type {Array<ProjectLookupSubject>}
+     * @memberof ProjectLookupRequest
+     */
+    subjects: Array<ProjectLookupSubject>;
+}
+/**
+ * One result per requested subject, in the same order.
+ * @export
+ * @interface ProjectLookupResponse
+ */
+export interface ProjectLookupResponse {
+    /**
+     * Aligned with the request's `subjects` by index.
+     * @type {Array<ProjectLookupResult>}
+     * @memberof ProjectLookupResponse
+     */
+    results: Array<ProjectLookupResult>;
+}
+/**
+ * What one subject resolved to, and that person's payload.
+ * @export
+ * @interface ProjectLookupResult
+ */
+export interface ProjectLookupResult {
+    /**
+     * 
+     * @type {ProjectLookupMatch}
+     * @memberof ProjectLookupResult
+     */
+    match?: ProjectLookupMatch;
+    /**
+     * The person's values, keyed by output column header, holding one key per column in the
+     * Project and nothing else. This is absent unless the status is `matched`.
+     * 
+     * A `previous_*` or `*_delta` value is always null here: those values come from an
+     * enrichment's own delivery history, and a lookup keeps no such history.
+     * @type {object}
+     * @memberof ProjectLookupResult
+     */
+    payload?: object;
+    /**
+     * Echoed from the subject, when you supplied one.
+     * @type {string}
+     * @memberof ProjectLookupResult
+     */
+    reference?: string;
+    /**
+     * How the subject resolved. `ambiguous` means two of the subject's identity sets
+     * resolved to different people, or one set resolved to several people. Ties are never
+     * broken silently.
+     * @type {string}
+     * @memberof ProjectLookupResult
+     */
+    status: ProjectLookupResultStatusEnum;
+    /**
+     * Columns that came back null for a reason worth naming. The match still succeeded.
+     * @type {Array<ProjectLookupWarning>}
+     * @memberof ProjectLookupResult
+     */
+    warnings?: Array<ProjectLookupWarning>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectLookupResultStatusEnum {
+    Matched = 'matched',
+    NoMatch = 'no_match',
+    Ambiguous = 'ambiguous'
+}
+/**
+ * One person to look up.
+ * @export
+ * @interface ProjectLookupSubject
+ */
+export interface ProjectLookupSubject {
+    /**
+     * Alternative descriptions of the same person, for better matchability. Every set is
+     * evaluated, so that sets describing different people are reported as ambiguous rather
+     * than resolved silently.
+     * @type {Array<ProjectLookupIdentitySet>}
+     * @memberof ProjectLookupSubject
+     */
+    identity_sets: Array<ProjectLookupIdentitySet>;
+    /**
+     * Your own key for this person, echoed back on the matching result.
+     * @type {string}
+     * @memberof ProjectLookupSubject
+     */
+    reference?: string;
+}
+/**
+ * One reason some columns came back null.
+ * @export
+ * @interface ProjectLookupWarning
+ */
+export interface ProjectLookupWarning {
+    /**
+     * Why the columns are null: the value comes from an enrichment's delivery history, which
+     * a lookup does not keep; their element is not ready; a lookup cannot read the source at
+     * person grain at all; a lookup cannot serve the column's frame of reference within the
+     * synchronous latency target; or the source could not answer the requested instant.
+     * 
+     * Every code but `historical_value_unavailable` is already reported by `lookup_available`
+     * on the Project's resolved schema, so you can see it when you save the Project rather
+     * than when a request returns a null.
+     * @type {string}
+     * @memberof ProjectLookupWarning
+     */
+    code: ProjectLookupWarningCodeEnum;
+    /**
+     * The output columns this warning covers.
+     * @type {Array<string>}
+     * @memberof ProjectLookupWarning
+     */
+    headers: Array<string>;
+    /**
+     * A human-readable description of the warning.
+     * @type {string}
+     * @memberof ProjectLookupWarning
+     */
+    note: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectLookupWarningCodeEnum {
+    DeliveryHistoryUnavailable = 'delivery_history_unavailable',
+    ElementNotReady = 'element_not_ready',
+    SourceNotAvailableForLookup = 'source_not_available_for_lookup',
+    FrameNotAvailableForLookup = 'frame_not_available_for_lookup',
+    HistoricalValueUnavailable = 'historical_value_unavailable'
+}
+/**
+ * One output column describing how a row resolved.
+ * @export
+ * @interface ProjectMatchMetadataColumn
+ */
+export interface ProjectMatchMetadataColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectMatchMetadataColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. `provider` names the provider that resolved the row, and is null
+     * where Faraday does not recognize the person. `matched_on` is the list of identity
+     * classes that drove the match.
+     * @type {string}
+     * @memberof ProjectMatchMetadataColumn
+     */
+    component: ProjectMatchMetadataColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectMatchMetadataColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectMatchMetadataColumnComponentEnum {
+    Provider = 'provider',
+    MatchedOn = 'matched_on'
+}
+/**
+ * How each row resolved to a person.
+ * @export
+ * @interface ProjectMatchMetadataElement
+ */
+export interface ProjectMatchMetadataElement {
+    /**
+     * The output columns describing each row's resolution, keyed by output column header.
+     * @type {{ [key: string]: ProjectMatchMetadataColumn; }}
+     * @memberof ProjectMatchMetadataElement
+     */
+    columns: { [key: string]: ProjectMatchMetadataColumn; };
+    /**
+     * Marks this element as match metadata.
+     * @type {string}
+     * @memberof ProjectMatchMetadataElement
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `Project` type.)
+ * 
+ * The exact set of output columns you want, in the exact order you want them.
+ * 
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ * 
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface ProjectMergePatch
+ */
+export interface ProjectMergePatch {
+    /**
+     * The output columns, in output order, by header.
+     * 
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof ProjectMergePatch
+     */
+    column_order?: Set<string>;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof ProjectMergePatch
+     */
+    name?: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     * 
+     * The order of this map means nothing. `column_order` alone decides output order.
+     * 
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof ProjectMergePatch
+     */
+    payload?: { [key: string]: ProjectPayloadElement; };
+}
+/**
+ * One output column drawn from an outcome.
+ * @export
+ * @interface ProjectOutcomeColumn
+ */
+export interface ProjectOutcomeColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectOutcomeColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectOutcomeColumn
+     */
+    component: ProjectOutcomeColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectOutcomeColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which predictor to emit, ranked by importance, for an `important_predictor`
+     * component. A negative index counts from the least important end. Required for those
+     * components and rejected for the others.
+     * @type {number}
+     * @memberof ProjectOutcomeColumn
+     */
+    index?: number;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectOutcomeColumnComponentEnum {
+    CalibratedProbability = 'calibrated_probability',
+    PreviousCalibratedProbability = 'previous_calibrated_probability',
+    CalibratedProbabilityDelta = 'calibrated_probability_delta',
+    ProbabilityPercentile = 'probability_percentile',
+    PreviousProbabilityPercentile = 'previous_probability_percentile',
+    ProbabilityPercentileDelta = 'probability_percentile_delta',
+    CalibratedProbabilityPriorToAttainment = 'calibrated_probability_prior_to_attainment',
+    ProbabilityPercentilePriorToAttainment = 'probability_percentile_prior_to_attainment',
+    ImportantPredictor = 'important_predictor',
+    PreviousImportantPredictor = 'previous_important_predictor'
+}
+/**
+ * Predictions from one outcome.
+ * @export
+ * @interface ProjectOutcomeElement
+ */
+export interface ProjectOutcomeElement {
+    /**
+     * The output columns drawn from this outcome, keyed by output column header.
+     * @type {{ [key: string]: ProjectOutcomeColumn; }}
+     * @memberof ProjectOutcomeElement
+     */
+    columns: { [key: string]: ProjectOutcomeColumn; };
+    /**
+     * 
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectOutcomeElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The outcome to read.
+     * @type {string}
+     * @memberof ProjectOutcomeElement
+     */
+    outcome_id: string;
+    /**
+     * Marks this element as an outcome.
+     * @type {string}
+     * @memberof ProjectOutcomeElement
+     */
+    type: string;
+}
+/**
+ * @type ProjectPayloadElement
+ * One source of context, plus the exact output columns drawn from it.
+ * 
+ * `type` selects the element, and the element decides which components its columns may
+ * name. Each element's `columns` map is keyed by output column header.
+ * @export
+ */
+export type ProjectPayloadElement = { type: 'attribute' } & ProjectAttributeElement | { type: 'cohort' } & ProjectCohortElement | { type: 'dataset' } & ProjectDatasetElement | { type: 'geometry' } & ProjectGeometryElement | { type: 'identifier' } & ProjectIdentifierElement | { type: 'match_metadata' } & ProjectMatchMetadataElement | { type: 'outcome' } & ProjectOutcomeElement | { type: 'persona_set' } & ProjectPersonaSetElement | { type: 'recommender' } & ProjectRecommenderElement | { type: 'stream' } & ProjectStreamElement | { type: 'trait' } & ProjectTraitElement;
+/**
+ * One output column drawn from a persona set.
+ * @export
+ * @interface ProjectPersonaSetColumn
+ */
+export interface ProjectPersonaSetColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectPersonaSetColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. A `distance_to_centroid` component is a Jaccard distance in
+     * the closed range 0 to 1.
+     * @type {string}
+     * @memberof ProjectPersonaSetColumn
+     */
+    component: ProjectPersonaSetColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectPersonaSetColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectPersonaSetColumnComponentEnum {
+    Id = 'id',
+    PreviousId = 'previous_id',
+    Name = 'name',
+    PreviousName = 'previous_name',
+    DistanceToCentroid = 'distance_to_centroid',
+    PreviousDistanceToCentroid = 'previous_distance_to_centroid',
+    DistanceToCentroidDelta = 'distance_to_centroid_delta'
+}
+/**
+ * Persona assignment from one persona set.
+ * @export
+ * @interface ProjectPersonaSetElement
+ */
+export interface ProjectPersonaSetElement {
+    /**
+     * The output columns drawn from this persona set, keyed by output column header.
+     * @type {{ [key: string]: ProjectPersonaSetColumn; }}
+     * @memberof ProjectPersonaSetElement
+     */
+    columns: { [key: string]: ProjectPersonaSetColumn; };
+    /**
+     * 
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectPersonaSetElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The persona set to read.
+     * @type {string}
+     * @memberof ProjectPersonaSetElement
+     */
+    persona_set_id: string;
+    /**
+     * Marks this element as a persona set.
+     * @type {string}
+     * @memberof ProjectPersonaSetElement
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `Project` type.)
+ * 
+ * The exact set of output columns you want, in the exact order you want them.
+ * 
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ * 
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface ProjectPost
+ */
+export interface ProjectPost {
+    /**
+     * The output columns, in output order, by header.
+     * 
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof ProjectPost
+     */
+    column_order: Set<string>;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof ProjectPost
+     */
+    name: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     * 
+     * The order of this map means nothing. `column_order` alone decides output order.
+     * 
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof ProjectPost
+     */
+    payload: { [key: string]: ProjectPayloadElement; };
+}
+/**
+ * What a Project will produce, worked out from its configuration.
+ * 
+ * The resolved schema, the usage ceiling, and each element's readiness need no data run and
+ * are always present. Sample rows appear only in the response to a sample request.
+ * @export
+ * @interface ProjectPreview
+ */
+export interface ProjectPreview {
+    /**
+     * Each payload element's readiness, keyed by element key. A column whose element is not
+     * ready comes back null with a warning rather than failing the request.
+     * @type {{ [key: string]: ResourceStatus; }}
+     * @memberof ProjectPreview
+     */
+    element_status: { [key: string]: ResourceStatus; };
+    /**
+     * The most usage one looked-up person could create, by billable element category. An
+     * element counts once for a person when at least one of its declared columns resolves
+     * to a non-null value, however many columns it feeds.
+     * @type {{ [key: string]: number; }}
+     * @memberof ProjectPreview
+     */
+    max_lookup_usage: { [key: string]: number; };
+    /**
+     * A few rows in the exact output shape, keyed by output column header, at person grain.
+     * Identity class values are blurred, so a sample never delivers real contact data.
+     * 
+     * Present only in the response to `POST /projects/{project_id}/sample`, which reads
+     * person data and creates usage under the lookup rule. Sample rows are not stored, so
+     * they never go stale and reading the Project again does not return them.
+     * @type {Array<object>}
+     * @memberof ProjectPreview
+     */
+    sample?: Array<object>;
+    /**
+     * One entry per output column, in output order. This is the complete output schema:
+     * nothing adds, renames, reorders, or removes a column later.
+     * @type {Array<ProjectResolvedColumn>}
+     * @memberof ProjectPreview
+     */
+    schema: Array<ProjectResolvedColumn>;
+}
+/**
+ * (Parameters used to PUT a value of the `Project` type.)
+ * 
+ * The exact set of output columns you want, in the exact order you want them.
+ * 
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ * 
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface ProjectPut
+ */
+export interface ProjectPut {
+    /**
+     * The output columns, in output order, by header.
+     * 
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof ProjectPut
+     */
+    column_order: Set<string>;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof ProjectPut
+     */
+    name: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     * 
+     * The order of this map means nothing. `column_order` alone decides output order.
+     * 
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof ProjectPut
+     */
+    payload: { [key: string]: ProjectPayloadElement; };
+}
+/**
+ * One output column drawn from a recommender.
+ * 
+ * A person holds a ranked list of recommendations, and `index` picks one of them, so no
+ * person-level `aggregation` is needed to reduce that list.
+ * @export
+ * @interface ProjectRecommenderColumn
+ */
+export interface ProjectRecommenderColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectRecommenderColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectRecommenderColumn
+     */
+    component: ProjectRecommenderColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectRecommenderColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which recommendation to emit, ranked most likely first. A negative index counts from
+     * the least likely end.
+     * @type {number}
+     * @memberof ProjectRecommenderColumn
+     */
+    index: number;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectRecommenderColumnComponentEnum {
+    Value = 'value',
+    PreviousValue = 'previous_value'
+}
+/**
+ * Ranked recommendations from one recommender.
+ * @export
+ * @interface ProjectRecommenderElement
+ */
+export interface ProjectRecommenderElement {
+    /**
+     * The output columns drawn from this recommender, keyed by output column header.
+     * @type {{ [key: string]: ProjectRecommenderColumn; }}
+     * @memberof ProjectRecommenderElement
+     */
+    columns: { [key: string]: ProjectRecommenderColumn; };
+    /**
+     * 
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectRecommenderElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The recommender to read.
+     * @type {string}
+     * @memberof ProjectRecommenderElement
+     */
+    recommender_id: string;
+    /**
+     * Marks this element as a recommender.
+     * @type {string}
+     * @memberof ProjectRecommenderElement
+     */
+    type: string;
+}
+/**
+ * One output column, fully resolved.
+ * @export
+ * @interface ProjectResolvedColumn
+ */
+export interface ProjectResolvedColumn {
+    /**
+     * What decides the instant this column is read as of: the current state, one fixed
+     * instant, each person's entrance to a cohort, or an instant carried in a dataset.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    as_of_basis: ProjectResolvedColumnAsOfBasisEnum;
+    /**
+     * 
+     * @type {ProjectColumnDataType}
+     * @memberof ProjectResolvedColumn
+     */
+    data_type: ProjectColumnDataType;
+    /**
+     * The name of one output column.
+     * 
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    header: string;
+    /**
+     * Whether a lookup can serve this column. Where this is false, a lookup returns null for
+     * the column and carries a warning naming it; a batch enrichment may still produce it.
+     * @type {boolean}
+     * @memberof ProjectResolvedColumn
+     */
+    lookup_available: boolean;
+    /**
+     * Whether this column can be null, for any reason: an element that is not ready, a row
+     * that did not match, a `nullify` strategy, a suppressed value, or a source that could
+     * not answer the requested instant.
+     * @type {boolean}
+     * @memberof ProjectResolvedColumn
+     */
+    nullable: boolean;
+    /**
+     * How precisely a historical instant is answered. `day` means the requested instant is
+     * floored to a UTC date before the value is read. `event_timestamp` means the source
+     * answers at the exact event time. This is absent where the column reads current state.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    snapshot_granularity?: ProjectResolvedColumnSnapshotGranularityEnum;
+    /**
+     * Where the value comes from, in words.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    source_label: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectResolvedColumnAsOfBasisEnum {
+    Current = 'current',
+    FixedTimestamp = 'fixed_timestamp',
+    CohortEntrance = 'cohort_entrance',
+    DatasetTimestamp = 'dataset_timestamp'
+}/**
+* @export
+* @enum {string}
+*/
+export enum ProjectResolvedColumnSnapshotGranularityEnum {
+    Day = 'day',
+    EventTimestamp = 'event_timestamp'
+}
+/**
+ * Ask for sample rows. This reads person data and creates usage under the lookup rule.
+ * @export
+ * @interface ProjectSampleRequest
+ */
+export interface ProjectSampleRequest {
+    /**
+     * How many rows to sample. Omit it for 5.
+     * @type {number}
+     * @memberof ProjectSampleRequest
+     */
+    count?: number;
+}
+/**
+ * One output column drawn from a stream.
+ * 
+ * A person can have many events in one stream. Every component either picks one event with
+ * `index` or reduces the whole event set as part of its own meaning, so no person-level
+ * `aggregation` is needed to reduce those events.
+ * @export
+ * @interface ProjectStreamColumn
+ */
+export interface ProjectStreamColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectStreamColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * 
+     * A `*_value` component is null where the property is not numeric.
+     * @type {string}
+     * @memberof ProjectStreamColumn
+     */
+    component: ProjectStreamColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectStreamColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which event to read, in chronological order. A negative index counts from the most
+     * recent end, so `-1` is the latest event. Required for the `value` and `datetime`
+     * components and their `previous_*` and `*_delta` forms.
+     * @type {number}
+     * @memberof ProjectStreamColumn
+     */
+    index?: number;
+    /**
+     * The event property to read. Required for the `value`, `total_value`, and `mean_value`
+     * components and their `previous_*` and `*_delta` forms.
+     * @type {string}
+     * @memberof ProjectStreamColumn
+     */
+    property_name?: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectStreamColumnComponentEnum {
+    Count = 'count',
+    PreviousCount = 'previous_count',
+    CountDelta = 'count_delta',
+    Value = 'value',
+    PreviousValue = 'previous_value',
+    ValueDelta = 'value_delta',
+    TotalValue = 'total_value',
+    PreviousTotalValue = 'previous_total_value',
+    TotalValueDelta = 'total_value_delta',
+    MeanValue = 'mean_value',
+    PreviousMeanValue = 'previous_mean_value',
+    MeanValueDelta = 'mean_value_delta',
+    Datetime = 'datetime',
+    PreviousDatetime = 'previous_datetime'
+}
+/**
+ * Values drawn from the events in one stream.
+ * @export
+ * @interface ProjectStreamElement
+ */
+export interface ProjectStreamElement {
+    /**
+     * The output columns drawn from this stream, keyed by output column header.
+     * @type {{ [key: string]: ProjectStreamColumn; }}
+     * @memberof ProjectStreamElement
+     */
+    columns: { [key: string]: ProjectStreamColumn; };
+    /**
+     * 
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectStreamElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The stream to read.
+     * @type {string}
+     * @memberof ProjectStreamElement
+     */
+    name: string;
+    /**
+     * Marks this element as a stream.
+     * @type {string}
+     * @memberof ProjectStreamElement
+     */
+    type: string;
+}
+/**
+ * How to parse a timestamp read from a Dataset column. A timestamp with no time zone is read
+ * as UTC.
+ * @export
+ * @enum {string}
+ */
+export enum ProjectTimestampFormat {
+    MmDdYySlash = 'mm_dd_yy_slash',
+    MmDdYyyySlash = 'mm_dd_yyyy_slash',
+    MmDdYyDash = 'mm_dd_yy_dash',
+    MmDdYyyyDash = 'mm_dd_yyyy_dash',
+    YyyyMmDdSlash = 'yyyy_mm_dd_slash',
+    YyMmDdSlash = 'yy_mm_dd_slash',
+    YyyyMmDdDash = 'yyyy_mm_dd_dash',
+    YyMmDdDash = 'yy_mm_dd_dash',
+    Yyyymmdd = 'yyyymmdd',
+    Yyyymm = 'yyyymm',
+    YyyyMmDash = 'yyyy_mm_dash',
+    YyyyMmSlash = 'yyyy_mm_slash',
+    DdMmYyyySlash = 'dd_mm_yyyy_slash',
+    DdMmYySlash = 'dd_mm_yy_slash',
+    DdMmYyyyDash = 'dd_mm_yyyy_dash',
+    DdMmYyDash = 'dd_mm_yy_dash',
+    DateIso8601 = 'date_iso8601',
+    DateMonthDayFullyear = 'date_month_day_fullyear',
+    DateMonthDayShortyear = 'date_month_day_shortyear',
+    DateMonthDayFullyearHoursMinutes = 'date_month_day_fullyear_hours_minutes',
+    DateMonthDayFullyearHoursMinutesSeconds = 'date_month_day_fullyear_hours_minutes_seconds',
+    DateSecondsSinceEpochUtc = 'date_seconds_since_epoch_utc',
+    DateMillisecondsSinceEpochUtc = 'date_milliseconds_since_epoch_utc'
+}
+/**
+ * One output column drawn from a trait.
+ * @export
+ * @interface ProjectTraitColumn
+ */
+export interface ProjectTraitColumn {
+    /**
+     * 
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectTraitColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectTraitColumn
+     */
+    component: ProjectTraitColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectTraitColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ProjectTraitColumnComponentEnum {
+    Value = 'value',
+    PreviousValue = 'previous_value',
+    ValueDelta = 'value_delta'
+}
+/**
+ * Values of one trait built from your own data.
+ * @export
+ * @interface ProjectTraitElement
+ */
+export interface ProjectTraitElement {
+    /**
+     * The output columns drawn from this trait, keyed by output column header.
+     * @type {{ [key: string]: ProjectTraitColumn; }}
+     * @memberof ProjectTraitElement
+     */
+    columns: { [key: string]: ProjectTraitColumn; };
+    /**
+     * The trait to read.
+     * @type {string}
+     * @memberof ProjectTraitElement
+     */
+    name: string;
+    /**
+     * Marks this element as a trait.
+     * @type {string}
+     * @memberof ProjectTraitElement
+     */
+    type: string;
 }
 /**
  * Basing cohort on recency of event
@@ -18769,16 +21653,17 @@ export enum ResourceStatus {
  */
 export enum ResourceType {
     Accounts = 'accounts',
-    Atlases = 'atlases',
     Attributes = 'attributes',
     Cohorts = 'cohorts',
     Connections = 'connections',
     Datasets = 'datasets',
+    Enrichments = 'enrichments',
     FeatureStores = 'feature_stores',
     MarketOpportunityAnalyses = 'market_opportunity_analyses',
     Outcomes = 'outcomes',
     PersonaSets = 'persona_sets',
     Places = 'places',
+    Projects = 'projects',
     Recommenders = 'recommenders',
     Scopes = 'scopes',
     Streams = 'streams',
@@ -19298,12 +22183,6 @@ export interface ScopePayload {
      */
     explainability?: boolean;
     /**
-     * 
-     * @type {ScopePayloadLocation}
-     * @memberof ScopePayload
-     */
-    location?: ScopePayloadLocation;
-    /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
      * @memberof ScopePayload
@@ -19350,79 +22229,6 @@ export interface ScopePayloadColumn {
     name: string;
 }
 /**
- * Include each person's proximity to the locations of one or more atlases.
- * 
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocation
- */
-export interface ScopePayloadLocation {
-    /**
-     * 
-     * @type {ScopePayloadLocationConditions}
-     * @memberof ScopePayloadLocation
-     */
-    conditions?: ScopePayloadLocationConditions;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     * 
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocation
-     */
-    select?: ScopePayloadLocationSelectEnum;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ScopePayloadLocationSelectEnum {
-    Nearest = 'nearest',
-    All = 'all'
-}
-/**
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditions
- */
-export interface ScopePayloadLocationConditions {
-    /**
-     * The atlases whose locations each person is matched against.
-     * 
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditions
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     * 
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditions
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditions
-     */
-    max_distance?: number;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditions
-     */
-    min_distance?: number;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditions
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
  * (Parameters used to PATCH the `ScopePayload` type.)
  * 
  * The data to include for each person in this scope.
@@ -19453,12 +22259,6 @@ export interface ScopePayloadMergePatch {
      */
     explainability?: boolean | null;
     /**
-     * 
-     * @type {ScopePayloadMergePatchLocation}
-     * @memberof ScopePayloadMergePatch
-     */
-    location?: ScopePayloadMergePatchLocation | null;
-    /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
      * @memberof ScopePayloadMergePatch
@@ -19484,38 +22284,6 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     recommender_ids?: Array<string> | null;
-}
-/**
- * Include each person's proximity to the locations of one or more atlases.
- * 
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadMergePatchLocation
- */
-export interface ScopePayloadMergePatchLocation {
-    /**
-     * 
-     * @type {ScopePayloadLocationConditions}
-     * @memberof ScopePayloadMergePatchLocation
-     */
-    conditions?: ScopePayloadLocationConditions;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     * 
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadMergePatchLocation
-     */
-    select?: ScopePayloadMergePatchLocationSelectEnum;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ScopePayloadMergePatchLocationSelectEnum {
-    Nearest = 'nearest',
-    All = 'all'
 }
 /**
  * (Parameters used to POST a new value of the `ScopePayload` type.)
@@ -19547,12 +22315,6 @@ export interface ScopePayloadPost {
      * @memberof ScopePayloadPost
      */
     explainability?: boolean;
-    /**
-     * 
-     * @type {ScopePayloadLocation}
-     * @memberof ScopePayloadPost
-     */
-    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -19610,12 +22372,6 @@ export interface ScopePayloadPut {
      * @memberof ScopePayloadPut
      */
     explainability?: boolean;
-    /**
-     * 
-     * @type {ScopePayloadLocation}
-     * @memberof ScopePayloadPut
-     */
-    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -23166,7 +25922,7 @@ export interface TargetModesReferencedPut {
  */
 export type TargetOptions = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServer | { type: 'bigquery' } & TargetOptionsBigQuery | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsv | { type: 'google_ads' } & TargetOptionsGoogleAds | { type: 'hosted_csv' } & TargetOptionsHostedCsv | { type: 'hubspot' } & TargetOptionsHubspot | { type: 'iterable' } & TargetOptionsIterable | { type: 'klaviyo' } & TargetOptionsKlaviyo | { type: 'linkedin_ads' } & TargetOptionsLinkedinAds | { type: 'lookup_api' } & TargetOptionsLookupApi | { type: 'motherduck' } & TargetOptionsMotherduck | { type: 'mysql' } & TargetOptionsMysql | { type: 'pinterest_ads' } & TargetOptionsPinterestAds | { type: 'poplar' } & TargetOptionsPoplar | { type: 'postgres' } & TargetOptionsPostgres | { type: 'redshift' } & TargetOptionsRedshift | { type: 's3_csv' } & TargetOptionsS3Csv | { type: 'salesforce' } & TargetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloud | { type: 'segment' } & TargetOptionsSegment | { type: 'sftp' } & TargetOptionsSftp | { type: 'snowflake' } & TargetOptionsSnowflake | { type: 'sql_server' } & TargetOptionsSqlServer | { type: 'the_trade_desk' } & TargetOptionsTheTradeDesk | { type: 'tiktok' } & TargetOptionsTiktok;
 /**
- * Aurora (MySQL) options
+ * Aurora (MySQL) target options
  * @export
  * @interface TargetOptionsAwsAuroraMysql
  */
@@ -23187,7 +25943,7 @@ export interface TargetOptionsAwsAuroraMysql {
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) target options
  * @export
  * @interface TargetOptionsAwsAuroraMysqlMergePatch
  */
@@ -23208,7 +25964,7 @@ export interface TargetOptionsAwsAuroraMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) target options
  * @export
  * @interface TargetOptionsAwsAuroraMysqlPost
  */
@@ -23229,7 +25985,7 @@ export interface TargetOptionsAwsAuroraMysqlPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAwsAuroraMysql` type.)
  * 
- * Aurora (MySQL) options
+ * Aurora (MySQL) target options
  * @export
  * @interface TargetOptionsAwsAuroraMysqlPut
  */
@@ -23248,7 +26004,7 @@ export interface TargetOptionsAwsAuroraMysqlPut {
     type: string;
 }
 /**
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres target options
  * @export
  * @interface TargetOptionsAwsAuroraPostgres
  */
@@ -23269,7 +26025,7 @@ export interface TargetOptionsAwsAuroraPostgres {
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres target options
  * @export
  * @interface TargetOptionsAwsAuroraPostgresMergePatch
  */
@@ -23290,7 +26046,7 @@ export interface TargetOptionsAwsAuroraPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres target options
  * @export
  * @interface TargetOptionsAwsAuroraPostgresPost
  */
@@ -23311,7 +26067,7 @@ export interface TargetOptionsAwsAuroraPostgresPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAwsAuroraPostgres` type.)
  * 
- * AWS Aurora Postgres options
+ * AWS Aurora Postgres target options
  * @export
  * @interface TargetOptionsAwsAuroraPostgresPut
  */
@@ -23330,7 +26086,7 @@ export interface TargetOptionsAwsAuroraPostgresPut {
     type: string;
 }
 /**
- * RDS (MySQL) options
+ * RDS (MySQL) target options
  * @export
  * @interface TargetOptionsAwsRdsMysql
  */
@@ -23351,7 +26107,7 @@ export interface TargetOptionsAwsRdsMysql {
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) target options
  * @export
  * @interface TargetOptionsAwsRdsMysqlMergePatch
  */
@@ -23372,7 +26128,7 @@ export interface TargetOptionsAwsRdsMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) target options
  * @export
  * @interface TargetOptionsAwsRdsMysqlPost
  */
@@ -23393,7 +26149,7 @@ export interface TargetOptionsAwsRdsMysqlPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAwsRdsMysql` type.)
  * 
- * RDS (MySQL) options
+ * RDS (MySQL) target options
  * @export
  * @interface TargetOptionsAwsRdsMysqlPut
  */
@@ -23412,7 +26168,7 @@ export interface TargetOptionsAwsRdsMysqlPut {
     type: string;
 }
 /**
- * RDS (Postgres) options
+ * RDS (Postgres) target options
  * @export
  * @interface TargetOptionsAwsRdsPostgres
  */
@@ -23433,7 +26189,7 @@ export interface TargetOptionsAwsRdsPostgres {
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) target options
  * @export
  * @interface TargetOptionsAwsRdsPostgresMergePatch
  */
@@ -23454,7 +26210,7 @@ export interface TargetOptionsAwsRdsPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) target options
  * @export
  * @interface TargetOptionsAwsRdsPostgresPost
  */
@@ -23475,7 +26231,7 @@ export interface TargetOptionsAwsRdsPostgresPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAwsRdsPostgres` type.)
  * 
- * RDS (Postgres) options
+ * RDS (Postgres) target options
  * @export
  * @interface TargetOptionsAwsRdsPostgresPut
  */
@@ -23494,7 +26250,7 @@ export interface TargetOptionsAwsRdsPostgresPut {
     type: string;
 }
 /**
- * RDS (SQL Server) options
+ * RDS (SQL Server) target options
  * @export
  * @interface TargetOptionsAwsRdsSqlServer
  */
@@ -23515,7 +26271,7 @@ export interface TargetOptionsAwsRdsSqlServer {
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) target options
  * @export
  * @interface TargetOptionsAwsRdsSqlServerMergePatch
  */
@@ -23536,7 +26292,7 @@ export interface TargetOptionsAwsRdsSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) target options
  * @export
  * @interface TargetOptionsAwsRdsSqlServerPost
  */
@@ -23557,7 +26313,7 @@ export interface TargetOptionsAwsRdsSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAwsRdsSqlServer` type.)
  * 
- * RDS (SQL Server) options
+ * RDS (SQL Server) target options
  * @export
  * @interface TargetOptionsAwsRdsSqlServerPut
  */
@@ -23576,7 +26332,7 @@ export interface TargetOptionsAwsRdsSqlServerPut {
     type: string;
 }
 /**
- * Redshift Serverless options
+ * Redshift Serverless target options
  * @export
  * @interface TargetOptionsAwsRedshiftServerless
  */
@@ -23597,7 +26353,7 @@ export interface TargetOptionsAwsRedshiftServerless {
 /**
  * (Parameters used to PATCH the `TargetOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless target options
  * @export
  * @interface TargetOptionsAwsRedshiftServerlessMergePatch
  */
@@ -23618,7 +26374,7 @@ export interface TargetOptionsAwsRedshiftServerlessMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless target options
  * @export
  * @interface TargetOptionsAwsRedshiftServerlessPost
  */
@@ -23639,7 +26395,7 @@ export interface TargetOptionsAwsRedshiftServerlessPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAwsRedshiftServerless` type.)
  * 
- * Redshift Serverless options
+ * Redshift Serverless target options
  * @export
  * @interface TargetOptionsAwsRedshiftServerlessPut
  */
@@ -23658,7 +26414,7 @@ export interface TargetOptionsAwsRedshiftServerlessPut {
     type: string;
 }
 /**
- * Azure SQL options
+ * Azure SQL target options
  * @export
  * @interface TargetOptionsAzureSqlServer
  */
@@ -23679,7 +26435,7 @@ export interface TargetOptionsAzureSqlServer {
 /**
  * (Parameters used to PATCH the `TargetOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL target options
  * @export
  * @interface TargetOptionsAzureSqlServerMergePatch
  */
@@ -23700,7 +26456,7 @@ export interface TargetOptionsAzureSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL target options
  * @export
  * @interface TargetOptionsAzureSqlServerPost
  */
@@ -23721,7 +26477,7 @@ export interface TargetOptionsAzureSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsAzureSqlServer` type.)
  * 
- * Azure SQL options
+ * Azure SQL target options
  * @export
  * @interface TargetOptionsAzureSqlServerPut
  */
@@ -23740,7 +26496,7 @@ export interface TargetOptionsAzureSqlServerPut {
     type: string;
 }
 /**
- * BigQuery options
+ * BigQuery target options
  * @export
  * @interface TargetOptionsBigQuery
  */
@@ -23773,7 +26529,7 @@ export interface TargetOptionsBigQuery {
 /**
  * (Parameters used to PATCH the `TargetOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery target options
  * @export
  * @interface TargetOptionsBigQueryMergePatch
  */
@@ -23806,7 +26562,7 @@ export interface TargetOptionsBigQueryMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery target options
  * @export
  * @interface TargetOptionsBigQueryPost
  */
@@ -23839,7 +26595,7 @@ export interface TargetOptionsBigQueryPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsBigQuery` type.)
  * 
- * BigQuery options
+ * BigQuery target options
  * @export
  * @interface TargetOptionsBigQueryPut
  */
@@ -23870,7 +26626,7 @@ export interface TargetOptionsBigQueryPut {
     upsert?: boolean;
 }
 /**
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences target options
  * @export
  * @interface TargetOptionsFacebookCustomAudiences
  */
@@ -23885,7 +26641,7 @@ export interface TargetOptionsFacebookCustomAudiences {
 /**
  * (Parameters used to PATCH the `TargetOptionsFacebookCustomAudiences` type.)
  * 
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences target options
  * @export
  * @interface TargetOptionsFacebookCustomAudiencesMergePatch
  */
@@ -23900,7 +26656,7 @@ export interface TargetOptionsFacebookCustomAudiencesMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsFacebookCustomAudiences` type.)
  * 
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences target options
  * @export
  * @interface TargetOptionsFacebookCustomAudiencesPost
  */
@@ -23915,7 +26671,7 @@ export interface TargetOptionsFacebookCustomAudiencesPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsFacebookCustomAudiences` type.)
  * 
- * Facebook Custom Audiences options
+ * Facebook Custom Audiences target options
  * @export
  * @interface TargetOptionsFacebookCustomAudiencesPut
  */
@@ -23928,7 +26684,7 @@ export interface TargetOptionsFacebookCustomAudiencesPut {
     type: string;
 }
 /**
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlMysql
  */
@@ -23949,7 +26705,7 @@ export interface TargetOptionsGcpCloudSqlMysql {
 /**
  * (Parameters used to PATCH the `TargetOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlMysqlMergePatch
  */
@@ -23970,7 +26726,7 @@ export interface TargetOptionsGcpCloudSqlMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlMysqlPost
  */
@@ -23991,7 +26747,7 @@ export interface TargetOptionsGcpCloudSqlMysqlPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsGcpCloudSqlMysql` type.)
  * 
- * Google Cloud SQL (MySQL) options
+ * Google Cloud SQL (MySQL) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlMysqlPut
  */
@@ -24010,7 +26766,7 @@ export interface TargetOptionsGcpCloudSqlMysqlPut {
     type: string;
 }
 /**
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlPostgres
  */
@@ -24031,7 +26787,7 @@ export interface TargetOptionsGcpCloudSqlPostgres {
 /**
  * (Parameters used to PATCH the `TargetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlPostgresMergePatch
  */
@@ -24052,7 +26808,7 @@ export interface TargetOptionsGcpCloudSqlPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlPostgresPost
  */
@@ -24073,7 +26829,7 @@ export interface TargetOptionsGcpCloudSqlPostgresPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsGcpCloudSqlPostgres` type.)
  * 
- * Google Cloud SQL (Postgres) options
+ * Google Cloud SQL (Postgres) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlPostgresPut
  */
@@ -24092,7 +26848,7 @@ export interface TargetOptionsGcpCloudSqlPostgresPut {
     type: string;
 }
 /**
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlSqlServer
  */
@@ -24113,7 +26869,7 @@ export interface TargetOptionsGcpCloudSqlSqlServer {
 /**
  * (Parameters used to PATCH the `TargetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlSqlServerMergePatch
  */
@@ -24134,7 +26890,7 @@ export interface TargetOptionsGcpCloudSqlSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlSqlServerPost
  */
@@ -24155,7 +26911,7 @@ export interface TargetOptionsGcpCloudSqlSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsGcpCloudSqlSqlServer` type.)
  * 
- * Google Cloud SQL (SQL Server) options
+ * Google Cloud SQL (SQL Server) target options
  * @export
  * @interface TargetOptionsGcpCloudSqlSqlServerPut
  */
@@ -24174,7 +26930,7 @@ export interface TargetOptionsGcpCloudSqlSqlServerPut {
     type: string;
 }
 /**
- * GCS options
+ * GCS target options
  * @export
  * @interface TargetOptionsGcpGcsCsv
  */
@@ -24213,7 +26969,7 @@ export interface TargetOptionsGcpGcsCsv {
 /**
  * (Parameters used to PATCH the `TargetOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS target options
  * @export
  * @interface TargetOptionsGcpGcsCsvMergePatch
  */
@@ -24252,7 +27008,7 @@ export interface TargetOptionsGcpGcsCsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS target options
  * @export
  * @interface TargetOptionsGcpGcsCsvPost
  */
@@ -24291,7 +27047,7 @@ export interface TargetOptionsGcpGcsCsvPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsGcpGcsCsv` type.)
  * 
- * GCS options
+ * GCS target options
  * @export
  * @interface TargetOptionsGcpGcsCsvPut
  */
@@ -24328,7 +27084,7 @@ export interface TargetOptionsGcpGcsCsvPut {
     type: string;
 }
 /**
- * Google Ads options
+ * Google Ads target options
  * @export
  * @interface TargetOptionsGoogleAds
  */
@@ -24343,7 +27099,7 @@ export interface TargetOptionsGoogleAds {
 /**
  * (Parameters used to PATCH the `TargetOptionsGoogleAds` type.)
  * 
- * Google Ads options
+ * Google Ads target options
  * @export
  * @interface TargetOptionsGoogleAdsMergePatch
  */
@@ -24358,7 +27114,7 @@ export interface TargetOptionsGoogleAdsMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsGoogleAds` type.)
  * 
- * Google Ads options
+ * Google Ads target options
  * @export
  * @interface TargetOptionsGoogleAdsPost
  */
@@ -24373,7 +27129,7 @@ export interface TargetOptionsGoogleAdsPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsGoogleAds` type.)
  * 
- * Google Ads options
+ * Google Ads target options
  * @export
  * @interface TargetOptionsGoogleAdsPut
  */
@@ -24386,7 +27142,7 @@ export interface TargetOptionsGoogleAdsPut {
     type: string;
 }
 /**
- * CSV options
+ * CSV target options
  * @export
  * @interface TargetOptionsHostedCsv
  */
@@ -24425,7 +27181,7 @@ export interface TargetOptionsHostedCsv {
 /**
  * (Parameters used to PATCH the `TargetOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV target options
  * @export
  * @interface TargetOptionsHostedCsvMergePatch
  */
@@ -24458,7 +27214,7 @@ export interface TargetOptionsHostedCsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV target options
  * @export
  * @interface TargetOptionsHostedCsvPost
  */
@@ -24491,7 +27247,7 @@ export interface TargetOptionsHostedCsvPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsHostedCsv` type.)
  * 
- * CSV options
+ * CSV target options
  * @export
  * @interface TargetOptionsHostedCsvPut
  */
@@ -24522,7 +27278,7 @@ export interface TargetOptionsHostedCsvPut {
     type: string;
 }
 /**
- * HubSpot options
+ * HubSpot target options
  * @export
  * @interface TargetOptionsHubspot
  */
@@ -24537,7 +27293,7 @@ export interface TargetOptionsHubspot {
 /**
  * (Parameters used to PATCH the `TargetOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot target options
  * @export
  * @interface TargetOptionsHubspotMergePatch
  */
@@ -24552,7 +27308,7 @@ export interface TargetOptionsHubspotMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot target options
  * @export
  * @interface TargetOptionsHubspotPost
  */
@@ -24567,7 +27323,7 @@ export interface TargetOptionsHubspotPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsHubspot` type.)
  * 
- * HubSpot options
+ * HubSpot target options
  * @export
  * @interface TargetOptionsHubspotPut
  */
@@ -24580,7 +27336,7 @@ export interface TargetOptionsHubspotPut {
     type: string;
 }
 /**
- * Iterable options
+ * Iterable target options
  * @export
  * @interface TargetOptionsIterable
  */
@@ -24607,7 +27363,7 @@ export interface TargetOptionsIterable {
 /**
  * (Parameters used to PATCH the `TargetOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable target options
  * @export
  * @interface TargetOptionsIterableMergePatch
  */
@@ -24634,7 +27390,7 @@ export interface TargetOptionsIterableMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable target options
  * @export
  * @interface TargetOptionsIterablePost
  */
@@ -24661,7 +27417,7 @@ export interface TargetOptionsIterablePost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsIterable` type.)
  * 
- * Iterable options
+ * Iterable target options
  * @export
  * @interface TargetOptionsIterablePut
  */
@@ -24686,7 +27442,7 @@ export interface TargetOptionsIterablePut {
     type: string;
 }
 /**
- * Klaviyo options
+ * Klaviyo target options
  * @export
  * @interface TargetOptionsKlaviyo
  */
@@ -24701,7 +27457,7 @@ export interface TargetOptionsKlaviyo {
 /**
  * (Parameters used to PATCH the `TargetOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo target options
  * @export
  * @interface TargetOptionsKlaviyoMergePatch
  */
@@ -24716,7 +27472,7 @@ export interface TargetOptionsKlaviyoMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo target options
  * @export
  * @interface TargetOptionsKlaviyoPost
  */
@@ -24731,7 +27487,7 @@ export interface TargetOptionsKlaviyoPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsKlaviyo` type.)
  * 
- * Klaviyo options
+ * Klaviyo target options
  * @export
  * @interface TargetOptionsKlaviyoPut
  */
@@ -24744,7 +27500,7 @@ export interface TargetOptionsKlaviyoPut {
     type: string;
 }
 /**
- * LinkedIn Ads options
+ * LinkedIn Ads target options
  * @export
  * @interface TargetOptionsLinkedinAds
  */
@@ -24759,7 +27515,7 @@ export interface TargetOptionsLinkedinAds {
 /**
  * (Parameters used to PATCH the `TargetOptionsLinkedinAds` type.)
  * 
- * LinkedIn Ads options
+ * LinkedIn Ads target options
  * @export
  * @interface TargetOptionsLinkedinAdsMergePatch
  */
@@ -24774,7 +27530,7 @@ export interface TargetOptionsLinkedinAdsMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsLinkedinAds` type.)
  * 
- * LinkedIn Ads options
+ * LinkedIn Ads target options
  * @export
  * @interface TargetOptionsLinkedinAdsPost
  */
@@ -24789,7 +27545,7 @@ export interface TargetOptionsLinkedinAdsPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsLinkedinAds` type.)
  * 
- * LinkedIn Ads options
+ * LinkedIn Ads target options
  * @export
  * @interface TargetOptionsLinkedinAdsPut
  */
@@ -24802,7 +27558,7 @@ export interface TargetOptionsLinkedinAdsPut {
     type: string;
 }
 /**
- * Lookup API options
+ * Lookup API target options
  * @export
  * @interface TargetOptionsLookupApi
  */
@@ -24823,7 +27579,7 @@ export interface TargetOptionsLookupApi {
 /**
  * (Parameters used to PATCH the `TargetOptionsLookupApi` type.)
  * 
- * Lookup API options
+ * Lookup API target options
  * @export
  * @interface TargetOptionsLookupApiMergePatch
  */
@@ -24838,7 +27594,7 @@ export interface TargetOptionsLookupApiMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsLookupApi` type.)
  * 
- * Lookup API options
+ * Lookup API target options
  * @export
  * @interface TargetOptionsLookupApiPost
  */
@@ -24853,7 +27609,7 @@ export interface TargetOptionsLookupApiPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsLookupApi` type.)
  * 
- * Lookup API options
+ * Lookup API target options
  * @export
  * @interface TargetOptionsLookupApiPut
  */
@@ -24872,7 +27628,7 @@ export interface TargetOptionsLookupApiPut {
  */
 export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & TargetOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'hubspot' } & TargetOptionsHubspotMergePatch | { type: 'iterable' } & TargetOptionsIterableMergePatch | { type: 'klaviyo' } & TargetOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & TargetOptionsLookupApiMergePatch | { type: 'motherduck' } & TargetOptionsMotherduckMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsMergePatch | { type: 'poplar' } & TargetOptionsPoplarMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'salesforce' } & TargetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & TargetOptionsSegmentMergePatch | { type: 'sftp' } & TargetOptionsSftpMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & TargetOptionsTiktokMergePatch;
 /**
- * MotherDuck options
+ * MotherDuck target options
  * @export
  * @interface TargetOptionsMotherduck
  */
@@ -24899,7 +27655,7 @@ export interface TargetOptionsMotherduck {
 /**
  * (Parameters used to PATCH the `TargetOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck target options
  * @export
  * @interface TargetOptionsMotherduckMergePatch
  */
@@ -24926,7 +27682,7 @@ export interface TargetOptionsMotherduckMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck target options
  * @export
  * @interface TargetOptionsMotherduckPost
  */
@@ -24953,7 +27709,7 @@ export interface TargetOptionsMotherduckPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsMotherduck` type.)
  * 
- * MotherDuck options
+ * MotherDuck target options
  * @export
  * @interface TargetOptionsMotherduckPut
  */
@@ -24978,7 +27734,7 @@ export interface TargetOptionsMotherduckPut {
     type: string;
 }
 /**
- * MySQL options
+ * MySQL target options
  * @export
  * @interface TargetOptionsMysql
  */
@@ -24999,7 +27755,7 @@ export interface TargetOptionsMysql {
 /**
  * (Parameters used to PATCH the `TargetOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL target options
  * @export
  * @interface TargetOptionsMysqlMergePatch
  */
@@ -25020,7 +27776,7 @@ export interface TargetOptionsMysqlMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL target options
  * @export
  * @interface TargetOptionsMysqlPost
  */
@@ -25041,7 +27797,7 @@ export interface TargetOptionsMysqlPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsMysql` type.)
  * 
- * MySQL options
+ * MySQL target options
  * @export
  * @interface TargetOptionsMysqlPut
  */
@@ -25060,7 +27816,7 @@ export interface TargetOptionsMysqlPut {
     type: string;
 }
 /**
- * Pinterest Ads options
+ * Pinterest Ads target options
  * @export
  * @interface TargetOptionsPinterestAds
  */
@@ -25075,7 +27831,7 @@ export interface TargetOptionsPinterestAds {
 /**
  * (Parameters used to PATCH the `TargetOptionsPinterestAds` type.)
  * 
- * Pinterest Ads options
+ * Pinterest Ads target options
  * @export
  * @interface TargetOptionsPinterestAdsMergePatch
  */
@@ -25090,7 +27846,7 @@ export interface TargetOptionsPinterestAdsMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsPinterestAds` type.)
  * 
- * Pinterest Ads options
+ * Pinterest Ads target options
  * @export
  * @interface TargetOptionsPinterestAdsPost
  */
@@ -25105,7 +27861,7 @@ export interface TargetOptionsPinterestAdsPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsPinterestAds` type.)
  * 
- * Pinterest Ads options
+ * Pinterest Ads target options
  * @export
  * @interface TargetOptionsPinterestAdsPut
  */
@@ -25118,7 +27874,7 @@ export interface TargetOptionsPinterestAdsPut {
     type: string;
 }
 /**
- * Poplar options
+ * Poplar target options
  * @export
  * @interface TargetOptionsPoplar
  */
@@ -25133,7 +27889,7 @@ export interface TargetOptionsPoplar {
 /**
  * (Parameters used to PATCH the `TargetOptionsPoplar` type.)
  * 
- * Poplar options
+ * Poplar target options
  * @export
  * @interface TargetOptionsPoplarMergePatch
  */
@@ -25148,7 +27904,7 @@ export interface TargetOptionsPoplarMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsPoplar` type.)
  * 
- * Poplar options
+ * Poplar target options
  * @export
  * @interface TargetOptionsPoplarPost
  */
@@ -25163,7 +27919,7 @@ export interface TargetOptionsPoplarPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsPoplar` type.)
  * 
- * Poplar options
+ * Poplar target options
  * @export
  * @interface TargetOptionsPoplarPut
  */
@@ -25182,7 +27938,7 @@ export interface TargetOptionsPoplarPut {
  */
 export type TargetOptionsPost = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPost | { type: 'bigquery' } & TargetOptionsBigQueryPost | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPost | { type: 'google_ads' } & TargetOptionsGoogleAdsPost | { type: 'hosted_csv' } & TargetOptionsHostedCsvPost | { type: 'hubspot' } & TargetOptionsHubspotPost | { type: 'iterable' } & TargetOptionsIterablePost | { type: 'klaviyo' } & TargetOptionsKlaviyoPost | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPost | { type: 'lookup_api' } & TargetOptionsLookupApiPost | { type: 'motherduck' } & TargetOptionsMotherduckPost | { type: 'mysql' } & TargetOptionsMysqlPost | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPost | { type: 'poplar' } & TargetOptionsPoplarPost | { type: 'postgres' } & TargetOptionsPostgresPost | { type: 'redshift' } & TargetOptionsRedshiftPost | { type: 's3_csv' } & TargetOptionsS3CsvPost | { type: 'salesforce' } & TargetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPost | { type: 'segment' } & TargetOptionsSegmentPost | { type: 'sftp' } & TargetOptionsSftpPost | { type: 'snowflake' } & TargetOptionsSnowflakePost | { type: 'sql_server' } & TargetOptionsSqlServerPost | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPost | { type: 'tiktok' } & TargetOptionsTiktokPost;
 /**
- * Postgres options
+ * Postgres target options
  * @export
  * @interface TargetOptionsPostgres
  */
@@ -25203,7 +27959,7 @@ export interface TargetOptionsPostgres {
 /**
  * (Parameters used to PATCH the `TargetOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres target options
  * @export
  * @interface TargetOptionsPostgresMergePatch
  */
@@ -25224,7 +27980,7 @@ export interface TargetOptionsPostgresMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres target options
  * @export
  * @interface TargetOptionsPostgresPost
  */
@@ -25245,7 +28001,7 @@ export interface TargetOptionsPostgresPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsPostgres` type.)
  * 
- * Postgres options
+ * Postgres target options
  * @export
  * @interface TargetOptionsPostgresPut
  */
@@ -25270,7 +28026,7 @@ export interface TargetOptionsPostgresPut {
  */
 export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPut | { type: 'lookup_api' } & TargetOptionsLookupApiPut | { type: 'motherduck' } & TargetOptionsMotherduckPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'poplar' } & TargetOptionsPoplarPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce' } & TargetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'sftp' } & TargetOptionsSftpPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
 /**
- * Redshift options
+ * Redshift target options
  * @export
  * @interface TargetOptionsRedshift
  */
@@ -25291,7 +28047,7 @@ export interface TargetOptionsRedshift {
 /**
  * (Parameters used to PATCH the `TargetOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift target options
  * @export
  * @interface TargetOptionsRedshiftMergePatch
  */
@@ -25312,7 +28068,7 @@ export interface TargetOptionsRedshiftMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift target options
  * @export
  * @interface TargetOptionsRedshiftPost
  */
@@ -25333,7 +28089,7 @@ export interface TargetOptionsRedshiftPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsRedshift` type.)
  * 
- * Redshift options
+ * Redshift target options
  * @export
  * @interface TargetOptionsRedshiftPut
  */
@@ -25352,7 +28108,7 @@ export interface TargetOptionsRedshiftPut {
     type: string;
 }
 /**
- * S3 options
+ * S3 target options
  * @export
  * @interface TargetOptionsS3Csv
  */
@@ -25391,7 +28147,7 @@ export interface TargetOptionsS3Csv {
 /**
  * (Parameters used to PATCH the `TargetOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 target options
  * @export
  * @interface TargetOptionsS3CsvMergePatch
  */
@@ -25430,7 +28186,7 @@ export interface TargetOptionsS3CsvMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 target options
  * @export
  * @interface TargetOptionsS3CsvPost
  */
@@ -25469,7 +28225,7 @@ export interface TargetOptionsS3CsvPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsS3Csv` type.)
  * 
- * S3 options
+ * S3 target options
  * @export
  * @interface TargetOptionsS3CsvPut
  */
@@ -25506,7 +28262,7 @@ export interface TargetOptionsS3CsvPut {
     type: string;
 }
 /**
- * Salesforce options
+ * Salesforce target options
  * @export
  * @interface TargetOptionsSalesforce
  */
@@ -25519,7 +28275,7 @@ export interface TargetOptionsSalesforce {
     type: string;
 }
 /**
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud target options
  * @export
  * @interface TargetOptionsSalesforceMarketingCloud
  */
@@ -25558,7 +28314,7 @@ export interface TargetOptionsSalesforceMarketingCloud {
 /**
  * (Parameters used to PATCH the `TargetOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud target options
  * @export
  * @interface TargetOptionsSalesforceMarketingCloudMergePatch
  */
@@ -25597,7 +28353,7 @@ export interface TargetOptionsSalesforceMarketingCloudMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud target options
  * @export
  * @interface TargetOptionsSalesforceMarketingCloudPost
  */
@@ -25636,7 +28392,7 @@ export interface TargetOptionsSalesforceMarketingCloudPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsSalesforceMarketingCloud` type.)
  * 
- * Salesforce Marketing Cloud options
+ * Salesforce Marketing Cloud target options
  * @export
  * @interface TargetOptionsSalesforceMarketingCloudPut
  */
@@ -25675,7 +28431,7 @@ export interface TargetOptionsSalesforceMarketingCloudPut {
 /**
  * (Parameters used to PATCH the `TargetOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce target options
  * @export
  * @interface TargetOptionsSalesforceMergePatch
  */
@@ -25690,7 +28446,7 @@ export interface TargetOptionsSalesforceMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce target options
  * @export
  * @interface TargetOptionsSalesforcePost
  */
@@ -25705,7 +28461,7 @@ export interface TargetOptionsSalesforcePost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsSalesforce` type.)
  * 
- * Salesforce options
+ * Salesforce target options
  * @export
  * @interface TargetOptionsSalesforcePut
  */
@@ -25718,7 +28474,7 @@ export interface TargetOptionsSalesforcePut {
     type: string;
 }
 /**
- * Segment options
+ * Segment target options
  * @export
  * @interface TargetOptionsSegment
  */
@@ -25733,7 +28489,7 @@ export interface TargetOptionsSegment {
 /**
  * (Parameters used to PATCH the `TargetOptionsSegment` type.)
  * 
- * Segment options
+ * Segment target options
  * @export
  * @interface TargetOptionsSegmentMergePatch
  */
@@ -25748,7 +28504,7 @@ export interface TargetOptionsSegmentMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsSegment` type.)
  * 
- * Segment options
+ * Segment target options
  * @export
  * @interface TargetOptionsSegmentPost
  */
@@ -25763,7 +28519,7 @@ export interface TargetOptionsSegmentPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsSegment` type.)
  * 
- * Segment options
+ * Segment target options
  * @export
  * @interface TargetOptionsSegmentPut
  */
@@ -25776,7 +28532,7 @@ export interface TargetOptionsSegmentPut {
     type: string;
 }
 /**
- * SFTP options
+ * SFTP target options
  * @export
  * @interface TargetOptionsSftp
  */
@@ -25815,7 +28571,7 @@ export interface TargetOptionsSftp {
 /**
  * (Parameters used to PATCH the `TargetOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP target options
  * @export
  * @interface TargetOptionsSftpMergePatch
  */
@@ -25854,7 +28610,7 @@ export interface TargetOptionsSftpMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP target options
  * @export
  * @interface TargetOptionsSftpPost
  */
@@ -25893,7 +28649,7 @@ export interface TargetOptionsSftpPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsSftp` type.)
  * 
- * SFTP options
+ * SFTP target options
  * @export
  * @interface TargetOptionsSftpPut
  */
@@ -25930,7 +28686,7 @@ export interface TargetOptionsSftpPut {
     type: string;
 }
 /**
- * Snowflake options
+ * Snowflake target options
  * @export
  * @interface TargetOptionsSnowflake
  */
@@ -25963,7 +28719,7 @@ export interface TargetOptionsSnowflake {
 /**
  * (Parameters used to PATCH the `TargetOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake target options
  * @export
  * @interface TargetOptionsSnowflakeMergePatch
  */
@@ -25996,7 +28752,7 @@ export interface TargetOptionsSnowflakeMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake target options
  * @export
  * @interface TargetOptionsSnowflakePost
  */
@@ -26029,7 +28785,7 @@ export interface TargetOptionsSnowflakePost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsSnowflake` type.)
  * 
- * Snowflake options
+ * Snowflake target options
  * @export
  * @interface TargetOptionsSnowflakePut
  */
@@ -26060,7 +28816,7 @@ export interface TargetOptionsSnowflakePut {
     upsert?: boolean;
 }
 /**
- * SQL Server options
+ * SQL Server target options
  * @export
  * @interface TargetOptionsSqlServer
  */
@@ -26081,7 +28837,7 @@ export interface TargetOptionsSqlServer {
 /**
  * (Parameters used to PATCH the `TargetOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server target options
  * @export
  * @interface TargetOptionsSqlServerMergePatch
  */
@@ -26102,7 +28858,7 @@ export interface TargetOptionsSqlServerMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server target options
  * @export
  * @interface TargetOptionsSqlServerPost
  */
@@ -26123,7 +28879,7 @@ export interface TargetOptionsSqlServerPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsSqlServer` type.)
  * 
- * SQL Server options
+ * SQL Server target options
  * @export
  * @interface TargetOptionsSqlServerPut
  */
@@ -26142,7 +28898,7 @@ export interface TargetOptionsSqlServerPut {
     type: string;
 }
 /**
- * The Trade Desk options
+ * The Trade Desk target options
  * @export
  * @interface TargetOptionsTheTradeDesk
  */
@@ -26157,7 +28913,7 @@ export interface TargetOptionsTheTradeDesk {
 /**
  * (Parameters used to PATCH the `TargetOptionsTheTradeDesk` type.)
  * 
- * The Trade Desk options
+ * The Trade Desk target options
  * @export
  * @interface TargetOptionsTheTradeDeskMergePatch
  */
@@ -26172,7 +28928,7 @@ export interface TargetOptionsTheTradeDeskMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsTheTradeDesk` type.)
  * 
- * The Trade Desk options
+ * The Trade Desk target options
  * @export
  * @interface TargetOptionsTheTradeDeskPost
  */
@@ -26187,7 +28943,7 @@ export interface TargetOptionsTheTradeDeskPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsTheTradeDesk` type.)
  * 
- * The Trade Desk options
+ * The Trade Desk target options
  * @export
  * @interface TargetOptionsTheTradeDeskPut
  */
@@ -26200,7 +28956,7 @@ export interface TargetOptionsTheTradeDeskPut {
     type: string;
 }
 /**
- * TikTok options
+ * TikTok target options
  * @export
  * @interface TargetOptionsTiktok
  */
@@ -26215,7 +28971,7 @@ export interface TargetOptionsTiktok {
 /**
  * (Parameters used to PATCH the `TargetOptionsTiktok` type.)
  * 
- * TikTok options
+ * TikTok target options
  * @export
  * @interface TargetOptionsTiktokMergePatch
  */
@@ -26230,7 +28986,7 @@ export interface TargetOptionsTiktokMergePatch {
 /**
  * (Parameters used to POST a new value of the `TargetOptionsTiktok` type.)
  * 
- * TikTok options
+ * TikTok target options
  * @export
  * @interface TargetOptionsTiktokPost
  */
@@ -26245,7 +29001,7 @@ export interface TargetOptionsTiktokPost {
 /**
  * (Parameters used to PUT a value of the `TargetOptionsTiktok` type.)
  * 
- * TikTok options
+ * TikTok target options
  * @export
  * @interface TargetOptionsTiktokPut
  */
@@ -27306,6 +30062,49 @@ export interface Upload {
     subpath: string;
 }
 /**
+ * An error reporting that a run or lookup would exceed the usage remaining on your contract.
+ * @export
+ * @interface UsageQuotaError
+ */
+export interface UsageQuotaError {
+    /**
+     * How the ceiling was worked out.
+     * @type {string}
+     * @memberof UsageQuotaError
+     */
+    basis?: string;
+    /**
+     * 
+     * @type {ErrorCode}
+     * @memberof UsageQuotaError
+     */
+    error: ErrorCode;
+    /**
+     * A unique ID for this error. Please include this in bug reports.
+     * @type {string}
+     * @memberof UsageQuotaError
+     */
+    id: string;
+    /**
+     * A human-readable description of the error.
+     * @type {string}
+     * @memberof UsageQuotaError
+     */
+    note: string;
+    /**
+     * The usage left on your contract, by billable element category.
+     * @type {{ [key: string]: number; }}
+     * @memberof UsageQuotaError
+     */
+    remaining_quota?: { [key: string]: number; };
+    /**
+     * The most usage this request could create, by billable element category.
+     * @type {{ [key: string]: number; }}
+     * @memberof UsageQuotaError
+     */
+    usage_ceiling?: { [key: string]: number; };
+}
+/**
  * The full current revision of a use case, including the live computed
  * `resources` list.
  * @export
@@ -27633,7 +30432,7 @@ export interface ValidationErrorContext {
  *     "data": {
  *       "account_id": "...",      // uuid of the account
  *       "resource_id": "...",     // uuid of the resource
- *       "resource_type": "..."    // one of 'atlases', 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
  *     }
  *   }
  * ```
@@ -27716,7 +30515,7 @@ export enum WebhookEndpointStatusEnum {
  *     "data": {
  *       "account_id": "...",      // uuid of the account
  *       "resource_id": "...",     // uuid of the resource
- *       "resource_type": "..."    // one of 'atlases', 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
  *     }
  *   }
  * ```
@@ -27775,7 +30574,7 @@ export enum WebhookEndpointMergePatchStatusEnum {
  *     "data": {
  *       "account_id": "...",      // uuid of the account
  *       "resource_id": "...",     // uuid of the resource
- *       "resource_type": "..."    // one of 'atlases', 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
  *     }
  *   }
  * ```
@@ -27819,7 +30618,7 @@ export interface WebhookEndpointPost {
  *     "data": {
  *       "account_id": "...",      // uuid of the account
  *       "resource_id": "...",     // uuid of the resource
- *       "resource_type": "..."    // one of 'atlases', 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
+ *       "resource_type": "..."    // one of 'cohorts', 'connections', 'datasets', 'persona_sets', 'recommenders', 'scopes', 'streams', 'targets', 'traits'
  *     }
  *   }
  * ```

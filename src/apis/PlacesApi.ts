@@ -267,7 +267,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
+     * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
      * List places
      */
     async getPlacesRaw(requestParameters: GetPlacesRequest, ): Promise<runtime.ApiResponse<Array<Place>>> {
@@ -298,7 +298,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
+     * Get a list of the places available in the developer’s account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
      * List places
      */
     async getPlaces(ids?: Array<string>, ): Promise<Array<Place>> {
