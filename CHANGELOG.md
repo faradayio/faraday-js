@@ -10,6 +10,18 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.16.0] - 2026-08-07
+
+### Changed
+
+- ClickHouse connections always use TLS on the native protocol. The `secure` option is removed from ClickHouse connection create/update/response schemas; callers no longer set it.
+
+## [0.15.4] - 2026-08-06
+
+### Added
+
+- ClickHouse bidirectional replication connection type (`clickhouse`): host-based native-protocol access with system-generated Ed25519 `ssh_public_key`, dataset `table_name`, and full-replacement targets with required `order_by`. Credential rotation via `POST /connections/{connection_id}/rotate_credentials` with `type: clickhouse`.
+
 ## [0.15.3] - 2026-07-17
 
 ### Added
