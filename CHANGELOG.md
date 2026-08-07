@@ -10,6 +10,55 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.15.3] - 2026-07-17
+
+### Added
+
+- `Atlas`: a new resource that imports a collection of geographic locations from a connection,
+  configured with `options` (`AtlasOptions`, per connection type) and
+  `output_to_locations`, which maps source columns to each location's name, reference key,
+  geometry, and properties. An atlas reads from a file-based or client-hosted warehouse
+  connection; the classic, managed integration, and merge connection types have no `AtlasOptions`
+  variant. Each location is placed by exactly one of a geometry column, a coordinate pair, or
+  address columns; naming columns from more than one group is rejected, and naming none is allowed,
+  so an atlas can be created before the columns of its source data are known and configured once
+  they are. Atlases report `detected_columns` and `counts` — the source rows, how many produced a
+  location, and how many placed none because their geometry could not be read, encloses nowhere, or
+  describes too large an outline — and support archive,
+  unarchive, and force-update like other resources. An atlas' `name` and every column it names in
+  `output_to_locations` must be non-blank.
+- `GET /locations` and `GET /atlases/{atlas_id}/locations`: paginated listings of the locations an
+  atlas produced, with `limit`/`offset` parameters and `X-Total-Count` and `Link` response headers.
+- `Location.atlas_id`: the UUID of the atlas a location belongs to, which identifies its owner in
+  the account-wide listing.
+- `Location.latitude` and `Location.longitude`: the coordinates a location was placed from, in
+  decimal degrees, EPSG 4326 (WGS 84); present only for locations placed from latitude and
+  longitude columns.
+- `Cohort.location_conditions`: spatially filter cohort membership on the locations of one or more
+  atlases, selecting people who intersect (or, with `invert`, do not intersect) a location's
+  geometry expanded by `distance`. A cohort may not set both `location_conditions` and
+  `place_conditions`.
+- `ScopePayload.location`: include each person's proximity to an atlas' locations, choosing the
+  `nearest` matching location or `all` of them, bounded by `max_distance` and `min_distance`. The
+  choice sets the shape of the three location columns: a single scalar each under `nearest`, an
+  index-aligned JSON array each under `all`. `fdy_location_distance` is therefore a number under
+  `nearest` and text under `all`, so any target already receiving these columns must be rebuilt
+  after the choice changes. A person matching no location has no location data under either
+  choice, rather than an empty array.
+- `MarketOpportunityAnalysis.locations`: the atlas locations an analysis covers.
+- `LocationPropertyCondition`: narrow location conditions to the locations whose properties satisfy
+  them. A condition reads its property either as a number or as text, so `_matches` cannot be
+  combined with `_gt`, `_gte`, `_lt`, or `_lte`; give each comparison its own condition.
+- `location_reference_keys`, on cohort location conditions, `ScopePayload.location` and
+  `MarketOpportunityAnalysis.locations`: a reference key is unique only within one atlas, so these
+  keys are matched in every atlas the reference selects; select a single atlas to restrict them to
+  that atlas' keys. Every atlas the reference selects must map a reference key column in its
+  `output_to_locations`, since an atlas whose locations carry no key can match none of them.
+
+### Deprecated
+
+- `Cohort.place_conditions`: superseded by `location_conditions`.
+
 ## [0.15.2] - 2026-07-16
 
 ### Added

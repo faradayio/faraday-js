@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FaradayClient = void 0;
 const AccountsApi_1 = require("./AccountsApi");
+const AtlasesApi_1 = require("./AtlasesApi");
 const AttributesApi_1 = require("./AttributesApi");
 const BillingApi_1 = require("./BillingApi");
 const CohortsApi_1 = require("./CohortsApi");
@@ -11,6 +12,7 @@ const ExperimentalApi_1 = require("./ExperimentalApi");
 const FeatureStoresApi_1 = require("./FeatureStoresApi");
 const GraphApi_1 = require("./GraphApi");
 const KnowledgebaseApi_1 = require("./KnowledgebaseApi");
+const LocationsApi_1 = require("./LocationsApi");
 const MarketOpportunityAnalysesApi_1 = require("./MarketOpportunityAnalysesApi");
 const OutcomesApi_1 = require("./OutcomesApi");
 const PersonaSetsApi_1 = require("./PersonaSetsApi");
@@ -27,6 +29,7 @@ class FaradayClient {
     constructor(configuration) {
         this.configuration = configuration;
         this.accounts = new AccountsApi_1.AccountsApi(configuration);
+        this.atlases = new AtlasesApi_1.AtlasesApi(configuration);
         this.attributes = new AttributesApi_1.AttributesApi(configuration);
         this.billing = new BillingApi_1.BillingApi(configuration);
         this.cohorts = new CohortsApi_1.CohortsApi(configuration);
@@ -36,6 +39,7 @@ class FaradayClient {
         this.featureStores = new FeatureStoresApi_1.FeatureStoresApi(configuration);
         this.graph = new GraphApi_1.GraphApi(configuration);
         this.knowledgebase = new KnowledgebaseApi_1.KnowledgebaseApi(configuration);
+        this.locations = new LocationsApi_1.LocationsApi(configuration);
         this.marketOpportunityAnalyses = new MarketOpportunityAnalysesApi_1.MarketOpportunityAnalysesApi(configuration);
         this.outcomes = new OutcomesApi_1.OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi_1.PersonaSetsApi(configuration);

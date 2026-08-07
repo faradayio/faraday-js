@@ -16,62 +16,62 @@
 import * as runtime from '../runtime';
 import {
     ArchiveConfig,
-    Place,
-    PlaceMergePatch,
-    PlacePost,
+    Atlas,
+    AtlasMergePatch,
+    AtlasPost,
 } from '../models';
 
-export interface ArchivePlaceRequest {
-    placeId: string;
+export interface ArchiveAtlasRequest {
+    atlasId: string;
     archiveConfig: ArchiveConfig;
 }
 
-export interface CreatePlaceRequest {
-    placeFields: PlacePost;
+export interface CreateAtlasRequest {
+    atlasFields: AtlasPost;
 }
 
-export interface DeletePlaceRequest {
-    placeId: string;
+export interface DeleteAtlasRequest {
+    atlasId: string;
 }
 
-export interface ForceUpdatePlaceRequest {
-    placeId: string;
+export interface ForceUpdateAtlasRequest {
+    atlasId: string;
 }
 
-export interface GetPlaceRequest {
-    placeId: string;
+export interface GetAtlasRequest {
+    atlasId: string;
 }
 
-export interface GetPlacesRequest {
+export interface GetAtlasesRequest {
     ids?: Array<string>;
 }
 
-export interface UnarchivePlaceRequest {
-    placeId: string;
+export interface UnarchiveAtlasRequest {
+    atlasId: string;
     archiveConfig: ArchiveConfig;
 }
 
-export interface UpdatePlaceRequest {
-    placeId: string;
-    placeFields: PlaceMergePatch;
+export interface UpdateAtlasRequest {
+    atlasId: string;
+    atlasFields: AtlasMergePatch;
 }
 
 /**
  * 
  */
-export class PlacesApi extends runtime.BaseAPI {
+export class AtlasesApi extends runtime.BaseAPI {
 
     /**
-     * Archive a place
-     * Archive a place
+     * Archive an atlas
+     * Archive an atlas
      */
-    async archivePlaceRaw(requestParameters: ArchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling archivePlace.');
+    async archiveAtlasRaw(requestParameters: ArchiveAtlasRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+            throw new runtime.RequiredError('atlasId','Required parameter requestParameters.atlasId was null or undefined when calling archiveAtlas.');
         }
 
         if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
-            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archivePlace.');
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling archiveAtlas.');
         }
 
         const queryParameters: any = {};
@@ -89,7 +89,7 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places/{place_id}/archive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            path: `/atlases/{atlas_id}/archive`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -100,20 +100,20 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Archive a place
-     * Archive a place
+     * Archive an atlas
+     * Archive an atlas
      */
-    async archivePlace(placeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
-        await this.archivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig }, );
+    async archiveAtlas(atlasId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.archiveAtlasRaw({ atlasId: atlasId, archiveConfig: archiveConfig }, );
     }
 
     /**
-     * Create a new place
-     * Create place
+     * Create a new atlas
+     * Create atlas
      */
-    async createPlaceRaw(requestParameters: CreatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
-        if (requestParameters.placeFields === null || requestParameters.placeFields === undefined) {
-            throw new runtime.RequiredError('placeFields','Required parameter requestParameters.placeFields was null or undefined when calling createPlace.');
+    async createAtlasRaw(requestParameters: CreateAtlasRequest, ): Promise<runtime.ApiResponse<Atlas>> {
+        if (requestParameters.atlasFields === null || requestParameters.atlasFields === undefined) {
+            throw new runtime.RequiredError('atlasFields','Required parameter requestParameters.atlasFields was null or undefined when calling createAtlas.');
         }
 
         const queryParameters: any = {};
@@ -131,31 +131,31 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places`,
+            path: `/atlases`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.placeFields,
+            body: requestParameters.atlasFields,
         });
 
         return new runtime.JSONApiResponse(response);
     }
 
     /**
-     * Create a new place
-     * Create place
+     * Create a new atlas
+     * Create atlas
      */
-    async createPlace(placeFields: PlacePost, ): Promise<Place> {
-        const response = await this.createPlaceRaw({ placeFields: placeFields }, );
+    async createAtlas(atlasFields: AtlasPost, ): Promise<Atlas> {
+        const response = await this.createAtlasRaw({ atlasFields: atlasFields }, );
         return await response.value();
     }
 
     /**
-     * Delete a place
+     * Delete an atlas
      */
-    async deletePlaceRaw(requestParameters: DeletePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling deletePlace.');
+    async deleteAtlasRaw(requestParameters: DeleteAtlasRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+            throw new runtime.RequiredError('atlasId','Required parameter requestParameters.atlasId was null or undefined when calling deleteAtlas.');
         }
 
         const queryParameters: any = {};
@@ -171,7 +171,7 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places/{place_id}`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            path: `/atlases/{atlas_id}`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -181,19 +181,19 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a place
+     * Delete an atlas
      */
-    async deletePlace(placeId: string, ): Promise<void> {
-        await this.deletePlaceRaw({ placeId: placeId }, );
+    async deleteAtlas(atlasId: string, ): Promise<void> {
+        await this.deleteAtlasRaw({ atlasId: atlasId }, );
     }
 
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    async forceUpdatePlaceRaw(requestParameters: ForceUpdatePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling forceUpdatePlace.');
+    async forceUpdateAtlasRaw(requestParameters: ForceUpdateAtlasRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+            throw new runtime.RequiredError('atlasId','Required parameter requestParameters.atlasId was null or undefined when calling forceUpdateAtlas.');
         }
 
         const queryParameters: any = {};
@@ -209,7 +209,7 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places/{place_id}/force_update`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            path: `/atlases/{atlas_id}/force_update`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -222,17 +222,17 @@ export class PlacesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
      * Trigger a rerun for this resource.
      */
-    async forceUpdatePlace(placeId: string, ): Promise<void> {
-        await this.forceUpdatePlaceRaw({ placeId: placeId }, );
+    async forceUpdateAtlas(atlasId: string, ): Promise<void> {
+        await this.forceUpdateAtlasRaw({ atlasId: atlasId }, );
     }
 
     /**
-     * Retrieve details on a specific place
-     * Retrieve a place
+     * Retrieve details on a specific atlas
+     * Retrieve an atlas
      */
-    async getPlaceRaw(requestParameters: GetPlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
-        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling getPlace.');
+    async getAtlasRaw(requestParameters: GetAtlasRequest, ): Promise<runtime.ApiResponse<Atlas>> {
+        if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+            throw new runtime.RequiredError('atlasId','Required parameter requestParameters.atlasId was null or undefined when calling getAtlas.');
         }
 
         const queryParameters: any = {};
@@ -248,7 +248,7 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places/{place_id}`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            path: `/atlases/{atlas_id}`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -258,19 +258,19 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve details on a specific place
-     * Retrieve a place
+     * Retrieve details on a specific atlas
+     * Retrieve an atlas
      */
-    async getPlace(placeId: string, ): Promise<Place> {
-        const response = await this.getPlaceRaw({ placeId: placeId }, );
+    async getAtlas(atlasId: string, ): Promise<Atlas> {
+        const response = await this.getAtlasRaw({ atlasId: atlasId }, );
         return await response.value();
     }
 
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
-     * List places
+     * Get a list of the atlases defined on the account
+     * List atlases
      */
-    async getPlacesRaw(requestParameters: GetPlacesRequest, ): Promise<runtime.ApiResponse<Array<Place>>> {
+    async getAtlasesRaw(requestParameters: GetAtlasesRequest, ): Promise<runtime.ApiResponse<Array<Atlas>>> {
         const queryParameters: any = {};
 
         if (requestParameters.ids) {
@@ -288,7 +288,7 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places`,
+            path: `/atlases`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -298,25 +298,25 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
-     * List places
+     * Get a list of the atlases defined on the account
+     * List atlases
      */
-    async getPlaces(ids?: Array<string>, ): Promise<Array<Place>> {
-        const response = await this.getPlacesRaw({ ids: ids }, );
+    async getAtlases(ids?: Array<string>, ): Promise<Array<Atlas>> {
+        const response = await this.getAtlasesRaw({ ids: ids }, );
         return await response.value();
     }
 
     /**
-     * Unarchive a place
-     * Unarchive a place
+     * Unarchive an atlas
+     * Unarchive an atlas
      */
-    async unarchivePlaceRaw(requestParameters: UnarchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling unarchivePlace.');
+    async unarchiveAtlasRaw(requestParameters: UnarchiveAtlasRequest, ): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+            throw new runtime.RequiredError('atlasId','Required parameter requestParameters.atlasId was null or undefined when calling unarchiveAtlas.');
         }
 
         if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
-            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchivePlace.');
+            throw new runtime.RequiredError('archiveConfig','Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveAtlas.');
         }
 
         const queryParameters: any = {};
@@ -334,7 +334,7 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places/{place_id}/unarchive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            path: `/atlases/{atlas_id}/unarchive`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -345,24 +345,24 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unarchive a place
-     * Unarchive a place
+     * Unarchive an atlas
+     * Unarchive an atlas
      */
-    async unarchivePlace(placeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
-        await this.unarchivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig }, );
+    async unarchiveAtlas(atlasId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
+        await this.unarchiveAtlasRaw({ atlasId: atlasId, archiveConfig: archiveConfig }, );
     }
 
     /**
-     * Update an existing place
-     * Update place
+     * Update an existing atlas
+     * Update atlas
      */
-    async updatePlaceRaw(requestParameters: UpdatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
-        if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-            throw new runtime.RequiredError('placeId','Required parameter requestParameters.placeId was null or undefined when calling updatePlace.');
+    async updateAtlasRaw(requestParameters: UpdateAtlasRequest, ): Promise<runtime.ApiResponse<Atlas>> {
+        if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+            throw new runtime.RequiredError('atlasId','Required parameter requestParameters.atlasId was null or undefined when calling updateAtlas.');
         }
 
-        if (requestParameters.placeFields === null || requestParameters.placeFields === undefined) {
-            throw new runtime.RequiredError('placeFields','Required parameter requestParameters.placeFields was null or undefined when calling updatePlace.');
+        if (requestParameters.atlasFields === null || requestParameters.atlasFields === undefined) {
+            throw new runtime.RequiredError('atlasFields','Required parameter requestParameters.atlasFields was null or undefined when calling updateAtlas.');
         }
 
         const queryParameters: any = {};
@@ -380,22 +380,22 @@ export class PlacesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/places/{place_id}`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+            path: `/atlases/{atlas_id}`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.placeFields,
+            body: requestParameters.atlasFields,
         });
 
         return new runtime.JSONApiResponse(response);
     }
 
     /**
-     * Update an existing place
-     * Update place
+     * Update an existing atlas
+     * Update atlas
      */
-    async updatePlace(placeId: string, placeFields: PlaceMergePatch, ): Promise<Place> {
-        const response = await this.updatePlaceRaw({ placeId: placeId, placeFields: placeFields }, );
+    async updateAtlas(atlasId: string, atlasFields: AtlasMergePatch, ): Promise<Atlas> {
+        const response = await this.updateAtlasRaw({ atlasId: atlasId, atlasFields: atlasFields }, );
         return await response.value();
     }
 
