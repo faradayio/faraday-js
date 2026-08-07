@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DateColumnFormat = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormatOneOf = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
 /**
  * The set of Faraday-provided attributes allowed for clustering, on accounts with an identity graph feature store set.
  *
@@ -112,42 +112,18 @@ var ConnectionDirectionalityEnum;
     ConnectionDirectionalityEnum["DestinationOnly"] = "destination_only";
 })(ConnectionDirectionalityEnum = exports.ConnectionDirectionalityEnum || (exports.ConnectionDirectionalityEnum = {}));
 /**
- * Additional context for the column's data that isn't captured by its data type. For example, a 'revenue' column's data type would likely be 'int64', but format specifies if this number represents 'dollars' or 'cents'. This can be left blank if no additional context is needed.
+ *
  * @export
  * @enum {string}
  */
-var DataMapColumnFormat;
-(function (DataMapColumnFormat) {
-    DataMapColumnFormat["CurrencyCents"] = "currency_cents";
-    DataMapColumnFormat["CurrencyDollars"] = "currency_dollars";
-    DataMapColumnFormat["MmDdYySlash"] = "mm_dd_yy_slash";
-    DataMapColumnFormat["MmDdYyyySlash"] = "mm_dd_yyyy_slash";
-    DataMapColumnFormat["MmDdYyDash"] = "mm_dd_yy_dash";
-    DataMapColumnFormat["MmDdYyyyDash"] = "mm_dd_yyyy_dash";
-    DataMapColumnFormat["YyyyMmDdSlash"] = "yyyy_mm_dd_slash";
-    DataMapColumnFormat["YyMmDdSlash"] = "yy_mm_dd_slash";
-    DataMapColumnFormat["YyyyMmDdDash"] = "yyyy_mm_dd_dash";
-    DataMapColumnFormat["YyMmDdDash"] = "yy_mm_dd_dash";
-    DataMapColumnFormat["Yyyymmdd"] = "yyyymmdd";
-    DataMapColumnFormat["Yyyymm"] = "yyyymm";
-    DataMapColumnFormat["YyyyMmDash"] = "yyyy_mm_dash";
-    DataMapColumnFormat["YyyyMmSlash"] = "yyyy_mm_slash";
-    DataMapColumnFormat["DdMmYyyySlash"] = "dd_mm_yyyy_slash";
-    DataMapColumnFormat["DdMmYySlash"] = "dd_mm_yy_slash";
-    DataMapColumnFormat["DdMmYyyyDash"] = "dd_mm_yyyy_dash";
-    DataMapColumnFormat["DdMmYyDash"] = "dd_mm_yy_dash";
-    DataMapColumnFormat["DateIso8601"] = "date_iso8601";
-    DataMapColumnFormat["DateMonthDayFullyear"] = "date_month_day_fullyear";
-    DataMapColumnFormat["DateMonthDayShortyear"] = "date_month_day_shortyear";
-    DataMapColumnFormat["DateMonthDayFullyearHoursMinutes"] = "date_month_day_fullyear_hours_minutes";
-    DataMapColumnFormat["DateMonthDayFullyearHoursMinutesSeconds"] = "date_month_day_fullyear_hours_minutes_seconds";
-    DataMapColumnFormat["DateSecondsSinceEpochUtc"] = "date_seconds_since_epoch_utc";
-    DataMapColumnFormat["DateMillisecondsSinceEpochUtc"] = "date_milliseconds_since_epoch_utc";
-    DataMapColumnFormat["ListCommaSeparated"] = "list_comma_separated";
-    DataMapColumnFormat["ListSemicolonSeparated"] = "list_semicolon_separated";
-    DataMapColumnFormat["ListSingleValue"] = "list_single_value";
-    DataMapColumnFormat["StaticDateIso8601"] = "static_date_iso8601";
-})(DataMapColumnFormat = exports.DataMapColumnFormat || (exports.DataMapColumnFormat = {}));
+var DataMapColumnFormatOneOf;
+(function (DataMapColumnFormatOneOf) {
+    DataMapColumnFormatOneOf["CurrencyCents"] = "currency_cents";
+    DataMapColumnFormatOneOf["CurrencyDollars"] = "currency_dollars";
+    DataMapColumnFormatOneOf["ListCommaSeparated"] = "list_comma_separated";
+    DataMapColumnFormatOneOf["ListSemicolonSeparated"] = "list_semicolon_separated";
+    DataMapColumnFormatOneOf["ListSingleValue"] = "list_single_value";
+})(DataMapColumnFormatOneOf = exports.DataMapColumnFormatOneOf || (exports.DataMapColumnFormatOneOf = {}));
 /**
 * @export
 * @enum {string}
@@ -201,6 +177,38 @@ var DatasetPutPrivacyEnum;
     DatasetPutPrivacyEnum["Suppress"] = "suppress";
     DatasetPutPrivacyEnum["Delete"] = "delete";
 })(DatasetPutPrivacyEnum = exports.DatasetPutPrivacyEnum || (exports.DatasetPutPrivacyEnum = {}));
+/**
+ * The date format of a column's values. This is the date subset of `DataMapColumnFormat` — every format except the currency and list ones.
+ * @export
+ * @enum {string}
+ */
+var DateColumnFormat;
+(function (DateColumnFormat) {
+    DateColumnFormat["MmDdYySlash"] = "mm_dd_yy_slash";
+    DateColumnFormat["MmDdYyyySlash"] = "mm_dd_yyyy_slash";
+    DateColumnFormat["MmDdYyDash"] = "mm_dd_yy_dash";
+    DateColumnFormat["MmDdYyyyDash"] = "mm_dd_yyyy_dash";
+    DateColumnFormat["YyyyMmDdSlash"] = "yyyy_mm_dd_slash";
+    DateColumnFormat["YyMmDdSlash"] = "yy_mm_dd_slash";
+    DateColumnFormat["YyyyMmDdDash"] = "yyyy_mm_dd_dash";
+    DateColumnFormat["YyMmDdDash"] = "yy_mm_dd_dash";
+    DateColumnFormat["Yyyymmdd"] = "yyyymmdd";
+    DateColumnFormat["Yyyymm"] = "yyyymm";
+    DateColumnFormat["YyyyMmDash"] = "yyyy_mm_dash";
+    DateColumnFormat["YyyyMmSlash"] = "yyyy_mm_slash";
+    DateColumnFormat["DdMmYyyySlash"] = "dd_mm_yyyy_slash";
+    DateColumnFormat["DdMmYySlash"] = "dd_mm_yy_slash";
+    DateColumnFormat["DdMmYyyyDash"] = "dd_mm_yyyy_dash";
+    DateColumnFormat["DdMmYyDash"] = "dd_mm_yy_dash";
+    DateColumnFormat["DateIso8601"] = "date_iso8601";
+    DateColumnFormat["DateMonthDayFullyear"] = "date_month_day_fullyear";
+    DateColumnFormat["DateMonthDayShortyear"] = "date_month_day_shortyear";
+    DateColumnFormat["DateMonthDayFullyearHoursMinutes"] = "date_month_day_fullyear_hours_minutes";
+    DateColumnFormat["DateMonthDayFullyearHoursMinutesSeconds"] = "date_month_day_fullyear_hours_minutes_seconds";
+    DateColumnFormat["DateSecondsSinceEpochUtc"] = "date_seconds_since_epoch_utc";
+    DateColumnFormat["DateMillisecondsSinceEpochUtc"] = "date_milliseconds_since_epoch_utc";
+    DateColumnFormat["StaticDateIso8601"] = "static_date_iso8601";
+})(DateColumnFormat = exports.DateColumnFormat || (exports.DateColumnFormat = {}));
 /**
  * A Faraday error code.
  *

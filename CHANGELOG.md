@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.15.4] - 2026-08-06
+
+### Added
+
+- `IdentitySet.date_of_birth`: optional date-of-birth mapping. Combined with first name, last name, and postcode, it can resolve a person to an identity even without an email, phone, or full street address. Accepts either a column name (whose values are read as ISO 8601 `YYYY-MM-DD` dates) or an object `{ column_name, format }` where `format` is a `DateColumnFormat` (the date subset of `DataMapColumnFormat`).
+
 ## [0.15.3] - 2026-07-17
 
 ### Added

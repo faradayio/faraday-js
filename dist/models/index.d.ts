@@ -9990,40 +9990,22 @@ export interface DataMapColumn {
     format?: DataMapColumnFormat;
 }
 /**
+ * @type DataMapColumnFormat
  * Additional context for the column's data that isn't captured by its data type. For example, a 'revenue' column's data type would likely be 'int64', but format specifies if this number represents 'dollars' or 'cents'. This can be left blank if no additional context is needed.
+ * @export
+ */
+export declare type DataMapColumnFormat = DataMapColumnFormatOneOf | DateColumnFormat;
+/**
+ *
  * @export
  * @enum {string}
  */
-export declare enum DataMapColumnFormat {
+export declare enum DataMapColumnFormatOneOf {
     CurrencyCents = "currency_cents",
     CurrencyDollars = "currency_dollars",
-    MmDdYySlash = "mm_dd_yy_slash",
-    MmDdYyyySlash = "mm_dd_yyyy_slash",
-    MmDdYyDash = "mm_dd_yy_dash",
-    MmDdYyyyDash = "mm_dd_yyyy_dash",
-    YyyyMmDdSlash = "yyyy_mm_dd_slash",
-    YyMmDdSlash = "yy_mm_dd_slash",
-    YyyyMmDdDash = "yyyy_mm_dd_dash",
-    YyMmDdDash = "yy_mm_dd_dash",
-    Yyyymmdd = "yyyymmdd",
-    Yyyymm = "yyyymm",
-    YyyyMmDash = "yyyy_mm_dash",
-    YyyyMmSlash = "yyyy_mm_slash",
-    DdMmYyyySlash = "dd_mm_yyyy_slash",
-    DdMmYySlash = "dd_mm_yy_slash",
-    DdMmYyyyDash = "dd_mm_yyyy_dash",
-    DdMmYyDash = "dd_mm_yy_dash",
-    DateIso8601 = "date_iso8601",
-    DateMonthDayFullyear = "date_month_day_fullyear",
-    DateMonthDayShortyear = "date_month_day_shortyear",
-    DateMonthDayFullyearHoursMinutes = "date_month_day_fullyear_hours_minutes",
-    DateMonthDayFullyearHoursMinutesSeconds = "date_month_day_fullyear_hours_minutes_seconds",
-    DateSecondsSinceEpochUtc = "date_seconds_since_epoch_utc",
-    DateMillisecondsSinceEpochUtc = "date_milliseconds_since_epoch_utc",
     ListCommaSeparated = "list_comma_separated",
     ListSemicolonSeparated = "list_semicolon_separated",
-    ListSingleValue = "list_single_value",
-    StaticDateIso8601 = "static_date_iso8601"
+    ListSingleValue = "list_single_value"
 }
 /**
  *
@@ -14510,6 +14492,56 @@ export interface DatasetUpdateHistory {
     rows_added: number;
 }
 /**
+ * The date format of a column's values. This is the date subset of `DataMapColumnFormat` — every format except the currency and list ones.
+ * @export
+ * @enum {string}
+ */
+export declare enum DateColumnFormat {
+    MmDdYySlash = "mm_dd_yy_slash",
+    MmDdYyyySlash = "mm_dd_yyyy_slash",
+    MmDdYyDash = "mm_dd_yy_dash",
+    MmDdYyyyDash = "mm_dd_yyyy_dash",
+    YyyyMmDdSlash = "yyyy_mm_dd_slash",
+    YyMmDdSlash = "yy_mm_dd_slash",
+    YyyyMmDdDash = "yyyy_mm_dd_dash",
+    YyMmDdDash = "yy_mm_dd_dash",
+    Yyyymmdd = "yyyymmdd",
+    Yyyymm = "yyyymm",
+    YyyyMmDash = "yyyy_mm_dash",
+    YyyyMmSlash = "yyyy_mm_slash",
+    DdMmYyyySlash = "dd_mm_yyyy_slash",
+    DdMmYySlash = "dd_mm_yy_slash",
+    DdMmYyyyDash = "dd_mm_yyyy_dash",
+    DdMmYyDash = "dd_mm_yy_dash",
+    DateIso8601 = "date_iso8601",
+    DateMonthDayFullyear = "date_month_day_fullyear",
+    DateMonthDayShortyear = "date_month_day_shortyear",
+    DateMonthDayFullyearHoursMinutes = "date_month_day_fullyear_hours_minutes",
+    DateMonthDayFullyearHoursMinutesSeconds = "date_month_day_fullyear_hours_minutes_seconds",
+    DateSecondsSinceEpochUtc = "date_seconds_since_epoch_utc",
+    DateMillisecondsSinceEpochUtc = "date_milliseconds_since_epoch_utc",
+    StaticDateIso8601 = "static_date_iso8601"
+}
+/**
+ * A dataset column holding each person's date of birth, together with the date format of its values.
+ * @export
+ * @interface DateOfBirthColumn
+ */
+export interface DateOfBirthColumn {
+    /**
+     * The name of the dataset column holding each person's date of birth.
+     * @type {string}
+     * @memberof DateOfBirthColumn
+     */
+    column_name: string;
+    /**
+     *
+     * @type {DateColumnFormat}
+     * @memberof DateOfBirthColumn
+     */
+    format?: DateColumnFormat;
+}
+/**
  * Configuration for decode transformations.
  * @export
  * @interface DecodeConfig
@@ -14951,6 +14983,12 @@ export interface IdentitySet {
      */
     city?: string;
     /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySet
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
+    /**
      *
      * @type {string}
      * @memberof IdentitySet
@@ -15040,6 +15078,12 @@ export interface IdentitySetMergePatch {
      * @memberof IdentitySetMergePatch
      */
     city?: string | null;
+    /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySetMergePatch
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
     /**
      *
      * @type {string}
@@ -15131,6 +15175,12 @@ export interface IdentitySetPost {
      */
     city?: string;
     /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySetPost
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
+    /**
      *
      * @type {string}
      * @memberof IdentitySetPost
@@ -15221,6 +15271,12 @@ export interface IdentitySetPut {
      */
     city?: string;
     /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySetPut
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
+    /**
      *
      * @type {string}
      * @memberof IdentitySetPut
@@ -15298,6 +15354,7 @@ export interface IdentitySetPut {
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
@@ -15327,6 +15384,7 @@ export interface IdentitySets {
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
@@ -15356,6 +15414,7 @@ export interface IdentitySetsMergePatch {
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
@@ -15385,6 +15444,7 @@ export interface IdentitySetsPost {
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
