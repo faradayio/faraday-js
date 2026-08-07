@@ -4,6 +4,7 @@
 README.md
 package.json
 src/apis/AccountsApi.ts
+src/apis/AtlasesApi.ts
 src/apis/AttributesApi.ts
 src/apis/BillingApi.ts
 src/apis/CohortsApi.ts
@@ -13,6 +14,7 @@ src/apis/ExperimentalApi.ts
 src/apis/FeatureStoresApi.ts
 src/apis/GraphApi.ts
 src/apis/KnowledgebaseApi.ts
+src/apis/LocationsApi.ts
 src/apis/MarketOpportunityAnalysesApi.ts
 src/apis/OutcomesApi.ts
 src/apis/PersonaSetsApi.ts

@@ -299,7 +299,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get a list of the datasets available in the developer’s account
+     * Get a list of the datasets defined on the account
      * List datasets
      */
     getDatasetsRaw(requestParameters) {
@@ -326,7 +326,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get a list of the datasets available in the developer’s account
+     * Get a list of the datasets defined on the account
      * List datasets
      */
     getDatasets(ids) {

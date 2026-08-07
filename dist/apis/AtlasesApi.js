@@ -22,23 +22,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlacesApi = void 0;
+exports.AtlasesApi = void 0;
 const runtime = require("../runtime");
 /**
  *
  */
-class PlacesApi extends runtime.BaseAPI {
+class AtlasesApi extends runtime.BaseAPI {
     /**
-     * Archive a place
-     * Archive a place
+     * Archive an atlas
+     * Archive an atlas
      */
-    archivePlaceRaw(requestParameters) {
+    archiveAtlasRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling archivePlace.');
+            if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+                throw new runtime.RequiredError('atlasId', 'Required parameter requestParameters.atlasId was null or undefined when calling archiveAtlas.');
             }
             if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
-                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archivePlace.');
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling archiveAtlas.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -51,7 +51,7 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places/{place_id}/archive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                path: `/atlases/{atlas_id}/archive`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -61,22 +61,22 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Archive a place
-     * Archive a place
+     * Archive an atlas
+     * Archive an atlas
      */
-    archivePlace(placeId, archiveConfig) {
+    archiveAtlas(atlasId, archiveConfig) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.archivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig });
+            yield this.archiveAtlasRaw({ atlasId: atlasId, archiveConfig: archiveConfig });
         });
     }
     /**
-     * Create a new place
-     * Create place
+     * Create a new atlas
+     * Create atlas
      */
-    createPlaceRaw(requestParameters) {
+    createAtlasRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.placeFields === null || requestParameters.placeFields === undefined) {
-                throw new runtime.RequiredError('placeFields', 'Required parameter requestParameters.placeFields was null or undefined when calling createPlace.');
+            if (requestParameters.atlasFields === null || requestParameters.atlasFields === undefined) {
+                throw new runtime.RequiredError('atlasFields', 'Required parameter requestParameters.atlasFields was null or undefined when calling createAtlas.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -89,32 +89,32 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places`,
+                path: `/atlases`,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: requestParameters.placeFields,
+                body: requestParameters.atlasFields,
             });
             return new runtime.JSONApiResponse(response);
         });
     }
     /**
-     * Create a new place
-     * Create place
+     * Create a new atlas
+     * Create atlas
      */
-    createPlace(placeFields) {
+    createAtlas(atlasFields) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.createPlaceRaw({ placeFields: placeFields });
+            const response = yield this.createAtlasRaw({ atlasFields: atlasFields });
             return yield response.value();
         });
     }
     /**
-     * Delete a place
+     * Delete an atlas
      */
-    deletePlaceRaw(requestParameters) {
+    deleteAtlasRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling deletePlace.');
+            if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+                throw new runtime.RequiredError('atlasId', 'Required parameter requestParameters.atlasId was null or undefined when calling deleteAtlas.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -126,7 +126,7 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places/{place_id}`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                path: `/atlases/{atlas_id}`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -135,21 +135,21 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Delete a place
+     * Delete an atlas
      */
-    deletePlace(placeId) {
+    deleteAtlas(atlasId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.deletePlaceRaw({ placeId: placeId });
+            yield this.deleteAtlasRaw({ atlasId: atlasId });
         });
     }
     /**
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    forceUpdatePlaceRaw(requestParameters) {
+    forceUpdateAtlasRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling forceUpdatePlace.');
+            if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+                throw new runtime.RequiredError('atlasId', 'Required parameter requestParameters.atlasId was null or undefined when calling forceUpdateAtlas.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -161,7 +161,7 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places/{place_id}/force_update`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                path: `/atlases/{atlas_id}/force_update`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -173,19 +173,19 @@ class PlacesApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
-    forceUpdatePlace(placeId) {
+    forceUpdateAtlas(atlasId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.forceUpdatePlaceRaw({ placeId: placeId });
+            yield this.forceUpdateAtlasRaw({ atlasId: atlasId });
         });
     }
     /**
-     * Retrieve details on a specific place
-     * Retrieve a place
+     * Retrieve details on a specific atlas
+     * Retrieve an atlas
      */
-    getPlaceRaw(requestParameters) {
+    getAtlasRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling getPlace.');
+            if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+                throw new runtime.RequiredError('atlasId', 'Required parameter requestParameters.atlasId was null or undefined when calling getAtlas.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -197,7 +197,7 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places/{place_id}`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                path: `/atlases/{atlas_id}`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -206,20 +206,20 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve details on a specific place
-     * Retrieve a place
+     * Retrieve details on a specific atlas
+     * Retrieve an atlas
      */
-    getPlace(placeId) {
+    getAtlas(atlasId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getPlaceRaw({ placeId: placeId });
+            const response = yield this.getAtlasRaw({ atlasId: atlasId });
             return yield response.value();
         });
     }
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
-     * List places
+     * Get a list of the atlases defined on the account
+     * List atlases
      */
-    getPlacesRaw(requestParameters) {
+    getAtlasesRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             if (requestParameters.ids) {
@@ -234,7 +234,7 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places`,
+                path: `/atlases`,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -243,26 +243,26 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
-     * List places
+     * Get a list of the atlases defined on the account
+     * List atlases
      */
-    getPlaces(ids) {
+    getAtlases(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getPlacesRaw({ ids: ids });
+            const response = yield this.getAtlasesRaw({ ids: ids });
             return yield response.value();
         });
     }
     /**
-     * Unarchive a place
-     * Unarchive a place
+     * Unarchive an atlas
+     * Unarchive an atlas
      */
-    unarchivePlaceRaw(requestParameters) {
+    unarchiveAtlasRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling unarchivePlace.');
+            if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+                throw new runtime.RequiredError('atlasId', 'Required parameter requestParameters.atlasId was null or undefined when calling unarchiveAtlas.');
             }
             if (requestParameters.archiveConfig === null || requestParameters.archiveConfig === undefined) {
-                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchivePlace.');
+                throw new runtime.RequiredError('archiveConfig', 'Required parameter requestParameters.archiveConfig was null or undefined when calling unarchiveAtlas.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -275,7 +275,7 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places/{place_id}/unarchive`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                path: `/atlases/{atlas_id}/unarchive`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -285,25 +285,25 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Unarchive a place
-     * Unarchive a place
+     * Unarchive an atlas
+     * Unarchive an atlas
      */
-    unarchivePlace(placeId, archiveConfig) {
+    unarchiveAtlas(atlasId, archiveConfig) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.unarchivePlaceRaw({ placeId: placeId, archiveConfig: archiveConfig });
+            yield this.unarchiveAtlasRaw({ atlasId: atlasId, archiveConfig: archiveConfig });
         });
     }
     /**
-     * Update an existing place
-     * Update place
+     * Update an existing atlas
+     * Update atlas
      */
-    updatePlaceRaw(requestParameters) {
+    updateAtlasRaw(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.placeId === null || requestParameters.placeId === undefined) {
-                throw new runtime.RequiredError('placeId', 'Required parameter requestParameters.placeId was null or undefined when calling updatePlace.');
+            if (requestParameters.atlasId === null || requestParameters.atlasId === undefined) {
+                throw new runtime.RequiredError('atlasId', 'Required parameter requestParameters.atlasId was null or undefined when calling updateAtlas.');
             }
-            if (requestParameters.placeFields === null || requestParameters.placeFields === undefined) {
-                throw new runtime.RequiredError('placeFields', 'Required parameter requestParameters.placeFields was null or undefined when calling updatePlace.');
+            if (requestParameters.atlasFields === null || requestParameters.atlasFields === undefined) {
+                throw new runtime.RequiredError('atlasFields', 'Required parameter requestParameters.atlasFields was null or undefined when calling updateAtlas.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -316,24 +316,24 @@ class PlacesApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/places/{place_id}`.replace(`{${"place_id"}}`, encodeURIComponent(String(requestParameters.placeId))),
+                path: `/atlases/{atlas_id}`.replace(`{${"atlas_id"}}`, encodeURIComponent(String(requestParameters.atlasId))),
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
-                body: requestParameters.placeFields,
+                body: requestParameters.atlasFields,
             });
             return new runtime.JSONApiResponse(response);
         });
     }
     /**
-     * Update an existing place
-     * Update place
+     * Update an existing atlas
+     * Update atlas
      */
-    updatePlace(placeId, placeFields) {
+    updateAtlas(atlasId, atlasFields) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.updatePlaceRaw({ placeId: placeId, placeFields: placeFields });
+            const response = yield this.updateAtlasRaw({ atlasId: atlasId, atlasFields: atlasFields });
             return yield response.value();
         });
     }
 }
-exports.PlacesApi = PlacesApi;
+exports.AtlasesApi = AtlasesApi;

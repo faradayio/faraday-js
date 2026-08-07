@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
 /**
  * The set of Faraday-provided attributes allowed for clustering, on accounts with an identity graph feature store set.
  *
@@ -509,6 +509,7 @@ var ResourceStatus;
 var ResourceType;
 (function (ResourceType) {
     ResourceType["Accounts"] = "accounts";
+    ResourceType["Atlases"] = "atlases";
     ResourceType["Attributes"] = "attributes";
     ResourceType["Cohorts"] = "cohorts";
     ResourceType["Connections"] = "connections";
@@ -534,6 +535,24 @@ var ScopeEfficacyOutcomeMonthPerformedEnum;
     ScopeEfficacyOutcomeMonthPerformedEnum["GreaterThan"] = "greater_than";
     ScopeEfficacyOutcomeMonthPerformedEnum["LessThan"] = "less_than";
 })(ScopeEfficacyOutcomeMonthPerformedEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum || (exports.ScopeEfficacyOutcomeMonthPerformedEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ScopePayloadLocationSelectEnum;
+(function (ScopePayloadLocationSelectEnum) {
+    ScopePayloadLocationSelectEnum["Nearest"] = "nearest";
+    ScopePayloadLocationSelectEnum["All"] = "all";
+})(ScopePayloadLocationSelectEnum = exports.ScopePayloadLocationSelectEnum || (exports.ScopePayloadLocationSelectEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var ScopePayloadMergePatchLocationSelectEnum;
+(function (ScopePayloadMergePatchLocationSelectEnum) {
+    ScopePayloadMergePatchLocationSelectEnum["Nearest"] = "nearest";
+    ScopePayloadMergePatchLocationSelectEnum["All"] = "all";
+})(ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadMergePatchLocationSelectEnum || (exports.ScopePayloadMergePatchLocationSelectEnum = {}));
 /**
 * @export
 * @enum {string}

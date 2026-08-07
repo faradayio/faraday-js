@@ -1,5 +1,6 @@
 import { Configuration } from '../runtime';
 import { AccountsApi } from './AccountsApi';
+import { AtlasesApi } from './AtlasesApi';
 import { AttributesApi } from './AttributesApi';
 import { BillingApi } from './BillingApi';
 import { CohortsApi } from './CohortsApi';
@@ -9,6 +10,7 @@ import { ExperimentalApi } from './ExperimentalApi';
 import { FeatureStoresApi } from './FeatureStoresApi';
 import { GraphApi } from './GraphApi';
 import { KnowledgebaseApi } from './KnowledgebaseApi';
+import { LocationsApi } from './LocationsApi';
 import { MarketOpportunityAnalysesApi } from './MarketOpportunityAnalysesApi';
 import { OutcomesApi } from './OutcomesApi';
 import { PersonaSetsApi } from './PersonaSetsApi';
@@ -24,6 +26,7 @@ import { WebhooksApi } from './WebhooksApi';
 export declare class FaradayClient {
     configuration: Configuration;
     accounts: AccountsApi;
+    atlases: AtlasesApi;
     attributes: AttributesApi;
     billing: BillingApi;
     cohorts: CohortsApi;
@@ -33,6 +36,7 @@ export declare class FaradayClient {
     featureStores: FeatureStoresApi;
     graph: GraphApi;
     knowledgebase: KnowledgebaseApi;
+    locations: LocationsApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
