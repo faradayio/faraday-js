@@ -1198,6 +1198,8 @@ export declare type AtlasOptions = {
 } & DatasetOptionsAzureSqlServer | {
     type: 'bigquery';
 } & DatasetOptionsBigQuery | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhouse | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -1246,6 +1248,8 @@ export declare type AtlasOptionsMergePatch = {
 } & DatasetOptionsAzureSqlServerMergePatch | {
     type: 'bigquery';
 } & DatasetOptionsBigQueryMergePatch | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhouseMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -1294,6 +1298,8 @@ export declare type AtlasOptionsPost = {
 } & DatasetOptionsAzureSqlServerPost | {
     type: 'bigquery';
 } & DatasetOptionsBigQueryPost | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhousePost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -1342,6 +1348,8 @@ export declare type AtlasOptionsPut = {
 } & DatasetOptionsAzureSqlServerPut | {
     type: 'bigquery';
 } & DatasetOptionsBigQueryPut | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhousePut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
@@ -2369,6 +2377,27 @@ export interface AttributeSources {
             [key: string]: AttributeSourceConfig;
         };
     };
+}
+/**
+ * Request to rotate Ed25519 SSH keypair credentials for a ClickHouse connection.
+ * Currently no additional options are required beyond the type discriminator.
+ * @export
+ * @interface ClickHouseRotateCredentialsRequest
+ */
+export interface ClickHouseRotateCredentialsRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ClickHouseRotateCredentialsRequest
+     */
+    type: ClickHouseRotateCredentialsRequestTypeEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ClickHouseRotateCredentialsRequestTypeEnum {
+    Clickhouse = "clickhouse"
 }
 /**
  * The dimensions the clustering system should consider when discovering the personas in a persona set.
@@ -3519,6 +3548,8 @@ export declare type ConnectionOptions = {
 } & ConnectionOptionsBigQuery | {
     type: 'classic';
 } & ConnectionOptionsClassic | {
+    type: 'clickhouse';
+} & ConnectionOptionsClickhouse | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiences | {
     type: 'gcp_cloud_sql_mysql';
@@ -5472,6 +5503,214 @@ export interface ConnectionOptionsClassicPut {
     type: string;
 }
 /**
+ * ClickHouse options
+ * @export
+ * @interface ConnectionOptionsClickhouse
+ */
+export interface ConnectionOptionsClickhouse {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    database: string;
+    /**
+     * ClickHouse hostname. For ClickHouse Cloud, open Connect, set Connect with to Native (not HTTPS), and copy the host without protocol.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    host: string;
+    /**
+     * In case the host is deployed behind a load balancer.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    load_balancer?: string;
+    /**
+     * Native protocol TLS port. In ClickHouse Cloud, choose Connect with → Native (not HTTPS); the port is typically 9440. HTTPS uses 8443 and will not work. Self-hosted with TLS is often 9440.
+     * @type {number}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    port: number;
+    /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    ssh_bastion?: string;
+    /**
+     * Ed25519 OpenSSH public key Faraday generated for this connection. In ClickHouse, create the user with only the base64 segment after ssh-ed25519: CREATE USER ... IDENTIFIED WITH ssh_key BY KEY '<base64>' TYPE 'ssh-ed25519'. Unique per connection. Rotate with the rotate_credentials endpoint.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    ssh_public_key?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    type: string;
+    /**
+     * ClickHouse user identified with Faraday's Ed25519 SSH public key.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouse
+     */
+    user: string;
+}
+/**
+ * (Parameters used to PATCH the `ConnectionOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface ConnectionOptionsClickhouseMergePatch
+ */
+export interface ConnectionOptionsClickhouseMergePatch {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouseMergePatch
+     */
+    database?: string;
+    /**
+     * ClickHouse hostname. For ClickHouse Cloud, open Connect, set Connect with to Native (not HTTPS), and copy the host without protocol.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouseMergePatch
+     */
+    host?: string;
+    /**
+     * In case the host is deployed behind a load balancer.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouseMergePatch
+     */
+    load_balancer?: string | null;
+    /**
+     * Native protocol TLS port. In ClickHouse Cloud, choose Connect with → Native (not HTTPS); the port is typically 9440. HTTPS uses 8443 and will not work. Self-hosted with TLS is often 9440.
+     * @type {number}
+     * @memberof ConnectionOptionsClickhouseMergePatch
+     */
+    port?: number;
+    /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouseMergePatch
+     */
+    ssh_bastion?: string | null;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouseMergePatch
+     */
+    type: string;
+    /**
+     * ClickHouse user identified with Faraday's Ed25519 SSH public key.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhouseMergePatch
+     */
+    user?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `ConnectionOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface ConnectionOptionsClickhousePost
+ */
+export interface ConnectionOptionsClickhousePost {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePost
+     */
+    database: string;
+    /**
+     * ClickHouse hostname. For ClickHouse Cloud, open Connect, set Connect with to Native (not HTTPS), and copy the host without protocol.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePost
+     */
+    host: string;
+    /**
+     * In case the host is deployed behind a load balancer.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePost
+     */
+    load_balancer?: string;
+    /**
+     * Native protocol TLS port. In ClickHouse Cloud, choose Connect with → Native (not HTTPS); the port is typically 9440. HTTPS uses 8443 and will not work. Self-hosted with TLS is often 9440.
+     * @type {number}
+     * @memberof ConnectionOptionsClickhousePost
+     */
+    port: number;
+    /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePost
+     */
+    ssh_bastion?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePost
+     */
+    type: string;
+    /**
+     * ClickHouse user identified with Faraday's Ed25519 SSH public key.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePost
+     */
+    user: string;
+}
+/**
+ * (Parameters used to PUT a value of the `ConnectionOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface ConnectionOptionsClickhousePut
+ */
+export interface ConnectionOptionsClickhousePut {
+    /**
+     * Database
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePut
+     */
+    database: string;
+    /**
+     * ClickHouse hostname. For ClickHouse Cloud, open Connect, set Connect with to Native (not HTTPS), and copy the host without protocol.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePut
+     */
+    host: string;
+    /**
+     * In case the host is deployed behind a load balancer.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePut
+     */
+    load_balancer?: string;
+    /**
+     * Native protocol TLS port. In ClickHouse Cloud, choose Connect with → Native (not HTTPS); the port is typically 9440. HTTPS uses 8443 and will not work. Self-hosted with TLS is often 9440.
+     * @type {number}
+     * @memberof ConnectionOptionsClickhousePut
+     */
+    port: number;
+    /**
+     * In case the host is deployed behind an SSH bastion / jump server. Uses the Faraday SSH public key. This is the address of the bastion including username. For example, faraday@mybastion.example.com
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePut
+     */
+    ssh_bastion?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePut
+     */
+    type: string;
+    /**
+     * ClickHouse user identified with Faraday's Ed25519 SSH public key.
+     * @type {string}
+     * @memberof ConnectionOptionsClickhousePut
+     */
+    user: string;
+}
+/**
  * Facebook Custom Audiences options
  * @export
  * @interface ConnectionOptionsFacebookCustomAudiences
@@ -6939,6 +7178,8 @@ export declare type ConnectionOptionsMergePatch = {
 } & ConnectionOptionsBigQueryMergePatch | {
     type: 'classic';
 } & ConnectionOptionsClassicMergePatch | {
+    type: 'clickhouse';
+} & ConnectionOptionsClickhouseMergePatch | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesMergePatch | {
     type: 'gcp_cloud_sql_mysql';
@@ -7575,6 +7816,8 @@ export declare type ConnectionOptionsPost = {
 } & ConnectionOptionsBigQueryPost | {
     type: 'classic';
 } & ConnectionOptionsClassicPost | {
+    type: 'clickhouse';
+} & ConnectionOptionsClickhousePost | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPost | {
     type: 'gcp_cloud_sql_mysql';
@@ -7911,6 +8154,8 @@ export declare type ConnectionOptionsPut = {
 } & ConnectionOptionsBigQueryPut | {
     type: 'classic';
 } & ConnectionOptionsClassicPut | {
+    type: 'clickhouse';
+} & ConnectionOptionsClickhousePut | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPut | {
     type: 'gcp_cloud_sql_mysql';
@@ -10873,6 +11118,8 @@ export declare type DatasetOptions = {
 } & DatasetOptionsBigQuery | {
     type: 'classic';
 } & DatasetOptionsClassic | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhouse | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -11628,6 +11875,88 @@ export interface DatasetOptionsClassicPut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsClassicPut
+     */
+    type: string;
+}
+/**
+ * ClickHouse options
+ * @export
+ * @interface DatasetOptionsClickhouse
+ */
+export interface DatasetOptionsClickhouse {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsClickhouse
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsClickhouse
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `DatasetOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface DatasetOptionsClickhouseMergePatch
+ */
+export interface DatasetOptionsClickhouseMergePatch {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsClickhouseMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsClickhouseMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `DatasetOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface DatasetOptionsClickhousePost
+ */
+export interface DatasetOptionsClickhousePost {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsClickhousePost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsClickhousePost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `DatasetOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface DatasetOptionsClickhousePut
+ */
+export interface DatasetOptionsClickhousePut {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof DatasetOptionsClickhousePut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof DatasetOptionsClickhousePut
      */
     type: string;
 }
@@ -12506,6 +12835,8 @@ export declare type DatasetOptionsMergePatch = {
 } & DatasetOptionsBigQueryMergePatch | {
     type: 'classic';
 } & DatasetOptionsClassicMergePatch | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhouseMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -12816,6 +13147,8 @@ export declare type DatasetOptionsPost = {
 } & DatasetOptionsBigQueryPost | {
     type: 'classic';
 } & DatasetOptionsClassicPost | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhousePost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -12966,6 +13299,8 @@ export declare type DatasetOptionsPut = {
 } & DatasetOptionsBigQueryPut | {
     type: 'classic';
 } & DatasetOptionsClassicPut | {
+    type: 'clickhouse';
+} & DatasetOptionsClickhousePut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
@@ -19545,6 +19880,8 @@ export declare enum ResourceType {
  * @export
  */
 export declare type RotateCredentialsRequest = {
+    type: 'clickhouse';
+} & ClickHouseRotateCredentialsRequest | {
     type: 'snowflake';
 } & SnowflakeRotateCredentialsRequest;
 /**
@@ -23984,6 +24321,8 @@ export declare type TargetOptions = {
 } & TargetOptionsAzureSqlServer | {
     type: 'bigquery';
 } & TargetOptionsBigQuery | {
+    type: 'clickhouse';
+} & TargetOptionsClickhouse | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiences | {
     type: 'gcp_cloud_sql_mysql';
@@ -24741,6 +25080,112 @@ export interface TargetOptionsBigQueryPut {
      * @memberof TargetOptionsBigQueryPut
      */
     upsert?: boolean;
+}
+/**
+ * ClickHouse options
+ * @export
+ * @interface TargetOptionsClickhouse
+ */
+export interface TargetOptionsClickhouse {
+    /**
+     * Column names for ENGINE = MergeTree ORDER BY (...). Required for ClickHouse targets. Full replacement only; append and upsert are not supported.
+     * @type {Array<string>}
+     * @memberof TargetOptionsClickhouse
+     */
+    order_by: Array<string>;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsClickhouse
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsClickhouse
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `TargetOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface TargetOptionsClickhouseMergePatch
+ */
+export interface TargetOptionsClickhouseMergePatch {
+    /**
+     * Column names for ENGINE = MergeTree ORDER BY (...). Required for ClickHouse targets. Full replacement only; append and upsert are not supported.
+     * @type {Array<string>}
+     * @memberof TargetOptionsClickhouseMergePatch
+     */
+    order_by?: Array<string>;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsClickhouseMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsClickhouseMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `TargetOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface TargetOptionsClickhousePost
+ */
+export interface TargetOptionsClickhousePost {
+    /**
+     * Column names for ENGINE = MergeTree ORDER BY (...). Required for ClickHouse targets. Full replacement only; append and upsert are not supported.
+     * @type {Array<string>}
+     * @memberof TargetOptionsClickhousePost
+     */
+    order_by: Array<string>;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsClickhousePost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsClickhousePost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `TargetOptionsClickhouse` type.)
+ *
+ * ClickHouse options
+ * @export
+ * @interface TargetOptionsClickhousePut
+ */
+export interface TargetOptionsClickhousePut {
+    /**
+     * Column names for ENGINE = MergeTree ORDER BY (...). Required for ClickHouse targets. Full replacement only; append and upsert are not supported.
+     * @type {Array<string>}
+     * @memberof TargetOptionsClickhousePut
+     */
+    order_by: Array<string>;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof TargetOptionsClickhousePut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof TargetOptionsClickhousePut
+     */
+    type: string;
 }
 /**
  * Facebook Custom Audiences options
@@ -25760,6 +26205,8 @@ export declare type TargetOptionsMergePatch = {
 } & TargetOptionsAzureSqlServerMergePatch | {
     type: 'bigquery';
 } & TargetOptionsBigQueryMergePatch | {
+    type: 'clickhouse';
+} & TargetOptionsClickhouseMergePatch | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesMergePatch | {
     type: 'gcp_cloud_sql_mysql';
@@ -26140,6 +26587,8 @@ export declare type TargetOptionsPost = {
 } & TargetOptionsAzureSqlServerPost | {
     type: 'bigquery';
 } & TargetOptionsBigQueryPost | {
+    type: 'clickhouse';
+} & TargetOptionsClickhousePost | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesPost | {
     type: 'gcp_cloud_sql_mysql';
@@ -26298,6 +26747,8 @@ export declare type TargetOptionsPut = {
 } & TargetOptionsAzureSqlServerPut | {
     type: 'bigquery';
 } & TargetOptionsBigQueryPut | {
+    type: 'clickhouse';
+} & TargetOptionsClickhousePut | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesPut | {
     type: 'gcp_cloud_sql_mysql';

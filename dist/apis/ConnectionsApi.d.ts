@@ -133,12 +133,12 @@ export declare class ConnectionsApi extends runtime.BaseAPI {
      */
     getConnections(ids?: Array<string>): Promise<Array<Connection>>;
     /**
-     * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection.
+     * Rotate credentials for a Snowflake or ClickHouse connection. This regenerates the connection type\'s keypair.
      * Rotate credentials for a connection
      */
     rotateConnectionCredentialsRaw(requestParameters: RotateConnectionCredentialsRequest): Promise<runtime.ApiResponse<Connection>>;
     /**
-     * Rotate credentials for a connection. Currently only supported for Snowflake connections. This will regenerate the RSA keypair for the connection.
+     * Rotate credentials for a Snowflake or ClickHouse connection. This regenerates the connection type\'s keypair.
      * Rotate credentials for a connection
      */
     rotateConnectionCredentials(connectionId: string, rotateCredentialsRequest: RotateCredentialsRequest): Promise<Connection>;
