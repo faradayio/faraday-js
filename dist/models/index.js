@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.ClickHouseRotateCredentialsRequestTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadMergePatchLocationSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.MigrationTargetPushReadinessStatusEnum = exports.MigrationTargetPushReadinessFieldMappingStatusEnum = exports.MigrationTargetPushReadinessDestinationStatusEnum = exports.LookupMatchType = exports.LookupIdentityProvider = exports.FigV1ToFigV2MigrationStatusNeedsFixFromEnum = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.ClickHouseRotateCredentialsRequestTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
 /**
  * The set of Faraday-provided attributes allowed for clustering, on accounts with an identity graph feature store set.
  *
@@ -253,6 +253,15 @@ var ErrorCode;
     ErrorCode["Conflict"] = "CONFLICT";
 })(ErrorCode = exports.ErrorCode || (exports.ErrorCode = {}));
 /**
+* @export
+* @enum {string}
+*/
+var FigV1ToFigV2MigrationStatusNeedsFixFromEnum;
+(function (FigV1ToFigV2MigrationStatusNeedsFixFromEnum) {
+    FigV1ToFigV2MigrationStatusNeedsFixFromEnum["User"] = "user";
+    FigV1ToFigV2MigrationStatusNeedsFixFromEnum["Support"] = "support";
+})(FigV1ToFigV2MigrationStatusNeedsFixFromEnum = exports.FigV1ToFigV2MigrationStatusNeedsFixFromEnum || (exports.FigV1ToFigV2MigrationStatusNeedsFixFromEnum = {}));
+/**
  * The identity provider used to obtain a match with the requested identity.
  * @export
  * @enum {string}
@@ -280,6 +289,35 @@ var LookupMatchType;
     LookupMatchType["PostcodeOnly"] = "postcode_only";
     LookupMatchType["PhoneOnly"] = "phone_only";
 })(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
+/**
+* @export
+* @enum {string}
+*/
+var MigrationTargetPushReadinessDestinationStatusEnum;
+(function (MigrationTargetPushReadinessDestinationStatusEnum) {
+    MigrationTargetPushReadinessDestinationStatusEnum["Different"] = "different";
+    MigrationTargetPushReadinessDestinationStatusEnum["Same"] = "same";
+    MigrationTargetPushReadinessDestinationStatusEnum["ExternalCheckRequired"] = "external_check_required";
+    MigrationTargetPushReadinessDestinationStatusEnum["ExternalCheckComplete"] = "external_check_complete";
+})(MigrationTargetPushReadinessDestinationStatusEnum = exports.MigrationTargetPushReadinessDestinationStatusEnum || (exports.MigrationTargetPushReadinessDestinationStatusEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MigrationTargetPushReadinessFieldMappingStatusEnum;
+(function (MigrationTargetPushReadinessFieldMappingStatusEnum) {
+    MigrationTargetPushReadinessFieldMappingStatusEnum["NotRequired"] = "not_required";
+    MigrationTargetPushReadinessFieldMappingStatusEnum["Complete"] = "complete";
+    MigrationTargetPushReadinessFieldMappingStatusEnum["Incomplete"] = "incomplete";
+})(MigrationTargetPushReadinessFieldMappingStatusEnum = exports.MigrationTargetPushReadinessFieldMappingStatusEnum || (exports.MigrationTargetPushReadinessFieldMappingStatusEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MigrationTargetPushReadinessStatusEnum;
+(function (MigrationTargetPushReadinessStatusEnum) {
+    MigrationTargetPushReadinessStatusEnum["Green"] = "green";
+    MigrationTargetPushReadinessStatusEnum["Yellow"] = "yellow";
+    MigrationTargetPushReadinessStatusEnum["Red"] = "red";
+})(MigrationTargetPushReadinessStatusEnum = exports.MigrationTargetPushReadinessStatusEnum || (exports.MigrationTargetPushReadinessStatusEnum = {}));
 /**
  * Faraday attributes available for modeling on accounts with an identity graph feature store set.
  *
@@ -524,6 +562,7 @@ var ResourceType;
     ResourceType["Datasets"] = "datasets";
     ResourceType["FeatureStores"] = "feature_stores";
     ResourceType["MarketOpportunityAnalyses"] = "market_opportunity_analyses";
+    ResourceType["Migrations"] = "migrations";
     ResourceType["Outcomes"] = "outcomes";
     ResourceType["PersonaSets"] = "persona_sets";
     ResourceType["Places"] = "places";

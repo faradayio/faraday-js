@@ -14352,6 +14352,1157 @@ export interface FeatureStorePut {
     version: number;
 }
 /**
+ * A move from a FIG v1 account and its resources to their FIG v2 replacements.
+ * @export
+ * @interface FigV1ToFigV2Migration
+ */
+export interface FigV1ToFigV2Migration {
+    /**
+     * When a user approved the account move, recorded by the server. Provide
+     * a non-null value via PATCH from either linked account to approve.
+     * Repeated approval requests do not change the first approval.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    approved_at?: string;
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    archived_at?: string;
+    /**
+     * Paired FIG v1 and FIG v2 cohorts. Used to match payload columns whose names embed cohort ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationCohort>}
+     * @memberof FigV1ToFigV2Migration
+     */
+    cohorts?: Array<FigV1ToFigV2MigrationCohort>;
+    /**
+     * When this resource was created.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    created_at: string;
+    /**
+     * Paired FIG v1 and FIG v2 datasets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationDataset>}
+     * @memberof FigV1ToFigV2Migration
+     */
+    datasets: Array<FigV1ToFigV2MigrationDataset>;
+    /**
+     * 
+     * @type {MigrationAccount}
+     * @memberof FigV1ToFigV2Migration
+     */
+    fig_v1_account: MigrationAccount;
+    /**
+     * 
+     * @type {MigrationAccount}
+     * @memberof FigV1ToFigV2Migration
+     */
+    fig_v2_account: MigrationAccount;
+    /**
+     * When Faraday finished moving users and suspending the FIG v1 account.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    finished_at?: string;
+    /**
+     * A unique ID for this resource.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    id: string;
+    /**
+     * The last time this resource's input was read.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    last_read_input_at?: string;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    last_updated_config_at?: string;
+    /**
+     * The last time this resource successfully built.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    last_updated_output_at?: string;
+    /**
+     * Notes about this migration for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    notes?: string;
+    /**
+     * Paired FIG v1 and FIG v2 outcomes. Used to match payload columns whose names embed outcome ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationOutcome>}
+     * @memberof FigV1ToFigV2Migration
+     */
+    outcomes?: Array<FigV1ToFigV2MigrationOutcome>;
+    /**
+     * Paired FIG v1 and FIG v2 persona sets. Used to match payload columns whose names embed persona set ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationPersonaSet>}
+     * @memberof FigV1ToFigV2Migration
+     */
+    persona_sets?: Array<FigV1ToFigV2MigrationPersonaSet>;
+    /**
+     * Paired FIG v1 and FIG v2 recommenders. Used to match payload columns whose names embed recommender ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationRecommender>}
+     * @memberof FigV1ToFigV2Migration
+     */
+    recommenders?: Array<FigV1ToFigV2MigrationRecommender>;
+    /**
+     * The type of this resource.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    resource_type: string;
+    /**
+     * When support restored the FIG v1 account after a completed migration.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    rolled_back_at?: string;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof FigV1ToFigV2Migration
+     */
+    status: ResourceStatus;
+    /**
+     * When the status of this resource was last updated.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    status_changed_at?: string;
+    /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    status_error?: string;
+    /**
+     * Who has to act before a migration with `status == "error"` can run again. `user` means editing the migration clears it, `support` means only Faraday can. Omitted when Faraday will retry on its own. A migration performs an irreversible account move, so a failed one says plainly whether the account holder can do anything about it.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    status_needs_fix_from?: FigV1ToFigV2MigrationStatusNeedsFixFromEnum;
+    /**
+     * Paired FIG v1 and FIG v2 targets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationTarget>}
+     * @memberof FigV1ToFigV2Migration
+     */
+    targets: Array<FigV1ToFigV2MigrationTarget>;
+    /**
+     * The migration type.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    type: string;
+    /**
+     * When this resource was last updated.
+     * @type {string}
+     * @memberof FigV1ToFigV2Migration
+     */
+    updated_at: string;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum FigV1ToFigV2MigrationStatusNeedsFixFromEnum {
+    User = 'user',
+    Support = 'support'
+}
+/**
+ * A paired FIG v1 cohort and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationCohort
+ */
+export interface FigV1ToFigV2MigrationCohort {
+    /**
+     * 
+     * @type {MigrationResource}
+     * @memberof FigV1ToFigV2MigrationCohort
+     */
+    fig_v1_cohort: MigrationResource;
+    /**
+     * 
+     * @type {MigrationResource}
+     * @memberof FigV1ToFigV2MigrationCohort
+     */
+    fig_v2_cohort: MigrationResource;
+    /**
+     * Notes about this cohort pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationCohort
+     */
+    notes?: string;
+    /**
+     * Whether a Faraday team member approved this pair despite an incomplete automated check.
+     * @type {boolean}
+     * @memberof FigV1ToFigV2MigrationCohort
+     */
+    overridden: boolean;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2MigrationCohort` type.)
+ * 
+ * A paired FIG v1 cohort and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationCohortMergePatch
+ */
+export interface FigV1ToFigV2MigrationCohortMergePatch {
+    /**
+     * 
+     * @type {MigrationResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationCohortMergePatch
+     */
+    fig_v1_cohort?: MigrationResourceMergePatch;
+    /**
+     * 
+     * @type {MigrationResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationCohortMergePatch
+     */
+    fig_v2_cohort?: MigrationResourceMergePatch;
+    /**
+     * Notes about this cohort pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationCohortMergePatch
+     */
+    notes?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2MigrationCohort` type.)
+ * 
+ * A paired FIG v1 cohort and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationCohortPost
+ */
+export interface FigV1ToFigV2MigrationCohortPost {
+    /**
+     * 
+     * @type {MigrationResourcePost}
+     * @memberof FigV1ToFigV2MigrationCohortPost
+     */
+    fig_v1_cohort: MigrationResourcePost;
+    /**
+     * 
+     * @type {MigrationResourcePost}
+     * @memberof FigV1ToFigV2MigrationCohortPost
+     */
+    fig_v2_cohort: MigrationResourcePost;
+    /**
+     * Notes about this cohort pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationCohortPost
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2MigrationCohort` type.)
+ * 
+ * A paired FIG v1 cohort and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationCohortPut
+ */
+export interface FigV1ToFigV2MigrationCohortPut {
+    /**
+     * 
+     * @type {MigrationResourcePut}
+     * @memberof FigV1ToFigV2MigrationCohortPut
+     */
+    fig_v1_cohort: MigrationResourcePut;
+    /**
+     * 
+     * @type {MigrationResourcePut}
+     * @memberof FigV1ToFigV2MigrationCohortPut
+     */
+    fig_v2_cohort: MigrationResourcePut;
+    /**
+     * Notes about this cohort pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationCohortPut
+     */
+    notes?: string;
+}
+/**
+ * A paired FIG v1 dataset and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationDataset
+ */
+export interface FigV1ToFigV2MigrationDataset {
+    /**
+     * 
+     * @type {MigrationDatasetResource}
+     * @memberof FigV1ToFigV2MigrationDataset
+     */
+    fig_v1_dataset: MigrationDatasetResource;
+    /**
+     * 
+     * @type {MigrationDatasetResource}
+     * @memberof FigV1ToFigV2MigrationDataset
+     */
+    fig_v2_dataset: MigrationDatasetResource;
+    /**
+     * Notes about this dataset pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationDataset
+     */
+    notes?: string;
+    /**
+     * Whether a Faraday team member approved this pair despite an incomplete automated check.
+     * @type {boolean}
+     * @memberof FigV1ToFigV2MigrationDataset
+     */
+    overridden: boolean;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2MigrationDataset` type.)
+ * 
+ * A paired FIG v1 dataset and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationDatasetMergePatch
+ */
+export interface FigV1ToFigV2MigrationDatasetMergePatch {
+    /**
+     * 
+     * @type {MigrationDatasetResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationDatasetMergePatch
+     */
+    fig_v1_dataset?: MigrationDatasetResourceMergePatch;
+    /**
+     * 
+     * @type {MigrationDatasetResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationDatasetMergePatch
+     */
+    fig_v2_dataset?: MigrationDatasetResourceMergePatch;
+    /**
+     * Notes about this dataset pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationDatasetMergePatch
+     */
+    notes?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2MigrationDataset` type.)
+ * 
+ * A paired FIG v1 dataset and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationDatasetPost
+ */
+export interface FigV1ToFigV2MigrationDatasetPost {
+    /**
+     * 
+     * @type {MigrationDatasetResourcePost}
+     * @memberof FigV1ToFigV2MigrationDatasetPost
+     */
+    fig_v1_dataset: MigrationDatasetResourcePost;
+    /**
+     * 
+     * @type {MigrationDatasetResourcePost}
+     * @memberof FigV1ToFigV2MigrationDatasetPost
+     */
+    fig_v2_dataset: MigrationDatasetResourcePost;
+    /**
+     * Notes about this dataset pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationDatasetPost
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2MigrationDataset` type.)
+ * 
+ * A paired FIG v1 dataset and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationDatasetPut
+ */
+export interface FigV1ToFigV2MigrationDatasetPut {
+    /**
+     * 
+     * @type {MigrationDatasetResourcePut}
+     * @memberof FigV1ToFigV2MigrationDatasetPut
+     */
+    fig_v1_dataset: MigrationDatasetResourcePut;
+    /**
+     * 
+     * @type {MigrationDatasetResourcePut}
+     * @memberof FigV1ToFigV2MigrationDatasetPut
+     */
+    fig_v2_dataset: MigrationDatasetResourcePut;
+    /**
+     * Notes about this dataset pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationDatasetPut
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2Migration` type.)
+ * 
+ * A move from a FIG v1 account and its resources to their FIG v2 replacements.
+ * @export
+ * @interface FigV1ToFigV2MigrationMergePatch
+ */
+export interface FigV1ToFigV2MigrationMergePatch {
+    /**
+     * When a user approved the account move, recorded by the server. Provide
+     * a non-null value via PATCH from either linked account to approve.
+     * Repeated approval requests do not change the first approval.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    approved_at?: string | null;
+    /**
+     * Paired FIG v1 and FIG v2 cohorts. Used to match payload columns whose names embed cohort ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationCohortMergePatch>}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    cohorts?: Array<FigV1ToFigV2MigrationCohortMergePatch> | null;
+    /**
+     * Paired FIG v1 and FIG v2 datasets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationDatasetMergePatch>}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    datasets?: Array<FigV1ToFigV2MigrationDatasetMergePatch>;
+    /**
+     * Notes about this migration for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    notes?: string | null;
+    /**
+     * Paired FIG v1 and FIG v2 outcomes. Used to match payload columns whose names embed outcome ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationOutcomeMergePatch>}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    outcomes?: Array<FigV1ToFigV2MigrationOutcomeMergePatch> | null;
+    /**
+     * Paired FIG v1 and FIG v2 persona sets. Used to match payload columns whose names embed persona set ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationPersonaSetMergePatch>}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    persona_sets?: Array<FigV1ToFigV2MigrationPersonaSetMergePatch> | null;
+    /**
+     * Paired FIG v1 and FIG v2 recommenders. Used to match payload columns whose names embed recommender ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationRecommenderMergePatch>}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    recommenders?: Array<FigV1ToFigV2MigrationRecommenderMergePatch> | null;
+    /**
+     * Paired FIG v1 and FIG v2 targets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationTargetMergePatch>}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    targets?: Array<FigV1ToFigV2MigrationTargetMergePatch>;
+    /**
+     * The migration type.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationMergePatch
+     */
+    type: string;
+}
+/**
+ * A paired FIG v1 outcome and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationOutcome
+ */
+export interface FigV1ToFigV2MigrationOutcome {
+    /**
+     * 
+     * @type {MigrationOutcomeResource}
+     * @memberof FigV1ToFigV2MigrationOutcome
+     */
+    fig_v1_outcome: MigrationOutcomeResource;
+    /**
+     * 
+     * @type {MigrationOutcomeResource}
+     * @memberof FigV1ToFigV2MigrationOutcome
+     */
+    fig_v2_outcome: MigrationOutcomeResource;
+    /**
+     * Notes about this outcome pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationOutcome
+     */
+    notes?: string;
+    /**
+     * Whether a Faraday team member approved this pair despite an incomplete automated check.
+     * @type {boolean}
+     * @memberof FigV1ToFigV2MigrationOutcome
+     */
+    overridden: boolean;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2MigrationOutcome` type.)
+ * 
+ * A paired FIG v1 outcome and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationOutcomeMergePatch
+ */
+export interface FigV1ToFigV2MigrationOutcomeMergePatch {
+    /**
+     * 
+     * @type {MigrationOutcomeResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationOutcomeMergePatch
+     */
+    fig_v1_outcome?: MigrationOutcomeResourceMergePatch;
+    /**
+     * 
+     * @type {MigrationOutcomeResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationOutcomeMergePatch
+     */
+    fig_v2_outcome?: MigrationOutcomeResourceMergePatch;
+    /**
+     * Notes about this outcome pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationOutcomeMergePatch
+     */
+    notes?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2MigrationOutcome` type.)
+ * 
+ * A paired FIG v1 outcome and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationOutcomePost
+ */
+export interface FigV1ToFigV2MigrationOutcomePost {
+    /**
+     * 
+     * @type {MigrationOutcomeResourcePost}
+     * @memberof FigV1ToFigV2MigrationOutcomePost
+     */
+    fig_v1_outcome: MigrationOutcomeResourcePost;
+    /**
+     * 
+     * @type {MigrationOutcomeResourcePost}
+     * @memberof FigV1ToFigV2MigrationOutcomePost
+     */
+    fig_v2_outcome: MigrationOutcomeResourcePost;
+    /**
+     * Notes about this outcome pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationOutcomePost
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2MigrationOutcome` type.)
+ * 
+ * A paired FIG v1 outcome and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationOutcomePut
+ */
+export interface FigV1ToFigV2MigrationOutcomePut {
+    /**
+     * 
+     * @type {MigrationOutcomeResourcePut}
+     * @memberof FigV1ToFigV2MigrationOutcomePut
+     */
+    fig_v1_outcome: MigrationOutcomeResourcePut;
+    /**
+     * 
+     * @type {MigrationOutcomeResourcePut}
+     * @memberof FigV1ToFigV2MigrationOutcomePut
+     */
+    fig_v2_outcome: MigrationOutcomeResourcePut;
+    /**
+     * Notes about this outcome pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationOutcomePut
+     */
+    notes?: string;
+}
+/**
+ * A paired FIG v1 persona set and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationPersonaSet
+ */
+export interface FigV1ToFigV2MigrationPersonaSet {
+    /**
+     * 
+     * @type {MigrationPersonaSetResource}
+     * @memberof FigV1ToFigV2MigrationPersonaSet
+     */
+    fig_v1_persona_set: MigrationPersonaSetResource;
+    /**
+     * 
+     * @type {MigrationPersonaSetResource}
+     * @memberof FigV1ToFigV2MigrationPersonaSet
+     */
+    fig_v2_persona_set: MigrationPersonaSetResource;
+    /**
+     * Notes about this persona set pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPersonaSet
+     */
+    notes?: string;
+    /**
+     * Whether a Faraday team member approved this pair despite an incomplete automated check.
+     * @type {boolean}
+     * @memberof FigV1ToFigV2MigrationPersonaSet
+     */
+    overridden: boolean;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2MigrationPersonaSet` type.)
+ * 
+ * A paired FIG v1 persona set and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationPersonaSetMergePatch
+ */
+export interface FigV1ToFigV2MigrationPersonaSetMergePatch {
+    /**
+     * 
+     * @type {MigrationPersonaSetResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationPersonaSetMergePatch
+     */
+    fig_v1_persona_set?: MigrationPersonaSetResourceMergePatch;
+    /**
+     * 
+     * @type {MigrationPersonaSetResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationPersonaSetMergePatch
+     */
+    fig_v2_persona_set?: MigrationPersonaSetResourceMergePatch;
+    /**
+     * Notes about this persona set pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPersonaSetMergePatch
+     */
+    notes?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2MigrationPersonaSet` type.)
+ * 
+ * A paired FIG v1 persona set and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationPersonaSetPost
+ */
+export interface FigV1ToFigV2MigrationPersonaSetPost {
+    /**
+     * 
+     * @type {MigrationPersonaSetResourcePost}
+     * @memberof FigV1ToFigV2MigrationPersonaSetPost
+     */
+    fig_v1_persona_set: MigrationPersonaSetResourcePost;
+    /**
+     * 
+     * @type {MigrationPersonaSetResourcePost}
+     * @memberof FigV1ToFigV2MigrationPersonaSetPost
+     */
+    fig_v2_persona_set: MigrationPersonaSetResourcePost;
+    /**
+     * Notes about this persona set pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPersonaSetPost
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2MigrationPersonaSet` type.)
+ * 
+ * A paired FIG v1 persona set and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationPersonaSetPut
+ */
+export interface FigV1ToFigV2MigrationPersonaSetPut {
+    /**
+     * 
+     * @type {MigrationPersonaSetResourcePut}
+     * @memberof FigV1ToFigV2MigrationPersonaSetPut
+     */
+    fig_v1_persona_set: MigrationPersonaSetResourcePut;
+    /**
+     * 
+     * @type {MigrationPersonaSetResourcePut}
+     * @memberof FigV1ToFigV2MigrationPersonaSetPut
+     */
+    fig_v2_persona_set: MigrationPersonaSetResourcePut;
+    /**
+     * Notes about this persona set pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPersonaSetPut
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2Migration` type.)
+ * 
+ * A move from a FIG v1 account and its resources to their FIG v2 replacements.
+ * @export
+ * @interface FigV1ToFigV2MigrationPost
+ */
+export interface FigV1ToFigV2MigrationPost {
+    /**
+     * Paired FIG v1 and FIG v2 cohorts. Used to match payload columns whose names embed cohort ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationCohortPost>}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    cohorts?: Array<FigV1ToFigV2MigrationCohortPost>;
+    /**
+     * Paired FIG v1 and FIG v2 datasets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationDatasetPost>}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    datasets: Array<FigV1ToFigV2MigrationDatasetPost>;
+    /**
+     * 
+     * @type {MigrationAccountPost}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    fig_v1_account: MigrationAccountPost;
+    /**
+     * Notes about this migration for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    notes?: string;
+    /**
+     * Paired FIG v1 and FIG v2 outcomes. Used to match payload columns whose names embed outcome ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationOutcomePost>}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    outcomes?: Array<FigV1ToFigV2MigrationOutcomePost>;
+    /**
+     * Paired FIG v1 and FIG v2 persona sets. Used to match payload columns whose names embed persona set ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationPersonaSetPost>}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    persona_sets?: Array<FigV1ToFigV2MigrationPersonaSetPost>;
+    /**
+     * Paired FIG v1 and FIG v2 recommenders. Used to match payload columns whose names embed recommender ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationRecommenderPost>}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    recommenders?: Array<FigV1ToFigV2MigrationRecommenderPost>;
+    /**
+     * Paired FIG v1 and FIG v2 targets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationTargetPost>}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    targets: Array<FigV1ToFigV2MigrationTargetPost>;
+    /**
+     * The migration type.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2Migration` type.)
+ * 
+ * A move from a FIG v1 account and its resources to their FIG v2 replacements.
+ * @export
+ * @interface FigV1ToFigV2MigrationPut
+ */
+export interface FigV1ToFigV2MigrationPut {
+    /**
+     * When a user approved the account move, recorded by the server. Provide
+     * a non-null value via PATCH from either linked account to approve.
+     * Repeated approval requests do not change the first approval.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    approved_at?: string;
+    /**
+     * Paired FIG v1 and FIG v2 cohorts. Used to match payload columns whose names embed cohort ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationCohortPut>}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    cohorts?: Array<FigV1ToFigV2MigrationCohortPut>;
+    /**
+     * Paired FIG v1 and FIG v2 datasets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationDatasetPut>}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    datasets: Array<FigV1ToFigV2MigrationDatasetPut>;
+    /**
+     * Notes about this migration for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    notes?: string;
+    /**
+     * Paired FIG v1 and FIG v2 outcomes. Used to match payload columns whose names embed outcome ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationOutcomePut>}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    outcomes?: Array<FigV1ToFigV2MigrationOutcomePut>;
+    /**
+     * Paired FIG v1 and FIG v2 persona sets. Used to match payload columns whose names embed persona set ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationPersonaSetPut>}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    persona_sets?: Array<FigV1ToFigV2MigrationPersonaSetPut>;
+    /**
+     * Paired FIG v1 and FIG v2 recommenders. Used to match payload columns whose names embed recommender ids when those names differ across the two accounts.
+     * @type {Array<FigV1ToFigV2MigrationRecommenderPut>}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    recommenders?: Array<FigV1ToFigV2MigrationRecommenderPut>;
+    /**
+     * Paired FIG v1 and FIG v2 targets included in the migration. A migration must include at least one dataset or target pair.
+     * @type {Array<FigV1ToFigV2MigrationTargetPut>}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    targets: Array<FigV1ToFigV2MigrationTargetPut>;
+    /**
+     * The migration type.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationPut
+     */
+    type: string;
+}
+/**
+ * A paired FIG v1 recommender and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationRecommender
+ */
+export interface FigV1ToFigV2MigrationRecommender {
+    /**
+     * 
+     * @type {MigrationRecommenderResource}
+     * @memberof FigV1ToFigV2MigrationRecommender
+     */
+    fig_v1_recommender: MigrationRecommenderResource;
+    /**
+     * 
+     * @type {MigrationRecommenderResource}
+     * @memberof FigV1ToFigV2MigrationRecommender
+     */
+    fig_v2_recommender: MigrationRecommenderResource;
+    /**
+     * Notes about this recommender pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationRecommender
+     */
+    notes?: string;
+    /**
+     * Whether a Faraday team member approved this pair despite an incomplete automated check.
+     * @type {boolean}
+     * @memberof FigV1ToFigV2MigrationRecommender
+     */
+    overridden: boolean;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2MigrationRecommender` type.)
+ * 
+ * A paired FIG v1 recommender and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationRecommenderMergePatch
+ */
+export interface FigV1ToFigV2MigrationRecommenderMergePatch {
+    /**
+     * 
+     * @type {MigrationRecommenderResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationRecommenderMergePatch
+     */
+    fig_v1_recommender?: MigrationRecommenderResourceMergePatch;
+    /**
+     * 
+     * @type {MigrationRecommenderResourceMergePatch}
+     * @memberof FigV1ToFigV2MigrationRecommenderMergePatch
+     */
+    fig_v2_recommender?: MigrationRecommenderResourceMergePatch;
+    /**
+     * Notes about this recommender pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationRecommenderMergePatch
+     */
+    notes?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2MigrationRecommender` type.)
+ * 
+ * A paired FIG v1 recommender and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationRecommenderPost
+ */
+export interface FigV1ToFigV2MigrationRecommenderPost {
+    /**
+     * 
+     * @type {MigrationRecommenderResourcePost}
+     * @memberof FigV1ToFigV2MigrationRecommenderPost
+     */
+    fig_v1_recommender: MigrationRecommenderResourcePost;
+    /**
+     * 
+     * @type {MigrationRecommenderResourcePost}
+     * @memberof FigV1ToFigV2MigrationRecommenderPost
+     */
+    fig_v2_recommender: MigrationRecommenderResourcePost;
+    /**
+     * Notes about this recommender pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationRecommenderPost
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2MigrationRecommender` type.)
+ * 
+ * A paired FIG v1 recommender and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationRecommenderPut
+ */
+export interface FigV1ToFigV2MigrationRecommenderPut {
+    /**
+     * 
+     * @type {MigrationRecommenderResourcePut}
+     * @memberof FigV1ToFigV2MigrationRecommenderPut
+     */
+    fig_v1_recommender: MigrationRecommenderResourcePut;
+    /**
+     * 
+     * @type {MigrationRecommenderResourcePut}
+     * @memberof FigV1ToFigV2MigrationRecommenderPut
+     */
+    fig_v2_recommender: MigrationRecommenderResourcePut;
+    /**
+     * Notes about this recommender pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationRecommenderPut
+     */
+    notes?: string;
+}
+/**
+ * A paired FIG v1 target and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationTarget
+ */
+export interface FigV1ToFigV2MigrationTarget {
+    /**
+     * Whether a Faraday team member checked configuration held by the target's external destination.
+     * @type {boolean}
+     * @memberof FigV1ToFigV2MigrationTarget
+     */
+    external_configuration_checked: boolean;
+    /**
+     * Matching columns whose names differ between the two targets.
+     * @type {Array<FigV1ToFigV2MigrationTargetField>}
+     * @memberof FigV1ToFigV2MigrationTarget
+     */
+    field_mapping?: Array<FigV1ToFigV2MigrationTargetField>;
+    /**
+     * 
+     * @type {MigrationTarget}
+     * @memberof FigV1ToFigV2MigrationTarget
+     */
+    fig_v1_target: MigrationTarget;
+    /**
+     * 
+     * @type {MigrationTarget}
+     * @memberof FigV1ToFigV2MigrationTarget
+     */
+    fig_v2_target: MigrationTarget;
+    /**
+     * Notes about this target pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTarget
+     */
+    notes?: string;
+    /**
+     * Whether a Faraday team member approved this pair despite an incomplete automated check.
+     * @type {boolean}
+     * @memberof FigV1ToFigV2MigrationTarget
+     */
+    overridden: boolean;
+    /**
+     * 
+     * @type {MigrationTargetPushReadiness}
+     * @memberof FigV1ToFigV2MigrationTarget
+     */
+    push_readiness?: MigrationTargetPushReadiness;
+}
+/**
+ * A column rename between paired FIG v1 and FIG v2 targets.
+ * @export
+ * @interface FigV1ToFigV2MigrationTargetField
+ */
+export interface FigV1ToFigV2MigrationTargetField {
+    /**
+     * A FIG v1 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetField
+     */
+    fig_v1_column_name: string;
+    /**
+     * The matching FIG v2 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetField
+     */
+    fig_v2_column_name: string;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2MigrationTargetField` type.)
+ * 
+ * A column rename between paired FIG v1 and FIG v2 targets.
+ * @export
+ * @interface FigV1ToFigV2MigrationTargetFieldMergePatch
+ */
+export interface FigV1ToFigV2MigrationTargetFieldMergePatch {
+    /**
+     * A FIG v1 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetFieldMergePatch
+     */
+    fig_v1_column_name?: string;
+    /**
+     * The matching FIG v2 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetFieldMergePatch
+     */
+    fig_v2_column_name?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2MigrationTargetField` type.)
+ * 
+ * A column rename between paired FIG v1 and FIG v2 targets.
+ * @export
+ * @interface FigV1ToFigV2MigrationTargetFieldPost
+ */
+export interface FigV1ToFigV2MigrationTargetFieldPost {
+    /**
+     * A FIG v1 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetFieldPost
+     */
+    fig_v1_column_name: string;
+    /**
+     * The matching FIG v2 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetFieldPost
+     */
+    fig_v2_column_name: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2MigrationTargetField` type.)
+ * 
+ * A column rename between paired FIG v1 and FIG v2 targets.
+ * @export
+ * @interface FigV1ToFigV2MigrationTargetFieldPut
+ */
+export interface FigV1ToFigV2MigrationTargetFieldPut {
+    /**
+     * A FIG v1 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetFieldPut
+     */
+    fig_v1_column_name: string;
+    /**
+     * The matching FIG v2 target column.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetFieldPut
+     */
+    fig_v2_column_name: string;
+}
+/**
+ * (Parameters used to PATCH the `FigV1ToFigV2MigrationTarget` type.)
+ * 
+ * A paired FIG v1 target and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationTargetMergePatch
+ */
+export interface FigV1ToFigV2MigrationTargetMergePatch {
+    /**
+     * Matching columns whose names differ between the two targets.
+     * @type {Array<FigV1ToFigV2MigrationTargetFieldMergePatch>}
+     * @memberof FigV1ToFigV2MigrationTargetMergePatch
+     */
+    field_mapping?: Array<FigV1ToFigV2MigrationTargetFieldMergePatch> | null;
+    /**
+     * 
+     * @type {MigrationTargetMergePatch}
+     * @memberof FigV1ToFigV2MigrationTargetMergePatch
+     */
+    fig_v1_target?: MigrationTargetMergePatch;
+    /**
+     * 
+     * @type {MigrationTargetMergePatch}
+     * @memberof FigV1ToFigV2MigrationTargetMergePatch
+     */
+    fig_v2_target?: MigrationTargetMergePatch;
+    /**
+     * Notes about this target pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetMergePatch
+     */
+    notes?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `FigV1ToFigV2MigrationTarget` type.)
+ * 
+ * A paired FIG v1 target and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationTargetPost
+ */
+export interface FigV1ToFigV2MigrationTargetPost {
+    /**
+     * Matching columns whose names differ between the two targets.
+     * @type {Array<FigV1ToFigV2MigrationTargetFieldPost>}
+     * @memberof FigV1ToFigV2MigrationTargetPost
+     */
+    field_mapping?: Array<FigV1ToFigV2MigrationTargetFieldPost>;
+    /**
+     * 
+     * @type {MigrationTargetPost}
+     * @memberof FigV1ToFigV2MigrationTargetPost
+     */
+    fig_v1_target: MigrationTargetPost;
+    /**
+     * 
+     * @type {MigrationTargetPost}
+     * @memberof FigV1ToFigV2MigrationTargetPost
+     */
+    fig_v2_target: MigrationTargetPost;
+    /**
+     * Notes about this target pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetPost
+     */
+    notes?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `FigV1ToFigV2MigrationTarget` type.)
+ * 
+ * A paired FIG v1 target and its FIG v2 replacement.
+ * @export
+ * @interface FigV1ToFigV2MigrationTargetPut
+ */
+export interface FigV1ToFigV2MigrationTargetPut {
+    /**
+     * Matching columns whose names differ between the two targets.
+     * @type {Array<FigV1ToFigV2MigrationTargetFieldPut>}
+     * @memberof FigV1ToFigV2MigrationTargetPut
+     */
+    field_mapping?: Array<FigV1ToFigV2MigrationTargetFieldPut>;
+    /**
+     * 
+     * @type {MigrationTargetPut}
+     * @memberof FigV1ToFigV2MigrationTargetPut
+     */
+    fig_v1_target: MigrationTargetPut;
+    /**
+     * 
+     * @type {MigrationTargetPut}
+     * @memberof FigV1ToFigV2MigrationTargetPut
+     */
+    fig_v2_target: MigrationTargetPut;
+    /**
+     * Notes about this target pair for the account's users.
+     * @type {string}
+     * @memberof FigV1ToFigV2MigrationTargetPut
+     */
+    notes?: string;
+}
+/**
  * An edge in the dependency graph.
  * @export
  * @interface GraphEdge
@@ -15792,6 +16943,782 @@ export interface MarketOpportunityAnalysisPut {
      * @memberof MarketOpportunityAnalysisPut
      */
     scope_id: string;
+}
+/**
+ * @type Migration
+ * A change from one account or resource configuration to another.
+ * @export
+ */
+export type Migration = { type: 'fig_v1_to_fig_v2' } & FigV1ToFigV2Migration;
+/**
+ * An account referenced by a migration.
+ * @export
+ * @interface MigrationAccount
+ */
+export interface MigrationAccount {
+    /**
+     * The account's unique ID.
+     * @type {string}
+     * @memberof MigrationAccount
+     */
+    id: string;
+    /**
+     * Deprecated. Lookup API call counts belong on each Lookup API target (`targets[].fig_v1_target.lookup_api_calls` / `targets[].fig_v2_target.lookup_api_calls`), not on the account. Omitted on new checks.
+     * @type {{ [key: string]: number; }}
+     * @memberof MigrationAccount
+     */
+    lookup_api_calls?: { [key: string]: number; };
+    /**
+     * The account's name.
+     * @type {string}
+     * @memberof MigrationAccount
+     */
+    name: string;
+}
+/**
+ * (Parameters used to PATCH the `MigrationAccount` type.)
+ * 
+ * An account referenced by a migration.
+ * @export
+ * @interface MigrationAccountMergePatch
+ */
+export interface MigrationAccountMergePatch {
+    /**
+     * The account's unique ID.
+     * @type {string}
+     * @memberof MigrationAccountMergePatch
+     */
+    id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `MigrationAccount` type.)
+ * 
+ * An account referenced by a migration.
+ * @export
+ * @interface MigrationAccountPost
+ */
+export interface MigrationAccountPost {
+    /**
+     * The account's unique ID.
+     * @type {string}
+     * @memberof MigrationAccountPost
+     */
+    id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `MigrationAccount` type.)
+ * 
+ * An account referenced by a migration.
+ * @export
+ * @interface MigrationAccountPut
+ */
+export interface MigrationAccountPut {
+    /**
+     * The account's unique ID.
+     * @type {string}
+     * @memberof MigrationAccountPut
+     */
+    id: string;
+}
+/**
+ * A dataset referenced by a migration pair.
+ * @export
+ * @interface MigrationDatasetResource
+ */
+export interface MigrationDatasetResource {
+    /**
+     * When the resource was archived. Omitted for active resources.
+     * @type {string}
+     * @memberof MigrationDatasetResource
+     */
+    archived_at?: string;
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationDatasetResource
+     */
+    id: string;
+    /**
+     * The number of distinct people identified in the dataset's latest successful build.
+     * @type {number}
+     * @memberof MigrationDatasetResource
+     */
+    identified_count?: number;
+    /**
+     * When the resource last built successfully.
+     * @type {string}
+     * @memberof MigrationDatasetResource
+     */
+    last_updated_output_at?: string;
+    /**
+     * The number of identified people matched to Faraday data in the dataset's latest successful build.
+     * @type {number}
+     * @memberof MigrationDatasetResource
+     */
+    matched_count?: number;
+    /**
+     * The resource's name.
+     * @type {string}
+     * @memberof MigrationDatasetResource
+     */
+    name: string;
+    /**
+     * The number of rows in the dataset's latest successful build.
+     * @type {number}
+     * @memberof MigrationDatasetResource
+     */
+    row_count?: number;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof MigrationDatasetResource
+     */
+    status?: ResourceStatus;
+    /**
+     * When the resource's run state last changed.
+     * @type {string}
+     * @memberof MigrationDatasetResource
+     */
+    status_changed_at?: string;
+    /**
+     * Why the resource's latest run failed. Omitted unless `status` is `error`.
+     * @type {string}
+     * @memberof MigrationDatasetResource
+     */
+    status_error?: string;
+}
+/**
+ * (Parameters used to PATCH the `MigrationDatasetResource` type.)
+ * 
+ * A dataset referenced by a migration pair.
+ * @export
+ * @interface MigrationDatasetResourceMergePatch
+ */
+export interface MigrationDatasetResourceMergePatch {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationDatasetResourceMergePatch
+     */
+    id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `MigrationDatasetResource` type.)
+ * 
+ * A dataset referenced by a migration pair.
+ * @export
+ * @interface MigrationDatasetResourcePost
+ */
+export interface MigrationDatasetResourcePost {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationDatasetResourcePost
+     */
+    id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `MigrationDatasetResource` type.)
+ * 
+ * A dataset referenced by a migration pair.
+ * @export
+ * @interface MigrationDatasetResourcePut
+ */
+export interface MigrationDatasetResourcePut {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationDatasetResourcePut
+     */
+    id: string;
+}
+/**
+ * @type MigrationMergePatch
+ * A change from one account or resource configuration to another.
+ * @export
+ */
+export type MigrationMergePatch = { type: 'fig_v1_to_fig_v2' } & FigV1ToFigV2MigrationMergePatch;
+/**
+ * An outcome referenced by a migration pair.
+ * @export
+ * @interface MigrationOutcomeResource
+ */
+export interface MigrationOutcomeResource {
+    /**
+     * When the resource was archived. Omitted for active resources.
+     * @type {string}
+     * @memberof MigrationOutcomeResource
+     */
+    archived_at?: string;
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationOutcomeResource
+     */
+    id: string;
+    /**
+     * When the resource last built successfully.
+     * @type {string}
+     * @memberof MigrationOutcomeResource
+     */
+    last_updated_output_at?: string;
+    /**
+     * The resource's name.
+     * @type {string}
+     * @memberof MigrationOutcomeResource
+     */
+    name: string;
+    /**
+     * The ROC AUC from the outcome's latest completed run.
+     * @type {number}
+     * @memberof MigrationOutcomeResource
+     */
+    roc_auc?: number;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof MigrationOutcomeResource
+     */
+    status?: ResourceStatus;
+    /**
+     * When the resource's run state last changed.
+     * @type {string}
+     * @memberof MigrationOutcomeResource
+     */
+    status_changed_at?: string;
+    /**
+     * Why the resource's latest run failed. Omitted unless `status` is `error`.
+     * @type {string}
+     * @memberof MigrationOutcomeResource
+     */
+    status_error?: string;
+    /**
+     * The total number of examples across the training sets used by the outcome's latest completed run.
+     * @type {number}
+     * @memberof MigrationOutcomeResource
+     */
+    training_set_size?: number;
+}
+/**
+ * (Parameters used to PATCH the `MigrationOutcomeResource` type.)
+ * 
+ * An outcome referenced by a migration pair.
+ * @export
+ * @interface MigrationOutcomeResourceMergePatch
+ */
+export interface MigrationOutcomeResourceMergePatch {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationOutcomeResourceMergePatch
+     */
+    id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `MigrationOutcomeResource` type.)
+ * 
+ * An outcome referenced by a migration pair.
+ * @export
+ * @interface MigrationOutcomeResourcePost
+ */
+export interface MigrationOutcomeResourcePost {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationOutcomeResourcePost
+     */
+    id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `MigrationOutcomeResource` type.)
+ * 
+ * An outcome referenced by a migration pair.
+ * @export
+ * @interface MigrationOutcomeResourcePut
+ */
+export interface MigrationOutcomeResourcePut {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationOutcomeResourcePut
+     */
+    id: string;
+}
+/**
+ * A persona set referenced by a migration pair.
+ * @export
+ * @interface MigrationPersonaSetResource
+ */
+export interface MigrationPersonaSetResource {
+    /**
+     * When the resource was archived. Omitted for active resources.
+     * @type {string}
+     * @memberof MigrationPersonaSetResource
+     */
+    archived_at?: string;
+    /**
+     * The number of personas in the persona set's latest completed run.
+     * @type {number}
+     * @memberof MigrationPersonaSetResource
+     */
+    cluster_count?: number;
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationPersonaSetResource
+     */
+    id: string;
+    /**
+     * When the resource last built successfully.
+     * @type {string}
+     * @memberof MigrationPersonaSetResource
+     */
+    last_updated_output_at?: string;
+    /**
+     * The resource's name.
+     * @type {string}
+     * @memberof MigrationPersonaSetResource
+     */
+    name: string;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof MigrationPersonaSetResource
+     */
+    status?: ResourceStatus;
+    /**
+     * When the resource's run state last changed.
+     * @type {string}
+     * @memberof MigrationPersonaSetResource
+     */
+    status_changed_at?: string;
+    /**
+     * Why the resource's latest run failed. Omitted unless `status` is `error`.
+     * @type {string}
+     * @memberof MigrationPersonaSetResource
+     */
+    status_error?: string;
+}
+/**
+ * (Parameters used to PATCH the `MigrationPersonaSetResource` type.)
+ * 
+ * A persona set referenced by a migration pair.
+ * @export
+ * @interface MigrationPersonaSetResourceMergePatch
+ */
+export interface MigrationPersonaSetResourceMergePatch {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationPersonaSetResourceMergePatch
+     */
+    id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `MigrationPersonaSetResource` type.)
+ * 
+ * A persona set referenced by a migration pair.
+ * @export
+ * @interface MigrationPersonaSetResourcePost
+ */
+export interface MigrationPersonaSetResourcePost {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationPersonaSetResourcePost
+     */
+    id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `MigrationPersonaSetResource` type.)
+ * 
+ * A persona set referenced by a migration pair.
+ * @export
+ * @interface MigrationPersonaSetResourcePut
+ */
+export interface MigrationPersonaSetResourcePut {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationPersonaSetResourcePut
+     */
+    id: string;
+}
+/**
+ * @type MigrationPost
+ * A change from one account or resource configuration to another.
+ * @export
+ */
+export type MigrationPost = { type: 'fig_v1_to_fig_v2' } & FigV1ToFigV2MigrationPost;
+/**
+ * @type MigrationPut
+ * A change from one account or resource configuration to another.
+ * @export
+ */
+export type MigrationPut = { type: 'fig_v1_to_fig_v2' } & FigV1ToFigV2MigrationPut;
+/**
+ * A recommender referenced by a migration pair.
+ * @export
+ * @interface MigrationRecommenderResource
+ */
+export interface MigrationRecommenderResource {
+    /**
+     * When the resource was archived. Omitted for active resources.
+     * @type {string}
+     * @memberof MigrationRecommenderResource
+     */
+    archived_at?: string;
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationRecommenderResource
+     */
+    id: string;
+    /**
+     * When the resource last built successfully.
+     * @type {string}
+     * @memberof MigrationRecommenderResource
+     */
+    last_updated_output_at?: string;
+    /**
+     * The resource's name.
+     * @type {string}
+     * @memberof MigrationRecommenderResource
+     */
+    name: string;
+    /**
+     * The overall ROC AUC from the recommender's latest completed analysis.
+     * @type {number}
+     * @memberof MigrationRecommenderResource
+     */
+    roc_auc?: number;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof MigrationRecommenderResource
+     */
+    status?: ResourceStatus;
+    /**
+     * When the resource's run state last changed.
+     * @type {string}
+     * @memberof MigrationRecommenderResource
+     */
+    status_changed_at?: string;
+    /**
+     * Why the resource's latest run failed. Omitted unless `status` is `error`.
+     * @type {string}
+     * @memberof MigrationRecommenderResource
+     */
+    status_error?: string;
+}
+/**
+ * (Parameters used to PATCH the `MigrationRecommenderResource` type.)
+ * 
+ * A recommender referenced by a migration pair.
+ * @export
+ * @interface MigrationRecommenderResourceMergePatch
+ */
+export interface MigrationRecommenderResourceMergePatch {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationRecommenderResourceMergePatch
+     */
+    id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `MigrationRecommenderResource` type.)
+ * 
+ * A recommender referenced by a migration pair.
+ * @export
+ * @interface MigrationRecommenderResourcePost
+ */
+export interface MigrationRecommenderResourcePost {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationRecommenderResourcePost
+     */
+    id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `MigrationRecommenderResource` type.)
+ * 
+ * A recommender referenced by a migration pair.
+ * @export
+ * @interface MigrationRecommenderResourcePut
+ */
+export interface MigrationRecommenderResourcePut {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationRecommenderResourcePut
+     */
+    id: string;
+}
+/**
+ * A resource referenced by a migration pair.
+ * @export
+ * @interface MigrationResource
+ */
+export interface MigrationResource {
+    /**
+     * When the resource was archived. Omitted for active resources.
+     * @type {string}
+     * @memberof MigrationResource
+     */
+    archived_at?: string;
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationResource
+     */
+    id: string;
+    /**
+     * When the resource last built successfully.
+     * @type {string}
+     * @memberof MigrationResource
+     */
+    last_updated_output_at?: string;
+    /**
+     * The resource's name.
+     * @type {string}
+     * @memberof MigrationResource
+     */
+    name: string;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof MigrationResource
+     */
+    status?: ResourceStatus;
+    /**
+     * When the resource's run state last changed.
+     * @type {string}
+     * @memberof MigrationResource
+     */
+    status_changed_at?: string;
+    /**
+     * Why the resource's latest run failed. Omitted unless `status` is `error`.
+     * @type {string}
+     * @memberof MigrationResource
+     */
+    status_error?: string;
+}
+/**
+ * (Parameters used to PATCH the `MigrationResource` type.)
+ * 
+ * A resource referenced by a migration pair.
+ * @export
+ * @interface MigrationResourceMergePatch
+ */
+export interface MigrationResourceMergePatch {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationResourceMergePatch
+     */
+    id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `MigrationResource` type.)
+ * 
+ * A resource referenced by a migration pair.
+ * @export
+ * @interface MigrationResourcePost
+ */
+export interface MigrationResourcePost {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationResourcePost
+     */
+    id: string;
+}
+/**
+ * (Parameters used to PUT a value of the `MigrationResource` type.)
+ * 
+ * A resource referenced by a migration pair.
+ * @export
+ * @interface MigrationResourcePut
+ */
+export interface MigrationResourcePut {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationResourcePut
+     */
+    id: string;
+}
+/**
+ * A target referenced by a migration pair.
+ * @export
+ * @interface MigrationTarget
+ */
+export interface MigrationTarget {
+    /**
+     * When the resource was archived. Omitted for active resources.
+     * @type {string}
+     * @memberof MigrationTarget
+     */
+    archived_at?: string;
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationTarget
+     */
+    id: string;
+    /**
+     * When the resource last built successfully.
+     * @type {string}
+     * @memberof MigrationTarget
+     */
+    last_updated_output_at?: string;
+    /**
+     * Lookup API call counts for this target for each of the last 7 days, keyed by YYYY-MM-DD. Present only for Lookup API targets, and only after the migration has checked usage.
+     * @type {{ [key: string]: number; }}
+     * @memberof MigrationTarget
+     */
+    lookup_api_calls?: { [key: string]: number; };
+    /**
+     * The resource's name.
+     * @type {string}
+     * @memberof MigrationTarget
+     */
+    name: string;
+    /**
+     * 
+     * @type {ResourceStatus}
+     * @memberof MigrationTarget
+     */
+    status?: ResourceStatus;
+    /**
+     * When the resource's run state last changed.
+     * @type {string}
+     * @memberof MigrationTarget
+     */
+    status_changed_at?: string;
+    /**
+     * Why the resource's latest run failed. Omitted unless `status` is `error`.
+     * @type {string}
+     * @memberof MigrationTarget
+     */
+    status_error?: string;
+}
+/**
+ * (Parameters used to PATCH the `MigrationTarget` type.)
+ * 
+ * A target referenced by a migration pair.
+ * @export
+ * @interface MigrationTargetMergePatch
+ */
+export interface MigrationTargetMergePatch {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationTargetMergePatch
+     */
+    id?: string;
+}
+/**
+ * (Parameters used to POST a new value of the `MigrationTarget` type.)
+ * 
+ * A target referenced by a migration pair.
+ * @export
+ * @interface MigrationTargetPost
+ */
+export interface MigrationTargetPost {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationTargetPost
+     */
+    id: string;
+}
+/**
+ * Checks that compare a paired target and its replacement.
+ * @export
+ * @interface MigrationTargetPushReadiness
+ */
+export interface MigrationTargetPushReadiness {
+    /**
+     * When these checks last ran.
+     * @type {string}
+     * @memberof MigrationTargetPushReadiness
+     */
+    checked_at: string;
+    /**
+     * Whether the paired targets write to distinct destinations.
+     * @type {string}
+     * @memberof MigrationTargetPushReadiness
+     */
+    destination_status: MigrationTargetPushReadinessDestinationStatusEnum;
+    /**
+     * Whether renamed output columns have a complete mapping.
+     * @type {string}
+     * @memberof MigrationTargetPushReadiness
+     */
+    field_mapping_status: MigrationTargetPushReadinessFieldMappingStatusEnum;
+    /**
+     * Whether the FIG v1 target completed a successful run.
+     * @type {boolean}
+     * @memberof MigrationTargetPushReadiness
+     */
+    fig_v1_target_succeeded: boolean;
+    /**
+     * Whether the FIG v2 target completed a successful run.
+     * @type {boolean}
+     * @memberof MigrationTargetPushReadiness
+     */
+    fig_v2_target_succeeded: boolean;
+    /**
+     * `green` means the pair passed or was approved by Faraday, `yellow` means an external destination still needs review, and `red` means an automated check failed.
+     * @type {string}
+     * @memberof MigrationTargetPushReadiness
+     */
+    status: MigrationTargetPushReadinessStatusEnum;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum MigrationTargetPushReadinessDestinationStatusEnum {
+    Different = 'different',
+    Same = 'same',
+    ExternalCheckRequired = 'external_check_required',
+    ExternalCheckComplete = 'external_check_complete'
+}/**
+* @export
+* @enum {string}
+*/
+export enum MigrationTargetPushReadinessFieldMappingStatusEnum {
+    NotRequired = 'not_required',
+    Complete = 'complete',
+    Incomplete = 'incomplete'
+}/**
+* @export
+* @enum {string}
+*/
+export enum MigrationTargetPushReadinessStatusEnum {
+    Green = 'green',
+    Yellow = 'yellow',
+    Red = 'red'
+}
+/**
+ * (Parameters used to PUT a value of the `MigrationTarget` type.)
+ * 
+ * A target referenced by a migration pair.
+ * @export
+ * @interface MigrationTargetPut
+ */
+export interface MigrationTargetPut {
+    /**
+     * The resource's unique ID.
+     * @type {string}
+     * @memberof MigrationTargetPut
+     */
+    id: string;
 }
 /**
  * Information about an error.
@@ -19088,6 +21015,7 @@ export enum ResourceType {
     Datasets = 'datasets',
     FeatureStores = 'feature_stores',
     MarketOpportunityAnalyses = 'market_opportunity_analyses',
+    Migrations = 'migrations',
     Outcomes = 'outcomes',
     PersonaSets = 'persona_sets',
     Places = 'places',

@@ -14,6 +14,7 @@ const GraphApi_1 = require("./GraphApi");
 const KnowledgebaseApi_1 = require("./KnowledgebaseApi");
 const LocationsApi_1 = require("./LocationsApi");
 const MarketOpportunityAnalysesApi_1 = require("./MarketOpportunityAnalysesApi");
+const MigrationsApi_1 = require("./MigrationsApi");
 const OutcomesApi_1 = require("./OutcomesApi");
 const PersonaSetsApi_1 = require("./PersonaSetsApi");
 const PlacesApi_1 = require("./PlacesApi");
@@ -41,6 +42,7 @@ class FaradayClient {
         this.knowledgebase = new KnowledgebaseApi_1.KnowledgebaseApi(configuration);
         this.locations = new LocationsApi_1.LocationsApi(configuration);
         this.marketOpportunityAnalyses = new MarketOpportunityAnalysesApi_1.MarketOpportunityAnalysesApi(configuration);
+        this.migrations = new MigrationsApi_1.MigrationsApi(configuration);
         this.outcomes = new OutcomesApi_1.OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi_1.PersonaSetsApi(configuration);
         this.places = new PlacesApi_1.PlacesApi(configuration);

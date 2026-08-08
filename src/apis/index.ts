@@ -41,6 +41,9 @@ import {
     MarketOpportunityAnalysesApi
 } from './MarketOpportunityAnalysesApi';
 import {
+    MigrationsApi
+} from './MigrationsApi';
+import {
     OutcomesApi
 } from './OutcomesApi';
 import {
@@ -89,6 +92,7 @@ export class FaradayClient {
     knowledgebase: KnowledgebaseApi;
     locations: LocationsApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
+    migrations: MigrationsApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
     places: PlacesApi;
@@ -116,6 +120,7 @@ export class FaradayClient {
         this.knowledgebase = new KnowledgebaseApi(configuration);
         this.locations = new LocationsApi(configuration);
         this.marketOpportunityAnalyses = new MarketOpportunityAnalysesApi(configuration);
+        this.migrations = new MigrationsApi(configuration);
         this.outcomes = new OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi(configuration);
         this.places = new PlacesApi(configuration);

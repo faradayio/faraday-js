@@ -16,10 +16,71 @@ Until we reach API 1.0, the following special rules apply:
 
 - ClickHouse connections always use TLS on the native protocol. The `secure` option is removed from ClickHouse connection create/update/response schemas; callers no longer set it.
 
+## [0.15.12] - 2026-08-08
+
+### Added
+
+- FIG v1-to-v2 migration pairs now include model quality and size metrics: ROC AUC and training set size for Outcomes, overall ROC AUC for Recommenders, and cluster count for Persona Sets.
+
+## [0.15.11] - 2026-08-08
+
+### Added
+
+- Resources in FIG v1-to-v2 migration pairs now include their run state, last successful build time, and archive time. Paired datasets also include row, identified-person, and matched-person counts.
+
+## [0.15.10] - 2026-08-07
+
+### Changed
+
+- Lookup API call counts on FIG v1-to-v2 migrations are per Lookup API target again (`targets[].fig_v1_target.lookup_api_calls` / `targets[].fig_v2_target.lookup_api_calls`). Account-level `lookup_api_calls` is deprecated and omitted on new checks.
+
+## [0.15.9] - 2026-08-07
+
+### Added
+
+- Optional `cohorts`, `outcomes`, `persona_sets`, and `recommenders` pair lists on `FigV1ToFigV2Migration`. Each list pairs a FIG v1 resource with its FIG v2 replacement so payload columns whose names embed those resource ids can be matched across accounts.
+
+## [0.15.8] - 2026-08-06
+
+### Added
+
+- Account-wide seven-day Lookup API call counts on the two accounts returned by a FIG v1-to-v2 migration. Counts are omitted until checked.
+- `FigV1ToFigV2MigrationTarget.push_readiness`, with target run, destination, and field mapping checks.
+
+### Changed
+
+- Per-target `lookup_api_calls` is deprecated in favor of the account-wide counts.
+
+## [0.15.7] - 2026-08-06
+
+### Added
+
+- `FigV1ToFigV2Migration.status_needs_fix_from`: who has to act before a failed migration can run again. `user` means editing the migration clears it, `support` means only Faraday can, and it is omitted when Faraday will retry on its own. A failed migration also now explains itself in `status_error` rather than falling back to the generic message.
+
+## [0.15.6] - 2026-08-06
+
+### Changed
+
+- `POST /migrations` now requires at least one dataset or target pair, and requires the FIG v1 and FIG v2 accounts to be related in the account hierarchy: sharing a parent, or one being the parent of the other. Account names are not unique, so both rules guard against naming an unintended account, which would otherwise suspend it and move its users.
+
+## [0.15.5] - 2026-08-06
+
+### Added
+
+- `POST /migrations/{migration_id}/force_update` to refresh migration metrics on demand.
+- `FigV1ToFigV2Migration.approved_at`: provide a non-null value via `PATCH` from either linked account to queue the account move. The server records the first approval time, and repeated requests are idempotent.
+- `FigV1ToFigV2Migration.finished_at`: when Faraday finished moving users and suspending the FIG v1 account.
+- `FigV1ToFigV2Migration.rolled_back_at`: when support restored the FIG v1 account.
+
+### Changed
+
+- `FigV1ToFigV2Migration.migrated_at` is replaced by `approved_at` and `finished_at`.
+
 ## [0.15.4] - 2026-08-06
 
 ### Added
 
+- `POST`, `GET`, `PATCH`, and `DELETE` for `/migrations` and `/migrations/{migration_id}`. Migrations use a `type` discriminator; `fig_v1_to_fig_v2` returns the linked accounts, datasets, targets, notes, and normal resource status fields. Each paired target includes `lookup_api_calls` — Lookup API call counts for the last 7 days keyed by `YYYY-MM-DD`.
 - ClickHouse bidirectional replication connection type (`clickhouse`): host-based native-protocol access with system-generated Ed25519 `ssh_public_key`, dataset `table_name`, and full-replacement targets with required `order_by`. Credential rotation via `POST /connections/{connection_id}/rotate_credentials` with `type: clickhouse`.
 
 ## [0.15.3] - 2026-07-17
