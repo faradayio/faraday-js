@@ -23,6 +23,12 @@ import {
     DatasetsApi
 } from './DatasetsApi';
 import {
+    EnrichmentJobsApi
+} from './EnrichmentJobsApi';
+import {
+    EnrichmentsApi
+} from './EnrichmentsApi';
+import {
     ExperimentalApi
 } from './ExperimentalApi';
 import {
@@ -49,6 +55,9 @@ import {
 import {
     PlacesApi
 } from './PlacesApi';
+import {
+    ProjectsApi
+} from './ProjectsApi';
 import {
     RecommendersApi
 } from './RecommendersApi';
@@ -83,6 +92,8 @@ export class FaradayClient {
     cohorts: CohortsApi;
     connections: ConnectionsApi;
     datasets: DatasetsApi;
+    enrichmentJobs: EnrichmentJobsApi;
+    enrichments: EnrichmentsApi;
     experimental: ExperimentalApi;
     featureStores: FeatureStoresApi;
     graph: GraphApi;
@@ -92,6 +103,7 @@ export class FaradayClient {
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
     places: PlacesApi;
+    projects: ProjectsApi;
     recommenders: RecommendersApi;
     scopes: ScopesApi;
     streams: StreamsApi;
@@ -110,6 +122,8 @@ export class FaradayClient {
         this.cohorts = new CohortsApi(configuration);
         this.connections = new ConnectionsApi(configuration);
         this.datasets = new DatasetsApi(configuration);
+        this.enrichmentJobs = new EnrichmentJobsApi(configuration);
+        this.enrichments = new EnrichmentsApi(configuration);
         this.experimental = new ExperimentalApi(configuration);
         this.featureStores = new FeatureStoresApi(configuration);
         this.graph = new GraphApi(configuration);
@@ -119,6 +133,7 @@ export class FaradayClient {
         this.outcomes = new OutcomesApi(configuration);
         this.personaSets = new PersonaSetsApi(configuration);
         this.places = new PlacesApi(configuration);
+        this.projects = new ProjectsApi(configuration);
         this.recommenders = new RecommendersApi(configuration);
         this.scopes = new ScopesApi(configuration);
         this.streams = new StreamsApi(configuration);

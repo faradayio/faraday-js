@@ -3343,6 +3343,118 @@ export interface CohortTrait {
     optional?: boolean;
 }
 /**
+ * @type CompiledEnrichmentDestinationOptions
+ * The destination, and the settings that belong to it.
+ * @export
+ */
+export declare type CompiledEnrichmentDestinationOptions = {
+    type: 'bigquery';
+} & EnrichmentDestinationOptionsBigQuery | {
+    type: 'gcp_gcs_csv';
+} & EnrichmentDestinationOptionsGcpGcsCsv | {
+    type: 'hosted_csv';
+} & EnrichmentDestinationOptionsHostedCsv | {
+    type: 'motherduck';
+} & EnrichmentDestinationOptionsMotherduck | {
+    type: 'mysql';
+} & EnrichmentDestinationOptionsMysql | {
+    type: 'postgres';
+} & EnrichmentDestinationOptionsPostgres | {
+    type: 'redshift';
+} & EnrichmentDestinationOptionsRedshift | {
+    type: 's3_csv';
+} & EnrichmentDestinationOptionsS3Csv | {
+    type: 'sftp';
+} & EnrichmentDestinationOptionsSftp | {
+    type: 'snowflake';
+} & EnrichmentDestinationOptionsSnowflake | {
+    type: 'sql_server';
+} & EnrichmentDestinationOptionsSqlServer;
+/**
+ * @type CompiledEnrichmentDestinationOptionsMergePatch
+ * The destination, and the settings that belong to it.
+ * @export
+ */
+export declare type CompiledEnrichmentDestinationOptionsMergePatch = {
+    type: 'bigquery';
+} & EnrichmentDestinationOptionsBigQueryMergePatch | {
+    type: 'gcp_gcs_csv';
+} & EnrichmentDestinationOptionsGcpGcsCsvMergePatch | {
+    type: 'hosted_csv';
+} & EnrichmentDestinationOptionsHostedCsvMergePatch | {
+    type: 'motherduck';
+} & EnrichmentDestinationOptionsMotherduckMergePatch | {
+    type: 'mysql';
+} & EnrichmentDestinationOptionsMysqlMergePatch | {
+    type: 'postgres';
+} & EnrichmentDestinationOptionsPostgresMergePatch | {
+    type: 'redshift';
+} & EnrichmentDestinationOptionsRedshiftMergePatch | {
+    type: 's3_csv';
+} & EnrichmentDestinationOptionsS3CsvMergePatch | {
+    type: 'sftp';
+} & EnrichmentDestinationOptionsSftpMergePatch | {
+    type: 'snowflake';
+} & EnrichmentDestinationOptionsSnowflakeMergePatch | {
+    type: 'sql_server';
+} & EnrichmentDestinationOptionsSqlServerMergePatch;
+/**
+ * @type CompiledEnrichmentDestinationOptionsPost
+ * The destination, and the settings that belong to it.
+ * @export
+ */
+export declare type CompiledEnrichmentDestinationOptionsPost = {
+    type: 'bigquery';
+} & EnrichmentDestinationOptionsBigQueryPost | {
+    type: 'gcp_gcs_csv';
+} & EnrichmentDestinationOptionsGcpGcsCsvPost | {
+    type: 'hosted_csv';
+} & EnrichmentDestinationOptionsHostedCsvPost | {
+    type: 'motherduck';
+} & EnrichmentDestinationOptionsMotherduckPost | {
+    type: 'mysql';
+} & EnrichmentDestinationOptionsMysqlPost | {
+    type: 'postgres';
+} & EnrichmentDestinationOptionsPostgresPost | {
+    type: 'redshift';
+} & EnrichmentDestinationOptionsRedshiftPost | {
+    type: 's3_csv';
+} & EnrichmentDestinationOptionsS3CsvPost | {
+    type: 'sftp';
+} & EnrichmentDestinationOptionsSftpPost | {
+    type: 'snowflake';
+} & EnrichmentDestinationOptionsSnowflakePost | {
+    type: 'sql_server';
+} & EnrichmentDestinationOptionsSqlServerPost;
+/**
+ * @type CompiledEnrichmentDestinationOptionsPut
+ * The destination, and the settings that belong to it.
+ * @export
+ */
+export declare type CompiledEnrichmentDestinationOptionsPut = {
+    type: 'bigquery';
+} & EnrichmentDestinationOptionsBigQueryPut | {
+    type: 'gcp_gcs_csv';
+} & EnrichmentDestinationOptionsGcpGcsCsvPut | {
+    type: 'hosted_csv';
+} & EnrichmentDestinationOptionsHostedCsvPut | {
+    type: 'motherduck';
+} & EnrichmentDestinationOptionsMotherduckPut | {
+    type: 'mysql';
+} & EnrichmentDestinationOptionsMysqlPut | {
+    type: 'postgres';
+} & EnrichmentDestinationOptionsPostgresPut | {
+    type: 'redshift';
+} & EnrichmentDestinationOptionsRedshiftPut | {
+    type: 's3_csv';
+} & EnrichmentDestinationOptionsS3CsvPut | {
+    type: 'sftp';
+} & EnrichmentDestinationOptionsSftpPut | {
+    type: 'snowflake';
+} & EnrichmentDestinationOptionsSnowflakePut | {
+    type: 'sql_server';
+} & EnrichmentDestinationOptionsSqlServerPut;
+/**
  * @type ComplexDataType
  * The data type of a column in table, or of a trait. Types are expressed using a subset of
  * [Avro](https://avro.apache.org/docs/current/spec.html). Possible values include all the types
@@ -14870,6 +14982,3283 @@ export interface DecodeConfig {
     sql?: string;
 }
 /**
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ *
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface Enrichment
+ */
+export interface Enrichment {
+    /**
+     *
+     * @type {EnrichmentAggregation}
+     * @memberof Enrichment
+     */
+    aggregation: EnrichmentAggregation;
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    archived_at?: string;
+    /**
+     * When this resource was created.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    created_at: string;
+    /**
+     *
+     * @type {EnrichmentDestination}
+     * @memberof Enrichment
+     */
+    destination: EnrichmentDestination;
+    /**
+     * A unique ID for this resource.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    id: string;
+    /**
+     *
+     * @type {EnrichmentIncrementality}
+     * @memberof Enrichment
+     */
+    incrementality: EnrichmentIncrementality;
+    /**
+     * The last time this resource's input was read.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    last_read_input_at?: string;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    last_updated_config_at?: string;
+    /**
+     * The last time this resource successfully built.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    last_updated_output_at?: string;
+    /**
+     *
+     * @type {EnrichmentJob}
+     * @memberof Enrichment
+     */
+    latest_job?: EnrichmentJob;
+    /**
+     * The most rows this run may emit, applied to this run's output after filtering,
+     * grouping, and sorting.
+     * @type {number}
+     * @memberof Enrichment
+     */
+    limit?: number;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    name: string;
+    /**
+     * When this enrichment will next run without being asked. This is absent when there is
+     * no schedule, when the schedule is paused, and once the schedule has passed its end.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    next_run_at?: string;
+    /**
+     *
+     * @type {EnrichmentPopulation}
+     * @memberof Enrichment
+     */
+    population: EnrichmentPopulation;
+    /**
+     *
+     * @type {EnrichmentPreview}
+     * @memberof Enrichment
+     */
+    preview: EnrichmentPreview;
+    /**
+     * The Project whose payload defines the output columns.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    project_id: string;
+    /**
+     * The type of this resource.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    resource_type: string;
+    /**
+     *
+     * @type {EnrichmentSchedule}
+     * @memberof Enrichment
+     */
+    schedule?: EnrichmentSchedule;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     *
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof Enrichment
+     */
+    select?: Array<EnrichmentColumnCondition>;
+    /**
+     * How to order the output rows. Ordering is required so that a limit takes a
+     * meaningful slice. For repeatable limits and pagination, make the final sort column
+     * unique. Faraday does not add a hidden tiebreaker, so rows tied on every stated sort
+     * may appear in any order.
+     * @type {Array<EnrichmentSort>}
+     * @memberof Enrichment
+     */
+    sorts: Array<EnrichmentSort>;
+    /**
+     *
+     * @type {ResourceStatus}
+     * @memberof Enrichment
+     */
+    status: ResourceStatus;
+    /**
+     * When the status of this resource was last updated.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    status_changed_at?: string;
+    /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    status_error?: string;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     *
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     *
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof Enrichment
+     */
+    suppress_unchanged?: Set<string>;
+    /**
+     * When this resource was last updated.
+     * @type {string}
+     * @memberof Enrichment
+     */
+    updated_at: string;
+}
+/**
+ * How to collapse people into output rows.
+ * @export
+ * @interface EnrichmentAggregation
+ */
+export interface EnrichmentAggregation {
+    /**
+     * The name of one output column.
+     *
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof EnrichmentAggregation
+     */
+    column?: string;
+    /**
+     * What each output row stands for. `person` emits one row per person and does no
+     * grouping. `column` emits one row per distinct value of one output column, such as
+     * your own customer id. Every other level groups people geographically.
+     * @type {string}
+     * @memberof EnrichmentAggregation
+     */
+    level: EnrichmentAggregationLevelEnum;
+    /**
+     * How to rank the people inside one group. Every `first` and `last` column resolves
+     * against this one ordering, so they all draw from the same representative person.
+     *
+     * The group's own key is appended ascending as a final tiebreak, so two runs over the
+     * same data choose the same representative.
+     *
+     * Omit this at the `person` level, which has no group to rank.
+     * @type {Array<EnrichmentAggregationOrder>}
+     * @memberof EnrichmentAggregation
+     */
+    order?: Array<EnrichmentAggregationOrder>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentAggregationLevelEnum {
+    Person = "person",
+    Address = "address",
+    CarrierRoute = "carrier_route",
+    CensusBlockGroup = "census_block_group",
+    CensusTract = "census_tract",
+    County = "county",
+    Dma = "dma",
+    Metro = "metro",
+    Postcode = "postcode",
+    State = "state",
+    Column = "column"
+}
+/**
+ * One ranking rule over the people inside a group.
+ * @export
+ * @interface EnrichmentAggregationOrder
+ */
+export interface EnrichmentAggregationOrder {
+    /**
+     * A component of that element to rank by. The element must be in the Project's payload,
+     * but the component need not be emitted as a column, so you can rank by household
+     * income without adding an income column.
+     *
+     * The component has to name one value on its own, so a component that takes an `index`,
+     * a `property_name`, or a `column_name` cannot be ranked by, and neither can a JSON
+     * one.
+     * @type {string}
+     * @memberof EnrichmentAggregationOrder
+     */
+    component: string;
+    /**
+     * Which direction to rank in.
+     * @type {string}
+     * @memberof EnrichmentAggregationOrder
+     */
+    direction: EnrichmentAggregationOrderDirectionEnum;
+    /**
+     * Your own name for one element of a payload. It labels the source, not an output column,
+     * and it appears in `Project.preview.element_status` and in
+     * `Enrichment.aggregation.order`.
+     * @type {string}
+     * @memberof EnrichmentAggregationOrder
+     */
+    element: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentAggregationOrderDirectionEnum {
+    Asc = "asc",
+    Desc = "desc"
+}
+/**
+ * A table in BigQuery.
+ * @export
+ * @interface EnrichmentBigQueryDestination
+ */
+export interface EnrichmentBigQueryDestination {
+    /**
+     * Partition the table by day. Omit it to leave the table unpartitioned. A partitioned
+     * table already keeps a row per day, so it cannot be merged into.
+     * @type {boolean}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    day_partitioned?: boolean;
+    /**
+     * The table to write.
+     * @type {string}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    table_name: string;
+    /**
+     * Marks this destination as BigQuery.
+     * @type {string}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentBigQueryDestination
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * @type EnrichmentCadence
+ * How often a schedule fires.
+ * @export
+ */
+export declare type EnrichmentCadence = {
+    frequency: 'daily';
+} & EnrichmentCadenceDaily | {
+    frequency: 'hourly';
+} & EnrichmentCadenceHourly | {
+    frequency: 'monthly';
+} & EnrichmentCadenceMonthly | {
+    frequency: 'weekly';
+} & EnrichmentCadenceWeekly;
+/**
+ * Fire once a day.
+ * @export
+ * @interface EnrichmentCadenceDaily
+ */
+export interface EnrichmentCadenceDaily {
+    /**
+     * The time of day to fire at, as `HH:MM`.
+     * @type {string}
+     * @memberof EnrichmentCadenceDaily
+     */
+    at: string;
+    /**
+     * Marks this cadence as daily.
+     * @type {string}
+     * @memberof EnrichmentCadenceDaily
+     */
+    frequency: string;
+}
+/**
+ * Fire once an hour.
+ * @export
+ * @interface EnrichmentCadenceHourly
+ */
+export interface EnrichmentCadenceHourly {
+    /**
+     * Marks this cadence as hourly.
+     * @type {string}
+     * @memberof EnrichmentCadenceHourly
+     */
+    frequency: string;
+    /**
+     * The minute past the hour to fire at.
+     * @type {number}
+     * @memberof EnrichmentCadenceHourly
+     */
+    minute: number;
+}
+/**
+ * Fire once a month.
+ * @export
+ * @interface EnrichmentCadenceMonthly
+ */
+export interface EnrichmentCadenceMonthly {
+    /**
+     * The time of day to fire at, as `HH:MM`.
+     * @type {string}
+     * @memberof EnrichmentCadenceMonthly
+     */
+    at: string;
+    /**
+     * The day of the month to fire on. The range stops at 28 so that every month has the
+     * day.
+     * @type {number}
+     * @memberof EnrichmentCadenceMonthly
+     */
+    day_of_month: number;
+    /**
+     * Marks this cadence as monthly.
+     * @type {string}
+     * @memberof EnrichmentCadenceMonthly
+     */
+    frequency: string;
+}
+/**
+ * Fire once a week.
+ * @export
+ * @interface EnrichmentCadenceWeekly
+ */
+export interface EnrichmentCadenceWeekly {
+    /**
+     * The time of day to fire at, as `HH:MM`.
+     * @type {string}
+     * @memberof EnrichmentCadenceWeekly
+     */
+    at: string;
+    /**
+     * The day of the week to fire on.
+     * @type {string}
+     * @memberof EnrichmentCadenceWeekly
+     */
+    day_of_week: EnrichmentCadenceWeeklyDayOfWeekEnum;
+    /**
+     * Marks this cadence as weekly.
+     * @type {string}
+     * @memberof EnrichmentCadenceWeekly
+     */
+    frequency: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentCadenceWeeklyDayOfWeekEnum {
+    Monday = "monday",
+    Tuesday = "tuesday",
+    Wednesday = "wednesday",
+    Thursday = "thursday",
+    Friday = "friday",
+    Saturday = "saturday",
+    Sunday = "sunday"
+}
+/**
+ * One test on an output column's value. Conditions are AND-ed together.
+ * @export
+ * @interface EnrichmentColumnCondition
+ */
+export interface EnrichmentColumnCondition {
+    /**
+     *
+     * @type {EnrichmentColumnValue}
+     * @memberof EnrichmentColumnCondition
+     */
+    _eq?: EnrichmentColumnValue;
+    /**
+     * Greater than.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _gt?: number;
+    /**
+     * Greater than or equal to.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _gte?: number;
+    /**
+     * One of these values.
+     * @type {Array<EnrichmentColumnValue>}
+     * @memberof EnrichmentColumnCondition
+     */
+    _in?: Array<EnrichmentColumnValue>;
+    /**
+     * Less than.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _lt?: number;
+    /**
+     * Less than or equal to.
+     * @type {number}
+     * @memberof EnrichmentColumnCondition
+     */
+    _lte?: number;
+    /**
+     * Matches this RE2 regular expression.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    _matches?: string;
+    /**
+     *
+     * @type {EnrichmentColumnValue}
+     * @memberof EnrichmentColumnCondition
+     */
+    _neq?: EnrichmentColumnValue;
+    /**
+     * None of these values.
+     * @type {Array<EnrichmentColumnValue>}
+     * @memberof EnrichmentColumnCondition
+     */
+    _nin?: Array<EnrichmentColumnValue>;
+    /**
+     * Does not match this RE2 regular expression.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    _nmatches?: string;
+    /**
+     * Value is not null.
+     * @type {boolean}
+     * @memberof EnrichmentColumnCondition
+     */
+    _nnull?: boolean;
+    /**
+     * Value is null. Nulls are otherwise excluded.
+     * @type {boolean}
+     * @memberof EnrichmentColumnCondition
+     */
+    _null?: boolean;
+    /**
+     * Whether to apply this before or after grouping. Before grouping, the test drops
+     * individual people; after grouping, it drops whole group rows. This is required
+     * whenever the enrichment groups and must be omitted when it groups by person.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    apply?: EnrichmentColumnConditionApplyEnum;
+    /**
+     * The name of one output column.
+     *
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof EnrichmentColumnCondition
+     */
+    header: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentColumnConditionApplyEnum {
+    BeforeAggregation = "before_aggregation",
+    AfterAggregation = "after_aggregation"
+}
+/**
+ * @type EnrichmentColumnValue
+ * One output column value to compare against.
+ * @export
+ */
+export declare type EnrichmentColumnValue = boolean | number | string;
+/**
+ * A table in a SQL database.
+ * @export
+ * @interface EnrichmentDatabaseDestination
+ */
+export interface EnrichmentDatabaseDestination {
+    /**
+     * The schema holding the table. Omit it to use the connection's default schema.
+     * @type {string}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    schema?: string;
+    /**
+     * The table to write.
+     * @type {string}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    table_name: string;
+    /**
+     * Which database to write to.
+     * @type {string}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    type: EnrichmentDatabaseDestinationTypeEnum;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDatabaseDestination
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentDatabaseDestinationTypeEnum {
+    Postgres = "postgres",
+    Redshift = "redshift",
+    Mysql = "mysql",
+    SqlServer = "sql_server",
+    Motherduck = "motherduck"
+}
+/**
+ * Where the output goes.
+ * @export
+ * @interface EnrichmentDestination
+ */
+export interface EnrichmentDestination {
+    /**
+     * The connection holding the credentials for this destination. Omit it for a
+     * Faraday-hosted download.
+     * @type {string}
+     * @memberof EnrichmentDestination
+     */
+    connection_id?: string;
+    /**
+     *
+     * @type {CompiledEnrichmentDestinationOptions}
+     * @memberof EnrichmentDestination
+     */
+    options: CompiledEnrichmentDestinationOptions;
+    /**
+     * A stable link to the most recent successful run's output, for a Faraday-hosted
+     * download. The link does not change between runs. Each individual run also has its own
+     * permanent link on its `EnrichmentJob`.
+     * @type {string}
+     * @memberof EnrichmentDestination
+     */
+    readonly output_url?: string;
+}
+/**
+ * @type EnrichmentDestinationOptions
+ * The destination, and the settings that belong to it.
+ * @export
+ */
+export declare type EnrichmentDestinationOptions = {
+    type: 'bigquery';
+} & EnrichmentBigQueryDestination | {
+    type: 'gcp_gcs_csv';
+} & EnrichmentGcsCsvDestination | {
+    type: 'hosted_csv';
+} & EnrichmentHostedCsvDestination | {
+    type: 'motherduck';
+} & EnrichmentDatabaseDestination | {
+    type: 'mysql';
+} & EnrichmentDatabaseDestination | {
+    type: 'postgres';
+} & EnrichmentDatabaseDestination | {
+    type: 'redshift';
+} & EnrichmentDatabaseDestination | {
+    type: 's3_csv';
+} & EnrichmentS3CsvDestination | {
+    type: 'sftp';
+} & EnrichmentSftpDestination | {
+    type: 'snowflake';
+} & EnrichmentSnowflakeDestination | {
+    type: 'sql_server';
+} & EnrichmentDatabaseDestination;
+/**
+ * BigQuery Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsBigQuery
+ */
+export interface EnrichmentDestinationOptionsBigQuery {
+    /**
+     * Date-based partitioning allows the data to be <a href ="https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables">partitioned by date</a>. This will appear as a `fdy_batch_date` column.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsBigQuery
+     */
+    day_partitioned?: boolean;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQuery
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQuery
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsBigQuery
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsBigQuery` type.)
+ *
+ * BigQuery Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsBigQueryMergePatch
+ */
+export interface EnrichmentDestinationOptionsBigQueryMergePatch {
+    /**
+     * Date-based partitioning allows the data to be <a href ="https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables">partitioned by date</a>. This will appear as a `fdy_batch_date` column.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsBigQueryMergePatch
+     */
+    day_partitioned?: boolean | null;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQueryMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQueryMergePatch
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsBigQueryMergePatch
+     */
+    write?: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsBigQuery` type.)
+ *
+ * BigQuery Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsBigQueryPost
+ */
+export interface EnrichmentDestinationOptionsBigQueryPost {
+    /**
+     * Date-based partitioning allows the data to be <a href ="https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables">partitioned by date</a>. This will appear as a `fdy_batch_date` column.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsBigQueryPost
+     */
+    day_partitioned?: boolean;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQueryPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQueryPost
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsBigQueryPost
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsBigQuery` type.)
+ *
+ * BigQuery Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsBigQueryPut
+ */
+export interface EnrichmentDestinationOptionsBigQueryPut {
+    /**
+     * Date-based partitioning allows the data to be <a href ="https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables">partitioned by date</a>. This will appear as a `fdy_batch_date` column.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsBigQueryPut
+     */
+    day_partitioned?: boolean;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQueryPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsBigQueryPut
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsBigQueryPut
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * GCS Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsGcpGcsCsv
+ */
+export interface EnrichmentDestinationOptionsGcpGcsCsv {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsv
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsv
+     */
+    gzip?: boolean;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsv
+     */
+    object_key: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsv
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsv
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsGcpGcsCsv` type.)
+ *
+ * GCS Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsGcpGcsCsvMergePatch
+ */
+export interface EnrichmentDestinationOptionsGcpGcsCsvMergePatch {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvMergePatch
+     */
+    delimiter?: string | null;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvMergePatch
+     */
+    gzip?: boolean | null;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvMergePatch
+     */
+    object_key?: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvMergePatch
+     */
+    quote_all?: boolean | null;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsGcpGcsCsv` type.)
+ *
+ * GCS Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsGcpGcsCsvPost
+ */
+export interface EnrichmentDestinationOptionsGcpGcsCsvPost {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPost
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPost
+     */
+    gzip?: boolean;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPost
+     */
+    object_key: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPost
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsGcpGcsCsv` type.)
+ *
+ * GCS Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsGcpGcsCsvPut
+ */
+export interface EnrichmentDestinationOptionsGcpGcsCsvPut {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPut
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPut
+     */
+    gzip?: boolean;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPut
+     */
+    object_key: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPut
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsGcpGcsCsvPut
+     */
+    type: string;
+}
+/**
+ * CSV Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsHostedCsv
+ */
+export interface EnrichmentDestinationOptionsHostedCsv {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsv
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsv
+     */
+    gzip?: boolean;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsv
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsv
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsHostedCsv` type.)
+ *
+ * CSV Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsHostedCsvMergePatch
+ */
+export interface EnrichmentDestinationOptionsHostedCsvMergePatch {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsvMergePatch
+     */
+    delimiter?: string | null;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsvMergePatch
+     */
+    gzip?: boolean | null;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsvMergePatch
+     */
+    quote_all?: boolean | null;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsvMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsHostedCsv` type.)
+ *
+ * CSV Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsHostedCsvPost
+ */
+export interface EnrichmentDestinationOptionsHostedCsvPost {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPost
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPost
+     */
+    gzip?: boolean;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPost
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsHostedCsv` type.)
+ *
+ * CSV Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsHostedCsvPut
+ */
+export interface EnrichmentDestinationOptionsHostedCsvPut {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPut
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPut
+     */
+    gzip?: boolean;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPut
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsHostedCsvPut
+     */
+    type: string;
+}
+/**
+ * MotherDuck Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMotherduck
+ */
+export interface EnrichmentDestinationOptionsMotherduck {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduck
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduck
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduck
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMotherduck
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsMotherduck` type.)
+ *
+ * MotherDuck Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMotherduckMergePatch
+ */
+export interface EnrichmentDestinationOptionsMotherduckMergePatch {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckMergePatch
+     */
+    schema?: string | null;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckMergePatch
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMotherduckMergePatch
+     */
+    write?: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsMotherduck` type.)
+ *
+ * MotherDuck Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMotherduckPost
+ */
+export interface EnrichmentDestinationOptionsMotherduckPost {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckPost
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckPost
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMotherduckPost
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsMotherduck` type.)
+ *
+ * MotherDuck Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMotherduckPut
+ */
+export interface EnrichmentDestinationOptionsMotherduckPut {
+    /**
+     * MotherDuck schema name. Defaults to 'main' if not provided.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckPut
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMotherduckPut
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMotherduckPut
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * MySQL Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMysql
+ */
+export interface EnrichmentDestinationOptionsMysql {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysql
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysql
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMysql
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsMysql` type.)
+ *
+ * MySQL Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMysqlMergePatch
+ */
+export interface EnrichmentDestinationOptionsMysqlMergePatch {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysqlMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysqlMergePatch
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMysqlMergePatch
+     */
+    write?: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsMysql` type.)
+ *
+ * MySQL Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMysqlPost
+ */
+export interface EnrichmentDestinationOptionsMysqlPost {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysqlPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysqlPost
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMysqlPost
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsMysql` type.)
+ *
+ * MySQL Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsMysqlPut
+ */
+export interface EnrichmentDestinationOptionsMysqlPut {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysqlPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsMysqlPut
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsMysqlPut
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * Postgres Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsPostgres
+ */
+export interface EnrichmentDestinationOptionsPostgres {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgres
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgres
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsPostgres
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsPostgres` type.)
+ *
+ * Postgres Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsPostgresMergePatch
+ */
+export interface EnrichmentDestinationOptionsPostgresMergePatch {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgresMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgresMergePatch
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsPostgresMergePatch
+     */
+    write?: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsPostgres` type.)
+ *
+ * Postgres Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsPostgresPost
+ */
+export interface EnrichmentDestinationOptionsPostgresPost {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgresPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgresPost
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsPostgresPost
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsPostgres` type.)
+ *
+ * Postgres Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsPostgresPut
+ */
+export interface EnrichmentDestinationOptionsPostgresPut {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgresPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsPostgresPut
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsPostgresPut
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * Redshift Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsRedshift
+ */
+export interface EnrichmentDestinationOptionsRedshift {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshift
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshift
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsRedshift
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsRedshift` type.)
+ *
+ * Redshift Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsRedshiftMergePatch
+ */
+export interface EnrichmentDestinationOptionsRedshiftMergePatch {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshiftMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshiftMergePatch
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsRedshiftMergePatch
+     */
+    write?: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsRedshift` type.)
+ *
+ * Redshift Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsRedshiftPost
+ */
+export interface EnrichmentDestinationOptionsRedshiftPost {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshiftPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshiftPost
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsRedshiftPost
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsRedshift` type.)
+ *
+ * Redshift Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsRedshiftPut
+ */
+export interface EnrichmentDestinationOptionsRedshiftPut {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshiftPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsRedshiftPut
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsRedshiftPut
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * S3 Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsS3Csv
+ */
+export interface EnrichmentDestinationOptionsS3Csv {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use \t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3Csv
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3Csv
+     */
+    gzip?: boolean;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3Csv
+     */
+    object_key: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3Csv
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3Csv
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsS3Csv` type.)
+ *
+ * S3 Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsS3CsvMergePatch
+ */
+export interface EnrichmentDestinationOptionsS3CsvMergePatch {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use \t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvMergePatch
+     */
+    delimiter?: string | null;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3CsvMergePatch
+     */
+    gzip?: boolean | null;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvMergePatch
+     */
+    object_key?: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3CsvMergePatch
+     */
+    quote_all?: boolean | null;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsS3Csv` type.)
+ *
+ * S3 Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsS3CsvPost
+ */
+export interface EnrichmentDestinationOptionsS3CsvPost {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use \t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvPost
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3CsvPost
+     */
+    gzip?: boolean;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvPost
+     */
+    object_key: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3CsvPost
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsS3Csv` type.)
+ *
+ * S3 Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsS3CsvPut
+ */
+export interface EnrichmentDestinationOptionsS3CsvPut {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use \t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvPut
+     */
+    delimiter?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3CsvPut
+     */
+    gzip?: boolean;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvPut
+     */
+    object_key: string;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsS3CsvPut
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsS3CsvPut
+     */
+    type: string;
+}
+/**
+ * SFTP Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSftp
+ */
+export interface EnrichmentDestinationOptionsSftp {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftp
+     */
+    delimiter?: string;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftp
+     */
+    file_name: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftp
+     */
+    gzip?: boolean;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftp
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftp
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsSftp` type.)
+ *
+ * SFTP Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSftpMergePatch
+ */
+export interface EnrichmentDestinationOptionsSftpMergePatch {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpMergePatch
+     */
+    delimiter?: string | null;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpMergePatch
+     */
+    file_name?: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftpMergePatch
+     */
+    gzip?: boolean | null;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftpMergePatch
+     */
+    quote_all?: boolean | null;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpMergePatch
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsSftp` type.)
+ *
+ * SFTP Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSftpPost
+ */
+export interface EnrichmentDestinationOptionsSftpPost {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpPost
+     */
+    delimiter?: string;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpPost
+     */
+    file_name: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftpPost
+     */
+    gzip?: boolean;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftpPost
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpPost
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsSftp` type.)
+ *
+ * SFTP Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSftpPut
+ */
+export interface EnrichmentDestinationOptionsSftpPut {
+    /**
+     * Provide the delimiter character, such as `,` or `|`. Defaults to `,`. For tab-delimited files, paste a tab character or use `\t`.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpPut
+     */
+    delimiter?: string;
+    /**
+     * The exact remote name to write. A later run replaces the same object.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpPut
+     */
+    file_name: string;
+    /**
+     * Whether files are gzipped.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftpPut
+     */
+    gzip?: boolean;
+    /**
+     * Whether to always quote all fields, even if they don't require it. Some systems require this.
+     * @type {boolean}
+     * @memberof EnrichmentDestinationOptionsSftpPut
+     */
+    quote_all?: boolean;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSftpPut
+     */
+    type: string;
+}
+/**
+ * Snowflake Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSnowflake
+ */
+export interface EnrichmentDestinationOptionsSnowflake {
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflake
+     */
+    schema: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflake
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflake
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSnowflake
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsSnowflake` type.)
+ *
+ * Snowflake Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSnowflakeMergePatch
+ */
+export interface EnrichmentDestinationOptionsSnowflakeMergePatch {
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakeMergePatch
+     */
+    schema?: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakeMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakeMergePatch
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSnowflakeMergePatch
+     */
+    write?: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsSnowflake` type.)
+ *
+ * Snowflake Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSnowflakePost
+ */
+export interface EnrichmentDestinationOptionsSnowflakePost {
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakePost
+     */
+    schema: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakePost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakePost
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSnowflakePost
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsSnowflake` type.)
+ *
+ * Snowflake Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSnowflakePut
+ */
+export interface EnrichmentDestinationOptionsSnowflakePut {
+    /**
+     * Snowflake schema name. If not provided, it may be provided at the connection level, or omitted entirely.
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakePut
+     */
+    schema: string;
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakePut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSnowflakePut
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSnowflakePut
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * SQL Server Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSqlServer
+ */
+export interface EnrichmentDestinationOptionsSqlServer {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServer
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServer
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSqlServer
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PATCH the `EnrichmentDestinationOptionsSqlServer` type.)
+ *
+ * SQL Server Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSqlServerMergePatch
+ */
+export interface EnrichmentDestinationOptionsSqlServerMergePatch {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServerMergePatch
+     */
+    table_name?: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServerMergePatch
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSqlServerMergePatch
+     */
+    write?: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to POST a new value of the `EnrichmentDestinationOptionsSqlServer` type.)
+ *
+ * SQL Server Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSqlServerPost
+ */
+export interface EnrichmentDestinationOptionsSqlServerPost {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServerPost
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServerPost
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSqlServerPost
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * (Parameters used to PUT a value of the `EnrichmentDestinationOptionsSqlServer` type.)
+ *
+ * SQL Server Enrichment destination options
+ * @export
+ * @interface EnrichmentDestinationOptionsSqlServerPut
+ */
+export interface EnrichmentDestinationOptionsSqlServerPut {
+    /**
+     * Table name
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServerPut
+     */
+    table_name: string;
+    /**
+     * The type of connection
+     * @type {string}
+     * @memberof EnrichmentDestinationOptionsSqlServerPut
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentDestinationOptionsSqlServerPut
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * A CSV file written to Google Cloud Storage.
+ * @export
+ * @interface EnrichmentGcsCsvDestination
+ */
+export interface EnrichmentGcsCsvDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    delimiter?: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    gzip?: boolean;
+    /**
+     * The exact object key to write. A later run writes the same key and replaces the
+     * object.
+     * @type {string}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    object_key: string;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as Google Cloud Storage.
+     * @type {string}
+     * @memberof EnrichmentGcsCsvDestination
+     */
+    type: string;
+}
+/**
+ * A CSV file you download from Faraday.
+ * @export
+ * @interface EnrichmentHostedCsvDestination
+ */
+export interface EnrichmentHostedCsvDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    delimiter?: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    gzip?: boolean;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as a Faraday-hosted CSV.
+     * @type {string}
+     * @memberof EnrichmentHostedCsvDestination
+     */
+    type: string;
+}
+/**
+ * @type EnrichmentIncrementality
+ * Which rows a run emits. Every enrichment states this, so no run silently redelivers a
+ * whole population.
+ * @export
+ */
+export declare type EnrichmentIncrementality = {
+    strategy: 'changed';
+} & EnrichmentIncrementalityChanged | {
+    strategy: 'full';
+} & EnrichmentIncrementalityFull | {
+    strategy: 'new_rows';
+} & EnrichmentIncrementalityNewRows;
+/**
+ * Recompute every row, then emit only the rows whose watched values moved.
+ * @export
+ * @interface EnrichmentIncrementalityChanged
+ */
+export interface EnrichmentIncrementalityChanged {
+    /**
+     * Marks this as a changed-rows run.
+     * @type {string}
+     * @memberof EnrichmentIncrementalityChanged
+     */
+    strategy: string;
+    /**
+     * The output columns whose movement makes a row worth emitting. Omit it to watch every
+     * column.
+     * @type {Set<string>}
+     * @memberof EnrichmentIncrementalityChanged
+     */
+    watch?: Set<string>;
+}
+/**
+ * Recompute and emit every row. Geographic grouping requires this, because a group row has
+ * no meaning unless every member of the group is recomputed.
+ * @export
+ * @interface EnrichmentIncrementalityFull
+ */
+export interface EnrichmentIncrementalityFull {
+    /**
+     * Marks this as a full run.
+     * @type {string}
+     * @memberof EnrichmentIncrementalityFull
+     */
+    strategy: string;
+}
+/**
+ * Emit only the rows added to the population since the last successful run.
+ * @export
+ * @interface EnrichmentIncrementalityNewRows
+ */
+export interface EnrichmentIncrementalityNewRows {
+    /**
+     * Marks this as a new-rows run.
+     * @type {string}
+     * @memberof EnrichmentIncrementalityNewRows
+     */
+    strategy: string;
+}
+/**
+ * One attempted run of an enrichment, including runs that were skipped or failed. A run
+ * record never changes after the run ends.
+ * @export
+ * @interface EnrichmentJob
+ */
+export interface EnrichmentJob {
+    /**
+     * Whether the caller acknowledged that the usage ceiling was larger than the remaining
+     * quota when asking for this run.
+     * @type {boolean}
+     * @memberof EnrichmentJob
+     */
+    acknowledged_usage_ceiling?: boolean;
+    /**
+     *
+     * @type {EnrichmentPost}
+     * @memberof EnrichmentJob
+     */
+    config?: EnrichmentPost;
+    /**
+     * The correction epoch this run reads at. Together with the run instant and the table
+     * generation it pins exactly which data the run saw.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    correction_epoch?: string;
+    /**
+     *
+     * @type {EnrichmentJobCounts}
+     * @memberof EnrichmentJob
+     */
+    counts?: EnrichmentJobCounts;
+    /**
+     * When this run record was created.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    created_at?: string;
+    /**
+     * When this run gives up. A run that reaches its deadline fails; it does not cause later
+     * scheduled runs to be skipped.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    deadline_at: string;
+    /**
+     * The enrichment that was run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    enrichment_id: string;
+    /**
+     * When this run ended.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    finished_at?: string;
+    /**
+     * A unique ID for this run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    id: string;
+    /**
+     * What asked for this run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    invocation: EnrichmentJobInvocationEnum;
+    /**
+     * A permanent link to this run's output, for a Faraday-hosted download. It always
+     * returns the output of this run, unlike the enrichment's own link, which follows the
+     * latest successful run.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    output_url?: string;
+    /**
+     * The exact columns this run produced, in output order, as they resolved when the run
+     * started.
+     * @type {Array<ProjectResolvedColumn>}
+     * @memberof EnrichmentJob
+     */
+    resolved_schema?: Array<ProjectResolvedColumn>;
+    /**
+     * The instant this run reads everything as of. Every source read in the run uses it, so
+     * that the run is repeatable.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    run_instant?: string;
+    /**
+     * The moment on the schedule this run answers. Present only when a schedule asked for
+     * the run. A run that started late still names the moment it was due, so a reader can
+     * tell a delayed run from an extra one.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    scheduled_for?: string;
+    /**
+     * Why this run was skipped. Present only when the status is `skipped`.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    skip_note?: string;
+    /**
+     * When this run started.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    started_at?: string;
+    /**
+     * Where this run has got to. `pending` means it is waiting its turn for capacity,
+     * and `starting` means a worker is being brought up for it. `skipped` means another
+     * run for the same enrichment was still going, so this one stood down rather than
+     * piling on.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    status: EnrichmentJobStatusEnum;
+    /**
+     * Why this run failed. Present only when the status is `failed`.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    status_error?: string;
+    /**
+     * The generation of the underlying data this run read.
+     * @type {string}
+     * @memberof EnrichmentJob
+     */
+    table_generation?: string;
+    /**
+     * The usage this run created, by billable element category. An element counts once for
+     * an emitted row where at least one of its declared columns is non-null after collapse,
+     * imputation, grouping, incrementality, and suppression. Null values create no usage.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentJob
+     */
+    usage?: {
+        [key: string]: number;
+    };
+    /**
+     * The usage ceiling shown to the caller when this run was requested.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentJob
+     */
+    usage_ceiling?: {
+        [key: string]: number;
+    };
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentJobInvocationEnum {
+    Manual = "manual",
+    Schedule = "schedule"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentJobStatusEnum {
+    Pending = "pending",
+    Starting = "starting",
+    Running = "running",
+    Succeeded = "succeeded",
+    Failed = "failed",
+    Skipped = "skipped"
+}
+/**
+ * How each row's read instant was decided, for the columns that read as of an instant. This
+ * separates rows answered on their own basis from rows that fell back.
+ * @export
+ * @interface EnrichmentJobAsOfResolutions
+ */
+export interface EnrichmentJobAsOfResolutions {
+    /**
+     * Rows read as of the person's own entrance to the cohort.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    cohort_entrance?: number;
+    /**
+     * Rows whose own instant was unavailable and whose frame stated no fallback, so the
+     * current value was read.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    current?: number;
+    /**
+     * Rows read as of the person's own instant from the dataset.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    dataset_timestamp?: number;
+    /**
+     * Rows whose own instant was absent, so the frame's fallback instant was used.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    fallback_timestamp?: number;
+    /**
+     * Rows read as of the one instant stated on the element.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    fixed_timestamp?: number;
+    /**
+     * Rows whose own instant could not be parsed, so the frame's fallback instant was used.
+     * @type {number}
+     * @memberof EnrichmentJobAsOfResolutions
+     */
+    unparseable_fallback_timestamp?: number;
+}
+/**
+ * How many rows and values this run handled at each stage.
+ * @export
+ * @interface EnrichmentJobCounts
+ */
+export interface EnrichmentJobCounts {
+    /**
+     *
+     * @type {EnrichmentJobAsOfResolutions}
+     * @memberof EnrichmentJobCounts
+     */
+    as_of_resolutions?: EnrichmentJobAsOfResolutions;
+    /**
+     * How many rows survived filtering and grouping.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    kept: number;
+    /**
+     * How many population rows supplied a stable person key for value production. For a
+     * Dataset population, rows with no resolved person key count in `population_rows` but
+     * not in `matched`. A person may have a stable key from the account's own Datasets even
+     * when that person does not appear in Faraday's identity graph.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    matched: number;
+    /**
+     * How many rows were delivered. A run may emit at most 10,000,000 output rows.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    output_rows: number;
+    /**
+     * How many rows the population resolved to. A run may resolve at most 300,000,000
+     * population rows.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    population_rows: number;
+    /**
+     * How many values a source could not answer at the instant they were asked for, and so
+     * came back null.
+     * @type {number}
+     * @memberof EnrichmentJobCounts
+     */
+    unanswerable_values?: number;
+}
+/**
+ * (Parameters used to PATCH the `Enrichment` type.)
+ *
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ *
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface EnrichmentMergePatch
+ */
+export interface EnrichmentMergePatch {
+    /**
+     *
+     * @type {EnrichmentAggregation}
+     * @memberof EnrichmentMergePatch
+     */
+    aggregation?: EnrichmentAggregation;
+    /**
+     *
+     * @type {EnrichmentDestination}
+     * @memberof EnrichmentMergePatch
+     */
+    destination?: EnrichmentDestination;
+    /**
+     *
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentMergePatch
+     */
+    incrementality?: EnrichmentIncrementality;
+    /**
+     * The most rows this run may emit, applied to this run's output after filtering,
+     * grouping, and sorting.
+     * @type {number}
+     * @memberof EnrichmentMergePatch
+     */
+    limit?: number | null;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof EnrichmentMergePatch
+     */
+    name?: string;
+    /**
+     *
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentMergePatch
+     */
+    population?: EnrichmentPopulation;
+    /**
+     *
+     * @type {EnrichmentSchedule}
+     * @memberof EnrichmentMergePatch
+     */
+    schedule?: EnrichmentSchedule | null;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     *
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof EnrichmentMergePatch
+     */
+    select?: Array<EnrichmentColumnCondition> | null;
+    /**
+     * How to order the output rows. Ordering is required so that a limit takes a
+     * meaningful slice. For repeatable limits and pagination, make the final sort column
+     * unique. Faraday does not add a hidden tiebreaker, so rows tied on every stated sort
+     * may appear in any order.
+     * @type {Array<EnrichmentSort>}
+     * @memberof EnrichmentMergePatch
+     */
+    sorts?: Array<EnrichmentSort>;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     *
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     *
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof EnrichmentMergePatch
+     */
+    suppress_unchanged?: Set<string> | null;
+}
+/**
+ * @type EnrichmentPopulation
+ * Who to enrich.
+ *
+ * Conditions apply to the union of your account's identity graph and the people referenced
+ * by your own datasets, so that people your datasets name but Faraday does not recognize
+ * are still available. Use an `identity_graph` condition to restrict to the identity graph
+ * alone.
+ * @export
+ */
+export declare type EnrichmentPopulation = EnrichmentPopulationAll | EnrichmentPopulationAny | EnrichmentPopulationCondition | EnrichmentPopulationNot;
+/**
+ * People who satisfy every one of these.
+ * @export
+ * @interface EnrichmentPopulationAll
+ */
+export interface EnrichmentPopulationAll {
+    /**
+     * The parts that must all hold.
+     * @type {Array<EnrichmentPopulation>}
+     * @memberof EnrichmentPopulationAll
+     */
+    and: Array<EnrichmentPopulation>;
+}
+/**
+ * People who satisfy at least one of these.
+ * @export
+ * @interface EnrichmentPopulationAny
+ */
+export interface EnrichmentPopulationAny {
+    /**
+     * The parts, at least one of which must hold.
+     * @type {Array<EnrichmentPopulation>}
+     * @memberof EnrichmentPopulationAny
+     */
+    or: Array<EnrichmentPopulation>;
+}
+/**
+ * People whose Faraday attributes satisfy these conditions.
+ * @export
+ * @interface EnrichmentPopulationAttribute
+ */
+export interface EnrichmentPopulationAttribute {
+    /**
+     * Required conditions are AND-ed. Optional conditions are OR-ed as a group, and the two
+     * groups are AND-ed. Nulls are excluded unless `_null` asks for them.
+     * @type {Array<CohortAttributeCondition>}
+     * @memberof EnrichmentPopulationAttribute
+     */
+    conditions: Array<CohortAttributeCondition>;
+    /**
+     * Marks this condition as an attribute test.
+     * @type {string}
+     * @memberof EnrichmentPopulationAttribute
+     */
+    type: string;
+}
+/**
+ * People in a cohort.
+ * @export
+ * @interface EnrichmentPopulationCohort
+ */
+export interface EnrichmentPopulationCohort {
+    /**
+     * The cohort to test membership in.
+     * @type {string}
+     * @memberof EnrichmentPopulationCohort
+     */
+    cohort_id: string;
+    /**
+     *
+     * @type {PopulationExpansion}
+     * @memberof EnrichmentPopulationCohort
+     */
+    expand?: PopulationExpansion;
+    /**
+     * Marks this condition as a cohort test.
+     * @type {string}
+     * @memberof EnrichmentPopulationCohort
+     */
+    type: string;
+}
+/**
+ * @type EnrichmentPopulationCondition
+ * One test a person either passes or fails.
+ * @export
+ */
+export declare type EnrichmentPopulationCondition = {
+    type: 'attribute';
+} & EnrichmentPopulationAttribute | {
+    type: 'cohort';
+} & EnrichmentPopulationCohort | {
+    type: 'dataset';
+} & EnrichmentPopulationDataset | {
+    type: 'enrichment_job';
+} & EnrichmentPopulationEnrichmentJob | {
+    type: 'identity_graph';
+} & EnrichmentPopulationIdentityGraph | {
+    type: 'place';
+} & EnrichmentPopulationPlace | {
+    type: 'stream';
+} & EnrichmentPopulationStream | {
+    type: 'trait';
+} & EnrichmentPopulationTrait;
+/**
+ * People your dataset refers to, whether or not Faraday recognizes them.
+ * @export
+ * @interface EnrichmentPopulationDataset
+ */
+export interface EnrichmentPopulationDataset {
+    /**
+     * The dataset to draw people from.
+     * @type {string}
+     * @memberof EnrichmentPopulationDataset
+     */
+    dataset_id: string;
+    /**
+     *
+     * @type {PopulationExpansion}
+     * @memberof EnrichmentPopulationDataset
+     */
+    expand?: PopulationExpansion;
+    /**
+     * Marks this condition as a dataset test.
+     * @type {string}
+     * @memberof EnrichmentPopulationDataset
+     */
+    type: string;
+}
+/**
+ * People who appeared in the output of one previous run.
+ * @export
+ * @interface EnrichmentPopulationEnrichmentJob
+ */
+export interface EnrichmentPopulationEnrichmentJob {
+    /**
+     * The run whose output supplies the people.
+     * @type {string}
+     * @memberof EnrichmentPopulationEnrichmentJob
+     */
+    enrichment_job_id: string;
+    /**
+     * Marks this condition as a previous run test.
+     * @type {string}
+     * @memberof EnrichmentPopulationEnrichmentJob
+     */
+    type: string;
+}
+/**
+ * People in an identity graph. Use this to exclude people that only your own datasets refer
+ * to.
+ * @export
+ * @interface EnrichmentPopulationIdentityGraph
+ */
+export interface EnrichmentPopulationIdentityGraph {
+    /**
+     * The identity graph to test. Omit it to use your account's current one.
+     * @type {string}
+     * @memberof EnrichmentPopulationIdentityGraph
+     */
+    identity_graph_id?: string;
+    /**
+     * Marks this condition as an identity graph test.
+     * @type {string}
+     * @memberof EnrichmentPopulationIdentityGraph
+     */
+    type: string;
+}
+/**
+ * People who do not satisfy this.
+ * @export
+ * @interface EnrichmentPopulationNot
+ */
+export interface EnrichmentPopulationNot {
+    /**
+     *
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentPopulationNot
+     */
+    not: EnrichmentPopulation;
+}
+/**
+ * People whose location satisfies these place conditions.
+ * @export
+ * @interface EnrichmentPopulationPlace
+ */
+export interface EnrichmentPopulationPlace {
+    /**
+     * Place conditions, all of which must hold.
+     * @type {Array<CohortPlaceCondition>}
+     * @memberof EnrichmentPopulationPlace
+     */
+    conditions: Array<CohortPlaceCondition>;
+    /**
+     * Marks this condition as a place test.
+     * @type {string}
+     * @memberof EnrichmentPopulationPlace
+     */
+    type: string;
+}
+/**
+ * People whose events in one stream satisfy these constraints.
+ * @export
+ * @interface EnrichmentPopulationStream
+ */
+export interface EnrichmentPopulationStream {
+    /**
+     * Event property conditions. Required conditions are AND-ed. Optional conditions are
+     * OR-ed as a group, and the two groups are AND-ed. Nulls are excluded unless `_null`
+     * asks for them.
+     * @type {Array<CohortStreamCondition>}
+     * @memberof EnrichmentPopulationStream
+     */
+    conditions?: Array<CohortStreamCondition>;
+    /**
+     * Most qualifying events a person may have emitted.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    max_count?: number;
+    /**
+     * Largest total value a person's qualifying events may carry.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    max_value?: number;
+    /**
+     * Fewest qualifying events a person must have emitted.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    min_count?: number;
+    /**
+     * Smallest total value a person's qualifying events may carry.
+     * @type {number}
+     * @memberof EnrichmentPopulationStream
+     */
+    min_value?: number;
+    /**
+     *
+     * @type {Recency}
+     * @memberof EnrichmentPopulationStream
+     */
+    recency?: Recency;
+    /**
+     * The stream whose events are tested.
+     * @type {string}
+     * @memberof EnrichmentPopulationStream
+     */
+    stream_name: string;
+    /**
+     * Marks this condition as a stream test.
+     * @type {string}
+     * @memberof EnrichmentPopulationStream
+     */
+    type: string;
+}
+/**
+ * People whose traits satisfy these conditions.
+ * @export
+ * @interface EnrichmentPopulationTrait
+ */
+export interface EnrichmentPopulationTrait {
+    /**
+     * Required conditions are AND-ed. Optional conditions are OR-ed as a group, and the two
+     * groups are AND-ed. Nulls are excluded unless `_null` asks for them.
+     * @type {Array<CohortTrait>}
+     * @memberof EnrichmentPopulationTrait
+     */
+    conditions: Array<CohortTrait>;
+    /**
+     * Marks this condition as a trait test.
+     * @type {string}
+     * @memberof EnrichmentPopulationTrait
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `Enrichment` type.)
+ *
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ *
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface EnrichmentPost
+ */
+export interface EnrichmentPost {
+    /**
+     *
+     * @type {EnrichmentAggregation}
+     * @memberof EnrichmentPost
+     */
+    aggregation: EnrichmentAggregation;
+    /**
+     *
+     * @type {EnrichmentDestination}
+     * @memberof EnrichmentPost
+     */
+    destination: EnrichmentDestination;
+    /**
+     *
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentPost
+     */
+    incrementality: EnrichmentIncrementality;
+    /**
+     * The most rows this run may emit, applied to this run's output after filtering,
+     * grouping, and sorting.
+     * @type {number}
+     * @memberof EnrichmentPost
+     */
+    limit?: number;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof EnrichmentPost
+     */
+    name: string;
+    /**
+     *
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentPost
+     */
+    population: EnrichmentPopulation;
+    /**
+     * The Project whose payload defines the output columns.
+     * @type {string}
+     * @memberof EnrichmentPost
+     */
+    project_id: string;
+    /**
+     *
+     * @type {EnrichmentSchedule}
+     * @memberof EnrichmentPost
+     */
+    schedule?: EnrichmentSchedule;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     *
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof EnrichmentPost
+     */
+    select?: Array<EnrichmentColumnCondition>;
+    /**
+     * How to order the output rows. Ordering is required so that a limit takes a
+     * meaningful slice. For repeatable limits and pagination, make the final sort column
+     * unique. Faraday does not add a hidden tiebreaker, so rows tied on every stated sort
+     * may appear in any order.
+     * @type {Array<EnrichmentSort>}
+     * @memberof EnrichmentPost
+     */
+    sorts: Array<EnrichmentSort>;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     *
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     *
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof EnrichmentPost
+     */
+    suppress_unchanged?: Set<string>;
+}
+/**
+ * What one run of this enrichment could cost, worked out from its configuration.
+ * @export
+ * @interface EnrichmentPreview
+ */
+export interface EnrichmentPreview {
+    /**
+     * The most usage one run could create, by billable element category. This is an upper
+     * bound rather than a forecast: filtering, limits, incrementality, and null values all
+     * reduce it.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentPreview
+     */
+    max_usage_per_run: {
+        [key: string]: number;
+    };
+    /**
+     * The most population rows one run may have to resolve before output filters. This is
+     * exact only when `population_upper_bound_exact` is true.
+     * @type {number}
+     * @memberof EnrichmentPreview
+     */
+    population_upper_bound: number;
+    /**
+     * How the population bound was worked out.
+     * @type {string}
+     * @memberof EnrichmentPreview
+     */
+    population_upper_bound_basis: string;
+    /**
+     * Whether `population_upper_bound` is an exact count rather than a ceiling.
+     * @type {boolean}
+     * @memberof EnrichmentPreview
+     */
+    population_upper_bound_exact: boolean;
+    /**
+     * The usage left on your contract for each billable element category in this
+     * Enrichment. An absent category has no contract limit on record.
+     * @type {{ [key: string]: number; }}
+     * @memberof EnrichmentPreview
+     */
+    remaining_quota: {
+        [key: string]: number;
+    };
+}
+/**
+ * (Parameters used to PUT a value of the `Enrichment` type.)
+ *
+ * A delivery of one Project's columns, for a population you choose, to a destination you
+ * choose.
+ *
+ * An Enrichment adds the rows and the delivery; the Project supplies the columns. Creating
+ * one runs nothing: a run happens only when you ask for it or when a schedule you set fires.
+ * @export
+ * @interface EnrichmentPut
+ */
+export interface EnrichmentPut {
+    /**
+     *
+     * @type {EnrichmentAggregation}
+     * @memberof EnrichmentPut
+     */
+    aggregation: EnrichmentAggregation;
+    /**
+     *
+     * @type {EnrichmentDestination}
+     * @memberof EnrichmentPut
+     */
+    destination: EnrichmentDestination;
+    /**
+     *
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentPut
+     */
+    incrementality: EnrichmentIncrementality;
+    /**
+     * The most rows this run may emit, applied to this run's output after filtering,
+     * grouping, and sorting.
+     * @type {number}
+     * @memberof EnrichmentPut
+     */
+    limit?: number;
+    /**
+     * Human-readable label for this Enrichment.
+     * @type {string}
+     * @memberof EnrichmentPut
+     */
+    name: string;
+    /**
+     *
+     * @type {EnrichmentPopulation}
+     * @memberof EnrichmentPut
+     */
+    population: EnrichmentPopulation;
+    /**
+     *
+     * @type {EnrichmentSchedule}
+     * @memberof EnrichmentPut
+     */
+    schedule?: EnrichmentSchedule;
+    /**
+     * Keep only the rows matching these conditions. Conditions name output column headers
+     * and are AND-ed together.
+     *
+     * This decides which rows reach the output. `population` decides which people are
+     * enriched in the first place.
+     * @type {Array<EnrichmentColumnCondition>}
+     * @memberof EnrichmentPut
+     */
+    select?: Array<EnrichmentColumnCondition>;
+    /**
+     * How to order the output rows. Ordering is required so that a limit takes a
+     * meaningful slice. For repeatable limits and pagination, make the final sort column
+     * unique. Faraday does not add a hidden tiebreaker, so rows tied on every stated sort
+     * may appear in any order.
+     * @type {Array<EnrichmentSort>}
+     * @memberof EnrichmentPut
+     */
+    sorts: Array<EnrichmentSort>;
+    /**
+     * Output columns to blank where their value has not moved since this enrichment's last
+     * successful run. Nothing is unchanged on a first run, and a blanked value never
+     * overwrites an existing value at the destination.
+     *
+     * This works on cells. `incrementality` works on rows. They compose: a changed row is
+     * emitted, and an unchanged cell inside it is still blanked.
+     *
+     * A `previous_*` or `*_delta` column may not be named here.
+     * @type {Set<string>}
+     * @memberof EnrichmentPut
+     */
+    suppress_unchanged?: Set<string>;
+}
+/**
+ * Settings that apply to this run alone.
+ * @export
+ * @interface EnrichmentRunRequest
+ */
+export interface EnrichmentRunRequest {
+    /**
+     * Proceed even though this enrichment's usage ceiling is larger than your remaining
+     * quota. The ceiling is an upper bound, not a forecast, so a run that exceeds it is
+     * often still within quota.
+     *
+     * This acknowledges only that comparison. It does not lift the platform row limits, your
+     * account's entitlements, or the quota check against the usage a run actually creates.
+     * The acknowledgement and the ceiling you were shown are both recorded on the run.
+     * @type {boolean}
+     * @memberof EnrichmentRunRequest
+     */
+    acknowledge_usage_ceiling?: boolean;
+    /**
+     *
+     * @type {EnrichmentIncrementality}
+     * @memberof EnrichmentRunRequest
+     */
+    incrementality?: EnrichmentIncrementality;
+}
+/**
+ * A CSV file written to Amazon S3.
+ * @export
+ * @interface EnrichmentS3CsvDestination
+ */
+export interface EnrichmentS3CsvDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    delimiter?: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    gzip?: boolean;
+    /**
+     * The exact object key to write. A later run writes the same key and replaces the
+     * object.
+     * @type {string}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    object_key: string;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as Amazon S3.
+     * @type {string}
+     * @memberof EnrichmentS3CsvDestination
+     */
+    type: string;
+}
+/**
+ * When to run this enrichment without being asked.
+ * @export
+ * @interface EnrichmentSchedule
+ */
+export interface EnrichmentSchedule {
+    /**
+     *
+     * @type {EnrichmentCadence}
+     * @memberof EnrichmentSchedule
+     */
+    cadence: EnrichmentCadence;
+    /**
+     * The instant after which the schedule stops firing. Omit it to run indefinitely. A bare
+     * timestamp is read in `timezone`.
+     * @type {string}
+     * @memberof EnrichmentSchedule
+     */
+    ends_at?: string;
+    /**
+     * Whether the schedule is currently stood down. A paused schedule has no next run and
+     * keeps its settings.
+     * @type {boolean}
+     * @memberof EnrichmentSchedule
+     */
+    paused: boolean;
+    /**
+     * The first instant the schedule may fire. Omit it to start immediately. A bare
+     * timestamp is read in `timezone`.
+     * @type {string}
+     * @memberof EnrichmentSchedule
+     */
+    starts_at?: string;
+    /**
+     * The IANA timezone the cadence is read in.
+     * @type {string}
+     * @memberof EnrichmentSchedule
+     */
+    timezone: string;
+}
+/**
+ * A CSV file written over SFTP.
+ * @export
+ * @interface EnrichmentSftpDestination
+ */
+export interface EnrichmentSftpDestination {
+    /**
+     * The field delimiter. Omit it for a comma.
+     * @type {string}
+     * @memberof EnrichmentSftpDestination
+     */
+    delimiter?: string;
+    /**
+     * The exact remote file name to write. A later run writes the same name and replaces
+     * the file.
+     * @type {string}
+     * @memberof EnrichmentSftpDestination
+     */
+    file_name: string;
+    /**
+     * Compress the file with gzip. Omit it to leave the file uncompressed.
+     * @type {boolean}
+     * @memberof EnrichmentSftpDestination
+     */
+    gzip?: boolean;
+    /**
+     * Quote every field. Omit it to quote only fields that need it.
+     * @type {boolean}
+     * @memberof EnrichmentSftpDestination
+     */
+    quote_all?: boolean;
+    /**
+     * Marks this destination as SFTP.
+     * @type {string}
+     * @memberof EnrichmentSftpDestination
+     */
+    type: string;
+}
+/**
+ * A table in Snowflake.
+ * @export
+ * @interface EnrichmentSnowflakeDestination
+ */
+export interface EnrichmentSnowflakeDestination {
+    /**
+     * The schema holding the table.
+     * @type {string}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    schema: string;
+    /**
+     * The table to write.
+     * @type {string}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    table_name: string;
+    /**
+     * Marks this destination as Snowflake.
+     * @type {string}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    type: string;
+    /**
+     *
+     * @type {EnrichmentTableWrite}
+     * @memberof EnrichmentSnowflakeDestination
+     */
+    write: EnrichmentTableWrite;
+}
+/**
+ * One ordering rule over the output rows. Ascending sorts put nulls first. Descending sorts
+ * put nulls last.
+ * @export
+ * @interface EnrichmentSort
+ */
+export interface EnrichmentSort {
+    /**
+     * The name of one output column.
+     *
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof EnrichmentSort
+     */
+    header: string;
+    /**
+     * Which direction to sort in.
+     * @type {string}
+     * @memberof EnrichmentSort
+     */
+    order: EnrichmentSortOrderEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum EnrichmentSortOrderEnum {
+    Asc = "asc",
+    Desc = "desc"
+}
+/**
+ * @type EnrichmentTableWrite
+ * How a run writes its rows into the table. Every table destination states this, so no run
+ * has to guess between replacing what is there and adding to it.
+ * @export
+ */
+export declare type EnrichmentTableWrite = {
+    mode: 'create';
+} & EnrichmentTableWriteCreate | {
+    mode: 'upsert';
+} & EnrichmentTableWriteUpsert;
+/**
+ * Replace the table with this run's rows. The table holds what this run emitted and nothing
+ * else, so a run that emits part of a population has to emit all of it: this mode takes only
+ * `full` incrementality and blanks no cells.
+ * @export
+ * @interface EnrichmentTableWriteCreate
+ */
+export interface EnrichmentTableWriteCreate {
+    /**
+     * Marks this destination as replaced on every run.
+     * @type {string}
+     * @memberof EnrichmentTableWriteCreate
+     */
+    mode: string;
+}
+/**
+ * Match each row against the table on `join_on`, update the rows it finds, and insert the
+ * rows it does not. Rows this run does not emit are left as an earlier run wrote them, which
+ * is what makes `new_rows`, `changed`, and `suppress_unchanged` available here.
+ *
+ * The table is created when it is absent. When it is present, the output columns it lacks are
+ * added and every other column in it is left alone.
+ *
+ * A run never deletes: someone who leaves the population keeps the values of the last run
+ * that emitted them.
+ * @export
+ * @interface EnrichmentTableWriteUpsert
+ */
+export interface EnrichmentTableWriteUpsert {
+    /**
+     * The output columns whose values identify one row of the table. A run refuses to deliver
+     * when these are empty for a row, or when they name more than one of the rows it is about
+     * to send. They cannot name a `previous_*` or `*_delta` column, which reports movement
+     * rather than identity, nor a column the enrichment blanks.
+     * @type {Set<string>}
+     * @memberof EnrichmentTableWriteUpsert
+     */
+    join_on: Set<string>;
+    /**
+     * Marks this destination as merged into on every run.
+     * @type {string}
+     * @memberof EnrichmentTableWriteUpsert
+     */
+    mode: string;
+}
+/**
  * A Faraday error code.
  *
  * Some possible values include:
@@ -14879,6 +18268,7 @@ export interface DecodeConfig {
  * - BAD_REQUEST: The request could not be validated.
  * - FORBIDDEN: You do not have permission to access the specified resource.
  * - MAX_RESOURCES_REACHED: You have created too many of this resource type on your account. You must delete some before making more.
+ * - USAGE_QUOTA_EXCEEDED: The request would use more than the usage left on your contract.
  * - INTERNAL_SERVER_ERROR: An internal error of an unknown type occurred.
  * - INVALID_AUTHORIZATION: The Authorization header could not be parsed.
  * - NOT_FOUND: The specified resource could not be found.
@@ -14902,6 +18292,7 @@ export declare enum ErrorCode {
     BadRequest = "BAD_REQUEST",
     Forbidden = "FORBIDDEN",
     MaxResourcesReached = "MAX_RESOURCES_REACHED",
+    UsageQuotaExceeded = "USAGE_QUOTA_EXCEEDED",
     InternalServerError = "INTERNAL_SERVER_ERROR",
     InvalidAuthorization = "INVALID_AUTHORIZATION",
     NotFound = "NOT_FOUND",
@@ -19067,6 +22458,15 @@ export interface PlacePut {
     name: string;
 }
 /**
+ * Widen a condition to everyone who shares an address with someone it already covers. The
+ * expansion includes the original people.
+ * @export
+ * @enum {string}
+ */
+export declare enum PopulationExpansion {
+    Address = "address"
+}
+/**
  * The data type of a column in table, or of a trait. Types are expressed using a subset of
  * [Avro](https://avro.apache.org/docs/current/spec.html). Possible values include:
  *
@@ -19084,6 +22484,1865 @@ export declare enum PrimitiveDataType {
     Double = "double",
     String = "string",
     Date = "date"
+}
+/**
+ * The exact set of output columns you want, in the exact order you want them.
+ *
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ *
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface Project
+ */
+export interface Project {
+    /**
+     * If not null, this resource will no longer receive updates, but will still be visable.
+     * @type {string}
+     * @memberof Project
+     */
+    archived_at?: string;
+    /**
+     * The output columns, in output order, by header.
+     *
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof Project
+     */
+    column_order: Set<string>;
+    /**
+     * When this resource was created.
+     * @type {string}
+     * @memberof Project
+     */
+    created_at: string;
+    /**
+     * A unique ID for this resource.
+     * @type {string}
+     * @memberof Project
+     */
+    id: string;
+    /**
+     * The last time this resource's input was read.
+     * @type {string}
+     * @memberof Project
+     */
+    last_read_input_at?: string;
+    /**
+     * The last time this resource's configuration was updated. If this is more recent than last_updated_output_at, the resource will be rebuilt.
+     * @type {string}
+     * @memberof Project
+     */
+    last_updated_config_at?: string;
+    /**
+     * The last time this resource successfully built.
+     * @type {string}
+     * @memberof Project
+     */
+    last_updated_output_at?: string;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof Project
+     */
+    name: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     *
+     * The order of this map means nothing. `column_order` alone decides output order.
+     *
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof Project
+     */
+    payload: {
+        [key: string]: ProjectPayloadElement;
+    };
+    /**
+     *
+     * @type {ProjectPreview}
+     * @memberof Project
+     */
+    preview: ProjectPreview;
+    /**
+     * The type of this resource.
+     * @type {string}
+     * @memberof Project
+     */
+    resource_type: string;
+    /**
+     *
+     * @type {ResourceStatus}
+     * @memberof Project
+     */
+    status: ResourceStatus;
+    /**
+     * When the status of this resource was last updated.
+     * @type {string}
+     * @memberof Project
+     */
+    status_changed_at?: string;
+    /**
+     * If this resource has `status == "error"`, this will contain an error message.
+     * @type {string}
+     * @memberof Project
+     */
+    status_error?: string;
+    /**
+     * When this resource was last updated.
+     * @type {string}
+     * @memberof Project
+     */
+    updated_at: string;
+}
+/**
+ * One output column drawn from an attribute.
+ * @export
+ * @interface ProjectAttributeColumn
+ */
+export interface ProjectAttributeColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectAttributeColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. The `interpreted_*` components apply the attribute's
+     * interpretation map.
+     * @type {string}
+     * @memberof ProjectAttributeColumn
+     */
+    component: ProjectAttributeColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectAttributeColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectAttributeColumnComponentEnum {
+    Value = "value",
+    PreviousValue = "previous_value",
+    ValueDelta = "value_delta",
+    InterpretedValue = "interpreted_value",
+    PreviousInterpretedValue = "previous_interpreted_value",
+    InterpretedValueDelta = "interpreted_value_delta"
+}
+/**
+ * Values of one Faraday attribute.
+ * @export
+ * @interface ProjectAttributeElement
+ */
+export interface ProjectAttributeElement {
+    /**
+     * The output columns drawn from this attribute, keyed by output column header.
+     * @type {{ [key: string]: ProjectAttributeColumn; }}
+     * @memberof ProjectAttributeElement
+     */
+    columns: {
+        [key: string]: ProjectAttributeColumn;
+    };
+    /**
+     *
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectAttributeElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The attribute to read. Your account must be entitled to append it, and a Project that
+     * names an attribute your account cannot use is rejected.
+     * @type {string}
+     * @memberof ProjectAttributeElement
+     */
+    name: string;
+    /**
+     * Marks this element as an attribute.
+     * @type {string}
+     * @memberof ProjectAttributeElement
+     */
+    type: string;
+}
+/**
+ * One output column drawn from a cohort.
+ * @export
+ * @interface ProjectCohortColumn
+ */
+export interface ProjectCohortColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectCohortColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectCohortColumn
+     */
+    component: ProjectCohortColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectCohortColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectCohortColumnComponentEnum {
+    Membership = "membership",
+    PreviousMembership = "previous_membership",
+    MembershipDelta = "membership_delta"
+}
+/**
+ * Membership in one cohort.
+ * @export
+ * @interface ProjectCohortElement
+ */
+export interface ProjectCohortElement {
+    /**
+     * The cohort to read membership from.
+     * @type {string}
+     * @memberof ProjectCohortElement
+     */
+    cohort_id: string;
+    /**
+     * The output columns drawn from this cohort, keyed by output column header.
+     * @type {{ [key: string]: ProjectCohortColumn; }}
+     * @memberof ProjectCohortElement
+     */
+    columns: {
+        [key: string]: ProjectCohortColumn;
+    };
+    /**
+     *
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectCohortElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * Marks this element as a cohort.
+     * @type {string}
+     * @memberof ProjectCohortElement
+     */
+    type: string;
+}
+/**
+ * Read each person's value as of the moment they entered a cohort.
+ * @export
+ * @interface ProjectCohortEntranceFrame
+ */
+export interface ProjectCohortEntranceFrame {
+    /**
+     *
+     * @type {ProjectCohortEntranceFrameEntranceToCohort}
+     * @memberof ProjectCohortEntranceFrame
+     */
+    entrance_to_cohort: ProjectCohortEntranceFrameEntranceToCohort;
+    /**
+     * The instant to use for a person who never entered the cohort. Omit it to read that
+     * person's current value. `EnrichmentJob.counts.as_of_resolutions` reports how many rows
+     * fell back.
+     * @type {string}
+     * @memberof ProjectCohortEntranceFrame
+     */
+    fallback_timestamp?: string;
+}
+/**
+ * The cohort whose entrance supplies each person's instant.
+ * @export
+ * @interface ProjectCohortEntranceFrameEntranceToCohort
+ */
+export interface ProjectCohortEntranceFrameEntranceToCohort {
+    /**
+     * The cohort to take the entrance instant from.
+     * @type {string}
+     * @memberof ProjectCohortEntranceFrameEntranceToCohort
+     */
+    cohort_id: string;
+}
+/**
+ * What to do when several values must become one value for this column.
+ *
+ * The same strategy is applied at each point where that happens:
+ *
+ * - Several source values for one person, whether or not the output is grouped.
+ * - Several people in one group row, when the output is grouped.
+ * - Several donors at an imputation level.
+ *
+ * A strategy is required whenever any of those can happen, including on a lookup, where
+ * one person's several source values are still collapsed. Grouping never applies to a
+ * lookup, because a lookup has no group.
+ *
+ * `first` and `last` rank people within a group using `Enrichment.aggregation.order`, so
+ * they are unavailable to a column whose source can yield several values for one person:
+ * no order over one person's source rows exists.
+ *
+ * Strategies by resolved data type:
+ *
+ * - Any type: `nullify`, `count`, `count_distinct`, `first`, `last`.
+ * - Numeric: `mean`, `median`, `mode`, `min`, `max`, `sum`.
+ * - Date and datetime: `min`, `max`, `median` (the earlier of the two middle values).
+ * - Boolean: `and`, `or`, `xor`.
+ * - String and categorical: `mode` (ties broken alphabetically) and the `concatenate_*`
+ *   strategies, which order values alphabetically.
+ *
+ * `count` and `count_distinct` resolve the column to `long` and ignore nulls.
+ * @export
+ * @enum {string}
+ */
+export declare enum ProjectColumnAggregation {
+    Nullify = "nullify",
+    First = "first",
+    Last = "last",
+    Count = "count",
+    CountDistinct = "count_distinct",
+    Mean = "mean",
+    Median = "median",
+    Mode = "mode",
+    Min = "min",
+    Max = "max",
+    Sum = "sum",
+    And = "and",
+    Or = "or",
+    Xor = "xor",
+    ConcatenateComma = "concatenate_comma",
+    ConcatenatePipe = "concatenate_pipe",
+    ConcatenateSpace = "concatenate_space",
+    ConcatenateUniqueComma = "concatenate_unique_comma",
+    ConcatenateUniquePipe = "concatenate_unique_pipe",
+    ConcatenateUniqueSpace = "concatenate_unique_space"
+}
+/**
+ * The data type a Project column emits. `datetime` is an instant with a time of day, and
+ * `json` is a structured JSON value.
+ * @export
+ * @enum {string}
+ */
+export declare enum ProjectColumnDataType {
+    Boolean = "boolean",
+    Long = "long",
+    Double = "double",
+    String = "string",
+    Date = "date",
+    Datetime = "datetime",
+    Json = "json"
+}
+/**
+ * One output column read back from a dataset.
+ * @export
+ * @interface ProjectDatasetColumn
+ */
+export interface ProjectDatasetColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectDatasetColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * The dataset column to read.
+     * @type {string}
+     * @memberof ProjectDatasetColumn
+     */
+    column_name: string;
+    /**
+     * Which value to emit.
+     *
+     * A `*_delta` component is null unless both values are numeric or both are boolean.
+     * @type {string}
+     * @memberof ProjectDatasetColumn
+     */
+    component: ProjectDatasetColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectDatasetColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectDatasetColumnComponentEnum {
+    Value = "value",
+    PreviousValue = "previous_value",
+    ValueDelta = "value_delta"
+}
+/**
+ * Values read back from one of your own datasets.
+ * @export
+ * @interface ProjectDatasetElement
+ */
+export interface ProjectDatasetElement {
+    /**
+     * The output columns drawn from this dataset, keyed by output column header.
+     *
+     * A dataset keeps your source rows, so several rows can resolve to one person. Each
+     * column therefore declares `aggregation` whenever its dataset can yield more than one
+     * row for a person.
+     * @type {{ [key: string]: ProjectDatasetColumn; }}
+     * @memberof ProjectDatasetElement
+     */
+    columns: {
+        [key: string]: ProjectDatasetColumn;
+    };
+    /**
+     * The dataset to read.
+     * @type {string}
+     * @memberof ProjectDatasetElement
+     */
+    dataset_id: string;
+    /**
+     * Marks this element as a dataset.
+     * @type {string}
+     * @memberof ProjectDatasetElement
+     */
+    type: string;
+}
+/**
+ * Read each person's value as of an instant carried in one of your own datasets.
+ * @export
+ * @interface ProjectDatasetTimestampFrame
+ */
+export interface ProjectDatasetTimestampFrame {
+    /**
+     * The instant to use for a person whose dataset value is absent or unparseable. Omit it
+     * to read that person's current value. `EnrichmentJob.counts.as_of_resolutions` reports
+     * how many rows fell back.
+     * @type {string}
+     * @memberof ProjectDatasetTimestampFrame
+     */
+    fallback_timestamp?: string;
+    /**
+     *
+     * @type {ProjectDatasetTimestampFrameTimestampFromDataset}
+     * @memberof ProjectDatasetTimestampFrame
+     */
+    timestamp_from_dataset: ProjectDatasetTimestampFrameTimestampFromDataset;
+}
+/**
+ * The dataset column supplying each person's instant.
+ * @export
+ * @interface ProjectDatasetTimestampFrameTimestampFromDataset
+ */
+export interface ProjectDatasetTimestampFrameTimestampFromDataset {
+    /**
+     * The column holding the instant.
+     * @type {string}
+     * @memberof ProjectDatasetTimestampFrameTimestampFromDataset
+     */
+    column_name: string;
+    /**
+     * The dataset holding the instant.
+     * @type {string}
+     * @memberof ProjectDatasetTimestampFrameTimestampFromDataset
+     */
+    dataset_id: string;
+    /**
+     *
+     * @type {ProjectTimestampFormat}
+     * @memberof ProjectDatasetTimestampFrameTimestampFromDataset
+     */
+    format: ProjectTimestampFormat;
+}
+/**
+ * Read every person's value as of one instant.
+ * @export
+ * @interface ProjectFixedTimestampFrame
+ */
+export interface ProjectFixedTimestampFrame {
+    /**
+     * The instant to read as of.
+     * @type {string}
+     * @memberof ProjectFixedTimestampFrame
+     */
+    timestamp: string;
+}
+/**
+ * @type ProjectFrameOfReference
+ * The instant a value is read as of. Omit it to read the current value.
+ *
+ * A source answers with the latest value at or before the resolved instant, never a later
+ * one. Where a source cannot answer at all, the value is null and the result carries a
+ * warning. Where a source answers at day grain, the instant is floored to a UTC date;
+ * `ProjectResolvedColumn.snapshot_granularity` reports the grain that was used.
+ *
+ * A source that cannot honor a frame at all is rejected when the Project is saved. A frame
+ * is never quietly replaced with a current value.
+ * @export
+ */
+export declare type ProjectFrameOfReference = ProjectCohortEntranceFrame | ProjectDatasetTimestampFrame | ProjectFixedTimestampFrame;
+/**
+ * One output column describing an output row's area.
+ *
+ * A geometry column takes no `aggregation`: it already describes one group rather than a
+ * set of people.
+ * @export
+ * @interface ProjectGeometryColumn
+ */
+export interface ProjectGeometryColumn {
+    /**
+     * Which value to emit: `id` is the area's canonical identifier, such as a FIPS code;
+     * `name` is its conventional name; `wkt` is its geometry in well-known text; and
+     * `population` is the known adult population of the area.
+     *
+     * A carrier route is a delivery walk rather than a published area, so grouping by it
+     * offers no geometry at all.
+     * @type {string}
+     * @memberof ProjectGeometryColumn
+     */
+    component: ProjectGeometryColumnComponentEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectGeometryColumnComponentEnum {
+    Id = "id",
+    Name = "name",
+    Wkt = "wkt",
+    Population = "population"
+}
+/**
+ * The geography of each output row's group.
+ *
+ * These columns describe a group, so they are valid only when an enrichment groups
+ * geographically. A Project carrying them is rejected by an enrichment that groups by
+ * person, address, or column.
+ * @export
+ * @interface ProjectGeometryElement
+ */
+export interface ProjectGeometryElement {
+    /**
+     * The output columns describing each group's area, keyed by output column header.
+     * @type {{ [key: string]: ProjectGeometryColumn; }}
+     * @memberof ProjectGeometryElement
+     */
+    columns: {
+        [key: string]: ProjectGeometryColumn;
+    };
+    /**
+     * Marks this element as a geometry.
+     * @type {string}
+     * @memberof ProjectGeometryElement
+     */
+    type: string;
+}
+/**
+ * One output column drawn from an identity class.
+ * @export
+ * @interface ProjectIdentifierColumn
+ */
+export interface ProjectIdentifierColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectIdentifierColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. Each component belongs to one identity class: `phone` to
+     * `phone`; `full_address`, `first_name`, `last_name`, `house_number_and_street`,
+     * `unit`, `city`, `state`, and `postcode` to `mail`; `email` to `email`;
+     * `faraday_person_id_v1` to `graph_id`; and `latitude` and `longitude` to `location`.
+     * @type {string}
+     * @memberof ProjectIdentifierColumn
+     */
+    component: ProjectIdentifierColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectIdentifierColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which of the person's values to emit, under the ordering rule stated on the element.
+     * `0` is the first value. Negative indexes are invalid.
+     * @type {number}
+     * @memberof ProjectIdentifierColumn
+     */
+    index: number;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectIdentifierColumnComponentEnum {
+    Phone = "phone",
+    FullAddress = "full_address",
+    FirstName = "first_name",
+    LastName = "last_name",
+    HouseNumberAndStreet = "house_number_and_street",
+    Unit = "unit",
+    City = "city",
+    State = "state",
+    Postcode = "postcode",
+    Email = "email",
+    FaradayPersonIdV1 = "faraday_person_id_v1",
+    Latitude = "latitude",
+    Longitude = "longitude"
+}
+/**
+ * Identifiers of one identity class for the resolved person.
+ *
+ * One person can hold several identifiers in a class, so a column picks one with `index`.
+ * Values are ordered as follows before an index is applied, and the ordering is stable for
+ * the life of one lookup or job:
+ *
+ * 1. Values supplied by `fig`.
+ * 2. Values supplied only by `match_boost`.
+ * 3. Within one provider rank, by the identity class key, ascending, using Unicode code
+ *    point order on canonical stored values. That key is the canonical graph id for
+ *    `graph_id`, the canonical email for `email`, the canonical phone for `phone`, latitude
+ *    then longitude for `location`, and postcode, state, city, house number and street,
+ *    unit, last name, then first name for `mail`.
+ *
+ * Values are normalized and deduplicated first, using the same normalization as matching.
+ * Where both providers supply the same normalized value, it is kept once, at the `fig`
+ * rank. Every `mail` component at one index comes from the same mail record.
+ * @export
+ * @interface ProjectIdentifierElement
+ */
+export interface ProjectIdentifierElement {
+    /**
+     * The identity class to read.
+     * @type {string}
+     * @memberof ProjectIdentifierElement
+     */
+    _class: ProjectIdentifierElementClassEnum;
+    /**
+     * The output columns drawn from this identity class, keyed by output column header.
+     * @type {{ [key: string]: ProjectIdentifierColumn; }}
+     * @memberof ProjectIdentifierElement
+     */
+    columns: {
+        [key: string]: ProjectIdentifierColumn;
+    };
+    /**
+     * Hash the emitted value with this algorithm. Omit it for cleartext.
+     * @type {string}
+     * @memberof ProjectIdentifierElement
+     */
+    hash?: ProjectIdentifierElementHashEnum;
+    /**
+     * Which resolution providers may supply the emitted value. Omit it to permit every
+     * provider your account is entitled to use. A provider your account cannot use is
+     * rejected.
+     *
+     * This restricts the value that is emitted. It does not affect matching, and it does
+     * not change which person resolved. It does not set the order of values either; the
+     * ordering rule above does that.
+     * @type {Set<string>}
+     * @memberof ProjectIdentifierElement
+     */
+    providers?: Set<ProjectIdentifierElementProvidersEnum>;
+    /**
+     * Marks this element as an identifier.
+     * @type {string}
+     * @memberof ProjectIdentifierElement
+     */
+    type: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectIdentifierElementClassEnum {
+    Phone = "phone",
+    Mail = "mail",
+    Email = "email",
+    GraphId = "graph_id",
+    Location = "location"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectIdentifierElementHashEnum {
+    Sha256 = "sha256"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectIdentifierElementProvidersEnum {
+    Fig = "fig",
+    MatchBoost = "match_boost"
+}
+/**
+ * A level at which a missing value may be borrowed from other people.
+ *
+ * A person's own value always wins. Failing that, levels are tried in the order given, the
+ * donors at that level are combined with the column's own `aggregation`, and the first
+ * level that yields a value ends the search.
+ *
+ * A donor is a person the same enrichment already read, so borrowing never reaches past
+ * the identity graph and account data the enrichment was already allowed to read. `first`
+ * and `last` cannot impute: donors at an address or postcode have no order.
+ * @export
+ * @enum {string}
+ */
+export declare enum ProjectImputationLevel {
+    Address = "address",
+    Postcode = "postcode"
+}
+/**
+ * One coherent description of a person.
+ * @export
+ * @interface ProjectLookupIdentitySet
+ */
+export interface ProjectLookupIdentitySet {
+    /**
+     * The person's email address.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySet
+     */
+    email?: string;
+    /**
+     *
+     * @type {ProjectLookupIdentitySetGraphId}
+     * @memberof ProjectLookupIdentitySet
+     */
+    graph_id?: ProjectLookupIdentitySetGraphId;
+    /**
+     *
+     * @type {ProjectLookupIdentitySetLocation}
+     * @memberof ProjectLookupIdentitySet
+     */
+    location?: ProjectLookupIdentitySetLocation;
+    /**
+     *
+     * @type {ProjectLookupIdentitySetMail}
+     * @memberof ProjectLookupIdentitySet
+     */
+    mail?: ProjectLookupIdentitySetMail;
+    /**
+     *
+     * @type {ProjectLookupIdentitySetName}
+     * @memberof ProjectLookupIdentitySet
+     */
+    name?: ProjectLookupIdentitySetName;
+    /**
+     * The person's phone number.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySet
+     */
+    phone?: string;
+}
+/**
+ * A Faraday person id. Supplying it names the person outright, so no matching is needed,
+ * but it still counts towards ambiguity: if another of the subject's identity sets
+ * resolves to a different person, the subject is ambiguous.
+ * @export
+ * @interface ProjectLookupIdentitySetGraphId
+ */
+export interface ProjectLookupIdentitySetGraphId {
+    /**
+     * The person's Faraday id.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetGraphId
+     */
+    faraday_person_id_v1: string;
+}
+/**
+ * A point the person is at.
+ * @export
+ * @interface ProjectLookupIdentitySetLocation
+ */
+export interface ProjectLookupIdentitySetLocation {
+    /**
+     * Latitude in degrees.
+     * @type {number}
+     * @memberof ProjectLookupIdentitySetLocation
+     */
+    latitude: number;
+    /**
+     * Longitude in degrees.
+     * @type {number}
+     * @memberof ProjectLookupIdentitySetLocation
+     */
+    longitude: number;
+    /**
+     * How far from the point to search, in meters.
+     * @type {number}
+     * @memberof ProjectLookupIdentitySetLocation
+     */
+    search_radius?: number;
+}
+/**
+ * The person's postal address. Give it in parts, with either city and state or a
+ * postcode alongside the street address. Otherwise give `full_address` on one line.
+ * Either way the address is standardised before matching, the same way an address
+ * column is standardised at ingest, so both routes reach the same person.
+ * @export
+ * @interface ProjectLookupIdentitySetMail
+ */
+export interface ProjectLookupIdentitySetMail {
+    /**
+     * City.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    city?: string;
+    /**
+     * The whole address on one line, including city and state or postcode. Only supply
+     * this if you do not hold the parts separately; supplying them is more reliable.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    full_address?: string;
+    /**
+     * House number and street.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    house_number_and_street?: string;
+    /**
+     * Postcode.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    postcode?: string;
+    /**
+     * State.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    state?: string;
+    /**
+     * Apartment, suite, or unit.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetMail
+     */
+    unit?: string;
+}
+/**
+ * The person's name. Give `first` and `last` when you hold them separately. Otherwise
+ * give `full`, which is split into a given and a family name the same way a dataset's
+ * full-name column is split at ingest, so both routes reach the same person.
+ * @export
+ * @interface ProjectLookupIdentitySetName
+ */
+export interface ProjectLookupIdentitySetName {
+    /**
+     * Given name.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetName
+     */
+    first?: string;
+    /**
+     * The whole name, either "Jo Smith" or "Smith, Jo". Only supply this if you do not
+     * hold the given and family names separately; supplying them is more reliable.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetName
+     */
+    full?: string;
+    /**
+     * Family name.
+     * @type {string}
+     * @memberof ProjectLookupIdentitySetName
+     */
+    last?: string;
+}
+/**
+ * Which of a subject's identity sets resolved, and on what. This is absent unless the
+ * subject's status is `matched`.
+ * @export
+ * @interface ProjectLookupMatch
+ */
+export interface ProjectLookupMatch {
+    /**
+     * The person this subject resolved to.
+     * @type {string}
+     * @memberof ProjectLookupMatch
+     */
+    faraday_person_id_v1: string;
+    /**
+     * Which of the subject's `identity_sets` resolved, by index, so you can tell which of
+     * your alternatives worked.
+     * @type {number}
+     * @memberof ProjectLookupMatch
+     */
+    identity_set_index: number;
+    /**
+     * Which identity classes drove the match.
+     * @type {Array<string>}
+     * @memberof ProjectLookupMatch
+     */
+    matched_on: Array<ProjectLookupMatchMatchedOnEnum>;
+    /**
+     * Which resolution provider resolved the subject.
+     * @type {string}
+     * @memberof ProjectLookupMatch
+     */
+    provider: ProjectLookupMatchProviderEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectLookupMatchMatchedOnEnum {
+    GraphId = "graph_id",
+    Email = "email",
+    Phone = "phone",
+    Mail = "mail",
+    Name = "name",
+    Location = "location"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectLookupMatchProviderEnum {
+    Fig = "fig",
+    MatchBoost = "match_boost"
+}
+/**
+ * The people to look up. The Project supplies the columns; this request supplies the rows.
+ * @export
+ * @interface ProjectLookupRequest
+ */
+export interface ProjectLookupRequest {
+    /**
+     * One entry per person. Results come back aligned to this array by index.
+     * @type {Array<ProjectLookupSubject>}
+     * @memberof ProjectLookupRequest
+     */
+    subjects: Array<ProjectLookupSubject>;
+}
+/**
+ * One result per requested subject, in the same order.
+ * @export
+ * @interface ProjectLookupResponse
+ */
+export interface ProjectLookupResponse {
+    /**
+     * Aligned with the request's `subjects` by index.
+     * @type {Array<ProjectLookupResult>}
+     * @memberof ProjectLookupResponse
+     */
+    results: Array<ProjectLookupResult>;
+}
+/**
+ * What one subject resolved to, and that person's payload.
+ * @export
+ * @interface ProjectLookupResult
+ */
+export interface ProjectLookupResult {
+    /**
+     *
+     * @type {ProjectLookupMatch}
+     * @memberof ProjectLookupResult
+     */
+    match?: ProjectLookupMatch;
+    /**
+     * The person's values, keyed by output column header, holding one key per column in the
+     * Project and nothing else. This is absent unless the status is `matched`.
+     *
+     * A `previous_*` or `*_delta` value is always null here: those values come from an
+     * enrichment's own delivery history, and a lookup keeps no such history.
+     * @type {object}
+     * @memberof ProjectLookupResult
+     */
+    payload?: object;
+    /**
+     * Echoed from the subject, when you supplied one.
+     * @type {string}
+     * @memberof ProjectLookupResult
+     */
+    reference?: string;
+    /**
+     * How the subject resolved. `ambiguous` means two of the subject's identity sets
+     * resolved to different people, or one set resolved to several people. Ties are never
+     * broken silently.
+     * @type {string}
+     * @memberof ProjectLookupResult
+     */
+    status: ProjectLookupResultStatusEnum;
+    /**
+     * Columns that came back null for a reason worth naming. The match still succeeded.
+     * @type {Array<ProjectLookupWarning>}
+     * @memberof ProjectLookupResult
+     */
+    warnings?: Array<ProjectLookupWarning>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectLookupResultStatusEnum {
+    Matched = "matched",
+    NoMatch = "no_match",
+    Ambiguous = "ambiguous"
+}
+/**
+ * One person to look up.
+ * @export
+ * @interface ProjectLookupSubject
+ */
+export interface ProjectLookupSubject {
+    /**
+     * Alternative descriptions of the same person, for better matchability. Every set is
+     * evaluated, so that sets describing different people are reported as ambiguous rather
+     * than resolved silently.
+     * @type {Array<ProjectLookupIdentitySet>}
+     * @memberof ProjectLookupSubject
+     */
+    identity_sets: Array<ProjectLookupIdentitySet>;
+    /**
+     * Your own key for this person, echoed back on the matching result.
+     * @type {string}
+     * @memberof ProjectLookupSubject
+     */
+    reference?: string;
+}
+/**
+ * One reason some columns came back null.
+ * @export
+ * @interface ProjectLookupWarning
+ */
+export interface ProjectLookupWarning {
+    /**
+     * Why the columns are null: the value comes from an enrichment's delivery history, which
+     * a lookup does not keep; their element is not ready; a lookup cannot read the source at
+     * person grain at all; a lookup cannot serve the column's frame of reference within the
+     * synchronous latency target; or the source could not answer the requested instant.
+     *
+     * Every code but `historical_value_unavailable` is already reported by `lookup_available`
+     * on the Project's resolved schema, so you can see it when you save the Project rather
+     * than when a request returns a null.
+     * @type {string}
+     * @memberof ProjectLookupWarning
+     */
+    code: ProjectLookupWarningCodeEnum;
+    /**
+     * The output columns this warning covers.
+     * @type {Array<string>}
+     * @memberof ProjectLookupWarning
+     */
+    headers: Array<string>;
+    /**
+     * A human-readable description of the warning.
+     * @type {string}
+     * @memberof ProjectLookupWarning
+     */
+    note: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectLookupWarningCodeEnum {
+    DeliveryHistoryUnavailable = "delivery_history_unavailable",
+    ElementNotReady = "element_not_ready",
+    SourceNotAvailableForLookup = "source_not_available_for_lookup",
+    FrameNotAvailableForLookup = "frame_not_available_for_lookup",
+    HistoricalValueUnavailable = "historical_value_unavailable"
+}
+/**
+ * One output column describing how a row resolved.
+ * @export
+ * @interface ProjectMatchMetadataColumn
+ */
+export interface ProjectMatchMetadataColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectMatchMetadataColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. `provider` names the provider that resolved the row, and is null
+     * where Faraday does not recognize the person. `matched_on` is the list of identity
+     * classes that drove the match.
+     * @type {string}
+     * @memberof ProjectMatchMetadataColumn
+     */
+    component: ProjectMatchMetadataColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectMatchMetadataColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectMatchMetadataColumnComponentEnum {
+    Provider = "provider",
+    MatchedOn = "matched_on"
+}
+/**
+ * How each row resolved to a person.
+ * @export
+ * @interface ProjectMatchMetadataElement
+ */
+export interface ProjectMatchMetadataElement {
+    /**
+     * The output columns describing each row's resolution, keyed by output column header.
+     * @type {{ [key: string]: ProjectMatchMetadataColumn; }}
+     * @memberof ProjectMatchMetadataElement
+     */
+    columns: {
+        [key: string]: ProjectMatchMetadataColumn;
+    };
+    /**
+     * Marks this element as match metadata.
+     * @type {string}
+     * @memberof ProjectMatchMetadataElement
+     */
+    type: string;
+}
+/**
+ * (Parameters used to PATCH the `Project` type.)
+ *
+ * The exact set of output columns you want, in the exact order you want them.
+ *
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ *
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface ProjectMergePatch
+ */
+export interface ProjectMergePatch {
+    /**
+     * The output columns, in output order, by header.
+     *
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof ProjectMergePatch
+     */
+    column_order?: Set<string>;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof ProjectMergePatch
+     */
+    name?: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     *
+     * The order of this map means nothing. `column_order` alone decides output order.
+     *
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof ProjectMergePatch
+     */
+    payload?: {
+        [key: string]: ProjectPayloadElement;
+    };
+}
+/**
+ * One output column drawn from an outcome.
+ * @export
+ * @interface ProjectOutcomeColumn
+ */
+export interface ProjectOutcomeColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectOutcomeColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectOutcomeColumn
+     */
+    component: ProjectOutcomeColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectOutcomeColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which predictor to emit, ranked by importance, for an `important_predictor`
+     * component. A negative index counts from the least important end. Required for those
+     * components and rejected for the others.
+     * @type {number}
+     * @memberof ProjectOutcomeColumn
+     */
+    index?: number;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectOutcomeColumnComponentEnum {
+    CalibratedProbability = "calibrated_probability",
+    PreviousCalibratedProbability = "previous_calibrated_probability",
+    CalibratedProbabilityDelta = "calibrated_probability_delta",
+    ProbabilityPercentile = "probability_percentile",
+    PreviousProbabilityPercentile = "previous_probability_percentile",
+    ProbabilityPercentileDelta = "probability_percentile_delta",
+    CalibratedProbabilityPriorToAttainment = "calibrated_probability_prior_to_attainment",
+    ProbabilityPercentilePriorToAttainment = "probability_percentile_prior_to_attainment",
+    ImportantPredictor = "important_predictor",
+    PreviousImportantPredictor = "previous_important_predictor"
+}
+/**
+ * Predictions from one outcome.
+ * @export
+ * @interface ProjectOutcomeElement
+ */
+export interface ProjectOutcomeElement {
+    /**
+     * The output columns drawn from this outcome, keyed by output column header.
+     * @type {{ [key: string]: ProjectOutcomeColumn; }}
+     * @memberof ProjectOutcomeElement
+     */
+    columns: {
+        [key: string]: ProjectOutcomeColumn;
+    };
+    /**
+     *
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectOutcomeElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The outcome to read.
+     * @type {string}
+     * @memberof ProjectOutcomeElement
+     */
+    outcome_id: string;
+    /**
+     * Marks this element as an outcome.
+     * @type {string}
+     * @memberof ProjectOutcomeElement
+     */
+    type: string;
+}
+/**
+ * @type ProjectPayloadElement
+ * One source of context, plus the exact output columns drawn from it.
+ *
+ * `type` selects the element, and the element decides which components its columns may
+ * name. Each element's `columns` map is keyed by output column header.
+ * @export
+ */
+export declare type ProjectPayloadElement = {
+    type: 'attribute';
+} & ProjectAttributeElement | {
+    type: 'cohort';
+} & ProjectCohortElement | {
+    type: 'dataset';
+} & ProjectDatasetElement | {
+    type: 'geometry';
+} & ProjectGeometryElement | {
+    type: 'identifier';
+} & ProjectIdentifierElement | {
+    type: 'match_metadata';
+} & ProjectMatchMetadataElement | {
+    type: 'outcome';
+} & ProjectOutcomeElement | {
+    type: 'persona_set';
+} & ProjectPersonaSetElement | {
+    type: 'recommender';
+} & ProjectRecommenderElement | {
+    type: 'stream';
+} & ProjectStreamElement | {
+    type: 'trait';
+} & ProjectTraitElement;
+/**
+ * One output column drawn from a persona set.
+ * @export
+ * @interface ProjectPersonaSetColumn
+ */
+export interface ProjectPersonaSetColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectPersonaSetColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit. A `distance_to_centroid` component is a Jaccard distance in
+     * the closed range 0 to 1.
+     * @type {string}
+     * @memberof ProjectPersonaSetColumn
+     */
+    component: ProjectPersonaSetColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectPersonaSetColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectPersonaSetColumnComponentEnum {
+    Id = "id",
+    PreviousId = "previous_id",
+    Name = "name",
+    PreviousName = "previous_name",
+    DistanceToCentroid = "distance_to_centroid",
+    PreviousDistanceToCentroid = "previous_distance_to_centroid",
+    DistanceToCentroidDelta = "distance_to_centroid_delta"
+}
+/**
+ * Persona assignment from one persona set.
+ * @export
+ * @interface ProjectPersonaSetElement
+ */
+export interface ProjectPersonaSetElement {
+    /**
+     * The output columns drawn from this persona set, keyed by output column header.
+     * @type {{ [key: string]: ProjectPersonaSetColumn; }}
+     * @memberof ProjectPersonaSetElement
+     */
+    columns: {
+        [key: string]: ProjectPersonaSetColumn;
+    };
+    /**
+     *
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectPersonaSetElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The persona set to read.
+     * @type {string}
+     * @memberof ProjectPersonaSetElement
+     */
+    persona_set_id: string;
+    /**
+     * Marks this element as a persona set.
+     * @type {string}
+     * @memberof ProjectPersonaSetElement
+     */
+    type: string;
+}
+/**
+ * (Parameters used to POST a new value of the `Project` type.)
+ *
+ * The exact set of output columns you want, in the exact order you want them.
+ *
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ *
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface ProjectPost
+ */
+export interface ProjectPost {
+    /**
+     * The output columns, in output order, by header.
+     *
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof ProjectPost
+     */
+    column_order: Set<string>;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof ProjectPost
+     */
+    name: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     *
+     * The order of this map means nothing. `column_order` alone decides output order.
+     *
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof ProjectPost
+     */
+    payload: {
+        [key: string]: ProjectPayloadElement;
+    };
+}
+/**
+ * What a Project will produce, worked out from its configuration.
+ *
+ * The resolved schema, the usage ceiling, and each element's readiness need no data run and
+ * are always present. Sample rows appear only in the response to a sample request.
+ * @export
+ * @interface ProjectPreview
+ */
+export interface ProjectPreview {
+    /**
+     * Each payload element's readiness, keyed by element key. A column whose element is not
+     * ready comes back null with a warning rather than failing the request.
+     * @type {{ [key: string]: ResourceStatus; }}
+     * @memberof ProjectPreview
+     */
+    element_status: {
+        [key: string]: ResourceStatus;
+    };
+    /**
+     * The most usage one looked-up person could create, by billable element category. An
+     * element counts once for a person when at least one of its declared columns resolves
+     * to a non-null value, however many columns it feeds.
+     * @type {{ [key: string]: number; }}
+     * @memberof ProjectPreview
+     */
+    max_lookup_usage: {
+        [key: string]: number;
+    };
+    /**
+     * A few rows in the exact output shape, keyed by output column header, at person grain.
+     * Identity class values are blurred, so a sample never delivers real contact data.
+     *
+     * Present only in the response to `POST /projects/{project_id}/sample`, which reads
+     * person data and creates usage under the lookup rule. Sample rows are not stored, so
+     * they never go stale and reading the Project again does not return them.
+     * @type {Array<object>}
+     * @memberof ProjectPreview
+     */
+    sample?: Array<object>;
+    /**
+     * One entry per output column, in output order. This is the complete output schema:
+     * nothing adds, renames, reorders, or removes a column later.
+     * @type {Array<ProjectResolvedColumn>}
+     * @memberof ProjectPreview
+     */
+    schema: Array<ProjectResolvedColumn>;
+}
+/**
+ * (Parameters used to PUT a value of the `Project` type.)
+ *
+ * The exact set of output columns you want, in the exact order you want them.
+ *
+ * A Project names every column, its source, and its position. Nothing else adds, renames,
+ * reorders, or removes a column: what you declare here is what a lookup returns and what an
+ * enrichment delivers.
+ *
+ * A Project is immediately readable through `POST /projects/{project_id}/lookup`. To
+ * deliver the same columns for a whole population, create an Enrichment against it.
+ * @export
+ * @interface ProjectPut
+ */
+export interface ProjectPut {
+    /**
+     * The output columns, in output order, by header.
+     *
+     * This array holds every header declared in `payload` exactly once, and no header
+     * that the payload does not declare.
+     * @type {Set<string>}
+     * @memberof ProjectPut
+     */
+    column_order: Set<string>;
+    /**
+     * Human-readable label for this Project.
+     * @type {string}
+     * @memberof ProjectPut
+     */
+    name: string;
+    /**
+     * The sources this Project draws on, keyed by your own element key.
+     *
+     * The order of this map means nothing. `column_order` alone decides output order.
+     *
+     * Every column header is unique across the whole payload, and every one of them
+     * appears in `column_order` exactly once.
+     * @type {{ [key: string]: ProjectPayloadElement; }}
+     * @memberof ProjectPut
+     */
+    payload: {
+        [key: string]: ProjectPayloadElement;
+    };
+}
+/**
+ * One output column drawn from a recommender.
+ *
+ * A person holds a ranked list of recommendations, and `index` picks one of them, so no
+ * person-level `aggregation` is needed to reduce that list.
+ * @export
+ * @interface ProjectRecommenderColumn
+ */
+export interface ProjectRecommenderColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectRecommenderColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectRecommenderColumn
+     */
+    component: ProjectRecommenderColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectRecommenderColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which recommendation to emit, ranked most likely first. A negative index counts from
+     * the least likely end.
+     * @type {number}
+     * @memberof ProjectRecommenderColumn
+     */
+    index: number;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectRecommenderColumnComponentEnum {
+    Value = "value",
+    PreviousValue = "previous_value"
+}
+/**
+ * Ranked recommendations from one recommender.
+ * @export
+ * @interface ProjectRecommenderElement
+ */
+export interface ProjectRecommenderElement {
+    /**
+     * The output columns drawn from this recommender, keyed by output column header.
+     * @type {{ [key: string]: ProjectRecommenderColumn; }}
+     * @memberof ProjectRecommenderElement
+     */
+    columns: {
+        [key: string]: ProjectRecommenderColumn;
+    };
+    /**
+     *
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectRecommenderElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The recommender to read.
+     * @type {string}
+     * @memberof ProjectRecommenderElement
+     */
+    recommender_id: string;
+    /**
+     * Marks this element as a recommender.
+     * @type {string}
+     * @memberof ProjectRecommenderElement
+     */
+    type: string;
+}
+/**
+ * One output column, fully resolved.
+ * @export
+ * @interface ProjectResolvedColumn
+ */
+export interface ProjectResolvedColumn {
+    /**
+     * What decides the instant this column is read as of: the current state, one fixed
+     * instant, each person's entrance to a cohort, or an instant carried in a dataset.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    as_of_basis: ProjectResolvedColumnAsOfBasisEnum;
+    /**
+     *
+     * @type {ProjectColumnDataType}
+     * @memberof ProjectResolvedColumn
+     */
+    data_type: ProjectColumnDataType;
+    /**
+     * The name of one output column.
+     *
+     * A header is unique across the whole payload, and `Project.column_order` lists every
+     * header exactly once.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    header: string;
+    /**
+     * Whether a lookup can serve this column. Where this is false, a lookup returns null for
+     * the column and carries a warning naming it; a batch enrichment may still produce it.
+     * @type {boolean}
+     * @memberof ProjectResolvedColumn
+     */
+    lookup_available: boolean;
+    /**
+     * Whether this column can be null, for any reason: an element that is not ready, a row
+     * that did not match, a `nullify` strategy, a suppressed value, or a source that could
+     * not answer the requested instant.
+     * @type {boolean}
+     * @memberof ProjectResolvedColumn
+     */
+    nullable: boolean;
+    /**
+     * How precisely a historical instant is answered. `day` means the requested instant is
+     * floored to a UTC date before the value is read. `event_timestamp` means the source
+     * answers at the exact event time. This is absent where the column reads current state.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    snapshot_granularity?: ProjectResolvedColumnSnapshotGranularityEnum;
+    /**
+     * Where the value comes from, in words.
+     * @type {string}
+     * @memberof ProjectResolvedColumn
+     */
+    source_label: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectResolvedColumnAsOfBasisEnum {
+    Current = "current",
+    FixedTimestamp = "fixed_timestamp",
+    CohortEntrance = "cohort_entrance",
+    DatasetTimestamp = "dataset_timestamp"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectResolvedColumnSnapshotGranularityEnum {
+    Day = "day",
+    EventTimestamp = "event_timestamp"
+}
+/**
+ * Ask for sample rows. This reads person data and creates usage under the lookup rule.
+ * @export
+ * @interface ProjectSampleRequest
+ */
+export interface ProjectSampleRequest {
+    /**
+     * How many rows to sample. Omit it for 5.
+     * @type {number}
+     * @memberof ProjectSampleRequest
+     */
+    count?: number;
+}
+/**
+ * One output column drawn from a stream.
+ *
+ * A person can have many events in one stream. Every component either picks one event with
+ * `index` or reduces the whole event set as part of its own meaning, so no person-level
+ * `aggregation` is needed to reduce those events.
+ * @export
+ * @interface ProjectStreamColumn
+ */
+export interface ProjectStreamColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectStreamColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     *
+     * A `*_value` component is null where the property is not numeric.
+     * @type {string}
+     * @memberof ProjectStreamColumn
+     */
+    component: ProjectStreamColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectStreamColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+    /**
+     * Which event to read, in chronological order. A negative index counts from the most
+     * recent end, so `-1` is the latest event. Required for the `value` and `datetime`
+     * components and their `previous_*` and `*_delta` forms.
+     * @type {number}
+     * @memberof ProjectStreamColumn
+     */
+    index?: number;
+    /**
+     * The event property to read. Required for the `value`, `total_value`, and `mean_value`
+     * components and their `previous_*` and `*_delta` forms.
+     * @type {string}
+     * @memberof ProjectStreamColumn
+     */
+    property_name?: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectStreamColumnComponentEnum {
+    Count = "count",
+    PreviousCount = "previous_count",
+    CountDelta = "count_delta",
+    Value = "value",
+    PreviousValue = "previous_value",
+    ValueDelta = "value_delta",
+    TotalValue = "total_value",
+    PreviousTotalValue = "previous_total_value",
+    TotalValueDelta = "total_value_delta",
+    MeanValue = "mean_value",
+    PreviousMeanValue = "previous_mean_value",
+    MeanValueDelta = "mean_value_delta",
+    Datetime = "datetime",
+    PreviousDatetime = "previous_datetime"
+}
+/**
+ * Values drawn from the events in one stream.
+ * @export
+ * @interface ProjectStreamElement
+ */
+export interface ProjectStreamElement {
+    /**
+     * The output columns drawn from this stream, keyed by output column header.
+     * @type {{ [key: string]: ProjectStreamColumn; }}
+     * @memberof ProjectStreamElement
+     */
+    columns: {
+        [key: string]: ProjectStreamColumn;
+    };
+    /**
+     *
+     * @type {ProjectFrameOfReference}
+     * @memberof ProjectStreamElement
+     */
+    frame_of_reference?: ProjectFrameOfReference;
+    /**
+     * The stream to read.
+     * @type {string}
+     * @memberof ProjectStreamElement
+     */
+    name: string;
+    /**
+     * Marks this element as a stream.
+     * @type {string}
+     * @memberof ProjectStreamElement
+     */
+    type: string;
+}
+/**
+ * How to parse a timestamp read from a Dataset column. A timestamp with no time zone is read
+ * as UTC.
+ * @export
+ * @enum {string}
+ */
+export declare enum ProjectTimestampFormat {
+    MmDdYySlash = "mm_dd_yy_slash",
+    MmDdYyyySlash = "mm_dd_yyyy_slash",
+    MmDdYyDash = "mm_dd_yy_dash",
+    MmDdYyyyDash = "mm_dd_yyyy_dash",
+    YyyyMmDdSlash = "yyyy_mm_dd_slash",
+    YyMmDdSlash = "yy_mm_dd_slash",
+    YyyyMmDdDash = "yyyy_mm_dd_dash",
+    YyMmDdDash = "yy_mm_dd_dash",
+    Yyyymmdd = "yyyymmdd",
+    Yyyymm = "yyyymm",
+    YyyyMmDash = "yyyy_mm_dash",
+    YyyyMmSlash = "yyyy_mm_slash",
+    DdMmYyyySlash = "dd_mm_yyyy_slash",
+    DdMmYySlash = "dd_mm_yy_slash",
+    DdMmYyyyDash = "dd_mm_yyyy_dash",
+    DdMmYyDash = "dd_mm_yy_dash",
+    DateIso8601 = "date_iso8601",
+    DateMonthDayFullyear = "date_month_day_fullyear",
+    DateMonthDayShortyear = "date_month_day_shortyear",
+    DateMonthDayFullyearHoursMinutes = "date_month_day_fullyear_hours_minutes",
+    DateMonthDayFullyearHoursMinutesSeconds = "date_month_day_fullyear_hours_minutes_seconds",
+    DateSecondsSinceEpochUtc = "date_seconds_since_epoch_utc",
+    DateMillisecondsSinceEpochUtc = "date_milliseconds_since_epoch_utc"
+}
+/**
+ * One output column drawn from a trait.
+ * @export
+ * @interface ProjectTraitColumn
+ */
+export interface ProjectTraitColumn {
+    /**
+     *
+     * @type {ProjectColumnAggregation}
+     * @memberof ProjectTraitColumn
+     */
+    aggregation?: ProjectColumnAggregation;
+    /**
+     * Which value to emit.
+     * @type {string}
+     * @memberof ProjectTraitColumn
+     */
+    component: ProjectTraitColumnComponentEnum;
+    /**
+     * Levels at which a missing value may be borrowed from other people, in the order they
+     * are tried. Setting this requires `aggregation`, which is how donor values are
+     * combined.
+     * @type {Set<ProjectImputationLevel>}
+     * @memberof ProjectTraitColumn
+     */
+    imputation?: Set<ProjectImputationLevel>;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ProjectTraitColumnComponentEnum {
+    Value = "value",
+    PreviousValue = "previous_value",
+    ValueDelta = "value_delta"
+}
+/**
+ * Values of one trait built from your own data.
+ * @export
+ * @interface ProjectTraitElement
+ */
+export interface ProjectTraitElement {
+    /**
+     * The output columns drawn from this trait, keyed by output column header.
+     * @type {{ [key: string]: ProjectTraitColumn; }}
+     * @memberof ProjectTraitElement
+     */
+    columns: {
+        [key: string]: ProjectTraitColumn;
+    };
+    /**
+     * The trait to read.
+     * @type {string}
+     * @memberof ProjectTraitElement
+     */
+    name: string;
+    /**
+     * Marks this element as a trait.
+     * @type {string}
+     * @memberof ProjectTraitElement
+     */
+    type: string;
 }
 /**
  * Basing cohort on recency of event
@@ -19862,11 +25121,13 @@ export declare enum ResourceType {
     Cohorts = "cohorts",
     Connections = "connections",
     Datasets = "datasets",
+    Enrichments = "enrichments",
     FeatureStores = "feature_stores",
     MarketOpportunityAnalyses = "market_opportunity_analyses",
     Outcomes = "outcomes",
     PersonaSets = "persona_sets",
     Places = "places",
+    Projects = "projects",
     Recommenders = "recommenders",
     Scopes = "scopes",
     Streams = "streams",
@@ -28856,6 +34117,53 @@ export interface Upload {
     subpath: string;
 }
 /**
+ * An error reporting that a run or lookup would exceed the usage remaining on your contract.
+ * @export
+ * @interface UsageQuotaError
+ */
+export interface UsageQuotaError {
+    /**
+     * How the ceiling was worked out.
+     * @type {string}
+     * @memberof UsageQuotaError
+     */
+    basis?: string;
+    /**
+     *
+     * @type {ErrorCode}
+     * @memberof UsageQuotaError
+     */
+    error: ErrorCode;
+    /**
+     * A unique ID for this error. Please include this in bug reports.
+     * @type {string}
+     * @memberof UsageQuotaError
+     */
+    id: string;
+    /**
+     * A human-readable description of the error.
+     * @type {string}
+     * @memberof UsageQuotaError
+     */
+    note: string;
+    /**
+     * The usage left on your contract, by billable element category.
+     * @type {{ [key: string]: number; }}
+     * @memberof UsageQuotaError
+     */
+    remaining_quota?: {
+        [key: string]: number;
+    };
+    /**
+     * The most usage this request could create, by billable element category.
+     * @type {{ [key: string]: number; }}
+     * @memberof UsageQuotaError
+     */
+    usage_ceiling?: {
+        [key: string]: number;
+    };
+}
+/**
  * The full current revision of a use case, including the live computed
  * `resources` list.
  * @export
@@ -29413,8 +34721,112 @@ export declare enum WebhookEndpointPutStatusEnum {
  * @enum {string}
  */
 export declare enum WebhookEventType {
-    Errored = "resource.errored",
-    ReadyWithUpdate = "resource.ready_with_update"
+    ResourceErrored = "resource.errored",
+    ResourceReadyWithUpdate = "resource.ready_with_update",
+    EnrichmentJobSucceeded = "enrichment_job.succeeded",
+    EnrichmentJobFailed = "enrichment_job.failed",
+    EnrichmentJobSkipped = "enrichment_job.skipped"
+}
+/**
+ * What one enrichment run reports about itself once it is over. A run that
+ * nobody is watching, because a schedule started it, still says how it
+ * went here.
+ * @export
+ * @interface WebhookMessageForEnrichmentJob
+ */
+export interface WebhookMessageForEnrichmentJob {
+    /**
+     *
+     * @type {WebhookMessageForEnrichmentJobData}
+     * @memberof WebhookMessageForEnrichmentJob
+     */
+    data: WebhookMessageForEnrichmentJobData;
+    /**
+     *
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJob
+     */
+    timestamp: string;
+    /**
+     *
+     * @type {WebhookEventType}
+     * @memberof WebhookMessageForEnrichmentJob
+     */
+    type: WebhookEventType;
+}
+/**
+ *
+ * @export
+ * @interface WebhookMessageForEnrichmentJobData
+ */
+export interface WebhookMessageForEnrichmentJobData {
+    /**
+     * The ID of the account that owns the enrichment.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    account_id: string;
+    /**
+     * The enrichment this run belongs to.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    enrichment_id: string;
+    /**
+     * The run itself.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    enrichment_job_id: string;
+    /**
+     * Whether a person asked for this run or a schedule did.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    invocation: WebhookMessageForEnrichmentJobDataInvocationEnum;
+    /**
+     * The instant of the schedule fire this run answers. Absent on a
+     * run somebody asked for by hand.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    scheduled_for?: string;
+    /**
+     * Why the run stood down, naming the run that was still going when
+     * this one came round.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    skip_note?: string;
+    /**
+     * How the run ended.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    status: WebhookMessageForEnrichmentJobDataStatusEnum;
+    /**
+     * Why the run failed, including a run that passed its deadline
+     * without ever reporting back.
+     * @type {string}
+     * @memberof WebhookMessageForEnrichmentJobData
+     */
+    status_error?: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum WebhookMessageForEnrichmentJobDataInvocationEnum {
+    Manual = "manual",
+    Schedule = "schedule"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum WebhookMessageForEnrichmentJobDataStatusEnum {
+    Succeeded = "succeeded",
+    Failed = "failed",
+    Skipped = "skipped"
 }
 /**
  *

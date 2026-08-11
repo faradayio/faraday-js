@@ -10,6 +10,40 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.16.3] - 2026-08-11
+
+### Added
+
+- `ProjectFrameOfReference` on Outcome, Persona Set, Recommender, and Cohort elements. The Project rejects a frame when that source does not keep the history needed to answer it.
+- `ProjectTimestampFormat`, the timestamp formats a Dataset-backed frame accepts. Timestamps without a time zone use UTC.
+
+## [0.16.2] - 2026-08-11
+
+### Added
+
+- `Project`: the exact set of output columns you want, in the exact order you want them. Its `payload` names each source and the columns drawn from it, `column_order` fixes output order, and `preview` reports the resolved schema, the maximum lookup usage, and each element's readiness without reading any person data. `POST /projects`, `GET /projects`, `GET /projects/{project_id}`, `PATCH /projects/{project_id}`, `DELETE /projects/{project_id}`, `POST /projects/{project_id}/archive`, and `POST /projects/{project_id}/unarchive`.
+- `POST /projects/{project_id}/sample`: fill `Project.preview.sample` with a few blurred rows. Creating or editing a Project never samples data on its own.
+- `POST /projects/{project_id}/lookup`: read a Project's columns for up to 100 subjects in one request, with results aligned to the request by index and each result reporting which identity set resolved and on what.
+- `ProjectPayloadElement`: a discriminated union over `dataset`, `outcome`, `persona_set`, `recommender`, `attribute`, `trait`, `cohort`, `stream`, `identifier`, `geometry`, and `match_metadata`, each with its own column type and component enum.
+- `ProjectColumnDataType`: the resolved output types a Project column may report, including timestamps and structured JSON values.
+- `ProjectFrameOfReference` on Attribute and Stream elements: read a value as of a fixed instant, as of each person's entrance to a cohort, or as of an instant carried in one of your own datasets. A source answers with the latest value at or before that instant and never a later one, and a source that cannot honor a frame is rejected when the Project is saved.
+- `ProjectColumnAggregation`: what to do when several values must become one, applied to several source values for one person, several people in one group row, and several donors at an imputation level.
+- `Enrichment`: a delivery of one Project's columns, for a population you choose, to a destination you choose. Its preview reports the maximum usage, the population bound and basis, whether that bound is exact, and the remaining contract quota. `POST /enrichments`, `GET /enrichments`, `GET /projects/{project_id}/enrichments`, `GET /enrichments/{enrichment_id}`, `PATCH /enrichments/{enrichment_id}`, `DELETE /enrichments/{enrichment_id}`, `POST /enrichments/{enrichment_id}/archive`, and `POST /enrichments/{enrichment_id}/unarchive`.
+- `EnrichmentPopulation`: a boolean expression over cohort, dataset, prior-job, trait, attribute, stream, place, and identity-graph conditions. Trait, attribute, stream, and place conditions reuse the existing Cohort condition components, so one request shape has one meaning.
+- `EnrichmentDestination`: Faraday-hosted CSV, Amazon S3, Google Cloud Storage, SFTP, Snowflake, BigQuery, and SQL databases, with explicit `create` and `upsert` write modes.
+- `EnrichmentIncrementality`, required on every enrichment: `full`, `new_rows`, or `changed` with an optional watch list.
+- `EnrichmentSchedule`, with a required `paused` and hourly, daily, weekly, or monthly cadences.
+- `POST /enrichments/{enrichment_id}/run`: returns `202 Accepted` and the new `EnrichmentJob`. The body may override incrementality for one run and may acknowledge a usage ceiling larger than the remaining quota.
+- `EnrichmentJob`: one immutable record per attempted run, carrying the configuration snapshot, the run instant, the correction epoch, the table generation, row counts, usage, the 72-hour deadline, and a permanent output link. A run waits as `pending` until there is capacity for it, reports `starting` while its worker comes up, and then runs; the instants it reads at are fixed when it is created, so waiting never changes what it delivers. `GET /enrichment_jobs`, `GET /enrichments/{enrichment_id}/enrichment_jobs`, and `GET /enrichment_jobs/{enrichment_job_id}`.
+- `GET /enrichments/{enrichment_id}/download.csv` for the latest successful hosted CSV output, and `GET /enrichment_jobs/{enrichment_job_id}/download.csv` for one run's output.
+- Webhook events `enrichment_job.succeeded`, `enrichment_job.failed`, and `enrichment_job.skipped`, sent when a run ends. Each names the enrichment, the run, whether a person or a schedule started it, and the instant a scheduled run answers. A run that passed its deadline without reporting back arrives as `enrichment_job.failed`.
+- `Idempotency-Key` request header on create, run, archive, and unarchive. Keys are scoped to your account, the HTTP method, and the route. Repeating a request with the same key and body returns the first result; reusing a key with a different body is rejected with `409 Conflict`.
+- `USAGE_QUOTA_EXCEEDED` error code and `UsageQuotaError`, which names the usage ceiling, the remaining quota, and the basis of the ceiling.
+
+### Deprecated
+
+- `Scope` and `Target`, and every operation on them. Use `Project` and `Enrichment` instead. Nothing is removed, and existing scopes and targets keep working.
+
 ## [0.16.1] - 2026-08-10
 
 ### Added
