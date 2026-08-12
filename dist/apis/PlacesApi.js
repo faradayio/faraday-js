@@ -29,7 +29,7 @@ const runtime = require("../runtime");
  */
 class PlacesApi extends runtime.BaseAPI {
     /**
-     * Archive a place
+     * Archive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/archive.
      * Archive a place
      */
     archivePlaceRaw(requestParameters) {
@@ -61,7 +61,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Archive a place
+     * Archive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/archive.
      * Archive a place
      */
     archivePlace(placeId, archiveConfig) {
@@ -70,7 +70,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Create a new place
+     * Create a new place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas: see POST /atlases.
      * Create place
      */
     createPlaceRaw(requestParameters) {
@@ -99,7 +99,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Create a new place
+     * Create a new place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas: see POST /atlases.
      * Create place
      */
     createPlace(placeFields) {
@@ -109,6 +109,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Delete a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See DELETE /atlases/{atlas_id}.
      * Delete a place
      */
     deletePlaceRaw(requestParameters) {
@@ -135,6 +136,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Delete a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See DELETE /atlases/{atlas_id}.
      * Delete a place
      */
     deletePlace(placeId) {
@@ -143,7 +145,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/force_update.
      * Trigger a rerun for this resource.
      */
     forceUpdatePlaceRaw(requestParameters) {
@@ -170,7 +172,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/force_update.
      * Trigger a rerun for this resource.
      */
     forceUpdatePlace(placeId) {
@@ -179,7 +181,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve details on a specific place
+     * Retrieve details on a specific place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases/{atlas_id}.
      * Retrieve a place
      */
     getPlaceRaw(requestParameters) {
@@ -206,7 +208,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve details on a specific place
+     * Retrieve details on a specific place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases/{atlas_id}.
      * Retrieve a place
      */
     getPlace(placeId) {
@@ -216,7 +218,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
+     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases.
      * List places
      */
     getPlacesRaw(requestParameters) {
@@ -243,7 +245,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
+     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases.
      * List places
      */
     getPlaces(ids) {
@@ -253,7 +255,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Unarchive a place
+     * Unarchive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/unarchive.
      * Unarchive a place
      */
     unarchivePlaceRaw(requestParameters) {
@@ -285,7 +287,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Unarchive a place
+     * Unarchive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/unarchive.
      * Unarchive a place
      */
     unarchivePlace(placeId, archiveConfig) {
@@ -294,7 +296,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update an existing place
+     * Update an existing place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See PATCH /atlases/{atlas_id}.
      * Update place
      */
     updatePlaceRaw(requestParameters) {
@@ -326,7 +328,7 @@ class PlacesApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update an existing place
+     * Update an existing place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See PATCH /atlases/{atlas_id}.
      * Update place
      */
     updatePlace(placeId, placeFields) {

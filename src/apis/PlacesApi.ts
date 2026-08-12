@@ -62,7 +62,7 @@ export interface UpdatePlaceRequest {
 export class PlacesApi extends runtime.BaseAPI {
 
     /**
-     * Archive a place
+     * Archive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/archive. 
      * Archive a place
      */
     async archivePlaceRaw(requestParameters: ArchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
@@ -100,7 +100,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Archive a place
+     * Archive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/archive. 
      * Archive a place
      */
     async archivePlace(placeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
@@ -108,7 +108,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new place
+     * Create a new place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas: see POST /atlases. 
      * Create place
      */
     async createPlaceRaw(requestParameters: CreatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
@@ -142,7 +142,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new place
+     * Create a new place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas: see POST /atlases. 
      * Create place
      */
     async createPlace(placeFields: PlacePost, ): Promise<Place> {
@@ -151,6 +151,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Delete a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See DELETE /atlases/{atlas_id}. 
      * Delete a place
      */
     async deletePlaceRaw(requestParameters: DeletePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
@@ -181,6 +182,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Delete a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See DELETE /atlases/{atlas_id}. 
      * Delete a place
      */
     async deletePlace(placeId: string, ): Promise<void> {
@@ -188,7 +190,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/force_update. 
      * Trigger a rerun for this resource.
      */
     async forceUpdatePlaceRaw(requestParameters: ForceUpdatePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
@@ -219,7 +221,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors. 
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/force_update. 
      * Trigger a rerun for this resource.
      */
     async forceUpdatePlace(placeId: string, ): Promise<void> {
@@ -227,7 +229,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve details on a specific place
+     * Retrieve details on a specific place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases/{atlas_id}. 
      * Retrieve a place
      */
     async getPlaceRaw(requestParameters: GetPlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
@@ -258,7 +260,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve details on a specific place
+     * Retrieve details on a specific place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases/{atlas_id}. 
      * Retrieve a place
      */
     async getPlace(placeId: string, ): Promise<Place> {
@@ -267,7 +269,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
+     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases. 
      * List places
      */
     async getPlacesRaw(requestParameters: GetPlacesRequest, ): Promise<runtime.ApiResponse<Array<Place>>> {
@@ -298,7 +300,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>. 
+     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases. 
      * List places
      */
     async getPlaces(ids?: Array<string>, ): Promise<Array<Place>> {
@@ -307,7 +309,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unarchive a place
+     * Unarchive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/unarchive. 
      * Unarchive a place
      */
     async unarchivePlaceRaw(requestParameters: UnarchivePlaceRequest, ): Promise<runtime.ApiResponse<void>> {
@@ -345,7 +347,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unarchive a place
+     * Unarchive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/unarchive. 
      * Unarchive a place
      */
     async unarchivePlace(placeId: string, archiveConfig: ArchiveConfig, ): Promise<void> {
@@ -353,7 +355,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update an existing place
+     * Update an existing place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See PATCH /atlases/{atlas_id}. 
      * Update place
      */
     async updatePlaceRaw(requestParameters: UpdatePlaceRequest, ): Promise<runtime.ApiResponse<Place>> {
@@ -391,7 +393,7 @@ export class PlacesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update an existing place
+     * Update an existing place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See PATCH /atlases/{atlas_id}. 
      * Update place
      */
     async updatePlace(placeId: string, placeFields: PlaceMergePatch, ): Promise<Place> {
