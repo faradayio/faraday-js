@@ -104,42 +104,6 @@ class KnowledgebaseApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Delete a use case. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
-     * Delete a use case
-     */
-    deleteUseCaseRaw(requestParameters) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.useCaseId === null || requestParameters.useCaseId === undefined) {
-                throw new runtime.RequiredError('useCaseId', 'Required parameter requestParameters.useCaseId was null or undefined when calling deleteUseCase.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("bearer", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/knowledgebase/use_cases/{use_case_id}`.replace(`{${"use_case_id"}}`, encodeURIComponent(String(requestParameters.useCaseId))),
-                method: 'DELETE',
-                headers: headerParameters,
-                query: queryParameters,
-            });
-            return new runtime.VoidApiResponse(response);
-        });
-    }
-    /**
-     * Delete a use case. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
-     * Delete a use case
-     */
-    deleteUseCase(useCaseId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.deleteUseCaseRaw({ useCaseId: useCaseId });
-        });
-    }
-    /**
      * Get the current revision of this account\'s knowledgebase overview. If no overview has ever been written, `revision_id` and `created_at` are absent and `content` is the empty string.
      * Retrieve the account overview
      */
