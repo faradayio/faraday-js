@@ -1075,10 +1075,10 @@ export interface Atlas {
     options: AtlasOptions;
     /**
      *
-     * @type {AtlasOutputToLocations}
+     * @type {OutputToLocations}
      * @memberof Atlas
      */
-    output_to_locations: AtlasOutputToLocations;
+    output_to_locations: OutputToLocations;
     /**
      * The type of this resource.
      * @type {string}
@@ -1171,10 +1171,10 @@ export interface AtlasMergePatch {
     options?: AtlasOptionsMergePatch;
     /**
      *
-     * @type {AtlasOutputToLocations}
+     * @type {OutputToLocationsMergePatch}
      * @memberof AtlasMergePatch
      */
-    output_to_locations?: AtlasOutputToLocations;
+    output_to_locations?: OutputToLocationsMergePatch;
 }
 /**
  * @type AtlasOptions
@@ -1377,104 +1377,6 @@ export declare type AtlasOptionsPut = {
     type: 'sql_server';
 } & DatasetOptionsSqlServerPut;
 /**
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- *
- * Each location is placed by exactly one of three groups of columns: a geometry column (`geometry`), a coordinate pair (`latitude` and `longitude`), or address columns (`house_number_and_street`, `city`, `state` and `postcode`). Naming columns from more than one group is rejected. Naming none is allowed: an atlas can be created before the columns of its source data are known, and configured once they are. Addresses are geocoded to a point during ingestion.
- * @export
- * @interface AtlasOutputToLocations
- */
-export interface AtlasOutputToLocations {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof AtlasOutputToLocations
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<AtlasOutputToLocationsProperties>}
-     * @memberof AtlasOutputToLocations
-     */
-    properties?: Array<AtlasOutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocations
-     */
-    state?: string;
-}
-/**
- *
- * @export
- * @interface AtlasOutputToLocationsProperties
- */
-export interface AtlasOutputToLocationsProperties {
-    /**
-     * The source column this property's value is read from. Mutually exclusive with `value`.
-     * @type {string}
-     * @memberof AtlasOutputToLocationsProperties
-     */
-    column?: string;
-    /**
-     * The name this property is given on each location.
-     * @type {string}
-     * @memberof AtlasOutputToLocationsProperties
-     */
-    name: string;
-    /**
-     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
-     * @type {string}
-     * @memberof AtlasOutputToLocationsProperties
-     */
-    value?: string;
-}
-/**
  * (Parameters used to POST a new value of the `Atlas` type.)
  *
  * A collection of geographic locations, such as stores, branches, or service areas.
@@ -1508,10 +1410,10 @@ export interface AtlasPost {
     options: AtlasOptionsPost;
     /**
      *
-     * @type {AtlasOutputToLocations}
+     * @type {OutputToLocationsPost}
      * @memberof AtlasPost
      */
-    output_to_locations: AtlasOutputToLocations;
+    output_to_locations: OutputToLocationsPost;
 }
 /**
  * (Parameters used to PUT a value of the `Atlas` type.)
@@ -1537,10 +1439,10 @@ export interface AtlasPut {
     options: AtlasOptionsPut;
     /**
      *
-     * @type {AtlasOutputToLocations}
+     * @type {OutputToLocationsPut}
      * @memberof AtlasPut
      */
-    output_to_locations: AtlasOutputToLocations;
+    output_to_locations: OutputToLocationsPut;
 }
 /**
  * An attribute wraps a stream of assertions with configuration for aggregation and selection.
@@ -2961,7 +2863,8 @@ export interface CohortMetrics {
     total_residence_count?: number;
 }
 /**
- *
+ * A spatial filter on a place. Superseded by `CohortLocationCondition`, which filters on
+ * the locations of an atlas.
  * @export
  * @interface CohortPlaceCondition
  */
@@ -17953,6 +17856,321 @@ export declare enum OutcomePutPredictionModeEnum {
     Static = "static"
 }
 /**
+ * How to build a location out of each row of the source data. Each member below names a column in the source data.
+ * @export
+ * @interface OutputToLocations
+ */
+export interface OutputToLocations {
+    /**
+     * The city of each location.
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    city?: string;
+    /**
+     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
+     *
+     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    geometry?: string;
+    /**
+     * The street address lines of each location.
+     * @type {Array<string>}
+     * @memberof OutputToLocations
+     */
+    house_number_and_street?: Array<string>;
+    /**
+     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    latitude?: string;
+    /**
+     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    longitude?: string;
+    /**
+     * A human-readable label for each location.
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    name?: string;
+    /**
+     * The postcode of each location.
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    postcode?: string;
+    /**
+     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
+     * @type {Array<OutputToLocationsProperties>}
+     * @memberof OutputToLocations
+     */
+    properties?: Array<OutputToLocationsProperties>;
+    /**
+     * An identifier for each location from an external system.
+     *
+     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    reference_key?: string;
+    /**
+     * The state of each location.
+     * @type {string}
+     * @memberof OutputToLocations
+     */
+    state?: string;
+}
+/**
+ * (Parameters used to PATCH the `OutputToLocations` type.)
+ *
+ * How to build a location out of each row of the source data. Each member below names a column in the source data.
+ * @export
+ * @interface OutputToLocationsMergePatch
+ */
+export interface OutputToLocationsMergePatch {
+    /**
+     * The city of each location.
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    city?: string | null;
+    /**
+     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
+     *
+     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    geometry?: string | null;
+    /**
+     * The street address lines of each location.
+     * @type {Array<string>}
+     * @memberof OutputToLocationsMergePatch
+     */
+    house_number_and_street?: Array<string> | null;
+    /**
+     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    latitude?: string | null;
+    /**
+     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    longitude?: string | null;
+    /**
+     * A human-readable label for each location.
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    name?: string | null;
+    /**
+     * The postcode of each location.
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    postcode?: string | null;
+    /**
+     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
+     * @type {Array<OutputToLocationsProperties>}
+     * @memberof OutputToLocationsMergePatch
+     */
+    properties?: Array<OutputToLocationsProperties> | null;
+    /**
+     * An identifier for each location from an external system.
+     *
+     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    reference_key?: string | null;
+    /**
+     * The state of each location.
+     * @type {string}
+     * @memberof OutputToLocationsMergePatch
+     */
+    state?: string | null;
+}
+/**
+ * (Parameters used to POST a new value of the `OutputToLocations` type.)
+ *
+ * How to build a location out of each row of the source data. Each member below names a column in the source data.
+ * @export
+ * @interface OutputToLocationsPost
+ */
+export interface OutputToLocationsPost {
+    /**
+     * The city of each location.
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    city?: string;
+    /**
+     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
+     *
+     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    geometry?: string;
+    /**
+     * The street address lines of each location.
+     * @type {Array<string>}
+     * @memberof OutputToLocationsPost
+     */
+    house_number_and_street?: Array<string>;
+    /**
+     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    latitude?: string;
+    /**
+     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    longitude?: string;
+    /**
+     * A human-readable label for each location.
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    name?: string;
+    /**
+     * The postcode of each location.
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    postcode?: string;
+    /**
+     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
+     * @type {Array<OutputToLocationsProperties>}
+     * @memberof OutputToLocationsPost
+     */
+    properties?: Array<OutputToLocationsProperties>;
+    /**
+     * An identifier for each location from an external system.
+     *
+     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    reference_key?: string;
+    /**
+     * The state of each location.
+     * @type {string}
+     * @memberof OutputToLocationsPost
+     */
+    state?: string;
+}
+/**
+ *
+ * @export
+ * @interface OutputToLocationsProperties
+ */
+export interface OutputToLocationsProperties {
+    /**
+     * The source column this property's value is read from. Mutually exclusive with `value`.
+     * @type {string}
+     * @memberof OutputToLocationsProperties
+     */
+    column?: string;
+    /**
+     * The name this property is given on each location.
+     * @type {string}
+     * @memberof OutputToLocationsProperties
+     */
+    name: string;
+    /**
+     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
+     * @type {string}
+     * @memberof OutputToLocationsProperties
+     */
+    value?: string;
+}
+/**
+ * (Parameters used to PUT a value of the `OutputToLocations` type.)
+ *
+ * How to build a location out of each row of the source data. Each member below names a column in the source data.
+ * @export
+ * @interface OutputToLocationsPut
+ */
+export interface OutputToLocationsPut {
+    /**
+     * The city of each location.
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    city?: string;
+    /**
+     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
+     *
+     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    geometry?: string;
+    /**
+     * The street address lines of each location.
+     * @type {Array<string>}
+     * @memberof OutputToLocationsPut
+     */
+    house_number_and_street?: Array<string>;
+    /**
+     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    latitude?: string;
+    /**
+     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    longitude?: string;
+    /**
+     * A human-readable label for each location.
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    name?: string;
+    /**
+     * The postcode of each location.
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    postcode?: string;
+    /**
+     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
+     * @type {Array<OutputToLocationsProperties>}
+     * @memberof OutputToLocationsPut
+     */
+    properties?: Array<OutputToLocationsProperties>;
+    /**
+     * An identifier for each location from an external system.
+     *
+     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    reference_key?: string;
+    /**
+     * The state of each location.
+     * @type {string}
+     * @memberof OutputToLocationsPut
+     */
+    state?: string;
+}
+/**
  * A single mapping of a dataset column to a stream with property configurations.
  * @export
  * @interface OutputToStreamArrayItem
@@ -18884,6 +19102,9 @@ export interface PersonaSetPut {
 }
 /**
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
+ *
+ * Superseded by the `Atlas`, which holds many locations built from a connection or an
+ * uploaded file rather than a single hand-defined area.
  * @export
  * @interface Place
  */
@@ -18980,6 +19201,9 @@ export interface Place {
  * (Parameters used to PATCH the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
+ *
+ * Superseded by the `Atlas`, which holds many locations built from a connection or an
+ * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlaceMergePatch
  */
@@ -19010,6 +19234,9 @@ export interface PlaceMergePatch {
  * (Parameters used to POST a new value of the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
+ *
+ * Superseded by the `Atlas`, which holds many locations built from a connection or an
+ * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePost
  */
@@ -19040,6 +19267,9 @@ export interface PlacePost {
  * (Parameters used to PUT a value of the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
+ *
+ * Superseded by the `Atlas`, which holds many locations built from a connection or an
+ * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePut
  */
@@ -20519,6 +20749,234 @@ export interface ScopePayloadLocationConditions {
     property_conditions?: Array<LocationPropertyCondition>;
 }
 /**
+ * (Parameters used to PATCH the `ScopePayloadLocationConditions` type.)
+ *
+ * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
+ * @export
+ * @interface ScopePayloadLocationConditionsMergePatch
+ */
+export interface ScopePayloadLocationConditionsMergePatch {
+    /**
+     * The atlases whose locations each person is matched against.
+     *
+     * If this is empty or absent, every atlas in the account is used.
+     * @type {Array<string>}
+     * @memberof ScopePayloadLocationConditionsMergePatch
+     */
+    atlas_ids?: Array<string> | null;
+    /**
+     * Match each person only against the locations carrying these reference keys.
+     *
+     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
+     * @type {Array<string>}
+     * @memberof ScopePayloadLocationConditionsMergePatch
+     */
+    location_reference_keys?: Array<string> | null;
+    /**
+     * A person only matches a location if they are no further than this many meters from it.
+     * @type {number}
+     * @memberof ScopePayloadLocationConditionsMergePatch
+     */
+    max_distance?: number | null;
+    /**
+     * A person only matches a location if they are at least this many meters from it.
+     * @type {number}
+     * @memberof ScopePayloadLocationConditionsMergePatch
+     */
+    min_distance?: number | null;
+    /**
+     * Match each person only against the locations whose properties satisfy these conditions.
+     * @type {Array<LocationPropertyCondition>}
+     * @memberof ScopePayloadLocationConditionsMergePatch
+     */
+    property_conditions?: Array<LocationPropertyCondition> | null;
+}
+/**
+ * (Parameters used to POST a new value of the `ScopePayloadLocationConditions` type.)
+ *
+ * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
+ * @export
+ * @interface ScopePayloadLocationConditionsPost
+ */
+export interface ScopePayloadLocationConditionsPost {
+    /**
+     * The atlases whose locations each person is matched against.
+     *
+     * If this is empty or absent, every atlas in the account is used.
+     * @type {Array<string>}
+     * @memberof ScopePayloadLocationConditionsPost
+     */
+    atlas_ids?: Array<string>;
+    /**
+     * Match each person only against the locations carrying these reference keys.
+     *
+     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
+     * @type {Array<string>}
+     * @memberof ScopePayloadLocationConditionsPost
+     */
+    location_reference_keys?: Array<string>;
+    /**
+     * A person only matches a location if they are no further than this many meters from it.
+     * @type {number}
+     * @memberof ScopePayloadLocationConditionsPost
+     */
+    max_distance?: number;
+    /**
+     * A person only matches a location if they are at least this many meters from it.
+     * @type {number}
+     * @memberof ScopePayloadLocationConditionsPost
+     */
+    min_distance?: number;
+    /**
+     * Match each person only against the locations whose properties satisfy these conditions.
+     * @type {Array<LocationPropertyCondition>}
+     * @memberof ScopePayloadLocationConditionsPost
+     */
+    property_conditions?: Array<LocationPropertyCondition>;
+}
+/**
+ * (Parameters used to PUT a value of the `ScopePayloadLocationConditions` type.)
+ *
+ * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
+ * @export
+ * @interface ScopePayloadLocationConditionsPut
+ */
+export interface ScopePayloadLocationConditionsPut {
+    /**
+     * The atlases whose locations each person is matched against.
+     *
+     * If this is empty or absent, every atlas in the account is used.
+     * @type {Array<string>}
+     * @memberof ScopePayloadLocationConditionsPut
+     */
+    atlas_ids?: Array<string>;
+    /**
+     * Match each person only against the locations carrying these reference keys.
+     *
+     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
+     * @type {Array<string>}
+     * @memberof ScopePayloadLocationConditionsPut
+     */
+    location_reference_keys?: Array<string>;
+    /**
+     * A person only matches a location if they are no further than this many meters from it.
+     * @type {number}
+     * @memberof ScopePayloadLocationConditionsPut
+     */
+    max_distance?: number;
+    /**
+     * A person only matches a location if they are at least this many meters from it.
+     * @type {number}
+     * @memberof ScopePayloadLocationConditionsPut
+     */
+    min_distance?: number;
+    /**
+     * Match each person only against the locations whose properties satisfy these conditions.
+     * @type {Array<LocationPropertyCondition>}
+     * @memberof ScopePayloadLocationConditionsPut
+     */
+    property_conditions?: Array<LocationPropertyCondition>;
+}
+/**
+ * (Parameters used to PATCH the `ScopePayloadLocation` type.)
+ *
+ * Include each person's proximity to the locations of one or more atlases.
+ *
+ * Distances are in meters, measured to the nearest edge of a location's geometry.
+ * @export
+ * @interface ScopePayloadLocationMergePatch
+ */
+export interface ScopePayloadLocationMergePatch {
+    /**
+     *
+     * @type {ScopePayloadLocationConditionsMergePatch}
+     * @memberof ScopePayloadLocationMergePatch
+     */
+    conditions?: ScopePayloadLocationConditionsMergePatch | null;
+    /**
+     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
+     *
+     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
+     * @type {string}
+     * @memberof ScopePayloadLocationMergePatch
+     */
+    select?: ScopePayloadLocationMergePatchSelectEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ScopePayloadLocationMergePatchSelectEnum {
+    Nearest = "nearest",
+    All = "all"
+}
+/**
+ * (Parameters used to POST a new value of the `ScopePayloadLocation` type.)
+ *
+ * Include each person's proximity to the locations of one or more atlases.
+ *
+ * Distances are in meters, measured to the nearest edge of a location's geometry.
+ * @export
+ * @interface ScopePayloadLocationPost
+ */
+export interface ScopePayloadLocationPost {
+    /**
+     *
+     * @type {ScopePayloadLocationConditionsPost}
+     * @memberof ScopePayloadLocationPost
+     */
+    conditions?: ScopePayloadLocationConditionsPost;
+    /**
+     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
+     *
+     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
+     * @type {string}
+     * @memberof ScopePayloadLocationPost
+     */
+    select?: ScopePayloadLocationPostSelectEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ScopePayloadLocationPostSelectEnum {
+    Nearest = "nearest",
+    All = "all"
+}
+/**
+ * (Parameters used to PUT a value of the `ScopePayloadLocation` type.)
+ *
+ * Include each person's proximity to the locations of one or more atlases.
+ *
+ * Distances are in meters, measured to the nearest edge of a location's geometry.
+ * @export
+ * @interface ScopePayloadLocationPut
+ */
+export interface ScopePayloadLocationPut {
+    /**
+     *
+     * @type {ScopePayloadLocationConditionsPut}
+     * @memberof ScopePayloadLocationPut
+     */
+    conditions?: ScopePayloadLocationConditionsPut;
+    /**
+     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
+     *
+     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
+     * @type {string}
+     * @memberof ScopePayloadLocationPut
+     */
+    select?: ScopePayloadLocationPutSelectEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ScopePayloadLocationPutSelectEnum {
+    Nearest = "nearest",
+    All = "all"
+}
+/**
  * (Parameters used to PATCH the `ScopePayload` type.)
  *
  * The data to include for each person in this scope.
@@ -20550,10 +21008,10 @@ export interface ScopePayloadMergePatch {
     explainability?: boolean | null;
     /**
      *
-     * @type {ScopePayloadMergePatchLocation}
+     * @type {ScopePayloadLocationMergePatch}
      * @memberof ScopePayloadMergePatch
      */
-    location?: ScopePayloadMergePatchLocation | null;
+    location?: ScopePayloadLocationMergePatch | null;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -20580,37 +21038,6 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     recommender_ids?: Array<string> | null;
-}
-/**
- * Include each person's proximity to the locations of one or more atlases.
- *
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadMergePatchLocation
- */
-export interface ScopePayloadMergePatchLocation {
-    /**
-     *
-     * @type {ScopePayloadLocationConditions}
-     * @memberof ScopePayloadMergePatchLocation
-     */
-    conditions?: ScopePayloadLocationConditions;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     *
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadMergePatchLocation
-     */
-    select?: ScopePayloadMergePatchLocationSelectEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ScopePayloadMergePatchLocationSelectEnum {
-    Nearest = "nearest",
-    All = "all"
 }
 /**
  * (Parameters used to POST a new value of the `ScopePayload` type.)
@@ -20644,10 +21071,10 @@ export interface ScopePayloadPost {
     explainability?: boolean;
     /**
      *
-     * @type {ScopePayloadLocation}
+     * @type {ScopePayloadLocationPost}
      * @memberof ScopePayloadPost
      */
-    location?: ScopePayloadLocation;
+    location?: ScopePayloadLocationPost;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -20707,10 +21134,10 @@ export interface ScopePayloadPut {
     explainability?: boolean;
     /**
      *
-     * @type {ScopePayloadLocation}
+     * @type {ScopePayloadLocationPut}
      * @memberof ScopePayloadPut
      */
-    location?: ScopePayloadLocation;
+    location?: ScopePayloadLocationPut;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
