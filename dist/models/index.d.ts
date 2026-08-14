@@ -5260,11 +5260,33 @@ export interface ConnectionOptionsBigQuery {
      */
     project_id: string;
     /**
+     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
+     * @type {string}
+     * @memberof ConnectionOptionsBigQuery
+     */
+    region?: ConnectionOptionsBigQueryRegionEnum;
+    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQuery
      */
     type: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ConnectionOptionsBigQueryRegionEnum {
+    Us = "US",
+    UsCentral1 = "us-central1",
+    UsEast1 = "us-east1",
+    UsEast4 = "us-east4",
+    UsEast5 = "us-east5",
+    UsSouth1 = "us-south1",
+    UsWest1 = "us-west1",
+    UsWest2 = "us-west2",
+    UsWest3 = "us-west3",
+    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to PATCH the `ConnectionOptionsBigQuery` type.)
@@ -5287,11 +5309,33 @@ export interface ConnectionOptionsBigQueryMergePatch {
      */
     project_id?: string;
     /**
+     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
+     * @type {string}
+     * @memberof ConnectionOptionsBigQueryMergePatch
+     */
+    region?: ConnectionOptionsBigQueryMergePatchRegionEnum;
+    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryMergePatch
      */
     type: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ConnectionOptionsBigQueryMergePatchRegionEnum {
+    Us = "US",
+    UsCentral1 = "us-central1",
+    UsEast1 = "us-east1",
+    UsEast4 = "us-east4",
+    UsEast5 = "us-east5",
+    UsSouth1 = "us-south1",
+    UsWest1 = "us-west1",
+    UsWest2 = "us-west2",
+    UsWest3 = "us-west3",
+    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsBigQuery` type.)
@@ -5314,11 +5358,33 @@ export interface ConnectionOptionsBigQueryPost {
      */
     project_id: string;
     /**
+     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
+     * @type {string}
+     * @memberof ConnectionOptionsBigQueryPost
+     */
+    region?: ConnectionOptionsBigQueryPostRegionEnum;
+    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPost
      */
     type: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ConnectionOptionsBigQueryPostRegionEnum {
+    Us = "US",
+    UsCentral1 = "us-central1",
+    UsEast1 = "us-east1",
+    UsEast4 = "us-east4",
+    UsEast5 = "us-east5",
+    UsSouth1 = "us-south1",
+    UsWest1 = "us-west1",
+    UsWest2 = "us-west2",
+    UsWest3 = "us-west3",
+    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsBigQuery` type.)
@@ -5341,11 +5407,33 @@ export interface ConnectionOptionsBigQueryPut {
      */
     project_id: string;
     /**
+     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
+     * @type {string}
+     * @memberof ConnectionOptionsBigQueryPut
+     */
+    region?: ConnectionOptionsBigQueryPutRegionEnum;
+    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPut
      */
     type: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ConnectionOptionsBigQueryPutRegionEnum {
+    Us = "US",
+    UsCentral1 = "us-central1",
+    UsEast1 = "us-east1",
+    UsEast4 = "us-east4",
+    UsEast5 = "us-east5",
+    UsSouth1 = "us-south1",
+    UsWest1 = "us-west1",
+    UsWest2 = "us-west2",
+    UsWest3 = "us-west3",
+    UsWest4 = "us-west4"
 }
 /**
  * Classic Faraday Sources options
