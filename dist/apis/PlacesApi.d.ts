@@ -43,82 +43,80 @@ export interface UpdatePlaceRequest {
  */
 export declare class PlacesApi extends runtime.BaseAPI {
     /**
-     * Archive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/archive.
+     * Archive a place
      * Archive a place
      */
     archivePlaceRaw(requestParameters: ArchivePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
-     * Archive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/archive.
+     * Archive a place
      * Archive a place
      */
     archivePlace(placeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
-     * Create a new place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas: see POST /atlases.
+     * Create a new place
      * Create place
      */
     createPlaceRaw(requestParameters: CreatePlaceRequest): Promise<runtime.ApiResponse<Place>>;
     /**
-     * Create a new place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas: see POST /atlases.
+     * Create a new place
      * Create place
      */
     createPlace(placeFields: PlacePost): Promise<Place>;
     /**
-     * Delete a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See DELETE /atlases/{atlas_id}.
      * Delete a place
      */
     deletePlaceRaw(requestParameters: DeletePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
-     * Delete a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See DELETE /atlases/{atlas_id}.
      * Delete a place
      */
     deletePlace(placeId: string): Promise<void>;
     /**
-     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/force_update.
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
     forceUpdatePlaceRaw(requestParameters: ForceUpdatePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
-     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/force_update.
+     * Trigger a rerun for this resource. Faraday automatically updates resources when their config changes, but this option is available in case of transient errors.
      * Trigger a rerun for this resource.
      */
     forceUpdatePlace(placeId: string): Promise<void>;
     /**
-     * Retrieve details on a specific place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases/{atlas_id}.
+     * Retrieve details on a specific place
      * Retrieve a place
      */
     getPlaceRaw(requestParameters: GetPlaceRequest): Promise<runtime.ApiResponse<Place>>;
     /**
-     * Retrieve details on a specific place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases/{atlas_id}.
+     * Retrieve details on a specific place
      * Retrieve a place
      */
     getPlace(placeId: string): Promise<Place>;
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases.
+     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
      */
     getPlacesRaw(requestParameters: GetPlacesRequest): Promise<runtime.ApiResponse<Array<Place>>>;
     /**
-     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See GET /atlases.
+     * Get a list of the places defined on the account. Geometry and addresses are omitted from this endpoint\'s response to avoid overly large response sizes. If you want to inspect a place\'s geometry or addresses, then use GET /places/<place id>.
      * List places
      */
     getPlaces(ids?: Array<string>): Promise<Array<Place>>;
     /**
-     * Unarchive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/unarchive.
+     * Unarchive a place
      * Unarchive a place
      */
     unarchivePlaceRaw(requestParameters: UnarchivePlaceRequest): Promise<runtime.ApiResponse<void>>;
     /**
-     * Unarchive a place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See POST /atlases/{atlas_id}/unarchive.
+     * Unarchive a place
      * Unarchive a place
      */
     unarchivePlace(placeId: string, archiveConfig: ArchiveConfig): Promise<void>;
     /**
-     * Update an existing place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See PATCH /atlases/{atlas_id}.
+     * Update an existing place
      * Update place
      */
     updatePlaceRaw(requestParameters: UpdatePlaceRequest): Promise<runtime.ApiResponse<Place>>;
     /**
-     * Update an existing place.  Places are superseded by atlases, whose locations are built from a connection or an uploaded file. See PATCH /atlases/{atlas_id}.
+     * Update an existing place
      * Update place
      */
     updatePlace(placeId: string, placeFields: PlaceMergePatch): Promise<Place>;

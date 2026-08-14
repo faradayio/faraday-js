@@ -1075,10 +1075,10 @@ export interface Atlas {
     options: AtlasOptions;
     /**
      *
-     * @type {OutputToLocations}
+     * @type {AtlasOutputToLocations}
      * @memberof Atlas
      */
-    output_to_locations: OutputToLocations;
+    output_to_locations: AtlasOutputToLocations;
     /**
      * The type of this resource.
      * @type {string}
@@ -1171,10 +1171,10 @@ export interface AtlasMergePatch {
     options?: AtlasOptionsMergePatch;
     /**
      *
-     * @type {OutputToLocationsMergePatch}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasMergePatch
      */
-    output_to_locations?: OutputToLocationsMergePatch;
+    output_to_locations?: AtlasOutputToLocations;
 }
 /**
  * @type AtlasOptions
@@ -1377,6 +1377,104 @@ export declare type AtlasOptionsPut = {
     type: 'sql_server';
 } & DatasetOptionsSqlServerPut;
 /**
+ * How to build a location out of each row of the source data. Each member below names a column in the source data.
+ *
+ * Each location is placed by exactly one of three groups of columns: a geometry column (`geometry`), a coordinate pair (`latitude` and `longitude`), or address columns (`house_number_and_street`, `city`, `state` and `postcode`). Naming columns from more than one group is rejected. Naming none is allowed: an atlas can be created before the columns of its source data are known, and configured once they are. Addresses are geocoded to a point during ingestion.
+ * @export
+ * @interface AtlasOutputToLocations
+ */
+export interface AtlasOutputToLocations {
+    /**
+     * The city of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    city?: string;
+    /**
+     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
+     *
+     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    geometry?: string;
+    /**
+     * The street address lines of each location.
+     * @type {Array<string>}
+     * @memberof AtlasOutputToLocations
+     */
+    house_number_and_street?: Array<string>;
+    /**
+     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    latitude?: string;
+    /**
+     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    longitude?: string;
+    /**
+     * A human-readable label for each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    name?: string;
+    /**
+     * The postcode of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    postcode?: string;
+    /**
+     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
+     * @type {Array<AtlasOutputToLocationsProperties>}
+     * @memberof AtlasOutputToLocations
+     */
+    properties?: Array<AtlasOutputToLocationsProperties>;
+    /**
+     * An identifier for each location from an external system.
+     *
+     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    reference_key?: string;
+    /**
+     * The state of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    state?: string;
+}
+/**
+ *
+ * @export
+ * @interface AtlasOutputToLocationsProperties
+ */
+export interface AtlasOutputToLocationsProperties {
+    /**
+     * The source column this property's value is read from. Mutually exclusive with `value`.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    column?: string;
+    /**
+     * The name this property is given on each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    name: string;
+    /**
+     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    value?: string;
+}
+/**
  * (Parameters used to POST a new value of the `Atlas` type.)
  *
  * A collection of geographic locations, such as stores, branches, or service areas.
@@ -1410,10 +1508,10 @@ export interface AtlasPost {
     options: AtlasOptionsPost;
     /**
      *
-     * @type {OutputToLocationsPost}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasPost
      */
-    output_to_locations: OutputToLocationsPost;
+    output_to_locations: AtlasOutputToLocations;
 }
 /**
  * (Parameters used to PUT a value of the `Atlas` type.)
@@ -1439,10 +1537,10 @@ export interface AtlasPut {
     options: AtlasOptionsPut;
     /**
      *
-     * @type {OutputToLocationsPut}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasPut
      */
-    output_to_locations: OutputToLocationsPut;
+    output_to_locations: AtlasOutputToLocations;
 }
 /**
  * An attribute wraps a stream of assertions with configuration for aggregation and selection.
@@ -2863,8 +2961,7 @@ export interface CohortMetrics {
     total_residence_count?: number;
 }
 /**
- * A spatial filter on a place. Superseded by `CohortLocationCondition`, which filters on
- * the locations of an atlas.
+ *
  * @export
  * @interface CohortPlaceCondition
  */
@@ -10138,40 +10235,22 @@ export interface DataMapColumn {
     format?: DataMapColumnFormat;
 }
 /**
+ * @type DataMapColumnFormat
  * Additional context for the column's data that isn't captured by its data type. For example, a 'revenue' column's data type would likely be 'int64', but format specifies if this number represents 'dollars' or 'cents'. This can be left blank if no additional context is needed.
+ * @export
+ */
+export declare type DataMapColumnFormat = DataMapColumnFormatOneOf | DateColumnFormat;
+/**
+ *
  * @export
  * @enum {string}
  */
-export declare enum DataMapColumnFormat {
+export declare enum DataMapColumnFormatOneOf {
     CurrencyCents = "currency_cents",
     CurrencyDollars = "currency_dollars",
-    MmDdYySlash = "mm_dd_yy_slash",
-    MmDdYyyySlash = "mm_dd_yyyy_slash",
-    MmDdYyDash = "mm_dd_yy_dash",
-    MmDdYyyyDash = "mm_dd_yyyy_dash",
-    YyyyMmDdSlash = "yyyy_mm_dd_slash",
-    YyMmDdSlash = "yy_mm_dd_slash",
-    YyyyMmDdDash = "yyyy_mm_dd_dash",
-    YyMmDdDash = "yy_mm_dd_dash",
-    Yyyymmdd = "yyyymmdd",
-    Yyyymm = "yyyymm",
-    YyyyMmDash = "yyyy_mm_dash",
-    YyyyMmSlash = "yyyy_mm_slash",
-    DdMmYyyySlash = "dd_mm_yyyy_slash",
-    DdMmYySlash = "dd_mm_yy_slash",
-    DdMmYyyyDash = "dd_mm_yyyy_dash",
-    DdMmYyDash = "dd_mm_yy_dash",
-    DateIso8601 = "date_iso8601",
-    DateMonthDayFullyear = "date_month_day_fullyear",
-    DateMonthDayShortyear = "date_month_day_shortyear",
-    DateMonthDayFullyearHoursMinutes = "date_month_day_fullyear_hours_minutes",
-    DateMonthDayFullyearHoursMinutesSeconds = "date_month_day_fullyear_hours_minutes_seconds",
-    DateSecondsSinceEpochUtc = "date_seconds_since_epoch_utc",
-    DateMillisecondsSinceEpochUtc = "date_milliseconds_since_epoch_utc",
     ListCommaSeparated = "list_comma_separated",
     ListSemicolonSeparated = "list_semicolon_separated",
-    ListSingleValue = "list_single_value",
-    StaticDateIso8601 = "static_date_iso8601"
+    ListSingleValue = "list_single_value"
 }
 /**
  *
@@ -14748,6 +14827,56 @@ export interface DatasetUpdateHistory {
     rows_added: number;
 }
 /**
+ * The date format of a column's values. This is the date subset of `DataMapColumnFormat` — every format except the currency and list ones.
+ * @export
+ * @enum {string}
+ */
+export declare enum DateColumnFormat {
+    MmDdYySlash = "mm_dd_yy_slash",
+    MmDdYyyySlash = "mm_dd_yyyy_slash",
+    MmDdYyDash = "mm_dd_yy_dash",
+    MmDdYyyyDash = "mm_dd_yyyy_dash",
+    YyyyMmDdSlash = "yyyy_mm_dd_slash",
+    YyMmDdSlash = "yy_mm_dd_slash",
+    YyyyMmDdDash = "yyyy_mm_dd_dash",
+    YyMmDdDash = "yy_mm_dd_dash",
+    Yyyymmdd = "yyyymmdd",
+    Yyyymm = "yyyymm",
+    YyyyMmDash = "yyyy_mm_dash",
+    YyyyMmSlash = "yyyy_mm_slash",
+    DdMmYyyySlash = "dd_mm_yyyy_slash",
+    DdMmYySlash = "dd_mm_yy_slash",
+    DdMmYyyyDash = "dd_mm_yyyy_dash",
+    DdMmYyDash = "dd_mm_yy_dash",
+    DateIso8601 = "date_iso8601",
+    DateMonthDayFullyear = "date_month_day_fullyear",
+    DateMonthDayShortyear = "date_month_day_shortyear",
+    DateMonthDayFullyearHoursMinutes = "date_month_day_fullyear_hours_minutes",
+    DateMonthDayFullyearHoursMinutesSeconds = "date_month_day_fullyear_hours_minutes_seconds",
+    DateSecondsSinceEpochUtc = "date_seconds_since_epoch_utc",
+    DateMillisecondsSinceEpochUtc = "date_milliseconds_since_epoch_utc",
+    StaticDateIso8601 = "static_date_iso8601"
+}
+/**
+ * A dataset column holding each person's date of birth, together with the date format of its values.
+ * @export
+ * @interface DateOfBirthColumn
+ */
+export interface DateOfBirthColumn {
+    /**
+     * The name of the dataset column holding each person's date of birth.
+     * @type {string}
+     * @memberof DateOfBirthColumn
+     */
+    column_name: string;
+    /**
+     *
+     * @type {DateColumnFormat}
+     * @memberof DateOfBirthColumn
+     */
+    format?: DateColumnFormat;
+}
+/**
  * Configuration for decode transformations.
  * @export
  * @interface DecodeConfig
@@ -15189,6 +15318,12 @@ export interface IdentitySet {
      */
     city?: string;
     /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySet
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
+    /**
      *
      * @type {string}
      * @memberof IdentitySet
@@ -15201,6 +15336,12 @@ export interface IdentitySet {
      */
     email_hash?: string;
     /**
+     * Base64-encoded SHA-256 hash of the lowercase version of the email, with plus-addressing removed. Same hash as `email_hash` but Base64-encoded rather than hex-encoded.
+     * @type {string}
+     * @memberof IdentitySet
+     */
+    email_hash_base64?: string;
+    /**
      * House number and Street, City, State, and Zip all on one line if they are not available separately
      * @type {string}
      * @memberof IdentitySet
@@ -15212,6 +15353,12 @@ export interface IdentitySet {
      * @memberof IdentitySet
      */
     house_number_and_street?: Array<string>;
+    /**
+     * Base64-encoded SHA-256 composite hash of a person's first name, last name, date of birth, and postcode, allowing that combination to resolve an identity without an email, phone, or street address. Build it by standardizing and Base64-encoded-SHA-256 hashing each field on its own, then Base64-encoded-SHA-256 hashing the four hashes concatenated in the order first name, last name, date of birth, postcode. Standardization: names are lowercased with spaces, hyphens, and apostrophes removed; date of birth is `YYYYMMDD`; postcode keeps its first five alphanumeric characters, lowercased with leading zeros removed.
+     * @type {string}
+     * @memberof IdentitySet
+     */
+    person_date_of_birth_postcode_hash_base64?: string;
     /**
      *
      * @type {string}
@@ -15236,6 +15383,12 @@ export interface IdentitySet {
      * @memberof IdentitySet
      */
     phone?: string;
+    /**
+     * Base64-encoded SHA-256 hash of the phone number's last ten digits, with all non-digit characters removed first. Available only to accounts enabled for phone-only matching.
+     * @type {string}
+     * @memberof IdentitySet
+     */
+    phone_hash_base64?: string;
     /**
      *
      * @type {string}
@@ -15279,6 +15432,12 @@ export interface IdentitySetMergePatch {
      */
     city?: string | null;
     /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySetMergePatch
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
+    /**
      *
      * @type {string}
      * @memberof IdentitySetMergePatch
@@ -15291,6 +15450,12 @@ export interface IdentitySetMergePatch {
      */
     email_hash?: string | null;
     /**
+     * Base64-encoded SHA-256 hash of the lowercase version of the email, with plus-addressing removed. Same hash as `email_hash` but Base64-encoded rather than hex-encoded.
+     * @type {string}
+     * @memberof IdentitySetMergePatch
+     */
+    email_hash_base64?: string | null;
+    /**
      * House number and Street, City, State, and Zip all on one line if they are not available separately
      * @type {string}
      * @memberof IdentitySetMergePatch
@@ -15302,6 +15467,12 @@ export interface IdentitySetMergePatch {
      * @memberof IdentitySetMergePatch
      */
     house_number_and_street?: Array<string> | null;
+    /**
+     * Base64-encoded SHA-256 composite hash of a person's first name, last name, date of birth, and postcode, allowing that combination to resolve an identity without an email, phone, or street address. Build it by standardizing and Base64-encoded-SHA-256 hashing each field on its own, then Base64-encoded-SHA-256 hashing the four hashes concatenated in the order first name, last name, date of birth, postcode. Standardization: names are lowercased with spaces, hyphens, and apostrophes removed; date of birth is `YYYYMMDD`; postcode keeps its first five alphanumeric characters, lowercased with leading zeros removed.
+     * @type {string}
+     * @memberof IdentitySetMergePatch
+     */
+    person_date_of_birth_postcode_hash_base64?: string | null;
     /**
      *
      * @type {string}
@@ -15326,6 +15497,12 @@ export interface IdentitySetMergePatch {
      * @memberof IdentitySetMergePatch
      */
     phone?: string | null;
+    /**
+     * Base64-encoded SHA-256 hash of the phone number's last ten digits, with all non-digit characters removed first. Available only to accounts enabled for phone-only matching.
+     * @type {string}
+     * @memberof IdentitySetMergePatch
+     */
+    phone_hash_base64?: string | null;
     /**
      *
      * @type {string}
@@ -15369,6 +15546,12 @@ export interface IdentitySetPost {
      */
     city?: string;
     /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySetPost
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
+    /**
      *
      * @type {string}
      * @memberof IdentitySetPost
@@ -15381,6 +15564,12 @@ export interface IdentitySetPost {
      */
     email_hash?: string;
     /**
+     * Base64-encoded SHA-256 hash of the lowercase version of the email, with plus-addressing removed. Same hash as `email_hash` but Base64-encoded rather than hex-encoded.
+     * @type {string}
+     * @memberof IdentitySetPost
+     */
+    email_hash_base64?: string;
+    /**
      * House number and Street, City, State, and Zip all on one line if they are not available separately
      * @type {string}
      * @memberof IdentitySetPost
@@ -15392,6 +15581,12 @@ export interface IdentitySetPost {
      * @memberof IdentitySetPost
      */
     house_number_and_street?: Array<string>;
+    /**
+     * Base64-encoded SHA-256 composite hash of a person's first name, last name, date of birth, and postcode, allowing that combination to resolve an identity without an email, phone, or street address. Build it by standardizing and Base64-encoded-SHA-256 hashing each field on its own, then Base64-encoded-SHA-256 hashing the four hashes concatenated in the order first name, last name, date of birth, postcode. Standardization: names are lowercased with spaces, hyphens, and apostrophes removed; date of birth is `YYYYMMDD`; postcode keeps its first five alphanumeric characters, lowercased with leading zeros removed.
+     * @type {string}
+     * @memberof IdentitySetPost
+     */
+    person_date_of_birth_postcode_hash_base64?: string;
     /**
      *
      * @type {string}
@@ -15416,6 +15611,12 @@ export interface IdentitySetPost {
      * @memberof IdentitySetPost
      */
     phone?: string;
+    /**
+     * Base64-encoded SHA-256 hash of the phone number's last ten digits, with all non-digit characters removed first. Available only to accounts enabled for phone-only matching.
+     * @type {string}
+     * @memberof IdentitySetPost
+     */
+    phone_hash_base64?: string;
     /**
      *
      * @type {string}
@@ -15459,6 +15660,12 @@ export interface IdentitySetPut {
      */
     city?: string;
     /**
+     * How to read each person's date of birth from the dataset. Combined with first name, last name, and postcode, a date of birth can resolve a person to an identity even without an email, phone, or full street address. Provide either a column name — whose values are read as ISO 8601 (`YYYY-MM-DD`) dates — or an object naming the column and its date `format`.
+     * @type {string | DateOfBirthColumn}
+     * @memberof IdentitySetPut
+     */
+    date_of_birth?: string | DateOfBirthColumn | null;
+    /**
      *
      * @type {string}
      * @memberof IdentitySetPut
@@ -15471,6 +15678,12 @@ export interface IdentitySetPut {
      */
     email_hash?: string;
     /**
+     * Base64-encoded SHA-256 hash of the lowercase version of the email, with plus-addressing removed. Same hash as `email_hash` but Base64-encoded rather than hex-encoded.
+     * @type {string}
+     * @memberof IdentitySetPut
+     */
+    email_hash_base64?: string;
+    /**
      * House number and Street, City, State, and Zip all on one line if they are not available separately
      * @type {string}
      * @memberof IdentitySetPut
@@ -15482,6 +15695,12 @@ export interface IdentitySetPut {
      * @memberof IdentitySetPut
      */
     house_number_and_street?: Array<string>;
+    /**
+     * Base64-encoded SHA-256 composite hash of a person's first name, last name, date of birth, and postcode, allowing that combination to resolve an identity without an email, phone, or street address. Build it by standardizing and Base64-encoded-SHA-256 hashing each field on its own, then Base64-encoded-SHA-256 hashing the four hashes concatenated in the order first name, last name, date of birth, postcode. Standardization: names are lowercased with spaces, hyphens, and apostrophes removed; date of birth is `YYYYMMDD`; postcode keeps its first five alphanumeric characters, lowercased with leading zeros removed.
+     * @type {string}
+     * @memberof IdentitySetPut
+     */
+    person_date_of_birth_postcode_hash_base64?: string;
     /**
      *
      * @type {string}
@@ -15507,6 +15726,12 @@ export interface IdentitySetPut {
      */
     phone?: string;
     /**
+     * Base64-encoded SHA-256 hash of the phone number's last ten digits, with all non-digit characters removed first. Available only to accounts enabled for phone-only matching.
+     * @type {string}
+     * @memberof IdentitySetPut
+     */
+    phone_hash_base64?: string;
+    /**
      *
      * @type {string}
      * @memberof IdentitySetPut
@@ -15527,15 +15752,19 @@ export interface IdentitySetPut {
  * Identity set objects map canonical names to dataset column names. The following keys are supported:
  *   * `email`
  *   * `email_hash`
+ *   * `email_hash_base64`
  *   * `phone`
+ *   * `phone_hash_base64`
  *   * `person_full_name`
  *   * `person_last_name`
  *   * `person_first_name`
+ *   * `person_date_of_birth_postcode_hash_base64`
  *   * `house_number_and_street`
  *   * `city`
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
@@ -15556,15 +15785,19 @@ export interface IdentitySets {
  * Identity set objects map canonical names to dataset column names. The following keys are supported:
  *   * `email`
  *   * `email_hash`
+ *   * `email_hash_base64`
  *   * `phone`
+ *   * `phone_hash_base64`
  *   * `person_full_name`
  *   * `person_last_name`
  *   * `person_first_name`
+ *   * `person_date_of_birth_postcode_hash_base64`
  *   * `house_number_and_street`
  *   * `city`
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
@@ -15585,15 +15818,19 @@ export interface IdentitySetsMergePatch {
  * Identity set objects map canonical names to dataset column names. The following keys are supported:
  *   * `email`
  *   * `email_hash`
+ *   * `email_hash_base64`
  *   * `phone`
+ *   * `phone_hash_base64`
  *   * `person_full_name`
  *   * `person_last_name`
  *   * `person_first_name`
+ *   * `person_date_of_birth_postcode_hash_base64`
  *   * `house_number_and_street`
  *   * `city`
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
@@ -15614,15 +15851,19 @@ export interface IdentitySetsPost {
  * Identity set objects map canonical names to dataset column names. The following keys are supported:
  *   * `email`
  *   * `email_hash`
+ *   * `email_hash_base64`
  *   * `phone`
+ *   * `phone_hash_base64`
  *   * `person_full_name`
  *   * `person_last_name`
  *   * `person_first_name`
+ *   * `person_date_of_birth_postcode_hash_base64`
  *   * `house_number_and_street`
  *   * `city`
  *   * `state`
  *   * `postcode`
  *   * `freeform_address`
+ *   * `date_of_birth`
  *
  * All keys must correspond to a single column name except `house_number_and_street` which must be an array of column names.
  *
@@ -17856,321 +18097,6 @@ export declare enum OutcomePutPredictionModeEnum {
     Static = "static"
 }
 /**
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocations
- */
-export interface OutputToLocations {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocations
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocations
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    state?: string;
-}
-/**
- * (Parameters used to PATCH the `OutputToLocations` type.)
- *
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsMergePatch
- */
-export interface OutputToLocationsMergePatch {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    city?: string | null;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    geometry?: string | null;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsMergePatch
-     */
-    house_number_and_street?: Array<string> | null;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    latitude?: string | null;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    longitude?: string | null;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    name?: string | null;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    postcode?: string | null;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsMergePatch
-     */
-    properties?: Array<OutputToLocationsProperties> | null;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    reference_key?: string | null;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    state?: string | null;
-}
-/**
- * (Parameters used to POST a new value of the `OutputToLocations` type.)
- *
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsPost
- */
-export interface OutputToLocationsPost {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsPost
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsPost
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    state?: string;
-}
-/**
- *
- * @export
- * @interface OutputToLocationsProperties
- */
-export interface OutputToLocationsProperties {
-    /**
-     * The source column this property's value is read from. Mutually exclusive with `value`.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    column?: string;
-    /**
-     * The name this property is given on each location.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    name: string;
-    /**
-     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    value?: string;
-}
-/**
- * (Parameters used to PUT a value of the `OutputToLocations` type.)
- *
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsPut
- */
-export interface OutputToLocationsPut {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsPut
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsPut
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    state?: string;
-}
-/**
  * A single mapping of a dataset column to a stream with property configurations.
  * @export
  * @interface OutputToStreamArrayItem
@@ -19102,9 +19028,6 @@ export interface PersonaSetPut {
 }
 /**
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface Place
  */
@@ -19201,9 +19124,6 @@ export interface Place {
  * (Parameters used to PATCH the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlaceMergePatch
  */
@@ -19234,9 +19154,6 @@ export interface PlaceMergePatch {
  * (Parameters used to POST a new value of the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePost
  */
@@ -19267,9 +19184,6 @@ export interface PlacePost {
  * (Parameters used to PUT a value of the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePut
  */
@@ -20749,234 +20663,6 @@ export interface ScopePayloadLocationConditions {
     property_conditions?: Array<LocationPropertyCondition>;
 }
 /**
- * (Parameters used to PATCH the `ScopePayloadLocationConditions` type.)
- *
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsMergePatch
- */
-export interface ScopePayloadLocationConditionsMergePatch {
-    /**
-     * The atlases whose locations each person is matched against.
-     *
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    atlas_ids?: Array<string> | null;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     *
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    location_reference_keys?: Array<string> | null;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    max_distance?: number | null;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    min_distance?: number | null;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    property_conditions?: Array<LocationPropertyCondition> | null;
-}
-/**
- * (Parameters used to POST a new value of the `ScopePayloadLocationConditions` type.)
- *
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsPost
- */
-export interface ScopePayloadLocationConditionsPost {
-    /**
-     * The atlases whose locations each person is matched against.
-     *
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     *
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    max_distance?: number;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    min_distance?: number;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
- * (Parameters used to PUT a value of the `ScopePayloadLocationConditions` type.)
- *
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsPut
- */
-export interface ScopePayloadLocationConditionsPut {
-    /**
-     * The atlases whose locations each person is matched against.
-     *
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     *
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    max_distance?: number;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    min_distance?: number;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
- * (Parameters used to PATCH the `ScopePayloadLocation` type.)
- *
- * Include each person's proximity to the locations of one or more atlases.
- *
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationMergePatch
- */
-export interface ScopePayloadLocationMergePatch {
-    /**
-     *
-     * @type {ScopePayloadLocationConditionsMergePatch}
-     * @memberof ScopePayloadLocationMergePatch
-     */
-    conditions?: ScopePayloadLocationConditionsMergePatch | null;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     *
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationMergePatch
-     */
-    select?: ScopePayloadLocationMergePatchSelectEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ScopePayloadLocationMergePatchSelectEnum {
-    Nearest = "nearest",
-    All = "all"
-}
-/**
- * (Parameters used to POST a new value of the `ScopePayloadLocation` type.)
- *
- * Include each person's proximity to the locations of one or more atlases.
- *
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationPost
- */
-export interface ScopePayloadLocationPost {
-    /**
-     *
-     * @type {ScopePayloadLocationConditionsPost}
-     * @memberof ScopePayloadLocationPost
-     */
-    conditions?: ScopePayloadLocationConditionsPost;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     *
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationPost
-     */
-    select?: ScopePayloadLocationPostSelectEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ScopePayloadLocationPostSelectEnum {
-    Nearest = "nearest",
-    All = "all"
-}
-/**
- * (Parameters used to PUT a value of the `ScopePayloadLocation` type.)
- *
- * Include each person's proximity to the locations of one or more atlases.
- *
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationPut
- */
-export interface ScopePayloadLocationPut {
-    /**
-     *
-     * @type {ScopePayloadLocationConditionsPut}
-     * @memberof ScopePayloadLocationPut
-     */
-    conditions?: ScopePayloadLocationConditionsPut;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     *
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationPut
-     */
-    select?: ScopePayloadLocationPutSelectEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ScopePayloadLocationPutSelectEnum {
-    Nearest = "nearest",
-    All = "all"
-}
-/**
  * (Parameters used to PATCH the `ScopePayload` type.)
  *
  * The data to include for each person in this scope.
@@ -21008,10 +20694,10 @@ export interface ScopePayloadMergePatch {
     explainability?: boolean | null;
     /**
      *
-     * @type {ScopePayloadLocationMergePatch}
+     * @type {ScopePayloadMergePatchLocation}
      * @memberof ScopePayloadMergePatch
      */
-    location?: ScopePayloadLocationMergePatch | null;
+    location?: ScopePayloadMergePatchLocation | null;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -21038,6 +20724,37 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     recommender_ids?: Array<string> | null;
+}
+/**
+ * Include each person's proximity to the locations of one or more atlases.
+ *
+ * Distances are in meters, measured to the nearest edge of a location's geometry.
+ * @export
+ * @interface ScopePayloadMergePatchLocation
+ */
+export interface ScopePayloadMergePatchLocation {
+    /**
+     *
+     * @type {ScopePayloadLocationConditions}
+     * @memberof ScopePayloadMergePatchLocation
+     */
+    conditions?: ScopePayloadLocationConditions;
+    /**
+     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
+     *
+     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
+     * @type {string}
+     * @memberof ScopePayloadMergePatchLocation
+     */
+    select?: ScopePayloadMergePatchLocationSelectEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ScopePayloadMergePatchLocationSelectEnum {
+    Nearest = "nearest",
+    All = "all"
 }
 /**
  * (Parameters used to POST a new value of the `ScopePayload` type.)
@@ -21071,10 +20788,10 @@ export interface ScopePayloadPost {
     explainability?: boolean;
     /**
      *
-     * @type {ScopePayloadLocationPost}
+     * @type {ScopePayloadLocation}
      * @memberof ScopePayloadPost
      */
-    location?: ScopePayloadLocationPost;
+    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -21134,10 +20851,10 @@ export interface ScopePayloadPut {
     explainability?: boolean;
     /**
      *
-     * @type {ScopePayloadLocationPut}
+     * @type {ScopePayloadLocation}
      * @memberof ScopePayloadPut
      */
-    location?: ScopePayloadLocationPut;
+    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}

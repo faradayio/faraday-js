@@ -10,23 +10,6 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.16.2] - 2026-08-12
-
-### Changed
-
-- `PATCH /atlases/{atlas_id}`: the members of `output_to_locations` accept `null` to clear an existing value, as merge patch members elsewhere in the API do. A location is placed by exactly one of a geometry column, a coordinate pair, or address columns, so moving an atlas from one group to another means naming the columns of the group being left as `null`; omitting them leaves them in place and the mapping is rejected for naming more than one group.
-- `PATCH /scopes/{scope_id}`: the members of `payload.location` and of its `conditions` accept `null` to clear an existing value, as merge patch members elsewhere in the API do. A distance bound, in particular, can now be removed so that each person is matched at any distance; omitting it leaves the stored bound in place.
-
-### Deprecated
-
-- Every `/places` endpoint, the `Place` schema, and the `CohortPlaceCondition` schema. Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas with `POST /atlases` and a cohort's `location_conditions`. Existing places and the cohorts that use them are unaffected and continue to be readable and writable.
-
-## [0.16.1] - 2026-08-10
-
-### Added
-
-- `DELETE /knowledgebase/use_cases/{use_case_id}`: delete a use case. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
-
 ## [0.16.0] - 2026-08-07
 
 ### Changed
@@ -38,6 +21,10 @@ Until we reach API 1.0, the following special rules apply:
 ### Added
 
 - ClickHouse bidirectional replication connection type (`clickhouse`): host-based native-protocol access with system-generated Ed25519 `ssh_public_key`, dataset `table_name`, and full-replacement targets with required `order_by`. Credential rotation via `POST /connections/{connection_id}/rotate_credentials` with `type: clickhouse`.
+- `IdentitySet.date_of_birth`: optional date-of-birth mapping. Combined with first name, last name, and postcode, it can resolve a person to an identity even without an email, phone, or full street address. Accepts either a column name (whose values are read as ISO 8601 `YYYY-MM-DD` dates) or an object `{ column_name, format }` where `format` is a `DateColumnFormat` (the date subset of `DataMapColumnFormat`).
+- `IdentitySet.email_hash_base64`: Base64-encoded form of the `email_hash` SHA-256 email hash.
+- `IdentitySet.phone_hash_base64`: Base64-encoded SHA-256 hash of a phone number's last ten digits, non-digits removed.
+- `IdentitySet.person_date_of_birth_postcode_hash_base64`: Base64-encoded SHA-256 composite hash of a person's first name, last name, date of birth, and postcode — each field standardized and hashed, then the four hashes concatenated (first name, last name, date of birth, postcode) and hashed again — resolving an identity from that combination without an email, phone, or street address.
 
 ## [0.15.3] - 2026-07-17
 
