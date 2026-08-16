@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.16.4] - 2026-08-15
+
+### Added
+
+- Databricks bidirectional replication connection type (`databricks`): SQL warehouse access with `host`, `http_path`, Unity Catalog `catalog` and `schema`, and a secret personal access `token`. Dataset `table_name`, full-replacement targets, and optional referenced-target `upsert`.
+
 ## [0.16.3] - 2026-08-14
 
 ### Added
