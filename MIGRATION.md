@@ -44,6 +44,12 @@ export const faraday = createClient<paths>({
 The `paths` type gives you autocomplete and compile-time checking on every path,
 query param, request body, and response.
 
+> **Server-side only.** This client authenticates with a Faraday API key, which
+> grants full access to your account. Use it from a server (or other trusted
+> backend), never from browser/client-side code — shipping the key to the
+> browser exposes it to anyone who loads the page. Keep the key in an
+> environment variable or secret store, not in source.
+
 ### 4. Call endpoints
 
 `openapi-fetch` returns `{ data, error }` instead of throwing, and type-checks
@@ -122,14 +128,9 @@ const { data: scope } = await faraday.POST("/scopes", {
 });
 ```
 
-Prefer throwing? Check `error` and throw it yourself, or wrap the client. In a
-browser you no longer need `isomorphic-fetch` — `openapi-fetch` uses the global
-`fetch`; on older Node, pass your own `fetch` via the `createClient` options.
-
-## Using React?
-
-Add [`openapi-react-query`](https://openapi-ts.dev/openapi-react-query/) on top
-of the same client for typed `useQuery`/`useMutation` hooks.
+Prefer throwing? Check `error` and throw it yourself, or wrap the client. You no
+longer need `isomorphic-fetch` — `openapi-fetch` uses the global `fetch` (Node 18+);
+on older Node, pass your own `fetch` via the `createClient` options.
 
 ## Questions?
 
