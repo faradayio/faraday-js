@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.16.5] - 2026-08-15
+
+### Fixed
+
+- `PATCH /knowledgebase/use_cases/{use_case_id}`: the `guide` and `preface` content fields now accept `null` to clear them, matching the documented merge-patch semantics. Previously sending `null` was rejected with a "must be string" validation error, so a use case saved with an empty field could not be edited and saved again.
+
 ## [0.16.4] - 2026-08-15
 
 ### Added

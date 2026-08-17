@@ -30064,30 +30064,31 @@ export interface UseCase {
 }
 /**
  * JSON Merge Patch. Fields not present are left at their current values.
- * Setting a preface field to null clears it. Optimistic locking: server
- * returns 409 if its current revision_id has moved past `revision_id`.
+ * Setting a content field to null clears it. `revision_id` is required:
+ * it names the revision you read, and the server returns 409 if its
+ * current revision has moved past it (optimistic locking).
  * @export
  * @interface UseCasePatch
  */
 export interface UseCasePatch {
     /**
+     * Markdown implementation guide. Optional.
+     * @type {string}
+     * @memberof UseCasePatch
+     */
+    guide?: string | null;
+    /**
+     *
+     * @type {UseCasePrefaceContentMergePatch}
+     * @memberof UseCasePatch
+     */
+    preface?: UseCasePrefaceContentMergePatch | null;
+    /**
      *
      * @type {string}
      * @memberof UseCasePatch
      */
-    guide?: string;
-    /**
-     *
-     * @type {UseCasePreface}
-     * @memberof UseCasePatch
-     */
-    preface?: UseCasePreface;
-    /**
-     *
-     * @type {string}
-     * @memberof UseCasePatch
-     */
-    revision_id: string;
+    revision_id?: string;
     /**
      *
      * @type {string}
@@ -30144,6 +30145,106 @@ export interface UseCasePreface {
      * Markdown. How Faraday addresses the problem at a conceptual level.
      * @type {string}
      * @memberof UseCasePreface
+     */
+    solution?: string;
+}
+/**
+ *
+ * @export
+ * @interface UseCasePrefaceContent
+ */
+export interface UseCasePrefaceContent {
+    /**
+     * Markdown. The pre-existing situation that motivated this use case.
+     * @type {string}
+     * @memberof UseCasePrefaceContent
+     */
+    background?: string;
+    /**
+     * Markdown. The specific problem the client is trying to solve.
+     * @type {string}
+     * @memberof UseCasePrefaceContent
+     */
+    problem?: string;
+    /**
+     * Markdown. How Faraday addresses the problem at a conceptual level.
+     * @type {string}
+     * @memberof UseCasePrefaceContent
+     */
+    solution?: string;
+}
+/**
+ *
+ * @export
+ * @interface UseCasePrefaceContentMergePatch
+ */
+export interface UseCasePrefaceContentMergePatch {
+    /**
+     * Markdown. The pre-existing situation that motivated this use case.
+     * @type {string}
+     * @memberof UseCasePrefaceContentMergePatch
+     */
+    background?: string | null;
+    /**
+     * Markdown. The specific problem the client is trying to solve.
+     * @type {string}
+     * @memberof UseCasePrefaceContentMergePatch
+     */
+    problem?: string | null;
+    /**
+     * Markdown. How Faraday addresses the problem at a conceptual level.
+     * @type {string}
+     * @memberof UseCasePrefaceContentMergePatch
+     */
+    solution?: string | null;
+}
+/**
+ *
+ * @export
+ * @interface UseCasePrefaceContentPost
+ */
+export interface UseCasePrefaceContentPost {
+    /**
+     * Markdown. The pre-existing situation that motivated this use case.
+     * @type {string}
+     * @memberof UseCasePrefaceContentPost
+     */
+    background?: string;
+    /**
+     * Markdown. The specific problem the client is trying to solve.
+     * @type {string}
+     * @memberof UseCasePrefaceContentPost
+     */
+    problem?: string;
+    /**
+     * Markdown. How Faraday addresses the problem at a conceptual level.
+     * @type {string}
+     * @memberof UseCasePrefaceContentPost
+     */
+    solution?: string;
+}
+/**
+ *
+ * @export
+ * @interface UseCasePrefaceContentPut
+ */
+export interface UseCasePrefaceContentPut {
+    /**
+     * Markdown. The pre-existing situation that motivated this use case.
+     * @type {string}
+     * @memberof UseCasePrefaceContentPut
+     */
+    background?: string;
+    /**
+     * Markdown. The specific problem the client is trying to solve.
+     * @type {string}
+     * @memberof UseCasePrefaceContentPut
+     */
+    problem?: string;
+    /**
+     * Markdown. How Faraday addresses the problem at a conceptual level.
+     * @type {string}
+     * @memberof UseCasePrefaceContentPut
      */
     solution?: string;
 }
@@ -30269,6 +30370,130 @@ export interface UseCaseSummary {
      *
      * @type {string}
      * @memberof UseCaseSummary
+     */
+    title: string;
+}
+/**
+ *
+ * @export
+ * @interface UseCaseUpdate
+ */
+export interface UseCaseUpdate {
+    /**
+     * Markdown implementation guide. Optional.
+     * @type {string}
+     * @memberof UseCaseUpdate
+     */
+    guide?: string;
+    /**
+     *
+     * @type {UseCasePrefaceContent}
+     * @memberof UseCaseUpdate
+     */
+    preface?: UseCasePrefaceContent;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdate
+     */
+    revision_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdate
+     */
+    title: string;
+}
+/**
+ *
+ * @export
+ * @interface UseCaseUpdateMergePatch
+ */
+export interface UseCaseUpdateMergePatch {
+    /**
+     * Markdown implementation guide. Optional.
+     * @type {string}
+     * @memberof UseCaseUpdateMergePatch
+     */
+    guide?: string | null;
+    /**
+     *
+     * @type {UseCasePrefaceContentMergePatch}
+     * @memberof UseCaseUpdateMergePatch
+     */
+    preface?: UseCasePrefaceContentMergePatch | null;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdateMergePatch
+     */
+    revision_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdateMergePatch
+     */
+    title?: string;
+}
+/**
+ *
+ * @export
+ * @interface UseCaseUpdatePost
+ */
+export interface UseCaseUpdatePost {
+    /**
+     * Markdown implementation guide. Optional.
+     * @type {string}
+     * @memberof UseCaseUpdatePost
+     */
+    guide?: string;
+    /**
+     *
+     * @type {UseCasePrefaceContentPost}
+     * @memberof UseCaseUpdatePost
+     */
+    preface?: UseCasePrefaceContentPost;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdatePost
+     */
+    revision_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdatePost
+     */
+    title: string;
+}
+/**
+ *
+ * @export
+ * @interface UseCaseUpdatePut
+ */
+export interface UseCaseUpdatePut {
+    /**
+     * Markdown implementation guide. Optional.
+     * @type {string}
+     * @memberof UseCaseUpdatePut
+     */
+    guide?: string;
+    /**
+     *
+     * @type {UseCasePrefaceContentPut}
+     * @memberof UseCaseUpdatePut
+     */
+    preface?: UseCasePrefaceContentPut;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdatePut
+     */
+    revision_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UseCaseUpdatePut
      */
     title: string;
 }
