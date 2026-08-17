@@ -20,11 +20,11 @@ npm install --save-dev openapi-typescript
 
 ### 2. Generate types from the OpenAPI spec
 
-Point `openapi-typescript` at Faraday's OpenAPI document (available from the API
-reference at <https://faraday.ai/developers/reference>):
+Point `openapi-typescript` at Faraday's published OpenAPI document — it takes a
+URL directly:
 
 ```sh
-npx openapi-typescript ./faraday-openapi.yml --output ./faraday-api.ts
+npx openapi-typescript https://app.faraday.ai/api.json --output ./faraday-api.ts
 ```
 
 Re-run this whenever you want to pick up API changes. Commit `faraday-api.ts` or
