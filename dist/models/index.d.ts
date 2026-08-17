@@ -1200,10 +1200,6 @@ export declare type AtlasOptions = {
 } & DatasetOptionsBigQuery | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouse | {
-    type: 'databricks';
-} & DatasetOptionsDatabricks | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharing | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -1254,10 +1250,6 @@ export declare type AtlasOptionsMergePatch = {
 } & DatasetOptionsBigQueryMergePatch | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksMergePatch | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -1308,10 +1300,6 @@ export declare type AtlasOptionsPost = {
 } & DatasetOptionsBigQueryPost | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePost | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPost | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -1362,10 +1350,6 @@ export declare type AtlasOptionsPut = {
 } & DatasetOptionsBigQueryPut | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePut | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPut | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
@@ -3469,10 +3453,6 @@ export declare type ConnectionOptions = {
 } & ConnectionOptionsClassic | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhouse | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricks | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharing | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiences | {
     type: 'gcp_cloud_sql_mysql';
@@ -5280,33 +5260,11 @@ export interface ConnectionOptionsBigQuery {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQuery
-     */
-    region?: ConnectionOptionsBigQueryRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQuery
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to PATCH the `ConnectionOptionsBigQuery` type.)
@@ -5329,33 +5287,11 @@ export interface ConnectionOptionsBigQueryMergePatch {
      */
     project_id?: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryMergePatch
-     */
-    region?: ConnectionOptionsBigQueryMergePatchRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryMergePatch
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryMergePatchRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsBigQuery` type.)
@@ -5378,33 +5314,11 @@ export interface ConnectionOptionsBigQueryPost {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryPost
-     */
-    region?: ConnectionOptionsBigQueryPostRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPost
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryPostRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsBigQuery` type.)
@@ -5427,33 +5341,11 @@ export interface ConnectionOptionsBigQueryPut {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryPut
-     */
-    region?: ConnectionOptionsBigQueryPutRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPut
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryPutRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * Classic Faraday Sources options
@@ -5720,314 +5612,6 @@ export interface ConnectionOptionsClickhousePut {
      * @memberof ConnectionOptionsClickhousePut
      */
     user: string;
-}
-/**
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricks
- */
-export interface ConnectionOptionsDatabricks {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    type: string;
-}
-/**
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharing
- */
-export interface ConnectionOptionsDatabricksDeltaSharing {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `ConnectionOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingMergePatch
- */
-export interface ConnectionOptionsDatabricksDeltaSharingMergePatch {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    credentials_json?: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    schema_name?: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    share_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingPost
- */
-export interface ConnectionOptionsDatabricksDeltaSharingPost {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingPut
- */
-export interface ConnectionOptionsDatabricksDeltaSharingPut {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `ConnectionOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksMergePatch
- */
-export interface ConnectionOptionsDatabricksMergePatch {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    catalog?: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    host?: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    http_path?: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    schema?: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    token?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `ConnectionOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksPost
- */
-export interface ConnectionOptionsDatabricksPost {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `ConnectionOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksPut
- */
-export interface ConnectionOptionsDatabricksPut {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    type: string;
 }
 /**
  * Facebook Custom Audiences options
@@ -7499,10 +7083,6 @@ export declare type ConnectionOptionsMergePatch = {
 } & ConnectionOptionsClassicMergePatch | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricksMergePatch | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharingMergePatch | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesMergePatch | {
     type: 'gcp_cloud_sql_mysql';
@@ -8141,10 +7721,6 @@ export declare type ConnectionOptionsPost = {
 } & ConnectionOptionsClassicPost | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhousePost | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricksPost | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharingPost | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPost | {
     type: 'gcp_cloud_sql_mysql';
@@ -8483,10 +8059,6 @@ export declare type ConnectionOptionsPut = {
 } & ConnectionOptionsClassicPut | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhousePut | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricksPut | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharingPut | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPut | {
     type: 'gcp_cloud_sql_mysql';
@@ -11451,10 +11023,6 @@ export declare type DatasetOptions = {
 } & DatasetOptionsClassic | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouse | {
-    type: 'databricks';
-} & DatasetOptionsDatabricks | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharing | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -12292,170 +11860,6 @@ export interface DatasetOptionsClickhousePut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsClickhousePut
-     */
-    type: string;
-}
-/**
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricks
- */
-export interface DatasetOptionsDatabricks {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricks
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricks
-     */
-    type: string;
-}
-/**
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharing
- */
-export interface DatasetOptionsDatabricksDeltaSharing {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharing
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharing
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `DatasetOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingMergePatch
- */
-export interface DatasetOptionsDatabricksDeltaSharingMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `DatasetOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingPost
- */
-export interface DatasetOptionsDatabricksDeltaSharingPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `DatasetOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingPut
- */
-export interface DatasetOptionsDatabricksDeltaSharingPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPut
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `DatasetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksMergePatch
- */
-export interface DatasetOptionsDatabricksMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `DatasetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksPost
- */
-export interface DatasetOptionsDatabricksPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `DatasetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksPut
- */
-export interface DatasetOptionsDatabricksPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPut
      */
     type: string;
 }
@@ -13336,10 +12740,6 @@ export declare type DatasetOptionsMergePatch = {
 } & DatasetOptionsClassicMergePatch | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksMergePatch | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -13652,10 +13052,6 @@ export declare type DatasetOptionsPost = {
 } & DatasetOptionsClassicPost | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePost | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPost | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -13808,10 +13204,6 @@ export declare type DatasetOptionsPut = {
 } & DatasetOptionsClassicPut | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePut | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPut | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
@@ -25358,8 +24750,6 @@ export declare type TargetOptions = {
 } & TargetOptionsBigQuery | {
     type: 'clickhouse';
 } & TargetOptionsClickhouse | {
-    type: 'databricks';
-} & TargetOptionsDatabricks | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiences | {
     type: 'gcp_cloud_sql_mysql';
@@ -26223,112 +25613,6 @@ export interface TargetOptionsClickhousePut {
      * @memberof TargetOptionsClickhousePut
      */
     type: string;
-}
-/**
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricks
- */
-export interface TargetOptionsDatabricks {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricks
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricks
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricks
-     */
-    upsert?: boolean;
-}
-/**
- * (Parameters used to PATCH the `TargetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksMergePatch
- */
-export interface TargetOptionsDatabricksMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    upsert?: boolean | null;
-}
-/**
- * (Parameters used to POST a new value of the `TargetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksPost
- */
-export interface TargetOptionsDatabricksPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    upsert?: boolean;
-}
-/**
- * (Parameters used to PUT a value of the `TargetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksPut
- */
-export interface TargetOptionsDatabricksPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    upsert?: boolean;
 }
 /**
  * Facebook Custom Audiences options
@@ -27350,8 +26634,6 @@ export declare type TargetOptionsMergePatch = {
 } & TargetOptionsBigQueryMergePatch | {
     type: 'clickhouse';
 } & TargetOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & TargetOptionsDatabricksMergePatch | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesMergePatch | {
     type: 'gcp_cloud_sql_mysql';
@@ -27734,8 +27016,6 @@ export declare type TargetOptionsPost = {
 } & TargetOptionsBigQueryPost | {
     type: 'clickhouse';
 } & TargetOptionsClickhousePost | {
-    type: 'databricks';
-} & TargetOptionsDatabricksPost | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesPost | {
     type: 'gcp_cloud_sql_mysql';
@@ -27896,8 +27176,6 @@ export declare type TargetOptionsPut = {
 } & TargetOptionsBigQueryPut | {
     type: 'clickhouse';
 } & TargetOptionsClickhousePut | {
-    type: 'databricks';
-} & TargetOptionsDatabricksPut | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesPut | {
     type: 'gcp_cloud_sql_mysql';
