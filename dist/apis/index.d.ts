@@ -12,6 +12,7 @@ import { GraphApi } from './GraphApi';
 import { KnowledgebaseApi } from './KnowledgebaseApi';
 import { LocationsApi } from './LocationsApi';
 import { MarketOpportunityAnalysesApi } from './MarketOpportunityAnalysesApi';
+import { MigrationsApi } from './MigrationsApi';
 import { OutcomesApi } from './OutcomesApi';
 import { PersonaSetsApi } from './PersonaSetsApi';
 import { PlacesApi } from './PlacesApi';
@@ -38,6 +39,7 @@ export declare class FaradayClient {
     knowledgebase: KnowledgebaseApi;
     locations: LocationsApi;
     marketOpportunityAnalyses: MarketOpportunityAnalysesApi;
+    migrations: MigrationsApi;
     outcomes: OutcomesApi;
     personaSets: PersonaSetsApi;
     places: PlacesApi;
