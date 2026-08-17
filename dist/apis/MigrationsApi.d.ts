@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import { AccountUsageSummary, DatasetIngressLog, Migration, MigrationMergePatch, MigrationPost } from '../models';
+import { Migration, MigrationMergePatch, MigrationPost } from '../models';
 export interface CreateMigrationRequest {
     migrationFields: MigrationPost;
 }
@@ -19,18 +19,6 @@ export interface DeleteMigrationRequest {
 }
 export interface ForceUpdateMigrationRequest {
     migrationId: string;
-}
-export interface GetAccountUsageRequest {
-    accountId: string;
-}
-export interface GetDatasetIngressLogRequest {
-    datasetId: string;
-    logId: string;
-}
-export interface GetDatasetIngressLogsRequest {
-    datasetId: string;
-    limit?: number;
-    offset?: number;
 }
 export interface GetMigrationRequest {
     migrationId: string;
@@ -45,7 +33,7 @@ export interface UpdateMigrationRequest {
 /**
  *
  */
-export declare class ExperimentalApi extends runtime.BaseAPI {
+export declare class MigrationsApi extends runtime.BaseAPI {
     /**
      * Create a migration
      */
@@ -72,54 +60,6 @@ export declare class ExperimentalApi extends runtime.BaseAPI {
      * Trigger a rerun for this resource.
      */
     forceUpdateMigration(migrationId: string): Promise<void>;
-    /**
-     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
-     * Get usage metrics for current account
-     */
-    getAccountCurrentUsageRaw(): Promise<runtime.ApiResponse<AccountUsageSummary>>;
-    /**
-     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
-     * Get usage metrics for current account
-     */
-    getAccountCurrentUsage(): Promise<AccountUsageSummary>;
-    /**
-     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
-     * Get usage metrics for current and sub accounts
-     */
-    getAccountCurrentUsageAllRaw(): Promise<runtime.ApiResponse<AccountUsageSummary>>;
-    /**
-     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
-     * Get usage metrics for current and sub accounts
-     */
-    getAccountCurrentUsageAll(): Promise<AccountUsageSummary>;
-    /**
-     * Get usage metrics for a specific account
-     */
-    getAccountUsageRaw(requestParameters: GetAccountUsageRequest): Promise<runtime.ApiResponse<AccountUsageSummary>>;
-    /**
-     * Get usage metrics for a specific account
-     */
-    getAccountUsage(accountId: string): Promise<AccountUsageSummary>;
-    /**
-     * Retrieves a specific ingress log entry for a dataset
-     * Get a single dataset ingress log by ID
-     */
-    getDatasetIngressLogRaw(requestParameters: GetDatasetIngressLogRequest): Promise<runtime.ApiResponse<DatasetIngressLog>>;
-    /**
-     * Retrieves a specific ingress log entry for a dataset
-     * Get a single dataset ingress log by ID
-     */
-    getDatasetIngressLog(datasetId: string, logId: string): Promise<DatasetIngressLog>;
-    /**
-     * Retrieves ingress metrics for a specific dataset
-     * Get dataset ingress metrics over time
-     */
-    getDatasetIngressLogsRaw(requestParameters: GetDatasetIngressLogsRequest): Promise<runtime.ApiResponse<Array<DatasetIngressLog>>>;
-    /**
-     * Retrieves ingress metrics for a specific dataset
-     * Get dataset ingress metrics over time
-     */
-    getDatasetIngressLogs(datasetId: string, limit?: number, offset?: number): Promise<Array<DatasetIngressLog>>;
     /**
      * Retrieve a migration
      */

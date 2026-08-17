@@ -22,12 +22,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExperimentalApi = void 0;
+exports.MigrationsApi = void 0;
 const runtime = require("../runtime");
 /**
  *
  */
-class ExperimentalApi extends runtime.BaseAPI {
+class MigrationsApi extends runtime.BaseAPI {
     /**
      * Create a migration
      */
@@ -133,192 +133,6 @@ class ExperimentalApi extends runtime.BaseAPI {
     forceUpdateMigration(migrationId) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.forceUpdateMigrationRaw({ migrationId: migrationId });
-        });
-    }
-    /**
-     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
-     * Get usage metrics for current account
-     */
-    getAccountCurrentUsageRaw() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("bearer", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/accounts/current/usage`,
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            });
-            return new runtime.JSONApiResponse(response);
-        });
-    }
-    /**
-     * Get historical usage metrics for the current account from the most recent metrics dashboard event.
-     * Get usage metrics for current account
-     */
-    getAccountCurrentUsage() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getAccountCurrentUsageRaw();
-            return yield response.value();
-        });
-    }
-    /**
-     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
-     * Get usage metrics for current and sub accounts
-     */
-    getAccountCurrentUsageAllRaw() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("bearer", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/accounts/current/usage/all`,
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            });
-            return new runtime.JSONApiResponse(response);
-        });
-    }
-    /**
-     * Get aggregated historical usage metrics for the current account and all of its sub-accounts.
-     * Get usage metrics for current and sub accounts
-     */
-    getAccountCurrentUsageAll() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getAccountCurrentUsageAllRaw();
-            return yield response.value();
-        });
-    }
-    /**
-     * Get usage metrics for a specific account
-     */
-    getAccountUsageRaw(requestParameters) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
-                throw new runtime.RequiredError('accountId', 'Required parameter requestParameters.accountId was null or undefined when calling getAccountUsage.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("bearer", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/accounts/{account_id}/usage`.replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            });
-            return new runtime.JSONApiResponse(response);
-        });
-    }
-    /**
-     * Get usage metrics for a specific account
-     */
-    getAccountUsage(accountId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getAccountUsageRaw({ accountId: accountId });
-            return yield response.value();
-        });
-    }
-    /**
-     * Retrieves a specific ingress log entry for a dataset
-     * Get a single dataset ingress log by ID
-     */
-    getDatasetIngressLogRaw(requestParameters) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
-                throw new runtime.RequiredError('datasetId', 'Required parameter requestParameters.datasetId was null or undefined when calling getDatasetIngressLog.');
-            }
-            if (requestParameters.logId === null || requestParameters.logId === undefined) {
-                throw new runtime.RequiredError('logId', 'Required parameter requestParameters.logId was null or undefined when calling getDatasetIngressLog.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("bearer", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/datasets/{dataset_id}/logs/ingress/{log_id}`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))).replace(`{${"log_id"}}`, encodeURIComponent(String(requestParameters.logId))),
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            });
-            return new runtime.JSONApiResponse(response);
-        });
-    }
-    /**
-     * Retrieves a specific ingress log entry for a dataset
-     * Get a single dataset ingress log by ID
-     */
-    getDatasetIngressLog(datasetId, logId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getDatasetIngressLogRaw({ datasetId: datasetId, logId: logId });
-            return yield response.value();
-        });
-    }
-    /**
-     * Retrieves ingress metrics for a specific dataset
-     * Get dataset ingress metrics over time
-     */
-    getDatasetIngressLogsRaw(requestParameters) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.datasetId === null || requestParameters.datasetId === undefined) {
-                throw new runtime.RequiredError('datasetId', 'Required parameter requestParameters.datasetId was null or undefined when calling getDatasetIngressLogs.');
-            }
-            const queryParameters = {};
-            if (requestParameters.limit !== undefined) {
-                queryParameters['limit'] = requestParameters.limit;
-            }
-            if (requestParameters.offset !== undefined) {
-                queryParameters['offset'] = requestParameters.offset;
-            }
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("bearer", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/datasets/{dataset_id}/logs/ingress`.replace(`{${"dataset_id"}}`, encodeURIComponent(String(requestParameters.datasetId))),
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            });
-            return new runtime.JSONApiResponse(response);
-        });
-    }
-    /**
-     * Retrieves ingress metrics for a specific dataset
-     * Get dataset ingress metrics over time
-     */
-    getDatasetIngressLogs(datasetId, limit, offset) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.getDatasetIngressLogsRaw({ datasetId: datasetId, limit: limit, offset: offset });
-            return yield response.value();
         });
     }
     /**
@@ -434,4 +248,4 @@ class ExperimentalApi extends runtime.BaseAPI {
         });
     }
 }
-exports.ExperimentalApi = ExperimentalApi;
+exports.MigrationsApi = MigrationsApi;
