@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadLocationPutSelectEnum = exports.ScopePayloadLocationPostSelectEnum = exports.ScopePayloadLocationMergePatchSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionOptionsBigQueryPutRegionEnum = exports.ConnectionOptionsBigQueryPostRegionEnum = exports.ConnectionOptionsBigQueryMergePatchRegionEnum = exports.ConnectionOptionsBigQueryRegionEnum = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.ClickHouseRotateCredentialsRequestTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadLocationPutSelectEnum = exports.ScopePayloadLocationPostSelectEnum = exports.ScopePayloadLocationMergePatchSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.MarketOpportunityAnalysisPutCountMethodEnum = exports.MarketOpportunityAnalysisPutAggregateEnum = exports.MarketOpportunityAnalysisPutAggMethodEnum = exports.MarketOpportunityAnalysisPostCountMethodEnum = exports.MarketOpportunityAnalysisPostAggregateEnum = exports.MarketOpportunityAnalysisPostAggMethodEnum = exports.MarketOpportunityAnalysisMergePatchCountMethodEnum = exports.MarketOpportunityAnalysisMergePatchAggregateEnum = exports.MarketOpportunityAnalysisMergePatchAggMethodEnum = exports.MarketOpportunityAnalysisCountMethodEnum = exports.MarketOpportunityAnalysisAggregateEnum = exports.MarketOpportunityAnalysisAggMethodEnum = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionOptionsBigQueryPutRegionEnum = exports.ConnectionOptionsBigQueryPostRegionEnum = exports.ConnectionOptionsBigQueryMergePatchRegionEnum = exports.ConnectionOptionsBigQueryRegionEnum = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.ClickHouseRotateCredentialsRequestTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
 /**
  * The set of Faraday-provided attributes allowed for clustering, on accounts with an identity graph feature store set.
  *
@@ -348,6 +348,110 @@ var LookupMatchType;
     LookupMatchType["PostcodeOnly"] = "postcode_only";
     LookupMatchType["PhoneOnly"] = "phone_only";
 })(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
+/**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisAggMethodEnum;
+(function (MarketOpportunityAnalysisAggMethodEnum) {
+    MarketOpportunityAnalysisAggMethodEnum["BestScorer"] = "best_scorer";
+    MarketOpportunityAnalysisAggMethodEnum["HouseholdAverage"] = "household_average";
+    MarketOpportunityAnalysisAggMethodEnum["WorstScorer"] = "worst_scorer";
+})(MarketOpportunityAnalysisAggMethodEnum = exports.MarketOpportunityAnalysisAggMethodEnum || (exports.MarketOpportunityAnalysisAggMethodEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisAggregateEnum;
+(function (MarketOpportunityAnalysisAggregateEnum) {
+    MarketOpportunityAnalysisAggregateEnum["Person"] = "person";
+    MarketOpportunityAnalysisAggregateEnum["Address"] = "address";
+})(MarketOpportunityAnalysisAggregateEnum = exports.MarketOpportunityAnalysisAggregateEnum || (exports.MarketOpportunityAnalysisAggregateEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisCountMethodEnum;
+(function (MarketOpportunityAnalysisCountMethodEnum) {
+    MarketOpportunityAnalysisCountMethodEnum["Whole"] = "whole";
+    MarketOpportunityAnalysisCountMethodEnum["Fractional"] = "fractional";
+})(MarketOpportunityAnalysisCountMethodEnum = exports.MarketOpportunityAnalysisCountMethodEnum || (exports.MarketOpportunityAnalysisCountMethodEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisMergePatchAggMethodEnum;
+(function (MarketOpportunityAnalysisMergePatchAggMethodEnum) {
+    MarketOpportunityAnalysisMergePatchAggMethodEnum["BestScorer"] = "best_scorer";
+    MarketOpportunityAnalysisMergePatchAggMethodEnum["HouseholdAverage"] = "household_average";
+    MarketOpportunityAnalysisMergePatchAggMethodEnum["WorstScorer"] = "worst_scorer";
+})(MarketOpportunityAnalysisMergePatchAggMethodEnum = exports.MarketOpportunityAnalysisMergePatchAggMethodEnum || (exports.MarketOpportunityAnalysisMergePatchAggMethodEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisMergePatchAggregateEnum;
+(function (MarketOpportunityAnalysisMergePatchAggregateEnum) {
+    MarketOpportunityAnalysisMergePatchAggregateEnum["Person"] = "person";
+    MarketOpportunityAnalysisMergePatchAggregateEnum["Address"] = "address";
+})(MarketOpportunityAnalysisMergePatchAggregateEnum = exports.MarketOpportunityAnalysisMergePatchAggregateEnum || (exports.MarketOpportunityAnalysisMergePatchAggregateEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisMergePatchCountMethodEnum;
+(function (MarketOpportunityAnalysisMergePatchCountMethodEnum) {
+    MarketOpportunityAnalysisMergePatchCountMethodEnum["Whole"] = "whole";
+    MarketOpportunityAnalysisMergePatchCountMethodEnum["Fractional"] = "fractional";
+})(MarketOpportunityAnalysisMergePatchCountMethodEnum = exports.MarketOpportunityAnalysisMergePatchCountMethodEnum || (exports.MarketOpportunityAnalysisMergePatchCountMethodEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisPostAggMethodEnum;
+(function (MarketOpportunityAnalysisPostAggMethodEnum) {
+    MarketOpportunityAnalysisPostAggMethodEnum["BestScorer"] = "best_scorer";
+    MarketOpportunityAnalysisPostAggMethodEnum["HouseholdAverage"] = "household_average";
+    MarketOpportunityAnalysisPostAggMethodEnum["WorstScorer"] = "worst_scorer";
+})(MarketOpportunityAnalysisPostAggMethodEnum = exports.MarketOpportunityAnalysisPostAggMethodEnum || (exports.MarketOpportunityAnalysisPostAggMethodEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisPostAggregateEnum;
+(function (MarketOpportunityAnalysisPostAggregateEnum) {
+    MarketOpportunityAnalysisPostAggregateEnum["Person"] = "person";
+    MarketOpportunityAnalysisPostAggregateEnum["Address"] = "address";
+})(MarketOpportunityAnalysisPostAggregateEnum = exports.MarketOpportunityAnalysisPostAggregateEnum || (exports.MarketOpportunityAnalysisPostAggregateEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisPostCountMethodEnum;
+(function (MarketOpportunityAnalysisPostCountMethodEnum) {
+    MarketOpportunityAnalysisPostCountMethodEnum["Whole"] = "whole";
+    MarketOpportunityAnalysisPostCountMethodEnum["Fractional"] = "fractional";
+})(MarketOpportunityAnalysisPostCountMethodEnum = exports.MarketOpportunityAnalysisPostCountMethodEnum || (exports.MarketOpportunityAnalysisPostCountMethodEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisPutAggMethodEnum;
+(function (MarketOpportunityAnalysisPutAggMethodEnum) {
+    MarketOpportunityAnalysisPutAggMethodEnum["BestScorer"] = "best_scorer";
+    MarketOpportunityAnalysisPutAggMethodEnum["HouseholdAverage"] = "household_average";
+    MarketOpportunityAnalysisPutAggMethodEnum["WorstScorer"] = "worst_scorer";
+})(MarketOpportunityAnalysisPutAggMethodEnum = exports.MarketOpportunityAnalysisPutAggMethodEnum || (exports.MarketOpportunityAnalysisPutAggMethodEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisPutAggregateEnum;
+(function (MarketOpportunityAnalysisPutAggregateEnum) {
+    MarketOpportunityAnalysisPutAggregateEnum["Person"] = "person";
+    MarketOpportunityAnalysisPutAggregateEnum["Address"] = "address";
+})(MarketOpportunityAnalysisPutAggregateEnum = exports.MarketOpportunityAnalysisPutAggregateEnum || (exports.MarketOpportunityAnalysisPutAggregateEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MarketOpportunityAnalysisPutCountMethodEnum;
+(function (MarketOpportunityAnalysisPutCountMethodEnum) {
+    MarketOpportunityAnalysisPutCountMethodEnum["Whole"] = "whole";
+    MarketOpportunityAnalysisPutCountMethodEnum["Fractional"] = "fractional";
+})(MarketOpportunityAnalysisPutCountMethodEnum = exports.MarketOpportunityAnalysisPutCountMethodEnum || (exports.MarketOpportunityAnalysisPutCountMethodEnum = {}));
 /**
  * Faraday attributes available for modeling on accounts with an identity graph feature store set.
  *

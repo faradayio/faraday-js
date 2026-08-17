@@ -16716,11 +16716,31 @@ export declare enum LookupMatchType {
  */
 export interface MarketOpportunityAnalysis {
     /**
+     * How the scores of a household's known members collapse into a single count. Only meaningful for address-level analyses: required when `aggregate` is `address`, and must be omitted when `aggregate` is `person`.
+     *
+     * `best_scorer` uses the household's highest member score and credits the household to that member's persona. `household_average` averages the member probabilities against the threshold and splits the household's persona credit evenly across its known members. `worst_scorer` uses the lowest member score and credits the household to that member's persona.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    agg_method?: MarketOpportunityAnalysisAggMethodEnum;
+    /**
+     * The entity this analysis counts. `person` (the default) counts individuals. `address` counts households: people at the same address collapse into one entity before any metric is computed, and `agg_method` selects how their scores combine.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    aggregate?: MarketOpportunityAnalysisAggregateEnum;
+    /**
      * If not null, this resource will no longer receive updates, but will still be visable.
      * @type {string}
      * @memberof MarketOpportunityAnalysis
      */
     archived_at?: string;
+    /**
+     * How an entity is counted across the geo-locations (places, metros) it belongs to. `whole` (the default) counts it in full in every overlapping location. `fractional` credits `1/N` to each of the `N` locations, so per-location numbers add up across locations without double counting.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysis
+     */
+    count_method?: MarketOpportunityAnalysisCountMethodEnum;
     /**
      * When this resource was created.
      * @type {string}
@@ -16837,6 +16857,29 @@ export interface MarketOpportunityAnalysis {
     updated_at: string;
 }
 /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisAggMethodEnum {
+    BestScorer = "best_scorer",
+    HouseholdAverage = "household_average",
+    WorstScorer = "worst_scorer"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisAggregateEnum {
+    Person = "person",
+    Address = "address"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisCountMethodEnum {
+    Whole = "whole",
+    Fractional = "fractional"
+}
+/**
  * The atlas locations this analysis covers. If absent, the analysis is not based on locations.
  * @export
  * @interface MarketOpportunityAnalysisLocations
@@ -16878,6 +16921,26 @@ export interface MarketOpportunityAnalysisLocations {
  */
 export interface MarketOpportunityAnalysisMergePatch {
     /**
+     * How the scores of a household's known members collapse into a single count. Only meaningful for address-level analyses: required when `aggregate` is `address`, and must be omitted when `aggregate` is `person`.
+     *
+     * `best_scorer` uses the household's highest member score and credits the household to that member's persona. `household_average` averages the member probabilities against the threshold and splits the household's persona credit evenly across its known members. `worst_scorer` uses the lowest member score and credits the household to that member's persona.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    agg_method?: MarketOpportunityAnalysisMergePatchAggMethodEnum;
+    /**
+     * The entity this analysis counts. `person` (the default) counts individuals. `address` counts households: people at the same address collapse into one entity before any metric is computed, and `agg_method` selects how their scores combine.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    aggregate?: MarketOpportunityAnalysisMergePatchAggregateEnum;
+    /**
+     * How an entity is counted across the geo-locations (places, metros) it belongs to. `whole` (the default) counts it in full in every overlapping location. `fractional` credits `1/N` to each of the `N` locations, so per-location numbers add up across locations without double counting.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisMergePatch
+     */
+    count_method?: MarketOpportunityAnalysisMergePatchCountMethodEnum;
+    /**
      *
      * @type {MarketOpportunityAnalysisMergePatchLocations}
      * @memberof MarketOpportunityAnalysisMergePatch
@@ -16913,6 +16976,29 @@ export interface MarketOpportunityAnalysisMergePatch {
      * @memberof MarketOpportunityAnalysisMergePatch
      */
     scope_id?: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisMergePatchAggMethodEnum {
+    BestScorer = "best_scorer",
+    HouseholdAverage = "household_average",
+    WorstScorer = "worst_scorer"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisMergePatchAggregateEnum {
+    Person = "person",
+    Address = "address"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisMergePatchCountMethodEnum {
+    Whole = "whole",
+    Fractional = "fractional"
 }
 /**
  * The atlas locations this analysis covers. If absent, the analysis is not based on locations.
@@ -16999,6 +17085,26 @@ export interface MarketOpportunityAnalysisOverallReport {
  */
 export interface MarketOpportunityAnalysisPost {
     /**
+     * How the scores of a household's known members collapse into a single count. Only meaningful for address-level analyses: required when `aggregate` is `address`, and must be omitted when `aggregate` is `person`.
+     *
+     * `best_scorer` uses the household's highest member score and credits the household to that member's persona. `household_average` averages the member probabilities against the threshold and splits the household's persona credit evenly across its known members. `worst_scorer` uses the lowest member score and credits the household to that member's persona.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    agg_method?: MarketOpportunityAnalysisPostAggMethodEnum;
+    /**
+     * The entity this analysis counts. `person` (the default) counts individuals. `address` counts households: people at the same address collapse into one entity before any metric is computed, and `agg_method` selects how their scores combine.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    aggregate?: MarketOpportunityAnalysisPostAggregateEnum;
+    /**
+     * How an entity is counted across the geo-locations (places, metros) it belongs to. `whole` (the default) counts it in full in every overlapping location. `fractional` credits `1/N` to each of the `N` locations, so per-location numbers add up across locations without double counting.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPost
+     */
+    count_method?: MarketOpportunityAnalysisPostCountMethodEnum;
+    /**
      *
      * @type {MarketOpportunityAnalysisLocations}
      * @memberof MarketOpportunityAnalysisPost
@@ -17036,6 +17142,29 @@ export interface MarketOpportunityAnalysisPost {
     scope_id: string;
 }
 /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisPostAggMethodEnum {
+    BestScorer = "best_scorer",
+    HouseholdAverage = "household_average",
+    WorstScorer = "worst_scorer"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisPostAggregateEnum {
+    Person = "person",
+    Address = "address"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisPostCountMethodEnum {
+    Whole = "whole",
+    Fractional = "fractional"
+}
+/**
  * (Parameters used to PUT a value of the `MarketOpportunityAnalysis` type.)
  *
  * A market opportunity analysis report allows you to measure penetration and opportunity in your market. With this report, you can see the size and location of remaining opportunity in your market, which can help you focus your efforts accordingly.
@@ -17047,6 +17176,26 @@ export interface MarketOpportunityAnalysisPost {
  * @interface MarketOpportunityAnalysisPut
  */
 export interface MarketOpportunityAnalysisPut {
+    /**
+     * How the scores of a household's known members collapse into a single count. Only meaningful for address-level analyses: required when `aggregate` is `address`, and must be omitted when `aggregate` is `person`.
+     *
+     * `best_scorer` uses the household's highest member score and credits the household to that member's persona. `household_average` averages the member probabilities against the threshold and splits the household's persona credit evenly across its known members. `worst_scorer` uses the lowest member score and credits the household to that member's persona.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    agg_method?: MarketOpportunityAnalysisPutAggMethodEnum;
+    /**
+     * The entity this analysis counts. `person` (the default) counts individuals. `address` counts households: people at the same address collapse into one entity before any metric is computed, and `agg_method` selects how their scores combine.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    aggregate?: MarketOpportunityAnalysisPutAggregateEnum;
+    /**
+     * How an entity is counted across the geo-locations (places, metros) it belongs to. `whole` (the default) counts it in full in every overlapping location. `fractional` credits `1/N` to each of the `N` locations, so per-location numbers add up across locations without double counting.
+     * @type {string}
+     * @memberof MarketOpportunityAnalysisPut
+     */
+    count_method?: MarketOpportunityAnalysisPutCountMethodEnum;
     /**
      *
      * @type {MarketOpportunityAnalysisLocations}
@@ -17083,6 +17232,29 @@ export interface MarketOpportunityAnalysisPut {
      * @memberof MarketOpportunityAnalysisPut
      */
     scope_id: string;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisPutAggMethodEnum {
+    BestScorer = "best_scorer",
+    HouseholdAverage = "household_average",
+    WorstScorer = "worst_scorer"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisPutAggregateEnum {
+    Person = "person",
+    Address = "address"
+} /**
+* @export
+* @enum {string}
+*/
+export declare enum MarketOpportunityAnalysisPutCountMethodEnum {
+    Whole = "whole",
+    Fractional = "fractional"
 }
 /**
  * Information about an error.

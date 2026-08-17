@@ -10,6 +10,12 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
+## [0.16.5] - 2026-08-16
+
+### Added
+
+- Market opportunity analyses gain three counting knobs: `aggregate` (`person`, the default, or `address` — count households instead of individuals), `agg_method` (`best_scorer` | `household_average` | `worst_scorer`; required when `aggregate` is `address`, omitted otherwise), and `count_method` (`whole`, the default, or `fractional` — split an entity `1/N` across the `N` overlapping locations it belongs to).
+
 ## [0.16.4] - 2026-08-15
 
 ### Added
