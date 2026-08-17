@@ -128,9 +128,9 @@ const { data: scope } = await faraday.POST("/scopes", {
 });
 ```
 
-Prefer throwing? Check `error` and throw it yourself, or wrap the client. You no
-longer need `isomorphic-fetch` — `openapi-fetch` uses the global `fetch` (Node 18+);
-on older Node, pass your own `fetch` via the `createClient` options.
+Prefer throwing? Check `error` and throw it yourself, or wrap the client.
+`openapi-fetch` uses the global `fetch` (Node 18+); on older Node, pass your own
+`fetch` via the `createClient` options.
 
 ## Questions?
 
