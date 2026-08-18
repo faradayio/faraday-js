@@ -10,19 +10,23 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.16.4] - 2026-08-15
+## [0.17.0] - 2026-08-17
 
-### Added
+### Changed
 
-- Databricks bidirectional replication connection type (`databricks`): SQL warehouse access with `host`, `http_path`, Unity Catalog `catalog` and `schema`, and a secret personal access `token`. Dataset `table_name`, full-replacement targets, and optional referenced-target `upsert`.
+- `PATCH /migrations/{migration_id}` takes `application/merge-patch+json`, the media type every other merge patch endpoint takes. It also documents `409 Conflict`, which it already returned.
+- `MigrationTarget` is renamed `MigrationTargetResource`, matching the `MigrationDatasetResource`, `MigrationOutcomeResource`, `MigrationPersonaSetResource`, and `MigrationRecommenderResource` schemas it sits beside.
+- A target pair's `push_readiness.status` values are `ready`, `needs_external_review`, and `blocked`, replacing `green`, `yellow`, and `red`. The values name the state of the pair rather than a severity.
+- `datasets` and `targets` on a `FigV1ToFigV2Migration` are optional, as `cohorts`, `outcomes`, `persona_sets`, and `recommenders` already were. A migration may pair no resources of a given kind, so all six lists are optional on the way in and on the way out.
 
-## [0.16.3] - 2026-08-14
+## [0.16.7] - 2026-08-14
 
-### Added
+### Changed
 
-- BigQuery connection `region`. Defaults to `US` (multi-region). US single regions from [BigQuery locations](https://cloud.google.com/bigquery/docs/locations) are also accepted; non-US locations are not supported.
+- Archiving and unarchiving no longer count a migration as a dependency of the resources it pairs. A migration reports on those datasets and targets rather than building anything from them, so it never blocks the request, it is never archived or unarchived by `cascade_to` or `cascade_to_all`, and it keeps reporting once either side is archived.
+- A target pair's `push_readiness.status` is `red` while its FIG v2 target is archived, because an archived target will not deliver again. This holds even for a pair Faraday has overridden. An archived FIG v1 target is the target being retired, so it does not affect the status.
 
-## [0.16.2] - 2026-08-12
+## [0.16.6] - 2026-08-12
 
 ### Changed
 
@@ -33,11 +37,39 @@ Until we reach API 1.0, the following special rules apply:
 
 - Every `/places` endpoint, the `Place` schema, and the `CohortPlaceCondition` schema. Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas with `POST /atlases` and a cohort's `location_conditions`. Existing places and the cohorts that use them are unaffected and continue to be readable and writable.
 
-## [0.16.1] - 2026-08-10
+## [0.16.5] - 2026-08-12
+
+### Added
+
+- FIG v1-to-v2 migration target pairs now accept `destination_mapping`: renamed destination options such as Snowflake `table_name`, S3 `object_key`, or SFTP `file_name`. Push readiness includes `destination_mapping_status` (`not_required`, `complete`, or `incomplete`).
+
+## [0.16.4] - 2026-08-10
 
 ### Added
 
 - `DELETE /knowledgebase/use_cases/{use_case_id}`: delete a use case. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
+
+## [0.16.3] - 2026-08-10
+
+### Changed
+
+- `POST /migrations` now refuses a FIG v2 account that is the parent of the FIG v1 account and holds other accounts as well. Migrating gives the FIG v1 account's members access to the FIG v2 account, and a member of an account can see the accounts directly beneath it, so the move would also disclose those other accounts. The account move applies the same rule before it changes anything, so an already-approved migration of that shape stops with an error instead of running.
+
+## [0.16.2] - 2026-08-10
+
+### Added
+
+- `FigV1ToFigV2Migration.account_tree_relationship`: how the two linked accounts sit in the account hierarchy, and therefore what the account move does to it. Siblings both keep their parent, so most moves reparent nothing.
+
+### Changed
+
+- `POST /migrations` no longer counts a rolled-back migration when refusing accounts that are already paired. An approved migration cannot be deleted, so counting it left a rolled-back pair permanently unable to migrate again.
+
+## [0.16.1] - 2026-08-10
+
+### Changed
+
+- `POST /migrations` and migration configuration updates no longer require a dataset or target pair. Empty `datasets` and `targets` arrays are allowed. The FIG v1 and FIG v2 accounts must still be related in the account hierarchy.
 
 ## [0.16.0] - 2026-08-07
 
@@ -45,10 +77,71 @@ Until we reach API 1.0, the following special rules apply:
 
 - ClickHouse connections always use TLS on the native protocol. The `secure` option is removed from ClickHouse connection create/update/response schemas; callers no longer set it.
 
+## [0.15.12] - 2026-08-08
+
+### Added
+
+- FIG v1-to-v2 migration pairs now include model quality and size metrics: ROC AUC and training set size for Outcomes, overall ROC AUC for Recommenders, and cluster count for Persona Sets.
+
+## [0.15.11] - 2026-08-08
+
+### Added
+
+- Resources in FIG v1-to-v2 migration pairs now include their run state, last successful build time, and archive time. Paired datasets also include row, identified-person, and matched-person counts.
+
+## [0.15.10] - 2026-08-07
+
+### Changed
+
+- Lookup API call counts on FIG v1-to-v2 migrations are per Lookup API target again (`targets[].fig_v1_target.lookup_api_calls` / `targets[].fig_v2_target.lookup_api_calls`). Account-level `lookup_api_calls` is deprecated and omitted on new checks.
+
+## [0.15.9] - 2026-08-07
+
+### Added
+
+- Optional `cohorts`, `outcomes`, `persona_sets`, and `recommenders` pair lists on `FigV1ToFigV2Migration`. Each list pairs a FIG v1 resource with its FIG v2 replacement so payload columns whose names embed those resource ids can be matched across accounts.
+
+## [0.15.8] - 2026-08-06
+
+### Added
+
+- Account-wide seven-day Lookup API call counts on the two accounts returned by a FIG v1-to-v2 migration. Counts are omitted until checked.
+- `FigV1ToFigV2MigrationTarget.push_readiness`, with target run, destination, and field mapping checks.
+
+### Changed
+
+- Per-target `lookup_api_calls` is deprecated in favor of the account-wide counts.
+
+## [0.15.7] - 2026-08-06
+
+### Added
+
+- `FigV1ToFigV2Migration.status_needs_fix_from`: who has to act before a failed migration can run again. `user` means editing the migration clears it, `support` means only Faraday can, and it is omitted when Faraday will retry on its own. A failed migration also now explains itself in `status_error` rather than falling back to the generic message.
+
+## [0.15.6] - 2026-08-06
+
+### Changed
+
+- `POST /migrations` now requires at least one dataset or target pair, and requires the FIG v1 and FIG v2 accounts to be related in the account hierarchy: sharing a parent, or one being the parent of the other. Account names are not unique, so both rules guard against naming an unintended account, which would otherwise suspend it and move its users.
+
+## [0.15.5] - 2026-08-06
+
+### Added
+
+- `POST /migrations/{migration_id}/force_update` to refresh migration metrics on demand.
+- `FigV1ToFigV2Migration.approved_at`: provide a non-null value via `PATCH` from either linked account to queue the account move. The server records the first approval time, and repeated requests are idempotent.
+- `FigV1ToFigV2Migration.finished_at`: when Faraday finished moving users and suspending the FIG v1 account.
+- `FigV1ToFigV2Migration.rolled_back_at`: when support restored the FIG v1 account.
+
+### Changed
+
+- `FigV1ToFigV2Migration.migrated_at` is replaced by `approved_at` and `finished_at`.
+
 ## [0.15.4] - 2026-08-06
 
 ### Added
 
+- `POST`, `GET`, `PATCH`, and `DELETE` for `/migrations` and `/migrations/{migration_id}`. Migrations use a `type` discriminator; `fig_v1_to_fig_v2` returns the linked accounts, datasets, targets, notes, and normal resource status fields. Each paired target includes `lookup_api_calls` — Lookup API call counts for the last 7 days keyed by `YYYY-MM-DD`.
 - ClickHouse bidirectional replication connection type (`clickhouse`): host-based native-protocol access with system-generated Ed25519 `ssh_public_key`, dataset `table_name`, and full-replacement targets with required `order_by`. Credential rotation via `POST /connections/{connection_id}/rotate_credentials` with `type: clickhouse`.
 
 ## [0.15.3] - 2026-07-17

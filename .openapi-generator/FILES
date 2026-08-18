@@ -16,6 +16,7 @@ src/apis/GraphApi.ts
 src/apis/KnowledgebaseApi.ts
 src/apis/LocationsApi.ts
 src/apis/MarketOpportunityAnalysesApi.ts
+src/apis/MigrationsApi.ts
 src/apis/OutcomesApi.ts
 src/apis/PersonaSetsApi.ts
 src/apis/PlacesApi.ts

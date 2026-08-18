@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadLocationPutSelectEnum = exports.ScopePayloadLocationPostSelectEnum = exports.ScopePayloadLocationMergePatchSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.LookupMatchType = exports.LookupIdentityProvider = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionOptionsBigQueryPutRegionEnum = exports.ConnectionOptionsBigQueryPostRegionEnum = exports.ConnectionOptionsBigQueryMergePatchRegionEnum = exports.ConnectionOptionsBigQueryRegionEnum = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.ClickHouseRotateCredentialsRequestTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
+exports.WebhookEventType = exports.WebhookEndpointPutStatusEnum = exports.WebhookEndpointMergePatchStatusEnum = exports.WebhookEndpointStatusEnum = exports.TraitTier = exports.TraitStatisticalType = exports.TraitPermission = exports.TraitCategory = exports.TraitPrecisionEnum = exports.TargetTransformPresetReferenced = exports.TargetTransformPresetIdentified = exports.TargetTransformPresetHashed = exports.TargetTransformPresetAggregated = exports.TargetStructureTransformationAggregationEnum = exports.TargetMergePatchAnalysisConfigGeographiesEnum = exports.TargetLookupMode = exports.TargetLimitRowCountPutDirectionEnum = exports.TargetLimitRowCountPostDirectionEnum = exports.TargetLimitRowCountMergePatchDirectionEnum = exports.TargetLimitRowCountDirectionEnum = exports.TargetAnalysisConfigGeographiesEnum = exports.TargetAggregateIdentified = exports.TargetAggregateGeographic = exports.StreamPropertyTier = exports.StreamPropertyCategory = exports.SnowflakeRotateCredentialsRequestTypeEnum = exports.ScopePayloadLocationPutSelectEnum = exports.ScopePayloadLocationPostSelectEnum = exports.ScopePayloadLocationMergePatchSelectEnum = exports.ScopePayloadLocationSelectEnum = exports.ScopeEfficacyOutcomeMonthPerformedEnum = exports.ResourceType = exports.ResourceStatus = exports.RecencyOccurrence = exports.PrimitiveDataType = exports.OutcomePutPredictionModeEnum = exports.OutcomePostPredictionModeEnum = exports.OutcomeMergePatchPredictionModeEnum = exports.OutcomeBiasMitigationStrategy = exports.OutcomeAnalysisBiasDataGenderProportionLevelEnum = exports.OutcomeAnalysisBiasDataAgeDistributionLevelEnum = exports.OutcomePredictionModeEnum = exports.ModelingField = exports.ModelingAttribute = exports.MigrationTargetPushReadinessStatusEnum = exports.MigrationTargetPushReadinessFieldMappingStatusEnum = exports.MigrationTargetPushReadinessDestinationStatusEnum = exports.MigrationTargetPushReadinessDestinationMappingStatusEnum = exports.LookupMatchType = exports.LookupIdentityProvider = exports.FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum = exports.FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum = exports.FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum = exports.FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum = exports.FigV1ToFigV2MigrationStatusNeedsFixFromEnum = exports.FigV1ToFigV2MigrationAccountTreeRelationshipEnum = exports.ErrorCode = exports.DatasetPutPrivacyEnum = exports.DatasetPostPrivacyEnum = exports.DatasetMergePatchPrivacyEnum = exports.DatasetIdentityProvidersSelectEnum = exports.DatasetIdentityProvidersProviderEnum = exports.DatasetPrivacyEnum = exports.DataMapColumnFormat = exports.ConnectionDirectionalityEnum = exports.ComplexDataTypeOneOfLogicalTypeEnum = exports.ClickHouseRotateCredentialsRequestTypeEnum = exports.AttributeSortDirection = exports.AttributePrecision = exports.AttributePermission = exports.AttributeAggregationMethod = exports.AllowedClusteringAttributes = void 0;
 /**
  * The set of Faraday-provided attributes allowed for clustering, on accounts with an identity graph feature store set.
  *
@@ -119,74 +119,6 @@ var ConnectionDirectionalityEnum;
     ConnectionDirectionalityEnum["SourceOnly"] = "source_only";
     ConnectionDirectionalityEnum["DestinationOnly"] = "destination_only";
 })(ConnectionDirectionalityEnum = exports.ConnectionDirectionalityEnum || (exports.ConnectionDirectionalityEnum = {}));
-/**
-* @export
-* @enum {string}
-*/
-var ConnectionOptionsBigQueryRegionEnum;
-(function (ConnectionOptionsBigQueryRegionEnum) {
-    ConnectionOptionsBigQueryRegionEnum["Us"] = "US";
-    ConnectionOptionsBigQueryRegionEnum["UsCentral1"] = "us-central1";
-    ConnectionOptionsBigQueryRegionEnum["UsEast1"] = "us-east1";
-    ConnectionOptionsBigQueryRegionEnum["UsEast4"] = "us-east4";
-    ConnectionOptionsBigQueryRegionEnum["UsEast5"] = "us-east5";
-    ConnectionOptionsBigQueryRegionEnum["UsSouth1"] = "us-south1";
-    ConnectionOptionsBigQueryRegionEnum["UsWest1"] = "us-west1";
-    ConnectionOptionsBigQueryRegionEnum["UsWest2"] = "us-west2";
-    ConnectionOptionsBigQueryRegionEnum["UsWest3"] = "us-west3";
-    ConnectionOptionsBigQueryRegionEnum["UsWest4"] = "us-west4";
-})(ConnectionOptionsBigQueryRegionEnum = exports.ConnectionOptionsBigQueryRegionEnum || (exports.ConnectionOptionsBigQueryRegionEnum = {}));
-/**
-* @export
-* @enum {string}
-*/
-var ConnectionOptionsBigQueryMergePatchRegionEnum;
-(function (ConnectionOptionsBigQueryMergePatchRegionEnum) {
-    ConnectionOptionsBigQueryMergePatchRegionEnum["Us"] = "US";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsCentral1"] = "us-central1";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsEast1"] = "us-east1";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsEast4"] = "us-east4";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsEast5"] = "us-east5";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsSouth1"] = "us-south1";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsWest1"] = "us-west1";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsWest2"] = "us-west2";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsWest3"] = "us-west3";
-    ConnectionOptionsBigQueryMergePatchRegionEnum["UsWest4"] = "us-west4";
-})(ConnectionOptionsBigQueryMergePatchRegionEnum = exports.ConnectionOptionsBigQueryMergePatchRegionEnum || (exports.ConnectionOptionsBigQueryMergePatchRegionEnum = {}));
-/**
-* @export
-* @enum {string}
-*/
-var ConnectionOptionsBigQueryPostRegionEnum;
-(function (ConnectionOptionsBigQueryPostRegionEnum) {
-    ConnectionOptionsBigQueryPostRegionEnum["Us"] = "US";
-    ConnectionOptionsBigQueryPostRegionEnum["UsCentral1"] = "us-central1";
-    ConnectionOptionsBigQueryPostRegionEnum["UsEast1"] = "us-east1";
-    ConnectionOptionsBigQueryPostRegionEnum["UsEast4"] = "us-east4";
-    ConnectionOptionsBigQueryPostRegionEnum["UsEast5"] = "us-east5";
-    ConnectionOptionsBigQueryPostRegionEnum["UsSouth1"] = "us-south1";
-    ConnectionOptionsBigQueryPostRegionEnum["UsWest1"] = "us-west1";
-    ConnectionOptionsBigQueryPostRegionEnum["UsWest2"] = "us-west2";
-    ConnectionOptionsBigQueryPostRegionEnum["UsWest3"] = "us-west3";
-    ConnectionOptionsBigQueryPostRegionEnum["UsWest4"] = "us-west4";
-})(ConnectionOptionsBigQueryPostRegionEnum = exports.ConnectionOptionsBigQueryPostRegionEnum || (exports.ConnectionOptionsBigQueryPostRegionEnum = {}));
-/**
-* @export
-* @enum {string}
-*/
-var ConnectionOptionsBigQueryPutRegionEnum;
-(function (ConnectionOptionsBigQueryPutRegionEnum) {
-    ConnectionOptionsBigQueryPutRegionEnum["Us"] = "US";
-    ConnectionOptionsBigQueryPutRegionEnum["UsCentral1"] = "us-central1";
-    ConnectionOptionsBigQueryPutRegionEnum["UsEast1"] = "us-east1";
-    ConnectionOptionsBigQueryPutRegionEnum["UsEast4"] = "us-east4";
-    ConnectionOptionsBigQueryPutRegionEnum["UsEast5"] = "us-east5";
-    ConnectionOptionsBigQueryPutRegionEnum["UsSouth1"] = "us-south1";
-    ConnectionOptionsBigQueryPutRegionEnum["UsWest1"] = "us-west1";
-    ConnectionOptionsBigQueryPutRegionEnum["UsWest2"] = "us-west2";
-    ConnectionOptionsBigQueryPutRegionEnum["UsWest3"] = "us-west3";
-    ConnectionOptionsBigQueryPutRegionEnum["UsWest4"] = "us-west4";
-})(ConnectionOptionsBigQueryPutRegionEnum = exports.ConnectionOptionsBigQueryPutRegionEnum || (exports.ConnectionOptionsBigQueryPutRegionEnum = {}));
 /**
  * Additional context for the column's data that isn't captured by its data type. For example, a 'revenue' column's data type would likely be 'int64', but format specifies if this number represents 'dollars' or 'cents'. This can be left blank if no additional context is needed.
  * @export
@@ -321,6 +253,61 @@ var ErrorCode;
     ErrorCode["Conflict"] = "CONFLICT";
 })(ErrorCode = exports.ErrorCode || (exports.ErrorCode = {}));
 /**
+* @export
+* @enum {string}
+*/
+var FigV1ToFigV2MigrationAccountTreeRelationshipEnum;
+(function (FigV1ToFigV2MigrationAccountTreeRelationshipEnum) {
+    FigV1ToFigV2MigrationAccountTreeRelationshipEnum["Siblings"] = "siblings";
+    FigV1ToFigV2MigrationAccountTreeRelationshipEnum["FigV2IsChildOfFigV1"] = "fig_v2_is_child_of_fig_v1";
+    FigV1ToFigV2MigrationAccountTreeRelationshipEnum["FigV1IsChildOfFigV2"] = "fig_v1_is_child_of_fig_v2";
+    FigV1ToFigV2MigrationAccountTreeRelationshipEnum["Unrelated"] = "unrelated";
+})(FigV1ToFigV2MigrationAccountTreeRelationshipEnum = exports.FigV1ToFigV2MigrationAccountTreeRelationshipEnum || (exports.FigV1ToFigV2MigrationAccountTreeRelationshipEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var FigV1ToFigV2MigrationStatusNeedsFixFromEnum;
+(function (FigV1ToFigV2MigrationStatusNeedsFixFromEnum) {
+    FigV1ToFigV2MigrationStatusNeedsFixFromEnum["User"] = "user";
+    FigV1ToFigV2MigrationStatusNeedsFixFromEnum["Support"] = "support";
+})(FigV1ToFigV2MigrationStatusNeedsFixFromEnum = exports.FigV1ToFigV2MigrationStatusNeedsFixFromEnum || (exports.FigV1ToFigV2MigrationStatusNeedsFixFromEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum;
+(function (FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum) {
+    FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum["Connection"] = "connection";
+    FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum["Target"] = "target";
+})(FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum = exports.FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum || (exports.FigV1ToFigV2MigrationTargetDestinationFieldScopeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum;
+(function (FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum) {
+    FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum["Connection"] = "connection";
+    FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum["Target"] = "target";
+})(FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum = exports.FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum || (exports.FigV1ToFigV2MigrationTargetDestinationFieldMergePatchScopeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum;
+(function (FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum) {
+    FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum["Connection"] = "connection";
+    FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum["Target"] = "target";
+})(FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum = exports.FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum || (exports.FigV1ToFigV2MigrationTargetDestinationFieldPostScopeEnum = {}));
+/**
+* @export
+* @enum {string}
+*/
+var FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum;
+(function (FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum) {
+    FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum["Connection"] = "connection";
+    FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum["Target"] = "target";
+})(FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum = exports.FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum || (exports.FigV1ToFigV2MigrationTargetDestinationFieldPutScopeEnum = {}));
+/**
  * The identity provider used to obtain a match with the requested identity.
  * @export
  * @enum {string}
@@ -348,6 +335,44 @@ var LookupMatchType;
     LookupMatchType["PostcodeOnly"] = "postcode_only";
     LookupMatchType["PhoneOnly"] = "phone_only";
 })(LookupMatchType = exports.LookupMatchType || (exports.LookupMatchType = {}));
+/**
+* @export
+* @enum {string}
+*/
+var MigrationTargetPushReadinessDestinationMappingStatusEnum;
+(function (MigrationTargetPushReadinessDestinationMappingStatusEnum) {
+    MigrationTargetPushReadinessDestinationMappingStatusEnum["NotRequired"] = "not_required";
+    MigrationTargetPushReadinessDestinationMappingStatusEnum["Complete"] = "complete";
+    MigrationTargetPushReadinessDestinationMappingStatusEnum["Incomplete"] = "incomplete";
+})(MigrationTargetPushReadinessDestinationMappingStatusEnum = exports.MigrationTargetPushReadinessDestinationMappingStatusEnum || (exports.MigrationTargetPushReadinessDestinationMappingStatusEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MigrationTargetPushReadinessDestinationStatusEnum;
+(function (MigrationTargetPushReadinessDestinationStatusEnum) {
+    MigrationTargetPushReadinessDestinationStatusEnum["Different"] = "different";
+    MigrationTargetPushReadinessDestinationStatusEnum["Same"] = "same";
+    MigrationTargetPushReadinessDestinationStatusEnum["ExternalCheckRequired"] = "external_check_required";
+    MigrationTargetPushReadinessDestinationStatusEnum["ExternalCheckComplete"] = "external_check_complete";
+})(MigrationTargetPushReadinessDestinationStatusEnum = exports.MigrationTargetPushReadinessDestinationStatusEnum || (exports.MigrationTargetPushReadinessDestinationStatusEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MigrationTargetPushReadinessFieldMappingStatusEnum;
+(function (MigrationTargetPushReadinessFieldMappingStatusEnum) {
+    MigrationTargetPushReadinessFieldMappingStatusEnum["NotRequired"] = "not_required";
+    MigrationTargetPushReadinessFieldMappingStatusEnum["Complete"] = "complete";
+    MigrationTargetPushReadinessFieldMappingStatusEnum["Incomplete"] = "incomplete";
+})(MigrationTargetPushReadinessFieldMappingStatusEnum = exports.MigrationTargetPushReadinessFieldMappingStatusEnum || (exports.MigrationTargetPushReadinessFieldMappingStatusEnum = {})); /**
+* @export
+* @enum {string}
+*/
+var MigrationTargetPushReadinessStatusEnum;
+(function (MigrationTargetPushReadinessStatusEnum) {
+    MigrationTargetPushReadinessStatusEnum["Ready"] = "ready";
+    MigrationTargetPushReadinessStatusEnum["NeedsExternalReview"] = "needs_external_review";
+    MigrationTargetPushReadinessStatusEnum["Blocked"] = "blocked";
+})(MigrationTargetPushReadinessStatusEnum = exports.MigrationTargetPushReadinessStatusEnum || (exports.MigrationTargetPushReadinessStatusEnum = {}));
 /**
  * Faraday attributes available for modeling on accounts with an identity graph feature store set.
  *
@@ -592,6 +617,7 @@ var ResourceType;
     ResourceType["Datasets"] = "datasets";
     ResourceType["FeatureStores"] = "feature_stores";
     ResourceType["MarketOpportunityAnalyses"] = "market_opportunity_analyses";
+    ResourceType["Migrations"] = "migrations";
     ResourceType["Outcomes"] = "outcomes";
     ResourceType["PersonaSets"] = "persona_sets";
     ResourceType["Places"] = "places";
