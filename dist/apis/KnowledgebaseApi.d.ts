@@ -17,9 +17,6 @@ export interface ArchiveUseCaseRequest {
 export interface CreateUseCaseRequest {
     useCaseFields: UseCasePost;
 }
-export interface DeleteUseCaseRequest {
-    useCaseId: string;
-}
 export interface GetKnowledgebaseOverviewRevisionRequest {
     revisionId: string;
 }
@@ -70,16 +67,6 @@ export declare class KnowledgebaseApi extends runtime.BaseAPI {
      * Create a use case
      */
     createUseCase(useCaseFields: UseCasePost): Promise<UseCase>;
-    /**
-     * Delete a use case. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
-     * Delete a use case
-     */
-    deleteUseCaseRaw(requestParameters: DeleteUseCaseRequest): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Delete a use case. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
-     * Delete a use case
-     */
-    deleteUseCase(useCaseId: string): Promise<void>;
     /**
      * Get the current revision of this account\'s knowledgebase overview. If no overview has ever been written, `revision_id` and `created_at` are absent and `content` is the empty string.
      * Retrieve the account overview

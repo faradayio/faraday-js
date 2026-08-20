@@ -1061,10 +1061,10 @@ export interface Atlas {
     options: AtlasOptions;
     /**
      * 
-     * @type {OutputToLocations}
+     * @type {AtlasOutputToLocations}
      * @memberof Atlas
      */
-    output_to_locations: OutputToLocations;
+    output_to_locations: AtlasOutputToLocations;
     /**
      * The type of this resource.
      * @type {string}
@@ -1157,35 +1157,133 @@ export interface AtlasMergePatch {
     options?: AtlasOptionsMergePatch;
     /**
      * 
-     * @type {OutputToLocationsMergePatch}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasMergePatch
      */
-    output_to_locations?: OutputToLocationsMergePatch;
+    output_to_locations?: AtlasOutputToLocations;
 }
 /**
  * @type AtlasOptions
  * Atlas connection options
  * @export
  */
-export type AtlasOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'clickhouse' } & DatasetOptionsClickhouse | { type: 'databricks' } & DatasetOptionsDatabricks | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharing | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'motherduck' } & DatasetOptionsMotherduck | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'sftp' } & DatasetOptionsSftp | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer;
+export type AtlasOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'clickhouse' } & DatasetOptionsClickhouse | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'motherduck' } & DatasetOptionsMotherduck | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'sftp' } & DatasetOptionsSftp | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer;
 /**
  * @type AtlasOptionsMergePatch
  * Atlas connection options
  * @export
  */
-export type AtlasOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'clickhouse' } & DatasetOptionsClickhouseMergePatch | { type: 'databricks' } & DatasetOptionsDatabricksMergePatch | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharingMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'motherduck' } & DatasetOptionsMotherduckMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'sftp' } & DatasetOptionsSftpMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch;
+export type AtlasOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'clickhouse' } & DatasetOptionsClickhouseMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'motherduck' } & DatasetOptionsMotherduckMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'sftp' } & DatasetOptionsSftpMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch;
 /**
  * @type AtlasOptionsPost
  * Atlas connection options
  * @export
  */
-export type AtlasOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'clickhouse' } & DatasetOptionsClickhousePost | { type: 'databricks' } & DatasetOptionsDatabricksPost | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharingPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'motherduck' } & DatasetOptionsMotherduckPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost;
+export type AtlasOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'clickhouse' } & DatasetOptionsClickhousePost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'motherduck' } & DatasetOptionsMotherduckPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost;
 /**
  * @type AtlasOptionsPut
  * Atlas connection options
  * @export
  */
-export type AtlasOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'clickhouse' } & DatasetOptionsClickhousePut | { type: 'databricks' } & DatasetOptionsDatabricksPut | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharingPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'motherduck' } & DatasetOptionsMotherduckPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut;
+export type AtlasOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'clickhouse' } & DatasetOptionsClickhousePut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'motherduck' } & DatasetOptionsMotherduckPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut;
+/**
+ * How to build a location out of each row of the source data. Each member below names a column in the source data.
+ * 
+ * Each location is placed by exactly one of three groups of columns: a geometry column (`geometry`), a coordinate pair (`latitude` and `longitude`), or address columns (`house_number_and_street`, `city`, `state` and `postcode`). Naming columns from more than one group is rejected. Naming none is allowed: an atlas can be created before the columns of its source data are known, and configured once they are. Addresses are geocoded to a point during ingestion.
+ * @export
+ * @interface AtlasOutputToLocations
+ */
+export interface AtlasOutputToLocations {
+    /**
+     * The city of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    city?: string;
+    /**
+     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
+     * 
+     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    geometry?: string;
+    /**
+     * The street address lines of each location.
+     * @type {Array<string>}
+     * @memberof AtlasOutputToLocations
+     */
+    house_number_and_street?: Array<string>;
+    /**
+     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    latitude?: string;
+    /**
+     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    longitude?: string;
+    /**
+     * A human-readable label for each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    name?: string;
+    /**
+     * The postcode of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    postcode?: string;
+    /**
+     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
+     * @type {Array<AtlasOutputToLocationsProperties>}
+     * @memberof AtlasOutputToLocations
+     */
+    properties?: Array<AtlasOutputToLocationsProperties>;
+    /**
+     * An identifier for each location from an external system.
+     * 
+     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    reference_key?: string;
+    /**
+     * The state of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    state?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AtlasOutputToLocationsProperties
+ */
+export interface AtlasOutputToLocationsProperties {
+    /**
+     * The source column this property's value is read from. Mutually exclusive with `value`.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    column?: string;
+    /**
+     * The name this property is given on each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    name: string;
+    /**
+     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    value?: string;
+}
 /**
  * (Parameters used to POST a new value of the `Atlas` type.)
  * 
@@ -1220,10 +1318,10 @@ export interface AtlasPost {
     options: AtlasOptionsPost;
     /**
      * 
-     * @type {OutputToLocationsPost}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasPost
      */
-    output_to_locations: OutputToLocationsPost;
+    output_to_locations: AtlasOutputToLocations;
 }
 /**
  * (Parameters used to PUT a value of the `Atlas` type.)
@@ -1249,10 +1347,10 @@ export interface AtlasPut {
     options: AtlasOptionsPut;
     /**
      * 
-     * @type {OutputToLocationsPut}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasPut
      */
-    output_to_locations: OutputToLocationsPut;
+    output_to_locations: AtlasOutputToLocations;
 }
 /**
  * An attribute wraps a stream of assertions with configuration for aggregation and selection. 
@@ -2660,8 +2758,7 @@ export interface CohortMetrics {
     total_residence_count?: number;
 }
 /**
- * A spatial filter on a place. Superseded by `CohortLocationCondition`, which filters on
- * the locations of an atlas.
+ * 
  * @export
  * @interface CohortPlaceCondition
  */
@@ -3231,7 +3328,7 @@ export interface ConnectionMergePatch {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'clickhouse' } & ConnectionOptionsClickhouse | { type: 'databricks' } & ConnectionOptionsDatabricks | { type: 'databricks_delta_sharing' } & ConnectionOptionsDatabricksDeltaSharing | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'google_ads' } & ConnectionOptionsGoogleAds | { type: 'hosted_csv' } & ConnectionOptionsHostedCsv | { type: 'hubspot' } & ConnectionOptionsHubspot | { type: 'iterable' } & ConnectionOptionsIterable | { type: 'klaviyo' } & ConnectionOptionsKlaviyo | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAds | { type: 'lookup_api' } & ConnectionOptionsLookupApi | { type: 'merge' } & ConnectionOptionsMerge | { type: 'motherduck' } & ConnectionOptionsMotherduck | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAds | { type: 'poplar' } & ConnectionOptionsPoplar | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'recharge' } & ConnectionOptionsRecharge | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'salesforce' } & ConnectionOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloud | { type: 'segment' } & ConnectionOptionsSegment | { type: 'sftp' } & ConnectionOptionsSftp | { type: 'shopify' } & ConnectionOptionsShopify | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer | { type: 'stripe' } & ConnectionOptionsStripe | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDesk | { type: 'tiktok' } & ConnectionOptionsTiktok;
+export type ConnectionOptions = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServer | { type: 'bigquery' } & ConnectionOptionsBigQuery | { type: 'classic' } & ConnectionOptionsClassic | { type: 'clickhouse' } & ConnectionOptionsClickhouse | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsv | { type: 'google_ads' } & ConnectionOptionsGoogleAds | { type: 'hosted_csv' } & ConnectionOptionsHostedCsv | { type: 'hubspot' } & ConnectionOptionsHubspot | { type: 'iterable' } & ConnectionOptionsIterable | { type: 'klaviyo' } & ConnectionOptionsKlaviyo | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAds | { type: 'lookup_api' } & ConnectionOptionsLookupApi | { type: 'merge' } & ConnectionOptionsMerge | { type: 'motherduck' } & ConnectionOptionsMotherduck | { type: 'mysql' } & ConnectionOptionsMysql | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAds | { type: 'poplar' } & ConnectionOptionsPoplar | { type: 'postgres' } & ConnectionOptionsPostgres | { type: 'recharge' } & ConnectionOptionsRecharge | { type: 'redshift' } & ConnectionOptionsRedshift | { type: 's3_csv' } & ConnectionOptionsS3Csv | { type: 'salesforce' } & ConnectionOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloud | { type: 'segment' } & ConnectionOptionsSegment | { type: 'sftp' } & ConnectionOptionsSftp | { type: 'shopify' } & ConnectionOptionsShopify | { type: 'snowflake' } & ConnectionOptionsSnowflake | { type: 'sql_server' } & ConnectionOptionsSqlServer | { type: 'stripe' } & ConnectionOptionsStripe | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDesk | { type: 'tiktok' } & ConnectionOptionsTiktok;
 /**
  * Aurora (MySQL) options
  * @export
@@ -4977,34 +5074,11 @@ export interface ConnectionOptionsBigQuery {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQuery
-     */
-    region?: ConnectionOptionsBigQueryRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQuery
      */
     type: string;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ConnectionOptionsBigQueryRegionEnum {
-    Us = 'US',
-    UsCentral1 = 'us-central1',
-    UsEast1 = 'us-east1',
-    UsEast4 = 'us-east4',
-    UsEast5 = 'us-east5',
-    UsSouth1 = 'us-south1',
-    UsWest1 = 'us-west1',
-    UsWest2 = 'us-west2',
-    UsWest3 = 'us-west3',
-    UsWest4 = 'us-west4'
 }
 /**
  * (Parameters used to PATCH the `ConnectionOptionsBigQuery` type.)
@@ -5027,34 +5101,11 @@ export interface ConnectionOptionsBigQueryMergePatch {
      */
     project_id?: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryMergePatch
-     */
-    region?: ConnectionOptionsBigQueryMergePatchRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryMergePatch
      */
     type: string;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ConnectionOptionsBigQueryMergePatchRegionEnum {
-    Us = 'US',
-    UsCentral1 = 'us-central1',
-    UsEast1 = 'us-east1',
-    UsEast4 = 'us-east4',
-    UsEast5 = 'us-east5',
-    UsSouth1 = 'us-south1',
-    UsWest1 = 'us-west1',
-    UsWest2 = 'us-west2',
-    UsWest3 = 'us-west3',
-    UsWest4 = 'us-west4'
 }
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsBigQuery` type.)
@@ -5077,34 +5128,11 @@ export interface ConnectionOptionsBigQueryPost {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryPost
-     */
-    region?: ConnectionOptionsBigQueryPostRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPost
      */
     type: string;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ConnectionOptionsBigQueryPostRegionEnum {
-    Us = 'US',
-    UsCentral1 = 'us-central1',
-    UsEast1 = 'us-east1',
-    UsEast4 = 'us-east4',
-    UsEast5 = 'us-east5',
-    UsSouth1 = 'us-south1',
-    UsWest1 = 'us-west1',
-    UsWest2 = 'us-west2',
-    UsWest3 = 'us-west3',
-    UsWest4 = 'us-west4'
 }
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsBigQuery` type.)
@@ -5127,34 +5155,11 @@ export interface ConnectionOptionsBigQueryPut {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryPut
-     */
-    region?: ConnectionOptionsBigQueryPutRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPut
      */
     type: string;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ConnectionOptionsBigQueryPutRegionEnum {
-    Us = 'US',
-    UsCentral1 = 'us-central1',
-    UsEast1 = 'us-east1',
-    UsEast4 = 'us-east4',
-    UsEast5 = 'us-east5',
-    UsSouth1 = 'us-south1',
-    UsWest1 = 'us-west1',
-    UsWest2 = 'us-west2',
-    UsWest3 = 'us-west3',
-    UsWest4 = 'us-west4'
 }
 /**
  * Classic Faraday Sources options
@@ -5421,314 +5426,6 @@ export interface ConnectionOptionsClickhousePut {
      * @memberof ConnectionOptionsClickhousePut
      */
     user: string;
-}
-/**
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricks
- */
-export interface ConnectionOptionsDatabricks {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    type: string;
-}
-/**
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharing
- */
-export interface ConnectionOptionsDatabricksDeltaSharing {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `ConnectionOptionsDatabricksDeltaSharing` type.)
- * 
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingMergePatch
- */
-export interface ConnectionOptionsDatabricksDeltaSharingMergePatch {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    credentials_json?: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    schema_name?: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    share_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
- * 
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingPost
- */
-export interface ConnectionOptionsDatabricksDeltaSharingPost {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
- * 
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingPut
- */
-export interface ConnectionOptionsDatabricksDeltaSharingPut {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `ConnectionOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksMergePatch
- */
-export interface ConnectionOptionsDatabricksMergePatch {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    catalog?: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    host?: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    http_path?: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    schema?: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    token?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `ConnectionOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksPost
- */
-export interface ConnectionOptionsDatabricksPost {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `ConnectionOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksPut
- */
-export interface ConnectionOptionsDatabricksPut {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    type: string;
 }
 /**
  * Facebook Custom Audiences options
@@ -7179,7 +6876,7 @@ export interface ConnectionOptionsMergeMergePatch {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'clickhouse' } & ConnectionOptionsClickhouseMergePatch | { type: 'databricks' } & ConnectionOptionsDatabricksMergePatch | { type: 'databricks_delta_sharing' } & ConnectionOptionsDatabricksDeltaSharingMergePatch | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & ConnectionOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvMergePatch | { type: 'hubspot' } & ConnectionOptionsHubspotMergePatch | { type: 'iterable' } & ConnectionOptionsIterableMergePatch | { type: 'klaviyo' } & ConnectionOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & ConnectionOptionsLookupApiMergePatch | { type: 'merge' } & ConnectionOptionsMergeMergePatch | { type: 'motherduck' } & ConnectionOptionsMotherduckMergePatch | { type: 'mysql' } & ConnectionOptionsMysqlMergePatch | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsMergePatch | { type: 'poplar' } & ConnectionOptionsPoplarMergePatch | { type: 'postgres' } & ConnectionOptionsPostgresMergePatch | { type: 'recharge' } & ConnectionOptionsRechargeMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'salesforce' } & ConnectionOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & ConnectionOptionsSegmentMergePatch | { type: 'sftp' } & ConnectionOptionsSftpMergePatch | { type: 'shopify' } & ConnectionOptionsShopifyMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch | { type: 'sql_server' } & ConnectionOptionsSqlServerMergePatch | { type: 'stripe' } & ConnectionOptionsStripeMergePatch | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & ConnectionOptionsTiktokMergePatch;
+export type ConnectionOptionsMergePatch = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & ConnectionOptionsBigQueryMergePatch | { type: 'classic' } & ConnectionOptionsClassicMergePatch | { type: 'clickhouse' } & ConnectionOptionsClickhouseMergePatch | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & ConnectionOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvMergePatch | { type: 'hubspot' } & ConnectionOptionsHubspotMergePatch | { type: 'iterable' } & ConnectionOptionsIterableMergePatch | { type: 'klaviyo' } & ConnectionOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & ConnectionOptionsLookupApiMergePatch | { type: 'merge' } & ConnectionOptionsMergeMergePatch | { type: 'motherduck' } & ConnectionOptionsMotherduckMergePatch | { type: 'mysql' } & ConnectionOptionsMysqlMergePatch | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsMergePatch | { type: 'poplar' } & ConnectionOptionsPoplarMergePatch | { type: 'postgres' } & ConnectionOptionsPostgresMergePatch | { type: 'recharge' } & ConnectionOptionsRechargeMergePatch | { type: 'redshift' } & ConnectionOptionsRedshiftMergePatch | { type: 's3_csv' } & ConnectionOptionsS3CsvMergePatch | { type: 'salesforce' } & ConnectionOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & ConnectionOptionsSegmentMergePatch | { type: 'sftp' } & ConnectionOptionsSftpMergePatch | { type: 'shopify' } & ConnectionOptionsShopifyMergePatch | { type: 'snowflake' } & ConnectionOptionsSnowflakeMergePatch | { type: 'sql_server' } & ConnectionOptionsSqlServerMergePatch | { type: 'stripe' } & ConnectionOptionsStripeMergePatch | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & ConnectionOptionsTiktokMergePatch;
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsMerge` type.)
  * 
@@ -7735,7 +7432,7 @@ export interface ConnectionOptionsPoplarPut {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'clickhouse' } & ConnectionOptionsClickhousePost | { type: 'databricks' } & ConnectionOptionsDatabricksPost | { type: 'databricks_delta_sharing' } & ConnectionOptionsDatabricksDeltaSharingPost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPost | { type: 'lookup_api' } & ConnectionOptionsLookupApiPost | { type: 'merge' } & ConnectionOptionsMergePost | { type: 'motherduck' } & ConnectionOptionsMotherduckPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'poplar' } & ConnectionOptionsPoplarPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'recharge' } & ConnectionOptionsRechargePost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'sftp' } & ConnectionOptionsSftpPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
+export type ConnectionOptionsPost = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPost | { type: 'bigquery' } & ConnectionOptionsBigQueryPost | { type: 'classic' } & ConnectionOptionsClassicPost | { type: 'clickhouse' } & ConnectionOptionsClickhousePost | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPost | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPost | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPost | { type: 'hubspot' } & ConnectionOptionsHubspotPost | { type: 'iterable' } & ConnectionOptionsIterablePost | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPost | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPost | { type: 'lookup_api' } & ConnectionOptionsLookupApiPost | { type: 'merge' } & ConnectionOptionsMergePost | { type: 'motherduck' } & ConnectionOptionsMotherduckPost | { type: 'mysql' } & ConnectionOptionsMysqlPost | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPost | { type: 'poplar' } & ConnectionOptionsPoplarPost | { type: 'postgres' } & ConnectionOptionsPostgresPost | { type: 'recharge' } & ConnectionOptionsRechargePost | { type: 'redshift' } & ConnectionOptionsRedshiftPost | { type: 's3_csv' } & ConnectionOptionsS3CsvPost | { type: 'salesforce' } & ConnectionOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPost | { type: 'segment' } & ConnectionOptionsSegmentPost | { type: 'sftp' } & ConnectionOptionsSftpPost | { type: 'shopify' } & ConnectionOptionsShopifyPost | { type: 'snowflake' } & ConnectionOptionsSnowflakePost | { type: 'sql_server' } & ConnectionOptionsSqlServerPost | { type: 'stripe' } & ConnectionOptionsStripePost | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPost | { type: 'tiktok' } & ConnectionOptionsTiktokPost;
 /**
  * Postgres options
  * @export
@@ -7991,7 +7688,7 @@ export interface ConnectionOptionsPostgresPut {
  * The connection-specific options. These vary by connection type.
  * @export
  */
-export type ConnectionOptionsPut = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPut | { type: 'bigquery' } & ConnectionOptionsBigQueryPut | { type: 'classic' } & ConnectionOptionsClassicPut | { type: 'clickhouse' } & ConnectionOptionsClickhousePut | { type: 'databricks' } & ConnectionOptionsDatabricksPut | { type: 'databricks_delta_sharing' } & ConnectionOptionsDatabricksDeltaSharingPut | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPut | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPut | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPut | { type: 'hubspot' } & ConnectionOptionsHubspotPut | { type: 'iterable' } & ConnectionOptionsIterablePut | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPut | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPut | { type: 'lookup_api' } & ConnectionOptionsLookupApiPut | { type: 'merge' } & ConnectionOptionsMergePut | { type: 'motherduck' } & ConnectionOptionsMotherduckPut | { type: 'mysql' } & ConnectionOptionsMysqlPut | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPut | { type: 'poplar' } & ConnectionOptionsPoplarPut | { type: 'postgres' } & ConnectionOptionsPostgresPut | { type: 'recharge' } & ConnectionOptionsRechargePut | { type: 'redshift' } & ConnectionOptionsRedshiftPut | { type: 's3_csv' } & ConnectionOptionsS3CsvPut | { type: 'salesforce' } & ConnectionOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPut | { type: 'segment' } & ConnectionOptionsSegmentPut | { type: 'sftp' } & ConnectionOptionsSftpPut | { type: 'shopify' } & ConnectionOptionsShopifyPut | { type: 'snowflake' } & ConnectionOptionsSnowflakePut | { type: 'sql_server' } & ConnectionOptionsSqlServerPut | { type: 'stripe' } & ConnectionOptionsStripePut | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPut | { type: 'tiktok' } & ConnectionOptionsTiktokPut;
+export type ConnectionOptionsPut = { type: 'aws_aurora_mysql' } & ConnectionOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & ConnectionOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & ConnectionOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & ConnectionOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & ConnectionOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & ConnectionOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & ConnectionOptionsAzureSqlServerPut | { type: 'bigquery' } & ConnectionOptionsBigQueryPut | { type: 'classic' } & ConnectionOptionsClassicPut | { type: 'clickhouse' } & ConnectionOptionsClickhousePut | { type: 'facebook_custom_audiences' } & ConnectionOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & ConnectionOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & ConnectionOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & ConnectionOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & ConnectionOptionsGcpGcsCsvPut | { type: 'google_ads' } & ConnectionOptionsGoogleAdsPut | { type: 'hosted_csv' } & ConnectionOptionsHostedCsvPut | { type: 'hubspot' } & ConnectionOptionsHubspotPut | { type: 'iterable' } & ConnectionOptionsIterablePut | { type: 'klaviyo' } & ConnectionOptionsKlaviyoPut | { type: 'linkedin_ads' } & ConnectionOptionsLinkedinAdsPut | { type: 'lookup_api' } & ConnectionOptionsLookupApiPut | { type: 'merge' } & ConnectionOptionsMergePut | { type: 'motherduck' } & ConnectionOptionsMotherduckPut | { type: 'mysql' } & ConnectionOptionsMysqlPut | { type: 'pinterest_ads' } & ConnectionOptionsPinterestAdsPut | { type: 'poplar' } & ConnectionOptionsPoplarPut | { type: 'postgres' } & ConnectionOptionsPostgresPut | { type: 'recharge' } & ConnectionOptionsRechargePut | { type: 'redshift' } & ConnectionOptionsRedshiftPut | { type: 's3_csv' } & ConnectionOptionsS3CsvPut | { type: 'salesforce' } & ConnectionOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & ConnectionOptionsSalesforceMarketingCloudPut | { type: 'segment' } & ConnectionOptionsSegmentPut | { type: 'sftp' } & ConnectionOptionsSftpPut | { type: 'shopify' } & ConnectionOptionsShopifyPut | { type: 'snowflake' } & ConnectionOptionsSnowflakePut | { type: 'sql_server' } & ConnectionOptionsSqlServerPut | { type: 'stripe' } & ConnectionOptionsStripePut | { type: 'the_trade_desk' } & ConnectionOptionsTheTradeDeskPut | { type: 'tiktok' } & ConnectionOptionsTiktokPut;
 /**
  * Recharge options
  * @export
@@ -10876,7 +10573,7 @@ export interface DatasetMergePatchOutputToAuthority {
  * Dataset connection options
  * @export
  */
-export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'clickhouse' } & DatasetOptionsClickhouse | { type: 'databricks' } & DatasetOptionsDatabricks | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharing | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'hubspot' } & DatasetOptionsHubspot | { type: 'iterable' } & DatasetOptionsIterable | { type: 'klaviyo' } & DatasetOptionsKlaviyo | { type: 'merge' } & DatasetOptionsMerge | { type: 'motherduck' } & DatasetOptionsMotherduck | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'recharge' } & DatasetOptionsRecharge | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'salesforce' } & DatasetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloud | { type: 'sftp' } & DatasetOptionsSftp | { type: 'shopify' } & DatasetOptionsShopify | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer | { type: 'stripe' } & DatasetOptionsStripe;
+export type DatasetOptions = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServer | { type: 'bigquery' } & DatasetOptionsBigQuery | { type: 'classic' } & DatasetOptionsClassic | { type: 'clickhouse' } & DatasetOptionsClickhouse | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsv | { type: 'hosted_csv' } & DatasetOptionsHostedCsv | { type: 'hubspot' } & DatasetOptionsHubspot | { type: 'iterable' } & DatasetOptionsIterable | { type: 'klaviyo' } & DatasetOptionsKlaviyo | { type: 'merge' } & DatasetOptionsMerge | { type: 'motherduck' } & DatasetOptionsMotherduck | { type: 'mysql' } & DatasetOptionsMysql | { type: 'postgres' } & DatasetOptionsPostgres | { type: 'recharge' } & DatasetOptionsRecharge | { type: 'redshift' } & DatasetOptionsRedshift | { type: 's3_csv' } & DatasetOptionsS3Csv | { type: 'salesforce' } & DatasetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloud | { type: 'sftp' } & DatasetOptionsSftp | { type: 'shopify' } & DatasetOptionsShopify | { type: 'snowflake' } & DatasetOptionsSnowflake | { type: 'sql_server' } & DatasetOptionsSqlServer | { type: 'stripe' } & DatasetOptionsStripe;
 /**
  * Aurora (MySQL) options
  * @export
@@ -11670,170 +11367,6 @@ export interface DatasetOptionsClickhousePut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsClickhousePut
-     */
-    type: string;
-}
-/**
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricks
- */
-export interface DatasetOptionsDatabricks {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricks
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricks
-     */
-    type: string;
-}
-/**
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharing
- */
-export interface DatasetOptionsDatabricksDeltaSharing {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharing
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharing
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `DatasetOptionsDatabricksDeltaSharing` type.)
- * 
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingMergePatch
- */
-export interface DatasetOptionsDatabricksDeltaSharingMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `DatasetOptionsDatabricksDeltaSharing` type.)
- * 
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingPost
- */
-export interface DatasetOptionsDatabricksDeltaSharingPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `DatasetOptionsDatabricksDeltaSharing` type.)
- * 
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingPut
- */
-export interface DatasetOptionsDatabricksDeltaSharingPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPut
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `DatasetOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksMergePatch
- */
-export interface DatasetOptionsDatabricksMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `DatasetOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksPost
- */
-export interface DatasetOptionsDatabricksPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `DatasetOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksPut
- */
-export interface DatasetOptionsDatabricksPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPut
      */
     type: string;
 }
@@ -12693,7 +12226,7 @@ export interface DatasetOptionsMergeMergePatch {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'clickhouse' } & DatasetOptionsClickhouseMergePatch | { type: 'databricks' } & DatasetOptionsDatabricksMergePatch | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharingMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'hubspot' } & DatasetOptionsHubspotMergePatch | { type: 'iterable' } & DatasetOptionsIterableMergePatch | { type: 'klaviyo' } & DatasetOptionsKlaviyoMergePatch | { type: 'merge' } & DatasetOptionsMergeMergePatch | { type: 'motherduck' } & DatasetOptionsMotherduckMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'recharge' } & DatasetOptionsRechargeMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'salesforce' } & DatasetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudMergePatch | { type: 'sftp' } & DatasetOptionsSftpMergePatch | { type: 'shopify' } & DatasetOptionsShopifyMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch | { type: 'stripe' } & DatasetOptionsStripeMergePatch;
+export type DatasetOptionsMergePatch = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & DatasetOptionsBigQueryMergePatch | { type: 'classic' } & DatasetOptionsClassicMergePatch | { type: 'clickhouse' } & DatasetOptionsClickhouseMergePatch | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvMergePatch | { type: 'hosted_csv' } & DatasetOptionsHostedCsvMergePatch | { type: 'hubspot' } & DatasetOptionsHubspotMergePatch | { type: 'iterable' } & DatasetOptionsIterableMergePatch | { type: 'klaviyo' } & DatasetOptionsKlaviyoMergePatch | { type: 'merge' } & DatasetOptionsMergeMergePatch | { type: 'motherduck' } & DatasetOptionsMotherduckMergePatch | { type: 'mysql' } & DatasetOptionsMysqlMergePatch | { type: 'postgres' } & DatasetOptionsPostgresMergePatch | { type: 'recharge' } & DatasetOptionsRechargeMergePatch | { type: 'redshift' } & DatasetOptionsRedshiftMergePatch | { type: 's3_csv' } & DatasetOptionsS3CsvMergePatch | { type: 'salesforce' } & DatasetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudMergePatch | { type: 'sftp' } & DatasetOptionsSftpMergePatch | { type: 'shopify' } & DatasetOptionsShopifyMergePatch | { type: 'snowflake' } & DatasetOptionsSnowflakeMergePatch | { type: 'sql_server' } & DatasetOptionsSqlServerMergePatch | { type: 'stripe' } & DatasetOptionsStripeMergePatch;
 /**
  * (Parameters used to POST a new value of the `DatasetOptionsMerge` type.)
  * 
@@ -12941,7 +12474,7 @@ export interface DatasetOptionsMysqlPut {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'clickhouse' } & DatasetOptionsClickhousePost | { type: 'databricks' } & DatasetOptionsDatabricksPost | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharingPost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'merge' } & DatasetOptionsMergePost | { type: 'motherduck' } & DatasetOptionsMotherduckPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'recharge' } & DatasetOptionsRechargePost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
+export type DatasetOptionsPost = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPost | { type: 'bigquery' } & DatasetOptionsBigQueryPost | { type: 'classic' } & DatasetOptionsClassicPost | { type: 'clickhouse' } & DatasetOptionsClickhousePost | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPost | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPost | { type: 'hubspot' } & DatasetOptionsHubspotPost | { type: 'iterable' } & DatasetOptionsIterablePost | { type: 'klaviyo' } & DatasetOptionsKlaviyoPost | { type: 'merge' } & DatasetOptionsMergePost | { type: 'motherduck' } & DatasetOptionsMotherduckPost | { type: 'mysql' } & DatasetOptionsMysqlPost | { type: 'postgres' } & DatasetOptionsPostgresPost | { type: 'recharge' } & DatasetOptionsRechargePost | { type: 'redshift' } & DatasetOptionsRedshiftPost | { type: 's3_csv' } & DatasetOptionsS3CsvPost | { type: 'salesforce' } & DatasetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPost | { type: 'sftp' } & DatasetOptionsSftpPost | { type: 'shopify' } & DatasetOptionsShopifyPost | { type: 'snowflake' } & DatasetOptionsSnowflakePost | { type: 'sql_server' } & DatasetOptionsSqlServerPost | { type: 'stripe' } & DatasetOptionsStripePost;
 /**
  * Postgres options
  * @export
@@ -13029,7 +12562,7 @@ export interface DatasetOptionsPostgresPut {
  * Dataset connection options
  * @export
  */
-export type DatasetOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'clickhouse' } & DatasetOptionsClickhousePut | { type: 'databricks' } & DatasetOptionsDatabricksPut | { type: 'databricks_delta_sharing' } & DatasetOptionsDatabricksDeltaSharingPut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'hubspot' } & DatasetOptionsHubspotPut | { type: 'iterable' } & DatasetOptionsIterablePut | { type: 'klaviyo' } & DatasetOptionsKlaviyoPut | { type: 'merge' } & DatasetOptionsMergePut | { type: 'motherduck' } & DatasetOptionsMotherduckPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'recharge' } & DatasetOptionsRechargePut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'salesforce' } & DatasetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'shopify' } & DatasetOptionsShopifyPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut | { type: 'stripe' } & DatasetOptionsStripePut;
+export type DatasetOptionsPut = { type: 'aws_aurora_mysql' } & DatasetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & DatasetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & DatasetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & DatasetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & DatasetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & DatasetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & DatasetOptionsAzureSqlServerPut | { type: 'bigquery' } & DatasetOptionsBigQueryPut | { type: 'classic' } & DatasetOptionsClassicPut | { type: 'clickhouse' } & DatasetOptionsClickhousePut | { type: 'gcp_cloud_sql_mysql' } & DatasetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & DatasetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & DatasetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & DatasetOptionsGcpGcsCsvPut | { type: 'hosted_csv' } & DatasetOptionsHostedCsvPut | { type: 'hubspot' } & DatasetOptionsHubspotPut | { type: 'iterable' } & DatasetOptionsIterablePut | { type: 'klaviyo' } & DatasetOptionsKlaviyoPut | { type: 'merge' } & DatasetOptionsMergePut | { type: 'motherduck' } & DatasetOptionsMotherduckPut | { type: 'mysql' } & DatasetOptionsMysqlPut | { type: 'postgres' } & DatasetOptionsPostgresPut | { type: 'recharge' } & DatasetOptionsRechargePut | { type: 'redshift' } & DatasetOptionsRedshiftPut | { type: 's3_csv' } & DatasetOptionsS3CsvPut | { type: 'salesforce' } & DatasetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & DatasetOptionsSalesforceMarketingCloudPut | { type: 'sftp' } & DatasetOptionsSftpPut | { type: 'shopify' } & DatasetOptionsShopifyPut | { type: 'snowflake' } & DatasetOptionsSnowflakePut | { type: 'sql_server' } & DatasetOptionsSqlServerPut | { type: 'stripe' } & DatasetOptionsStripePut;
 /**
  * Recharge options
  * @export
@@ -17646,321 +17179,6 @@ export enum OutcomePutPredictionModeEnum {
     Static = 'static'
 }
 /**
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocations
- */
-export interface OutputToLocations {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     * 
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocations
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocations
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     * 
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    state?: string;
-}
-/**
- * (Parameters used to PATCH the `OutputToLocations` type.)
- * 
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsMergePatch
- */
-export interface OutputToLocationsMergePatch {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    city?: string | null;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     * 
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    geometry?: string | null;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsMergePatch
-     */
-    house_number_and_street?: Array<string> | null;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    latitude?: string | null;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    longitude?: string | null;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    name?: string | null;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    postcode?: string | null;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsMergePatch
-     */
-    properties?: Array<OutputToLocationsProperties> | null;
-    /**
-     * An identifier for each location from an external system.
-     * 
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    reference_key?: string | null;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    state?: string | null;
-}
-/**
- * (Parameters used to POST a new value of the `OutputToLocations` type.)
- * 
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsPost
- */
-export interface OutputToLocationsPost {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     * 
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsPost
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsPost
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     * 
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    state?: string;
-}
-/**
- * 
- * @export
- * @interface OutputToLocationsProperties
- */
-export interface OutputToLocationsProperties {
-    /**
-     * The source column this property's value is read from. Mutually exclusive with `value`.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    column?: string;
-    /**
-     * The name this property is given on each location.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    name: string;
-    /**
-     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    value?: string;
-}
-/**
- * (Parameters used to PUT a value of the `OutputToLocations` type.)
- * 
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsPut
- */
-export interface OutputToLocationsPut {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     * 
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsPut
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsPut
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     * 
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    state?: string;
-}
-/**
  * A single mapping of a dataset column to a stream with property configurations.
  * @export
  * @interface OutputToStreamArrayItem
@@ -18890,9 +18108,6 @@ export interface PersonaSetPut {
 }
 /**
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- * 
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface Place
  */
@@ -18989,9 +18204,6 @@ export interface Place {
  * (Parameters used to PATCH the `Place` type.)
  * 
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- * 
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlaceMergePatch
  */
@@ -19022,9 +18234,6 @@ export interface PlaceMergePatch {
  * (Parameters used to POST a new value of the `Place` type.)
  * 
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- * 
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePost
  */
@@ -19055,9 +18264,6 @@ export interface PlacePost {
  * (Parameters used to PUT a value of the `Place` type.)
  * 
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- * 
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePut
  */
@@ -20529,237 +19735,6 @@ export interface ScopePayloadLocationConditions {
     property_conditions?: Array<LocationPropertyCondition>;
 }
 /**
- * (Parameters used to PATCH the `ScopePayloadLocationConditions` type.)
- * 
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsMergePatch
- */
-export interface ScopePayloadLocationConditionsMergePatch {
-    /**
-     * The atlases whose locations each person is matched against.
-     * 
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    atlas_ids?: Array<string> | null;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     * 
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    location_reference_keys?: Array<string> | null;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    max_distance?: number | null;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    min_distance?: number | null;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    property_conditions?: Array<LocationPropertyCondition> | null;
-}
-/**
- * (Parameters used to POST a new value of the `ScopePayloadLocationConditions` type.)
- * 
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsPost
- */
-export interface ScopePayloadLocationConditionsPost {
-    /**
-     * The atlases whose locations each person is matched against.
-     * 
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     * 
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    max_distance?: number;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    min_distance?: number;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
- * (Parameters used to PUT a value of the `ScopePayloadLocationConditions` type.)
- * 
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsPut
- */
-export interface ScopePayloadLocationConditionsPut {
-    /**
-     * The atlases whose locations each person is matched against.
-     * 
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     * 
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    max_distance?: number;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    min_distance?: number;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
- * (Parameters used to PATCH the `ScopePayloadLocation` type.)
- * 
- * Include each person's proximity to the locations of one or more atlases.
- * 
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationMergePatch
- */
-export interface ScopePayloadLocationMergePatch {
-    /**
-     * 
-     * @type {ScopePayloadLocationConditionsMergePatch}
-     * @memberof ScopePayloadLocationMergePatch
-     */
-    conditions?: ScopePayloadLocationConditionsMergePatch | null;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     * 
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationMergePatch
-     */
-    select?: ScopePayloadLocationMergePatchSelectEnum;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ScopePayloadLocationMergePatchSelectEnum {
-    Nearest = 'nearest',
-    All = 'all'
-}
-/**
- * (Parameters used to POST a new value of the `ScopePayloadLocation` type.)
- * 
- * Include each person's proximity to the locations of one or more atlases.
- * 
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationPost
- */
-export interface ScopePayloadLocationPost {
-    /**
-     * 
-     * @type {ScopePayloadLocationConditionsPost}
-     * @memberof ScopePayloadLocationPost
-     */
-    conditions?: ScopePayloadLocationConditionsPost;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     * 
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationPost
-     */
-    select?: ScopePayloadLocationPostSelectEnum;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ScopePayloadLocationPostSelectEnum {
-    Nearest = 'nearest',
-    All = 'all'
-}
-/**
- * (Parameters used to PUT a value of the `ScopePayloadLocation` type.)
- * 
- * Include each person's proximity to the locations of one or more atlases.
- * 
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationPut
- */
-export interface ScopePayloadLocationPut {
-    /**
-     * 
-     * @type {ScopePayloadLocationConditionsPut}
-     * @memberof ScopePayloadLocationPut
-     */
-    conditions?: ScopePayloadLocationConditionsPut;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     * 
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationPut
-     */
-    select?: ScopePayloadLocationPutSelectEnum;
-}
-
-/**
-* @export
-* @enum {string}
-*/
-export enum ScopePayloadLocationPutSelectEnum {
-    Nearest = 'nearest',
-    All = 'all'
-}
-/**
  * (Parameters used to PATCH the `ScopePayload` type.)
  * 
  * The data to include for each person in this scope.
@@ -20791,10 +19766,10 @@ export interface ScopePayloadMergePatch {
     explainability?: boolean | null;
     /**
      * 
-     * @type {ScopePayloadLocationMergePatch}
+     * @type {ScopePayloadMergePatchLocation}
      * @memberof ScopePayloadMergePatch
      */
-    location?: ScopePayloadLocationMergePatch | null;
+    location?: ScopePayloadMergePatchLocation | null;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -20821,6 +19796,38 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     recommender_ids?: Array<string> | null;
+}
+/**
+ * Include each person's proximity to the locations of one or more atlases.
+ * 
+ * Distances are in meters, measured to the nearest edge of a location's geometry.
+ * @export
+ * @interface ScopePayloadMergePatchLocation
+ */
+export interface ScopePayloadMergePatchLocation {
+    /**
+     * 
+     * @type {ScopePayloadLocationConditions}
+     * @memberof ScopePayloadMergePatchLocation
+     */
+    conditions?: ScopePayloadLocationConditions;
+    /**
+     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
+     * 
+     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
+     * @type {string}
+     * @memberof ScopePayloadMergePatchLocation
+     */
+    select?: ScopePayloadMergePatchLocationSelectEnum;
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ScopePayloadMergePatchLocationSelectEnum {
+    Nearest = 'nearest',
+    All = 'all'
 }
 /**
  * (Parameters used to POST a new value of the `ScopePayload` type.)
@@ -20854,10 +19861,10 @@ export interface ScopePayloadPost {
     explainability?: boolean;
     /**
      * 
-     * @type {ScopePayloadLocationPost}
+     * @type {ScopePayloadLocation}
      * @memberof ScopePayloadPost
      */
-    location?: ScopePayloadLocationPost;
+    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -20917,10 +19924,10 @@ export interface ScopePayloadPut {
     explainability?: boolean;
     /**
      * 
-     * @type {ScopePayloadLocationPut}
+     * @type {ScopePayloadLocation}
      * @memberof ScopePayloadPut
      */
-    location?: ScopePayloadLocationPut;
+    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -24469,7 +23476,7 @@ export interface TargetModesReferencedPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptions = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServer | { type: 'bigquery' } & TargetOptionsBigQuery | { type: 'clickhouse' } & TargetOptionsClickhouse | { type: 'databricks' } & TargetOptionsDatabricks | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsv | { type: 'google_ads' } & TargetOptionsGoogleAds | { type: 'hosted_csv' } & TargetOptionsHostedCsv | { type: 'hubspot' } & TargetOptionsHubspot | { type: 'iterable' } & TargetOptionsIterable | { type: 'klaviyo' } & TargetOptionsKlaviyo | { type: 'linkedin_ads' } & TargetOptionsLinkedinAds | { type: 'lookup_api' } & TargetOptionsLookupApi | { type: 'motherduck' } & TargetOptionsMotherduck | { type: 'mysql' } & TargetOptionsMysql | { type: 'pinterest_ads' } & TargetOptionsPinterestAds | { type: 'poplar' } & TargetOptionsPoplar | { type: 'postgres' } & TargetOptionsPostgres | { type: 'redshift' } & TargetOptionsRedshift | { type: 's3_csv' } & TargetOptionsS3Csv | { type: 'salesforce' } & TargetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloud | { type: 'segment' } & TargetOptionsSegment | { type: 'sftp' } & TargetOptionsSftp | { type: 'snowflake' } & TargetOptionsSnowflake | { type: 'sql_server' } & TargetOptionsSqlServer | { type: 'the_trade_desk' } & TargetOptionsTheTradeDesk | { type: 'tiktok' } & TargetOptionsTiktok;
+export type TargetOptions = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysql | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgres | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysql | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgres | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServer | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerless | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServer | { type: 'bigquery' } & TargetOptionsBigQuery | { type: 'clickhouse' } & TargetOptionsClickhouse | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiences | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysql | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgres | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServer | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsv | { type: 'google_ads' } & TargetOptionsGoogleAds | { type: 'hosted_csv' } & TargetOptionsHostedCsv | { type: 'hubspot' } & TargetOptionsHubspot | { type: 'iterable' } & TargetOptionsIterable | { type: 'klaviyo' } & TargetOptionsKlaviyo | { type: 'linkedin_ads' } & TargetOptionsLinkedinAds | { type: 'lookup_api' } & TargetOptionsLookupApi | { type: 'motherduck' } & TargetOptionsMotherduck | { type: 'mysql' } & TargetOptionsMysql | { type: 'pinterest_ads' } & TargetOptionsPinterestAds | { type: 'poplar' } & TargetOptionsPoplar | { type: 'postgres' } & TargetOptionsPostgres | { type: 'redshift' } & TargetOptionsRedshift | { type: 's3_csv' } & TargetOptionsS3Csv | { type: 'salesforce' } & TargetOptionsSalesforce | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloud | { type: 'segment' } & TargetOptionsSegment | { type: 'sftp' } & TargetOptionsSftp | { type: 'snowflake' } & TargetOptionsSnowflake | { type: 'sql_server' } & TargetOptionsSqlServer | { type: 'the_trade_desk' } & TargetOptionsTheTradeDesk | { type: 'tiktok' } & TargetOptionsTiktok;
 /**
  * Aurora (MySQL) options
  * @export
@@ -25279,112 +24286,6 @@ export interface TargetOptionsClickhousePut {
      * @memberof TargetOptionsClickhousePut
      */
     type: string;
-}
-/**
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricks
- */
-export interface TargetOptionsDatabricks {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricks
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricks
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricks
-     */
-    upsert?: boolean;
-}
-/**
- * (Parameters used to PATCH the `TargetOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksMergePatch
- */
-export interface TargetOptionsDatabricksMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    upsert?: boolean | null;
-}
-/**
- * (Parameters used to POST a new value of the `TargetOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksPost
- */
-export interface TargetOptionsDatabricksPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    upsert?: boolean;
-}
-/**
- * (Parameters used to PUT a value of the `TargetOptionsDatabricks` type.)
- * 
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksPut
- */
-export interface TargetOptionsDatabricksPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    upsert?: boolean;
 }
 /**
  * Facebook Custom Audiences options
@@ -26387,7 +25288,7 @@ export interface TargetOptionsLookupApiPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'clickhouse' } & TargetOptionsClickhouseMergePatch | { type: 'databricks' } & TargetOptionsDatabricksMergePatch | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & TargetOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'hubspot' } & TargetOptionsHubspotMergePatch | { type: 'iterable' } & TargetOptionsIterableMergePatch | { type: 'klaviyo' } & TargetOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & TargetOptionsLookupApiMergePatch | { type: 'motherduck' } & TargetOptionsMotherduckMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsMergePatch | { type: 'poplar' } & TargetOptionsPoplarMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'salesforce' } & TargetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & TargetOptionsSegmentMergePatch | { type: 'sftp' } & TargetOptionsSftpMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & TargetOptionsTiktokMergePatch;
+export type TargetOptionsMergePatch = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlMergePatch | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresMergePatch | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlMergePatch | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresMergePatch | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerMergePatch | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessMergePatch | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerMergePatch | { type: 'bigquery' } & TargetOptionsBigQueryMergePatch | { type: 'clickhouse' } & TargetOptionsClickhouseMergePatch | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesMergePatch | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlMergePatch | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresMergePatch | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerMergePatch | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvMergePatch | { type: 'google_ads' } & TargetOptionsGoogleAdsMergePatch | { type: 'hosted_csv' } & TargetOptionsHostedCsvMergePatch | { type: 'hubspot' } & TargetOptionsHubspotMergePatch | { type: 'iterable' } & TargetOptionsIterableMergePatch | { type: 'klaviyo' } & TargetOptionsKlaviyoMergePatch | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsMergePatch | { type: 'lookup_api' } & TargetOptionsLookupApiMergePatch | { type: 'motherduck' } & TargetOptionsMotherduckMergePatch | { type: 'mysql' } & TargetOptionsMysqlMergePatch | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsMergePatch | { type: 'poplar' } & TargetOptionsPoplarMergePatch | { type: 'postgres' } & TargetOptionsPostgresMergePatch | { type: 'redshift' } & TargetOptionsRedshiftMergePatch | { type: 's3_csv' } & TargetOptionsS3CsvMergePatch | { type: 'salesforce' } & TargetOptionsSalesforceMergePatch | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudMergePatch | { type: 'segment' } & TargetOptionsSegmentMergePatch | { type: 'sftp' } & TargetOptionsSftpMergePatch | { type: 'snowflake' } & TargetOptionsSnowflakeMergePatch | { type: 'sql_server' } & TargetOptionsSqlServerMergePatch | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskMergePatch | { type: 'tiktok' } & TargetOptionsTiktokMergePatch;
 /**
  * MotherDuck options
  * @export
@@ -26697,7 +25598,7 @@ export interface TargetOptionsPoplarPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsPost = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPost | { type: 'bigquery' } & TargetOptionsBigQueryPost | { type: 'clickhouse' } & TargetOptionsClickhousePost | { type: 'databricks' } & TargetOptionsDatabricksPost | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPost | { type: 'google_ads' } & TargetOptionsGoogleAdsPost | { type: 'hosted_csv' } & TargetOptionsHostedCsvPost | { type: 'hubspot' } & TargetOptionsHubspotPost | { type: 'iterable' } & TargetOptionsIterablePost | { type: 'klaviyo' } & TargetOptionsKlaviyoPost | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPost | { type: 'lookup_api' } & TargetOptionsLookupApiPost | { type: 'motherduck' } & TargetOptionsMotherduckPost | { type: 'mysql' } & TargetOptionsMysqlPost | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPost | { type: 'poplar' } & TargetOptionsPoplarPost | { type: 'postgres' } & TargetOptionsPostgresPost | { type: 'redshift' } & TargetOptionsRedshiftPost | { type: 's3_csv' } & TargetOptionsS3CsvPost | { type: 'salesforce' } & TargetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPost | { type: 'segment' } & TargetOptionsSegmentPost | { type: 'sftp' } & TargetOptionsSftpPost | { type: 'snowflake' } & TargetOptionsSnowflakePost | { type: 'sql_server' } & TargetOptionsSqlServerPost | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPost | { type: 'tiktok' } & TargetOptionsTiktokPost;
+export type TargetOptionsPost = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPost | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPost | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPost | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPost | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPost | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPost | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPost | { type: 'bigquery' } & TargetOptionsBigQueryPost | { type: 'clickhouse' } & TargetOptionsClickhousePost | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPost | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPost | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPost | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPost | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPost | { type: 'google_ads' } & TargetOptionsGoogleAdsPost | { type: 'hosted_csv' } & TargetOptionsHostedCsvPost | { type: 'hubspot' } & TargetOptionsHubspotPost | { type: 'iterable' } & TargetOptionsIterablePost | { type: 'klaviyo' } & TargetOptionsKlaviyoPost | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPost | { type: 'lookup_api' } & TargetOptionsLookupApiPost | { type: 'motherduck' } & TargetOptionsMotherduckPost | { type: 'mysql' } & TargetOptionsMysqlPost | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPost | { type: 'poplar' } & TargetOptionsPoplarPost | { type: 'postgres' } & TargetOptionsPostgresPost | { type: 'redshift' } & TargetOptionsRedshiftPost | { type: 's3_csv' } & TargetOptionsS3CsvPost | { type: 'salesforce' } & TargetOptionsSalesforcePost | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPost | { type: 'segment' } & TargetOptionsSegmentPost | { type: 'sftp' } & TargetOptionsSftpPost | { type: 'snowflake' } & TargetOptionsSnowflakePost | { type: 'sql_server' } & TargetOptionsSqlServerPost | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPost | { type: 'tiktok' } & TargetOptionsTiktokPost;
 /**
  * Postgres options
  * @export
@@ -26785,7 +25686,7 @@ export interface TargetOptionsPostgresPut {
  * The export target configuration options. These vary by connection type.
  * @export
  */
-export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'clickhouse' } & TargetOptionsClickhousePut | { type: 'databricks' } & TargetOptionsDatabricksPut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPut | { type: 'lookup_api' } & TargetOptionsLookupApiPut | { type: 'motherduck' } & TargetOptionsMotherduckPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'poplar' } & TargetOptionsPoplarPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce' } & TargetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'sftp' } & TargetOptionsSftpPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
+export type TargetOptionsPut = { type: 'aws_aurora_mysql' } & TargetOptionsAwsAuroraMysqlPut | { type: 'aws_aurora_postgres' } & TargetOptionsAwsAuroraPostgresPut | { type: 'aws_rds_mysql' } & TargetOptionsAwsRdsMysqlPut | { type: 'aws_rds_postgres' } & TargetOptionsAwsRdsPostgresPut | { type: 'aws_rds_sql_server' } & TargetOptionsAwsRdsSqlServerPut | { type: 'aws_redshift_serverless' } & TargetOptionsAwsRedshiftServerlessPut | { type: 'azure_sql_server' } & TargetOptionsAzureSqlServerPut | { type: 'bigquery' } & TargetOptionsBigQueryPut | { type: 'clickhouse' } & TargetOptionsClickhousePut | { type: 'facebook_custom_audiences' } & TargetOptionsFacebookCustomAudiencesPut | { type: 'gcp_cloud_sql_mysql' } & TargetOptionsGcpCloudSqlMysqlPut | { type: 'gcp_cloud_sql_postgres' } & TargetOptionsGcpCloudSqlPostgresPut | { type: 'gcp_cloud_sql_sql_server' } & TargetOptionsGcpCloudSqlSqlServerPut | { type: 'gcp_gcs_csv' } & TargetOptionsGcpGcsCsvPut | { type: 'google_ads' } & TargetOptionsGoogleAdsPut | { type: 'hosted_csv' } & TargetOptionsHostedCsvPut | { type: 'hubspot' } & TargetOptionsHubspotPut | { type: 'iterable' } & TargetOptionsIterablePut | { type: 'klaviyo' } & TargetOptionsKlaviyoPut | { type: 'linkedin_ads' } & TargetOptionsLinkedinAdsPut | { type: 'lookup_api' } & TargetOptionsLookupApiPut | { type: 'motherduck' } & TargetOptionsMotherduckPut | { type: 'mysql' } & TargetOptionsMysqlPut | { type: 'pinterest_ads' } & TargetOptionsPinterestAdsPut | { type: 'poplar' } & TargetOptionsPoplarPut | { type: 'postgres' } & TargetOptionsPostgresPut | { type: 'redshift' } & TargetOptionsRedshiftPut | { type: 's3_csv' } & TargetOptionsS3CsvPut | { type: 'salesforce' } & TargetOptionsSalesforcePut | { type: 'salesforce_marketing_cloud' } & TargetOptionsSalesforceMarketingCloudPut | { type: 'segment' } & TargetOptionsSegmentPut | { type: 'sftp' } & TargetOptionsSftpPut | { type: 'snowflake' } & TargetOptionsSnowflakePut | { type: 'sql_server' } & TargetOptionsSqlServerPut | { type: 'the_trade_desk' } & TargetOptionsTheTradeDeskPut | { type: 'tiktok' } & TargetOptionsTiktokPut;
 /**
  * Redshift options
  * @export

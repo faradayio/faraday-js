@@ -1075,10 +1075,10 @@ export interface Atlas {
     options: AtlasOptions;
     /**
      *
-     * @type {OutputToLocations}
+     * @type {AtlasOutputToLocations}
      * @memberof Atlas
      */
-    output_to_locations: OutputToLocations;
+    output_to_locations: AtlasOutputToLocations;
     /**
      * The type of this resource.
      * @type {string}
@@ -1171,10 +1171,10 @@ export interface AtlasMergePatch {
     options?: AtlasOptionsMergePatch;
     /**
      *
-     * @type {OutputToLocationsMergePatch}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasMergePatch
      */
-    output_to_locations?: OutputToLocationsMergePatch;
+    output_to_locations?: AtlasOutputToLocations;
 }
 /**
  * @type AtlasOptions
@@ -1200,10 +1200,6 @@ export declare type AtlasOptions = {
 } & DatasetOptionsBigQuery | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouse | {
-    type: 'databricks';
-} & DatasetOptionsDatabricks | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharing | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -1254,10 +1250,6 @@ export declare type AtlasOptionsMergePatch = {
 } & DatasetOptionsBigQueryMergePatch | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksMergePatch | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -1308,10 +1300,6 @@ export declare type AtlasOptionsPost = {
 } & DatasetOptionsBigQueryPost | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePost | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPost | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -1362,10 +1350,6 @@ export declare type AtlasOptionsPut = {
 } & DatasetOptionsBigQueryPut | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePut | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPut | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
@@ -1392,6 +1376,104 @@ export declare type AtlasOptionsPut = {
 } & DatasetOptionsSnowflakePut | {
     type: 'sql_server';
 } & DatasetOptionsSqlServerPut;
+/**
+ * How to build a location out of each row of the source data. Each member below names a column in the source data.
+ *
+ * Each location is placed by exactly one of three groups of columns: a geometry column (`geometry`), a coordinate pair (`latitude` and `longitude`), or address columns (`house_number_and_street`, `city`, `state` and `postcode`). Naming columns from more than one group is rejected. Naming none is allowed: an atlas can be created before the columns of its source data are known, and configured once they are. Addresses are geocoded to a point during ingestion.
+ * @export
+ * @interface AtlasOutputToLocations
+ */
+export interface AtlasOutputToLocations {
+    /**
+     * The city of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    city?: string;
+    /**
+     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
+     *
+     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    geometry?: string;
+    /**
+     * The street address lines of each location.
+     * @type {Array<string>}
+     * @memberof AtlasOutputToLocations
+     */
+    house_number_and_street?: Array<string>;
+    /**
+     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    latitude?: string;
+    /**
+     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    longitude?: string;
+    /**
+     * A human-readable label for each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    name?: string;
+    /**
+     * The postcode of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    postcode?: string;
+    /**
+     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
+     * @type {Array<AtlasOutputToLocationsProperties>}
+     * @memberof AtlasOutputToLocations
+     */
+    properties?: Array<AtlasOutputToLocationsProperties>;
+    /**
+     * An identifier for each location from an external system.
+     *
+     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    reference_key?: string;
+    /**
+     * The state of each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocations
+     */
+    state?: string;
+}
+/**
+ *
+ * @export
+ * @interface AtlasOutputToLocationsProperties
+ */
+export interface AtlasOutputToLocationsProperties {
+    /**
+     * The source column this property's value is read from. Mutually exclusive with `value`.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    column?: string;
+    /**
+     * The name this property is given on each location.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    name: string;
+    /**
+     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
+     * @type {string}
+     * @memberof AtlasOutputToLocationsProperties
+     */
+    value?: string;
+}
 /**
  * (Parameters used to POST a new value of the `Atlas` type.)
  *
@@ -1426,10 +1508,10 @@ export interface AtlasPost {
     options: AtlasOptionsPost;
     /**
      *
-     * @type {OutputToLocationsPost}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasPost
      */
-    output_to_locations: OutputToLocationsPost;
+    output_to_locations: AtlasOutputToLocations;
 }
 /**
  * (Parameters used to PUT a value of the `Atlas` type.)
@@ -1455,10 +1537,10 @@ export interface AtlasPut {
     options: AtlasOptionsPut;
     /**
      *
-     * @type {OutputToLocationsPut}
+     * @type {AtlasOutputToLocations}
      * @memberof AtlasPut
      */
-    output_to_locations: OutputToLocationsPut;
+    output_to_locations: AtlasOutputToLocations;
 }
 /**
  * An attribute wraps a stream of assertions with configuration for aggregation and selection.
@@ -2879,8 +2961,7 @@ export interface CohortMetrics {
     total_residence_count?: number;
 }
 /**
- * A spatial filter on a place. Superseded by `CohortLocationCondition`, which filters on
- * the locations of an atlas.
+ *
  * @export
  * @interface CohortPlaceCondition
  */
@@ -3469,10 +3550,6 @@ export declare type ConnectionOptions = {
 } & ConnectionOptionsClassic | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhouse | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricks | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharing | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiences | {
     type: 'gcp_cloud_sql_mysql';
@@ -5280,33 +5357,11 @@ export interface ConnectionOptionsBigQuery {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQuery
-     */
-    region?: ConnectionOptionsBigQueryRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQuery
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to PATCH the `ConnectionOptionsBigQuery` type.)
@@ -5329,33 +5384,11 @@ export interface ConnectionOptionsBigQueryMergePatch {
      */
     project_id?: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryMergePatch
-     */
-    region?: ConnectionOptionsBigQueryMergePatchRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryMergePatch
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryMergePatchRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to POST a new value of the `ConnectionOptionsBigQuery` type.)
@@ -5378,33 +5411,11 @@ export interface ConnectionOptionsBigQueryPost {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryPost
-     */
-    region?: ConnectionOptionsBigQueryPostRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPost
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryPostRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * (Parameters used to PUT a value of the `ConnectionOptionsBigQuery` type.)
@@ -5427,33 +5438,11 @@ export interface ConnectionOptionsBigQueryPut {
      */
     project_id: string;
     /**
-     * BigQuery location. Defaults to <code>US</code> (multi-region). Faraday supports the US multi-region and US single regions only. See <a href="https://cloud.google.com/bigquery/docs/locations">BigQuery locations</a>.
-     * @type {string}
-     * @memberof ConnectionOptionsBigQueryPut
-     */
-    region?: ConnectionOptionsBigQueryPutRegionEnum;
-    /**
      * The type of connection
      * @type {string}
      * @memberof ConnectionOptionsBigQueryPut
      */
     type: string;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ConnectionOptionsBigQueryPutRegionEnum {
-    Us = "US",
-    UsCentral1 = "us-central1",
-    UsEast1 = "us-east1",
-    UsEast4 = "us-east4",
-    UsEast5 = "us-east5",
-    UsSouth1 = "us-south1",
-    UsWest1 = "us-west1",
-    UsWest2 = "us-west2",
-    UsWest3 = "us-west3",
-    UsWest4 = "us-west4"
 }
 /**
  * Classic Faraday Sources options
@@ -5720,314 +5709,6 @@ export interface ConnectionOptionsClickhousePut {
      * @memberof ConnectionOptionsClickhousePut
      */
     user: string;
-}
-/**
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricks
- */
-export interface ConnectionOptionsDatabricks {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricks
-     */
-    type: string;
-}
-/**
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharing
- */
-export interface ConnectionOptionsDatabricksDeltaSharing {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharing
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `ConnectionOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingMergePatch
- */
-export interface ConnectionOptionsDatabricksDeltaSharingMergePatch {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    credentials_json?: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    schema_name?: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    share_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingPost
- */
-export interface ConnectionOptionsDatabricksDeltaSharingPost {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `ConnectionOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface ConnectionOptionsDatabricksDeltaSharingPut
- */
-export interface ConnectionOptionsDatabricksDeltaSharingPut {
-    /**
-     * The Delta Sharing credentials JSON file contents. Download this file from the activation link provided by Databricks, then paste its contents here, and finally delete the file from your local computer.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    credentials_json: string;
-    /**
-     * The schema name within the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    schema_name: string;
-    /**
-     * The name of the Delta Sharing share.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    share_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksDeltaSharingPut
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `ConnectionOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksMergePatch
- */
-export interface ConnectionOptionsDatabricksMergePatch {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    catalog?: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    host?: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    http_path?: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    schema?: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    token?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `ConnectionOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksPost
- */
-export interface ConnectionOptionsDatabricksPost {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `ConnectionOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface ConnectionOptionsDatabricksPut
- */
-export interface ConnectionOptionsDatabricksPut {
-    /**
-     * Unity Catalog catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    catalog: string;
-    /**
-     * Databricks workspace server hostname, without protocol. Copy it from the SQL warehouse Connection details. Example: adb-1234567890123456.1.azuredatabricks.net or xxx.cloud.databricks.com.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    host: string;
-    /**
-     * SQL warehouse HTTP path from the warehouse Connection details. Example: /sql/1.0/warehouses/abc123def456.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    http_path: string;
-    /**
-     * Schema within the catalog Faraday should use.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    schema: string;
-    /**
-     * Databricks personal access token for a service principal or user Faraday should authenticate as.
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    token: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof ConnectionOptionsDatabricksPut
-     */
-    type: string;
 }
 /**
  * Facebook Custom Audiences options
@@ -7499,10 +7180,6 @@ export declare type ConnectionOptionsMergePatch = {
 } & ConnectionOptionsClassicMergePatch | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricksMergePatch | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharingMergePatch | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesMergePatch | {
     type: 'gcp_cloud_sql_mysql';
@@ -8141,10 +7818,6 @@ export declare type ConnectionOptionsPost = {
 } & ConnectionOptionsClassicPost | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhousePost | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricksPost | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharingPost | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPost | {
     type: 'gcp_cloud_sql_mysql';
@@ -8483,10 +8156,6 @@ export declare type ConnectionOptionsPut = {
 } & ConnectionOptionsClassicPut | {
     type: 'clickhouse';
 } & ConnectionOptionsClickhousePut | {
-    type: 'databricks';
-} & ConnectionOptionsDatabricksPut | {
-    type: 'databricks_delta_sharing';
-} & ConnectionOptionsDatabricksDeltaSharingPut | {
     type: 'facebook_custom_audiences';
 } & ConnectionOptionsFacebookCustomAudiencesPut | {
     type: 'gcp_cloud_sql_mysql';
@@ -11451,10 +11120,6 @@ export declare type DatasetOptions = {
 } & DatasetOptionsClassic | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouse | {
-    type: 'databricks';
-} & DatasetOptionsDatabricks | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharing | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysql | {
     type: 'gcp_cloud_sql_postgres';
@@ -12292,170 +11957,6 @@ export interface DatasetOptionsClickhousePut {
      * The type of connection
      * @type {string}
      * @memberof DatasetOptionsClickhousePut
-     */
-    type: string;
-}
-/**
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricks
- */
-export interface DatasetOptionsDatabricks {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricks
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricks
-     */
-    type: string;
-}
-/**
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharing
- */
-export interface DatasetOptionsDatabricksDeltaSharing {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharing
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharing
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `DatasetOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingMergePatch
- */
-export interface DatasetOptionsDatabricksDeltaSharingMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `DatasetOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingPost
- */
-export interface DatasetOptionsDatabricksDeltaSharingPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `DatasetOptionsDatabricksDeltaSharing` type.)
- *
- * Databricks Delta Sharing options
- * @export
- * @interface DatasetOptionsDatabricksDeltaSharingPut
- */
-export interface DatasetOptionsDatabricksDeltaSharingPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksDeltaSharingPut
-     */
-    type: string;
-}
-/**
- * (Parameters used to PATCH the `DatasetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksMergePatch
- */
-export interface DatasetOptionsDatabricksMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksMergePatch
-     */
-    type: string;
-}
-/**
- * (Parameters used to POST a new value of the `DatasetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksPost
- */
-export interface DatasetOptionsDatabricksPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPost
-     */
-    type: string;
-}
-/**
- * (Parameters used to PUT a value of the `DatasetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface DatasetOptionsDatabricksPut
- */
-export interface DatasetOptionsDatabricksPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof DatasetOptionsDatabricksPut
      */
     type: string;
 }
@@ -13336,10 +12837,6 @@ export declare type DatasetOptionsMergePatch = {
 } & DatasetOptionsClassicMergePatch | {
     type: 'clickhouse';
 } & DatasetOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksMergePatch | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingMergePatch | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlMergePatch | {
     type: 'gcp_cloud_sql_postgres';
@@ -13652,10 +13149,6 @@ export declare type DatasetOptionsPost = {
 } & DatasetOptionsClassicPost | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePost | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPost | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPost | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPost | {
     type: 'gcp_cloud_sql_postgres';
@@ -13808,10 +13301,6 @@ export declare type DatasetOptionsPut = {
 } & DatasetOptionsClassicPut | {
     type: 'clickhouse';
 } & DatasetOptionsClickhousePut | {
-    type: 'databricks';
-} & DatasetOptionsDatabricksPut | {
-    type: 'databricks_delta_sharing';
-} & DatasetOptionsDatabricksDeltaSharingPut | {
     type: 'gcp_cloud_sql_mysql';
 } & DatasetOptionsGcpCloudSqlMysqlPut | {
     type: 'gcp_cloud_sql_postgres';
@@ -18464,321 +17953,6 @@ export declare enum OutcomePutPredictionModeEnum {
     Static = "static"
 }
 /**
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocations
- */
-export interface OutputToLocations {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocations
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocations
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocations
-     */
-    state?: string;
-}
-/**
- * (Parameters used to PATCH the `OutputToLocations` type.)
- *
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsMergePatch
- */
-export interface OutputToLocationsMergePatch {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    city?: string | null;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    geometry?: string | null;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsMergePatch
-     */
-    house_number_and_street?: Array<string> | null;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    latitude?: string | null;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    longitude?: string | null;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    name?: string | null;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    postcode?: string | null;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsMergePatch
-     */
-    properties?: Array<OutputToLocationsProperties> | null;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    reference_key?: string | null;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsMergePatch
-     */
-    state?: string | null;
-}
-/**
- * (Parameters used to POST a new value of the `OutputToLocations` type.)
- *
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsPost
- */
-export interface OutputToLocationsPost {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsPost
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsPost
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPost
-     */
-    state?: string;
-}
-/**
- *
- * @export
- * @interface OutputToLocationsProperties
- */
-export interface OutputToLocationsProperties {
-    /**
-     * The source column this property's value is read from. Mutually exclusive with `value`.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    column?: string;
-    /**
-     * The name this property is given on each location.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    name: string;
-    /**
-     * A constant value for this property, shared by every location. Mutually exclusive with `column`.
-     * @type {string}
-     * @memberof OutputToLocationsProperties
-     */
-    value?: string;
-}
-/**
- * (Parameters used to PUT a value of the `OutputToLocations` type.)
- *
- * How to build a location out of each row of the source data. Each member below names a column in the source data.
- * @export
- * @interface OutputToLocationsPut
- */
-export interface OutputToLocationsPut {
-    /**
-     * The city of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    city?: string;
-    /**
-     * The geometry of each location, as GeoJSON or well-known text. Coordinates are decimal degrees in EPSG 4326 (WGS 84), and the geometry must be two-dimensional; a row whose geometry does not conform produces no location.
-     *
-     * Geometries may be points, lines, or areas; an area is used in full when measuring distance to a location, so distances are measured to the nearest edge.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    geometry?: string;
-    /**
-     * The street address lines of each location.
-     * @type {Array<string>}
-     * @memberof OutputToLocationsPut
-     */
-    house_number_and_street?: Array<string>;
-    /**
-     * The latitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    latitude?: string;
-    /**
-     * The longitude of each location, in decimal degrees, EPSG 4326 (WGS 84).
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    longitude?: string;
-    /**
-     * A human-readable label for each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    name?: string;
-    /**
-     * The postcode of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    postcode?: string;
-    /**
-     * Additional values to record on each location. Properties can be filtered on wherever an atlas' locations are used.
-     * @type {Array<OutputToLocationsProperties>}
-     * @memberof OutputToLocationsPut
-     */
-    properties?: Array<OutputToLocationsProperties>;
-    /**
-     * An identifier for each location from an external system.
-     *
-     * Reference keys must be unique within an atlas. Setting this enables filtering by `location_reference_keys` wherever an atlas' locations are used.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    reference_key?: string;
-    /**
-     * The state of each location.
-     * @type {string}
-     * @memberof OutputToLocationsPut
-     */
-    state?: string;
-}
-/**
  * A single mapping of a dataset column to a stream with property configurations.
  * @export
  * @interface OutputToStreamArrayItem
@@ -19710,9 +18884,6 @@ export interface PersonaSetPut {
 }
 /**
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface Place
  */
@@ -19809,9 +18980,6 @@ export interface Place {
  * (Parameters used to PATCH the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlaceMergePatch
  */
@@ -19842,9 +19010,6 @@ export interface PlaceMergePatch {
  * (Parameters used to POST a new value of the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePost
  */
@@ -19875,9 +19040,6 @@ export interface PlacePost {
  * (Parameters used to PUT a value of the `Place` type.)
  *
  * A geospatial area or set of addresses which can be used as a spatial filter when defining other resources.
- *
- * Superseded by the `Atlas`, which holds many locations built from a connection or an
- * uploaded file rather than a single hand-defined area.
  * @export
  * @interface PlacePut
  */
@@ -21357,234 +20519,6 @@ export interface ScopePayloadLocationConditions {
     property_conditions?: Array<LocationPropertyCondition>;
 }
 /**
- * (Parameters used to PATCH the `ScopePayloadLocationConditions` type.)
- *
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsMergePatch
- */
-export interface ScopePayloadLocationConditionsMergePatch {
-    /**
-     * The atlases whose locations each person is matched against.
-     *
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    atlas_ids?: Array<string> | null;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     *
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    location_reference_keys?: Array<string> | null;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    max_distance?: number | null;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    min_distance?: number | null;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsMergePatch
-     */
-    property_conditions?: Array<LocationPropertyCondition> | null;
-}
-/**
- * (Parameters used to POST a new value of the `ScopePayloadLocationConditions` type.)
- *
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsPost
- */
-export interface ScopePayloadLocationConditionsPost {
-    /**
-     * The atlases whose locations each person is matched against.
-     *
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     *
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    max_distance?: number;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    min_distance?: number;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsPost
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
- * (Parameters used to PUT a value of the `ScopePayloadLocationConditions` type.)
- *
- * Which atlas locations each person is matched against, and the distance bounds for a match. If absent, each person is matched against every location in the account's atlases at any distance.
- * @export
- * @interface ScopePayloadLocationConditionsPut
- */
-export interface ScopePayloadLocationConditionsPut {
-    /**
-     * The atlases whose locations each person is matched against.
-     *
-     * If this is empty or absent, every atlas in the account is used.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    atlas_ids?: Array<string>;
-    /**
-     * Match each person only against the locations carrying these reference keys.
-     *
-     * A reference key is unique only within one atlas, so these keys are matched in every atlas each person is matched against. Select a single atlas to restrict them to that atlas' keys.
-     * @type {Array<string>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    location_reference_keys?: Array<string>;
-    /**
-     * A person only matches a location if they are no further than this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    max_distance?: number;
-    /**
-     * A person only matches a location if they are at least this many meters from it.
-     * @type {number}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    min_distance?: number;
-    /**
-     * Match each person only against the locations whose properties satisfy these conditions.
-     * @type {Array<LocationPropertyCondition>}
-     * @memberof ScopePayloadLocationConditionsPut
-     */
-    property_conditions?: Array<LocationPropertyCondition>;
-}
-/**
- * (Parameters used to PATCH the `ScopePayloadLocation` type.)
- *
- * Include each person's proximity to the locations of one or more atlases.
- *
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationMergePatch
- */
-export interface ScopePayloadLocationMergePatch {
-    /**
-     *
-     * @type {ScopePayloadLocationConditionsMergePatch}
-     * @memberof ScopePayloadLocationMergePatch
-     */
-    conditions?: ScopePayloadLocationConditionsMergePatch | null;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     *
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationMergePatch
-     */
-    select?: ScopePayloadLocationMergePatchSelectEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ScopePayloadLocationMergePatchSelectEnum {
-    Nearest = "nearest",
-    All = "all"
-}
-/**
- * (Parameters used to POST a new value of the `ScopePayloadLocation` type.)
- *
- * Include each person's proximity to the locations of one or more atlases.
- *
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationPost
- */
-export interface ScopePayloadLocationPost {
-    /**
-     *
-     * @type {ScopePayloadLocationConditionsPost}
-     * @memberof ScopePayloadLocationPost
-     */
-    conditions?: ScopePayloadLocationConditionsPost;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     *
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationPost
-     */
-    select?: ScopePayloadLocationPostSelectEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ScopePayloadLocationPostSelectEnum {
-    Nearest = "nearest",
-    All = "all"
-}
-/**
- * (Parameters used to PUT a value of the `ScopePayloadLocation` type.)
- *
- * Include each person's proximity to the locations of one or more atlases.
- *
- * Distances are in meters, measured to the nearest edge of a location's geometry.
- * @export
- * @interface ScopePayloadLocationPut
- */
-export interface ScopePayloadLocationPut {
-    /**
-     *
-     * @type {ScopePayloadLocationConditionsPut}
-     * @memberof ScopePayloadLocationPut
-     */
-    conditions?: ScopePayloadLocationConditionsPut;
-    /**
-     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
-     *
-     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
-     * @type {string}
-     * @memberof ScopePayloadLocationPut
-     */
-    select?: ScopePayloadLocationPutSelectEnum;
-}
-/**
-* @export
-* @enum {string}
-*/
-export declare enum ScopePayloadLocationPutSelectEnum {
-    Nearest = "nearest",
-    All = "all"
-}
-/**
  * (Parameters used to PATCH the `ScopePayload` type.)
  *
  * The data to include for each person in this scope.
@@ -21616,10 +20550,10 @@ export interface ScopePayloadMergePatch {
     explainability?: boolean | null;
     /**
      *
-     * @type {ScopePayloadLocationMergePatch}
+     * @type {ScopePayloadMergePatchLocation}
      * @memberof ScopePayloadMergePatch
      */
-    location?: ScopePayloadLocationMergePatch | null;
+    location?: ScopePayloadMergePatchLocation | null;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -21646,6 +20580,37 @@ export interface ScopePayloadMergePatch {
      * @memberof ScopePayloadMergePatch
      */
     recommender_ids?: Array<string> | null;
+}
+/**
+ * Include each person's proximity to the locations of one or more atlases.
+ *
+ * Distances are in meters, measured to the nearest edge of a location's geometry.
+ * @export
+ * @interface ScopePayloadMergePatchLocation
+ */
+export interface ScopePayloadMergePatchLocation {
+    /**
+     *
+     * @type {ScopePayloadLocationConditions}
+     * @memberof ScopePayloadMergePatchLocation
+     */
+    conditions?: ScopePayloadLocationConditions;
+    /**
+     * Whether to include only the nearest matching location for each person, or every matching location. `all` requires `max_distance`.
+     *
+     * The choice sets the shape of the three location columns in the scope payload — `fdy_location_name`, `fdy_location_reference_key` and `fdy_location_distance`. Under `nearest` each column holds a single scalar describing that one location. Under `all` each column holds a JSON array ordered nearest first, and the three arrays are index-aligned: the i-th element of each describes the same location. `fdy_location_distance` is therefore a number under `nearest` and text under `all`, so any target already receiving these columns must be rebuilt after the choice changes. A person matching no location has no location data: all three columns are empty under either choice, rather than holding an empty array.
+     * @type {string}
+     * @memberof ScopePayloadMergePatchLocation
+     */
+    select?: ScopePayloadMergePatchLocationSelectEnum;
+}
+/**
+* @export
+* @enum {string}
+*/
+export declare enum ScopePayloadMergePatchLocationSelectEnum {
+    Nearest = "nearest",
+    All = "all"
 }
 /**
  * (Parameters used to POST a new value of the `ScopePayload` type.)
@@ -21679,10 +20644,10 @@ export interface ScopePayloadPost {
     explainability?: boolean;
     /**
      *
-     * @type {ScopePayloadLocationPost}
+     * @type {ScopePayloadLocation}
      * @memberof ScopePayloadPost
      */
-    location?: ScopePayloadLocationPost;
+    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -21742,10 +20707,10 @@ export interface ScopePayloadPut {
     explainability?: boolean;
     /**
      *
-     * @type {ScopePayloadLocationPut}
+     * @type {ScopePayloadLocation}
      * @memberof ScopePayloadPut
      */
-    location?: ScopePayloadLocationPut;
+    location?: ScopePayloadLocation;
     /**
      * The maximum date for FIG attribute observations used in the scope payload. When set, only attribute data observed on or before this date will be included. If not set, the freshest available data is used.
      * @type {string}
@@ -25358,8 +24323,6 @@ export declare type TargetOptions = {
 } & TargetOptionsBigQuery | {
     type: 'clickhouse';
 } & TargetOptionsClickhouse | {
-    type: 'databricks';
-} & TargetOptionsDatabricks | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiences | {
     type: 'gcp_cloud_sql_mysql';
@@ -26223,112 +25186,6 @@ export interface TargetOptionsClickhousePut {
      * @memberof TargetOptionsClickhousePut
      */
     type: string;
-}
-/**
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricks
- */
-export interface TargetOptionsDatabricks {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricks
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricks
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricks
-     */
-    upsert?: boolean;
-}
-/**
- * (Parameters used to PATCH the `TargetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksMergePatch
- */
-export interface TargetOptionsDatabricksMergePatch {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    table_name?: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksMergePatch
-     */
-    upsert?: boolean | null;
-}
-/**
- * (Parameters used to POST a new value of the `TargetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksPost
- */
-export interface TargetOptionsDatabricksPost {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksPost
-     */
-    upsert?: boolean;
-}
-/**
- * (Parameters used to PUT a value of the `TargetOptionsDatabricks` type.)
- *
- * Databricks options
- * @export
- * @interface TargetOptionsDatabricksPut
- */
-export interface TargetOptionsDatabricksPut {
-    /**
-     * Table name
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    table_name: string;
-    /**
-     * The type of connection
-     * @type {string}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    type: string;
-    /**
-     * Currently only supported on referenced targets. Faraday merges into the existing table using the reference_key_column from the referenced dataset. Without upsert, each run replaces the destination table.
-     * @type {boolean}
-     * @memberof TargetOptionsDatabricksPut
-     */
-    upsert?: boolean;
 }
 /**
  * Facebook Custom Audiences options
@@ -27350,8 +26207,6 @@ export declare type TargetOptionsMergePatch = {
 } & TargetOptionsBigQueryMergePatch | {
     type: 'clickhouse';
 } & TargetOptionsClickhouseMergePatch | {
-    type: 'databricks';
-} & TargetOptionsDatabricksMergePatch | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesMergePatch | {
     type: 'gcp_cloud_sql_mysql';
@@ -27734,8 +26589,6 @@ export declare type TargetOptionsPost = {
 } & TargetOptionsBigQueryPost | {
     type: 'clickhouse';
 } & TargetOptionsClickhousePost | {
-    type: 'databricks';
-} & TargetOptionsDatabricksPost | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesPost | {
     type: 'gcp_cloud_sql_mysql';
@@ -27896,8 +26749,6 @@ export declare type TargetOptionsPut = {
 } & TargetOptionsBigQueryPut | {
     type: 'clickhouse';
 } & TargetOptionsClickhousePut | {
-    type: 'databricks';
-} & TargetOptionsDatabricksPut | {
     type: 'facebook_custom_audiences';
 } & TargetOptionsFacebookCustomAudiencesPut | {
     type: 'gcp_cloud_sql_mysql';

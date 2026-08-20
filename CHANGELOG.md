@@ -10,35 +10,6 @@ Until we reach API 1.0, the following special rules apply:
 1. If you **add a feature** or **fix a bug**, please bump the version from **0.x.y** to **0.x.(y+1)**.
 2. If you **make a breaking change**, please bump the version from **0.x.y** to **0.(x+1).0**.
 
-## [0.16.4] - 2026-08-15
-
-### Added
-
-- Databricks bidirectional replication connection type (`databricks`): SQL warehouse access with `host`, `http_path`, Unity Catalog `catalog` and `schema`, and a secret personal access `token`. Dataset `table_name`, full-replacement targets, and optional referenced-target `upsert`.
-
-## [0.16.3] - 2026-08-14
-
-### Added
-
-- BigQuery connection `region`. Defaults to `US` (multi-region). US single regions from [BigQuery locations](https://cloud.google.com/bigquery/docs/locations) are also accepted; non-US locations are not supported.
-
-## [0.16.2] - 2026-08-12
-
-### Changed
-
-- `PATCH /atlases/{atlas_id}`: the members of `output_to_locations` accept `null` to clear an existing value, as merge patch members elsewhere in the API do. A location is placed by exactly one of a geometry column, a coordinate pair, or address columns, so moving an atlas from one group to another means naming the columns of the group being left as `null`; omitting them leaves them in place and the mapping is rejected for naming more than one group.
-- `PATCH /scopes/{scope_id}`: the members of `payload.location` and of its `conditions` accept `null` to clear an existing value, as merge patch members elsewhere in the API do. A distance bound, in particular, can now be removed so that each person is matched at any distance; omitting it leaves the stored bound in place.
-
-### Deprecated
-
-- Every `/places` endpoint, the `Place` schema, and the `CohortPlaceCondition` schema. Places are superseded by atlases, whose locations are built from a connection or an uploaded file. Build new spatial filters on an atlas with `POST /atlases` and a cohort's `location_conditions`. Existing places and the cohorts that use them are unaffected and continue to be readable and writable.
-
-## [0.16.1] - 2026-08-10
-
-### Added
-
-- `DELETE /knowledgebase/use_cases/{use_case_id}`: delete a use case. Unlike archiving, a deleted use case is no longer returned by any read, including when listing archived use cases.
-
 ## [0.16.0] - 2026-08-07
 
 ### Changed
